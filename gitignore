@@ -1,2 +1,5 @@
 *.pyc
 *logec_db*
+gitignore
+*__pycache__*
+*pycache*
