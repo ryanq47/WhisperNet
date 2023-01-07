@@ -438,12 +438,12 @@
              <widget class="QComboBox" name="combo_sort">
               <item>
                <property name="text">
-                <string>Top</string>
+                <string>Hot</string>
                </property>
               </item>
               <item>
                <property name="text">
-                <string>Hot</string>
+                <string>Top</string>
                </property>
               </item>
               <item>
@@ -532,6 +532,13 @@
              <widget class="QPushButton" name="osint_reddit_search">
               <property name="text">
                <string>--&gt;&gt; Search &lt;&lt;--</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="4">
+             <widget class="QCheckBox" name="checkBox_9">
+              <property name="text">
+               <string>Hide NSFW</string>
               </property>
              </widget>
             </item>
