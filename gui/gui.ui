@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>843</width>
+    <height>613</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTextBrowser" name="browser_Target_Status">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>0</y>
+      <width>291</width>
+      <height>331</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Status">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>0</y>
+      <width>66</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Status</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="status_Connected">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>30</y>
+      <width>281</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Connected: False</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="status_label_IPADDR">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>60</y>
+      <width>81</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>External IP:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="status_label_OS">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>90</y>
+      <width>21</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>OS:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="status_label_HOSTNAME">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>120</y>
+      <width>81</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>HostName:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="status_data_IPADDR">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>60</y>
+      <width>201</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>N/A</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="status_data_OS">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>90</y>
+      <width>251</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>N/A</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="status_data_HOSTNAME">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>120</y>
+      <width>201</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>N/A</string>
+    </property>
+   </widget>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>310</y>
+      <width>841</width>
+      <height>251</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Tab 1</string>
+     </attribute>
+     <widget class="QTextEdit" name="text_Program_Output">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>821</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font/>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>150</y>
+        <width>711</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string extracomment="Commands"/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="line_button">
+      <property name="geometry">
+       <rect>
+        <x>730</x>
+        <y>180</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Send (enter)</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Tab 2</string>
+     </attribute>
+     <widget class="QTextEdit" name="textEdit">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>104</width>
+        <height>64</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Keylooger, turn into text browser&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>843</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuTarget">
+    <property name="title">
+     <string>Target</string>
+    </property>
+    <widget class="QMenu" name="menu_Target_SpawnShell">
+     <property name="title">
+      <string>Spawn Shell</string>
+     </property>
+     <widget class="QMenu" name="menu_Target_PythonShells">
+      <property name="title">
+       <string>Python Shells</string>
+      </property>
+      <addaction name="action_Target_Python_binbash"/>
+      <addaction name="action_Target_Python_binsh"/>
+     </widget>
+     <widget class="QMenu" name="menuBash_Shells">
+      <property name="title">
+       <string>Bash Shells</string>
+      </property>
+      <addaction name="action_bin_bash"/>
+     </widget>
+     <addaction name="separator"/>
+     <addaction name="actionLanguage"/>
+     <addaction name="separator"/>
+     <addaction name="menu_Target_PythonShells"/>
+     <addaction name="menuBash_Shells"/>
+    </widget>
+    <widget class="QMenu" name="menuDetection_Prevention">
+     <property name="title">
+      <string>Detection Prevention</string>
+     </property>
+     <addaction name="actionDisable_Firewall"/>
+    </widget>
+    <addaction name="action_Target_Listen"/>
+    <addaction name="action_Target_Info"/>
+    <addaction name="menu_Target_SpawnShell"/>
+    <addaction name="menuDetection_Prevention"/>
+   </widget>
+   <widget class="QMenu" name="menu_GettingStarted">
+    <property name="title">
+     <string>Getting Started</string>
+    </property>
+    <addaction name="GettingStarted_Readme"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuTarget"/>
+   <addaction name="menu_GettingStarted"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_Target_Listen">
+   <property name="text">
+    <string>Listen for connection</string>
+   </property>
+  </action>
+  <action name="action_Target_Info">
+   <property name="text">
+    <string>Target Info</string>
+   </property>
+  </action>
+  <action name="actionBash">
+   <property name="text">
+    <string>/bin/bash</string>
+   </property>
+  </action>
+  <action name="action_bin_sh">
+   <property name="text">
+    <string>/bin/sh</string>
+   </property>
+  </action>
+  <action name="action_Target_Python_binbash">
+   <property name="text">
+    <string>Linux Shell</string>
+   </property>
+  </action>
+  <action name="action_Target_Python_binsh">
+   <property name="text">
+    <string>Windows Shell</string>
+   </property>
+  </action>
+  <action name="action_bin_bash">
+   <property name="text">
+    <string>/bin/bash</string>
+   </property>
+  </action>
+  <action name="actionShell_Type">
+   <property name="text">
+    <string>Shell Type</string>
+   </property>
+  </action>
+  <action name="actionLanguage">
+   <property name="text">
+    <string>Language</string>
+   </property>
+  </action>
+  <action name="actionDisable_Firewall">
+   <property name="text">
+    <string>Disable Firewall</string>
+   </property>
+  </action>
+  <action name="GettingStarted_Readme">
+   <property name="text">
+    <string>Read Me!</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

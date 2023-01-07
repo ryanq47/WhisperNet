@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LogecC3</class>
+ <widget class="QMainWindow" name="LogecC3">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>850</width>
+    <height>688</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>850</width>
+    <height>688</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>2000</width>
+    <height>2000</height>
+   </size>
+  </property>
+  <property name="acceptDrops">
+   <bool>false</bool>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../../.designer/backup/Modules/GUI_System/Images/icon.png</normaloff>../../.designer/backup/Modules/GUI_System/Images/icon.png</iconset>
+  </property>
+  <property name="animated">
+   <bool>true</bool>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>-2</x>
+      <y>0</y>
+      <width>882</width>
+      <height>671</height>
+     </rect>
+    </property>
+    <property name="tabPosition">
+     <enum>QTabWidget::North</enum>
+    </property>
+    <property name="currentIndex">
+     <number>3</number>
+    </property>
+    <property name="tabsClosable">
+     <bool>true</bool>
+    </property>
+    <property name="movable">
+     <bool>true</bool>
+    </property>
+    <property name="tabBarAutoHide">
+     <bool>false</bool>
+    </property>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>Main/C2</string>
+     </attribute>
+     <widget class="QTabWidget" name="text_PortScan_tab">
+      <property name="geometry">
+       <rect>
+        <x>-1</x>
+        <y>190</y>
+        <width>851</width>
+        <height>461</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Enter</string>
+      </property>
+      <property name="whatsThis">
+       <string>Enter</string>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Shell</string>
+       </attribute>
+       <widget class="QTextEdit" name="text_Program_Output">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>831</width>
+          <height>351</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font/>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="placeholderText">
+         <string>Results from command will show up here</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="shell_input">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>370</y>
+          <width>671</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="toolTip">
+         <string extracomment="Commands"/>
+        </property>
+        <property name="placeholderText">
+         <string>Enter Command Here!</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="shell_input_enter">
+        <property name="geometry">
+         <rect>
+          <x>690</x>
+          <y>370</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="toolTip">
+         <string>Hit the Enter Key</string>
+        </property>
+        <property name="text">
+         <string>--&gt;&gt; Send &lt;&lt;-- </string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Local DB</string>
+       </attribute>
+       <widget class="QTableWidget" name="table_SQLDB">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>830</width>
+          <height>321</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="table_RefreshDB_Button">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>372</y>
+          <width>410</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="toolTip">
+         <string>Refresh the Database, updating values from the SQLITE DB file</string>
+        </property>
+        <property name="text">
+         <string>--&gt;&gt; Refresh DB &lt;&lt;--</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="table_QueryDB_Button">
+        <property name="geometry">
+         <rect>
+          <x>428</x>
+          <y>372</y>
+          <width>410</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="toolTip">
+         <string>Run a query on the DB</string>
+        </property>
+        <property name="text">
+         <string>--&gt;&gt; Query DB &lt;&lt;--</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="DB_Query">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>340</y>
+          <width>828</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>Enter SQL Query! Type !_help for help! </string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="status_ERROR">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>550</y>
+          <width>551</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>100</y>
+        <width>171</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>send '!quit' to disconnect</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="status_label_HOSTNAME">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>40</y>
+        <width>81</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>HostName:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="status_data_HOSTNAME">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>40</y>
+        <width>201</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>N/A</string>
+      </property>
+     </widget>
+     <widget class="QTextBrowser" name="browser_Target_Status">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>841</width>
+        <height>121</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="status_label_OS">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>20</y>
+        <width>21</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>OS:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="status_data_IPADDR">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>50</y>
+        <width>201</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>N/A</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="status_Connected">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>181</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Connection: Disconnected</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="status_label_IPADDR">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>81</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>External IP:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="status_data_OS">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>20</y>
+        <width>251</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>N/A</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>Osint?</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_5">
+     <attribute name="title">
+      <string>Settings</string>
+     </attribute>
+     <widget class="QTextEdit" name="textEdit">
+      <property name="geometry">
+       <rect>
+        <x>153</x>
+        <y>140</y>
+        <width>461</width>
+        <height>64</height>
+       </rect>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;To get a new tab, right click and hit 'insert page'&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_6">
+     <attribute name="title">
+      <string>Dedicated DB page</string>
+     </attribute>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>850</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionDEBUG"/>
+   </widget>
+   <widget class="QMenu" name="menuTarget">
+    <property name="title">
+     <string>Client</string>
+    </property>
+    <widget class="QMenu" name="menu_Target_SpawnShell">
+     <property name="title">
+      <string>Spawn Shell</string>
+     </property>
+     <widget class="QMenu" name="menu_Target_PythonShells">
+      <property name="title">
+       <string>Python Shells</string>
+      </property>
+      <addaction name="action_Target_Python_binbash"/>
+      <addaction name="action_Target_Python_win"/>
+     </widget>
+     <widget class="QMenu" name="action_Target_Perl_binbash">
+      <property name="title">
+       <string>Perl Shells</string>
+      </property>
+      <addaction name="action_Perl"/>
+     </widget>
+     <widget class="QMenu" name="menuRuby_Shells">
+      <property name="title">
+       <string>Ruby Shells</string>
+      </property>
+      <addaction name="action_Target_Ruby_NonInteractive"/>
+     </widget>
+     <addaction name="separator"/>
+     <addaction name="actionLanguage"/>
+     <addaction name="separator"/>
+     <addaction name="menu_Target_PythonShells"/>
+     <addaction name="action_Target_Perl_binbash"/>
+     <addaction name="menuRuby_Shells"/>
+    </widget>
+    <widget class="QMenu" name="menu_Target_Destruction">
+     <property name="title">
+      <string>Destruction</string>
+     </property>
+     <widget class="QMenu" name="menu_Target_Encryption">
+      <property name="title">
+       <string>Encryption</string>
+      </property>
+      <addaction name="actionEncrypt_Files"/>
+     </widget>
+     <addaction name="menu_Target_Encryption"/>
+    </widget>
+    <widget class="QMenu" name="menu_Target_Info">
+     <property name="title">
+      <string>Target Info</string>
+     </property>
+     <addaction name="actionNetInfo"/>
+    </widget>
+    <addaction name="action_Target_Listen"/>
+    <addaction name="menu_Target_Info"/>
+    <addaction name="menu_Target_SpawnShell"/>
+    <addaction name="menu_Target_Destruction"/>
+   </widget>
+   <widget class="QMenu" name="menu_GettingStarted">
+    <property name="title">
+     <string>Getting Started</string>
+    </property>
+    <addaction name="GettingStarted_Readme"/>
+    <addaction name="actionRead_Me_webview"/>
+   </widget>
+   <widget class="QMenu" name="menuExternal_Target">
+    <property name="title">
+     <string>External Target</string>
+    </property>
+    <widget class="QMenu" name="menuExploits">
+     <property name="title">
+      <string>Exploits</string>
+     </property>
+     <widget class="QMenu" name="menuWindows">
+      <property name="title">
+       <string>Windows</string>
+      </property>
+      <widget class="QMenu" name="menuSMB">
+       <property name="title">
+        <string>SMB</string>
+       </property>
+       <addaction name="actionCVE_2017_0144_Eternal_Blue"/>
+      </widget>
+      <addaction name="menuSMB"/>
+     </widget>
+     <addaction name="menuWindows"/>
+     <addaction name="actionLinux"/>
+     <addaction name="actionOther"/>
+    </widget>
+    <widget class="QMenu" name="menuEnumeration">
+     <property name="title">
+      <string>Enumeration</string>
+     </property>
+     <addaction name="actionPort_Scan"/>
+    </widget>
+    <addaction name="menuEnumeration"/>
+    <addaction name="menuExploits"/>
+   </widget>
+   <widget class="QMenu" name="menuData">
+    <property name="title">
+     <string>Data</string>
+    </property>
+    <widget class="QMenu" name="menuSQL_Shortcuts">
+     <property name="title">
+      <string>SQL Shortcuts</string>
+     </property>
+     <addaction name="actionHelp_Menu_DB"/>
+     <addaction name="actionError_DB"/>
+     <addaction name="actionTables_DB_2"/>
+     <addaction name="separator"/>
+     <addaction name="actionPortScan_DB_3"/>
+     <addaction name="actionOther_More_Cool_DB"/>
+    </widget>
+    <addaction name="menuSQL_Shortcuts"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuTarget"/>
+   <addaction name="menuExternal_Target"/>
+   <addaction name="menuData"/>
+   <addaction name="menu_GettingStarted"/>
+  </widget>
+  <action name="action_Target_Listen">
+   <property name="text">
+    <string>Listen for connection</string>
+   </property>
+  </action>
+  <action name="actionBash">
+   <property name="text">
+    <string>/bin/bash</string>
+   </property>
+  </action>
+  <action name="action_bin_sh">
+   <property name="text">
+    <string>/bin/sh</string>
+   </property>
+  </action>
+  <action name="action_Target_Python_binbash">
+   <property name="text">
+    <string>Python Linux Shell</string>
+   </property>
+  </action>
+  <action name="action_Target_Python_binsh">
+   <property name="text">
+    <string>Windows Shell</string>
+   </property>
+  </action>
+  <action name="action_Perl">
+   <property name="text">
+    <string>Pearl Linux Shell</string>
+   </property>
+  </action>
+  <action name="actionShell_Type">
+   <property name="text">
+    <string>Shell Type</string>
+   </property>
+  </action>
+  <action name="actionLanguage">
+   <property name="text">
+    <string>Language</string>
+   </property>
+  </action>
+  <action name="actionDisable_Firewall">
+   <property name="text">
+    <string>Disable Firewall</string>
+   </property>
+  </action>
+  <action name="GettingStarted_Readme">
+   <property name="text">
+    <string>Read Me! (To shell tab)</string>
+   </property>
+  </action>
+  <action name="menu_Data_Download">
+   <property name="text">
+    <string>Download Files from Target</string>
+   </property>
+  </action>
+  <action name="menu_Data_Upload">
+   <property name="text">
+    <string>Upload Files to Target</string>
+   </property>
+  </action>
+  <action name="action_Target_Ruby_NonInteractive">
+   <property name="text">
+    <string>Linx Ruby Shell (Non-interactive)</string>
+   </property>
+  </action>
+  <action name="actionEncrypt_Files">
+   <property name="text">
+    <string>Encrypt Files</string>
+   </property>
+  </action>
+  <action name="actionLinux">
+   <property name="text">
+    <string>Linux</string>
+   </property>
+  </action>
+  <action name="actionOther">
+   <property name="text">
+    <string>Other</string>
+   </property>
+  </action>
+  <action name="actionCVE_2017_0144_Eternal_Blue">
+   <property name="text">
+    <string>CVE-2017-0144: Eternal Blue</string>
+   </property>
+  </action>
+  <action name="action_Target_Python_win">
+   <property name="text">
+    <string>Python Windows Shell</string>
+   </property>
+  </action>
+  <action name="actionDEBUG">
+   <property name="text">
+    <string>DEBUG</string>
+   </property>
+  </action>
+  <action name="actionRead_Me_webview">
+   <property name="text">
+    <string>Read Me! (webview)</string>
+   </property>
+  </action>
+  <action name="actionNetInfo">
+   <property name="text">
+    <string>NetInfo</string>
+   </property>
+  </action>
+  <action name="actionPortScan_DB">
+   <property name="text">
+    <string>PortScan DB</string>
+   </property>
+  </action>
+  <action name="actionPortScan_DB_2">
+   <property name="text">
+    <string>PortScan DB</string>
+   </property>
+  </action>
+  <action name="actionHelp_DB">
+   <property name="text">
+    <string>Help DB</string>
+   </property>
+  </action>
+  <action name="actionTables_DB">
+   <property name="text">
+    <string>Tables DB</string>
+   </property>
+  </action>
+  <action name="actionHelp_Menu_DB">
+   <property name="text">
+    <string>Help Menu DB</string>
+   </property>
+  </action>
+  <action name="actionTables_DB_2">
+   <property name="text">
+    <string>Tables DB</string>
+   </property>
+  </action>
+  <action name="actionPortScan_DB_3">
+   <property name="text">
+    <string>PortScan DB</string>
+   </property>
+  </action>
+  <action name="actionOther_More_Cool_DB">
+   <property name="text">
+    <string>Other More Cool DB</string>
+   </property>
+  </action>
+  <action name="actionPort_Scan">
+   <property name="text">
+    <string>Port Scan</string>
+   </property>
+  </action>
+  <action name="actionError_DB">
+   <property name="text">
+    <string>Error DB</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

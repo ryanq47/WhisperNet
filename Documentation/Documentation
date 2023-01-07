@@ -1,0 +1,14 @@
+## Logec Attack Documentation
+
+
+
+## Understanding the code:
+
+There are 2 major prefixes which will help clear some confusion up with client/server interations
+If the function, or variable is on, or meant for the server, it will have  a 's_' infront of it
+If it is meant for the client, a "c_" will be apart of it.
+
+I have tried my best to make these as readable as possible, for example: c_get_hostname() - replace the c_ with the
+word 'client', and it reads 'client get hostname', The other way around: s_action - reads 'server action'
+
+in some cases, Target is interchanged for client, to avoid some namespace clashing (this is mostly in the Module files)
