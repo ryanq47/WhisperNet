@@ -132,6 +132,18 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.actionError_DB.triggered.connect(self.error_shortcut)
         
         ## osint
+        ## == Dashboard ++
+            ## connecting checkbox to each module 
+        ## Top Bar:
+        self.dashboard_osint_keyword.textChanged.connect(self.osint_reddit_keyword.setText)
+        
+            ## Reddit
+        self.dashboard_reddit_onlycomments.stateChanged.connect(self.osint_reddit_onlycomments.setChecked)
+        self.dashboard_reddit_onlyprofile.stateChanged.connect(self.osint_reddit_onlyprofile.setChecked)
+        self.dashboard_reddit_downloadmedia.stateChanged.connect(self.osint_reddit_downloadmedia.setChecked)
+        self.dashboard_reddit_hideNSFW.stateChanged.connect(self.osint_reddit_hideNSFW.setChecked)
+        self.dashboard_reddit_subreddit.textChanged.connect(self.osint_reddit_subreddit.setText)
+        
         ## == Osint Reddit
         self.osint_reddit_search.clicked.connect(self.osint_reddit)
         
