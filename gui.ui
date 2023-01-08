@@ -52,7 +52,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -645,6 +645,19 @@
                  <string>Hide NSFW</string>
                 </property>
                </widget>
+               <widget class="QLineEdit" name="lineEdit_7">
+                <property name="geometry">
+                 <rect>
+                  <x>182</x>
+                  <y>380</y>
+                  <width>751</width>
+                  <height>27</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Non Functional</string>
+                </property>
+               </widget>
               </widget>
              </widget>
             </item>
@@ -880,6 +893,19 @@
            <attribute name="title">
             <string>VideoCams(use qwebview)</string>
            </attribute>
+           <widget class="QLineEdit" name="lineEdit_8">
+            <property name="geometry">
+             <rect>
+              <x>150</x>
+              <y>320</y>
+              <width>751</width>
+              <height>27</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Non Functional</string>
+            </property>
+           </widget>
           </widget>
          </widget>
         </item>
@@ -1263,6 +1289,19 @@
                  <enum>Qt::Horizontal</enum>
                 </property>
                </widget>
+               <widget class="QLineEdit" name="lineEdit_9">
+                <property name="geometry">
+                 <rect>
+                  <x>140</x>
+                  <y>370</y>
+                  <width>751</width>
+                  <height>27</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Non Functional</string>
+                </property>
+               </widget>
               </widget>
              </widget>
             </item>
@@ -1515,6 +1554,19 @@
            <attribute name="title">
             <string>SQL Scan</string>
            </attribute>
+           <widget class="QLineEdit" name="lineEdit_10">
+            <property name="geometry">
+             <rect>
+              <x>190</x>
+              <y>440</y>
+              <width>751</width>
+              <height>27</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Non Functional</string>
+            </property>
+           </widget>
           </widget>
          </widget>
         </item>
