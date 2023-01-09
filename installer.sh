@@ -31,7 +31,7 @@ read SHELLFILE
 
 SHELLFILE_CHECK='export PATH="'$program_path'/:$PATH"'
 
-if grep -Fxq "$SHELLFILE_CHECK" ~/$SHELLFILE
+if grep -Fx "$SHELLFILE_CHECK" ~/$SHELLFILE
 then
 	echo "Already in $SHELLFILE, passing"
 else
