@@ -5,6 +5,11 @@ echo "Logec Installer!"
 echo "####################"
 
 echo "##=================="
+echo "Checking for updates..."
+echo "##=================="
+
+
+echo "##=================="
 echo "Installing PipReqs..."
 echo "##=================="
 
@@ -24,9 +29,16 @@ echo "##=================="
 echo "Enter Shell file (.bashrc, .zshrc, etc -- INCLUDE THE '.'!)"
 read SHELLFILE
 
-echo 'export PATH="'$program_path'/:$PATH"' >> ~/$SHELLFILE
+SHELLFILE_CHECK='export PATH="'$program_path'/:$PATH"'
 
-#echo "'export PATH=$program_path:$PATH'" >> ~/.$SHELLFILE
+if grep -Fxq "$SHELLFILE_CHECK" ~/$SHELLFILE
+then
+	echo "Already in $SHELLFILE, passing"
+else
+	echo 'export PATH="'$program_path'/:$PATH"' >> ~/$SHELLFILE
+	echo "Successfully added to '$SHELLFILE'..."
+fi
+
 
 echo "##=================="
 echo "All done! Reboot for the new path to take effect. Then run ./logec-attack.py to start the program!"
