@@ -1,4 +1,7 @@
-import imports
+#!/bin/python3
+
+print("SUCCESS")
+#import imports
 
 import sys
 from PyQt5.QtCore import Qt, QObject, QThread, pyqtSignal
@@ -16,22 +19,24 @@ import time
 import webbrowser
 import time
 
-from server import s_sock, s_action
+from agent.server import s_sock, s_action
+
+#from server import s_sock, s_action
 #from client import c_sock
 
 ## importing other UI files
-from shell_popup import Ui_shell_SEND
-from listen_popup import Ui_listener_popup
-from Encryptor import Ui_Form as Encryptor_Popup
-from portscan_popup import Ui_PortScan_Popup
+from Gui.shell_popup import Ui_shell_SEND
+from Gui.listen_popup import Ui_listener_popup
+from Gui.Encryptor import Ui_Form as Encryptor_Popup
+from Gui.portscan_popup import Ui_PortScan_Popup
 
 ### importing modules
-from reverse_shells import target as rev_shell_target
-from win_reverse_shells import target as rev_shell_target_win
+from Modules.Linux.Reverse_Shells.reverse_shells import target as rev_shell_target
+from Modules.Windows.Reverse_Shells.win_reverse_shells import target as rev_shell_target_win
 
-import utility
+import Modules.General.utility as utility
 
-qtcreator_file  = "gui.ui"
+qtcreator_file  = "/home/kali/Documents/logec-suite/gui.ui"
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtcreator_file)
 
 class Worker(QObject):
@@ -576,6 +581,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 ## ========================================
 
     def portscan_popup(self):
+        #print("POPUP")
         ## added _ to not conflict in namespace
         self.window = QtWidgets.QMainWindow()
         self._portscan_popup = Ui_PortScan_Popup()
@@ -587,6 +593,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self._portscan_popup.portscan_start.clicked.connect(self.portscan_qthread)
         
     def portscan_qthread(self):
+        print("PORTSCNA THREAD STARTER")
         ## quick multiple IP handler
         ip_convert = str(self._portscan_popup.portscan_IP.text()).split(",")
         valid_ip = []
@@ -602,7 +609,8 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.window.hide()
 
     def portscan(self, input_ip):
-        import portscanner
+        print("I")
+        import Modules.General.portscanner as portscanner
 
         ip = input_ip #self._portscan_popup.portscan_IP.text()
         min_port = self._portscan_popup.portscan_minport.text()
@@ -863,7 +871,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 ## Data Download
 
     def data_download_thread(self, msg):
-        import filetransfer_server
+        import Modules.General.filetransfer_server
         
         lst = []
         for i in msg.split():
@@ -888,7 +896,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def osint_reddit_thread(self):
         self.reddit_progressbar.setValue(10)
         
-        from reddit_osint import reddit
+        from Modules.General.OSINT.reddit_osint import reddit
         ## need to init the class by calling it first durrrr
         r = reddit()
         
@@ -1022,14 +1030,18 @@ def createConnection():
 
     con = QSqlDatabase.addDatabase("QSQLITE")
     con.setDatabaseName("logec_db")
-    
+    '''
+    ## Qapp throwing a fit due to no DB and no constructed app
     if not con.open():
-        QMessageBox.critical(
-            None,
-            "QTableView Example - Error!",
-            "Database Error: %s" % con.lastError().databaseText(),
-        )
-        return False
+        try:
+            QMessageBox.critical(
+                None,
+                "QTableView Example - Error!",
+                "Database Error: %s" % con.lastError().databaseText(),
+            )
+            return False
+        except:
+            print("Error connecting to DB & QApp not constructed.")'''
     return True
 
 
@@ -1037,6 +1049,7 @@ if __name__ == "__main__":
     try:
         ## This has to go on top
         if not createConnection():
+            print("FAILURE TO CONNECT TO DB")
             sys.exit(1)
             
         app = QtWidgets.QApplication(sys.argv)

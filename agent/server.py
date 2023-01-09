@@ -9,9 +9,9 @@ import threading
 import time
 
 
-import imports
-import linux_info
-import windows_info
+#import imports
+import Modules.Linux.linux_info
+import Modules.Windows.windows_info
 
 
 HEADER = 64

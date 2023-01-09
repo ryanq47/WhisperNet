@@ -10,5 +10,4 @@ pyshorteners==1.0.1
 requests==2.27.1
 rich==13.0.1
 scapy==2.4.4
-speedtest==0.0.1
 speedtest_cli==2.1.3
