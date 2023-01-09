@@ -52,7 +52,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -913,13 +913,13 @@
       </widget>
       <widget class="QWidget" name="tab_22">
        <attribute name="title">
-        <string>Scanning</string>
+        <string>Scanning/Enumeration</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_17">
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_8">
           <property name="currentIndex">
-           <number>1</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="tab_24">
            <attribute name="title">
@@ -1566,6 +1566,118 @@
             <property name="text">
              <string>Non Functional</string>
             </property>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="tab_16">
+           <attribute name="title">
+            <string>DNS Lookup</string>
+           </attribute>
+           <widget class="QPushButton" name="portscan_start_6">
+            <property name="geometry">
+             <rect>
+              <x>710</x>
+              <y>43</y>
+              <width>345</width>
+              <height>27</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>--&gt;&gt; Lookup &lt;&lt;--</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="dashboard_osint_keyword_2">
+            <property name="geometry">
+             <rect>
+              <x>360</x>
+              <y>10</y>
+              <width>695</width>
+              <height>27</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>https://www.tutorialspoint.com/python_network_programming/python_dns_look_up.htm#</string>
+            </property>
+            <property name="placeholderText">
+             <string>Enter URL/IP</string>
+            </property>
+           </widget>
+           <widget class="QTextEdit" name="textEdit_2">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>70</y>
+              <width>381</width>
+              <height>121</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QTextEdit" name="textEdit_6">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>210</y>
+              <width>381</width>
+              <height>121</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QTextEdit" name="textEdit_7">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>350</y>
+              <width>381</width>
+              <height>121</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QTextEdit" name="textEdit_8">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>490</y>
+              <width>381</width>
+              <height>121</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEdit_11">
+            <property name="geometry">
+             <rect>
+              <x>30</x>
+              <y>20</y>
+              <width>113</width>
+              <height>27</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Records go here</string>
+            </property>
+           </widget>
+           <widget class="QComboBox" name="comboBox">
+            <property name="geometry">
+             <rect>
+              <x>420</x>
+              <y>40</y>
+              <width>281</width>
+              <height>27</height>
+             </rect>
+            </property>
+            <item>
+             <property name="text">
+              <string>MX</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Cname</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>A (IP)</string>
+             </property>
+            </item>
            </widget>
           </widget>
          </widget>

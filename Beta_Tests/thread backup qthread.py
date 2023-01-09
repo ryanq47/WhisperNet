@@ -1,17 +1,17 @@
 #qthread backup
 ## doc https://12ft.io/proxy?&q=https%3A%2F%2Frealpython.com%2Fpython-pyqt-qthread
 ## got stuck with singals n passing data to the subclass (scan) - otherwise everything worked well
-
+def PLACEHOLDER_DELETEME(): ## only exists so pipreqs dosent error out
     ## Class placed here for organization 
         def portscan_qthread(self):
-        self.thread = QThread()
-        self.worker = MyApp.scan()
-        ## Pointing thread at func/class
-        self.worker.moveToThread(self.thread)
-        ## queing func to be run
-        self.thread.started.connect(self.worker.portscan)
+            self.thread = QThread()
+            self.worker = MyApp.scan()
+            ## Pointing thread at func/class
+            self.worker.moveToThread(self.thread)
+            ## queing func to be run
+            self.thread.started.connect(self.worker.portscan)
     
-    
+def PLACEHOLDER_DELETEME_2():
     class scan(QObject):
         #ip = pyqtSignal(int)
         #def __init__(self):

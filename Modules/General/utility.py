@@ -3,7 +3,9 @@ import time
 import psutil
 import os
 
-import speedtest  
+import speedtest 
+import dns
+import dns.resolver
 
 
 class Timestamp:
@@ -76,9 +78,80 @@ class Network:
         #print(self.st.results.ping)
     
         return self.st.results.ping
+    def lookup_A(self, cname):
+        ## Returns a list of items
+        name = dns.resolver.resolve(cname, 'A')
+        
+        namelist = []
+
+        for i in name:
+            namelist.append(i.to_text())
+        
+        return namelist
+    
+    def lookup_CNAME(self, name):
+        ## Returns a list of items
+        name = dns.resolver.resolve(name, 'CNAME')
+        
+        namelist = []
+
+        for i in name:
+            namelist.append(i.to_text())
+        
+        return namelist
+    
+    def lookup_MX(self, name):
+        ## Returns a list of items
+        name = dns.resolver.resolve(name, 'MX')
+        
+        namelist = []
+
+        for i in name:
+            namelist.append(i.to_text())
+
+        return namelist
+
+    def lookup_TXT(self, name):
+        ## Returns a list of items
+        name = dns.resolver.resolve(name, 'TXT')
+        
+        namelist = []
+
+        for i in name:
+            namelist.append(i.to_text())
+
+        return namelist
+    
+    def lookup_NS(self, name):
+        ## Returns a list of items
+        name = dns.resolver.resolve(name, 'NS')
+        
+        namelist = []
+
+        for i in name:
+            namelist.append(i.to_text())
+
+        return namelist
+    
+    def lookup_Reverse(self, IP):
+        ## Returns a list of items
+        name = dns.reversename.from_address(IP)
+        
+        ## No iteration due to python seperating the string at each . :(
+        
+        namelist = (dns.resolver.resolve(name,"PTR")[0])
+        return namelist    
+            
+    
+    
+N = Network()
+print(N.lookup_NS("courts.state.mn.us"))
+#N.lookup_Reverse("8.8.8.8")
 
 '''
 N = Network()
+
+
 print(N.download())
 print(N.upload())
 print(N.ping())'''
