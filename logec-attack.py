@@ -36,7 +36,13 @@ from Modules.Windows.Reverse_Shells.win_reverse_shells import target as rev_shel
 
 import Modules.General.utility as utility
 
-qtcreator_file  = "/home/kali/Documents/logec-suite/gui.ui"
+import syspath
+print(syspath.path)
+
+#with open(".syspath","r") as f:
+qtcreator_file = syspath.path + "/gui.ui"
+
+#qtcreator_file  = "/home/kali/Documents/logec-suite/gui.ui"
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtcreator_file)
 
 class Worker(QObject):
