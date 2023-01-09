@@ -21,4 +21,13 @@ echo "##=================="
 echo "Adding to path..."
 echo "##=================="
 
+echo "Enter Shell file (.bashrc, .zshrc, etc -- INCLUDE THE '.'!)"
+read SHELLFILE
 
+echo 'export PATH="'$program_path'/:$PATH"' >> ~/$SHELLFILE
+
+#echo "'export PATH=$program_path:$PATH'" >> ~/.$SHELLFILE
+
+echo "##=================="
+echo "All done! Reboot for the new path to take effect. Then run ./logec-attack.py to start the program!"
+echo "##=================="
