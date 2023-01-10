@@ -156,7 +156,7 @@ class Network:
             
             ## No iteration due to python seperating the string at each . :(
             
-            namelist = (dns.resolver.resolve(name,"PTR")[0])
+            namelist = (str(dns.resolver.resolve(name,"PTR")[0]))
             return namelist  
         
         except:

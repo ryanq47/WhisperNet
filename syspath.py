@@ -1,1 +1,1 @@
-path = '/home/kali/Documents/logec_attack'
+path = '/home/kali/Documents/logec-suite'

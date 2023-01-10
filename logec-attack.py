@@ -168,6 +168,8 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         
         self.table_QueryDB_Button_scanning_portscan.clicked.connect(lambda: self.custom_query("scanning_portscan_db"))
         self.table_QueryDB_Button_scanning_portscan.setShortcut("Return")
+
+        self.portscan_start.clicked.connect(self.portscan_qthread)
         
         ## other
         ## == Perf Tab
@@ -191,6 +193,16 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     ## Object instances 
         self.N = utility.Network()
 
+    ## Portscam Inits
+        self.portscan_1_1024.toggled.connect(lambda: self.portscan_minport.setText("1"))
+        self.portscan_1_1024.toggled.connect(lambda: self.portscan_maxport.setText("1024"))
+
+        self.portscan_1_10000.toggled.connect(lambda: self.portscan_minport.setText("1"))
+        self.portscan_1_10000.toggled.connect(lambda: self.portscan_maxport.setText("10000"))
+
+        self.portscan_1_65535.toggled.connect(lambda: self.portscan_minport.setText("1"))
+        self.portscan_1_65535.toggled.connect(lambda: self.portscan_maxport.setText("65535"))
+
     ## == SQL init
         ## Setting DB
         self.view = self.table_SQLDB
@@ -204,7 +216,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         
         self.DB_Query_scanning_portscan.setText("!_portscan")
         self.custom_query("scanning_portscan_db")
-        
+    
         
         
         self.custom_query("performance_error_db")
@@ -609,55 +621,48 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def portscan_qthread(self):
         print("PORTSCNA THREAD STARTER")
         ## quick multiple IP handler
-        ip_convert = str(self._portscan_popup.portscan_IP.text()).split(",")
+        ip_convert = str(self.portscan_IP.text()).split(",")
         valid_ip = []
         for i in ip_convert:
             i.replace(" ","")
             valid_ip.append(i)
+
+        ## Setting vlaues
         
         for input_ip in valid_ip:
             print(input_ip)
             thread = threading.Thread(target=self.portscan, args=(input_ip,))
             thread.start()
-            
-        self.window.hide()
 
     def portscan(self, input_ip):
         print("I")
         import Modules.General.portscanner as portscanner
 
         ip = input_ip #self._portscan_popup.portscan_IP.text()
-        min_port = self._portscan_popup.portscan_minport.text()
-        max_port = self._portscan_popup.portscan_maxport.text()
-        extra_port = self._portscan_popup.portscan_extraport.text()
+        min_port = self.portscan_minport.text()
+        max_port = self.portscan_maxport.text()
+        extra_port = self.portscan_extraport.text()
         
         ## init vars
         standard = None
         stealth = None
             
-        standard = True if self._portscan_popup.portscan_standard_check.isChecked() else standard == False
-        stealth = True if self._portscan_popup.portscan_stealth_check.isChecked() else stealth == False
-        
-        '''
-        if self._portscan_popup.portscan_standard_check.isChecked():
-            standard = True
-        else:
-            standard = False
-                
-        if self._portscan_popup.portscan_stealth_check.isChecked():
-            stealth = True
-        else:
-            stealth = False'''
+        standard = True if self.portscan_standard_check.isChecked() else standard == False
+        stealth = True if self.portscan_stealth_check.isChecked() else stealth == False
+
+
             
             ## if clicked standard = true
         target_list = [ip, int(min_port), int(max_port), extra_port]
         scantype_list = [standard, stealth]
-            
-        portscanner.event_loop(target_list, scantype_list)
         
+        self.portscan_start.setText("-->> Scanning... <<--")
+        portscanner.event_loop(target_list, scantype_list)
+        self.portscan_start.setText("-->> Done! Scan again? <<--")
         ## Refreshing DB
-        self.DB_Query_scanning_portscan.setText("!_portscan")
-        self.custom_query("scanning_portscan_db")
+        #self.DB_Query_scanning_portscan.setText("!_portscan") <<-- broken due to thread reasons
+        #self.DB_Query_scanning_portscan.setText("select * from PortScan")
+        #self.custom_query("scanning_portscan_db")
 
 ## ========================================
 ## Destructoin PopUps =====================
@@ -929,25 +934,19 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         #dns_list = ["NONE","CNAME\nwww.google.com","MX\nmail.google.com","REVERSE \nexploit.tools", "TXT \ntext"]
         
-        dns_list = self.N.lookup_All(self.scanning_dns_query.text())
         
-        ## if list returns none, put none in the feild, make these one liners
-        #self.scanning_dns_A.setText("None Found") if dns_list[0] == "NONE" else self.scanning_dns_A.setText(str(dns_list[0]))
-        self.dns_table_formatting(self.dns_a_table, "Not Found","A") if dns_list[0] == "NONE" else self.dns_table_formatting(self.dns_a_table,dns_list[0],"A")
-        self.dns_table_formatting(self.dns_CNAME_table, "Not Found","CNAME") if dns_list[1] == "NONE" else self.dns_table_formatting(self.dns_CNAME_table,dns_list[1],"CNAME")
-        self.dns_table_formatting(self.dns_MX_table, "Not Found","MX") if dns_list[2] == "NONE" else self.dns_table_formatting(self.dns_MX_table,dns_list[2],"MX")
-        self.dns_table_formatting(self.dns_Reverse_table, "Not Found","Reverse Lookup") if dns_list[3] == "NONE" else self.dns_table_formatting(self.dns_Reverse_table,dns_list[3],"Reverse Lookup")
-        self.dns_table_formatting(self.dns_TXT_table, "Not Found","TXT") if dns_list[4] == "NONE" else self.dns_table_formatting(self.dns_TXT_table,dns_list[4],"TXT")
-        self.dns_table_formatting(self.dns_NS_table, "Not Found","NS") if dns_list[5] == "NONE" else self.dns_table_formatting(self.dns_NS_table,dns_list[5],"NS")
-
-        #self.scanning_dns_CNAME.setText("None Found") if dns_list[1] == "NONE" else self.scanning_dns_CNAME.setText(str(dns_list[1]))
-        #self.scanning_dns_MX.setText("None Found") if dns_list[2] == "NONE" else self.scanning_dns_MX.setText(str(dns_list[2]))
-        #self.scanning_dns_Reverse.setText("None Found") if dns_list[3] == "NONE" else self.scanning_dns_Reverse.setText(str(dns_list[3]))
-        #self.scanning_dns_TXT.setText("None Found") if dns_list[4] == "NONE" else self.scanning_dns_TXT.setText(str(dns_list[4]))
-        #self.scanning_dns_NS.setText("None Found") if dns_list[5] == "NONE" else self.scanning_dns_NS.setText(str(dns_list[5]))
-
-        
-        #self.scanning_dns_A.setText(dns_list[0])
+        if self.scanning_dns_query.text() == "":
+            self.ERROR("No input for DNS", "Low", "Make sure the DNS field isn't empty")
+            dns_list = None
+        else:
+            dns_list = self.N.lookup_All(self.scanning_dns_query.text())
+            ## One liners to save some space
+            self.dns_table_formatting(self.dns_a_table, "Not Found","A") if dns_list[0] == "NONE" else self.dns_table_formatting(self.dns_a_table,dns_list[0],"A")
+            self.dns_table_formatting(self.dns_CNAME_table, "Not Found","CNAME") if dns_list[1] == "NONE" else self.dns_table_formatting(self.dns_CNAME_table,dns_list[1],"CNAME")
+            self.dns_table_formatting(self.dns_MX_table, "Not Found","MX") if dns_list[2] == "NONE" else self.dns_table_formatting(self.dns_MX_table,dns_list[2],"MX")
+            self.dns_table_formatting(self.dns_Reverse_table, "Not Found","Reverse Lookup") if dns_list[3] == "NONE" else self.dns_table_formatting(self.dns_Reverse_table,dns_list[3],"Reverse Lookup")
+            self.dns_table_formatting(self.dns_TXT_table, "Not Found","TXT") if dns_list[4] == "NONE" else self.dns_table_formatting(self.dns_TXT_table,dns_list[4],"TXT")
+            self.dns_table_formatting(self.dns_NS_table, "Not Found","NS") if dns_list[5] == "NONE" else self.dns_table_formatting(self.dns_NS_table,dns_list[5],"NS")
 
     def dns_table_formatting(self, table_object, list, name):
         row = 0
@@ -959,14 +958,26 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.dns_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         
         ## calculating rows n columns
-        self.dns_table.setRowCount(len(list))
+        try:
+            self.dns_table.setRowCount(len(list))
+        except:
+            self.dns_table.setRowCount(5)
         self.dns_table.setColumnCount(1) 
         self.dns_table.setHorizontalHeaderLabels([name])
         
-        for i in list:
-            self.dns_table.setItem(row,0, QTableWidgetItem(i))
-            self.dns_table.setRowHeight(row, 13)
-            row = row +1
+        #print(list)
+
+        if name == "Reverse Lookup": ## special exception for PTR records, bandaid fix, will figure out later
+            for i in list.splitlines():
+                self.dns_table.setItem(row,0, QTableWidgetItem(i))
+                self.dns_table.setRowHeight(row, 13)
+                row = row +1
+
+        else:
+            for i in list:
+                self.dns_table.setItem(row,0, QTableWidgetItem(i))
+                self.dns_table.setRowHeight(row, 13)
+                row = row +1
         
 
 ## ========================================

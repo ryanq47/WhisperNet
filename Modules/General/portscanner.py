@@ -44,6 +44,8 @@ def checkhost(ip):
 ## =====
 
 def standard_scan(target_list):
+    print("Started Standard Scan")
+
     #print(port_range)
     #        target_list = [ip, min_port, max_port, extra_port]
     Date = utility.Timestamp.UTC_Date()
@@ -115,6 +117,7 @@ def standard_scan(target_list):
 
 #def stealth_scan(target_ip, port_range):
 def stealth_scan(target_list):
+    print("Started Stealth Scan")
     #print(port_range)
     #        target_list = [ip, min_port, max_port, extra_port]
     Date = utility.Timestamp.UTC_Date()
@@ -149,7 +152,7 @@ def stealth_scan(target_list):
         
         ## sending packet and getting flags back
         try:
-            SYNACKpkt = sr1(IP(dst = target_list[0])/TCP(sport = srcport, dport = i, flags = "S"), timeout = 2)
+            SYNACKpkt = sr1(IP(dst = target_list[0])/TCP(sport = srcport, dport = i, flags = "S"), timeout = .01)
             ## Handling weird stoppage problem
             if SYNACKpkt == None:
                 pktflags = None
@@ -202,7 +205,8 @@ def database_write(IP, SCANTYPE, SCANDATE, SCANTIME, RUNTIME, SCANNEDPORTS, PORT
         
         print(sqlite_insert_query)
 
-        count = cursor.execute(sqlite_insert_query)
+        #count = cursor.execute(sqlite_insert_query)
+        cursor.execute(sqlite_insert_query)
         sqliteConnection.commit()
         cursor.close()
 

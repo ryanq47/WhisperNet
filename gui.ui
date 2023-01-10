@@ -924,7 +924,7 @@
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_8">
           <property name="currentIndex">
-           <number>3</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tab_24">
            <attribute name="title">
@@ -1324,19 +1324,6 @@
             <string>PortScan</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_18">
-            <item row="7" column="3" rowspan="2">
-             <widget class="QCheckBox" name="portscan_stealth_check_2">
-              <property name="maximumSize">
-               <size>
-                <width>100</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>Stealth</string>
-              </property>
-             </widget>
-            </item>
             <item row="11" column="0" colspan="4">
              <widget class="Line" name="line_9">
               <property name="orientation">
@@ -1344,17 +1331,50 @@
               </property>
              </widget>
             </item>
-            <item row="10" column="6">
-             <widget class="QProgressBar" name="progressBar_5">
+            <item row="9" column="0">
+             <widget class="QCheckBox" name="checkBox_5">
+              <property name="maximumSize">
+               <size>
+                <width>100</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Other1</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="6">
+             <widget class="QProgressBar" name="progressBar_3">
               <property name="value">
-               <number>27</number>
+               <number>43</number>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0" rowspan="2" colspan="4">
+             <widget class="QLineEdit" name="portscan_extraport">
+              <property name="placeholderText">
+               <string>80, 443</string>
               </property>
              </widget>
             </item>
             <item row="4" column="1">
-             <widget class="QCheckBox" name="checkBox_8">
+             <widget class="QRadioButton" name="portscan_1_10000">
               <property name="text">
                <string>1-10,000</string>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="0" rowspan="2" colspan="2">
+             <widget class="QCheckBox" name="portscan_standard_check">
+              <property name="maximumSize">
+               <size>
+                <width>100</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Standard</string>
               </property>
              </widget>
             </item>
@@ -1362,6 +1382,20 @@
              <widget class="QLabel" name="label_14">
               <property name="text">
                <string>192.168.0.1 Standard 1-100, 80, 631</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="6">
+             <widget class="QProgressBar" name="progressBar_2">
+              <property name="value">
+               <number>88</number>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="6" rowspan="2">
+             <widget class="QProgressBar" name="progressBar_7">
+              <property name="value">
+               <number>81</number>
               </property>
              </widget>
             </item>
@@ -1417,74 +1451,6 @@
               </widget>
              </widget>
             </item>
-            <item row="10" column="0" colspan="4">
-             <widget class="QPushButton" name="portscan_start_2">
-              <property name="text">
-               <string>--&gt;&gt; Start Scan &lt;&lt;--</string>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="6" rowspan="2">
-             <widget class="QProgressBar" name="progressBar_4">
-              <property name="value">
-               <number>18</number>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0" rowspan="2" colspan="3">
-             <widget class="QLineEdit" name="portscan_minport_2">
-              <property name="placeholderText">
-               <string>1</string>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="0" rowspan="2" colspan="2">
-             <widget class="QCheckBox" name="portscan_standard_check_2">
-              <property name="maximumSize">
-               <size>
-                <width>100</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>Standard</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="6">
-             <widget class="QProgressBar" name="progressBar_2">
-              <property name="value">
-               <number>88</number>
-              </property>
-             </widget>
-            </item>
-            <item row="9" column="0">
-             <widget class="QCheckBox" name="checkBox_5">
-              <property name="maximumSize">
-               <size>
-                <width>100</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>Other1</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="3" rowspan="2">
-             <widget class="QLineEdit" name="portscan_maxport_2">
-              <property name="placeholderText">
-               <string>1024</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0" colspan="4">
-             <widget class="QLineEdit" name="portscan_IP_2">
-              <property name="placeholderText">
-               <string>8.8.8.8</string>
-              </property>
-             </widget>
-            </item>
             <item row="0" column="5" rowspan="12">
              <widget class="Line" name="line">
               <property name="minimumSize">
@@ -1498,45 +1464,10 @@
               </property>
              </widget>
             </item>
-            <item row="3" column="6">
-             <widget class="QProgressBar" name="progressBar_3">
-              <property name="value">
-               <number>43</number>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="2">
-             <widget class="QCheckBox" name="checkBox_3">
-              <property name="text">
-               <string>1-65535 (all)</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="6">
-             <widget class="QLabel" name="label_13">
-              <property name="text">
-               <string>192.168.0.1 Stealth 1-100, 80, 631</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QCheckBox" name="checkBox">
-              <property name="text">
-               <string>1-1024</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0" rowspan="2" colspan="4">
-             <widget class="QLineEdit" name="portscan_extraport">
+            <item row="2" column="0" rowspan="2" colspan="3">
+             <widget class="QLineEdit" name="portscan_minport">
               <property name="placeholderText">
-               <string>80, 443</string>
-              </property>
-             </widget>
-            </item>
-            <item row="8" column="6" rowspan="2">
-             <widget class="QProgressBar" name="progressBar_7">
-              <property name="value">
-               <number>81</number>
+               <string>1</string>
               </property>
              </widget>
             </item>
@@ -1550,6 +1481,75 @@
               </property>
               <property name="text">
                <string>Other2</string>
+              </property>
+             </widget>
+            </item>
+            <item row="10" column="0" colspan="4">
+             <widget class="QPushButton" name="portscan_start">
+              <property name="text">
+               <string>--&gt;&gt; Start Scan &lt;&lt;--</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="2">
+             <widget class="QRadioButton" name="portscan_1_65535">
+              <property name="text">
+               <string>1-65535 (All)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QRadioButton" name="portscan_1_1024">
+              <property name="text">
+               <string>1-1024</string>
+              </property>
+             </widget>
+            </item>
+            <item row="10" column="6">
+             <widget class="QProgressBar" name="progressBar_5">
+              <property name="value">
+               <number>27</number>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="6">
+             <widget class="QLabel" name="label_13">
+              <property name="text">
+               <string>192.168.0.1 Stealth 1-100, 80, 631</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="6" rowspan="2">
+             <widget class="QProgressBar" name="progressBar_4">
+              <property name="value">
+               <number>18</number>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="3" rowspan="2">
+             <widget class="QCheckBox" name="portscan_stealth_check">
+              <property name="maximumSize">
+               <size>
+                <width>100</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Stealth</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="3" rowspan="2">
+             <widget class="QLineEdit" name="portscan_maxport">
+              <property name="placeholderText">
+               <string>1024</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" colspan="4">
+             <widget class="QLineEdit" name="portscan_IP">
+              <property name="placeholderText">
+               <string>8.8.8.8</string>
               </property>
              </widget>
             </item>
