@@ -7,7 +7,7 @@ import sys
 from PyQt5.QtCore import Qt, QObject, QThread, pyqtSignal
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QAction, QLabel, QMessageBox, QPushButton, QInputDialog, QTableView, QApplication, QTableWidget, QTableWidgetItem
+from PyQt5.QtWidgets import QAction, QLabel, QMessageBox, QPushButton, QInputDialog, QTableView, QApplication, QTableWidget, QTableWidgetItem, QHeaderView
 
 #apt-get install python3-pyqt5.qtwebengine for web engine stuff
 ##apt-get install python3-pyqt5.qtsql
@@ -158,6 +158,10 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         ## == Osint Reddit
         self.osint_reddit_search.clicked.connect(self.osint_reddit)
         
+        ## Scanning
+        ##DNS lookup
+        self.scanning_dns_lookup.clicked.connect(self.dns_lookup)
+        
         # portscan
         self.table_RefreshDB_Button_scanning_portscan.clicked.connect(lambda: self.refresh_db("scanning_portscan_db"))
         self.table_RefreshDB_Button_scanning_portscan.setShortcut("r")
@@ -183,6 +187,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.status_Connected.setStyleSheet("background-color: red")
         ## setting buttons to disabled
         self.not_connected()
+
+    ## Object instances 
+        self.N = utility.Network()
 
     ## == SQL init
         ## Setting DB
@@ -292,6 +299,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         elif _from == "performance_error_db":
             self.view = self.table_SQLDB_performance_error
             query_input = "SELECT * FROM Error"
+
             
         if query_input == "" and self.startlist != 0:
             #query_input = ""
@@ -890,6 +898,76 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     #def data_download(self, msg):
         #download = threading.Thread(target=self.data_download_thread, args=(msg))
         #download.start()
+        
+## ========================================
+## Scanning Tab ===========================
+## ========================================
+    def dns_lookup(self):
+        ## All handler
+        ## Setting object instance
+        self.tablewidget = self.test_table
+        
+        self.tablewidget.setRowCount(4)
+        self.tablewidget.setColumnCount(1) 
+        self.tablewidget.setItem(0,0, QTableWidgetItem("ns2.google.com."))
+        self.tablewidget.setItem(1,0, QTableWidgetItem("ns3.google.com."))
+        
+        self.tablewidget.horizontalHeader().setStretchLastSection(True)
+        self.tablewidget.horizontalHeader().setSectionResizeMode(
+            QHeaderView.Stretch)
+        
+        
+        ## mockup to reduce code
+        ## self.tablewidget = self.tablename
+        ## self.tablewidget.setRowCount(len(list))
+        ##self.tablewidget.setColumnCount(1) 
+        # for i in list:
+            #self.tablewidget.setItem(row,0, QTableWidgetItem(i))
+            #row = row +1
+        # row = 0
+        
+
+        #dns_list = ["NONE","CNAME\nwww.google.com","MX\nmail.google.com","REVERSE \nexploit.tools", "TXT \ntext"]
+        
+        dns_list = self.N.lookup_All(self.scanning_dns_query.text())
+        
+        ## if list returns none, put none in the feild, make these one liners
+        #self.scanning_dns_A.setText("None Found") if dns_list[0] == "NONE" else self.scanning_dns_A.setText(str(dns_list[0]))
+        self.dns_table_formatting(self.dns_a_table, "Not Found","A") if dns_list[0] == "NONE" else self.dns_table_formatting(self.dns_a_table,dns_list[0],"A")
+        self.dns_table_formatting(self.dns_CNAME_table, "Not Found","CNAME") if dns_list[1] == "NONE" else self.dns_table_formatting(self.dns_CNAME_table,dns_list[1],"CNAME")
+        self.dns_table_formatting(self.dns_MX_table, "Not Found","MX") if dns_list[2] == "NONE" else self.dns_table_formatting(self.dns_MX_table,dns_list[2],"MX")
+        self.dns_table_formatting(self.dns_Reverse_table, "Not Found","Reverse Lookup") if dns_list[3] == "NONE" else self.dns_table_formatting(self.dns_Reverse_table,dns_list[3],"Reverse Lookup")
+        self.dns_table_formatting(self.dns_TXT_table, "Not Found","TXT") if dns_list[4] == "NONE" else self.dns_table_formatting(self.dns_TXT_table,dns_list[4],"TXT")
+        self.dns_table_formatting(self.dns_NS_table, "Not Found","NS") if dns_list[5] == "NONE" else self.dns_table_formatting(self.dns_NS_table,dns_list[5],"NS")
+
+        #self.scanning_dns_CNAME.setText("None Found") if dns_list[1] == "NONE" else self.scanning_dns_CNAME.setText(str(dns_list[1]))
+        #self.scanning_dns_MX.setText("None Found") if dns_list[2] == "NONE" else self.scanning_dns_MX.setText(str(dns_list[2]))
+        #self.scanning_dns_Reverse.setText("None Found") if dns_list[3] == "NONE" else self.scanning_dns_Reverse.setText(str(dns_list[3]))
+        #self.scanning_dns_TXT.setText("None Found") if dns_list[4] == "NONE" else self.scanning_dns_TXT.setText(str(dns_list[4]))
+        #self.scanning_dns_NS.setText("None Found") if dns_list[5] == "NONE" else self.scanning_dns_NS.setText(str(dns_list[5]))
+
+        
+        #self.scanning_dns_A.setText(dns_list[0])
+
+    def dns_table_formatting(self, table_object, list, name):
+        row = 0
+        ## mockup to reduce code
+        self.dns_table = table_object
+        ## formatting, aka autostretch
+        
+        self.dns_table.horizontalHeader().setStretchLastSection(True)
+        self.dns_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        
+        ## calculating rows n columns
+        self.dns_table.setRowCount(len(list))
+        self.dns_table.setColumnCount(1) 
+        self.dns_table.setHorizontalHeaderLabels([name])
+        
+        for i in list:
+            self.dns_table.setItem(row,0, QTableWidgetItem(i))
+            self.dns_table.setRowHeight(row, 13)
+            row = row +1
+        
 
 ## ========================================
 ## OSINT Tab ==============================
@@ -984,7 +1062,8 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.performance_speedtest.setText("Running...")
         self.performance_speedtest.setDisabled(True)
         
-        netspec = utility.Network()
+        netspec = self.N
+        #netspec = utility.Network()
         self.performance_lcd_upload.display(netspec.upload())
         self.performance_lcd_download.display(netspec.download())
         self.performance_lcd_ping.display(netspec.ping())
@@ -1035,9 +1114,10 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 def createConnection():
 
     con = QSqlDatabase.addDatabase("QSQLITE")
-    con.setDatabaseName("logec_db")
-    '''
+    con.setDatabaseName(syspath.path + "/logec_db")
+    
     ## Qapp throwing a fit due to no DB and no constructed app
+    ## No DB outside of this dir, need to add that in setup too
     if not con.open():
         try:
             QMessageBox.critical(
@@ -1047,12 +1127,13 @@ def createConnection():
             )
             return False
         except:
-            print("Error connecting to DB & QApp not constructed.")'''
+            print("Error connecting to DB & QApp not constructed.")
     return True
 
 
 if __name__ == "__main__":
     try:
+        ## Connecting to DB
         ## This has to go on top
         if not createConnection():
             print("FAILURE TO CONNECT TO DB")
@@ -1060,9 +1141,10 @@ if __name__ == "__main__":
             
         app = QtWidgets.QApplication(sys.argv)
         window = MyApp()
-        
-        ## Connecting to DB
 
+
+        ## if pwd not equlal to stored syspath, redo syspath
+            ## handy for if the folder ever gets moved
         
         ## Icon
         app_icon = QIcon("Modules/GUI_System/Images/icon.png")

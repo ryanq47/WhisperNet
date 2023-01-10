@@ -79,73 +79,105 @@ class Network:
     
         return self.st.results.ping
     def lookup_A(self, cname):
-        ## Returns a list of items
-        name = dns.resolver.resolve(cname, 'A')
-        
-        namelist = []
+        try:
+            ## Returns a list of items
+            name = dns.resolver.resolve(cname, 'A')
+            
+            namelist = []
 
-        for i in name:
-            namelist.append(i.to_text())
-        
-        return namelist
+            for i in name:
+                namelist.append(i.to_text())
+            
+            return namelist
+        except:
+            return "NONE"
     
     def lookup_CNAME(self, name):
-        ## Returns a list of items
-        name = dns.resolver.resolve(name, 'CNAME')
-        
-        namelist = []
+        try:
+            ## Returns a list of items
+            name = dns.resolver.resolve(name, 'CNAME')
+            
+            namelist = []
 
-        for i in name:
-            namelist.append(i.to_text())
+            for i in name:
+                namelist.append(i.to_text())
+            
+            return namelist
         
-        return namelist
-    
+        except:
+            return "NONE"    
     def lookup_MX(self, name):
-        ## Returns a list of items
-        name = dns.resolver.resolve(name, 'MX')
+        try:
+            ## Returns a list of items
+            name = dns.resolver.resolve(name, 'MX')
+            
+            namelist = []
+
+            for i in name:
+                namelist.append(i.to_text())
+
+            return namelist
         
-        namelist = []
-
-        for i in name:
-            namelist.append(i.to_text())
-
-        return namelist
-
+        except:
+            return "NONE"
+        
     def lookup_TXT(self, name):
-        ## Returns a list of items
-        name = dns.resolver.resolve(name, 'TXT')
-        
-        namelist = []
+        try:
+            ## Returns a list of items
+            name = dns.resolver.resolve(name, 'TXT')
+            
+            namelist = []
 
-        for i in name:
-            namelist.append(i.to_text())
+            for i in name:
+                namelist.append(i.to_text())
 
-        return namelist
+            return namelist
+        except:
+            return "NONE"
     
     def lookup_NS(self, name):
-        ## Returns a list of items
-        name = dns.resolver.resolve(name, 'NS')
-        
-        namelist = []
+        try:
+            ## Returns a list of items
+            name = dns.resolver.resolve(name, 'NS')
+            
+            namelist = []
 
-        for i in name:
-            namelist.append(i.to_text())
+            for i in name:
+                namelist.append(i.to_text())
 
-        return namelist
+            return namelist
+        except:
+            return "NONE"
     
     def lookup_Reverse(self, IP):
-        ## Returns a list of items
-        name = dns.reversename.from_address(IP)
+        try:
+            ## Returns a list of items
+            name = dns.reversename.from_address(IP)
+            
+            ## No iteration due to python seperating the string at each . :(
+            
+            namelist = (dns.resolver.resolve(name,"PTR")[0])
+            return namelist  
         
-        ## No iteration due to python seperating the string at each . :(
+        except:
+            return "NONE"  
+    
+    def lookup_All(self, IP):
+        A = self.lookup_A(IP)
+        CNAME = self.lookup_CNAME(IP)
+        MX = self.lookup_MX(IP)
+        TXT = self.lookup_TXT(IP)
+        NS = self.lookup_NS(IP)
+        Reverse = self.lookup_Reverse(IP)
         
-        namelist = (dns.resolver.resolve(name,"PTR")[0])
-        return namelist    
+        record_list = [A,CNAME,MX,Reverse,TXT,NS]
+        return record_list
+        
             
     
     
-N = Network()
-print(N.lookup_NS("courts.state.mn.us"))
+#N = Network()
+#print(N.lookup_NS("courts.state.mn.us"))
 #N.lookup_Reverse("8.8.8.8")
 
 '''
