@@ -21,7 +21,6 @@ program_path=$(pwd)
 #pwd > .syspath
 echo "path = '$program_path'" > syspath.py
 
-
 echo "##=================="
 echo "Adding to path..."
 echo "##=================="
