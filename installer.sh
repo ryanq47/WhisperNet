@@ -9,6 +9,7 @@ echo "Checking for updates..."
 echo "##=================="
 
 
+
 echo "##=================="
 echo "Installing PipReqs..."
 echo "##=================="
