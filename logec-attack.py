@@ -30,9 +30,11 @@ from Gui.listen_popup import Ui_listener_popup
 from Gui.Encryptor import Ui_Form as Encryptor_Popup
 from Gui.portscan_popup import Ui_PortScan_Popup
 
+
 ### importing modules
 from Modules.Linux.Reverse_Shells.reverse_shells import target as rev_shell_target
 from Modules.Windows.Reverse_Shells.win_reverse_shells import target as rev_shell_target_win
+from  Modules.General.portscanner import Portscan
 
 import Modules.General.utility as utility
 
@@ -186,7 +188,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
 ## ========================================
-## Init Values ===========================
+## Init Values/Main Thread ===========================
 ## ======================================== 
     ## == Status Bar init       
         ## sets connected to red on startup
@@ -196,6 +198,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
     ## Object instances 
         self.N = utility.Network()
+        self.P = Portscan()
 
     ## Portscam Inits
         self.portscan_1_1024.toggled.connect(lambda: self.portscan_minport.setText("1"))
@@ -206,6 +209,16 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.portscan_1_65535.toggled.connect(lambda: self.portscan_minport.setText("1"))
         self.portscan_1_65535.toggled.connect(lambda: self.portscan_maxport.setText("65535"))
+        
+        
+        '''
+        ## Disabling fields if clicked
+        self.portscan_fast_check.stateChanged.connect(lambda: self.portscan_minport.setDisabled(True))
+        self.portscan_fast_check.stateChanged.connect(lambda: self.portscan_maxport.setDisabled(True))
+        self.portscan_fast_check.stateChanged.connect(lambda: self.portscan_extraport.setDisabled(True))'''
+        
+
+
 
     ## == SQL init
         ## Setting DB
@@ -640,7 +653,6 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def portscan(self, input_ip):
         print("I")
-        import Modules.General.portscanner as portscanner
 
         ip = input_ip #self._portscan_popup.portscan_IP.text()
         min_port = self.portscan_minport.text()
@@ -653,7 +665,14 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             
         standard = True if self.portscan_standard_check.isChecked() else standard == False
         stealth = True if self.portscan_stealth_check.isChecked() else stealth == False
-        fast = True if self.portscan_fast_check.isChecked() else fast == False
+        
+        if self.portscan_fast_check.isChecked():
+            fast = True
+            min_port = 0
+            max_port = 0
+            extra_port = 0
+        else:
+            fast = False
 
 
             
@@ -662,13 +681,26 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         scantype_list = [standard, stealth, fast]
         
         self.portscan_start.setText("-->> Scanning... <<--")
-        portscanner.event_loop(target_list, scantype_list)
+        
+        '''
+        ## Starting progress Bars
+        bar_thread = threading.Thread(target=self.bar_update)
+        bar_thread.start()'''
+        
+        self.P.scan_framework(target_list, scantype_list)
+        
+        #portscanner.event_loop(target_list, scantype_list)
         self.portscan_start.setText("-->> Done! Scan again? <<--")
         ## Refreshing DB
         #self.DB_Query_scanning_portscan.setText("!_portscan") <<-- broken due to thread reasons
         #self.DB_Query_scanning_portscan.setText("select * from PortScan")
         #self.custom_query("scanning_portscan_db")
-
+    '''
+    def bar_update(self): ## I wonder if this dosen't work due to all the threads waiting to join back up? maybe portscanner writing the value to a tmp file would have to do it, or to the DB in a .hiddentable
+        while True:
+            self.stealth_bar.setValue(self.P.stealth_scan_status - 1000)
+            time.sleep(2)
+            print(self.P.stealth_scan_status)'''
 ## ========================================
 ## Destructoin PopUps =====================
 ## ========================================

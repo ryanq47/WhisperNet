@@ -57,7 +57,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>2</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -1331,19 +1331,6 @@
               </property>
              </widget>
             </item>
-            <item row="9" column="0">
-             <widget class="QCheckBox" name="portscan_fast_check">
-              <property name="maximumSize">
-               <size>
-                <width>100</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>Fast (broken)</string>
-              </property>
-             </widget>
-            </item>
             <item row="3" column="6">
              <widget class="QProgressBar" name="progressBar_3">
               <property name="value">
@@ -1386,7 +1373,7 @@
              </widget>
             </item>
             <item row="1" column="6">
-             <widget class="QProgressBar" name="progressBar_2">
+             <widget class="QProgressBar" name="stealth_bar">
               <property name="value">
                <number>88</number>
               </property>
@@ -1494,7 +1481,7 @@
             <item row="4" column="2">
              <widget class="QRadioButton" name="portscan_1_65535">
               <property name="text">
-               <string>1-65535 (All)</string>
+               <string>1-65535 (All, takes ~5 min)</string>
               </property>
              </widget>
             </item>
@@ -1550,6 +1537,19 @@
              <widget class="QLineEdit" name="portscan_IP">
               <property name="placeholderText">
                <string>8.8.8.8</string>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="0" colspan="2">
+             <widget class="QCheckBox" name="portscan_fast_check">
+              <property name="maximumSize">
+               <size>
+                <width>150</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Fast</string>
               </property>
              </widget>
             </item>
