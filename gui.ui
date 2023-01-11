@@ -57,7 +57,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>4</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -1340,7 +1340,7 @@
                </size>
               </property>
               <property name="text">
-               <string>Fast</string>
+               <string>Fast (broken)</string>
               </property>
              </widget>
             </item>
@@ -1778,7 +1778,7 @@
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_2">
           <property name="currentIndex">
-           <number>1</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="tab_7">
            <attribute name="title">
@@ -1922,6 +1922,47 @@
              </widget>
             </item>
            </layout>
+          </widget>
+          <widget class="QWidget" name="tab_17">
+           <attribute name="title">
+            <string>Appearance</string>
+           </attribute>
+           <widget class="QComboBox" name="comboBox_4">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>70</y>
+              <width>181</width>
+              <height>27</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_32">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>30</y>
+              <width>66</width>
+              <height>19</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Theme</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="pushButton">
+            <property name="geometry">
+             <rect>
+              <x>100</x>
+              <y>110</y>
+              <width>87</width>
+              <height>27</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Apply</string>
+            </property>
+           </widget>
           </widget>
          </widget>
         </item>

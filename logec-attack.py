@@ -59,6 +59,10 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
+        
+
+        #self.setStyle('Windows')
+        
 
         self.connected = False
         self.connected_list = []
@@ -1161,7 +1165,14 @@ if __name__ == "__main__":
         ## Icon
         app_icon = QIcon("Modules/GUI_System/Images/icon.png")
         app.setWindowIcon(app_icon)
-                
+        
+        
+        # future theme
+        '''
+        with open("Gui/themes/green-gray2.css","r") as f:
+            theme = f.read()
+        app.setStyleSheet(theme)'''
+        
         window.show()
         sys.exit(app.exec_())
         
