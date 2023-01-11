@@ -79,7 +79,7 @@ def standard_scan(target_list):
         
         ## sending packet and getting flags back
         try:
-            SYNACKpkt = sr1(IP(dst = target_list[0])/TCP(sport = srcport, dport = i, flags = "S"), timeout = 2)
+            SYNACKpkt = sr1(IP(dst = target_list[0])/TCP(sport = srcport, dport = i, flags = "S"), timeout = 1)
             ## Handling weird stoppage problem
             if SYNACKpkt == None:
                 pktflags = None
@@ -186,6 +186,78 @@ def stealth_scan(target_list):
     ## Writing DB
     database_write(f"'{open_list[0]}'", ScanType, Date, Time, "01:00", ScannedPorts, {str(set(open_list[1:]))}) #[1:] means to end of list
 
+
+def fast_scan(target_list):
+    print("Started fast Scan")
+
+    #print(port_range)
+    #        target_list = [ip, min_port, max_port, extra_port]
+    Date = utility.Timestamp.UTC_Date()
+    Time = utility.Timestamp.UTC_Time()
+    ScanType = "Fast"
+    
+                    ## Min Port         Max Port            Extra Ports
+    ScannedPorts = f"{target_list[1]}-{target_list[2]},{str(target_list[3]).replace(']','').replace('[','')}" 
+    open_list = [target_list[0]]
+    
+    ## Init ports to be scanned list
+    ports_to_scan = []
+    
+    ## == Creating components of port list
+    ## port range
+    port_range_list = range(target_list[1],target_list[2])
+    for i in port_range_list:
+        ports_to_scan.append(i)
+    
+    # extra addon ports
+    for i in target_list[3]:
+        #print(i)
+        ports_to_scan.append(int(i))
+    
+    #print(f"DEBUG: PORTS TO SCAN {ports_to_scan}")
+    
+    ## == Main loop to scan ports
+    for i in ports_to_scan: ## +1 due to range function
+        srcport = RandShort()
+        conf.verb = 0
+        
+        ## sending packet and getting flags back
+        try:
+            SYNACKpkt = sr1(IP(dst = target_list[0])/TCP(sport = srcport, dport = i, flags = "S"), timeout = .25)
+            ## Handling weird stoppage problem
+            if SYNACKpkt == None:
+                pktflags = None
+                continue
+            else:
+                pktflags = SYNACKpkt.getlayer(TCP).flags
+            
+        except Exception as e:
+            pktflags = None
+            print(e)
+        
+        ## RST packet
+        FINpkt = IP(dst = target_list[0])/TCP(sport = srcport, dport = i, flags = "F")
+        
+        ## return logic
+        if pktflags == SYNACK:
+            send(FINpkt)
+            print(f"{i}/tcp is open")
+            open_list.append(i)
+        
+        elif pktflags == None:
+            continue
+        else:
+            pass
+
+        if i == target_list[2]:
+            print("COMPLETE!")
+            
+    ## Writing DB
+    database_write(f"'{open_list[0]}'", ScanType, Date, Time, "01:00", ScannedPorts, {str(set(open_list[1:]))}) #[1:] means to end of list
+
+
+
+
 def database_write(IP, SCANTYPE, SCANDATE, SCANTIME, RUNTIME, SCANNEDPORTS, PORT):
     try:
         ## Accesing DB in root dir
@@ -246,6 +318,11 @@ def event_loop(target_list, scantype_list):
         stealth_thread = threading.Thread(target=stealth_scan, args=([target_list]))
         #standard_scan(target_list)
         stealth_thread.start()
+
+    if scantype_list[2]: ## standard scan
+        fast_thread = threading.Thread(target=fast_scan, args=([target_list]))
+        #standard_scan(target_list)
+        fast_thread.start()
     
     
     '''

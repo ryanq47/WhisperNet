@@ -649,12 +649,13 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             
         standard = True if self.portscan_standard_check.isChecked() else standard == False
         stealth = True if self.portscan_stealth_check.isChecked() else stealth == False
+        fast = True if self.portscan_fast_check.isChecked() else fast == False
 
 
             
             ## if clicked standard = true
         target_list = [ip, int(min_port), int(max_port), extra_port]
-        scantype_list = [standard, stealth]
+        scantype_list = [standard, stealth, fast]
         
         self.portscan_start.setText("-->> Scanning... <<--")
         portscanner.event_loop(target_list, scantype_list)

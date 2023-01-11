@@ -1332,7 +1332,7 @@
              </widget>
             </item>
             <item row="9" column="0">
-             <widget class="QCheckBox" name="checkBox_5">
+             <widget class="QCheckBox" name="portscan_fast_check">
               <property name="maximumSize">
                <size>
                 <width>100</width>
@@ -1340,7 +1340,7 @@
                </size>
               </property>
               <property name="text">
-               <string>Other1</string>
+               <string>Fast</string>
               </property>
              </widget>
             </item>
