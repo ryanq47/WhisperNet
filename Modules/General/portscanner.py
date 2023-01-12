@@ -9,17 +9,21 @@ import sqlite3
 import os.path
 
 from concurrent.futures import ThreadPoolExecutor
-#import Modules.General.utility as utility
+import Modules.General.utility as utility
 
 #ports = range(int(min_port), int(max_port)+1)
 start_clock = datetime.now()
 SYNACK = 0x12
 RSTACK = 0x14
 
+
 class Portscan:
     def __init__(self):
         self.open_port_list = []
+        self.scantype = ""
         self.stealth_scan_status = 0
+        self.standard_scan_status = 0
+        
         
     def clean(self):
         self.open_port_list = []
@@ -27,8 +31,10 @@ class Portscan:
     def scan_framework(self, target_list, scantype):
         #print(port_range)
         #        target_list = [ip, min_port, max_port, extra_port]
-        #Date = utility.Timestamp.UTC_Date()
-        #Time = utility.Timestamp.UTC_Time()
+        Date = utility.Timestamp.UTC_Date()
+        Time = utility.Timestamp.UTC_Time()
+        #Date = "DATE"
+        #Time = "Time"
         
                         ## Min Port         Max Port            Extra Ports
         ScannedPorts = f"{target_list[1]}-{target_list[2]},{str(target_list[3]).replace(']','').replace('[','')}" ## jank but it works
@@ -53,25 +59,46 @@ class Portscan:
             # submit the scan_port function for each port in the ports_to_scan list
             if scantype[0]: #Stealth
                 stealth_futures = [executor.submit(self.stealth_scan, target_list[0], port) for port in ports_to_scan]
+                stealth_P = utility.Performance()
+                stealth_P .start_time()
                 
                 for future in stealth_futures:
                     future.result()
                 
+                ## not showing up hmmm
+                self.final_time = stealth_P.end_time()
+
+                
             if scantype[1]: #standard
-                standard_futures = [executor.submit(self.stealth_scan, target_list[0], port) for port in ports_to_scan]
+                standard_futures = [executor.submit(self.standard_scan, target_list[0], port) for port in ports_to_scan]
+                stand_P = utility.Performance()
+                stand_P.start_time()
                 
                 for future in standard_futures:
-                    future.result()            
+                    future.result()  
+                    #print("1")     
+                self.final_time = stand_P.end_time()   
             # wait for all the futures to complete
-
+            if scantype[2]: #fast
+                fast_futures = [executor.submit(self.fast_scan, target_list[0], port, scantype[-1]) for port in ports_to_scan]
+                fast_P = utility.Performance()
+                fast_P.start_time()
+                
+                
+                for future in fast_futures:
+                    future.result() 
+                    #print("2")    
+                self.final_time = fast_P.end_time()
         print(self.open_port_list)
-        print(self.stealth_scan_status)
-        #database_write()
+        #print(self.stealth_scan_status)
+        
+        database_write(f"'{open_list[0]}'", self.scantype, Date, Time,  self.final_time, ScannedPorts, {str(set(self.open_port_list))}) #[1:] means to end of list
         self.clean()        
 
     def stealth_scan(self, ip, port):
         srcport = RandShort()
         conf.verb = 0
+        self.scantype = "Stealth"
         
         self.standard_scan_status = self.standard_scan_status + 1
         
@@ -94,6 +121,8 @@ class Portscan:
     def standard_scan(self, ip, port):
         srcport = RandShort()
         conf.verb = 0
+        self.scantype = "Standard"
+
         
         self.stealth_scan_status = self.stealth_scan_status + 1
         
@@ -112,14 +141,16 @@ class Portscan:
             print(f"{port}/tcp is open")
             self.open_port_list.append(port)
 
-    def fast_scan(self, ip, port):
+    def fast_scan(self, ip, port, timeout_time):
         srcport = RandShort()
         conf.verb = 0
+        self.scantype = f"Fast ({float(timeout_time)} S)"
+
         
         self.stealth_scan_status = self.stealth_scan_status + 1
         
         try:
-            SYNACKpkt = sr1(IP(dst = ip)/TCP(sport = srcport, dport = port, flags = "S"), timeout = .1) ##<< This is what makes this the fast scan
+            SYNACKpkt = sr1(IP(dst = ip)/TCP(sport = srcport, dport = port, flags = "S"), timeout = float(timeout_time)) ##<< This is what makes this the fast scan
             if SYNACKpkt == None:
                 pktflags = None
             else:

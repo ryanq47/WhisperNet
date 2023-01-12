@@ -55,6 +55,19 @@ class Performance:
         mem_2 = (self.p[1] * mem)/100000
         
         return mem_2
+    def start_time(self):
+        self._start_time = time.time()
+        
+    def end_time(self):
+        self._end_time = time.time()
+        
+        time_to_run = self._end_time - self._start_time
+        self._start_time = 0
+        self._end_time = 0
+        
+        return str(round(time_to_run,2))
+        
+    
 
 class Network:
 
