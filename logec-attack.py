@@ -398,6 +398,12 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.view = self.table_SQLDB_performance_error
             query_input = 'SELECT * FROM Error'
 
+        elif _from == 'bruteforce_db':
+            print("BF DB")
+            self.view = self.scanning_bruteforce_db
+            query_input = 'SELECT * FROM "BRUTEFORCE-http"'
+        
+
         if query_input == '' and self.startlist != 0:
             # query_input = ""
             self.ERROR(
@@ -1233,7 +1239,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.bruteforce_urldir.text(),
             ]
         
+        self.bruteforce_start.setText("-->> Bruteforcing... <<--")
         B.framework(input_list)
+        self.bruteforce_start.setText("-->> Done! Bruteforce again? <<--")
         
         '''        
         ip = input_list[0]
@@ -1242,8 +1250,11 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         user_wordlist_dir = input_list[3]
         pass_wordlist_dir = input_list[4]'''
         
-        pass
-
+        ## Showing DB on page
+        self.DB_Query_scanning_bruteforce.setText('SELECT * FROM RedditResults')
+        self.custom_query('bruteforce_db')
+        #
+        #
     ## ========================================
     ## OSINT Tab ==============================
     ## ========================================
