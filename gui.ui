@@ -57,7 +57,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>6</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -969,8 +969,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1044</width>
-                 <height>613</height>
+                 <width>72</width>
+                 <height>16</height>
                 </rect>
                </property>
                <widget class="QLineEdit" name="dashboard_portscan_IP">
@@ -2183,7 +2183,7 @@ p, li { white-space: pre-wrap; }
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_7">
           <property name="currentIndex">
-           <number>1</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="tab_21">
            <attribute name="title">
@@ -2228,6 +2228,196 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;can have preview of site in this tab too&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_18">
+           <attribute name="title">
+            <string>Bruteforce</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_16">
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_48">
+              <property name="text">
+               <string>Target IP/Hostname</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLabel" name="label_50">
+              <property name="text">
+               <string>Port (Optional)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLabel" name="label_49">
+              <property name="text">
+               <string>Protocol</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLineEdit" name="bruteforce_target">
+              <property name="text">
+               <string>127.0.0.1</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="bruteforce_port"/>
+            </item>
+            <item row="1" column="2">
+             <widget class="QComboBox" name="bruteforce_protocol">
+              <item>
+               <property name="text">
+                <string>HTTP</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>HTTPS</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>SSH - not happening for a while, super slow</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>FTP</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>SMB</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_51">
+              <property name="text">
+               <string>User Directory</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLabel" name="label_52">
+              <property name="text">
+               <string>Pass Directory</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLineEdit" name="bruteforce_userdir">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLineEdit" name="bruteforce_passdir">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="label_53">
+              <property name="text">
+               <string>URL Directory</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QLabel" name="label_55">
+              <property name="text">
+               <string>Other</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QLineEdit" name="bruteforce_urldir">
+              <property name="text">
+               <string>/usr/share/wordlists/dirb/big.txt</string>
+              </property>
+              <property name="placeholderText">
+               <string>/usr/share/wordlists/dirb/big.txt</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="1">
+             <widget class="QLineEdit" name="lineEdit_11"/>
+            </item>
+            <item row="6" column="0">
+             <widget class="QLabel" name="label_54">
+              <property name="text">
+               <string>BruteForce Progress</string>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="0" colspan="3">
+             <widget class="QTabWidget" name="tabWidget_13">
+              <property name="currentIndex">
+               <number>0</number>
+              </property>
+              <widget class="QWidget" name="tab_31">
+               <attribute name="title">
+                <string>LocalDB</string>
+               </attribute>
+               <layout class="QGridLayout" name="gridLayout_20">
+                <item row="1" column="0" colspan="2">
+                 <widget class="QLineEdit" name="DB_Query_scanning_bruteforce">
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="placeholderText">
+                   <string>Enter SQL Query! Type !_help for help! </string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QPushButton" name="scanning_bruteforce_refresh">
+                  <property name="toolTip">
+                   <string>Refresh the Database, updating values from the SQLITE DB file</string>
+                  </property>
+                  <property name="text">
+                   <string>--&gt;&gt; Refresh DB &lt;&lt;--</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0" colspan="2">
+                 <widget class="QTableWidget" name="scanning_bruteforce_db"/>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QPushButton" name="scanning_bruteforce_query">
+                  <property name="toolTip">
+                   <string>Run a query on the DB</string>
+                  </property>
+                  <property name="text">
+                   <string>--&gt;&gt; Query DB &lt;&lt;--</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+            <item row="7" column="0" colspan="3">
+             <widget class="QProgressBar" name="bruteforce_progress">
+              <property name="value">
+               <number>0</number>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="2">
+             <widget class="QPushButton" name="bruteforce_start">
+              <property name="text">
+               <string>--&gt;&gt; Start Bruteforce &lt;&lt;--</string>
               </property>
              </widget>
             </item>

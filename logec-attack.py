@@ -51,6 +51,8 @@ from Modules.Windows.Reverse_Shells.win_reverse_shells import (
 )
 from Modules.General.portscanner import Portscan
 
+from Modules.General.bruteforce import Bruteforce
+
 import Modules.General.utility as utility
 
 import syspath
@@ -230,6 +232,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.table_QueryDB_Button_scanning_portscan.setShortcut('Return')
 
         self.portscan_start.clicked.connect(self.portscan_qthread)
+
+        ## bruteforce
+        self.bruteforce_start.clicked.connect(self.bruteforce_thread)
 
         ## other
         ## == Perf Tab
@@ -893,6 +898,8 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
     ## Error handler
     def ERROR(self, error, severity, fix):
+        Date = utility.Timestamp.UTC_Date()
+        Time = utility.Timestamp.UTC_Time()
 
         QMessageBox.critical(
             None,
@@ -902,7 +909,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             f'SEVERITY: {severity}\nERRMSG: {error}\nFIX: {fix}\n',
         )
 
-        error_list = [severity, error, fix, 'time', 'date']
+        error_list = [severity, error, fix, Time, Date]
 
         self.db_error_write(error_list)
 
@@ -1207,6 +1214,35 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.dns_table.setItem(row, 0, QTableWidgetItem(i))
                 self.dns_table.setRowHeight(row, 13)
                 row = row + 1
+
+    ## Bruteforce
+    def bruteforce_thread(self):
+        bf_thread = threading.Thread(target=self.bruteforce)
+        bf_thread.start()
+
+    def bruteforce(self):
+        ##init class object
+        B = Bruteforce()
+        
+        input_list = [
+            self.bruteforce_target.text(), 
+            self.bruteforce_port.text(),
+            self.bruteforce_protocol.currentText(),
+            self.bruteforce_userdir.text(),
+            self.bruteforce_passdir.text(),
+            self.bruteforce_urldir.text(),
+            ]
+        
+        B.framework(input_list)
+        
+        '''        
+        ip = input_list[0]
+        port = input_list[1]
+        protocol = input_list[2]
+        user_wordlist_dir = input_list[3]
+        pass_wordlist_dir = input_list[4]'''
+        
+        pass
 
     ## ========================================
     ## OSINT Tab ==============================
