@@ -311,8 +311,11 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.startlist = self.startlist = 1
 
     ## ========================================
-    ## Debug ==================================
+    ## Error, Checks & Debug ==================
     ## ========================================
+
+
+
 
     def DEBUG(self):
         self.client_connected()
@@ -322,6 +325,27 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.text_connections_output.setText(
             'IN DEBUG MODE - NOT CONNECTED, THINGS WILL BREAK'
         )
+
+    ## Error handler
+    def ERROR(self, error, severity, fix):
+        Date = utility.Timestamp.UTC_Date()
+        Time = utility.Timestamp.UTC_Time()
+
+        QMessageBox.critical(
+            None,
+            ## Title
+            'Error!',
+            ## Actual Error
+            f'SEVERITY: {severity} \nERRMSG: {error} \nFIX: {fix} \n',
+        )
+
+        error_list = [severity, error, fix, Time, Date]
+
+        self.db_error_write(error_list)
+
+    def root_check(self, name):
+        if os.getuid() != 0:
+            self.ERROR(f"You are not running as root, note that {name} may not work as expected","Medium","Restart program as root")
 
     ## ========================================
     ## Conn/NotConn ===========================
@@ -758,102 +782,115 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def portscan_qthread(self):
         print('PORTSCNA THREAD STARTER')
+                ## Root Check
+        self.root_check("Portscan")
         ## quick multiple IP handler
-        ip_convert = str(self.portscan_IP.text()).split(',')
-        valid_ip = []
-        for i in ip_convert:
-            i.replace(' ', '')
-            valid_ip.append(i)
+        try:
+            ip_convert = str(self.portscan_IP.text()).split(',')
+            valid_ip = []
+            for i in ip_convert:
+                i.replace(' ', '')
+                valid_ip.append(i)
 
-        ## Setting vlaues
+            ## Setting vlaues
 
-        for input_ip in valid_ip:
-            print(input_ip)
-            thread = threading.Thread(target=self.portscan, args=(input_ip,))
-            thread.start()
+            for input_ip in valid_ip:
+                print(input_ip)
+                thread = threading.Thread(target=self.portscan, args=(input_ip,))
+                thread.start()
+        
+        except Exception as e:
+            self.ERROR(e, "low", "")
+            
 
     def portscan(self, input_ip):
         print('I')
 
-        ip = input_ip   # self._portscan_popup.portscan_IP.text()
-        min_port = self.portscan_minport.text()
-        max_port = self.portscan_maxport.text()
-        extra_port = self.portscan_extraport.text()
+        try:
+            ip = input_ip   # self._portscan_popup.portscan_IP.text()
+            min_port = self.portscan_minport.text()
+            max_port = self.portscan_maxport.text()
+            extra_port = self.portscan_extraport.text()
+        
+            ## init vars
+            standard = None
+            stealth = None
 
-        ## init vars
-        standard = None
-        stealth = None
+            standard = (
+                True
+                if self.portscan_standard_check.isChecked()
+                else standard == False
+            )
+            stealth = (
+                True
+                if self.portscan_stealth_check.isChecked()
+                else stealth == False
+            )
 
-        standard = (
-            True
-            if self.portscan_standard_check.isChecked()
-            else standard == False
-        )
-        stealth = (
-            True
-            if self.portscan_stealth_check.isChecked()
-            else stealth == False
-        )
+            if self.portscan_fast_check.isChecked():
+                fast = True
+                # min_port = 0
+                # max_port = 0
+                extra_port = '0'
+            else:
+                fast = False
 
-        if self.portscan_fast_check.isChecked():
-            fast = True
-            # min_port = 0
-            # max_port = 0
-            extra_port = '0'
-        else:
-            fast = False
+            ## Timeout logic
+            if (
+                self.portscan_fast_timeout.currentText()
+                == 'Light Speed (.5 Second Timeout)'
+            ):
+                timeout = 0.5
+            elif (
+                self.portscan_fast_timeout.currentText()
+                == 'Ridiculous Speed (.25 Second Timeout)'
+            ):
+                timeout = 0.25
+            elif (
+                self.portscan_fast_timeout.currentText()
+                == 'Ludicrous Speed (.1 Second Timeout)'
+            ):
+                timeout = 0.1
+            elif (
+                self.portscan_fast_timeout.currentText()
+                == 'Plaid (.01 Second Timeout)'
+            ):
+                timeout = 0.01
 
-        ## Timeout logic
-        if (
-            self.portscan_fast_timeout.currentText()
-            == 'Light Speed (.5 Second Timeout)'
-        ):
-            timeout = 0.5
-        elif (
-            self.portscan_fast_timeout.currentText()
-            == 'Ridiculous Speed (.25 Second Timeout)'
-        ):
-            timeout = 0.25
-        elif (
-            self.portscan_fast_timeout.currentText()
-            == 'Ludicrous Speed (.1 Second Timeout)'
-        ):
-            timeout = 0.1
-        elif (
-            self.portscan_fast_timeout.currentText()
-            == 'Plaid (.01 Second Timeout)'
-        ):
-            timeout = 0.01
+            print(f'TIMOUT: {timeout}')
 
-        print(f'TIMOUT: {timeout}')
+            ## if clicked standard = true
+            target_list = [ip, int(min_port), int(max_port), extra_port]
+            scantype_list = [
+                standard,
+                stealth,
+                fast,
+                timeout,
+            ]   ## timeout shoudl always be last
 
-        ## if clicked standard = true
-        target_list = [ip, int(min_port), int(max_port), extra_port]
-        scantype_list = [
-            standard,
-            stealth,
-            fast,
-            timeout,
-        ]   ## timeout shoudl always be last
+            self.portscan_start.setText('-->> Scanning... <<--')
 
-        self.portscan_start.setText('-->> Scanning... <<--')
+            """
+            ## Starting progress Bars
+            bar_thread = threading.Thread(target=self.bar_update)
+            bar_thread.start()"""
 
-        """
-        ## Starting progress Bars
-        bar_thread = threading.Thread(target=self.bar_update)
-        bar_thread.start()"""
+            ## Re calls the object per scan/click so there is not any colusion with variables overwriting eachother
+            P = Portscan()
+            P.scan_framework(target_list, scantype_list)
 
-        ## Re calls the object per scan/click so there is not any colusion with variables overwriting eachother
-        P = Portscan()
-        P.scan_framework(target_list, scantype_list)
+            # portscanner.event_loop(target_list, scantype_list)
+            self.portscan_start.setText('-->> Done! Scan again? <<--')
+            ## Refreshing DB
+            # self.DB_Query_scanning_portscan.setText("!_portscan") <<-- broken due to thread reasons
+            # self.DB_Query_scanning_portscan.setText("select * from PortScan")
+            # self.custom_query("scanning_portscan_db")
+            
+        except ValueError as ve:
+            self.ERROR(ve, "low", "Make sure all respective fields are filled")
 
-        # portscanner.event_loop(target_list, scantype_list)
-        self.portscan_start.setText('-->> Done! Scan again? <<--')
-        ## Refreshing DB
-        # self.DB_Query_scanning_portscan.setText("!_portscan") <<-- broken due to thread reasons
-        # self.DB_Query_scanning_portscan.setText("select * from PortScan")
-        # self.custom_query("scanning_portscan_db")
-
+        except Exception as e:
+            self.ERROR(e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)")
     """
     def bar_update(self): ## I wonder if this dosen't work due to all the threads waiting to join back up? maybe portscanner writing the value to a tmp file would have to do it, or to the DB in a .hiddentable
         while True:
@@ -902,39 +939,6 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     ## Server Functions =======================
     ## ========================================
 
-    ## Error handler
-    def ERROR(self, error, severity, fix):
-        Date = utility.Timestamp.UTC_Date()
-        Time = utility.Timestamp.UTC_Time()
-
-        QMessageBox.critical(
-            None,
-            ## Title
-            'Error!',
-            ## Actual Error
-            f'SEVERITY: {severity}\nERRMSG: {error}\nFIX: {fix}\n',
-        )
-
-        error_list = [severity, error, fix, Time, Date]
-
-        self.db_error_write(error_list)
-
-        """
-        if severity == "high":
-            self.status_ERROR.setText(f"ERROR: {error}\nFIX: {fix}")
-            self.status_ERROR.setStyleSheet("background-color: red; color:black")
-            
-        elif severity == "medium":
-            self.status_ERROR.setText(f"ERROR: {error}\nFIX: {fix}")
-            self.status_ERROR.setStyleSheet("background-color: yellow; color:black")
-            
-        elif severity == "low":
-            self.status_ERROR.setText(f"ERROR: {error}\nFIX: {fix}")
-            self.status_ERROR.setStyleSheet("background-color: blue")
-            
-        elif severity == "clear":
-            self.status_ERROR.setText("")
-            self.status_ERROR.setStyleSheet("background-color: none")"""
 
     ## Thread for listener
     def target_listen_thread(self):
@@ -1240,7 +1244,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             ]
         
         self.bruteforce_start.setText("-->> Bruteforcing... <<--")
-        B.framework(input_list)
+        B.framework(self, input_list)
         self.bruteforce_start.setText("-->> Done! Bruteforce again? <<--")
         
         '''        
@@ -1436,7 +1440,10 @@ if __name__ == '__main__':
 
         ## if pwd not equlal to stored syspath, redo syspath
         ## handy for if the folder ever gets moved
+        
 
+        
+        
         ## Icon
         app_icon = QIcon(syspath.path + '/Gui/themes/assets/icon.png')
         print(syspath.path + '/Gui/themes/assets/icon.png')
@@ -1449,8 +1456,9 @@ if __name__ == '__main__':
         app.setStyleSheet(theme)"""
 
         window.show()
-
+        
         app.exec_()
+        
         # sys.exit()
         pid = os.getpid()
         os.kill(pid, 15)   ## SIGTERM
