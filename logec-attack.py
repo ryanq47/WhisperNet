@@ -1,9 +1,10 @@
 #!/bin/python3
 
-print('SUCCESS')
 # import imports
 
 import sys
+import sqlite3
+
 from PyQt5.QtCore import Qt, QObject, QThread, pyqtSignal
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtGui import QIcon
@@ -181,6 +182,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         )
         self.table_QueryDB_Button_osint_reddit.setShortcut('Return')
 
+        
+        
+        
         ## Data Tab
         # == SQL
         self.actionHelp_Menu_DB.triggered.connect(self.help_shortcut)
@@ -235,6 +239,11 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         ## bruteforce
         self.bruteforce_start.clicked.connect(self.bruteforce_thread)
+        #== SQL bruteforce
+        self.scanning_bruteforce_query.clicked.connect(
+            lambda: self.custom_query('bruteforce_db')
+        )
+        self.scanning_bruteforce_query.setShortcut('Return')
 
         ## other
         ## == Perf Tab
@@ -293,14 +302,17 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.view = self.table_SQLDB
 
         ## Showing help table on startup
-        self.DB_Query_main.setText('!_help')
+        self.DB_Query_main.setText('select * from Help')
         self.custom_query('main_db')
 
         self.DB_Query_osint_reddit.setText('SELECT * FROM RedditResults')
         self.custom_query('reddit_osint_db')
 
-        self.DB_Query_scanning_portscan.setText('!_portscan')
+        self.DB_Query_scanning_portscan.setText('select * from PortScan')
         self.custom_query('scanning_portscan_db')
+
+        self.DB_Query_scanning_bruteforce.setText('select * from "BRUTEFORCE-http"')
+        self.custom_query('bruteforce_db')
 
         self.custom_query('performance_error_db')
 
@@ -397,210 +409,97 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.custom_query(_from)
 
     def custom_query(self, _from):
-        ## '_from' Logic, only issue so far with this is that the top bar menu will default to the main db, can circumvent with in tab buttons
-        ## To C2 db section
+        ## Setting which QTable Object to output on
         if _from == 'c2_db':
             # self._from = "c2_db"
             self.view = self.table_SQLDB
-            query_input = f'{self.DB_Query.text()}'
+            query_input_raw  = f'{self.DB_Query.text()}'
 
         ## To main db section
         elif _from == 'main_db':
             # self._from = "main_db"
             self.view = self.table_SQLDB_main
-            query_input = f'{self.DB_Query_main.text()}'
+            query_input_raw  = f'{self.DB_Query_main.text()}'
 
         elif _from == 'reddit_osint_db':
             self.view = self.table_SQLDB_osint_reddit
-            query_input = f'{self.DB_Query_osint_reddit.text()}'
+            query_input_raw  = f'{self.DB_Query_osint_reddit.text()}'
 
         elif _from == 'scanning_portscan_db':
             self.view = self.scanning_portscan_db
-            query_input = f'{self.DB_Query_scanning_portscan.text()}'
+            query_input_raw  = f'{self.DB_Query_scanning_portscan.text()} ORDER BY ScanDate DESC, ScanTime DESC'
 
         elif _from == 'performance_error_db':
             self.view = self.table_SQLDB_performance_error
-            query_input = 'SELECT * FROM Error'
+            query_input_raw  = f'select * from Error ORDER BY Date DESC, Time DESC'
 
         elif _from == 'bruteforce_db':
             print("BF DB")
             self.view = self.scanning_bruteforce_db
-            query_input = 'SELECT * FROM "BRUTEFORCE-http"'
-        
+            query_input_raw  = f'{self.DB_Query_scanning_bruteforce.text()} ORDER BY DATE DESC, TIME DESC'
 
-        if query_input == '' and self.startlist != 0:
-            # query_input = ""
+        else: #query_input == '' and self.startlist != 0:
+            query_input_raw  = ""
+            self.view = ""
             self.ERROR(
                 'No Query Input Provided', 'Low', 'Enter an input to fix'
             )
+        
+        
+
+        ## Shortcuts not working for some reason
+        # Temp workaround
+        query_input = query_input_raw
+        '''
+        if query_input_raw == '!_help':
+            query_input = 'select * from Help'
+        elif query_input_raw  == '!_tables':
+            query_input == "select * from Tables"
+        elif query_input_raw  == '!_error':
+            query_input == "select * from Error ORDER BY Date DESC, Time DESC"
+        elif '!_portscan' in query_input_raw :
+            query_input == "select * from PortScan ORDER BY Date DESC, Time DESC"
+        else:
+            query_input = query_input_raw
+        
+        print(query_input)'''
 
         ## clearnig DB, and resetting from
         # _from = None
         self.clear_db_table()
 
-        # print(query_input)
-        if query_input == '!_help':
-            # print("HELP")
-            self.columnlist = ['Command', 'Description']
-            self.view.setHorizontalHeaderLabels(
-                [self.columnlist[0], self.columnlist[1]]
-            )
-            self.view.setColumnCount(len(self.columnlist))
 
-            query = QSqlQuery(f'SELECT * FROM help')
-
-            while query.next():
-                rows = self.view.rowCount()
-                self.view.setRowCount(rows + 1)
-                self.view.setItem(
-                    rows, 0, QTableWidgetItem(str(query.value(0)))
-                )   # QTableWidgetItem(str(query.value(0)))
-                self.view.setItem(rows, 1, QTableWidgetItem(query.value(1)))
-
-        elif query_input == '!_tables':
-            # print("TABLES")
-
-            self.columnlist = ['Table', 'Description']
-            self.view.setHorizontalHeaderLabels(
-                [self.columnlist[0], self.columnlist[1]]
-            )
-            self.view.setColumnCount(len(self.columnlist))
-
-            query = QSqlQuery(f'SELECT * FROM tables')
-
-            while query.next():
-                rows = self.view.rowCount()
-                self.view.setRowCount(rows + 1)
-                self.view.setItem(
-                    rows, 0, QTableWidgetItem(str(query.value(0)))
-                )   # QTableWidgetItem(str(query.value(0)))
-                self.view.setItem(rows, 1, QTableWidgetItem(query.value(1)))
-
-        elif query_input == '!_portscan':
-            # print("PORTSCAN")
-
-            self.columnlist = [
-                'IP',
-                'PORT(s)',
-                'ScanType',
-                'ScanDate',
-                'ScanTime',
-                'RunTime',
-                'ScannerPorts',
-                'Status',
-            ]
-
-            self.view.setHorizontalHeaderLabels(
-                [
-                    self.columnlist[0],
-                    self.columnlist[1],
-                    self.columnlist[2],
-                    self.columnlist[3],
-                    self.columnlist[4],
-                    self.columnlist[5],
-                    self.columnlist[6],
-                    self.columnlist[7],
-                ]
-            )
-
-            self.view.setColumnCount(len(self.columnlist))
-
-            # self.view.setHorizontalHeaderLabels(["IP", "PORT(s)","ScanType", "ScanDate", "ScanTime", "RunTime"])
-
-            query = QSqlQuery(
-                f'SELECT * FROM PortScan ORDER BY ScanDate DESC, ScanTime DESC'
-            )
-            # print(query.value(0))
-
-            while query.next():
-                rows = self.view.rowCount()
-                # print(rows)
-                self.view.setRowCount(rows + 1)
-                self.view.setItem(
-                    rows, 0, QTableWidgetItem(query.value(0))
-                )   # QTableWidgetItem(str(query.value(0)))
-                self.view.setItem(rows, 1, QTableWidgetItem(query.value(1)))
-                self.view.setItem(rows, 2, QTableWidgetItem(query.value(2)))
-                self.view.setItem(rows, 3, QTableWidgetItem(query.value(3)))
-                self.view.setItem(rows, 4, QTableWidgetItem(query.value(4)))
-                self.view.setItem(rows, 5, QTableWidgetItem(query.value(5)))
-                self.view.setItem(rows, 6, QTableWidgetItem(query.value(6)))
-                self.view.setItem(rows, 7, QTableWidgetItem(query.value(7)))
-
-        elif query_input == '!_error':
-            # print("PORTSCAN")
-
-            self.columnlist = [
-                'ErrorName',
-                'ErrorMessage',
-                'Description',
-                'Time',
-                'Date',
-            ]
-
-            self.view.setHorizontalHeaderLabels(
-                [
-                    self.columnlist[0],
-                    self.columnlist[1],
-                    self.columnlist[2],
-                    self.columnlist[3],
-                    self.columnlist[4],
-                ]
-            )
-
-            self.view.setColumnCount(len(self.columnlist))
-
-            # self.view.setHorizontalHeaderLabels(["IP", "PORT(s)","ScanType", "ScanDate", "ScanTime", "RunTime"])
-
-            query = QSqlQuery(
-                f'SELECT * FROM Error ORDER BY Time DESC, Date DESC'
-            )
-            # print(query.value(0))
-
-            while query.next():
-                rows = self.view.rowCount()
-                # print(rows)
-                self.view.setRowCount(rows + 1)
-                self.view.setItem(
-                    rows, 0, QTableWidgetItem(query.value(0))
-                )   # QTableWidgetItem(str(query.value(0)))
-                self.view.setItem(rows, 1, QTableWidgetItem(query.value(1)))
-                self.view.setItem(rows, 2, QTableWidgetItem(query.value(2)))
-                self.view.setItem(rows, 3, QTableWidgetItem(query.value(3)))
-                self.view.setItem(rows, 4, QTableWidgetItem(query.value(4)))
-
-        else:
-            # print("DEBUG: ELSE")
-            query = QSqlQuery(f'{query_input}')
-            # print(f"{query_input}")
-
-            self.columnlist = ['1', '2', '3', '4', '5', '6', '7', '8']
-
-            self.view.setHorizontalHeaderLabels(
-                [
-                    self.columnlist[0],
-                    self.columnlist[1],
-                    self.columnlist[2],
-                    self.columnlist[3],
-                    self.columnlist[4],
-                    self.columnlist[5],
-                ]
-            )
-            self.view.setColumnCount(len(self.columnlist))
-
-            ## needs to be a for loop in the future. for now, multiple columns that may have empty spaces
-            while query.next():
-                rows = self.view.rowCount()
-                self.view.setRowCount(rows + 1)
-                self.view.setItem(
-                    rows, 0, QTableWidgetItem(str(query.value(0)))
-                )   # QTableWidgetItem(str(query.value(0)))
-                self.view.setItem(rows, 1, QTableWidgetItem(query.value(1)))
-                self.view.setItem(rows, 2, QTableWidgetItem(query.value(2)))
-                self.view.setItem(rows, 3, QTableWidgetItem(query.value(3)))
-                self.view.setItem(rows, 4, QTableWidgetItem(query.value(4)))
-                self.view.setItem(rows, 5, QTableWidgetItem(query.value(5)))
-                self.view.setItem(rows, 6, QTableWidgetItem(query.value(6)))
+            ## Getting query data 
+        query = QSqlQuery(f'{query_input}') ##<< setting
+            
+            ## Connecting to DB for more data
+        connection = sqlite3.connect('logec_db')
+        cursor = connection.execute(query_input) 
+        names = list(map(lambda x: x[0], cursor.description))
+        connection.close()
+            
+            ## init vars
+        names_num = 0
+        names_list = []
+        query_num = 0
+            
+            # Loop for column names
+        for i in names:
+            names_list.append(i)
+            names_num = names_num + 1
+            
+        self.view.setColumnCount(len(names_list))
+        self.view.setHorizontalHeaderLabels(names_list)
+            
+            # Loop for data in each column
+        while query.next():
+            rows = self.view.rowCount()
+            self.view.setRowCount(rows + 1)
+                
+            for i in range(0, len(names_list)):
+                self.view.setItem(rows, i, QTableWidgetItem(query.value(i)))
+                
+            query_num = query_num + 1
 
         self.view.resizeColumnsToContents()
 
@@ -619,8 +518,6 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def error_shortcut(self):
         self.DB_Query.setText('!_error')
         self.custom_query('main_db')
-
-    ## !! NOte: Not detecitng input corrently in custom_query - not sure why.
 
     ## ========================================
     ## Unix Shell PopUps =======================
@@ -1407,9 +1304,11 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         ## Giving the DB a refresh
 
 
+## May need to move into the class eventually
 def createConnection():
 
     con = QSqlDatabase.addDatabase('QSQLITE')
+
     con.setDatabaseName(syspath.path + '/logec_db')
 
     ## Qapp throwing a fit due to no DB and no constructed app
@@ -1441,9 +1340,6 @@ if __name__ == '__main__':
         ## if pwd not equlal to stored syspath, redo syspath
         ## handy for if the folder ever gets moved
         
-
-        
-        
         ## Icon
         app_icon = QIcon(syspath.path + '/Gui/themes/assets/icon.png')
         print(syspath.path + '/Gui/themes/assets/icon.png')
@@ -1464,4 +1360,12 @@ if __name__ == '__main__':
         os.kill(pid, 15)   ## SIGTERM
 
     except Exception as e:
+        from plyer import notification
+
+        notification.notify(
+            title = 'Logec Crash!',
+            message = f'SEV: High \nERRMSG: {e} ',
+            app_icon = None,
+            timeout = 10,
+        )
         print(f'ERROR OCCURED: \n{e}')

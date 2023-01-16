@@ -2183,7 +2183,7 @@ p, li { white-space: pre-wrap; }
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_7">
           <property name="currentIndex">
-           <number>4</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="tab_21">
            <attribute name="title">
@@ -2373,7 +2373,7 @@ p, li { white-space: pre-wrap; }
                 <item row="1" column="0" colspan="2">
                  <widget class="QLineEdit" name="DB_Query_scanning_bruteforce">
                   <property name="text">
-                   <string>Broken - fix later</string>
+                   <string/>
                   </property>
                   <property name="placeholderText">
                    <string>Enter SQL Query! Type !_help for help! </string>
