@@ -256,6 +256,11 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.performance_networkspeed
         )
 
+        ## Settings
+        self.settings_reload.clicked.connect(self.edit_settings)
+        self.settings_write.clicked.connect(self.write_settings)
+        
+        
         ## ========================================
         ## Init Values/Main Thread ===========================
         ## ========================================
@@ -316,6 +321,11 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.custom_query('performance_error_db')
 
+        ## == Other Init
+        
+        ## Loading Settings
+        self.edit_settings()
+
         ## Starting performacne tab
         self.performance()
 
@@ -325,9 +335,6 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     ## ========================================
     ## Error, Checks & Debug ==================
     ## ========================================
-
-
-
 
     def DEBUG(self):
         self.client_connected()
@@ -358,6 +365,38 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def root_check(self, name):
         if os.getuid() != 0:
             self.ERROR(f"You are not running as root, note that {name} may not work as expected","Medium","Restart program as root")
+
+    ## ========================================
+    ## Settings ===============================
+    ## ========================================
+    def load_settings(self):
+        pass
+        # Loads settings for in program user
+    
+    def edit_settings(self):
+        try:
+        # Opens settings for editing
+            with open("settings.yaml","r") as s:
+                contents = s.read()
+            self.settings_edit.setText(contents)
+        except Exception as e:
+            self.error(e, 'medium', "Make sure file exists?")
+            
+        
+        #pass
+    ## Loads and puts settings file on display in the gUI
+    
+    def write_settings(self):
+        try:
+            updated_settings = self.settings_edit.toPlainText()
+            with open("settings.yaml", "w") as contents:
+                contents.write(updated_settings)
+        except Exception as e:
+            self.ERROR(e, 'medium', "Check permissions? If that fails, make sure the file exists")
+        
+        #pass
+    # writes the settings back to the file
+
 
     ## ========================================
     ## Conn/NotConn ===========================
@@ -779,7 +818,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             # portscanner.event_loop(target_list, scantype_list)
             self.portscan_start.setText('-->> Done! Scan again? <<--')
             ## Refreshing DB
-            # self.DB_Query_scanning_portscan.setText("!_portscan") <<-- broken due to thread reasons
+            #self.DB_Query_scanning_portscan.setText("!_portscan") <<-- broken due to thread reasons
             # self.DB_Query_scanning_portscan.setText("select * from PortScan")
             # self.custom_query("scanning_portscan_db")
             

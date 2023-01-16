@@ -57,27 +57,29 @@ class Portscan:
         
         with ThreadPoolExecutor() as executor:
             # submit the scan_port function for each port in the ports_to_scan list
-            if scantype[0]: #Stealth
-                stealth_futures = [executor.submit(self.stealth_scan, target_list[0], port) for port in ports_to_scan]
-                stealth_P = utility.Performance()
-                stealth_P .start_time()
-                
-                for future in stealth_futures:
-                    future.result()
-                
-                ## not showing up hmmm
-                self.final_time = stealth_P.end_time()
-
-                
-            if scantype[1]: #standard
+            if scantype[0]: #Stadnard
                 standard_futures = [executor.submit(self.standard_scan, target_list[0], port) for port in ports_to_scan]
-                stand_P = utility.Performance()
-                stand_P.start_time()
+                standard_P = utility.Performance()
+                standard_P.start_time()
+                
+                self.standard_scan(target_list[0], ports_to_scan)
                 
                 for future in standard_futures:
+                    future.result()
+                
+                self.final_time = standard_P.end_time()
+
+                
+            if scantype[1]: #stealth
+                stealth_futures = [executor.submit(self.stealth_scan, target_list[0], port) for port in ports_to_scan]
+                stealth_P = utility.Performance()
+                stealth_P.start_time()
+                
+                for future in stealth_futures:
                     future.result()  
                     #print("1")     
-                self.final_time = stand_P.end_time()   
+                self.final_time = stealth_P.end_time()   
+                
             # wait for all the futures to complete
             if scantype[2]: #fast
                 fast_futures = [executor.submit(self.fast_scan, target_list[0], port, scantype[-1]) for port in ports_to_scan]
@@ -99,25 +101,17 @@ class Portscan:
         srcport = RandShort()
         conf.verb = 0
         self.scantype = "Stealth"
+
+        SYNACKpkt = sr1(IP(dst=ip)/TCP(sport=srcport, dport=port, flags="S"), timeout=1, verbose=0)
         
-        self.standard_scan_status = self.standard_scan_status + 1
-        
-        try:
-            SYNACKpkt = sr1(IP(dst = ip)/TCP(sport = srcport, dport = port, flags = "S"), timeout = 1)
-            if SYNACKpkt == None:
-                pktflags = None
-            else:
-                pktflags = SYNACKpkt.getlayer(TCP).flags
-                
-        except Exception as e:
-            pktflags = None
-            print(e)
+        if SYNACKpkt and SYNACKpkt.getlayer(TCP).flags == SYNACK:
+            send(IP(dst=ip)/TCP(sport=srcport, dport=port, flags="R"), verbose=0)
             
-        if pktflags == SYNACK:
-            send(IP(dst = ip)/TCP(sport = srcport, dport = port, flags = "R"))
             print(f"{port}/tcp is open")
             self.open_port_list.append(port)
-            
+
+
+    
     def standard_scan(self, ip, port):
         srcport = RandShort()
         conf.verb = 0
@@ -140,6 +134,7 @@ class Portscan:
         if pktflags == SYNACK:
             print(f"{port}/tcp is open")
             self.open_port_list.append(port)
+            
 
     def fast_scan(self, ip, port, timeout_time):
         srcport = RandShort()
