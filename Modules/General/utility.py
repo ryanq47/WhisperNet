@@ -73,7 +73,10 @@ class Network:
 
   
     def __init__(self):
-        self.st = speedtest.Speedtest()
+        try:
+            self.st = speedtest.Speedtest()
+        except:
+            print("ERROR: SpeedTest Down")
 
   
     def download(self):

@@ -357,8 +357,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             ## Actual Error
             f'SEVERITY: {severity} \nERRMSG: {error} \nFIX: {fix} \n',
         )
-
+        #time.sleep(10)
         error_list = [severity, error, fix, Time, Date]
+        
 
         self.db_error_write(error_list)
 
@@ -813,7 +814,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
             ## Re calls the object per scan/click so there is not any colusion with variables overwriting eachother
             P = Portscan()
-            P.scan_framework(target_list, scantype_list)
+            P.scan_framework(target_list, scantype_list, self)
 
             # portscanner.event_loop(target_list, scantype_list)
             self.portscan_start.setText('-->> Done! Scan again? <<--')
@@ -1399,7 +1400,8 @@ if __name__ == '__main__':
         os.kill(pid, 15)   ## SIGTERM
 
     except Exception as e:
-        from plyer import notification
+        print(e)
+        '''from plyer import notification
 
         notification.notify(
             title = 'Logec Crash!',
@@ -1407,4 +1409,4 @@ if __name__ == '__main__':
             app_icon = None,
             timeout = 10,
         )
-        print(f'ERROR OCCURED: \n{e}')
+        print(f'ERROR OCCURED: \n{e}')'''

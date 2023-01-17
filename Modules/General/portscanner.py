@@ -23,12 +23,14 @@ class Portscan:
         self.scantype = ""
         self.stealth_scan_status = 0
         self.standard_scan_status = 0
+        self.N = utility.Network()
         
         
     def clean(self):
         self.open_port_list = []
     
-    def scan_framework(self, target_list, scantype):
+    def scan_framework(self, target_list, scantype, ClassObject):
+        self.GUI = ClassObject
         #print(port_range)
         #        target_list = [ip, min_port, max_port, extra_port]
         Date = utility.Timestamp.UTC_Date()
@@ -53,25 +55,32 @@ class Portscan:
         for i in target_list[3]:
             #print(i)
             ports_to_scan.append(int(i))
-
         
+        ## Host lookup (easier on error handling to have the utility file do it instead of scapy with executor)
+        ## For multiple input IP's create a for loop to each do them
+        self.host = self.N.lookup_A(target_list[0])[0]
+        #print(self.host)
+        if self.host == "N": ## workaround to keep multiple ip functionality intact (list[0] returns N)
+            print("HOST NOT FOUND")
+            #self.GUI.ERROR("Host Not Found","Low","The host could not be located, double check hostnames/IP addresses") << causes segfailt, would need to use connectors
+            #self.GUI.root_check("portscan")
+            exit()
+            
         with ThreadPoolExecutor() as executor:
             # submit the scan_port function for each port in the ports_to_scan list
             if scantype[0]: #Stadnard
-                standard_futures = [executor.submit(self.standard_scan, target_list[0], port) for port in ports_to_scan]
+                standard_futures = [executor.submit(self.standard_scan, self.host, port) for port in ports_to_scan]
                 standard_P = utility.Performance()
                 standard_P.start_time()
-                
-                self.standard_scan(target_list[0], ports_to_scan)
-                
+
                 for future in standard_futures:
                     future.result()
-                
+
                 self.final_time = standard_P.end_time()
 
                 
             if scantype[1]: #stealth
-                stealth_futures = [executor.submit(self.stealth_scan, target_list[0], port) for port in ports_to_scan]
+                stealth_futures = [executor.submit(self.stealth_scan, self.host, port) for port in ports_to_scan]
                 stealth_P = utility.Performance()
                 stealth_P.start_time()
                 
@@ -82,7 +91,7 @@ class Portscan:
                 
             # wait for all the futures to complete
             if scantype[2]: #fast
-                fast_futures = [executor.submit(self.fast_scan, target_list[0], port, scantype[-1]) for port in ports_to_scan]
+                fast_futures = [executor.submit(self.fast_scan, self.host, port, scantype[-1]) for port in ports_to_scan]
                 fast_P = utility.Performance()
                 fast_P.start_time()
                 
@@ -117,7 +126,6 @@ class Portscan:
         conf.verb = 0
         self.scantype = "Standard"
 
-        
         self.stealth_scan_status = self.stealth_scan_status + 1
         
         try:
