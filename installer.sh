@@ -7,11 +7,11 @@ echo "####################"
 echo "##=================="
 echo "Checking for updates..."
 echo "##=================="
-
+sudo apt-get update -y
 
 
 echo "##=================="
-echo "Installing PipReqs..."
+echo "Installing Requirments..."
 echo "##=================="
 
 pip install -r requirements.txt
@@ -20,7 +20,7 @@ pip install -r requirements.txt
 echo "##=================="
 echo "Installing Additional PyQt Stuff..."
 echo "##=================="
-apt-get install python3-pyqt5.qtsql
+sudo apt-get install python3-pyqt5.qtsql
 
 
 
