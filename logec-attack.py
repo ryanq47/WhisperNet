@@ -836,21 +836,13 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.portscan_thread.finished.connect(self.portscan_thread.deleteLater)
 
             self.portscan_worker.progress.connect(self.portscan_bar)
+            self.portscan_worker.liveports.connect(self.portscan_liveports) #<< not getting triggered
 
+            ## wiping live list
+            self.portscan_liveports_browser.setText("")
+            # starting thread
             self.portscan_thread.start()
 
-
-            '''
-            P = Portscan()
-            P.scan_framework(target_list, scantype_list, self)'''
-
-            # portscanner.event_loop(target_list, scantype_list)
-            #self.portscan_start.setText('-->> Done! Scan again? <<--')
-            ## Refreshing DB
-            #self.DB_Query_scanning_portscan.setText("!_portscan") <<-- broken due to thread reasons
-            # self.DB_Query_scanning_portscan.setText("select * from PortScan")
-            # self.custom_query("scanning_portscan_db")
-            
         except ValueError as ve:
             self.ERROR(ve, "low", "Make sure all respective fields are filled")
 
@@ -861,6 +853,12 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.stealth_bar.setValue(status)
         if self.stealth_bar.value() == 99:
             self.stealth_bar.setValue(100)
+
+    def portscan_liveports(self, ports):
+        self.portscan_liveports_browser.setText("")
+        #self.portscan_liveports_browser.setText(str(ports))
+        for i in ports:
+            self.portscan_liveports_browser.append(f"[+] {i}/tcp")
 
     ## ========================================
     ## Destructoin PopUps =====================

@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1108</width>
-    <height>850</height>
+    <width>998</width>
+    <height>743</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -57,7 +57,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>6</number>
+       <number>2</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -397,8 +397,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1044</width>
-                 <height>638</height>
+                 <width>934</width>
+                 <height>531</height>
                 </rect>
                </property>
                <widget class="QLabel" name="label_11">
@@ -1301,13 +1301,6 @@
               </property>
              </widget>
             </item>
-            <item row="10" column="7">
-             <widget class="QProgressBar" name="progressBar_5">
-              <property name="value">
-               <number>27</number>
-              </property>
-             </widget>
-            </item>
             <item row="4" column="1">
              <widget class="QRadioButton" name="portscan_1_10000">
               <property name="text">
@@ -1373,15 +1366,11 @@
             </item>
             <item row="2" column="0" rowspan="2" colspan="4">
              <widget class="QLineEdit" name="portscan_minport">
-              <property name="placeholderText">
+              <property name="text">
                <string>1</string>
               </property>
-             </widget>
-            </item>
-            <item row="6" column="7" rowspan="2">
-             <widget class="QProgressBar" name="progressBar_4">
-              <property name="value">
-               <number>18</number>
+              <property name="placeholderText">
+               <string>1</string>
               </property>
              </widget>
             </item>
@@ -1403,15 +1392,11 @@
             </item>
             <item row="2" column="4" rowspan="2">
              <widget class="QLineEdit" name="portscan_maxport">
-              <property name="placeholderText">
+              <property name="text">
                <string>1024</string>
               </property>
-             </widget>
-            </item>
-            <item row="3" column="7">
-             <widget class="QProgressBar" name="progressBar_3">
-              <property name="value">
-               <number>43</number>
+              <property name="placeholderText">
+               <string>1024</string>
               </property>
              </widget>
             </item>
@@ -1426,20 +1411,6 @@
              <widget class="QProgressBar" name="stealth_bar">
               <property name="value">
                <number>88</number>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="7">
-             <widget class="QLabel" name="label_14">
-              <property name="text">
-               <string>192.168.0.1 Standard 1-100, 80, 631</string>
-              </property>
-             </widget>
-            </item>
-            <item row="8" column="7" rowspan="2">
-             <widget class="QProgressBar" name="progressBar_7">
-              <property name="value">
-               <number>81</number>
               </property>
              </widget>
             </item>
@@ -1480,6 +1451,16 @@
                <string>1-65535 (All, takes ~5 min)</string>
               </property>
              </widget>
+            </item>
+            <item row="2" column="7">
+             <widget class="QLabel" name="label_14">
+              <property name="text">
+               <string>Live View of Open Ports</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="7" rowspan="8">
+             <widget class="QTextEdit" name="portscan_liveports_browser"/>
             </item>
            </layout>
           </widget>
@@ -2594,8 +2575,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1044</width>
-                 <height>679</height>
+                 <width>934</width>
+                 <height>572</height>
                 </rect>
                </property>
                <widget class="QLabel" name="label_56">
@@ -3143,7 +3124,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1108</width>
+     <width>998</width>
      <height>24</height>
     </rect>
    </property>

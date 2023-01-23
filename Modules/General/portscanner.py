@@ -8,6 +8,7 @@ from datetime import datetime
 from time import strftime
 import sqlite3
 import os.path
+from telnetlib import Telnet
 
 from concurrent.futures import ThreadPoolExecutor
 import Modules.General.utility as utility
@@ -22,6 +23,7 @@ RSTACK = 0x14
 class Portscan(QObject):
     finished = pyqtSignal()
     progress = pyqtSignal(int)
+    liveports = pyqtSignal(list)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -140,22 +142,19 @@ class Portscan(QObject):
         conf.verb = 0
         self.scantype = "Standard"
 
-        self.stealth_scan_status = self.stealth_scan_status + 1
-        
+        print(ip, port)
         try:
-            SYNACKpkt = sr1(IP(dst = ip)/TCP(sport = srcport, dport = port, flags = "S"), timeout = 1)
-            if SYNACKpkt == None:
-                pktflags = None
-            else:
-                pktflags = SYNACKpkt.getlayer(TCP).flags
-                
+            with Telnet(ip, port, .5) as tn:
+                #tn.open(ip, port, .5)
+                #tn.interact()
+                #print(f"{port}/tcp is open")
+                self.open_port_list.append(port)
+                self.liveports.emit(self.open_port_list)
         except Exception as e:
-            pktflags = None
             print(e)
-            
-        if pktflags == SYNACK:
-            print(f"{port}/tcp is open")
-            self.open_port_list.append(port)
+            pass
+            #print("closed")
+
         self.scan_progress = self.scan_progress + 1
         self.progress.emit(int(self.scan_progress / self.maxport * 100))      
 
@@ -163,9 +162,6 @@ class Portscan(QObject):
         srcport = RandShort()
         conf.verb = 0
         self.scantype = f"Fast ({float(timeout_time)} S)"
-
-        
-        self.stealth_scan_status = self.stealth_scan_status + 1
         
         try:
             SYNACKpkt = sr1(IP(dst = ip)/TCP(sport = srcport, dport = port, flags = "S"), timeout = float(timeout_time)) ##<< This is what makes this the fast scan
