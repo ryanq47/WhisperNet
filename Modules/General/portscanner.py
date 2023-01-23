@@ -1,6 +1,7 @@
 from logging import getLogger, ERROR
 getLogger("scapy.runtime").setLevel(ERROR)
 
+from PyQt5.QtCore import QRunnable, Qt, QThreadPool, QObject, QThread, pyqtSignal
 from scapy.all import *
 import sys
 from datetime import datetime
@@ -11,19 +12,25 @@ import os.path
 from concurrent.futures import ThreadPoolExecutor
 import Modules.General.utility as utility
 
+
 #ports = range(int(min_port), int(max_port)+1)
 start_clock = datetime.now()
 SYNACK = 0x12
 RSTACK = 0x14
 
 
-class Portscan:
-    def __init__(self):
+class Portscan(QObject):
+    finished = pyqtSignal()
+    progress = pyqtSignal(int)
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
         self.open_port_list = []
         self.scantype = ""
         self.stealth_scan_status = 0
         self.standard_scan_status = 0
         self.N = utility.Network()
+        self.scan_progress = 0
         
         
     def clean(self):
@@ -41,7 +48,8 @@ class Portscan:
                         ## Min Port         Max Port            Extra Ports
         ScannedPorts = f"{target_list[1]}-{target_list[2]},{str(target_list[3]).replace(']','').replace('[','')}" ## jank but it works
         open_list = [target_list[0]]
-        
+        self.maxport = target_list[2]
+
         ## Init ports to be scanned list
         ports_to_scan = []
         
@@ -55,7 +63,8 @@ class Portscan:
         for i in target_list[3]:
             #print(i)
             ports_to_scan.append(int(i))
-        
+        self.host = target_list[0]
+        '''
         ## Host lookup (easier on error handling to have the utility file do it instead of scapy with executor)
         ## For multiple input IP's create a for loop to each do them
         self.host = self.N.lookup_A(target_list[0])[0]
@@ -64,7 +73,7 @@ class Portscan:
             print("HOST NOT FOUND")
             #self.GUI.ERROR("Host Not Found","Low","The host could not be located, double check hostnames/IP addresses") << causes segfailt, would need to use connectors
             #self.GUI.root_check("portscan")
-            exit()
+            exit()'''
             
         with ThreadPoolExecutor() as executor:
             # submit the scan_port function for each port in the ports_to_scan list
@@ -101,10 +110,13 @@ class Portscan:
                     #print("2")    
                 self.final_time = fast_P.end_time()
         print(self.open_port_list)
-        #print(self.stealth_scan_status)
         
+        #print(self.stealth_scan_status)
         database_write(f"'{open_list[0]}'", self.scantype, Date, Time,  self.final_time, ScannedPorts, {str(set(self.open_port_list))}) #[1:] means to end of list
-        self.clean()        
+        self.clean()
+        ## Emiting that program is done
+        #self.progress.emit(100)
+        self.finished.emit()    
 
     def stealth_scan(self, ip, port):
         srcport = RandShort()
@@ -119,6 +131,8 @@ class Portscan:
             print(f"{port}/tcp is open")
             self.open_port_list.append(port)
 
+        self.scan_progress = self.scan_progress + 1
+        self.progress.emit(int(self.scan_progress / self.maxport * 100))   
 
     
     def standard_scan(self, ip, port):
@@ -142,7 +156,8 @@ class Portscan:
         if pktflags == SYNACK:
             print(f"{port}/tcp is open")
             self.open_port_list.append(port)
-            
+        self.scan_progress = self.scan_progress + 1
+        self.progress.emit(int(self.scan_progress / self.maxport * 100))      
 
     def fast_scan(self, ip, port, timeout_time):
         srcport = RandShort()
@@ -166,6 +181,9 @@ class Portscan:
         if pktflags == SYNACK:
             print(f"{port}/tcp is open")
             self.open_port_list.append(port)
+
+        self.scan_progress = self.scan_progress + 1
+        self.progress.emit(int(self.scan_progress / self.maxport * 100))   
             
             
 #P = Portscan()

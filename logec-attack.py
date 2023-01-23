@@ -235,7 +235,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         )
         self.table_QueryDB_Button_scanning_portscan.setShortcut('Return')
 
-        self.portscan_start.clicked.connect(self.portscan_qthread)
+        self.portscan_start.clicked.connect(self.portscan)
 
         ## bruteforce
         self.bruteforce_start.clicked.connect(self.bruteforce_thread)
@@ -381,7 +381,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 contents = s.read()
             self.settings_edit.setText(contents)
         except Exception as e:
-            self.error(e, 'medium', "Make sure file exists?")
+            self.ERROR(e, 'medium', "Make sure file exists?")
             
         
         #pass
@@ -714,9 +714,10 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         portscan_IP = self._portscan_popup.portscan_IP.text()
 
         self._portscan_popup.portscan_start.clicked.connect(
-            self.portscan_qthread
+            self.portscan
         )
 
+    '''
     def portscan_qthread(self):
         print('PORTSCNA THREAD STARTER')
                 ## Root Check
@@ -735,15 +736,23 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 print(input_ip)
                 thread = threading.Thread(target=self.portscan, args=(input_ip,))
                 thread.start()
+            print(self.portscan_IP.text())
+            self.portscan(self.portscan_IP.text())
+            
         
         except Exception as e:
-            self.ERROR(e, "low", "")
+            self.ERROR(e, "low", "") '''
             
 
-    def portscan(self, input_ip):
+    def portscan(self):
+        input_ip = self.portscan_IP.text()
+        print(input_ip)
         print('I')
 
         try:
+            ## setting bar to 0
+            self.stealth_bar.setValue(0)
+
             ip = input_ip   # self._portscan_popup.portscan_IP.text()
             min_port = self.portscan_minport.text()
             max_port = self.portscan_maxport.text()
@@ -805,19 +814,38 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 timeout,
             ]   ## timeout shoudl always be last
 
-            self.portscan_start.setText('-->> Scanning... <<--')
+            #self.portscan_start.setText('-->> Scanning... <<--')
 
             """
             ## Starting progress Bars
             bar_thread = threading.Thread(target=self.bar_update)
             bar_thread.start()"""
-
+            from functools import partial
+            ## Init class
+            #P = Portscan()
             ## Re calls the object per scan/click so there is not any colusion with variables overwriting eachother
+            self.portscan_thread = QThread()
+            # Step 3: Create a worker object
+            self.portscan_worker = Portscan()
+            
+            self.portscan_worker.moveToThread(self.portscan_thread)
+            # Step 5: Connect signals and slots
+            self.portscan_thread.started.connect(partial(self.portscan_worker.scan_framework, target_list, scantype_list, self))
+            self.portscan_worker.finished.connect(self.portscan_thread.quit)
+            self.portscan_worker.finished.connect(self.portscan_worker.deleteLater)
+            self.portscan_thread.finished.connect(self.portscan_thread.deleteLater)
+
+            self.portscan_worker.progress.connect(self.portscan_bar)
+
+            self.portscan_thread.start()
+
+
+            '''
             P = Portscan()
-            P.scan_framework(target_list, scantype_list, self)
+            P.scan_framework(target_list, scantype_list, self)'''
 
             # portscanner.event_loop(target_list, scantype_list)
-            self.portscan_start.setText('-->> Done! Scan again? <<--')
+            #self.portscan_start.setText('-->> Done! Scan again? <<--')
             ## Refreshing DB
             #self.DB_Query_scanning_portscan.setText("!_portscan") <<-- broken due to thread reasons
             # self.DB_Query_scanning_portscan.setText("select * from PortScan")
@@ -828,12 +856,12 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         except Exception as e:
             self.ERROR(e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)")
-    """
-    def bar_update(self): ## I wonder if this dosen't work due to all the threads waiting to join back up? maybe portscanner writing the value to a tmp file would have to do it, or to the DB in a .hiddentable
-        while True:
-            self.stealth_bar.setValue(self.P.stealth_scan_status - 1000)
-            time.sleep(2)
-            print(self.P.stealth_scan_status)"""
+    
+    def portscan_bar(self, status): ## I wonder if this dosen't work due to all the threads waiting to join back up? maybe portscanner writing the value to a tmp file would have to do it, or to the DB in a .hiddentable
+        self.stealth_bar.setValue(status)
+        if self.stealth_bar.value() == 99:
+            self.stealth_bar.setValue(100)
+
     ## ========================================
     ## Destructoin PopUps =====================
     ## ========================================
@@ -1061,6 +1089,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     ## Scanning Tab ===========================
     ## ========================================
     def dns_lookup(self):
+
         ## All handler
         ## Setting object instance
         self.tablewidget = self.test_table
