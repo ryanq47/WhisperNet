@@ -154,12 +154,12 @@ class Portscan(QObject):
     ##########
     # Scapy Scans
     ##########
-    def stealth_scan(self, ip, port, timeout):
+    def stealth_scan(self, ip, port, timeout_time, delay):
         srcport = RandShort()
         conf.verb = 0
         self.scantype = "Stealth"
 
-        SYNACKpkt = sr1(IP(dst=ip)/TCP(sport=srcport, dport=port, flags="S"), timeout=1, verbose=0)
+        SYNACKpkt = sr1(IP(dst=ip)/TCP(sport=srcport, dport=port, flags="S"), timeout=timeout_time, verbose=0)
         
         if SYNACKpkt and SYNACKpkt.getlayer(TCP).flags == SYNACK:
             send(IP(dst=ip)/TCP(sport=srcport, dport=port, flags="R"), verbose=0)
@@ -169,6 +169,8 @@ class Portscan(QObject):
 
         self.scan_progress = self.scan_progress + 1
         self.progress.emit(int(self.scan_progress / self.maxport * 100))
+        
+        time.sleep(random.uniform(delay[0], delay[1]))
 
     '''
     def fast_scan(self, ip, port, timeout_time):
