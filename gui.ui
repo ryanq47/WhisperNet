@@ -1222,27 +1222,7 @@
             <string>PortScan</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_18">
-            <item row="1" column="0" colspan="5">
-             <widget class="QLineEdit" name="portscan_IP">
-              <property name="placeholderText">
-               <string>8.8.8.8</string>
-              </property>
-             </widget>
-            </item>
-            <item row="9" column="0" colspan="2">
-             <widget class="QCheckBox" name="portscan_fast_check">
-              <property name="maximumSize">
-               <size>
-                <width>60</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>Fast:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="12" column="0" colspan="8">
+            <item row="16" column="0" colspan="8">
              <widget class="QTabWidget" name="tabWidget_9">
               <property name="currentIndex">
                <number>0</number>
@@ -1294,17 +1274,87 @@
               </widget>
              </widget>
             </item>
-            <item row="5" column="0" rowspan="2" colspan="5">
+            <item row="0" column="6" rowspan="16">
+             <widget class="Line" name="line">
+              <property name="minimumSize">
+               <size>
+                <width>5</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="7" rowspan="12">
+             <widget class="QTextEdit" name="portscan_liveports_browser"/>
+            </item>
+            <item row="2" column="3" rowspan="2">
+             <widget class="QLineEdit" name="portscan_maxport">
+              <property name="text">
+               <string>1024</string>
+              </property>
+              <property name="placeholderText">
+               <string>1024</string>
+              </property>
+             </widget>
+            </item>
+            <item row="15" column="0" colspan="5">
+             <widget class="Line" name="line_9">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="14" column="0" colspan="4">
+             <widget class="QPushButton" name="portscan_start">
+              <property name="text">
+               <string>--&gt;&gt; Start Scan &lt;&lt;--</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="7">
+             <widget class="QLabel" name="label_14">
+              <property name="text">
+               <string>Live View of Open Ports</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0" rowspan="2" colspan="4">
              <widget class="QLineEdit" name="portscan_extraport">
               <property name="placeholderText">
                <string>80, 443</string>
               </property>
              </widget>
             </item>
-            <item row="4" column="1">
-             <widget class="QRadioButton" name="portscan_1_10000">
+            <item row="0" column="7">
+             <widget class="QLabel" name="label_13">
               <property name="text">
-               <string>1-10,000</string>
+               <string>192.168.0.1 Stealth 1-100, 80, 631</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" colspan="4">
+             <widget class="QLineEdit" name="portscan_IP">
+              <property name="placeholderText">
+               <string>8.8.8.8</string>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="0">
+             <widget class="QCheckBox" name="portscan_standard_check">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Standard (Telnet)</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -1318,40 +1368,34 @@
               </property>
              </widget>
             </item>
-            <item row="7" column="4" rowspan="2">
+            <item row="8" column="1">
              <widget class="QCheckBox" name="portscan_stealth_check">
               <property name="maximumSize">
                <size>
-                <width>100</width>
+                <width>16777215</width>
                 <height>16777215</height>
                </size>
               </property>
               <property name="text">
-               <string>Stealth</string>
+               <string>Stealth (Scapy)</string>
               </property>
              </widget>
             </item>
-            <item row="11" column="0" colspan="5">
-             <widget class="Line" name="line_9">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+            <item row="4" column="2">
+             <widget class="QRadioButton" name="portscan_1_65535">
+              <property name="text">
+               <string>1-65535 </string>
               </property>
              </widget>
             </item>
-            <item row="0" column="6" rowspan="12">
-             <widget class="Line" name="line">
-              <property name="minimumSize">
-               <size>
-                <width>5</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
+            <item row="4" column="1">
+             <widget class="QRadioButton" name="portscan_1_10000">
+              <property name="text">
+               <string>1-10,000</string>
               </property>
              </widget>
             </item>
-            <item row="9" column="4">
+            <item row="9" column="1">
              <widget class="QCheckBox" name="checkBox_4">
               <property name="maximumSize">
                <size>
@@ -1364,7 +1408,14 @@
               </property>
              </widget>
             </item>
-            <item row="2" column="0" rowspan="2" colspan="4">
+            <item row="1" column="7">
+             <widget class="QProgressBar" name="stealth_bar">
+              <property name="value">
+               <number>88</number>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0" rowspan="2" colspan="3">
              <widget class="QLineEdit" name="portscan_minport">
               <property name="text">
                <string>1</string>
@@ -1374,55 +1425,33 @@
               </property>
              </widget>
             </item>
-            <item row="7" column="0" rowspan="2">
-             <widget class="QCheckBox" name="portscan_standard_check">
+            <item row="10" column="0" colspan="4">
+             <widget class="Line" name="line_13">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="0">
+             <widget class="QCheckBox" name="portscan_fast_check">
               <property name="maximumSize">
                <size>
-                <width>100</width>
+                <width>16777215</width>
                 <height>16777215</height>
                </size>
               </property>
               <property name="text">
-               <string>Standard</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
+               <string>???</string>
               </property>
              </widget>
             </item>
-            <item row="2" column="4" rowspan="2">
-             <widget class="QLineEdit" name="portscan_maxport">
-              <property name="text">
-               <string>1024</string>
-              </property>
-              <property name="placeholderText">
-               <string>1024</string>
-              </property>
-             </widget>
-            </item>
-            <item row="10" column="0" colspan="5">
-             <widget class="QPushButton" name="portscan_start">
-              <property name="text">
-               <string>--&gt;&gt; Start Scan &lt;&lt;--</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="7">
-             <widget class="QProgressBar" name="stealth_bar">
-              <property name="value">
-               <number>88</number>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="7">
-             <widget class="QLabel" name="label_13">
-              <property name="text">
-               <string>192.168.0.1 Stealth 1-100, 80, 631</string>
-              </property>
-             </widget>
-            </item>
-            <item row="9" column="2" colspan="2">
+            <item row="13" column="0">
              <widget class="QComboBox" name="portscan_fast_timeout">
+              <item>
+               <property name="text">
+                <string>Normal Speed (1 Second Timeout)</string>
+               </property>
+              </item>
               <item>
                <property name="text">
                 <string>Light Speed (.5 Second Timeout)</string>
@@ -1445,22 +1474,55 @@
               </item>
              </widget>
             </item>
-            <item row="4" column="2">
-             <widget class="QRadioButton" name="portscan_1_65535">
-              <property name="text">
-               <string>1-65535 (All, takes ~5 min)</string>
+            <item row="7" column="0" colspan="4">
+             <widget class="Line" name="line_14">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
               </property>
              </widget>
             </item>
-            <item row="2" column="7">
-             <widget class="QLabel" name="label_14">
+            <item row="12" column="0">
+             <widget class="QLabel" name="label_61">
               <property name="text">
-               <string>Live View of Open Ports</string>
+               <string>Speed</string>
               </property>
              </widget>
             </item>
-            <item row="4" column="7" rowspan="8">
-             <widget class="QTextEdit" name="portscan_liveports_browser"/>
+            <item row="13" column="1" colspan="3">
+             <widget class="QComboBox" name="portscan_delay">
+              <item>
+               <property name="text">
+                <string>None</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>.001-.1</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>.1-1.0</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>1.0-5.0</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string/>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="12" column="1">
+             <widget class="QLabel" name="label_60">
+              <property name="text">
+               <string>Random Delay (S)</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>

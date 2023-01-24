@@ -38,34 +38,36 @@ class Portscan(QObject):
     def clean(self):
         self.open_port_list = []
     
-    def scan_framework(self, target_list, scantype, ClassObject):
-        self.GUI = ClassObject
-        #print(port_range)
-        #        target_list = [ip, min_port, max_port, extra_port]
-        Date = utility.Timestamp.UTC_Date()
-        Time = utility.Timestamp.UTC_Time()
-        #Date = "DATE"
-        #Time = "Time"
-        
+    def scan_framework(self, target_list, scantype):
+        # target_list = [ip, min_port, max_port, timeout, delay, extra_port]
+        # scantype list = [standard, stealth, ??] A list of scan booleans, true means do it, false means dont
                         ## Min Port         Max Port            Extra Ports
         ScannedPorts = f"{target_list[1]}-{target_list[2]},{str(target_list[3]).replace(']','').replace('[','')}" ## jank but it works
         open_list = [target_list[0]]
+        
+        self.host = target_list[0]
+        self.minport = target_list[1]
         self.maxport = target_list[2]
+        self.timeout = target_list[3]
+        self.delay = target_list[4]
 
+        ## == Creating components of port list
         ## Init ports to be scanned list
         ports_to_scan = []
         
-        ## == Creating components of port list
         ## port range
         port_range_list = range(target_list[1],target_list[2])
         for i in port_range_list:
             ports_to_scan.append(i)
         
-        # extra addon ports
-        for i in target_list[3]:
-            #print(i)
+        ## == extra addon ports
+        for i in target_list[5]:
             ports_to_scan.append(int(i))
-        self.host = target_list[0]
+            
+        ## == Date n time
+        Date = utility.Timestamp.UTC_Date()
+        Time = utility.Timestamp.UTC_Time()
+        
         '''
         ## Host lookup (easier on error handling to have the utility file do it instead of scapy with executor)
         ## For multiple input IP's create a for loop to each do them
@@ -79,8 +81,8 @@ class Portscan(QObject):
             
         with ThreadPoolExecutor() as executor:
             # submit the scan_port function for each port in the ports_to_scan list
-            if scantype[0]: #Stadnard
-                standard_futures = [executor.submit(self.standard_scan, self.host, port) for port in ports_to_scan]
+            if scantype[0]: #Telnet Standard
+                standard_futures = [executor.submit(self.telnet_standard_scan, self.host, port, scantype[-1], self.delay) for port in ports_to_scan]
                 standard_P = utility.Performance()
                 standard_P.start_time()
 
@@ -90,18 +92,21 @@ class Portscan(QObject):
                 self.final_time = standard_P.end_time()
 
                 
-            if scantype[1]: #stealth
-                stealth_futures = [executor.submit(self.stealth_scan, self.host, port) for port in ports_to_scan]
+            if scantype[1]: #Scapy stealth
+                #self.stealth_scan(self.host, ports_to_scan)
+                
+                stealth_futures = [executor.submit(self.stealth_scan, self.host, port, scantype[-1]) for port in ports_to_scan]
                 stealth_P = utility.Performance()
                 stealth_P.start_time()
                 
                 for future in stealth_futures:
                     future.result()  
                     #print("1")     
-                self.final_time = stealth_P.end_time()   
+                self.final_time = stealth_P.end_time()
                 
             # wait for all the futures to complete
-            if scantype[2]: #fast
+            '''
+            if scantype[2]: #Scapy fast
                 fast_futures = [executor.submit(self.fast_scan, self.host, port, scantype[-1]) for port in ports_to_scan]
                 fast_P = utility.Performance()
                 fast_P.start_time()
@@ -110,17 +115,46 @@ class Portscan(QObject):
                 for future in fast_futures:
                     future.result() 
                     #print("2")    
-                self.final_time = fast_P.end_time()
+                self.final_time = fast_P.end_time()'''
         print(self.open_port_list)
         
         #print(self.stealth_scan_status)
-        database_write(f"'{open_list[0]}'", self.scantype, Date, Time,  self.final_time, ScannedPorts, {str(set(self.open_port_list))}) #[1:] means to end of list
+        database_write(f"'{open_list[0]}'", self.scantype, Date, Time,  self.final_time, ScannedPorts, {str(set(self.open_port_list))}, str(self.delay).replace("[","").replace("]","").replace(",","-")) #[1:] means to end of list
         self.clean()
         ## Emiting that program is done
         #self.progress.emit(100)
         self.finished.emit()    
 
-    def stealth_scan(self, ip, port):
+    ##########
+    # Telnet Scans
+    ##########
+
+    def telnet_standard_scan(self, ip, port, timeout_time, delay):
+        #print(f"TIMEOUT TIME IN MODULE: {timeout_time}")
+        #srcport = RandShort()
+        conf.verb = 0
+        self.scantype = "Standard"
+
+        #print(ip, port)
+        try:
+            with Telnet(ip, port, timeout_time) as tn:
+                self.open_port_list.append(port)
+                self.liveports.emit(self.open_port_list)
+        except Exception as e:
+            print(e)
+            pass
+            #print("closed")
+
+        self.scan_progress = self.scan_progress + 1
+        self.progress.emit(int(self.scan_progress / self.maxport * 100))  
+        
+        time.sleep(random.uniform(delay[0], delay[1]))
+
+
+    ##########
+    # Scapy Scans
+    ##########
+    def stealth_scan(self, ip, port, timeout):
         srcport = RandShort()
         conf.verb = 0
         self.scantype = "Stealth"
@@ -134,30 +168,9 @@ class Portscan(QObject):
             self.open_port_list.append(port)
 
         self.scan_progress = self.scan_progress + 1
-        self.progress.emit(int(self.scan_progress / self.maxport * 100))   
+        self.progress.emit(int(self.scan_progress / self.maxport * 100))
 
-    
-    def standard_scan(self, ip, port):
-        srcport = RandShort()
-        conf.verb = 0
-        self.scantype = "Standard"
-
-        print(ip, port)
-        try:
-            with Telnet(ip, port, .5) as tn:
-                #tn.open(ip, port, .5)
-                #tn.interact()
-                #print(f"{port}/tcp is open")
-                self.open_port_list.append(port)
-                self.liveports.emit(self.open_port_list)
-        except Exception as e:
-            print(e)
-            pass
-            #print("closed")
-
-        self.scan_progress = self.scan_progress + 1
-        self.progress.emit(int(self.scan_progress / self.maxport * 100))      
-
+    '''
     def fast_scan(self, ip, port, timeout_time):
         srcport = RandShort()
         conf.verb = 0
@@ -179,7 +192,7 @@ class Portscan(QObject):
             self.open_port_list.append(port)
 
         self.scan_progress = self.scan_progress + 1
-        self.progress.emit(int(self.scan_progress / self.maxport * 100))   
+        self.progress.emit(int(self.scan_progress / self.maxport * 100))  '''
             
             
 #P = Portscan()
@@ -188,7 +201,7 @@ class Portscan(QObject):
 
 
 ## For later - also put the input as a list
-def database_write(IP, SCANTYPE, SCANDATE, SCANTIME, RUNTIME, SCANNEDPORTS, PORT):
+def database_write(IP, SCANTYPE, SCANDATE, SCANTIME, RUNTIME, SCANNEDPORTS, PORT, DELAY):
     try:
         ## Accesing DB in root dir
         sqliteConnection = sqlite3.connect(os.path.dirname(__file__) + '/../../logec_db')
@@ -201,9 +214,9 @@ def database_write(IP, SCANTYPE, SCANDATE, SCANTIME, RUNTIME, SCANNEDPORTS, PORT
             print("FIX")
             PORT = "'No Open Ports'"
 
-        sqlite_insert_query = f"""INSERT INTO PortScan (IP, PORT, ScanType, ScanDate, ScanTime, RunTime, ScannedPorts) 
+        sqlite_insert_query = f"""INSERT INTO PortScan (IP, PORT, ScanType, ScanDate, ScanTime, RunTime, ScannedPorts, Delay) 
         VALUES
-        ({IP}, {str(PORT).replace("{","").replace("}","")}, '{SCANTYPE}', '{SCANDATE}', '{SCANTIME}', '{RUNTIME}', "{SCANNEDPORTS.replace("'","")}")""" ## idfk - had to manually set the '' for some reason
+        ({IP}, {str(PORT).replace("{","").replace("}","")}, '{SCANTYPE}', '{SCANDATE}', '{SCANTIME}', '{RUNTIME}', "{SCANNEDPORTS.replace("'","")}", '{DELAY}')""" ## idfk - had to manually set the '' for some reason
         
         print(sqlite_insert_query)
 

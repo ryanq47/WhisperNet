@@ -30,6 +30,7 @@ import os
 import time
 import webbrowser
 import time
+from functools import partial
 
 from agent.server import s_sock, s_action
 
@@ -264,6 +265,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         ## ========================================
         ## Init Values/Main Thread ===========================
         ## ========================================
+        
         ## == Status Bar init
         ## sets connected to red on startup
         self.status_Connected.setStyleSheet('background-color: red')
@@ -782,55 +784,49 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 fast = False
 
             ## Timeout logic
-            if (
-                self.portscan_fast_timeout.currentText()
-                == 'Light Speed (.5 Second Timeout)'
-            ):
-                timeout = 0.5
-            elif (
-                self.portscan_fast_timeout.currentText()
-                == 'Ridiculous Speed (.25 Second Timeout)'
-            ):
-                timeout = 0.25
-            elif (
-                self.portscan_fast_timeout.currentText()
-                == 'Ludicrous Speed (.1 Second Timeout)'
-            ):
-                timeout = 0.1
-            elif (
-                self.portscan_fast_timeout.currentText()
-                == 'Plaid (.01 Second Timeout)'
-            ):
-                timeout = 0.01
+            
+            timeout_mapping = {
+            'Normal Speed (1 Second Timeout)': 1,
+            'Light Speed (.5 Second Timeout)': 0.5,
+            'Ridiculous Speed (.25 Second Timeout)': 0.25,
+            'Ludicrous Speed (.1 Second Timeout)': 0.1,
+            'Plaid (.01 Second Timeout)': 0.01
+            }
+            timeout = timeout_mapping.get(self.portscan_fast_timeout.currentText())
+            
+            delay_mapping = {
+            'None': [0,0],
+            '.001-.1': [.001,0.1],
+            '.1-1.0': [.1,1],
+            '1.0-5.0': [1,5],
+            }
+            delay = delay_mapping.get(self.portscan_delay.currentText())
 
             print(f'TIMOUT: {timeout}')
+            
+            print(f'DELAY: {delay}')       
+            
 
             ## if clicked standard = true
-            target_list = [ip, int(min_port), int(max_port), extra_port]
+            target_list = [ip, int(min_port), int(max_port), timeout, delay, extra_port]
             scantype_list = [
                 standard,
                 stealth,
                 fast,
-                timeout,
+                #timeout,
             ]   ## timeout shoudl always be last
 
             #self.portscan_start.setText('-->> Scanning... <<--')
 
-            """
-            ## Starting progress Bars
-            bar_thread = threading.Thread(target=self.bar_update)
-            bar_thread.start()"""
-            from functools import partial
-            ## Init class
-            #P = Portscan()
-            ## Re calls the object per scan/click so there is not any colusion with variables overwriting eachother
+
+
             self.portscan_thread = QThread()
             # Step 3: Create a worker object
             self.portscan_worker = Portscan()
             
             self.portscan_worker.moveToThread(self.portscan_thread)
             # Step 5: Connect signals and slots
-            self.portscan_thread.started.connect(partial(self.portscan_worker.scan_framework, target_list, scantype_list, self))
+            self.portscan_thread.started.connect(partial(self.portscan_worker.scan_framework, target_list, scantype_list))
             self.portscan_worker.finished.connect(self.portscan_thread.quit)
             self.portscan_worker.finished.connect(self.portscan_worker.deleteLater)
             self.portscan_thread.finished.connect(self.portscan_thread.deleteLater)
