@@ -95,7 +95,7 @@ class Portscan(QObject):
             if scantype[1]: #Scapy stealth
                 #self.stealth_scan(self.host, ports_to_scan)
                 
-                stealth_futures = [executor.submit(self.stealth_scan, self.host, port, scantype[-1]) for port in ports_to_scan]
+                stealth_futures = [executor.submit(self.stealth_scan, self.host, port, scantype[-1], self.delay) for port in ports_to_scan]
                 stealth_P = utility.Performance()
                 stealth_P.start_time()
                 
