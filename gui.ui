@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>998</width>
-    <height>743</height>
+    <width>1385</width>
+    <height>876</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -57,7 +57,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -349,13 +349,6 @@
               </property>
              </widget>
             </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_24">
-              <property name="text">
-               <string>Preset</string>
-              </property>
-             </widget>
-            </item>
             <item row="1" column="1">
              <widget class="QComboBox" name="comboBox_3">
               <item>
@@ -380,13 +373,6 @@
               </item>
              </widget>
             </item>
-            <item row="1" column="2">
-             <widget class="QPushButton" name="portscan_start_5">
-              <property name="text">
-               <string>--&gt;&gt; Start &lt;&lt;--</string>
-              </property>
-             </widget>
-            </item>
             <item row="2" column="0" colspan="3">
              <widget class="QScrollArea" name="scrollArea_2">
               <property name="widgetResizable">
@@ -397,8 +383,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>934</width>
-                 <height>531</height>
+                 <width>1321</width>
+                 <height>631</height>
                 </rect>
                </property>
                <widget class="QLabel" name="label_11">
@@ -666,6 +652,27 @@
               </widget>
              </widget>
             </item>
+            <item row="1" column="2">
+             <widget class="QPushButton" name="portscan_start_5">
+              <property name="text">
+               <string>--&gt;&gt; Start &lt;&lt;--</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_24">
+              <property name="text">
+               <string>Preset</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0" colspan="3">
+             <widget class="QProgressBar" name="progressBar_2">
+              <property name="value">
+               <number>24</number>
+              </property>
+             </widget>
+            </item>
            </layout>
           </widget>
           <widget class="QWidget" name="tab_13">
@@ -924,7 +931,7 @@
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_8">
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab_24">
            <attribute name="title">
@@ -969,8 +976,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>72</width>
-                 <height>16</height>
+                 <width>1321</width>
+                 <height>639</height>
                 </rect>
                </property>
                <widget class="QLineEdit" name="dashboard_portscan_IP">
@@ -1701,6 +1708,394 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="tab_38">
+       <attribute name="title">
+        <string>AD</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_29">
+        <item row="1" column="0">
+         <widget class="QTabWidget" name="tabWidget_5">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tab_39">
+           <attribute name="title">
+            <string>DashBoard</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_30">
+            <item row="3" column="1">
+             <widget class="QLineEdit" name="lineEdit_17"/>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_70">
+              <property name="text">
+               <string>Other?</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0" rowspan="2">
+             <widget class="QLabel" name="label_67">
+              <property name="text">
+               <string>Username</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QLabel" name="label_69">
+              <property name="text">
+               <string>DC-IP</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_68">
+              <property name="text">
+               <string>Password</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1" rowspan="2">
+             <widget class="QLineEdit" name="lineEdit_14">
+              <property name="placeholderText">
+               <string>AldersonE</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="3" colspan="2">
+             <widget class="QPushButton" name="portscan_start_6">
+              <property name="text">
+               <string>--&gt;&gt; Start &lt;&lt;--</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLineEdit" name="lineEdit_15">
+              <property name="placeholderText">
+               <string>MR.Rob3t</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QLineEdit" name="dashboard_osint_keyword_2">
+              <property name="placeholderText">
+               <string>AllSafe</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="3" rowspan="2">
+             <widget class="QLineEdit" name="lineEdit_16">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="placeholderText">
+               <string>Optional</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0" colspan="5">
+             <widget class="QScrollArea" name="scrollArea_4">
+              <property name="widgetResizable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="scrollAreaWidgetContents_4">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>1321</width>
+                 <height>592</height>
+                </rect>
+               </property>
+               <widget class="QLabel" name="label_62">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>10</y>
+                  <width>91</width>
+                  <height>19</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <underline>true</underline>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Kerberoast</string>
+                </property>
+               </widget>
+               <widget class="QLineEdit" name="lineEdit_12">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>510</y>
+                  <width>113</width>
+                  <height>27</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Length</string>
+                </property>
+               </widget>
+               <widget class="QCheckBox" name="dashboard_reddit_onlycomments_2">
+                <property name="geometry">
+                 <rect>
+                  <x>140</x>
+                  <y>70</y>
+                  <width>140</width>
+                  <height>25</height>
+                 </rect>
+                </property>
+                <property name="toolTip">
+                 <string>Search ONLY for comments with &quot;KEYWORD&quot; in the text</string>
+                </property>
+                <property name="text">
+                 <string>Comment Search</string>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+                <property name="checked">
+                 <bool>false</bool>
+                </property>
+               </widget>
+               <widget class="QComboBox" name="combo_time_3">
+                <property name="geometry">
+                 <rect>
+                  <x>15</x>
+                  <y>133</y>
+                  <width>123</width>
+                  <height>27</height>
+                 </rect>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>All</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Year</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Month</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Day</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Hour</string>
+                 </property>
+                </item>
+               </widget>
+               <widget class="QLabel" name="label_63">
+                <property name="geometry">
+                 <rect>
+                  <x>15</x>
+                  <y>38</y>
+                  <width>123</width>
+                  <height>25</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>SortBy</string>
+                </property>
+               </widget>
+               <widget class="QLabel" name="label_64">
+                <property name="geometry">
+                 <rect>
+                  <x>15</x>
+                  <y>102</y>
+                  <width>123</width>
+                  <height>25</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Time</string>
+                </property>
+               </widget>
+               <widget class="QCheckBox" name="dashboard_reddit_onlyprofile_2">
+                <property name="geometry">
+                 <rect>
+                  <x>140</x>
+                  <y>100</y>
+                  <width>140</width>
+                  <height>25</height>
+                 </rect>
+                </property>
+                <property name="toolTip">
+                 <string>Search for a user profile, enter the username in &quot;keyword&quot;</string>
+                </property>
+                <property name="text">
+                 <string>Profile Search</string>
+                </property>
+               </widget>
+               <widget class="QComboBox" name="combo_sort_3">
+                <property name="geometry">
+                 <rect>
+                  <x>15</x>
+                  <y>69</y>
+                  <width>123</width>
+                  <height>27</height>
+                 </rect>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>Hot</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Top</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>New</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Controversial</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Comments</string>
+                 </property>
+                </item>
+               </widget>
+               <widget class="QCheckBox" name="dashboard_reddit_downloadmedia_2">
+                <property name="geometry">
+                 <rect>
+                  <x>140</x>
+                  <y>130</y>
+                  <width>170</width>
+                  <height>25</height>
+                 </rect>
+                </property>
+                <property name="toolTip">
+                 <string>Download Images/Videos associated with the posts searched</string>
+                </property>
+                <property name="text">
+                 <string>Download Media</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+               <widget class="Line" name="line_15">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>230</y>
+                  <width>271</width>
+                  <height>21</height>
+                 </rect>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+               <widget class="QLineEdit" name="dashboard_reddit_subreddit_2">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>200</y>
+                  <width>271</width>
+                  <height>27</height>
+                 </rect>
+                </property>
+                <property name="placeholderText">
+                 <string>r/technology</string>
+                </property>
+               </widget>
+               <widget class="QLabel" name="label_65">
+                <property name="geometry">
+                 <rect>
+                  <x>20</x>
+                  <y>170</y>
+                  <width>151</width>
+                  <height>25</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Subreddit (Optional)</string>
+                </property>
+               </widget>
+               <widget class="Line" name="line_16">
+                <property name="geometry">
+                 <rect>
+                  <x>290</x>
+                  <y>20</y>
+                  <width>21</width>
+                  <height>221</height>
+                 </rect>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+               </widget>
+               <widget class="QCheckBox" name="dashboard_reddit_hideNSFW_2">
+                <property name="geometry">
+                 <rect>
+                  <x>140</x>
+                  <y>40</y>
+                  <width>131</width>
+                  <height>25</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Hide NSFW</string>
+                </property>
+               </widget>
+               <widget class="QLineEdit" name="lineEdit_13">
+                <property name="geometry">
+                 <rect>
+                  <x>182</x>
+                  <y>380</y>
+                  <width>751</width>
+                  <height>27</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Non Functional</string>
+                </property>
+               </widget>
+              </widget>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLabel" name="label_66">
+              <property name="text">
+               <string>Domain</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="0" colspan="4">
+             <widget class="QProgressBar" name="progressBar">
+              <property name="value">
+               <number>24</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_40">
+           <attribute name="title">
+            <string>Kerberoast</string>
+           </attribute>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
       <widget class="QWidget" name="tab_6">
        <attribute name="title">
         <string>LocalDB</string>
@@ -1749,7 +2144,7 @@
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_2">
           <property name="currentIndex">
-           <number>4</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="tab_7">
            <attribute name="title">
@@ -2637,8 +3032,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>934</width>
-                 <height>572</height>
+                 <width>1321</width>
+                 <height>705</height>
                 </rect>
                </property>
                <widget class="QLabel" name="label_56">
@@ -3186,7 +3581,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>998</width>
+     <width>1385</width>
      <height>24</height>
     </rect>
    </property>
