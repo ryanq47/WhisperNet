@@ -53,7 +53,7 @@ from Modules.Windows.Reverse_Shells.win_reverse_shells import (
 )
 from Modules.General.portscanner import Portscan
 
-from Modules.General.bruteforce import Bruteforce
+from Modules.General.Bruteforce.bruteforce import Bruteforce
 
 import Modules.General.utility as utility
 
@@ -239,7 +239,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.portscan_start.clicked.connect(self.portscan)
 
         ## bruteforce
-        self.bruteforce_start.clicked.connect(self.bruteforce_thread)
+        self.bruteforce_start.clicked.connect(self.bruteforce)
         #== SQL bruteforce
         self.scanning_bruteforce_query.clicked.connect(
             lambda: self.custom_query('bruteforce_db')
@@ -1186,11 +1186,11 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 row = row + 1
 
     ## Bruteforce
-    def bruteforce_thread(self):
-        bf_thread = threading.Thread(target=self.bruteforce)
-        bf_thread.start()
+    #def bruteforce_thread(self):
+        #bf_thread = threading.Thread(target=self.bruteforce)
+        #bf_thread.start()
 
-    def bruteforce(self):
+    def bruteforce_old(self):
         ##init class object
         B = Bruteforce()
         
@@ -1219,6 +1219,42 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.custom_query('bruteforce_db')
         #
         #
+    
+    def bruteforce(self):
+        #target_list = ["IP","port","protocol","user_wordlist_dir","pass_wordlist_dir","url_wordlist_dir"]
+        
+        target_list = [
+            self.bruteforce_target.text(), 
+            self.bruteforce_port.text(),
+            self.bruteforce_protocol.currentText(),
+            self.bruteforce_userdir.text(),
+            self.bruteforce_passdir.text(),
+            self.bruteforce_urldir.text(),
+            ]
+        
+        # Bar to 0
+        self.bruteforce_progressbar.setValue(0)
+        
+        self.bruteforce_thread = QThread()
+        self.bruteforce_worker = Bruteforce()
+        self.bruteforce_worker.moveToThread(self.bruteforce_thread)
+        
+        ## Queing up the function to run (Slots n signals too)
+        self.bruteforce_thread.started.connect(partial(self.bruteforce_worker.bruteforce_framework, target_list))
+        self.bruteforce_worker.finished.connect(self.bruteforce_thread.quit)
+        self.bruteforce_worker.finished.connect(self.bruteforce_worker.deleteLater)
+        self.bruteforce_worker.finished.connect(self.bruteforce_thread.deleteLater)
+        
+        self.bruteforce_worker.progress.connect(self.bruteforce_bar)
+        #self.bruteforce_worker.goodcreds.connect(self.bruteforce_live_goodcreds) # FOr the live view
+        
+        self.bruteforce_liveurl_browser.setText("")
+        
+    def bruteforce_bar(self, status): 
+        self.bruteforce_progressbar.setValue(status)
+        if self.bruteforce_progressbar.value() == 99:
+            self.bruteforce_progressbar.setValue(100)
+        
     ## ========================================
     ## OSINT Tab ==============================
     ## ========================================

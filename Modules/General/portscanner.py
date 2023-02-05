@@ -119,6 +119,7 @@ class Portscan(QObject):
         print(self.open_port_list)
         
         #print(self.stealth_scan_status)
+        ## Need to return/emit this as a list back to the main program
         database_write(f"'{open_list[0]}'", self.scantype, Date, Time,  self.final_time, ScannedPorts, {str(set(self.open_port_list))}, str(self.delay).replace("[","").replace("]","").replace(",","-")) #[1:] means to end of list
         self.clean()
         ## Emiting that program is done
