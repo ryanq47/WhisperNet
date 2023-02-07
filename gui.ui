@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1480</width>
-    <height>920</height>
+    <width>1283</width>
+    <height>902</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -57,7 +57,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>2</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -414,8 +414,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1416</width>
-                 <height>636</height>
+                 <width>1219</width>
+                 <height>618</height>
                 </rect>
                </property>
                <widget class="QLabel" name="label_62">
@@ -714,9 +714,9 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="0" column="0">
-         <widget class="QTabWidget" name="tabWidget_3">
+         <widget class="QTabWidget" name="osint_dork">
           <property name="currentIndex">
-           <number>0</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="tab_12">
            <attribute name="title">
@@ -771,8 +771,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1416</width>
-                 <height>675</height>
+                 <width>72</width>
+                 <height>16</height>
                 </rect>
                </property>
                <widget class="QLabel" name="label_11">
@@ -1289,6 +1289,108 @@
             </item>
            </layout>
           </widget>
+          <widget class="QWidget" name="tab_18">
+           <attribute name="title">
+            <string>DorkGen</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_20">
+            <item row="0" column="1" rowspan="7">
+             <widget class="Line" name="line_17">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLabel" name="label_53">
+              <property name="text">
+               <string>In Title</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3" rowspan="7">
+             <widget class="Line" name="line_18">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="4">
+             <widget class="QLabel" name="label_52">
+              <property name="text">
+               <string>FileType</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QLineEdit" name="osint_dork_intitle"/>
+            </item>
+            <item row="1" column="4">
+             <widget class="QLineEdit" name="osint_dork_filetype"/>
+            </item>
+            <item row="2" column="2">
+             <widget class="QLabel" name="label_51">
+              <property name="text">
+               <string>Site</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="2">
+             <widget class="QLineEdit" name="lineEdit_19"/>
+            </item>
+            <item row="4" column="2">
+             <widget class="QCheckBox" name="checkBox_21">
+              <property name="text">
+               <string>Search For Link</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="2">
+             <widget class="QCheckBox" name="checkBox_19">
+              <property name="text">
+               <string>Related/Similar Sites</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="2">
+             <widget class="QCheckBox" name="checkBox_20">
+              <property name="text">
+               <string>Show Cached Content</string>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="0" colspan="5">
+             <widget class="QPushButton" name="osint_dork_generate">
+              <property name="text">
+               <string>Generate</string>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="0" colspan="5">
+             <widget class="QTextEdit" name="osint_dork_output"/>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLineEdit" name="osint_dork_keyword"/>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_50">
+              <property name="text">
+               <string>Keyword</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_54">
+              <property name="text">
+               <string>Search Term</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLineEdit" name="osint_dork_searchterm"/>
+            </item>
+           </layout>
+          </widget>
           <widget class="QWidget" name="tab_14">
            <attribute name="title">
             <string>VideoCams(use qwebview)</string>
@@ -1364,8 +1466,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1321</width>
-                 <height>639</height>
+                 <width>72</width>
+                 <height>16</height>
                 </rect>
                </property>
                <widget class="QLineEdit" name="dashboard_portscan_IP">
@@ -3109,8 +3211,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1321</width>
-                 <height>705</height>
+                 <width>72</width>
+                 <height>16</height>
                 </rect>
                </property>
                <widget class="QLabel" name="label_56">
@@ -3658,7 +3760,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1480</width>
+     <width>1283</width>
      <height>24</height>
     </rect>
    </property>

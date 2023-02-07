@@ -53,7 +53,9 @@ from Modules.Windows.Reverse_Shells.win_reverse_shells import (
 )
 from Modules.General.portscanner import Portscan
 
-from Modules.General.Bruteforce.bruteforce import Bruteforce
+#from Modules.General.Bruteforce.bruteforce import Bruteforce
+
+from Modules.General.OSINT.dork import Dork
 
 import Modules.General.utility as utility
 
@@ -220,6 +222,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         ## == Osint Reddit
         self.osint_reddit_search.clicked.connect(self.osint_reddit)
+
+        ## == Osint Dork
+        self.osint_dork_generate.clicked.connect(self.dork)
 
         ## Scanning
         ##DNS lookup
@@ -1347,6 +1352,38 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
             self.reddit_progressbar.setMaximum(maxval)
             self.reddit_progressbar.setValue(currentval)
+
+    def dork(self):
+        try:
+
+            dork_list = [
+                self.osint_dork_searchterm.text(),
+                self.osint_dork_keyword.text(), 
+                self.osint_dork_intitle.text(),
+                self.osint_dork_filetype.text(),
+
+                ]
+
+            self.dork_thread = QThread()
+            self.dork_worker = Dork()
+            self.dork_worker.moveToThread(self.dork_thread)
+            
+            ## Queing up the function to run (Slots n signals too)
+            self.dork_thread.started.connect(partial(self.dork_worker.dork_framework, dork_list))
+            self.dork_worker.finished.connect(self.dork_thread.quit)
+            self.dork_worker.finished.connect(self.dork_worker.deleteLater)
+            self.dork_worker.finished.connect(self.dork_thread.deleteLater)
+            
+            self.dork_worker.dork_query.connect(self.dork_query_display)
+                            
+            # Starting Thread
+            self.dork_thread.start()
+
+        except Exception as e:
+            self.ERROR(e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)")
+        
+    def dork_query_display(self, dork_query):
+        self.osint_dork_output.setText(dork_query)
 
     ## ========================================
     ## Other Tab ==============================

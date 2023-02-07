@@ -1,3 +1,5 @@
+## Specifically using '' instead of "" for google dorking
+## Doc: https://gist.github.com/sundowndev/283efaddbcf896ab405488330d1bbc06
 from PyQt5.QtCore import QRunnable, Qt, QThreadPool, QObject, QThread, pyqtSignal
 
 
@@ -10,9 +12,11 @@ class Dork(QObject):
         super().__init__(parent)
 
     def dork_framework(self, dork_list):
-        ## Dork List = ["Keyword","SiteURL","FileType","InTitle"]
-        Keyword = dork_list[0]
-        SiteUrl = dork_list[1]
+        ## Dork List = ["searchterm", "Keyword","SiteURL","FileType","InTitle"]
+        Searchterm = dork_list[0]
+        Keyword = dork_list[1]
+        SiteUrl = dork_list[2]
+        FileType = dork_list[3]
 
         ## Send off to functions to format based on the list above, have them return the formatted strings
         #( I realize these could all probaly be lamdbas)
@@ -20,12 +24,15 @@ class Dork(QObject):
 
 
         dork_query = (
+            f"{Searchterm} "
             f"{self.keyword(Keyword)}"
             f"{self.siteurl(SiteUrl)}"
+            f"{self.filetype(FileType)}"
         )
         
         #print(dork_query)
         self.dork_query.emit(dork_query)
+        #self.finished.emit()
     
     def keyword(self, Keyword):
 
@@ -47,12 +54,12 @@ class Dork(QObject):
             return ""
         
         else:
-            preprocess_list = []
+            output = ''
 
-            for i in FileType.strip():
-                preprocess_list.append(i)
+            for i in FileType.split(" "):
+                output += f'"{i}" '
 
-            output = f'filetype:"{FileType}" '
+            return f'filetype:{output} '
 
 #D = Dork()
 #D.dork_framework(["Keyword","","Nothing"])
