@@ -414,8 +414,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1219</width>
-                 <height>618</height>
+                 <width>72</width>
+                 <height>16</height>
                 </rect>
                </property>
                <widget class="QLabel" name="label_62">
@@ -1294,6 +1294,13 @@
             <string>DorkGen</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_20">
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_54">
+              <property name="text">
+               <string>Search Term</string>
+              </property>
+             </widget>
+            </item>
             <item row="0" column="1" rowspan="7">
              <widget class="Line" name="line_17">
               <property name="orientation">
@@ -1322,11 +1329,21 @@
               </property>
              </widget>
             </item>
+            <item row="1" column="0">
+             <widget class="QLineEdit" name="osint_dork_searchterm"/>
+            </item>
             <item row="1" column="2">
              <widget class="QLineEdit" name="osint_dork_intitle"/>
             </item>
             <item row="1" column="4">
              <widget class="QLineEdit" name="osint_dork_filetype"/>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_50">
+              <property name="text">
+               <string>Keyword</string>
+              </property>
+             </widget>
             </item>
             <item row="2" column="2">
              <widget class="QLabel" name="label_51">
@@ -1334,6 +1351,9 @@
                <string>Site</string>
               </property>
              </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLineEdit" name="osint_dork_keyword"/>
             </item>
             <item row="3" column="2">
              <widget class="QLineEdit" name="lineEdit_19"/>
@@ -1367,27 +1387,39 @@
              </widget>
             </item>
             <item row="8" column="0" colspan="5">
-             <widget class="QTextEdit" name="osint_dork_output"/>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLineEdit" name="osint_dork_keyword"/>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="label_50">
-              <property name="text">
-               <string>Keyword</string>
+             <widget class="QTabWidget" name="tabWidget_3">
+              <property name="currentIndex">
+               <number>1</number>
               </property>
+              <widget class="QWidget" name="tab_31">
+               <attribute name="title">
+                <string>Results</string>
+               </attribute>
+               <layout class="QGridLayout" name="gridLayout_32">
+                <item row="0" column="0">
+                 <widget class="QTextEdit" name="osint_dork_output"/>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="tab_42">
+               <attribute name="title">
+                <string>CheatSheet</string>
+               </attribute>
+               <widget class="QLineEdit" name="lineEdit_18">
+                <property name="geometry">
+                 <rect>
+                  <x>380</x>
+                  <y>110</y>
+                  <width>671</width>
+                  <height>27</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Put a DB view (or multiple) of a table in the DB with cheathssset google dorks</string>
+                </property>
+               </widget>
+              </widget>
              </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_54">
-              <property name="text">
-               <string>Search Term</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLineEdit" name="osint_dork_searchterm"/>
             </item>
            </layout>
           </widget>
