@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1283</width>
-    <height>902</height>
+    <width>1421</width>
+    <height>912</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -414,8 +414,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1219</width>
-                 <height>618</height>
+                 <width>1357</width>
+                 <height>628</height>
                 </rect>
                </property>
                <widget class="QLabel" name="label_62">
@@ -2235,7 +2235,7 @@
         <string>BruteForce</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_31">
-        <item row="0" column="0">
+        <item row="0" column="1">
          <widget class="QTabWidget" name="tabWidget_6">
           <property name="accessibleName">
            <string/>
@@ -2247,15 +2247,21 @@
            <attribute name="title">
             <string>Credentials</string>
            </attribute>
-           <layout class="QGridLayout" name="gridLayout_16">
-            <item row="0" column="0">
+           <layout class="QGridLayout" name="gridLayout_34">
+            <item row="0" column="0" colspan="2">
              <widget class="QLabel" name="label_148">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>15</height>
+               </size>
+              </property>
               <property name="text">
                <string>Target IP/Hostname</string>
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
+            <item row="0" column="2">
              <widget class="QLabel" name="label_142">
               <property name="maximumSize">
                <size>
@@ -2268,7 +2274,130 @@
               </property>
              </widget>
             </item>
-            <item row="0" column="2">
+            <item row="0" column="4">
+             <widget class="QLabel" name="label_150">
+              <property name="text">
+               <string>Progress</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="4">
+             <widget class="QProgressBar" name="bruteforce_progressbar">
+              <property name="value">
+               <number>0</number>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="4">
+             <widget class="QLabel" name="label_149">
+              <property name="text">
+               <string>Current Tries:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="4">
+             <widget class="QLineEdit" name="bruteforce_livetries"/>
+            </item>
+            <item row="4" column="4">
+             <widget class="QLabel" name="label_49">
+              <property name="text">
+               <string>Successful:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="4" rowspan="2">
+             <widget class="QTextEdit" name="bruteforce_goodcreds">
+              <property name="maximumSize">
+               <size>
+                <width>1677700</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="html">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;NOTE:&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Up next, threadexecutor this sucker to make it much faster&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="4">
+             <widget class="QLabel" name="label_143">
+              <property name="maximumSize">
+               <size>
+                <width>100</width>
+                <height>15</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Delay (Up to)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="4">
+             <widget class="QSpinBox" name="bruteforce_threads">
+              <property name="maximum">
+               <number>1000</number>
+              </property>
+              <property name="value">
+               <number>5</number>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="4">
+             <widget class="QLabel" name="label_55">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>15</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Threads</string>
+              </property>
+             </widget>
+            </item>
+            <item row="10" column="4">
+             <widget class="QSpinBox" name="spinBox">
+              <property name="value">
+               <number>5</number>
+              </property>
+             </widget>
+            </item>
+            <item row="11" column="4">
+             <widget class="QPushButton" name="bruteforce_start">
+              <property name="text">
+               <string>--&gt;&gt; Start Bruteforce &lt;&lt;--</string>
+              </property>
+             </widget>
+            </item>
+            <item row="12" column="4">
+             <widget class="QPushButton" name="bruteforce_stop">
+              <property name="text">
+               <string>--&gt;&gt; Stop Bruteforce &lt;&lt;--</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" colspan="2">
+             <widget class="QLineEdit" name="bruteforce_target">
+              <property name="text">
+               <string>127.0.0.1</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2" colspan="2">
+             <widget class="QLineEdit" name="bruteforce_port"/>
+            </item>
+            <item row="2" column="0" colspan="2">
              <widget class="QComboBox" name="bruteforce_protocol">
               <item>
                <property name="text">
@@ -2297,142 +2426,61 @@
               </item>
              </widget>
             </item>
-            <item row="1" column="0">
-             <widget class="QLineEdit" name="bruteforce_target">
-              <property name="text">
-               <string>127.0.0.1</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLineEdit" name="bruteforce_port"/>
-            </item>
-            <item row="1" column="2">
-             <widget class="QPushButton" name="bruteforce_start">
-              <property name="text">
-               <string>--&gt;&gt; Start Bruteforce &lt;&lt;--</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
+            <item row="3" column="0">
              <widget class="QLabel" name="label_145">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>15</height>
+               </size>
+              </property>
               <property name="text">
                <string>Username Directory</string>
               </property>
              </widget>
             </item>
-            <item row="2" column="1">
-             <widget class="QLabel" name="label_147">
-              <property name="text">
-               <string>Password Directory</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="2">
-             <widget class="QPushButton" name="bruteforce_stop">
-              <property name="text">
-               <string>--&gt;&gt; Stop Bruteforce &lt;&lt;--</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
+            <item row="4" column="0">
              <widget class="QLineEdit" name="bruteforce_userdir">
               <property name="text">
                <string>/home/kali/Documents/userlist</string>
               </property>
              </widget>
             </item>
-            <item row="3" column="1">
+            <item row="4" column="1">
+             <widget class="QPushButton" name="bruteforce_user_browse">
+              <property name="text">
+               <string>Browse</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="2">
+             <widget class="QLabel" name="label_147">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>15</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Password Directory</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="2">
              <widget class="QLineEdit" name="bruteforce_passdir">
               <property name="text">
                <string>/home/kali/Documents/passlist</string>
               </property>
              </widget>
             </item>
-            <item row="3" column="2">
-             <widget class="QLabel" name="label_150">
+            <item row="4" column="3">
+             <widget class="QPushButton" name="bruteforce_pass_browse">
               <property name="text">
-               <string>Progress</string>
+               <string>Browse</string>
               </property>
              </widget>
             </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="label_146">
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>15</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>URL List Directory</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="QLabel" name="label_143">
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>15</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>Other</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="2" rowspan="2">
-             <widget class="QProgressBar" name="bruteforce_progressbar">
-              <property name="value">
-               <number>0</number>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0" rowspan="2">
-             <widget class="QLineEdit" name="bruteforce_urldir">
-              <property name="text">
-               <string>/usr/share/wordlists/dirb/big.txt</string>
-              </property>
-              <property name="placeholderText">
-               <string>/usr/share/wordlists/dirb/big.txt</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="1" rowspan="2">
-             <widget class="QLineEdit" name="lineEdit_35"/>
-            </item>
-            <item row="6" column="2">
-             <widget class="QLabel" name="label_149">
-              <property name="text">
-               <string>Current Tries:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="2">
-             <widget class="QLineEdit" name="bruteforce_livetries"/>
-            </item>
-            <item row="8" column="2">
-             <widget class="QLabel" name="label_49">
-              <property name="text">
-               <string>Successful:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="9" column="2">
-             <widget class="QTextEdit" name="bruteforce_goodcreds">
-              <property name="html">
-               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;NOTE:&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Up next, threadexecutor this sucker to make it much faster&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="0" rowspan="3" colspan="2">
+            <item row="5" column="0" rowspan="8" colspan="4">
              <widget class="QTabWidget" name="tabWidget_14">
               <property name="currentIndex">
                <number>0</number>
@@ -2476,6 +2524,16 @@ p, li { white-space: pre-wrap; }
                  </widget>
                 </item>
                </layout>
+              </widget>
+              <widget class="QWidget" name="tab_44">
+               <attribute name="title">
+                <string>Wordlists</string>
+               </attribute>
+              </widget>
+              <widget class="QWidget" name="tab_45">
+               <attribute name="title">
+                <string>FileBrowser</string>
+               </attribute>
               </widget>
              </widget>
             </item>
@@ -3799,7 +3857,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1283</width>
+     <width>1421</width>
      <height>24</height>
     </rect>
    </property>

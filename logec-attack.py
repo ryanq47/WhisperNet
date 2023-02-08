@@ -246,6 +246,10 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         ## bruteforce
         self.bruteforce_start.clicked.connect(self.bruteforce)
         self.bruteforce_stop.clicked.connect(self.bruteforce_hardstop)
+        self.bruteforce_user_browse.clicked.connect(partial(self.bf_browser_popup, "username"))
+        self.bruteforce_pass_browse.clicked.connect(partial(self.bf_browser_popup, "password"))
+
+
         #== SQL bruteforce
         self.scanning_bruteforce_query.clicked.connect(
             lambda: self.custom_query('bruteforce_db')
@@ -280,7 +284,8 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         ## Object instances
         self.N = utility.Network()
-        # self.P = Portscan()
+        # self.P = Portscan()        self.bruteforce_user_browse.clicked.connect(self.browser_popup)
+
 
         ## Portscam Inits
         self.portscan_1_1024.toggled.connect(
@@ -1227,6 +1232,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         #
     
     def bruteforce(self):
+        
         try:
             #target_list = ["IP","port","protocol","user_wordlist_dir","pass_wordlist_dir","url_wordlist_dir"]
             
@@ -1235,8 +1241,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.bruteforce_port.text(),
                 self.bruteforce_protocol.currentText(),
                 self.bruteforce_userdir.text(),
-                self.bruteforce_passdir.text(),
-                self.bruteforce_urldir.text(),
+                self.bruteforce_passdir.text()
                 ]
             
             # Bar to 0
@@ -1283,6 +1288,20 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.bruteforce_worker.deleteLater()
         except Exception as e:
             self.ERROR([e, "Low", "Bruteforce is probably not running"])'''
+
+    def bf_browser_popup(self, whichbutton):
+        from PyQt5.QtWidgets import QFileDialog
+        print("Clicked")
+        
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "","All Files (*);;Python Files (*.py)", options=options)
+        
+        if whichbutton == "username":
+            self.bruteforce_userdir.setText(fileName)
+        
+        elif whichbutton == "password":
+            self.bruteforce_passdir.setText(fileName)
 
     def live_attempts_box(self, attempts):
         self.bruteforce_livetries.setText(attempts)
