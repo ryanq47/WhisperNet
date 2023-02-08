@@ -53,7 +53,7 @@ from Modules.Windows.Reverse_Shells.win_reverse_shells import (
 )
 from Modules.General.portscanner import Portscan
 
-#from Modules.General.Bruteforce.bruteforce import Bruteforce
+from Modules.General.Bruteforce.bruteforce import Bruteforce
 
 from Modules.General.OSINT.dork import Dork
 
