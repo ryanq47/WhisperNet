@@ -245,6 +245,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         ## bruteforce
         self.bruteforce_start.clicked.connect(self.bruteforce)
+        self.bruteforce_stop.clicked.connect(self.bruteforce_hardstop)
         #== SQL bruteforce
         self.scanning_bruteforce_query.clicked.connect(
             lambda: self.custom_query('bruteforce_db')
@@ -353,9 +354,13 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         )
 
     ## Error handler
-    def ERROR(self, error, severity, fix):
+    def ERROR(self, error_list):#, severity, fix):
         Date = utility.Timestamp.UTC_Date()
         Time = utility.Timestamp.UTC_Time()
+        
+        severity = error_list[1]
+        error = error_list[0]
+        fix = error_list[2]
 
         QMessageBox.critical(
             None,
@@ -372,7 +377,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def root_check(self, name):
         if os.getuid() != 0:
-            self.ERROR(f"You are not running as root, note that {name} may not work as expected","Medium","Restart program as root")
+            self.ERROR([f"You are not running as root, note that {name} may not work as expected","Medium","Restart program as root"])
 
     ## ========================================
     ## Settings ===============================
@@ -388,7 +393,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 contents = s.read()
             self.settings_edit.setText(contents)
         except Exception as e:
-            self.ERROR(e, 'medium', "Make sure file exists?")
+            self.ERROR([e, 'medium', "Make sure file exists?"])
             
         
         #pass
@@ -400,7 +405,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             with open("settings.yaml", "w") as contents:
                 contents.write(updated_settings)
         except Exception as e:
-            self.ERROR(e, 'medium', "Check permissions? If that fails, make sure the file exists")
+            self.ERROR([e, 'medium', "Check permissions? If that fails, make sure the file exists"])
         
         #pass
     # writes the settings back to the file
@@ -429,7 +434,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.shell_input.setDisabled(False)
         self.shell_input_enter.setDisabled(False)
 
-        self.ERROR('', 'clear', '')
+        self.ERROR(['', 'clear', ''])
 
     ## ========================================
     ## Getting started tab ====================
@@ -489,7 +494,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             query_input_raw  = ""
             self.view = ""
             self.ERROR(
-                'No Query Input Provided', 'Low', 'Enter an input to fix'
+                ['No Query Input Provided', 'Low', 'Enter an input to fix']
             )
         
         
@@ -845,10 +850,10 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.portscan_thread.start()
 
         except ValueError as ve:
-            self.ERROR(ve, "low", "Make sure all respective fields are filled")
+            self.ERROR([ve, "low", "Make sure all respective fields are filled"])
 
         except Exception as e:
-            self.ERROR(e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)")
+            self.ERROR([e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)"])
     
     def portscan_bar(self, status): ## I wonder if this dosen't work due to all the threads waiting to join back up? maybe portscanner writing the value to a tmp file would have to do it, or to the DB in a .hiddentable
         self.stealth_bar.setValue(status)
@@ -916,7 +921,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def target_listen(self):
         ## This is essentially a block until a connection is established, that's why its in its own thread
         ## clearning error messages
-        self.ERROR('', 'clear', '')
+        self.ERROR(['', 'clear', ''])
         try:
             self.status_Connected.setStyleSheet('background-color: purple')
             self.status_Connected.setText('Connection: Listening')
@@ -954,7 +959,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
             fix = f'Kill the process listening on {self.listen_popup.popup_listen_ip.text()}:{self.listen_popup.popup_listen_port.text()}'
 
-            self.ERROR(e, 'medium', fix)
+            self.ERROR([e, 'medium', fix])
             # self.text_Program_Output.setText()
 
         except ValueError as e:
@@ -964,11 +969,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.status_Connected.setStyleSheet('background-color: red')
             self.status_Connected.setText(f'Connection: Disconnected')
 
-            self.ERROR(
-                e,
-                'medium',
-                fix='You probably put letters in the IP/PORT... try numbers. No DNS listener names at the moment',
-            )
+            self.ERROR([e, 'medium','You probably put letters in the IP/PORT... try numbers. No DNS listener names at the moment'])
 
         except Exception as e:
             # print(f"SYS ERROR]: {e}")
@@ -980,9 +981,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.status_Connected.setText(f'Connection: Disconnected')
 
             self.ERROR(
-                e,
+                [e,
                 'medium',
-                fix='Not sure... This is the fail-safe error catcher, try a google?',
+                'Not sure... This is the fail-safe error catcher, try a google?']
             )
 
         ##enabling buttons again on connection
@@ -1025,7 +1026,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.status_Connected.setText('Connection: Disconnected')
             self.shell_input.setText('')
 
-            self.ERROR(e, 'high', fix='Client has disconnected, not sure why.')
+            self.ERROR([e, 'high', 'Client has disconnected, not sure why.'])
 
             ## setting buttons to disabled
             self.not_connected()
@@ -1047,7 +1048,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         ## error handling
         except Exception as e:
             print(e)
-            self.ERROR(e, 'high', fix='Error getting data, not sure why')
+            self.ERROR([e, 'high', 'Error getting data, not sure why'])
 
         # self.browser_Target_Status.setText(client.host.info())
 
@@ -1115,11 +1116,11 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         # dns_list = ["NONE","CNAME\nwww.google.com","MX\nmail.google.com","REVERSE \nexploit.tools", "TXT \ntext"]
 
         if self.scanning_dns_query.text() == '':
-            self.ERROR(
+            self.ERROR([
                 'No input for DNS',
                 'Low',
                 "Make sure the DNS field isn't empty",
-            )
+            ])
             dns_list = None
         else:
             dns_list = self.N.lookup_All(self.scanning_dns_query.text())
@@ -1247,27 +1248,41 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             
             ## Queing up the function to run (Slots n signals too)
             self.bruteforce_thread.started.connect(partial(self.bruteforce_worker.bruteforce_framework, target_list))
-            self.bruteforce_worker.finished.connect(self.bruteforce_thread.quit)
+            self.bruteforce_worker.finished.connect(self.bruteforce_thread.exit) # exi works better than quit
             self.bruteforce_worker.finished.connect(self.bruteforce_worker.deleteLater)
             self.bruteforce_worker.finished.connect(self.bruteforce_thread.deleteLater)
             
+            #Error
+            self.bruteforce_worker.module_error.connect(partial(self.ERROR, target_list))
+            
+            # Live attempts
             self.bruteforce_worker.live_attempts.connect(self.live_attempts_box)
 
+            # Progress
             self.bruteforce_worker.progress.connect(self.bruteforce_bar)
             #self.bruteforce_worker.goodcreds.connect(self.bruteforce_live_goodcreds) # FOr the live view
             
+            # Good Creds
             self.bruteforce_worker.goodcreds.connect(self.live_goodcreds_box)
-            
             self.bruteforce_goodcreds.setText("")
             
             # Starting Thread
             self.bruteforce_thread.start()
         
         except ValueError as ve:
-            self.ERROR(ve, "low", "Make sure all respective fields are filled")
+            self.ERROR([ve, "low", "Make sure all respective fields are filled"])
 
         except Exception as e:
-            self.ERROR(e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)")
+            self.ERROR([e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)"])
+
+    def bruteforce_hardstop(self):
+        pass
+        '''
+        try:
+            self.bruteforce_thread.exit() # exi works better than quit
+            self.bruteforce_worker.deleteLater()
+        except Exception as e:
+            self.ERROR([e, "Low", "Bruteforce is probably not running"])'''
 
     def live_attempts_box(self, attempts):
         self.bruteforce_livetries.setText(attempts)
@@ -1305,11 +1320,11 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         ## == Error handling
 
         if keyword == '':
-            self.ERROR(
+            self.ERROR([
                 "'Keyword' Field Empty",
                 'low',
                 "Enter a value in the 'Keyword' field, or * for all results",
-            )
+            ])
             self.reddit_progressbar.setValue(0)
 
         else:
@@ -1370,7 +1385,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             
             ## Queing up the function to run (Slots n signals too)
             self.dork_thread.started.connect(partial(self.dork_worker.dork_framework, dork_list))
-            self.dork_worker.finished.connect(self.dork_thread.quit)
+            self.dork_worker.finished.connect(self.dork_thread.exit)
             self.dork_worker.finished.connect(self.dork_worker.deleteLater)
             self.dork_worker.finished.connect(self.dork_thread.deleteLater)
             
@@ -1380,7 +1395,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.dork_thread.start()
 
         except Exception as e:
-            self.ERROR(e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)")
+            self.ERROR([e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)"])
         
     def dork_query_display(self, dork_query):
         self.osint_dork_output.setText(dork_query)

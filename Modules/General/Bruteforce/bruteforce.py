@@ -1,16 +1,17 @@
 from PyQt5.QtCore import QRunnable, Qt, QThreadPool, QObject, QThread, pyqtSignal
 from concurrent.futures import ThreadPoolExecutor
-import paramiko
+
 import time
 import random
 import requests
 import numpy as np
 import sqlite3
 import os
+import queue
 
 ## Connection Libs
 from ftplib import FTP
-
+import paramiko
 
 import Modules.General.utility as utility
 
@@ -18,6 +19,7 @@ import Modules.General.utility as utility
 
 
 class Bruteforce(QObject):
+    module_error = pyqtSignal(list)
     finished = pyqtSignal()
     progress = pyqtSignal(int)
     goodcreds = pyqtSignal(list)    
@@ -33,6 +35,17 @@ class Bruteforce(QObject):
         
         self.bruteforce_progress = 0
         self.number = 0
+    
+    def error(self, Error, Severity, Message):
+        print("ERRORRRRRR")
+        error_list = [Error, Severity, Message]
+        print(error_list)
+        ## Emiting back to main thread
+        
+        self.module_error.emit(error_list)
+        self.finished.emit()
+        
+        
 
     def success(self, username, password):
         ## Done as a tuple to reduce mem size + so it can be appended
@@ -54,96 +67,73 @@ class Bruteforce(QObject):
             return file
     
     def bruteforce_framework(self, input_list):
-        print("STARTED BF")
+        try:
+            print("STARTED BF")
+            
+            #self.GUI.ERROR("low", "error","something")
+            
+            self.Date = utility.Timestamp.UTC_Date()
+            self.Time = utility.Timestamp.UTC_Time()
+            
+            ## Breaking the list up
+            
+            ip = input_list[0]
+            port = input_list[1]
+            protocol = input_list[2]
+            user_wordlist_dir = input_list[3]
+            pass_wordlist_dir = input_list[4]
+            url_wordlist_dir = input_list[5]
+            
+            
+            user_list = []
+            self.pass_list = []
+            self.dir_list = []
+            
+            
+            ## Results list
+            self.results_dir_list = []
+            
+            
+            ## Creating target list - I know I could just use the input_list, however this cuts down on the amount of arguments I need to enter in each method
+            target_list = [input_list[0], input_list[1]]
+        except Exception as e:
+            #self.error(e,"??","??")
+            exit()
         
-        #self.GUI.ERROR("low", "error","something")
         
-        self.Date = utility.Timestamp.UTC_Date()
-        self.Time = utility.Timestamp.UTC_Time()
-        
-        ## Breaking the list up
-        ip = input_list[0]
-        port = input_list[1]
-        protocol = input_list[2]
-        user_wordlist_dir = input_list[3]
-        pass_wordlist_dir = input_list[4]
-        url_wordlist_dir = input_list[5]
-        
-        
-        user_list = []
-        self.pass_list = []
-        self.dir_list = []
-        
-        
-        ## Results list
-        self.results_dir_list = []
-        
-        ## Generating lists
-        '''
-        if user_wordlist_dir != '':
-            with open(user_wordlist_dir, "r") as u_w:
-                for i in u_w:
-                    user_list.append(i)'''
+        ## FTP
+        if protocol == "FTP":
+            import itertools
+                           
+            username = self.fileopen(user_wordlist_dir)
+            password = self.fileopen(pass_wordlist_dir)
                     
-        '''if pass_wordlist_dir != '':
-            with open(pass_wordlist_dir, "r") as p_w:
-                for i in p_w:
-                    self.pass_list.append(i)'''
-                    
-        '''if url_wordlist_dir != '':
-            with open(url_wordlist_dir, "r") as dir:
-                try:
-                    for i in dir:
-                        self.dir_list.append(i.replace("\n",""))
-                except:
-                    #self.GUI.ERROR(f"Bad Character: '{i}'", "Low", "?")
-                    print("BAD CHAR")'''
-        
-        ## Creating target list - I know I could just use the input_list, however this cuts down on the amount of arguments I need to enter in each method
-        target_list = [input_list[0], input_list[1]]
-        
-        ## Threadpool exercutor, also doing decisions here instead of in logec-attack like some other modules
-        with ThreadPoolExecutor() as executor:
-            if protocol == "HTTP":
-                # Doing this per username - aka for each username it's gonna start a new worker
-                webdir_thread = [executor.submit(self.webdir, target_list, dir) for dir in self.dir_list]
-                #print(self.dir_list)
-                for _webdir_thread in webdir_thread:
-                    _webdir_thread.result()
-                print("DONE")
-                
-            elif protocol == "FTP":
-                ## lazy imports for speed
-                import itertools
-                    
-                
-                username = self.fileopen(user_wordlist_dir)
-                password = self.fileopen(pass_wordlist_dir)
-                
-                self.total_combos = len(username.split()) * len(password.split())
-                
-                userpass_combo = itertools.product(username.split(),password.split())
-                
-                print("Combos Generated")
-                
-                ## For loop to cut down on memory + to make alot of executor threads
-                #for creds in userpass_combo:
-                    #ftp_thread = executor.submit(self.ftp, target_list, creds)
-                #ftp_thread = [executor.submit(self.ftp, target_list, creds) for creds in userpass_combo]
+            
+            user_list_len = username.split()
+            pass_list_len = password.split()
+            self.total_combos = len(user_list_len) * len(pass_list_len)
+            
+            
+            print("Generator")
+            user_list = (x for x in username.split())
+            pass_list = (x for x in password.split())
 
-                #print("Running Thread")
-                #for _ftp_thread in ftp_thread:
-                   # _ftp_thread.result()
+           
+            #self.total_combos = 10
+            #userpass_combo = itertools.product(username.split(),password.split())
+            print("starting threadexe")
+
+            with ThreadPoolExecutor(max_workers=10) as executor:
+                ## Max workers needs fine tunning/an option for how many threads
+                for username in user_list:
+                    for password in pass_list:
+                        creds = (username, password)
+                        ftp_thread = executor.submit(self.ftp, target_list, creds)
                 
-                for creds in userpass_combo:
-                    self.ftp(target_list, creds)
-                
+                ftp_thread.result()
                 print("DONE BRUTEFORCING")
-                
-                
-                ## db write
-                ## clean lists
-    
+                    
+
     
     def ftp(self, target_list, creds):
         IP = target_list[0]
@@ -156,12 +146,18 @@ class Bruteforce(QObject):
             ftp.close() ## Close is a bit harsher than quit, but quits it asap
             
             self.success(username, password)
-                        
-        except Exception as e:
+            
+        ## Blind exception becuase this will happen SO often
+        except TimeoutError:
             pass
+        
+        except Exception as e:
+            print(e)
+            #self.error(e,"low","testerror")
+            
+        finally:
+            ftp.close()
 
-        
-        
         self.bruteforce_progress = self.bruteforce_progress + 1
         self.progress.emit(int(self.bruteforce_progress / self.total_combos * 100))  
         
@@ -170,7 +166,42 @@ class Bruteforce(QObject):
         if self.number == 1:
             self.live_attempts.emit(username + ":" + password)
             self.number = 0
+
+    def ssh(self, target_list, creds):
+        IP = target_list[0]
+        _username = creds[0] # _ for namespace reasons
+        _password = creds[1]
         
+        try:
+            time.sleep(random.randint(1,10))
+            
+            client = paramiko.client.SSHClient()
+            client.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ## Ignoring known hosts
+            client.connect(IP, username=_username, password=_password, timeout=10, banner_timeout=200)
+            client.close()
+            
+            self.success(_username, _password)
+            
+        ## Blind exception becuase this will happen SO often
+        except TimeoutError:
+            pass
+        
+        except Exception as e:
+            print(e)
+            #self.error(e,"low","testerror")
+        
+        finally:
+            client.close()
+
+        self.bruteforce_progress = self.bruteforce_progress + 1
+        self.progress.emit(int(self.bruteforce_progress / self.total_combos * 100))  
+        
+        ## Live update in GUI
+        self.number = self.number + 1
+        if self.number == 1:
+            self.live_attempts.emit(_username + ":" + _password)
+            self.number = 0
+
 
     ## this does not go in the creds gui, but in the webdir one
     def webdir(self, target_list, dir):
