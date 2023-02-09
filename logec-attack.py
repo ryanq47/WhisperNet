@@ -284,6 +284,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         ## Object instances
         self.N = utility.Network()
+        self.H = utility.Host()
         # self.P = Portscan()        self.bruteforce_user_browse.clicked.connect(self.browser_popup)
 
 
@@ -1241,7 +1242,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.bruteforce_port.text(),
                 self.bruteforce_protocol.currentText(),
                 self.bruteforce_userdir.text(),
-                self.bruteforce_passdir.text()
+                self.bruteforce_passdir.text(),
+                self.bruteforce_delay.value(),
+                self.bruteforce_threads.value()
                 ]
             
             # Bar to 0

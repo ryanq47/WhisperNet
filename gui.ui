@@ -2338,7 +2338,7 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item row="8" column="4">
-             <widget class="QSpinBox" name="bruteforce_threads">
+             <widget class="QSpinBox" name="bruteforce_delay">
               <property name="maximum">
                <number>1000</number>
               </property>
@@ -2367,7 +2367,7 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item row="10" column="4">
-             <widget class="QSpinBox" name="spinBox">
+             <widget class="QSpinBox" name="bruteforce_threads">
               <property name="value">
                <number>5</number>
               </property>

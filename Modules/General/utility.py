@@ -7,6 +7,9 @@ import speedtest
 import dns
 import dns.resolver
 
+from plyer import notification
+
+
 
 class Timestamp:
     
@@ -67,7 +70,18 @@ class Performance:
         
         return str(round(time_to_run,2))
         
+class Host:
     
+    def __init__(self):
+        pass
+    
+    def sys_notification(self, notif_list):
+        notification.notify(
+            title = f"{notif_list[0]}",
+            message = f"{notif_list[1]}",
+            app_icon = "IMAGE",
+            timeout = 10
+            )
 
 class Network:
 
