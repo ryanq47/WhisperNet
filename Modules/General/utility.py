@@ -6,6 +6,8 @@ import os
 import speedtest 
 import dns
 import dns.resolver
+import requests
+
 
 from plyer import notification
 
@@ -82,7 +84,20 @@ class Host:
             app_icon = "IMAGE",
             timeout = 10
             )
+    def download(self, download_list):
+        url = download_list[0]
+        save_location = download_list[1]
+        name = download_list[2]
+    
+        dir = save_location + "/" +name
 
+        print("Making Request")
+        r = requests.get(url, allow_redirects=True)
+        print("writing")
+        open(dir,'wb').write(r.content)
+        print("done")
+ 
+        
 class Network:
 
   

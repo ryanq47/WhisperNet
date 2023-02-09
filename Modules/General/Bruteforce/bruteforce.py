@@ -100,6 +100,7 @@ class Bruteforce(QObject):
             pass_wordlist_dir = input_list[4]
             self.delay = input_list[5]
             self.max_threads = input_list[6]
+            self.batchsize = input_list[7]
             
             
             user_list = []
@@ -129,7 +130,7 @@ class Bruteforce(QObject):
         userpass_combo = itertools.product(username.split(),password.split())
         
         print("Starting Batch")
-        batch_size = 10
+        batch_size = self.batchsize
         for i in range(0, len(user_list_len) * len(pass_list_len), batch_size):
             batch = list(itertools.islice(userpass_combo, batch_size))
   
@@ -138,9 +139,6 @@ class Bruteforce(QObject):
                 self.ssh_processor(batch)
             if protocol == "FTP":
                 self.ftp_processor(batch)
-
-        
-                
                 
                 ## Add a wait until batch is done
                 #if self.done:
@@ -178,7 +176,7 @@ class Bruteforce(QObject):
         password = creds[1]
         
         try:
-            time.sleep(random.randint(0,self.delay))
+            time.sleep(random.uniform(0,self.delay))
             
             ftp = FTP(self.IP, timeout=10)
             ftp.login(username, password)
@@ -212,7 +210,7 @@ class Bruteforce(QObject):
         _password = creds[1]
         
         try:
-            time.sleep(random.randint(0,self.delay))
+            time.sleep(random.uniform(0,self.delay))
             client = paramiko.client.SSHClient()
             client.set_missing_host_key_policy(paramiko.AutoAddPolicy()) ## Ignoring known hosts
             client.connect(self.IP, username=_username, password=_password, timeout=10, banner_timeout=200)

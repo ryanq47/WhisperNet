@@ -248,6 +248,12 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.bruteforce_stop.clicked.connect(self.bruteforce_hardstop)
         self.bruteforce_user_browse.clicked.connect(partial(self.bf_browser_popup, "username"))
         self.bruteforce_pass_browse.clicked.connect(partial(self.bf_browser_popup, "password"))
+        
+        self.bruteforce_download_ignis_1M.clicked.connect(partial(self.bruteforce_download, "ignis-1M"))
+        self.bruteforce_download_seclist_defaults.clicked.connect(partial(self.bruteforce_download, "seclist-defaults"))
+        self.bruteforce_download_seclist_top10mil.clicked.connect(partial(self.bruteforce_download, "seclist-top10mil"))
+        self.bruteforce_download_seclist_top10mil_usernames.clicked.connect(partial(self.bruteforce_download, "seclist-top10mil-usernames"))
+        self.bruteforce_download_seclist_topshort.clicked.connect(partial(self.bruteforce_download, "seclist-top-short"))
 
 
         #== SQL bruteforce
@@ -1244,7 +1250,8 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.bruteforce_userdir.text(),
                 self.bruteforce_passdir.text(),
                 self.bruteforce_delay.value(),
-                self.bruteforce_threads.value()
+                self.bruteforce_threads.value(),
+                self.bruteforce_batchsize.value()
                 ]
             
             # Bar to 0
@@ -1319,7 +1326,38 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         if self.bruteforce_progressbar.value() == 99:
             self.bruteforce_progressbar.setValue(100)
 
-        
+    def bruteforce_download(self, wordlist):
+        if wordlist == "ignis-1M":
+            self.H.download([
+                "https://shorturl.at/bdgY7",
+                f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
+                "ignis-1M-passwords"
+            ])
+        elif wordlist == "seclist-defaults":
+            self.H.download([
+                "https://shorturl.at/lDKN4",
+                f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
+                "SecList-Default-Passwords"
+            ])
+        elif wordlist == "seclist-top10mil":
+            self.H.download([
+                "https://shorturl.at/vCMPZ",
+                f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
+                "SecList-top10mil-Passwords"
+            ])
+        elif wordlist == "seclist-top10mil-usernames":
+            self.H.download([
+                "https://shorturl.at/bmS46",
+                f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
+                "SecList-top10mil-usernames"
+            ])
+        elif wordlist == "seclist-top-short":
+            self.H.download([
+                "https://shorturl.at/ryQV5",
+                f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
+                "SecList-top1-short-usernames"
+            ])
+            
     ## ========================================
     ## OSINT Tab ==============================
     ## ========================================
