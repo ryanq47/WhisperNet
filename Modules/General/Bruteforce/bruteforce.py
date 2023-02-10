@@ -31,8 +31,9 @@ class Bruteforce(QObject):
     goodcreds = pyqtSignal(list)    
     
     live_attempts = pyqtSignal(str) 
-    
-
+    current_batch = pyqtSignal(list)
+    num_of_batches = pyqtSignal(list)
+    errlog = pyqtSignal(str)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -54,12 +55,16 @@ class Bruteforce(QObject):
         self.module_error.emit(error_list)
         self.finished.emit()
         
-        
-
     def success(self, username, password):
         ## Done as a tuple to reduce mem size + so it can be appended
         self.good_creds.append((username, password))
         self.goodcreds.emit(self.good_creds)
+
+    def thread_quit(self):
+        print("EXIT")
+        self.thread_quit = True
+        self.errlog.emit("Stopping BruteForce")
+        #exit()
         
     def fileopen(self, dir):
         import chardet
@@ -73,6 +78,7 @@ class Bruteforce(QObject):
             
             file = file_read_bytes.decode(decode_type)
             #file = file_raw.decode('utf-8')
+            self.errlog.emit(f"File Encoding: {decode_type}")
             return file
         
     def generate_creds(self, usernames, passwords):
@@ -90,6 +96,9 @@ class Bruteforce(QObject):
             
             self.Date = utility.Timestamp.UTC_Date()
             self.Time = utility.Timestamp.UTC_Time()
+            
+            self.errlog.emit("Date:" + str(self.Date))
+            self.errlog.emit("Time:" + str(self.Time))
             
             ## Breaking the list up
             
@@ -129,32 +138,36 @@ class Bruteforce(QObject):
             
         userpass_combo = itertools.product(username.split(),password.split())
         
-        print("Starting Batch")
+        print("BatchQueued")
         batch_size = self.batchsize
-        for i in range(0, len(user_list_len) * len(pass_list_len), batch_size):
-            batch = list(itertools.islice(userpass_combo, batch_size))
-  
-        ## Deciding which processor to use     
-            if protocol == "SSH":
-                self.ssh_processor(batch)
-            if protocol == "FTP":
-                self.ftp_processor(batch)
-                
-                ## Add a wait until batch is done
-                #if self.done:
-                    #continue
-            #self.total_combos = 10
+        batchnum = 0
+        total_batches = round((len(user_list_len) * len(pass_list_len))/batch_size)
 
-            
+        for i in range(0, len(user_list_len) * len(pass_list_len), batch_size):
+            if self.thread_quit == True:
+                break
+            else:
+                batch = list(itertools.islice(userpass_combo, batch_size))
+                ## GUI stuff
+                batchnum = batchnum + 1
+                self.current_batch.emit(batch)
+                self.num_of_batches.emit([batchnum, total_batches])
+                
+            ## Deciding which processor to use     
+                if protocol == "SSH":
+                    self.ssh_processor(batch)
+                if protocol == "FTP":
+                    self.ftp_processor(batch)
+                    
     def ssh_processor(self, batch):
         with ThreadPoolExecutor(max_workers=self.max_threads) as executor:
             for i in batch:
                 ## Max workers needs fine tunning/an option for how many threads
                 ## Generator to help cut down on ram usage
-                print(i)
+                #print(i)
                 ssh_thread = executor.submit(self.ssh, i)
                     
-            print("BatchDone")
+            #print("BatchQueued")
             ssh_thread.result()
             self.done = True
             #self.H.sys_notification(["TITLE",f"FTP Bruteforce Completed\n {len(self.good_creds)} valid credential(s) found!"])
@@ -164,10 +177,10 @@ class Bruteforce(QObject):
             for i in batch:
                 ## Max workers needs fine tunning/an option for how many threads
                 ## Generator to help cut down on ram usage
-                print(i)
+                #print(i)##<< prints each attempt
                 ftp_thread = executor.submit(self.ftp, i)
                     
-            print("BatchDone")
+            #print("BatchDone")
             ftp_thread.result()
             self.done = True
 
@@ -178,7 +191,7 @@ class Bruteforce(QObject):
         try:
             time.sleep(random.uniform(0,self.delay))
             
-            ftp = FTP(self.IP, timeout=10)
+            ftp = FTP(self.IP, timeout=.1)
             ftp.login(username, password)
             ftp.close() ## Close is a bit harsher than quit, but quits it asap
             
@@ -189,11 +202,22 @@ class Bruteforce(QObject):
             pass
         
         except Exception as e:
-            print(e)
+            #print(e)
+            self.errlog.emit(str(e))
+            #print("END")
+            try:
+                ftp.close()
+            except:
+                pass
+                #self.errlog.emit("Could Not close FTP session")
             #self.error(e,"low","testerror")
             
         finally:
-            ftp.close()
+            try:
+                ftp.close()
+            except:
+                pass
+                #self.errlog.emit("Could Not close FTP session")
 
             self.bruteforce_progress = self.bruteforce_progress + 1
             self.progress.emit(int(self.bruteforce_progress / self.total_combos * 100))  

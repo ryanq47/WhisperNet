@@ -1270,8 +1270,19 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             #Error
             self.bruteforce_worker.module_error.connect(partial(self.ERROR, target_list))
             
+            #errlog
+            self.bruteforce_worker.errlog.connect(self.errlog_box)
+            self.bruteforce_errlog.setText("")
+            self.bruteforce_errlognum = 0
+                    
             # Live attempts
             self.bruteforce_worker.live_attempts.connect(self.live_attempts_box)
+
+            # Current Batch
+            self.bruteforce_worker.current_batch.connect(self.batch_update)
+
+            # Total batch
+            self.bruteforce_worker.num_of_batches.connect(self.batch_total)
 
             # Progress
             self.bruteforce_worker.progress.connect(self.bruteforce_bar)
@@ -1291,13 +1302,14 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.ERROR([e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)"])
 
     def bruteforce_hardstop(self):
-        pass
-        '''
+        #pass
+        print("clicked")
         try:
+            self.bruteforce_worker.thread_quit()
             self.bruteforce_thread.exit() # exi works better than quit
             self.bruteforce_worker.deleteLater()
         except Exception as e:
-            self.ERROR([e, "Low", "Bruteforce is probably not running"])'''
+            self.ERROR([e, "Low", "Bruteforce is probably not running"])
 
     def bf_browser_popup(self, whichbutton):
         from PyQt5.QtWidgets import QFileDialog
@@ -1316,9 +1328,20 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def live_attempts_box(self, attempts):
         self.bruteforce_livetries.setText(attempts)
 
+    def batch_total(self, total):
+        self.bruteforce_panel.setTabText(1, f"Current Batch ({total[0]}/{total[1]})")
+   
+    def batch_update(self, batch):
+        self.bruteforce_currentbatch.setText(str(batch))
+
     def live_goodcreds_box(self, goodcreds):
         self.bruteforce_goodcreds.setText(str(goodcreds))
 
+    def errlog_box(self, err):
+        self.bruteforce_errlog.append("[*] " + err)
+        self.bruteforce_errlognum = self.bruteforce_errlognum + 1
+        self.bruteforce_panel.setTabText(2, f"Log ({self.bruteforce_errlognum})")
+        
     def bruteforce_bar(self, status):
         self.bruteforce_progressbar.setFormat("{:.1f}%".format(self.bruteforce_progressbar.value()))
         

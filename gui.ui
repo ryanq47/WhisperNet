@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1348</width>
-    <height>937</height>
+    <width>1390</width>
+    <height>940</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -414,8 +414,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1284</width>
-                 <height>653</height>
+                 <width>1326</width>
+                 <height>656</height>
                 </rect>
                </property>
                <widget class="QLabel" name="label_62">
@@ -2256,13 +2256,13 @@
              </widget>
             </item>
             <item row="5" column="4">
-             <widget class="QTabWidget" name="tabWidget_13">
+             <widget class="QTabWidget" name="bruteforce_panel">
               <property name="currentIndex">
-               <number>0</number>
+               <number>2</number>
               </property>
               <widget class="QWidget" name="tab_46">
                <attribute name="title">
-                <string>Successful</string>
+                <string>Successful (0)</string>
                </attribute>
                <layout class="QGridLayout" name="gridLayout_33">
                 <item row="0" column="0">
@@ -2286,7 +2286,7 @@ p, li { white-space: pre-wrap; }
               </widget>
               <widget class="QWidget" name="tab_47">
                <attribute name="title">
-                <string>Current Batch</string>
+                <string>Current Batch (0/0)</string>
                </attribute>
                <layout class="QGridLayout" name="gridLayout_34">
                 <item row="0" column="0">
@@ -2306,6 +2306,24 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '86')&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '87')&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '88')&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="tab_51">
+               <attribute name="title">
+                <string>Log (0)</string>
+               </attribute>
+               <layout class="QGridLayout" name="gridLayout_38">
+                <item row="0" column="0">
+                 <widget class="QTextEdit" name="bruteforce_errlog">
+                  <property name="html">
+                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                  </widget>
@@ -2399,7 +2417,7 @@ p, li { white-space: pre-wrap; }
             <item row="4" column="2">
              <widget class="QLineEdit" name="bruteforce_passdir">
               <property name="text">
-               <string>/usr/share/wordlists/dirb/numbers</string>
+               <string>Modules/General/Bruteforce/Wordlists/SecList-Default-Passwords</string>
               </property>
              </widget>
             </item>
@@ -2781,7 +2799,7 @@ p, li { white-space: pre-wrap; }
             <item row="4" column="0">
              <widget class="QLineEdit" name="bruteforce_userdir">
               <property name="text">
-               <string>/usr/share/wordlists/dirb/numbers</string>
+               <string>Modules/General/Bruteforce/Wordlists/SecList-top1-short-usernames</string>
               </property>
              </widget>
             </item>
@@ -2806,7 +2824,20 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item row="7" column="4">
-             <widget class="QDoubleSpinBox" name="bruteforce_delay"/>
+             <widget class="QDoubleSpinBox" name="bruteforce_delay">
+              <property name="value">
+               <double>1.000000000000000</double>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="4">
+             <widget class="QComboBox" name="comboBox_5">
+              <item>
+               <property name="text">
+                <string>Aggresive (Batch size: 100, Threads: 100, Delay: 1 Sec)</string>
+               </property>
+              </item>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -4183,7 +4214,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1348</width>
+     <width>1390</width>
      <height>24</height>
     </rect>
    </property>
