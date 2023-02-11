@@ -136,14 +136,19 @@ class Portscan(QObject):
         conf.verb = 0
         self.scantype = "Standard"
 
+        
         #print(ip, port)
         try:
-            with Telnet(ip, port, timeout_time) as tn:
-                self.open_port_list.append(port)
-                self.liveports.emit(self.open_port_list)
+            #with Telnet(ip, port, timeout_time) as tn:
+            tn = Telnet(ip, port)
+            self.open_port_list.append(port)
+            self.liveports.emit(self.open_port_list)
+            tn.close()
         except Exception as e:
-            print(e)
-            pass
+            try:
+                tn.close()
+            except:
+                pass
             #print("closed")
 
         self.scan_progress = self.scan_progress + 1

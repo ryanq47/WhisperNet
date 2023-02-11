@@ -2354,6 +2354,16 @@ p, li { white-space: pre-wrap; }
               </item>
               <item>
                <property name="text">
+                <string>SSH</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>SQL</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
                 <string>SMB</string>
                </property>
               </item>
@@ -2365,11 +2375,6 @@ p, li { white-space: pre-wrap; }
               <item>
                <property name="text">
                 <string>HTTPS</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>SSH</string>
                </property>
               </item>
              </widget>

@@ -19,14 +19,14 @@ class Timestamp:
         current_date_time = datetime.now(timezone.utc)
         
         current_time = current_date_time.strftime("%H:%M:%S")
-        print(current_time)
+        #print(current_time)
         return current_time
     
     def UTC_Date():
         current_date_time = datetime.now(timezone.utc)
         
         current_date = current_date_time.date()
-        print(current_date)
+        #print(current_date)
         return current_date
     
 class Performance:
