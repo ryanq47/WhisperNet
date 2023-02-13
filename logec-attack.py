@@ -57,6 +57,8 @@ from Modules.General.Bruteforce.bruteforce import Bruteforce
 
 from Modules.General.OSINT.dork import Dork
 
+from Modules.General.SysShell.shell import Shell
+
 import Modules.General.utility as utility
 
 import syspath
@@ -118,6 +120,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         ## Main GUI
         self.action_Target_Listen.triggered.connect(self.listen_popup)
         # self.action_Target_Info.triggered.connect(self.target_info)
+
+        ## Sys Shell
+        self.c2_systemshell_send.clicked.connect(self.sys_shell)
 
         ## button for sending commands
         self.shell_input_enter.clicked.connect(self.run_command)
@@ -582,6 +587,37 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def error_shortcut(self):
         self.DB_Query.setText('!_error')
         self.custom_query('main_db')
+    ## ========================================
+    ## System Shell     =======================
+    ## ========================================
+    ## Gonna need some work, this currently creates one thread for each command
+    def sys_shell(self):
+        
+        
+        print("CLICKED")
+        input_list = [
+                self.c2_systemshell_input.text()
+                ]
+        
+        self.sysshell_thread = QThread()
+        self.sysshell_worker = Shell()
+        self.sysshell_worker.moveToThread(self.sysshell_thread)
+            
+            ## Queing up the function to run (Slots n signals too)
+        print("Starting Shell Qthread")
+        self.sysshell_thread.started.connect(partial(self.sysshell_worker.shell_framework, input_list))
+        self.sysshell_worker.finished.connect(self.sysshell_thread.exit) # exi works better than quit
+        self.sysshell_worker.finished.connect(self.sysshell_worker.deleteLater)
+        self.sysshell_worker.finished.connect(self.sysshell_thread.deleteLater)
+            
+            #Could be a lambda
+        self.sysshell_worker.sys_out.connect(self.sys_shell_results)
+    
+        self.sysshell_thread.start()
+
+    
+    def sys_shell_results(self, results):
+        self.c2_systemshell.setText(results)
 
     ## ========================================
     ## Unix Shell PopUps =======================
