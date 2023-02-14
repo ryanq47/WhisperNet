@@ -722,8 +722,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>72</width>
-                 <height>16</height>
+                 <width>1326</width>
+                 <height>656</height>
                 </rect>
                </property>
                <widget class="QLabel" name="label_62">
@@ -3156,7 +3156,7 @@ p, li { white-space: pre-wrap; }
           </widget>
           <widget class="QWidget" name="tab_43">
            <attribute name="title">
-            <string>WebDirectory</string>
+            <string>WebFuzzer</string>
            </attribute>
            <widget class="QTextEdit" name="textEdit_26">
             <property name="geometry">
