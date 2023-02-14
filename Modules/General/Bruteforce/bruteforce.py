@@ -306,9 +306,47 @@ class Bruteforce(QObject):
         ## if code != 404:
             ##list.append(dir)
 
+class Webdir:
+    
+    def __init__(self):
+        pass
+    
+    def webdir_framework(self, target_list):
+        ## Get input
+        pass        
 
 
-## May need to return list of things to write via a signal to prevet error
+    def webdir_request(self, request_list):
+        
+        ip = request_list[0] ## Currently unusued
+        port = request_list[1]
+        fuzzvalue = request_list[2]
+        raw_url = request_list[3]
+
+        ## Rate limiter so you don't get kicked out, make the max value editable in GUI
+        time.sleep(np.random.uniform(.001,.01)) 
+        
+        base_url = request_list[0]
+        
+        # backup Port Handler
+        if request_list[1] == None:
+            request_list[1] = 80
+        
+        ## Replacing "FUZZ" with whatever fuzzvalue is passed in
+        target_url = raw_url.replace("FUZZ",fuzzvalue)
+        
+        try:
+            r = requests.get(target_url)
+        except Exception as e:
+            print("Failed to connect, does not exist")
+            pass
+        
+        print(target_url)
+        
+        #if r.status_code == 200:
+
+
+## Need to just emit things back, this causes a segfault
 def database_write(GUI, db_input_list):
     try:
         ## Accesing DB in root dir
