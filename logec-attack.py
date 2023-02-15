@@ -53,7 +53,7 @@ from Modules.Windows.Reverse_Shells.win_reverse_shells import (
 )
 from Modules.General.portscanner import Portscan
 
-from Modules.General.Bruteforce.bruteforce import Bruteforce
+from Modules.General.Bruteforce.bruteforce import Bruteforce, Fuzzer
 
 from Modules.General.OSINT.dork import Dork
 
@@ -259,7 +259,11 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.bruteforce_download_seclist_top10mil.clicked.connect(partial(self.bruteforce_download, "seclist-top10mil"))
         self.bruteforce_download_seclist_top10mil_usernames.clicked.connect(partial(self.bruteforce_download, "seclist-top10mil-usernames"))
         self.bruteforce_download_seclist_topshort.clicked.connect(partial(self.bruteforce_download, "seclist-top-short"))
-
+        
+        ## Bruteforce_fuzzer
+        self.bruteforce_fuzz_start.clicked.connect(self.bruteforce_fuzzer)
+        self.bruteforce_stop.clicked.connect(self.bruteforce_fuzz_hardstop)
+        self.bruteforce_fuzz_wordlist_browse.clicked.connect(partial(self.bf_fuzz_browser_popup, "wordlistdir"))
 
         #== SQL bruteforce
         self.scanning_bruteforce_query.clicked.connect(
@@ -1273,7 +1277,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.custom_query('bruteforce_db')
         #
         #
-    
+    ## Bruteforce Creds
     def bruteforce(self):
         
         try:
@@ -1417,6 +1421,150 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 "SecList-top1-short-usernames"
             ])
             
+    ## Fuzzer
+    def bruteforce_fuzzer(self):
+        
+        try:
+            #target_list = ["IP","port","wordlistdir","option1","option2"]
+            
+            target_list = [
+                self.bruteforce_fuzz_url.toPlainText(), 
+                self.bruteforce_fuzz_port.text(),
+                self.bruteforce_fuzz_wordlistdir.text(),
+                self.bruteforce_fuzz_delay.value(),
+                self.bruteforce_fuzz_threads.value(),
+                self.bruteforce_fuzz_batchsize.value(),
+                self.bruteforce_fuzz_validresponsecode.toPlainText(),
+                self.bruteforce_fuzz_showfullurl_option.isChecked()
+                ]
+            
+            # Bar to 0
+            self.bruteforce_fuzz_progressbar.setValue(0)
+            
+            self.fuzzer_thread = QThread()
+            self.fuzzer_worker = Fuzzer()
+            self.fuzzer_worker.moveToThread(self.fuzzer_thread)
+            
+            ## Queing up the function to run (Slots n signals too)
+            self.fuzzer_thread.started.connect(partial(self.fuzzer_worker.fuzzer_framework, target_list))
+            self.fuzzer_worker.finished.connect(self.fuzzer_thread.exit) # exi works better than quit
+            self.fuzzer_worker.finished.connect(self.fuzzer_worker.deleteLater)
+            self.fuzzer_worker.finished.connect(self.fuzzer_thread.deleteLater)
+            
+            #Error
+            self.fuzzer_worker.module_error.connect(partial(self.ERROR, target_list))
+            
+            #errlog
+            self.fuzzer_worker.errlog.connect(self.fuzz_errlog_box)
+            self.bruteforce_fuzz_errlog.setText("")
+            self.bruteforce_fuzz_errlognum = 0
+                    
+            # Live attempts
+            self.fuzzer_worker.live_attempts.connect(self.fuzz_live_attempts_box)
+
+            # Current Batch
+            self.fuzzer_worker.current_batch.connect(self.fuzz_batch_update)
+
+            # Total batch
+            self.fuzzer_worker.num_of_batches.connect(self.fuzz_batch_total)
+
+            # Progress
+            self.fuzzer_worker.progress.connect(self.fuzz_bruteforce_bar)
+            #self.bruteforce_worker.goodcreds.connect(self.bruteforce_live_goodcreds) # FOr the live view
+            
+            # Good Creds
+            self.fuzzer_worker.gooddir.connect(self.fuzz_live_gooddir_box)
+            self.bruteforce_fuzz_gooddir_gui.setText("")
+            
+            # Starting Thread
+            self.fuzzer_thread.start()
+        
+        except ValueError as ve:
+            self.ERROR([ve, "low", "Make sure all respective fields are filled"])
+
+        except Exception as e:
+            self.ERROR([e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)"])
+            
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+            print(exc_type, fname, exc_tb.tb_lineno)
+
+    def bruteforce_fuzz_hardstop(self):
+        #pass
+        print("clicked")
+        try:
+            self.fuzzer_worker.thread_quit()
+            self.fuzzer_thread.exit() # exi works better than quit
+            self.fuzzer_worker.deleteLater()
+        except Exception as e:
+            self.ERROR([e, "Low", "Fuzzer is probably not running"])
+
+    def bf_fuzz_browser_popup(self, whichbutton):
+        from PyQt5.QtWidgets import QFileDialog
+        print("Clicked")
+        
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "","All Files (*);;Python Files (*.py)", options=options)
+        
+        if whichbutton == "wordlistdir":
+            self.bruteforce_fuzz_wordlistdir.setText(fileName)
+
+    def fuzz_live_attempts_box(self, attempts):
+        self.bruteforce_fuzz_livetries.setText(attempts)
+
+    def fuzz_batch_total(self, total):
+        self.bruteforce_fuzz_panel.setTabText(1, f"Current Batch ({total[0]}/{total[1]})")
+   
+    def fuzz_batch_update(self, batch):
+        self.bruteforce_fuzz_currentbatch.setText(str(batch))
+
+    def fuzz_live_gooddir_box(self, goodcreds):
+        self.bruteforce_fuzz_gooddir_gui.setText(str(goodcreds))
+
+    def fuzz_errlog_box(self, err):
+        self.bruteforce_fuzz_errlog.append("[*] " + err)
+        self.bruteforce_fuzz_errlognum = self.bruteforce_fuzz_errlognum + 1
+        self.bruteforce_fuzz_panel.setTabText(2, f"Log ({self.bruteforce_fuzz_errlognum})")
+        
+    def fuzz_bruteforce_bar(self, status):
+        self.bruteforce_fuzz_progressbar.setFormat("{:.1f}%".format(self.bruteforce_fuzz_progressbar.value()))
+        
+        self.bruteforce_fuzz_progressbar.setValue(status)
+        if self.bruteforce_fuzz_progressbar.value() == 99:
+            self.bruteforce_fuzz_progressbar.setValue(100)
+
+    def bruteforce_fuzz_download(self, wordlist):
+        if wordlist == "ignis-1M":
+            self.H.download([
+                "https://shorturl.at/bdgY7",
+                f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
+                "ignis-1M-passwords"
+            ])
+        elif wordlist == "seclist-defaults":
+            self.H.download([
+                "https://shorturl.at/lDKN4",
+                f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
+                "SecList-Default-Passwords"
+            ])
+        elif wordlist == "seclist-top10mil":
+            self.H.download([
+                "https://shorturl.at/vCMPZ",
+                f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
+                "SecList-top10mil-Passwords"
+            ])
+        elif wordlist == "seclist-top10mil-usernames":
+            self.H.download([
+                "https://shorturl.at/bmS46",
+                f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
+                "SecList-top10mil-usernames"
+            ])
+        elif wordlist == "seclist-top-short":
+            self.H.download([
+                "https://shorturl.at/ryQV5",
+                f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
+                "SecList-top1-short-usernames"
+            ])  
     ## ========================================
     ## OSINT Tab ==============================
     ## ========================================

@@ -153,7 +153,8 @@ class Bruteforce(QObject):
                 self.current_batch.emit(batch)
                 self.num_of_batches.emit([batchnum, total_batches])
                 
-            ## Deciding which processor to use     
+            ## Deciding which processor to use
+                #print(batch)     
                 if protocol == "SSH":
                     self.ssh_processor(batch)
                 if protocol == "FTP":
@@ -306,42 +307,168 @@ class Bruteforce(QObject):
         ## if code != 404:
             ##list.append(dir)
 
-class Webdir:
+class Fuzzer(QObject):
+    module_error = pyqtSignal(list)
+    finished = pyqtSignal()
+    progress = pyqtSignal(int)
+    gooddir = pyqtSignal(list)    
     
-    def __init__(self):
-        pass
-    
-    def webdir_framework(self, target_list):
-        ## Get input
-        pass        
+    live_attempts = pyqtSignal(str) 
+    current_batch = pyqtSignal(list)
+    num_of_batches = pyqtSignal(list)
+    errlog = pyqtSignal(str)
 
 
-    def webdir_request(self, request_list):
+    def __init__(self, parent=None):
+        super().__init__(parent)
         
-        ip = request_list[0] ## Currently unusued
-        port = request_list[1]
-        fuzzvalue = request_list[2]
-        raw_url = request_list[3]
+        self.good_dir_list = []
+        
+        self.bruteforce_progress = 0
+        self.number = 0
+        
+    def fileopen(self, dir):
+        import chardet
+        
+        with open(dir,"rb") as file_bytes:
+            file_read_bytes = file_bytes.read()
+            
+            encoding= chardet.detect(file_read_bytes)
+            decode_type =  encoding['encoding']
+            print(decode_type)
+            
+            file = file_read_bytes.decode(decode_type)
+            #file = file_raw.decode('utf-8')
+            self.errlog.emit(f"File Encoding: {decode_type}")
+            return file
+        
+    def success(self, dir):
+        ## Done as a tuple to reduce mem size + so it can be appended
+        self.good_dir_list.append(dir)
+        self.gooddir.emit(self.good_dir_list)
+        
+    def thread_quit(self):
+        print("EXIT")
+        self.thread_quit = True
+        self.errlog.emit("Stopping BruteForce")
+        #exit()
+    
+    def fuzzer_framework(self, input_list):
+        try:
+            print("STARTED FUZZER")
+            
+            #self.GUI.ERROR("low", "error","something")
+            
+            self.Date = utility.Timestamp.UTC_Date()
+            self.Time = utility.Timestamp.UTC_Time()
+            
+            self.errlog.emit("Date:" + str(self.Date))
+            self.errlog.emit("Time:" + str(self.Time))
+            
+            ## Breaking the list up
+            
+            self.URL = input_list[0]
+            self.port = input_list[1]
+            wordlist = input_list[2]
+            self.delay = input_list[3]
+            self.max_threads = input_list[4]
+            self.batchsize = input_list[5]
+            ## Takes gui input, gets rid of spaces, and splits on each comma
+            self.validresponsec0de = list((input_list[6].replace(" ","")).split(","))
+            self.show_full_url = input_list[7]   
+
+            self.dir_list = []
+            
+            ## Results list
+            self.results_dir_list = []
+            
+            ## Creating target list - I know I could just use the input_list, however this cuts down on the amount of arguments I need to enter in each method
+            #target_list = [ip, port, delay]
+            
+        except Exception as e:
+            print(e)
+            #self.error(e,"??","??")
+            exit()
+
+### NOT LOOPING TO NEXT BATCH FOR SOME REASON;
+
+        wordlistdir = self.fileopen(wordlist)
+        #password = self.fileopen(pass_wordlist_dir)
+        batch_iter = iter(wordlistdir.split()) 
+        #user_list_len = username.split()
+        #pass_list_len = password.split()
+        
+        ## Leaving like this for future expandability
+        
+        batch_iteration = 0
+        total_batches = round(len(wordlistdir.split())/self.batchsize)
+        
+        for i in range(0,total_batches):
+            batch_iteration = batch_iteration + 1
+            
+            batch = list(itertools.islice(batch_iter, self.batchsize))
+            self.fuzzer_processor(batch)
+
+            self.current_batch.emit(batch)
+            self.num_of_batches.emit([batch_iteration, total_batches])
+            
+    def fuzzer_processor(self, batch):
+        with ThreadPoolExecutor(max_workers=self.max_threads) as executor:
+            #fuzzer_thread = None
+            #print(batch)
+            for i in batch:
+                ## Max workers needs fine tunning/an option for how many threads
+                ## Generator to help cut down on ram usage
+                #print(i)##<< prints each attempt
+                fuzzer_thread = executor.submit(self.fuzzer_request, i)
+                    
+            #print("BatchDone")
+            fuzzer_thread.result()
+            self.done = True
+
+    def fuzzer_request(self, fuzzvalue):
+        
+        #ip = self.URL ## Currently unusued
+        port = self.port
+        #fuzzvalue = request_list[2]
+        raw_url = self.URL
 
         ## Rate limiter so you don't get kicked out, make the max value editable in GUI
         time.sleep(np.random.uniform(.001,.01)) 
         
-        base_url = request_list[0]
+        #base_url = request_list[0]
         
         # backup Port Handler
-        if request_list[1] == None:
-            request_list[1] = 80
+        if port == None:
+            port = 80
         
         ## Replacing "FUZZ" with whatever fuzzvalue is passed in
         target_url = raw_url.replace("FUZZ",fuzzvalue)
         
         try:
             r = requests.get(target_url)
+            #print(r.status_code)
+            ## Nested if, I know, I'm sorry
+            #print(self.validresponsec0de)
+            for i in self.validresponsec0de:
+                #print(i)
+                if i in str(r.status_code):
+                    #print("SUCCESS" + i)
+                    if self.show_full_url == True:
+                        self.success(target_url)
+                    else:
+                        self.success(fuzzvalue)
+                else:
+                    pass
+                    #print("FAUL")
+            #print("ITERATION")
+            
         except Exception as e:
-            print("Failed to connect, does not exist")
+            self.errlog.emit(str(e))
+            print(e)
             pass
         
-        print(target_url)
+        #print(target_url)
         
         #if r.status_code == 200:
 
