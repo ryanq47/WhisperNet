@@ -3215,10 +3215,149 @@ p, li { white-space: pre-wrap; }
               </property>
              </widget>
             </item>
+            <item row="7" column="3">
+             <widget class="QCheckBox" name="bruteforce_fuzz_showfullurl_option">
+              <property name="text">
+               <string>Show Full URL</string>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="0">
+             <widget class="QLabel" name="label_171">
+              <property name="maximumSize">
+               <size>
+                <width>100</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Port (Optional)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="2">
+             <widget class="QCheckBox" name="checkBox_43">
+              <property name="text">
+               <string>Options</string>
+              </property>
+             </widget>
+            </item>
+            <item row="14" column="5">
+             <widget class="QLabel" name="label_159">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>15</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Threads</string>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="0">
+             <widget class="QLineEdit" name="bruteforce_fuzz_port"/>
+            </item>
+            <item row="4" column="5" rowspan="8">
+             <widget class="QTabWidget" name="bruteforce_fuzz_panel">
+              <property name="maximumSize">
+               <size>
+                <width>1677215</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="currentIndex">
+               <number>0</number>
+              </property>
+              <widget class="QWidget" name="tab_130">
+               <attribute name="title">
+                <string>Successful (0)</string>
+               </attribute>
+               <layout class="QGridLayout" name="gridLayout_95">
+                <item row="0" column="0">
+                 <widget class="QTextEdit" name="bruteforce_fuzz_gooddir_gui">
+                  <property name="maximumSize">
+                   <size>
+                    <width>1677700</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="html">
+                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="tab_131">
+               <attribute name="title">
+                <string>Current Batch (0/0)</string>
+               </attribute>
+               <layout class="QGridLayout" name="gridLayout_96">
+                <item row="0" column="0">
+                 <widget class="QTextEdit" name="bruteforce_fuzz_currentbatch">
+                  <property name="html">
+                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '78')&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '79')&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '81')&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '82')&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '83')&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '84')&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '85')&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '86')&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '87')&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '88')&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="tab_132">
+               <attribute name="title">
+                <string>Log (0)</string>
+               </attribute>
+               <layout class="QGridLayout" name="gridLayout_97">
+                <item row="0" column="0">
+                 <widget class="QTextEdit" name="bruteforce_fuzz_errlog">
+                  <property name="html">
+                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+            <item row="8" column="1">
+             <widget class="QLabel" name="label_169">
+              <property name="text">
+               <string>Batch Size </string>
+              </property>
+             </widget>
+            </item>
             <item row="9" column="0" rowspan="9" colspan="5">
              <widget class="QTabWidget" name="tabWidget_29">
               <property name="currentIndex">
-               <number>2</number>
+               <number>3</number>
               </property>
               <widget class="QWidget" name="tab_127">
                <attribute name="title">
@@ -3451,145 +3590,178 @@ p, li { white-space: pre-wrap; }
                 </item>
                </layout>
               </widget>
-             </widget>
-            </item>
-            <item row="7" column="0">
-             <widget class="QLabel" name="label_171">
-              <property name="maximumSize">
-               <size>
-                <width>100</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>Port (Optional)</string>
-              </property>
-             </widget>
-            </item>
-            <item row="14" column="5">
-             <widget class="QLabel" name="label_159">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>15</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>Threads</string>
-              </property>
-             </widget>
-            </item>
-            <item row="8" column="0">
-             <widget class="QLineEdit" name="bruteforce_fuzz_port"/>
-            </item>
-            <item row="4" column="5" rowspan="8">
-             <widget class="QTabWidget" name="bruteforce_fuzz_panel">
-              <property name="maximumSize">
-               <size>
-                <width>1677215</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="currentIndex">
-               <number>0</number>
-              </property>
-              <widget class="QWidget" name="tab_130">
+              <widget class="QWidget" name="tab_60">
                <attribute name="title">
-                <string>Successful (0)</string>
+                <string>Evasion</string>
                </attribute>
-               <layout class="QGridLayout" name="gridLayout_95">
-                <item row="0" column="0">
-                 <widget class="QTextEdit" name="bruteforce_fuzz_gooddir_gui">
-                  <property name="maximumSize">
-                   <size>
-                    <width>1677700</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="html">
-                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
+               <widget class="QLabel" name="label_75">
+                <property name="geometry">
+                 <rect>
+                  <x>440</x>
+                  <y>10</y>
+                  <width>191</width>
+                  <height>19</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <underline>true</underline>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Custom Headers</string>
+                </property>
+               </widget>
+               <widget class="QLineEdit" name="lineEdit_25">
+                <property name="geometry">
+                 <rect>
+                  <x>12</x>
+                  <y>70</y>
+                  <width>131</width>
+                  <height>27</height>
+                 </rect>
+                </property>
+               </widget>
+               <widget class="QLabel" name="label_76">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>50</y>
+                  <width>221</width>
+                  <height>19</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+               <widget class="QRadioButton" name="radioButton_4">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>40</y>
+                  <width>171</width>
+                  <height>25</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>User Agents wordlist</string>
+                </property>
+               </widget>
+               <widget class="QRadioButton" name="radioButton_5">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>10</y>
+                  <width>161</width>
+                  <height>25</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Random User Agent</string>
+                </property>
+               </widget>
+               <widget class="QRadioButton" name="radioButton_6">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>110</y>
+                  <width>171</width>
+                  <height>25</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>Fixed User Agent</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+               <widget class="QLineEdit" name="lineEdit_26">
+                <property name="geometry">
+                 <rect>
+                  <x>12</x>
+                  <y>140</y>
+                  <width>131</width>
+                  <height>27</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>l33tHecker</string>
+                </property>
+               </widget>
+               <widget class="QPushButton" name="bruteforce_download_seclist_top10mil_usernames_5">
+                <property name="geometry">
+                 <rect>
+                  <x>150</x>
+                  <y>70</y>
+                  <width>80</width>
+                  <height>27</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <strikeout>false</strikeout>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Browse</string>
+                </property>
+                <property name="autoDefault">
+                 <bool>false</bool>
+                </property>
+                <property name="default">
+                 <bool>false</bool>
+                </property>
+                <property name="flat">
+                 <bool>false</bool>
+                </property>
+               </widget>
+               <widget class="QCheckBox" name="checkBox_22">
+                <property name="geometry">
+                 <rect>
+                  <x>440</x>
+                  <y>50</y>
+                  <width>141</width>
+                  <height>25</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>x-content-length:</string>
+                </property>
+               </widget>
+               <widget class="QLineEdit" name="lineEdit_27">
+                <property name="geometry">
+                 <rect>
+                  <x>590</x>
+                  <y>50</y>
+                  <width>241</width>
+                  <height>27</height>
+                 </rect>
+                </property>
+                <property name="text">
+                 <string>0</string>
+                </property>
+               </widget>
+               <widget class="QLabel" name="label_77">
+                <property name="geometry">
+                 <rect>
+                  <x>760</x>
+                  <y>310</y>
+                  <width>81</width>
+                  <height>19</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>6</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>&gt; Get Fucked WAF &lt; </string>
+                </property>
+               </widget>
               </widget>
-              <widget class="QWidget" name="tab_131">
-               <attribute name="title">
-                <string>Current Batch (0/0)</string>
-               </attribute>
-               <layout class="QGridLayout" name="gridLayout_96">
-                <item row="0" column="0">
-                 <widget class="QTextEdit" name="bruteforce_fuzz_currentbatch">
-                  <property name="html">
-                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '78')&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '79')&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '81')&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '82')&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '83')&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '84')&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '85')&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '86')&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '87')&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;('1', '88')&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-              <widget class="QWidget" name="tab_132">
-               <attribute name="title">
-                <string>Log (0)</string>
-               </attribute>
-               <layout class="QGridLayout" name="gridLayout_97">
-                <item row="0" column="0">
-                 <widget class="QTextEdit" name="bruteforce_fuzz_errlog">
-                  <property name="html">
-                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </widget>
-            </item>
-            <item row="8" column="1">
-             <widget class="QLabel" name="label_169">
-              <property name="text">
-               <string>Batch Size </string>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="3">
-             <widget class="QCheckBox" name="bruteforce_fuzz_showfullurl_option">
-              <property name="text">
-               <string>Show Full URL</string>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="2">
-             <widget class="QCheckBox" name="checkBox_43">
-              <property name="text">
-               <string>Options</string>
-              </property>
              </widget>
             </item>
            </layout>
