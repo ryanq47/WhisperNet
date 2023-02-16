@@ -5,11 +5,14 @@
 import sys
 import sqlite3
 
-from PyQt5.QtCore import Qt, QObject, QThread, pyqtSignal
-from PyQt5 import QtWidgets, uic
-from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import (
-    QAction,
+## pyqt singal needs to be moved to "signal"
+from PySide6.QtCore import Qt, QObject, QThread, Signal, QFile, Slot, QThreadPool
+from PySide6 import QtWidgets
+from PySide6.QtUiTools import loadUiType
+from PySide6.QtGui import QIcon, QAction
+from PySide6 import QtUiTools
+from PySide6.QtWidgets import (
+    QMainWindow,
     QLabel,
     QMessageBox,
     QPushButton,
@@ -19,6 +22,7 @@ from PyQt5.QtWidgets import (
     QTableWidget,
     QTableWidgetItem,
     QHeaderView,
+    QFileDialog
 )
 
 # apt-get install python3-pyqt5.qtwebengine for web engine stuff
@@ -69,7 +73,7 @@ print(syspath.path)
 qtcreator_file = syspath.path + '/gui.ui'
 
 # qtcreator_file  = "/home/kali/Documents/logec-suite/gui.ui"
-Ui_MainWindow, QtBaseClass = uic.loadUiType(qtcreator_file)
+#Ui_MainWindow, QtBaseClass = loadUiType(qtcreator_file)
 
 
 class Worker(QObject):
@@ -78,17 +82,22 @@ class Worker(QObject):
             print('hi')
             time.sleep(1)
 
+from gui import Ui_LogecC3
 
-class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
+class MyApp(QMainWindow, Ui_LogecC3):
+    print("hi")
     def __init__(self, parent=None):
-        super().__init__(parent)
-
-        QtWidgets.QMainWindow.__init__(self)
-        Ui_MainWindow.__init__(self)
+        ##### UI SETUP
+        ## ELi5: Taking the imported gui.py and using that to make the gui n stuff
+        super(MyApp, self).__init__(parent)
         self.setupUi(self)
-
-        # self.setStyle('Windows')
-
+        #####
+        
+        ##### Class Thread Manager:
+        self.thread_manager = QThreadPool()
+        #####
+        
+        
         self.connected = False
         self.connected_list = []
 
@@ -99,17 +108,12 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         ## A check to see if the program is on its first iteration, aka when run the first time.
         ## Handy for error messages, see the if statement in the DB section about empty queries
 
-        ## connector
-        # self.action_Target_Connect.clicked.connect(self.target_connect)
-
-        ## do not need to defire actions as they are already in the ui file
-        # self.action1 = QAction("action_Target_Connect", self)
-
         ## ========================================
         ## Buttons n stuff ========================
         ## ========================================
 
         ## Getting started
+        
         self.GettingStarted_Readme.triggered.connect(self.getting_started)
         self.actionRead_Me_webview.triggered.connect(
             lambda: webbrowser.open(
@@ -808,7 +812,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.ERROR(e, "low", "") '''
             
 
-    def portscan(self):
+    def portscan(self, QObject):
         input_ip = self.portscan_IP.text()
         print(input_ip)
         print('I')
@@ -879,27 +883,14 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             ]   ## timeout shoudl always be last
 
             #self.portscan_start.setText('-->> Scanning... <<--')
-
-
-
-            self.portscan_thread = QThread()
-            # Step 3: Create a worker object
             self.portscan_worker = Portscan()
-            
-            self.portscan_worker.moveToThread(self.portscan_thread)
-            # Step 5: Connect signals and slots
-            self.portscan_thread.started.connect(partial(self.portscan_worker.scan_framework, target_list, scantype_list))
-            self.portscan_worker.finished.connect(self.portscan_thread.quit)
-            self.portscan_worker.finished.connect(self.portscan_worker.deleteLater)
-            self.portscan_thread.finished.connect(self.portscan_thread.deleteLater)
+            self.thread_manager.start(partial(self.portscan_worker.scan_framework, target_list, scantype_list))
 
             self.portscan_worker.progress.connect(self.portscan_bar)
-            self.portscan_worker.liveports.connect(self.portscan_liveports) #<< not getting triggered
+            self.portscan_worker.liveports.connect(self.portscan_liveports) #<< not getting triggered'''
 
             ## wiping live list
             self.portscan_liveports_browser.setText("")
-            # starting thread
-            self.portscan_thread.start()
 
         except ValueError as ve:
             self.ERROR([ve, "low", "Make sure all respective fields are filled"])
@@ -1278,6 +1269,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         #
         #
     ## Bruteforce Creds
+    #@Slot()
     def bruteforce(self):
         
         try:
@@ -1297,15 +1289,16 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             # Bar to 0
             self.bruteforce_progressbar.setValue(0)
             
-            self.bruteforce_thread = QThread()
-            self.bruteforce_worker = Bruteforce()
-            self.bruteforce_worker.moveToThread(self.bruteforce_thread)
             
-            ## Queing up the function to run (Slots n signals too)
-            self.bruteforce_thread.started.connect(partial(self.bruteforce_worker.bruteforce_framework, target_list))
-            self.bruteforce_worker.finished.connect(self.bruteforce_thread.exit) # exi works better than quit
-            self.bruteforce_worker.finished.connect(self.bruteforce_worker.deleteLater)
-            self.bruteforce_worker.finished.connect(self.bruteforce_thread.deleteLater)
+            self.bruteforce_worker = Bruteforce()
+            self.thread_manager.start(partial(self.bruteforce_worker.bruteforce_framework, target_list))
+            
+            ##self.bruteforce_worker.finished.connect(self.bruteforce_worker.deleteLater)
+            #self.bruteforce_worker.finished.connect(self.bruteforce_worker.thread.terminate)
+            #self.bruteforce_worker.finished.connect(self.bruteforce_thread.deleteLater)
+            
+            
+
             
             #Error
             self.bruteforce_worker.module_error.connect(partial(self.ERROR, target_list))
@@ -1333,7 +1326,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.bruteforce_goodcreds.setText("")
             
             # Starting Thread
-            self.bruteforce_thread.start()
+            #self.bruteforce_thread.start()
         
         except ValueError as ve:
             self.ERROR([ve, "low", "Make sure all respective fields are filled"])
@@ -1345,9 +1338,10 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         #pass
         print("clicked")
         try:
-            self.bruteforce_worker.thread_quit()
-            self.bruteforce_thread.exit() # exi works better than quit
-            self.bruteforce_worker.deleteLater()
+            pass
+            #self.bruteforce_worker.thread_quit()
+            #self.bruteforce_thread.exit() # exi works better than quit
+            #self.bruteforce_worker.deleteLater()
         except Exception as e:
             self.ERROR([e, "Low", "Bruteforce is probably not running"])
 
@@ -1441,15 +1435,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             # Bar to 0
             self.bruteforce_fuzz_progressbar.setValue(0)
             
-            self.fuzzer_thread = QThread()
             self.fuzzer_worker = Fuzzer()
-            self.fuzzer_worker.moveToThread(self.fuzzer_thread)
+            self.thread_manager.start(partial(self.fuzzer_worker.fuzzer_framework, target_list))
             
-            ## Queing up the function to run (Slots n signals too)
-            self.fuzzer_thread.started.connect(partial(self.fuzzer_worker.fuzzer_framework, target_list))
-            self.fuzzer_worker.finished.connect(self.fuzzer_thread.exit) # exi works better than quit
-            self.fuzzer_worker.finished.connect(self.fuzzer_worker.deleteLater)
-            self.fuzzer_worker.finished.connect(self.fuzzer_thread.deleteLater)
             
             #Error
             self.fuzzer_worker.module_error.connect(partial(self.ERROR, target_list))
@@ -1475,9 +1463,6 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             # Good Creds
             self.fuzzer_worker.gooddir.connect(self.fuzz_live_gooddir_box)
             self.bruteforce_fuzz_gooddir_gui.setText("")
-            
-            # Starting Thread
-            self.fuzzer_thread.start()
         
         except ValueError as ve:
             self.ERROR([ve, "low", "Make sure all respective fields are filled"])
@@ -1493,9 +1478,10 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         #pass
         print("clicked")
         try:
-            self.fuzzer_worker.thread_quit()
-            self.fuzzer_thread.exit() # exi works better than quit
-            self.fuzzer_worker.deleteLater()
+            pass
+            #self.fuzzer_worker.thread_quit()
+            #self.fuzzer_thread.exit() # exi works better than quit
+            #self.fuzzer_worker.deleteLater()
         except Exception as e:
             self.ERROR([e, "Low", "Fuzzer is probably not running"])
 
@@ -1777,24 +1763,9 @@ if __name__ == '__main__':
 
         app = QtWidgets.QApplication(sys.argv)
         window = MyApp()
-
-        ## if pwd not equlal to stored syspath, redo syspath
-        ## handy for if the folder ever gets moved
-        
-        ## Icon
-        app_icon = QIcon(syspath.path + '/Gui/themes/assets/icon.png')
-        print(syspath.path + '/Gui/themes/assets/icon.png')
-        app.setWindowIcon(app_icon)
-
-        # future theme
-        """
-        with open("Gui/themes/green-gray2.css","r") as f:
-            theme = f.read()
-        app.setStyleSheet(theme)"""
-
         window.show()
         
-        app.exec_()
+        app.exec()
         
         # sys.exit()
         pid = os.getpid()
@@ -1802,6 +1773,10 @@ if __name__ == '__main__':
 
     except Exception as e:
         print(e)
+        
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+        print(exc_type, fname, exc_tb.tb_lineno)
         '''from plyer import notification
 
         notification.notify(

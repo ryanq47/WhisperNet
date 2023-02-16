@@ -1,6 +1,7 @@
 ## NOTENOTE: Just write the combos to a file... its easier
 
-from PyQt5.QtCore import QRunnable, Qt, QThreadPool, QObject, QThread, pyqtSignal
+#from PyQt5.QtCore import QRunnable, Qt, QThreadPool, QObject, QThread, pyqtSignal
+from PySide6.QtCore import QThread, Signal, QObject, Slot, QRunnable, QThreadPool
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 
 import time
@@ -25,15 +26,15 @@ import Modules.General.utility as utility
 
 
 class Bruteforce(QObject):
-    module_error = pyqtSignal(list)
-    finished = pyqtSignal()
-    progress = pyqtSignal(int)
-    goodcreds = pyqtSignal(list)    
+    module_error = Signal(list)
+    finished = Signal()
+    progress = Signal(int)
+    goodcreds = Signal(list)    
     
-    live_attempts = pyqtSignal(str) 
-    current_batch = pyqtSignal(list)
-    num_of_batches = pyqtSignal(list)
-    errlog = pyqtSignal(str)
+    live_attempts = Signal(str) 
+    current_batch = Signal(list)
+    num_of_batches = Signal(list)
+    errlog = Signal(str)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -308,15 +309,16 @@ class Bruteforce(QObject):
             ##list.append(dir)
 
 class Fuzzer(QObject):
-    module_error = pyqtSignal(list)
-    finished = pyqtSignal()
-    progress = pyqtSignal(int)
-    gooddir = pyqtSignal(list)    
     
-    live_attempts = pyqtSignal(str) 
-    current_batch = pyqtSignal(list)
-    num_of_batches = pyqtSignal(list)
-    errlog = pyqtSignal(str)
+    module_error = Signal(list)
+    finished = Signal()
+    progress = Signal(int)
+    gooddir = Signal(list)    
+    
+    live_attempts = Signal(str) 
+    current_batch = Signal(list)
+    num_of_batches = Signal(list)
+    errlog = Signal(str)
 
 
     def __init__(self, parent=None):

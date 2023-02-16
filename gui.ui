@@ -57,7 +57,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>5</number>
+       <number>8</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -4087,45 +4087,31 @@ p, li { white-space: pre-wrap; }
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_10">
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab_33">
            <attribute name="title">
             <string>Performance/Health</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_24">
-            <item row="2" column="0">
-             <widget class="QProgressBar" name="progressBar_19">
-              <property name="value">
-               <number>0</number>
-              </property>
-             </widget>
-            </item>
-            <item row="14" column="3" colspan="2">
-             <widget class="QPushButton" name="performance_speedtest">
+            <item row="21" column="0">
+             <widget class="QPushButton" name="table_RefreshDB_Button_performance">
               <property name="text">
-               <string>Run SpeedTest</string>
+               <string>--&gt;&gt; Refresh DB &lt;&lt;--</string>
               </property>
              </widget>
             </item>
-            <item row="14" column="0">
-             <widget class="QLabel" name="label_20">
+            <item row="7" column="0">
+             <widget class="Line" name="line_10">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="10" column="0">
+             <widget class="QLabel" name="label_44">
               <property name="text">
-               <string>Error Log</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0">
-             <widget class="QProgressBar" name="other_performance_ramall">
-              <property name="value">
-               <number>24</number>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="3">
-             <widget class="QLabel" name="label_33">
-              <property name="text">
-               <string>External IP: </string>
+               <string>System CPU Usage:</string>
               </property>
              </widget>
             </item>
@@ -4145,24 +4131,175 @@ p, li { white-space: pre-wrap; }
               </property>
              </widget>
             </item>
-            <item row="4" column="3">
-             <widget class="QLabel" name="label_19">
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_39">
+              <property name="font">
+               <font/>
+              </property>
               <property name="text">
-               <string>Ping (MS)</string>
+               <string>CPU/RAM Specs</string>
               </property>
              </widget>
             </item>
-            <item row="16" column="0" colspan="5">
-             <widget class="QPushButton" name="table_RefreshDB_Button_performance">
+            <item row="3" column="3">
+             <widget class="QLabel" name="label_40">
+              <property name="font">
+               <font>
+                <underline>true</underline>
+               </font>
+              </property>
               <property name="text">
-               <string>--&gt;&gt; Refresh DB &lt;&lt;--</string>
+               <string>SpeedTest</string>
               </property>
              </widget>
             </item>
-            <item row="0" column="5" rowspan="15">
-             <widget class="Line" name="line_11">
+            <item row="2" column="0">
+             <widget class="QProgressBar" name="progressBar_19">
+              <property name="value">
+               <number>0</number>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2" colspan="2">
+             <widget class="QLabel" name="label_18">
+              <property name="font">
+               <font/>
+              </property>
+              <property name="text">
+               <string>Network Specs</string>
+              </property>
+             </widget>
+            </item>
+            <item row="15" column="3" colspan="2">
+             <widget class="QLabel" name="label_78">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="font">
+               <font/>
+              </property>
+              <property name="text">
+               <string>Benchmark</string>
+              </property>
+             </widget>
+            </item>
+            <item row="16" column="3">
+             <widget class="QLineEdit" name="lineEdit_28">
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>6.16</string>
+              </property>
+             </widget>
+            </item>
+            <item row="16" column="4">
+             <widget class="QLabel" name="label_79">
+              <property name="text">
+               <string>Seconds</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="label_41">
+              <property name="text">
+               <string>System Ram Usage: </string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1" rowspan="22">
+             <widget class="Line" name="line_12">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="3" colspan="2">
+             <widget class="QLCDNumber" name="performance_lcd_ping"/>
+            </item>
+            <item row="1" column="4">
+             <widget class="QLabel" name="label_43">
+              <property name="text">
+               <string>Local IP:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="0">
+             <widget class="QProgressBar" name="progressBar_20">
+              <property name="value">
+               <number>0</number>
+              </property>
+             </widget>
+            </item>
+            <item row="12" column="0">
+             <widget class="QLabel" name="label_48">
+              <property name="text">
+               <string>Process ID (PID)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="3">
+             <widget class="QLabel" name="label_46">
+              <property name="text">
+               <string>Upload (MBPS)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="15" column="0">
+             <widget class="QLabel" name="label_20">
+              <property name="text">
+               <string>Error Log</string>
+              </property>
+             </widget>
+            </item>
+            <item row="11" column="0">
+             <widget class="QProgressBar" name="other_performance_cpuall">
+              <property name="value">
+               <number>24</number>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="3">
+             <widget class="QLabel" name="label_33">
+              <property name="text">
+               <string>External IP: </string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QProgressBar" name="other_performance_ramall">
+              <property name="value">
+               <number>24</number>
+              </property>
+             </widget>
+            </item>
+            <item row="18" column="0">
+             <widget class="QTableWidget" name="table_SQLDB_performance_error"/>
+            </item>
+            <item row="14" column="3" colspan="2">
+             <widget class="Line" name="line_19">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="17" column="3">
+             <widget class="QPushButton" name="pushButton_2">
+              <property name="text">
+               <string>Start Benchmark</string>
+              </property>
+             </widget>
+            </item>
+            <item row="13" column="3" colspan="2">
+             <widget class="QPushButton" name="performance_speedtest">
+              <property name="text">
+               <string>Run SpeedTest</string>
               </property>
              </widget>
             </item>
@@ -4180,6 +4317,34 @@ p, li { white-space: pre-wrap; }
               </property>
              </widget>
             </item>
+            <item row="0" column="5" rowspan="15">
+             <widget class="Line" name="line_11">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="13" column="0">
+             <widget class="QLineEdit" name="lineEdit_11">
+              <property name="text">
+               <string>1234</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_45">
+              <property name="text">
+               <string>Program Ram Usage:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="3">
+             <widget class="QLabel" name="label_19">
+              <property name="text">
+               <string>Ping (MS)</string>
+              </property>
+             </widget>
+            </item>
             <item row="9" column="3" colspan="2">
              <widget class="QLCDNumber" name="performance_lcd_upload">
               <property name="frameShape">
@@ -4193,121 +4358,6 @@ p, li { white-space: pre-wrap; }
               </property>
               <property name="value" stdset="0">
                <double>0.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1" rowspan="15">
-             <widget class="Line" name="line_12">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="0">
-             <widget class="Line" name="line_10">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="2" colspan="2">
-             <widget class="QLabel" name="label_18">
-              <property name="font">
-               <font/>
-              </property>
-              <property name="text">
-               <string>Network Specs</string>
-              </property>
-             </widget>
-            </item>
-            <item row="7" column="3">
-             <widget class="QLabel" name="label_46">
-              <property name="text">
-               <string>Upload (MBPS)</string>
-              </property>
-             </widget>
-            </item>
-            <item row="10" column="0">
-             <widget class="QLabel" name="label_44">
-              <property name="text">
-               <string>System CPU Usage:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="label_41">
-              <property name="text">
-               <string>System Ram Usage: </string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="3" colspan="2">
-             <widget class="QLCDNumber" name="performance_lcd_ping"/>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_45">
-              <property name="text">
-               <string>Program Ram Usage:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="15" column="0" colspan="5">
-             <widget class="QTableWidget" name="table_SQLDB_performance_error"/>
-            </item>
-            <item row="9" column="0">
-             <widget class="QProgressBar" name="progressBar_20">
-              <property name="value">
-               <number>0</number>
-              </property>
-             </widget>
-            </item>
-            <item row="11" column="0">
-             <widget class="QProgressBar" name="other_performance_cpuall">
-              <property name="value">
-               <number>24</number>
-              </property>
-             </widget>
-            </item>
-            <item row="13" column="0">
-             <widget class="QLineEdit" name="lineEdit_11">
-              <property name="text">
-               <string>1234</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="3">
-             <widget class="QLabel" name="label_40">
-              <property name="font">
-               <font>
-                <underline>true</underline>
-               </font>
-              </property>
-              <property name="text">
-               <string>SpeedTest</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_39">
-              <property name="font">
-               <font/>
-              </property>
-              <property name="text">
-               <string>CPU/RAM Specs</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="4">
-             <widget class="QLabel" name="label_43">
-              <property name="text">
-               <string>Local IP:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="12" column="0">
-             <widget class="QLabel" name="label_48">
-              <property name="text">
-               <string>Process ID (PID)</string>
               </property>
              </widget>
             </item>

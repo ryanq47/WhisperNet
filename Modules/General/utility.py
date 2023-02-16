@@ -71,7 +71,19 @@ class Performance:
         self._end_time = 0
         
         return str(round(time_to_run,2))
+
+    def benchmark(self):
+        init_number = 0
         
+        #100mil
+        while init_number <= 100000000:
+            init_number = init_number + 1
+                
+            #init_number * (init_number/5)
+        print("Done")
+            
+        #self.emit.done()
+
 class Host:
     
     def __init__(self):

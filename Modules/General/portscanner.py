@@ -1,7 +1,8 @@
 from logging import getLogger, ERROR
 getLogger("scapy.runtime").setLevel(ERROR)
 
-from PyQt5.QtCore import QRunnable, Qt, QThreadPool, QObject, QThread, pyqtSignal
+#from PyQt5.QtCore import QRunnable, Qt, QThreadPool, QObject, QThread, pyqtSignal
+from PySide6.QtCore import QThread, Signal, QObject, Slot, QRunnable, QThreadPool
 from scapy.all import *
 import sys
 from datetime import datetime
@@ -21,9 +22,9 @@ RSTACK = 0x14
 
 
 class Portscan(QObject):
-    finished = pyqtSignal()
-    progress = pyqtSignal(int)
-    liveports = pyqtSignal(list)
+    finished = Signal()
+    progress = Signal(int)
+    liveports = Signal(list)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -38,7 +39,9 @@ class Portscan(QObject):
     def clean(self):
         self.open_port_list = []
     
+    @Slot()
     def scan_framework(self, target_list, scantype):
+        print("Started")
         # target_list = [ip, min_port, max_port, timeout, delay, extra_port]
         # scantype list = [standard, stealth, ??] A list of scan booleans, true means do it, false means dont
                         ## Min Port         Max Port            Extra Ports
@@ -78,8 +81,9 @@ class Portscan(QObject):
             #self.GUI.ERROR("Host Not Found","Low","The host could not be located, double check hostnames/IP addresses") << causes segfailt, would need to use connectors
             #self.GUI.root_check("portscan")
             exit()'''
-            
+        
         with ThreadPoolExecutor() as executor:
+            print("started threadpool")
             # submit the scan_port function for each port in the ports_to_scan list
             if scantype[0]: #Telnet Standard
                 standard_futures = [executor.submit(self.telnet_standard_scan, self.host, port, scantype[-1], self.delay) for port in ports_to_scan]
@@ -87,6 +91,7 @@ class Portscan(QObject):
                 standard_P.start_time()
 
                 for future in standard_futures:
+
                     future.result()
 
                 self.final_time = standard_P.end_time()
@@ -124,6 +129,7 @@ class Portscan(QObject):
         self.clean()
         ## Emiting that program is done
         #self.progress.emit(100)
+        print("emiting finish")
         self.finished.emit()    
 
     ##########
