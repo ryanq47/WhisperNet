@@ -10,7 +10,7 @@ import requests
 
 
 from plyer import notification
-
+from PySide6.QtCore import Signal, QObject
 
 
 class Timestamp:
@@ -29,9 +29,11 @@ class Timestamp:
         #print(current_date)
         return current_date
     
-class Performance:
+class Performance(QObject):
+    return_value = Signal(str)
     
-    def __init__(self):
+    def __init__(self, parent=None):
+        super().__init__(parent)
         self.PID = os.getpid()
         
     def CPU_all(self):
@@ -73,16 +75,16 @@ class Performance:
         return str(round(time_to_run,2))
 
     def benchmark(self):
+        self.start_time()
         init_number = 0
         
         #100mil
-        while init_number <= 100000000:
+        while init_number <= 1000000000:
             init_number = init_number + 1
                 
             #init_number * (init_number/5)
-        print("Done")
-            
-        #self.emit.done()
+        self.return_value.emit(str(self.end_time()))
+
 
 class Host:
     

@@ -57,7 +57,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>8</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -1806,8 +1806,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>72</width>
-                 <height>16</height>
+                 <width>1395</width>
+                 <height>620</height>
                 </rect>
                </property>
                <widget class="QLineEdit" name="dashboard_portscan_IP">
@@ -2371,24 +2371,6 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
            </layout>
-          </widget>
-          <widget class="QWidget" name="tab_15">
-           <attribute name="title">
-            <string>SQL Scan</string>
-           </attribute>
-           <widget class="QLineEdit" name="lineEdit_10">
-            <property name="geometry">
-             <rect>
-              <x>190</x>
-              <y>440</y>
-              <width>751</width>
-              <height>27</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>Non Functional</string>
-            </property>
-           </widget>
           </widget>
           <widget class="QWidget" name="tab_16">
            <attribute name="title">
@@ -3775,45 +3757,6 @@ p, li { white-space: pre-wrap; }
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tab_52">
-           <attribute name="title">
-            <string>PassCrack</string>
-           </attribute>
-           <widget class="QTextEdit" name="textEdit_24">
-            <property name="geometry">
-             <rect>
-              <x>150</x>
-              <y>50</y>
-              <width>811</width>
-              <height>541</height>
-             </rect>
-            </property>
-            <property name="html">
-             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Use C to crack different hashes, such as md5, etc&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Basically, have it pass the input in (wordlist, hash to crack) and have it calc hashes&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;until it finds the one that matches&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;output from chatgpt:&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;import subprocess&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;def run_c_program(input_str):&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    process = subprocess.Popen(&amp;quot;./your_c_program&amp;quot;, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    output, error = process.communicate(input=input_str)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;    return output&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;output = run_c_program(&amp;quot;your input&amp;quot;)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;print(output)&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-           </widget>
-          </widget>
          </widget>
         </item>
        </layout>
@@ -4191,12 +4134,12 @@ p, li { white-space: pre-wrap; }
                <font/>
               </property>
               <property name="text">
-               <string>Benchmark</string>
+               <string>Benchmark (Count to 10 million)</string>
               </property>
              </widget>
             </item>
             <item row="16" column="3">
-             <widget class="QLineEdit" name="lineEdit_28">
+             <widget class="QLineEdit" name="performance_seconds">
               <property name="maximumSize">
                <size>
                 <width>200</width>
@@ -4299,7 +4242,7 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item row="17" column="3">
-             <widget class="QPushButton" name="pushButton_2">
+             <widget class="QPushButton" name="performance_benchmark_button">
               <property name="text">
                <string>Start Benchmark</string>
               </property>
@@ -4500,7 +4443,7 @@ p, li { white-space: pre-wrap; }
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_7">
           <property name="currentIndex">
-           <number>2</number>
+           <number>4</number>
           </property>
           <widget class="QWidget" name="tab_21">
            <attribute name="title">
@@ -4683,8 +4626,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>72</width>
-                 <height>16</height>
+                 <width>1395</width>
+                 <height>686</height>
                 </rect>
                </property>
                <widget class="QLabel" name="label_56">
@@ -5218,6 +5161,11 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
            </layout>
+          </widget>
+          <widget class="QWidget" name="tab_15">
+           <attribute name="title">
+            <string>SQL Injection?</string>
+           </attribute>
           </widget>
          </widget>
         </item>

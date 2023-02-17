@@ -272,6 +272,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.performance_speedtest.clicked.connect(
             self.performance_networkspeed
         )
+        self.performance_benchmark_button.clicked.connect(self.performance_benchmark)
 
         ## Settings
         self.settings_reload.clicked.connect(self.edit_settings)
@@ -1679,7 +1680,16 @@ class MyApp(QMainWindow, Ui_LogecC3):
 
         self.performance_speedtest.setDisabled(False)
         self.performance_speedtest.setText('Run SpeedTest')
-
+    
+    def performance_benchmark(self):
+        self.benchmark_worker = utility.Performance()
+        self.thread_manager.start(self.benchmark_worker.benchmark)
+        self.benchmark_worker.return_value.connect(self.performance_benchmark_settime)
+        #self.performance_seconds.setText()
+    
+    def performance_benchmark_settime(self, time):
+        #print("PERF SET TIME")
+        self.performance_seconds.setText(time)
     ## ========================================
     ## SQL Conmn ==============================
     ## ========================================

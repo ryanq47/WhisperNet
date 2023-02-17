@@ -5,7 +5,7 @@ compile:
 
 	#rm -rf Beta_Tests
 	#rm -rf logec-attack.bin
-	nuitka3 logec-attack.py --standalone --onefile --plugin-enable=pyside6 --follow-imports --nofollow-import-to=tkinter --include-plugin-directory=/home/kali/Documents/logec_global/virtualenv/lib/python3.10/site-packages/PySide6/Qt/plugins/sqldrivers
+	nuitka3 logec-attack.py --standalone --onefile --plugin-enable=pyside6 --follow-imports --nofollow-import-to=tkinter --lto=yes
 
 
 gui:
