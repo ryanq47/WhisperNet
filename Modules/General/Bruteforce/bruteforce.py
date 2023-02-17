@@ -1,6 +1,5 @@
 ## NOTENOTE: Just write the combos to a file... its easier
 
-#from PyQt5.QtCore import QRunnable, Qt, QThreadPool, QObject, QThread, pyqtSignal
 from PySide6.QtCore import QThread, Signal, QObject, Slot, QRunnable, QThreadPool
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 

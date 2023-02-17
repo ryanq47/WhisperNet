@@ -1,7 +1,6 @@
 from logging import getLogger, ERROR
 getLogger("scapy.runtime").setLevel(ERROR)
 
-#from PyQt5.QtCore import QRunnable, Qt, QThreadPool, QObject, QThread, pyqtSignal
 from PySide6.QtCore import QThread, Signal, QObject, Slot, QRunnable, QThreadPool
 from scapy.all import *
 import sys
@@ -81,6 +80,19 @@ class Portscan(QObject):
             #self.GUI.ERROR("Host Not Found","Low","The host could not be located, double check hostnames/IP addresses") << causes segfailt, would need to use connectors
             #self.GUI.root_check("portscan")
             exit()'''
+        
+        print(self.host)
+        
+        ## Being picky
+        ip_pattern = "^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$"
+        if re.match(ip_pattern, self.host):
+            pass
+        
+        else:
+            ## Performing dns lookup
+            self.host = self.N.lookup_A(self.host)
+        
+        print(self.host)
         
         with ThreadPoolExecutor() as executor:
             print("started threadpool")

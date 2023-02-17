@@ -1,12 +1,12 @@
 ## Specifically using '' instead of "" for google dorking
 ## Doc: https://gist.github.com/sundowndev/283efaddbcf896ab405488330d1bbc06
-from PyQt5.QtCore import QRunnable, Qt, QThreadPool, QObject, QThread, pyqtSignal
+from PySide6.QtCore import QRunnable, Qt, QThreadPool, QObject, QThread, Signal
 
 
 class Dork(QObject):
-    finished = pyqtSignal()
-    #progress = pyqtSignal(int)
-    dork_query = pyqtSignal(str)
+    finished = Signal()
+    #progress = 
+    dork_query = Signal(str)
 
     def __init__(self, parent=None):
         super().__init__(parent)

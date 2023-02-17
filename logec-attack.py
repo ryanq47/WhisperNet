@@ -1,16 +1,20 @@
 #!/bin/python3
 
-# import imports
-
 import sys
+import os
 import sqlite3
 
+# Get the absolute path of the directory where the script is located
+sys_path = os.path.dirname(os.path.abspath(sys.argv[0]))
+print("Syspath:" + sys_path)
+
 ## pyqt singal needs to be moved to "signal"
-from PySide6.QtCore import Qt, QObject, QThread, Signal, QFile, Slot, QThreadPool
+from PySide6.QtCore import Qt, QObject, QThread, Signal, QFile, Slot, QThreadPool, QCoreApplication
 from PySide6 import QtWidgets
 from PySide6.QtUiTools import loadUiType
 from PySide6.QtGui import QIcon, QAction
 from PySide6 import QtUiTools
+from PySide6.QtSql import QSqlDatabase, QSqlTableModel, QSqlQuery
 from PySide6.QtWidgets import (
     QMainWindow,
     QLabel,
@@ -25,21 +29,21 @@ from PySide6.QtWidgets import (
     QFileDialog
 )
 
-# apt-get install python3-pyqt5.qtwebengine for web engine stuff
-##apt-get install python3-pyqt5.qtsql
-from PyQt5.QtSql import QSqlDatabase, QSqlTableModel, QSqlQuery
+
+plugin_path = 'plugins'
+os.environ['QT_PLUGIN_PATH'] = plugin_path
+
+# Add the path to the plugin directory
+QCoreApplication.addLibraryPath(plugin_path)
+
 
 import threading
-import os
 import time
 import webbrowser
 import time
 from functools import partial
 
 from agent.server import s_sock, s_action
-
-# from server import s_sock, s_action
-# from client import c_sock
 
 ## importing other UI files
 from Gui.shell_popup import Ui_shell_SEND
@@ -64,23 +68,6 @@ from Modules.General.OSINT.dork import Dork
 from Modules.General.SysShell.shell import Shell
 
 import Modules.General.utility as utility
-
-import syspath
-
-print(syspath.path)
-
-# with open(".syspath","r") as f:
-qtcreator_file = syspath.path + '/gui.ui'
-
-# qtcreator_file  = "/home/kali/Documents/logec-suite/gui.ui"
-#Ui_MainWindow, QtBaseClass = loadUiType(qtcreator_file)
-
-
-class Worker(QObject):
-    def run(self):
-        while True:
-            print('hi')
-            time.sleep(1)
 
 from gui import Ui_LogecC3
 
@@ -550,7 +537,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
         query = QSqlQuery(f'{query_input}') ##<< setting
             
             ## Connecting to DB for more data
-        connection = sqlite3.connect('logec_db')
+        connection = sqlite3.connect(sys_path + '/logec_db')
         cursor = connection.execute(query_input) 
         names = list(map(lambda x: x[0], cursor.description))
         connection.close()
@@ -1346,7 +1333,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             self.ERROR([e, "Low", "Bruteforce is probably not running"])
 
     def bf_browser_popup(self, whichbutton):
-        from PyQt5.QtWidgets import QFileDialog
+        from PySide6.QtWidgets import QFileDialog
         print("Clicked")
         
         options = QFileDialog.Options()
@@ -1387,7 +1374,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
         if wordlist == "ignis-1M":
             self.H.download([
                 "https://shorturl.at/bdgY7",
-                f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
+                f"Modules/General/Bruteforce/Wordlists",
                 "ignis-1M-passwords"
             ])
         elif wordlist == "seclist-defaults":
@@ -1486,7 +1473,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             self.ERROR([e, "Low", "Fuzzer is probably not running"])
 
     def bf_fuzz_browser_popup(self, whichbutton):
-        from PyQt5.QtWidgets import QFileDialog
+        from PySide6.QtWidgets import QFileDialog
         print("Clicked")
         
         options = QFileDialog.Options()
@@ -1704,7 +1691,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             # print(insert_list)
             ## Accesing DB in root dir
 
-            sqliteConnection = sqlite3.connect('logec_db')
+            sqliteConnection = sqlite3.connect(sys_path + '/logec_db')
 
             cursor = sqliteConnection.cursor()
 
@@ -1736,7 +1723,10 @@ def createConnection():
 
     con = QSqlDatabase.addDatabase('QSQLITE')
 
-    con.setDatabaseName(syspath.path + '/logec_db')
+    con.setDatabaseName(sys_path + '/logec_db')
+    print(sys_path + '/logec_db')
+    
+    print("Database location:", con.databaseName())
 
     ## Qapp throwing a fit due to no DB and no constructed app
     ## No DB outside of this dir, need to add that in setup too
@@ -1755,18 +1745,32 @@ def createConnection():
 
 if __name__ == '__main__':
     try:
+
+
+        ## Creating App
+        app = QtWidgets.QApplication(sys.argv)
+        
         ## Connecting to DB
         ## This has to go on top
         if not createConnection():
             print('FAILURE TO CONNECT TO DB')
-            sys.exit(1)
+            #sys.exit(1)
 
-        app = QtWidgets.QApplication(sys.argv)
+        
+        
+        library_paths = QCoreApplication.libraryPaths()
+
+        # Print the path where QSqlDatabase is looking for drivers
+        print(library_paths)
+            
         window = MyApp()
         window.show()
         
         app.exec()
-        
+
+
+
+
         # sys.exit()
         pid = os.getpid()
         os.kill(pid, 15)   ## SIGTERM

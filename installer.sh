@@ -20,33 +20,11 @@ pip install -r requirements.txt
 echo "##=================="
 echo "Installing Additional PyQt Stuff..."
 echo "##=================="
-sudo apt-get install python3-pyqt5.qtsql
+#sudo apt-get install python3-pyqt5.qtsql
 
 
 
 ## Adding path so it can be read by pyqt GUI - need to refine this later
-program_path=$(pwd)
-#pwd > .syspath
-echo "path = '$program_path'" > syspath.py
-
-echo "##=================="
-echo "Adding to path..."
-echo "##=================="
-
-echo "Enter Shell file (.bashrc, .zshrc, etc -- INCLUDE THE '.'!)"
-read SHELLFILE
-
-SHELLFILE_CHECK='export PATH="'$program_path'/:$PATH"'
-
-if grep -Fx "$SHELLFILE_CHECK" ~/$SHELLFILE
-then
-	echo "Already in $SHELLFILE, passing"
-else
-	echo 'export PATH="'$program_path'/:$PATH"' >> ~/$SHELLFILE
-	echo "Successfully added to '$SHELLFILE'..."
-fi
-
-
-echo "##=================="
+echo "=================="
 echo "All done! Reboot for the new path to take effect. Then run ./logec-attack.py to start the program!"
 echo "##=================="

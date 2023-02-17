@@ -1,9 +1,9 @@
 import sys
 
 
-from PyQt5.QtSql import QSqlDatabase, QSqlQuery
+from PySide6.QtSql import QSqlDatabase, QSqlQuery
 
-from PyQt5.QtWidgets import (
+from PySide6.QtWidgets import (
 
     QApplication,
 

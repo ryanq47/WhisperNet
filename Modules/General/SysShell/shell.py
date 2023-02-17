@@ -1,11 +1,11 @@
 #Shell
-from PyQt5.QtCore import QRunnable, Qt, QThreadPool, QObject, QThread, pyqtSignal
+from PySide6.QtCore import QRunnable, Qt, QThreadPool, QObject, QThread, Signal
 import subprocess
 
 
 class Shell(QObject):
-    sys_out = pyqtSignal(str)
-    finished = pyqtSignal()
+    sys_out = Signal(str)
+    finished = Signal()
     
     def shell_framework(self, input_list):
         ## Getting User Input:
