@@ -84,6 +84,9 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.thread_manager = QThreadPool()
         #####
         
+        ##### SQL Startup/Init
+        self.sql_global()
+        
         
         self.connected = False
         self.connected_list = []
@@ -371,8 +374,8 @@ class MyApp(QMainWindow, Ui_LogecC3):
         Date = utility.Timestamp.UTC_Date()
         Time = utility.Timestamp.UTC_Time()
         
-        severity = error_list[1]
         error = error_list[0]
+        severity = error_list[1]
         fix = error_list[2]
 
         QMessageBox.critical(
@@ -773,33 +776,6 @@ class MyApp(QMainWindow, Ui_LogecC3):
             self.portscan
         )
 
-    '''
-    def portscan_qthread(self):
-        print('PORTSCNA THREAD STARTER')
-                ## Root Check
-        self.root_check("Portscan")
-        ## quick multiple IP handler
-        try:
-            ip_convert = str(self.portscan_IP.text()).split(',')
-            valid_ip = []
-            for i in ip_convert:
-                i.replace(' ', '')
-                valid_ip.append(i)
-
-            ## Setting vlaues
-
-            for input_ip in valid_ip:
-                print(input_ip)
-                thread = threading.Thread(target=self.portscan, args=(input_ip,))
-                thread.start()
-            print(self.portscan_IP.text())
-            self.portscan(self.portscan_IP.text())
-            
-        
-        except Exception as e:
-            self.ERROR(e, "low", "") '''
-            
-
     def portscan(self, QObject):
         input_ip = self.portscan_IP.text()
         print(input_ip)
@@ -877,6 +853,9 @@ class MyApp(QMainWindow, Ui_LogecC3):
             self.portscan_worker.progress.connect(self.portscan_bar)
             self.portscan_worker.liveports.connect(self.portscan_liveports) #<< not getting triggered'''
 
+            ## Getting results list & writing
+            self.portscan_worker.results_list.connect(self.portscan_database_write)
+
             ## wiping live list
             self.portscan_liveports_browser.setText("")
 
@@ -897,6 +876,26 @@ class MyApp(QMainWindow, Ui_LogecC3):
         for i in ports:
             self.portscan_liveports_browser.append(f"[+] {i}/tcp")
 
+    def portscan_database_write(self, list):
+        print("DB Triggered")
+        try:
+            cursor = self.sqliteConnection.cursor()
+            
+            ## Picked up this trick from chatGPT, basically each item coresponds to the number in list
+            IP, PORT, SCANTYPE, SCANDATE, SCANTIME, RUNTIME, SCANNEDPORTS, DELAY = list
+            
+            sqlite_insert_query = f"""INSERT INTO PortScan (IP, PORT, ScanType, ScanDate, ScanTime, RunTime, ScannedPorts, Delay) 
+            VALUES
+            ({IP}, {str(PORT).replace("{","").replace("}","")}, '{SCANTYPE}', '{SCANDATE}', '{SCANTIME}', '{RUNTIME}', "{SCANNEDPORTS}", '{DELAY}')"""
+            
+            print(sqlite_insert_query)
+
+            cursor.execute(sqlite_insert_query)
+            self.sqliteConnection.commit()
+            cursor.close()
+            
+        except Exception as e:
+            self.ERROR([e, "Medium", "??"])
     ## ========================================
     ## Destructoin PopUps =====================
     ## ========================================
@@ -1693,6 +1692,9 @@ class MyApp(QMainWindow, Ui_LogecC3):
     ## ========================================
     ## SQL Conmn ==============================
     ## ========================================
+    def sql_global(self):
+        self.sqliteConnection = sqlite3.connect(sys_path + '/logec_db')
+
 
     def db_error_write(self, error_list):
         import sqlite3
@@ -1701,9 +1703,9 @@ class MyApp(QMainWindow, Ui_LogecC3):
             # print(insert_list)
             ## Accesing DB in root dir
 
-            sqliteConnection = sqlite3.connect(sys_path + '/logec_db')
+            #sqliteConnection = sqlite3.connect(sys_path + '/logec_db')
 
-            cursor = sqliteConnection.cursor()
+            cursor = self.sqliteConnection.cursor()
 
             ## if append is not true:
             # [severity, error, fix, "time", "date"]
@@ -1713,15 +1715,15 @@ class MyApp(QMainWindow, Ui_LogecC3):
             ("{error_list[0]}", "{error_list[1]}", "{error_list[2]}", '{error_list[3]}', '{error_list[4]}')"""
 
             count = cursor.execute(sqlite_insert_query)
-            sqliteConnection.commit()
+            self.sqliteConnection.commit()
             cursor.close()
 
         except sqlite3.Error as error:
             print('Error:', error)
 
-        finally:
-            if sqliteConnection:
-                sqliteConnection.close()
+        #finally:
+            #if self.sqliteConnection:
+                #self.sqliteConnection.close()
 
         self.custom_query('performance_error_db')
 

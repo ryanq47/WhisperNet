@@ -1,3 +1,5 @@
+## Need to rewrite allll of this to get it up to par
+
 from logging import getLogger, ERROR
 getLogger("scapy.runtime").setLevel(ERROR)
 
@@ -10,7 +12,7 @@ import sqlite3
 import os.path
 from telnetlib import Telnet
 
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, wait
 import Modules.General.utility as utility
 
 
@@ -24,6 +26,8 @@ class Portscan(QObject):
     finished = Signal()
     progress = Signal(int)
     liveports = Signal(list)
+    
+    results_list = Signal(list)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -36,7 +40,8 @@ class Portscan(QObject):
         
         
     def clean(self):
-        self.open_port_list = []
+        pass
+        #self.open_port_list = []
     
     @Slot()
     def scan_framework(self, target_list, scantype):
@@ -94,55 +99,55 @@ class Portscan(QObject):
         
         print(self.host)
         
+        
         with ThreadPoolExecutor() as executor:
-            print("started threadpool")
+            print("started threadpool - this")
             # submit the scan_port function for each port in the ports_to_scan list
             if scantype[0]: #Telnet Standard
-                standard_futures = [executor.submit(self.telnet_standard_scan, self.host, port, scantype[-1], self.delay) for port in ports_to_scan]
+                ## starting timer
                 standard_P = utility.Performance()
                 standard_P.start_time()
-
-                for future in standard_futures:
-
-                    future.result()
-
+                
+                ## Running threads
+                futures = [executor.submit(self.telnet_standard_scan, self.host, port, scantype[-1], self.delay) for port in ports_to_scan]
+                
+                print("Threads done")
+                
+                done, not_done = wait(futures, timeout=2)
+                
+                ## Timer end
                 self.final_time = standard_P.end_time()
-
-                
+                print("Post timer end")
+            
             if scantype[1]: #Scapy stealth
-                #self.stealth_scan(self.host, ports_to_scan)
-                
-                stealth_futures = [executor.submit(self.stealth_scan, self.host, port, scantype[-1], self.delay) for port in ports_to_scan]
+                # Getting timer
                 stealth_P = utility.Performance()
                 stealth_P.start_time()
                 
-                for future in stealth_futures:
-                    future.result()  
-                    #print("1")     
+                ## Running threads
+                [executor.submit(self.stealth_scan, self.host, port, scantype[-1], self.delay) for port in ports_to_scan]
+                
+                ## Timer end
                 self.final_time = stealth_P.end_time()
-                
-            # wait for all the futures to complete
-            '''
-            if scantype[2]: #Scapy fast
-                fast_futures = [executor.submit(self.fast_scan, self.host, port, scantype[-1]) for port in ports_to_scan]
-                fast_P = utility.Performance()
-                fast_P.start_time()
-                
-                
-                for future in fast_futures:
-                    future.result() 
-                    #print("2")    
-                self.final_time = fast_P.end_time()'''
-        print(self.open_port_list)
-        
-        #print(self.stealth_scan_status)
-        ## Need to return/emit this as a list back to the main program
-        database_write(f"'{open_list[0]}'", self.scantype, Date, Time,  self.final_time, ScannedPorts, {str(set(self.open_port_list))}, str(self.delay).replace("[","").replace("]","").replace(",","-")) #[1:] means to end of list
-        self.clean()
-        ## Emiting that program is done
-        #self.progress.emit(100)
-        print("emiting finish")
-        self.finished.emit()    
+
+            print("Open Ports:")
+            print(self.open_port_list)
+            
+            #{str(set(self.open_port_list))}
+            
+            print("Emitted results_list")
+            
+            #self.clean()
+            ## Emiting that program is done
+            #self.progress.emit(100
+            # )
+            
+            #time.sleep(1)
+            print(self.open_port_list)
+            self.results_list.emit([f"'{open_list[0]}'", {str(self.open_port_list)}, self.scantype, Date, Time,  self.final_time, ScannedPorts, str(self.delay).replace("[","").replace("]","").replace(",","-")])
+            print("emiting finish")
+            print(self.open_port_list)
+            self.finished.emit()    
 
     ##########
     # Telnet Scans
@@ -159,7 +164,9 @@ class Portscan(QObject):
         try:
             #with Telnet(ip, port, timeout_time) as tn:
             tn = Telnet(ip, port)
+            
             self.open_port_list.append(port)
+            print(self.open_port_list)
             self.liveports.emit(self.open_port_list)
             tn.close()
         except Exception as e:
@@ -196,36 +203,8 @@ class Portscan(QObject):
         
         time.sleep(random.uniform(delay[0], delay[1]))
 
-    '''
-    def fast_scan(self, ip, port, timeout_time):
-        srcport = RandShort()
-        conf.verb = 0
-        self.scantype = f"Fast ({float(timeout_time)} S)"
-        
-        try:
-            SYNACKpkt = sr1(IP(dst = ip)/TCP(sport = srcport, dport = port, flags = "S"), timeout = float(timeout_time)) ##<< This is what makes this the fast scan
-            if SYNACKpkt == None:
-                pktflags = None
-            else:
-                pktflags = SYNACKpkt.getlayer(TCP).flags
-                
-        except Exception as e:
-            pktflags = None
-            print(e)
-            
-        if pktflags == SYNACK:
-            print(f"{port}/tcp is open")
-            self.open_port_list.append(port)
 
-        self.scan_progress = self.scan_progress + 1
-        self.progress.emit(int(self.scan_progress / self.maxport * 100))  '''
-            
-            
-#P = Portscan()
-#P.scan_framework(["192.168.0.1", 1, 65535,"0"], "Stealth")
-
-
-
+'''
 ## For later - also put the input as a list
 def database_write(IP, SCANTYPE, SCANDATE, SCANTIME, RUNTIME, SCANNEDPORTS, PORT, DELAY):
     try:
@@ -257,4 +236,4 @@ def database_write(IP, SCANTYPE, SCANDATE, SCANTIME, RUNTIME, SCANNEDPORTS, PORT
     finally:
         if sqliteConnection:
             sqliteConnection.close()
-            #print("The SQLite connection is closed")
+            #print("The SQLite connection is closed")'''
