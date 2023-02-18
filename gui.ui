@@ -2668,7 +2668,7 @@ p, li { white-space: pre-wrap; }
             <item row="4" column="2">
              <widget class="QLineEdit" name="bruteforce_passdir">
               <property name="text">
-               <string>Modules/General/Bruteforce/Wordlists/SecList-Default-Passwords</string>
+               <string>/home/kali/Documents/passlist</string>
               </property>
              </widget>
             </item>
@@ -2840,7 +2840,7 @@ p, li { white-space: pre-wrap; }
             <item row="4" column="0">
              <widget class="QLineEdit" name="bruteforce_userdir">
               <property name="text">
-               <string>Modules/General/Bruteforce/Wordlists/SecList-top1-short-usernames</string>
+               <string>/home/kali/Documents/userlist</string>
               </property>
              </widget>
             </item>
@@ -4039,7 +4039,7 @@ p, li { white-space: pre-wrap; }
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_10">
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tab_33">
            <attribute name="title">
@@ -4383,7 +4383,7 @@ p, li { white-space: pre-wrap; }
                    <enum>QTabWidget::West</enum>
                   </property>
                   <property name="currentIndex">
-                   <number>0</number>
+                   <number>1</number>
                   </property>
                   <widget class="QWidget" name="tab_49">
                    <attribute name="title">
@@ -4420,8 +4420,23 @@ p, li { white-space: pre-wrap; }
                   </widget>
                   <widget class="QWidget" name="tab_50">
                    <attribute name="title">
-                    <string>Tab 2</string>
+                    <string>Fuzzer</string>
                    </attribute>
+                   <layout class="QGridLayout" name="gridLayout_46">
+                    <item row="0" column="0">
+                     <widget class="QTextEdit" name="textEdit_22">
+                      <property name="html">
+                       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Database: &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This database works differently than the rest. The others store all current, and past data gathered by the tool, but for the fuzzer, it only stores your most recent fuzz (One entry per attempt). The rationale is that you may be fuzzing hundreds, if not thousands of URL's, and a per-attempt entry makes it easier to sort through with SQL queries. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                  </widget>
                 </item>

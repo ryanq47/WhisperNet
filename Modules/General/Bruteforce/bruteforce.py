@@ -34,6 +34,8 @@ class Bruteforce(QObject):
     current_batch = Signal(list)
     num_of_batches = Signal(list)
     errlog = Signal(str)
+    
+    results_list = Signal(list)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -59,6 +61,21 @@ class Bruteforce(QObject):
         ## Done as a tuple to reduce mem size + so it can be appended
         self.good_creds.append((username, password))
         self.goodcreds.emit(self.good_creds)
+    
+    def db_write(self):
+        good_creds = ""
+        for i in self.good_creds:
+            good_creds = good_creds + f"{i[0]}:{i[1]}, "
+        
+        print("DB Write")
+        self.results_list.emit([
+            self.IP,
+            self.port,
+            self.protocol,
+            good_creds,
+            self.Time,
+            self.Date
+        ])
 
     def thread_quit(self):
         print("EXIT")
@@ -104,7 +121,7 @@ class Bruteforce(QObject):
             
             self.IP = input_list[0]
             self.port = input_list[1]
-            protocol = input_list[2]
+            self.protocol = input_list[2]
             user_wordlist_dir = input_list[3]
             pass_wordlist_dir = input_list[4]
             self.delay = input_list[5]
@@ -119,7 +136,6 @@ class Bruteforce(QObject):
             
             ## Results list
             self.results_dir_list = []
-            
             
             ## Creating target list - I know I could just use the input_list, however this cuts down on the amount of arguments I need to enter in each method
             #target_list = [ip, port, delay]
@@ -155,10 +171,14 @@ class Bruteforce(QObject):
                 
             ## Deciding which processor to use
                 #print(batch)     
-                if protocol == "SSH":
+                if self.protocol == "SSH":
                     self.ssh_processor(batch)
-                if protocol == "FTP":
+                if self.protocol == "FTP":
                     self.ftp_processor(batch)
+        
+        ## Returning Final values to write to DB
+        #print("Emmiting final")
+        self.db_write()
                     
     def ssh_processor(self, batch):
         with ThreadPoolExecutor(max_workers=self.max_threads) as executor:
@@ -171,6 +191,7 @@ class Bruteforce(QObject):
             #print("BatchQueued")
             ssh_thread.result()
             self.done = True
+            #self.db_write()
             #self.H.sys_notification(["TITLE",f"FTP Bruteforce Completed\n {len(self.good_creds)} valid credential(s) found!"])
 
     def ftp_processor(self, batch):
@@ -181,10 +202,14 @@ class Bruteforce(QObject):
                 #print(i)##<< prints each attempt
                 ftp_thread = executor.submit(self.ftp, i)
                     
-            #print("BatchDone")
-            ftp_thread.result()
-            self.done = True
+            print("BatchDone")
 
+            ftp_thread.result()
+            #print("Done")
+            self.done = True
+            #print("Starting write")
+            #self.db_write()
+            
     def ftp(self, creds):
         username = creds[0]
         password = creds[1]
@@ -319,6 +344,7 @@ class Fuzzer(QObject):
     num_of_batches = Signal(list)
     errlog = Signal(str)
 
+    results_list = Signal(list)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -348,6 +374,21 @@ class Fuzzer(QObject):
         self.good_dir_list.append(dir)
         self.gooddir.emit(self.good_dir_list)
         
+        
+    def db_write(self, list):
+        
+        print("DB Write")
+        self.results_list.emit([
+            list[0],
+            list[1],
+            list[2],
+            list[3],
+            list[4],
+            list[5],
+            list[6]
+        ])
+
+
     def thread_quit(self):
         print("EXIT")
         self.thread_quit = True
@@ -454,7 +495,18 @@ class Fuzzer(QObject):
             for i in self.validresponsec0de:
                 #print(i)
                 if i in str(r.status_code):
-                    #print("SUCCESS" + i)
+                    
+                    ## Writing success to db
+                    self.db_write([
+                        raw_url,
+                        port,
+                        str(r.status_code),
+                        fuzzvalue,
+                        target_url,
+                        self.Time,
+                        self.Date
+                    ])
+                    
                     if self.show_full_url == True:
                         self.success(target_url)
                     else:

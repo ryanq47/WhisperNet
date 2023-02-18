@@ -1220,43 +1220,12 @@ class MyApp(QMainWindow, Ui_LogecC3):
                 self.dns_table.setItem(row, 0, QTableWidgetItem(i))
                 self.dns_table.setRowHeight(row, 13)
                 row = row + 1
-
-    ## Bruteforce
-    #def bruteforce_thread(self):
-        #bf_thread = threading.Thread(target=self.bruteforce)
-        #bf_thread.start()
-
-    def bruteforce_old(self):
-        ##init class object
-        B = Bruteforce()
-        
-        input_list = [
-            self.bruteforce_target.text(), 
-            self.bruteforce_port.text(),
-            self.bruteforce_protocol.currentText(),
-            self.bruteforce_userdir.text(),
-            self.bruteforce_passdir.text(),
-            self.bruteforce_urldir.text(),
-            ]
-        
-        self.bruteforce_start.setText("-->> Bruteforcing... <<--")
-        B.framework(self, input_list)
-        self.bruteforce_start.setText("-->> Done! Bruteforce again? <<--")
-        
-        '''        
-        ip = input_list[0]
-        port = input_list[1]
-        protocol = input_list[2]
-        user_wordlist_dir = input_list[3]
-        pass_wordlist_dir = input_list[4]'''
-        
-        ## Showing DB on page
-        self.DB_Query_scanning_bruteforce.setText('SELECT * FROM RedditResults')
-        self.custom_query('bruteforce_db')
-        #
-        #
+                
+                
+    ## ========================================
+    ## BruteForce Tab ==================
+    ## ========================================
     ## Bruteforce Creds
-    #@Slot()
     def bruteforce(self):
         
         try:
@@ -1311,6 +1280,9 @@ class MyApp(QMainWindow, Ui_LogecC3):
             # Good Creds
             self.bruteforce_worker.goodcreds.connect(self.live_goodcreds_box)
             self.bruteforce_goodcreds.setText("")
+            
+            ## Write to DB
+            self.bruteforce_worker.results_list.connect(self.bruteforce_database_write)
             
             # Starting Thread
             #self.bruteforce_thread.start()
@@ -1401,7 +1373,28 @@ class MyApp(QMainWindow, Ui_LogecC3):
                 f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
                 "SecList-top1-short-usernames"
             ])
+
+    def bruteforce_database_write(self, list):
+        print("DB Triggered")
+        try:
+            cursor = self.sqliteConnection.cursor()
             
+            ## Picked up this trick from chatGPT, basically each item coresponds to the number in list
+            TARGET, PORT, SERVICE, CREDS, TIME, DATE = list
+            
+            sqlite_insert_query = f"""INSERT INTO 'BRUTEFORCE-Creds' (Target, Port, Service, Credentials, Time, Date) 
+            VALUES
+            ('{TARGET}', '{str(PORT).replace("{","").replace("}","")}', '{SERVICE}', '{CREDS}', '{TIME}', '{DATE}' )"""
+            
+            print(sqlite_insert_query)
+
+            cursor.execute(sqlite_insert_query)
+            self.sqliteConnection.commit()
+            cursor.close()
+            
+        except Exception as e:
+            self.ERROR([e, "Medium", "??"])
+   
     ## Fuzzer
     def bruteforce_fuzzer(self):
         
@@ -1450,6 +1443,9 @@ class MyApp(QMainWindow, Ui_LogecC3):
             # Good Creds
             self.fuzzer_worker.gooddir.connect(self.fuzz_live_gooddir_box)
             self.bruteforce_fuzz_gooddir_gui.setText("")
+            
+            # DB write
+            self.fuzzer_worker.results_list.connect(self.bruteforce_fuzz_database_write)
         
         except ValueError as ve:
             self.ERROR([ve, "low", "Make sure all respective fields are filled"])
@@ -1537,7 +1533,29 @@ class MyApp(QMainWindow, Ui_LogecC3):
                 "https://shorturl.at/ryQV5",
                 f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
                 "SecList-top1-short-usernames"
-            ])  
+            ])
+
+    def bruteforce_fuzz_database_write(self, list):
+        print("BF Fuzzer DB Triggered")
+        try:
+            cursor = self.sqliteConnection.cursor()
+            
+            ## Picked up this trick from chatGPT, basically each item coresponds to the number in list
+            TARGET, PORT, CODE,SHORT_URL, LONG_URL, TIME, DATE = list
+            
+            sqlite_insert_query = f"""INSERT INTO 'BRUTEFORCE-Fuzzer' (Target, Port, Code, Short_Url, Long_Url, Time, Date) 
+            VALUES
+            ('{TARGET}', '{str(PORT).replace("{","").replace("}","")}', '{CODE}', '{SHORT_URL}', '{LONG_URL}', '{TIME}', '{DATE}' )"""
+            
+            print(sqlite_insert_query)
+
+            cursor.execute(sqlite_insert_query)
+            self.sqliteConnection.commit()
+            cursor.close()
+            
+        except Exception as e:
+            self.ERROR([e, "Medium", "??"])
+            
     ## ========================================
     ## OSINT Tab ==============================
     ## ========================================

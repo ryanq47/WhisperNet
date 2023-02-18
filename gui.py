@@ -2605,7 +2605,7 @@ class Ui_LogecC3(object):
 
         self.retranslateUi(LogecC3)
 
-        self.tabWidget.setCurrentIndex(8)
+        self.tabWidget.setCurrentIndex(5)
         self.text_PortScan_tab.setCurrentIndex(0)
         self.bruteforce_panel_2.setCurrentIndex(0)
         self.text_PortScan_tab_2.setCurrentIndex(2)
@@ -2614,7 +2614,7 @@ class Ui_LogecC3(object):
         self.tabWidget_3.setCurrentIndex(1)
         self.tabWidget_8.setCurrentIndex(1)
         self.tabWidget_9.setCurrentIndex(0)
-        self.tabWidget_6.setCurrentIndex(1)
+        self.tabWidget_6.setCurrentIndex(0)
         self.bruteforce_panel.setCurrentIndex(0)
         self.tabWidget_14.setCurrentIndex(1)
         self.bruteforce_download_seclist_topshort.setDefault(False)
@@ -3054,7 +3054,7 @@ class Ui_LogecC3(object):
         self.bruteforce_stop.setText(QCoreApplication.translate("LogecC3", u"-->> Stop Bruteforce <<--", None))
         self.label_71.setText(QCoreApplication.translate("LogecC3", u"Batch Size (May not need)", None))
         self.bruteforce_start.setText(QCoreApplication.translate("LogecC3", u"-->> Start Bruteforce <<--", None))
-        self.bruteforce_passdir.setText(QCoreApplication.translate("LogecC3", u"Modules/General/Bruteforce/Wordlists/SecList-Default-Passwords", None))
+        self.bruteforce_passdir.setText(QCoreApplication.translate("LogecC3", u"/home/kali/Documents/passlist", None))
         self.comboBox_5.setItemText(0, QCoreApplication.translate("LogecC3", u"Aggresive (Batch size: 100, Threads: 100, Delay: 1 Sec)", None))
 
         self.label_55.setText(QCoreApplication.translate("LogecC3", u"Threads", None))
@@ -3096,7 +3096,7 @@ class Ui_LogecC3(object):
 
         self.label_142.setText(QCoreApplication.translate("LogecC3", u"Port (Optional)", None))
         self.label_150.setText(QCoreApplication.translate("LogecC3", u"Progress", None))
-        self.bruteforce_userdir.setText(QCoreApplication.translate("LogecC3", u"Modules/General/Bruteforce/Wordlists/SecList-top1-short-usernames", None))
+        self.bruteforce_userdir.setText(QCoreApplication.translate("LogecC3", u"/home/kali/Documents/userlist", None))
         self.label_147.setText(QCoreApplication.translate("LogecC3", u"Password Directory", None))
         self.label_149.setText(QCoreApplication.translate("LogecC3", u"Current Attempts:", None))
         self.DB_Query_scanning_bruteforce.setText("")
