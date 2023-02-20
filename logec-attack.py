@@ -90,20 +90,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
         ##### SQL Startup/Init
         self.sql_global()
         
-        ##### Performance Tab Inits
-        self.other_cpu_scene = QGraphicsScene()
-        self.other_cpu_performance.setScene(self.other_cpu_scene)
-        #self.other_cpu_scene.setSceneRect(0, 0, 1000, 200)
-        self.other_ram_scene = QGraphicsScene()
-        self.other_ram_performance.setScene(self.other_ram_scene)
-        
-        self.cpu_data = []
-        self.ram_data = []
-        self.Perf = utility.Performance()
-        self.x = 0
-        self.draw_graph_refresh()
-        #####
-        
+        ## Need to move this
         self.connected = False
         self.connected_list = []
 
@@ -163,6 +150,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
 
         ## debug:
         self.actionDEBUG.triggered.connect(self.DEBUG)
+        self.actionRELOAD.triggered.connect(self.restart)
 
         ## SQL
 
@@ -200,9 +188,6 @@ class MyApp(QMainWindow, Ui_LogecC3):
         )
         self.table_QueryDB_Button_osint_reddit.setShortcut('Return')
 
-        
-        
-        
         ## Data Tab
         # == SQL
         self.actionHelp_Menu_DB.triggered.connect(self.help_shortcut)
@@ -283,14 +268,31 @@ class MyApp(QMainWindow, Ui_LogecC3):
 
         ## other
         ## == Perf Tab
+        
+        ##### Performance Tab Inits
+        self.other_cpu_scene = QGraphicsScene()
+        self.other_cpu_performance.setScene(self.other_cpu_scene)
+        #self.other_cpu_scene.setSceneRect(0, 0, 1000, 200)
+        self.other_ram_scene = QGraphicsScene()
+        self.other_ram_performance.setScene(self.other_ram_scene)
+        
+        self.cpu_data = []
+        self.ram_data = []
+        self.Perf = utility.Performance()
+        self.x = 0
+        self.draw_graph_refresh()
+        #####
+        
+        ##### SQL Refresh
         self.table_RefreshDB_Button_performance.clicked.connect(
             lambda: self.custom_query('performance_error_db')
         )
 
-        ## Performance
+        ## network speed test
         self.performance_speedtest.clicked.connect(
             self.performance_networkspeed
         )
+        ## Benchmark
         self.performance_benchmark_button.clicked.connect(self.performance_benchmark)
 
         ## Settings
@@ -366,12 +368,20 @@ class MyApp(QMainWindow, Ui_LogecC3):
         ## Loading Settings
         self.edit_settings()
 
-        ## Starting performacne tab
-        self.performance()
-
         ## Once loaded, setting startlist to 1
         self.startlist = self.startlist = 1
+        
+    ## ========================================
+    ## Program Restart==================
+    ## ========================================
 
+    def restart(self):
+        # Restart the Python interpreter
+        args = sys.argv[:]
+        args.insert(0, sys.executable)
+        self.close()
+        sys.exit(os.spawnvp(os.P_WAIT, sys.executable, args))
+        
     ## ========================================
     ## Error, Checks & Debug ==================
     ## ========================================
@@ -1696,7 +1706,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
         ## Defining Pen        
         pen = QPen()
         pen.setWidth(1)
-        pen.setColor(Qt.white)
+        pen.setColor(Qt.blue)
 
         ## Gather data from system
        
@@ -1710,6 +1720,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
 
         ## RAM
         ram_y = self.Perf.RAM_all()
+        ram_usage = self.Perf.RAM_HumanReadable()
 
         # Append Data to list (Note, should probably clear after so long for memory reasons)
         self.cpu_data.append((self.x, (cpu_y*-1))) ## negative for properly facing graph (was inverted)
@@ -1753,7 +1764,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             x2, y2 = self.ram_data[i]
             self.other_ram_scene.addLine(x1, y1, x2, y2, pen)
             
-            ram_percent = QGraphicsTextItem(f"{ram_y}%")
+            ram_percent = QGraphicsTextItem(f"{ram_y}%, {ram_usage}")
             ram_percent.setPos(x2, y2)
             self.other_ram_scene.addItem(ram_percent)
         
@@ -1770,26 +1781,6 @@ class MyApp(QMainWindow, Ui_LogecC3):
                 0, 
                 self.other_ram_performance.height()
             )
-
-    
-    def performance(self):
-        p_thread = threading.Thread(target=self.p_thread)
-        # thread = threading.Thread(target=self.listen_popup())
-
-        p_thread.start()
-
-    def p_thread(self):
-        u = utility.Performance()
-        while True:
-            ## Current System CPU
-            current_cpu_all = u.CPU_all()
-            self.other_performance_cpuall.setValue(int(current_cpu_all))
-
-            ## Current system RAM
-            current_ramusage_all = u.RAM_all()
-            self.other_performance_ramall.setValue(int(current_ramusage_all))
-
-            time.sleep(1)
 
     def performance_networkspeed(self):
         # print("CLICKED")

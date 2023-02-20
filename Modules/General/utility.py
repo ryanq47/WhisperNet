@@ -57,6 +57,12 @@ class Performance(QObject):
         self.p = int((psutil.virtual_memory()[2]))
         #print(self.p)
         return self.p
+    
+    def RAM_HumanReadable(self):
+        mem = psutil.virtual_memory().used
+        mem_str = psutil._common.bytes2human(mem)
+        
+        return mem_str
         
     def RAM_program(self):
         p = psutil.Process(self.PID)

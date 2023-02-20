@@ -104,6 +104,8 @@ class Ui_LogecC3(object):
         self.actionPort_Scan.setObjectName(u"actionPort_Scan")
         self.actionError_DB = QAction(LogecC3)
         self.actionError_DB.setObjectName(u"actionError_DB")
+        self.actionRELOAD = QAction(LogecC3)
+        self.actionRELOAD.setObjectName(u"actionRELOAD")
         self.centralwidget = QWidget(LogecC3)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout_4 = QGridLayout(self.centralwidget)
@@ -493,7 +495,7 @@ class Ui_LogecC3(object):
 
         self.progressBar = QProgressBar(self.tab_39)
         self.progressBar.setObjectName(u"progressBar")
-        self.progressBar.setValue(24)
+        self.progressBar.setValue(0)
 
         self.gridLayout_30.addWidget(self.progressBar, 6, 0, 1, 4)
 
@@ -539,7 +541,7 @@ class Ui_LogecC3(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 72, 16))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 1282, 561))
         self.label_11 = QLabel(self.scrollAreaWidgetContents_2)
         self.label_11.setObjectName(u"label_11")
         self.label_11.setGeometry(QRect(10, 10, 66, 19))
@@ -619,7 +621,7 @@ class Ui_LogecC3(object):
 
         self.progressBar_2 = QProgressBar(self.tab_12)
         self.progressBar_2.setObjectName(u"progressBar_2")
-        self.progressBar_2.setValue(24)
+        self.progressBar_2.setValue(0)
 
         self.gridLayout_8.addWidget(self.progressBar_2, 3, 0, 1, 3)
 
@@ -900,7 +902,7 @@ class Ui_LogecC3(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1395, 620))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1282, 569))
         self.dashboard_portscan_IP = QLineEdit(self.scrollAreaWidgetContents)
         self.dashboard_portscan_IP.setObjectName(u"dashboard_portscan_IP")
         self.dashboard_portscan_IP.setGeometry(QRect(10, 40, 211, 27))
@@ -965,7 +967,7 @@ class Ui_LogecC3(object):
 
         self.progressBar_8 = QProgressBar(self.tab_24)
         self.progressBar_8.setObjectName(u"progressBar_8")
-        self.progressBar_8.setValue(24)
+        self.progressBar_8.setValue(0)
 
         self.gridLayout_22.addWidget(self.progressBar_8, 3, 0, 1, 2)
 
@@ -994,7 +996,7 @@ class Ui_LogecC3(object):
 
         self.stealth_bar = QProgressBar(self.tab_23)
         self.stealth_bar.setObjectName(u"stealth_bar")
-        self.stealth_bar.setValue(88)
+        self.stealth_bar.setValue(0)
 
         self.gridLayout_18.addWidget(self.stealth_bar, 1, 7, 1, 1)
 
@@ -2811,6 +2813,7 @@ class Ui_LogecC3(object):
         self.menubar.addAction(self.menuData.menuAction())
         self.menubar.addAction(self.menu_GettingStarted.menuAction())
         self.menuFile.addAction(self.actionDEBUG)
+        self.menuFile.addAction(self.actionRELOAD)
         self.menuTarget.addAction(self.action_Target_Listen)
         self.menuTarget.addAction(self.menu_Target_Info.menuAction())
         self.menuTarget.addAction(self.menu_Target_SpawnShell.menuAction())
@@ -2853,9 +2856,9 @@ class Ui_LogecC3(object):
         self.bruteforce_panel_2.setCurrentIndex(0)
         self.text_PortScan_tab_2.setCurrentIndex(2)
         self.tabWidget_5.setCurrentIndex(0)
-        self.osint_dork.setCurrentIndex(2)
+        self.osint_dork.setCurrentIndex(3)
         self.tabWidget_3.setCurrentIndex(1)
-        self.tabWidget_8.setCurrentIndex(1)
+        self.tabWidget_8.setCurrentIndex(2)
         self.tabWidget_9.setCurrentIndex(0)
         self.tabWidget_6.setCurrentIndex(1)
         self.bruteforce_panel.setCurrentIndex(0)
@@ -2867,7 +2870,7 @@ class Ui_LogecC3(object):
         self.bruteforce_download_seclist_top10mil_usernames_4.setDefault(False)
         self.bruteforce_download_seclist_topshort_4.setDefault(False)
         self.bruteforce_download_seclist_top10mil_usernames_5.setDefault(False)
-        self.tabWidget_2.setCurrentIndex(2)
+        self.tabWidget_2.setCurrentIndex(4)
         self.tabWidget_4.setCurrentIndex(1)
         self.tabWidget_10.setCurrentIndex(1)
         self.tabWidget_16.setCurrentIndex(2)
@@ -2913,6 +2916,7 @@ class Ui_LogecC3(object):
         self.actionOther_More_Cool_DB.setText(QCoreApplication.translate("LogecC3", u"Other More Cool DB", None))
         self.actionPort_Scan.setText(QCoreApplication.translate("LogecC3", u"Port Scan", None))
         self.actionError_DB.setText(QCoreApplication.translate("LogecC3", u"Error DB", None))
+        self.actionRELOAD.setText(QCoreApplication.translate("LogecC3", u"Reload", None))
         self.status_data_IPADDR.setText(QCoreApplication.translate("LogecC3", u"N/A", None))
         self.label.setText(QCoreApplication.translate("LogecC3", u"send '!quit' to disconnect", None))
         self.status_label_IPADDR.setText(QCoreApplication.translate("LogecC3", u"External IP:", None))
@@ -3532,6 +3536,9 @@ class Ui_LogecC3(object):
         self.label_45.setText(QCoreApplication.translate("LogecC3", u"Program Ram Usage:", None))
         self.label_19.setText(QCoreApplication.translate("LogecC3", u"Ping (MS)", None))
         self.tabWidget_10.setTabText(self.tabWidget_10.indexOf(self.tab_33), QCoreApplication.translate("LogecC3", u"Performance/Health", None))
+#if QT_CONFIG(tooltip)
+        self.other_cpu_performance.setToolTip(QCoreApplication.translate("LogecC3", u"If 'N/A' shows up for temp, then your OS cannot read the CPU Temp, most likely due to a virtual machine", None))
+#endif // QT_CONFIG(tooltip)
         self.label_14.setText(QCoreApplication.translate("LogecC3", u"System CPU Usage", None))
         self.label_84.setText(QCoreApplication.translate("LogecC3", u"Ping (MS)", None))
         self.label_85.setText(QCoreApplication.translate("LogecC3", u"SpeedTest", None))
@@ -3544,11 +3551,11 @@ class Ui_LogecC3(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Process List?</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
         self.label_91.setText(QCoreApplication.translate("LogecC3", u"Benchmarks", None))
-        self.checkBox_23.setText(QCoreApplication.translate("LogecC3", u"Count to 10 Million", None))
+        self.checkBox_23.setText(QCoreApplication.translate("LogecC3", u"Count to 10 Million (Single Thread)", None))
         self.label_83.setText(QCoreApplication.translate("LogecC3", u"External IP:  123.456.111.333", None))
         self.label_82.setText(QCoreApplication.translate("LogecC3", u"Local IP: 123.456.444.222", None))
         self.performance_seconds_2.setText(QCoreApplication.translate("LogecC3", u"6.16", None))
-        self.checkBox_24.setText(QCoreApplication.translate("LogecC3", u"Some Fancy Benchmark or math", None))
+        self.checkBox_24.setText(QCoreApplication.translate("LogecC3", u"Multi Thread", None))
         self.textEdit_23.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
