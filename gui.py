@@ -2074,10 +2074,10 @@ class Ui_LogecC3(object):
         self.tab_33.setObjectName(u"tab_33")
         self.gridLayout_24 = QGridLayout(self.tab_33)
         self.gridLayout_24.setObjectName(u"gridLayout_24")
-        self.table_RefreshDB_Button_performance = QPushButton(self.tab_33)
-        self.table_RefreshDB_Button_performance.setObjectName(u"table_RefreshDB_Button_performance")
+        self.table_RefreshDB_Button_performance2 = QPushButton(self.tab_33)
+        self.table_RefreshDB_Button_performance2.setObjectName(u"table_RefreshDB_Button_performance2")
 
-        self.gridLayout_24.addWidget(self.table_RefreshDB_Button_performance, 21, 0, 1, 1)
+        self.gridLayout_24.addWidget(self.table_RefreshDB_Button_performance2, 21, 0, 1, 1)
 
         self.line_10 = QFrame(self.tab_33)
         self.line_10.setObjectName(u"line_10")
@@ -2202,10 +2202,10 @@ class Ui_LogecC3(object):
 
         self.gridLayout_24.addWidget(self.other_performance_ramall, 5, 0, 1, 1)
 
-        self.table_SQLDB_performance_error = QTableWidget(self.tab_33)
-        self.table_SQLDB_performance_error.setObjectName(u"table_SQLDB_performance_error")
+        self.table_SQLDB_performance_error2 = QTableWidget(self.tab_33)
+        self.table_SQLDB_performance_error2.setObjectName(u"table_SQLDB_performance_error2")
 
-        self.gridLayout_24.addWidget(self.table_SQLDB_performance_error, 18, 0, 1, 1)
+        self.gridLayout_24.addWidget(self.table_SQLDB_performance_error2, 18, 0, 1, 1)
 
         self.line_19 = QFrame(self.tab_33)
         self.line_19.setObjectName(u"line_19")
@@ -2268,179 +2268,230 @@ class Ui_LogecC3(object):
         self.tabWidget_10.addTab(self.tab_33, "")
         self.tab_52 = QWidget()
         self.tab_52.setObjectName(u"tab_52")
-        self.gridLayout_54 = QGridLayout(self.tab_52)
-        self.gridLayout_54.setObjectName(u"gridLayout_54")
-        self.label_14 = QLabel(self.tab_52)
-        self.label_14.setObjectName(u"label_14")
-
-        self.gridLayout_54.addWidget(self.label_14, 0, 0, 1, 1)
-
-        self.testgraph = QGraphicsView(self.tab_52)
-        self.testgraph.setObjectName(u"testgraph")
-
-        self.gridLayout_54.addWidget(self.testgraph, 1, 0, 1, 10)
-
-        self.label_80 = QLabel(self.tab_52)
-        self.label_80.setObjectName(u"label_80")
-
-        self.gridLayout_54.addWidget(self.label_80, 2, 0, 1, 1)
-
-        self.testgraph_2 = QGraphicsView(self.tab_52)
-        self.testgraph_2.setObjectName(u"testgraph_2")
-
-        self.gridLayout_54.addWidget(self.testgraph_2, 3, 0, 1, 10)
-
-        self.label_81 = QLabel(self.tab_52)
-        self.label_81.setObjectName(u"label_81")
-
-        self.gridLayout_54.addWidget(self.label_81, 4, 0, 1, 1)
-
-        self.testgraph_3 = QGraphicsView(self.tab_52)
-        self.testgraph_3.setObjectName(u"testgraph_3")
-
-        self.gridLayout_54.addWidget(self.testgraph_3, 5, 0, 1, 10)
-
-        self.label_86 = QLabel(self.tab_52)
-        self.label_86.setObjectName(u"label_86")
-        self.label_86.setFont(font3)
-
-        self.gridLayout_54.addWidget(self.label_86, 6, 0, 1, 1)
-
-        self.label_83 = QLabel(self.tab_52)
-        self.label_83.setObjectName(u"label_83")
-
-        self.gridLayout_54.addWidget(self.label_83, 6, 1, 1, 1)
-
+        self.gridLayout_55 = QGridLayout(self.tab_52)
+        self.gridLayout_55.setObjectName(u"gridLayout_55")
         self.line_20 = QFrame(self.tab_52)
         self.line_20.setObjectName(u"line_20")
         self.line_20.setFrameShape(QFrame.VLine)
         self.line_20.setFrameShadow(QFrame.Sunken)
 
-        self.gridLayout_54.addWidget(self.line_20, 6, 2, 10, 1)
+        self.gridLayout_55.addWidget(self.line_20, 8, 1, 1, 1)
 
-        self.label_91 = QLabel(self.tab_52)
-        self.label_91.setObjectName(u"label_91")
-        font9 = QFont()
-        font9.setUnderline(True)
-        font9.setKerning(True)
-        self.label_91.setFont(font9)
+        self.testgraph = QGraphicsView(self.tab_52)
+        self.testgraph.setObjectName(u"testgraph")
 
-        self.gridLayout_54.addWidget(self.label_91, 6, 3, 1, 2)
+        self.gridLayout_55.addWidget(self.testgraph, 1, 0, 1, 2)
 
-        self.line_21 = QFrame(self.tab_52)
-        self.line_21.setObjectName(u"line_21")
-        self.line_21.setFrameShape(QFrame.VLine)
-        self.line_21.setFrameShadow(QFrame.Sunken)
+        self.label_14 = QLabel(self.tab_52)
+        self.label_14.setObjectName(u"label_14")
 
-        self.gridLayout_54.addWidget(self.line_21, 6, 5, 10, 1)
+        self.gridLayout_55.addWidget(self.label_14, 0, 0, 1, 1)
 
-        self.textEdit_29 = QTextEdit(self.tab_52)
-        self.textEdit_29.setObjectName(u"textEdit_29")
-
-        self.gridLayout_54.addWidget(self.textEdit_29, 6, 7, 10, 1)
-
-        self.line_22 = QFrame(self.tab_52)
-        self.line_22.setObjectName(u"line_22")
-        self.line_22.setFrameShape(QFrame.VLine)
-        self.line_22.setFrameShadow(QFrame.Sunken)
-
-        self.gridLayout_54.addWidget(self.line_22, 6, 8, 10, 1)
-
-        self.textEdit_23 = QTextEdit(self.tab_52)
-        self.textEdit_23.setObjectName(u"textEdit_23")
-
-        self.gridLayout_54.addWidget(self.textEdit_23, 6, 9, 10, 1)
-
-        self.label_85 = QLabel(self.tab_52)
-        self.label_85.setObjectName(u"label_85")
-        self.label_85.setFont(font)
-
-        self.gridLayout_54.addWidget(self.label_85, 7, 0, 1, 1)
-
-        self.label_82 = QLabel(self.tab_52)
-        self.label_82.setObjectName(u"label_82")
-
-        self.gridLayout_54.addWidget(self.label_82, 7, 1, 1, 1)
-
-        self.checkBox_23 = QCheckBox(self.tab_52)
-        self.checkBox_23.setObjectName(u"checkBox_23")
-
-        self.gridLayout_54.addWidget(self.checkBox_23, 7, 3, 1, 2)
-
-        self.label_84 = QLabel(self.tab_52)
+        self.tabWidget_16 = QTabWidget(self.tab_52)
+        self.tabWidget_16.setObjectName(u"tabWidget_16")
+        self.tab_75 = QWidget()
+        self.tab_75.setObjectName(u"tab_75")
+        self.gridLayout_54 = QGridLayout(self.tab_75)
+        self.gridLayout_54.setObjectName(u"gridLayout_54")
+        self.label_84 = QLabel(self.tab_75)
         self.label_84.setObjectName(u"label_84")
 
-        self.gridLayout_54.addWidget(self.label_84, 8, 0, 1, 1)
+        self.gridLayout_54.addWidget(self.label_84, 4, 0, 2, 1)
 
-        self.performance_seconds_2 = QLineEdit(self.tab_52)
-        self.performance_seconds_2.setObjectName(u"performance_seconds_2")
-        self.performance_seconds_2.setMaximumSize(QSize(19777, 16777215))
-
-        self.gridLayout_54.addWidget(self.performance_seconds_2, 8, 3, 2, 1)
-
-        self.label_90 = QLabel(self.tab_52)
-        self.label_90.setObjectName(u"label_90")
-
-        self.gridLayout_54.addWidget(self.label_90, 8, 4, 2, 1)
-
-        self.performance_lcd_ping_2 = QLCDNumber(self.tab_52)
-        self.performance_lcd_ping_2.setObjectName(u"performance_lcd_ping_2")
-
-        self.gridLayout_54.addWidget(self.performance_lcd_ping_2, 9, 0, 1, 2)
-
-        self.label_88 = QLabel(self.tab_52)
-        self.label_88.setObjectName(u"label_88")
-
-        self.gridLayout_54.addWidget(self.label_88, 10, 0, 1, 1)
-
-        self.checkBox_24 = QCheckBox(self.tab_52)
-        self.checkBox_24.setObjectName(u"checkBox_24")
-
-        self.gridLayout_54.addWidget(self.checkBox_24, 10, 3, 2, 2)
-
-        self.performance_lcd_upload_2 = QLCDNumber(self.tab_52)
+        self.performance_lcd_upload_2 = QLCDNumber(self.tab_75)
         self.performance_lcd_upload_2.setObjectName(u"performance_lcd_upload_2")
         self.performance_lcd_upload_2.setFrameShape(QFrame.Panel)
         self.performance_lcd_upload_2.setFrameShadow(QFrame.Sunken)
         self.performance_lcd_upload_2.setDigitCount(5)
         self.performance_lcd_upload_2.setProperty("value", 0.000000000000000)
 
-        self.gridLayout_54.addWidget(self.performance_lcd_upload_2, 11, 0, 2, 2)
+        self.gridLayout_54.addWidget(self.performance_lcd_upload_2, 9, 0, 1, 2)
 
-        self.performance_seconds_5 = QLineEdit(self.tab_52)
+        self.label_85 = QLabel(self.tab_75)
+        self.label_85.setObjectName(u"label_85")
+        self.label_85.setFont(font)
+
+        self.gridLayout_54.addWidget(self.label_85, 3, 0, 1, 1)
+
+        self.performance_seconds_5 = QLineEdit(self.tab_75)
         self.performance_seconds_5.setObjectName(u"performance_seconds_5")
         self.performance_seconds_5.setMaximumSize(QSize(19777, 16777215))
 
-        self.gridLayout_54.addWidget(self.performance_seconds_5, 12, 3, 2, 1)
+        self.gridLayout_54.addWidget(self.performance_seconds_5, 8, 3, 1, 1)
 
-        self.label_121 = QLabel(self.tab_52)
+        self.label_121 = QLabel(self.tab_75)
         self.label_121.setObjectName(u"label_121")
 
-        self.gridLayout_54.addWidget(self.label_121, 12, 4, 2, 1)
+        self.gridLayout_54.addWidget(self.label_121, 8, 4, 1, 1)
 
-        self.label_87 = QLabel(self.tab_52)
-        self.label_87.setObjectName(u"label_87")
+        self.line_22 = QFrame(self.tab_75)
+        self.line_22.setObjectName(u"line_22")
+        self.line_22.setFrameShape(QFrame.VLine)
+        self.line_22.setFrameShadow(QFrame.Sunken)
 
-        self.gridLayout_54.addWidget(self.label_87, 13, 0, 1, 1)
+        self.gridLayout_54.addWidget(self.line_22, 0, 7, 14, 1)
 
-        self.performance_lcd_download_2 = QLCDNumber(self.tab_52)
+        self.line_21 = QFrame(self.tab_75)
+        self.line_21.setObjectName(u"line_21")
+        self.line_21.setFrameShape(QFrame.VLine)
+        self.line_21.setFrameShadow(QFrame.Sunken)
+
+        self.gridLayout_54.addWidget(self.line_21, 0, 5, 14, 1)
+
+        self.textEdit_29 = QTextEdit(self.tab_75)
+        self.textEdit_29.setObjectName(u"textEdit_29")
+
+        self.gridLayout_54.addWidget(self.textEdit_29, 0, 6, 14, 1)
+
+        self.label_91 = QLabel(self.tab_75)
+        self.label_91.setObjectName(u"label_91")
+        font9 = QFont()
+        font9.setUnderline(True)
+        font9.setKerning(True)
+        self.label_91.setFont(font9)
+
+        self.gridLayout_54.addWidget(self.label_91, 0, 3, 2, 1)
+
+        self.line_30 = QFrame(self.tab_75)
+        self.line_30.setObjectName(u"line_30")
+        self.line_30.setFrameShape(QFrame.VLine)
+        self.line_30.setFrameShadow(QFrame.Sunken)
+
+        self.gridLayout_54.addWidget(self.line_30, 1, 2, 13, 1)
+
+        self.checkBox_23 = QCheckBox(self.tab_75)
+        self.checkBox_23.setObjectName(u"checkBox_23")
+
+        self.gridLayout_54.addWidget(self.checkBox_23, 3, 3, 1, 2)
+
+        self.performance_lcd_ping_2 = QLCDNumber(self.tab_75)
+        self.performance_lcd_ping_2.setObjectName(u"performance_lcd_ping_2")
+
+        self.gridLayout_54.addWidget(self.performance_lcd_ping_2, 6, 0, 1, 2)
+
+        self.label_83 = QLabel(self.tab_75)
+        self.label_83.setObjectName(u"label_83")
+
+        self.gridLayout_54.addWidget(self.label_83, 1, 1, 1, 1)
+
+        self.label_82 = QLabel(self.tab_75)
+        self.label_82.setObjectName(u"label_82")
+
+        self.gridLayout_54.addWidget(self.label_82, 3, 1, 1, 1)
+
+        self.performance_seconds_2 = QLineEdit(self.tab_75)
+        self.performance_seconds_2.setObjectName(u"performance_seconds_2")
+        self.performance_seconds_2.setMaximumSize(QSize(19777, 16777215))
+
+        self.gridLayout_54.addWidget(self.performance_seconds_2, 4, 3, 1, 1)
+
+        self.checkBox_24 = QCheckBox(self.tab_75)
+        self.checkBox_24.setObjectName(u"checkBox_24")
+
+        self.gridLayout_54.addWidget(self.checkBox_24, 6, 3, 1, 1)
+
+        self.textEdit_23 = QTextEdit(self.tab_75)
+        self.textEdit_23.setObjectName(u"textEdit_23")
+
+        self.gridLayout_54.addWidget(self.textEdit_23, 0, 8, 14, 1)
+
+        self.label_90 = QLabel(self.tab_75)
+        self.label_90.setObjectName(u"label_90")
+
+        self.gridLayout_54.addWidget(self.label_90, 4, 4, 1, 1)
+
+        self.performance_lcd_download_2 = QLCDNumber(self.tab_75)
         self.performance_lcd_download_2.setObjectName(u"performance_lcd_download_2")
         self.performance_lcd_download_2.setFrameShape(QFrame.Panel)
         self.performance_lcd_download_2.setFrameShadow(QFrame.Sunken)
         self.performance_lcd_download_2.setDigitCount(5)
         self.performance_lcd_download_2.setProperty("value", 0.000000000000000)
 
-        self.gridLayout_54.addWidget(self.performance_lcd_download_2, 14, 0, 1, 2)
+        self.gridLayout_54.addWidget(self.performance_lcd_download_2, 12, 0, 1, 2)
 
-        self.performance_speedtest_2 = QPushButton(self.tab_52)
+        self.label_86 = QLabel(self.tab_75)
+        self.label_86.setObjectName(u"label_86")
+        self.label_86.setFont(font3)
+
+        self.gridLayout_54.addWidget(self.label_86, 0, 0, 2, 1)
+
+        self.label_88 = QLabel(self.tab_75)
+        self.label_88.setObjectName(u"label_88")
+
+        self.gridLayout_54.addWidget(self.label_88, 7, 0, 2, 1)
+
+        self.label_87 = QLabel(self.tab_75)
+        self.label_87.setObjectName(u"label_87")
+
+        self.gridLayout_54.addWidget(self.label_87, 10, 0, 2, 1)
+
+        self.performance_speedtest_2 = QPushButton(self.tab_75)
         self.performance_speedtest_2.setObjectName(u"performance_speedtest_2")
 
-        self.gridLayout_54.addWidget(self.performance_speedtest_2, 15, 0, 1, 2)
+        self.gridLayout_54.addWidget(self.performance_speedtest_2, 13, 0, 1, 2)
 
-        self.performance_benchmark_button_2 = QPushButton(self.tab_52)
+        self.performance_benchmark_button_2 = QPushButton(self.tab_75)
         self.performance_benchmark_button_2.setObjectName(u"performance_benchmark_button_2")
 
-        self.gridLayout_54.addWidget(self.performance_benchmark_button_2, 15, 3, 1, 1)
+        self.gridLayout_54.addWidget(self.performance_benchmark_button_2, 13, 3, 1, 2)
+
+        self.tabWidget_16.addTab(self.tab_75, "")
+        self.tab_76 = QWidget()
+        self.tab_76.setObjectName(u"tab_76")
+        self.gridLayout_56 = QGridLayout(self.tab_76)
+        self.gridLayout_56.setObjectName(u"gridLayout_56")
+        self.table_SQLDB_performance_error = QTableWidget(self.tab_76)
+        self.table_SQLDB_performance_error.setObjectName(u"table_SQLDB_performance_error")
+
+        self.gridLayout_56.addWidget(self.table_SQLDB_performance_error, 0, 0, 1, 1)
+
+        self.table_RefreshDB_Button_performance = QPushButton(self.tab_76)
+        self.table_RefreshDB_Button_performance.setObjectName(u"table_RefreshDB_Button_performance")
+
+        self.gridLayout_56.addWidget(self.table_RefreshDB_Button_performance, 1, 0, 1, 1)
+
+        self.tabWidget_16.addTab(self.tab_76, "")
+        self.tab_77 = QWidget()
+        self.tab_77.setObjectName(u"tab_77")
+        self.lineEdit_10 = QLineEdit(self.tab_77)
+        self.lineEdit_10.setObjectName(u"lineEdit_10")
+        self.lineEdit_10.setGeometry(QRect(10, 30, 361, 27))
+        self.label_89 = QLabel(self.tab_77)
+        self.label_89.setObjectName(u"label_89")
+        self.label_89.setGeometry(QRect(10, 10, 171, 19))
+        self.label_122 = QLabel(self.tab_77)
+        self.label_122.setObjectName(u"label_122")
+        self.label_122.setGeometry(QRect(10, 70, 171, 19))
+        self.comboBox_7 = QComboBox(self.tab_77)
+        self.comboBox_7.addItem("")
+        self.comboBox_7.addItem("")
+        self.comboBox_7.addItem("")
+        self.comboBox_7.addItem("")
+        self.comboBox_7.setObjectName(u"comboBox_7")
+        self.comboBox_7.setGeometry(QRect(10, 100, 361, 27))
+        self.tabWidget_16.addTab(self.tab_77, "")
+
+        self.gridLayout_55.addWidget(self.tabWidget_16, 6, 0, 1, 1)
+
+        self.label_80 = QLabel(self.tab_52)
+        self.label_80.setObjectName(u"label_80")
+
+        self.gridLayout_55.addWidget(self.label_80, 2, 0, 1, 1)
+
+        self.testgraph_2 = QGraphicsView(self.tab_52)
+        self.testgraph_2.setObjectName(u"testgraph_2")
+
+        self.gridLayout_55.addWidget(self.testgraph_2, 3, 0, 1, 2)
+
+        self.label_81 = QLabel(self.tab_52)
+        self.label_81.setObjectName(u"label_81")
+
+        self.gridLayout_55.addWidget(self.label_81, 4, 0, 1, 1)
+
+        self.testgraph_3 = QGraphicsView(self.tab_52)
+        self.testgraph_3.setObjectName(u"testgraph_3")
+
+        self.gridLayout_55.addWidget(self.testgraph_3, 5, 0, 1, 2)
 
         self.tabWidget_10.addTab(self.tab_52, "")
         self.tab_28 = QWidget()
@@ -2812,6 +2863,7 @@ class Ui_LogecC3(object):
         self.tabWidget_2.setCurrentIndex(2)
         self.tabWidget_4.setCurrentIndex(1)
         self.tabWidget_10.setCurrentIndex(1)
+        self.tabWidget_16.setCurrentIndex(2)
         self.tabWidget_11.setCurrentIndex(2)
         self.tabWidget_12.setCurrentIndex(1)
         self.tabWidget_15.setCurrentIndex(1)
@@ -3451,7 +3503,7 @@ class Ui_LogecC3(object):
         self.settings_write.setText(QCoreApplication.translate("LogecC3", u"-->> Write <<--", None))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_37), QCoreApplication.translate("LogecC3", u"Settings", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), QCoreApplication.translate("LogecC3", u"Settings", None))
-        self.table_RefreshDB_Button_performance.setText(QCoreApplication.translate("LogecC3", u"-->> Refresh DB <<--", None))
+        self.table_RefreshDB_Button_performance2.setText(QCoreApplication.translate("LogecC3", u"-->> Refresh DB <<--", None))
         self.label_44.setText(QCoreApplication.translate("LogecC3", u"System CPU Usage:", None))
         self.label_39.setText(QCoreApplication.translate("LogecC3", u"CPU/RAM Specs", None))
         self.label_40.setText(QCoreApplication.translate("LogecC3", u"SpeedTest", None))
@@ -3474,36 +3526,48 @@ class Ui_LogecC3(object):
         self.label_19.setText(QCoreApplication.translate("LogecC3", u"Ping (MS)", None))
         self.tabWidget_10.setTabText(self.tabWidget_10.indexOf(self.tab_33), QCoreApplication.translate("LogecC3", u"Performance/Health", None))
         self.label_14.setText(QCoreApplication.translate("LogecC3", u"System CPU Usage", None))
-        self.label_80.setText(QCoreApplication.translate("LogecC3", u"System Ram Usage", None))
-        self.label_81.setText(QCoreApplication.translate("LogecC3", u"Program Ram Usage", None))
-        self.label_86.setText(QCoreApplication.translate("LogecC3", u"Network Specs", None))
-        self.label_83.setText(QCoreApplication.translate("LogecC3", u"External IP:  123.456.111.333", None))
-        self.label_91.setText(QCoreApplication.translate("LogecC3", u"Benchmarks", None))
+        self.label_84.setText(QCoreApplication.translate("LogecC3", u"Ping (MS)", None))
+        self.label_85.setText(QCoreApplication.translate("LogecC3", u"SpeedTest", None))
+        self.performance_seconds_5.setText(QCoreApplication.translate("LogecC3", u"6.16", None))
+        self.label_121.setText(QCoreApplication.translate("LogecC3", u"Seconds", None))
         self.textEdit_29.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Process List?</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
+        self.label_91.setText(QCoreApplication.translate("LogecC3", u"Benchmarks", None))
+        self.checkBox_23.setText(QCoreApplication.translate("LogecC3", u"Count to 10 Million", None))
+        self.label_83.setText(QCoreApplication.translate("LogecC3", u"External IP:  123.456.111.333", None))
+        self.label_82.setText(QCoreApplication.translate("LogecC3", u"Local IP: 123.456.444.222", None))
+        self.performance_seconds_2.setText(QCoreApplication.translate("LogecC3", u"6.16", None))
+        self.checkBox_24.setText(QCoreApplication.translate("LogecC3", u"Some Fancy Benchmark or math", None))
         self.textEdit_23.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Something else?</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-        self.label_85.setText(QCoreApplication.translate("LogecC3", u"SpeedTest", None))
-        self.label_82.setText(QCoreApplication.translate("LogecC3", u"Local IP: 123.456.444.222", None))
-        self.checkBox_23.setText(QCoreApplication.translate("LogecC3", u"Count to 10 Million", None))
-        self.label_84.setText(QCoreApplication.translate("LogecC3", u"Ping (MS)", None))
-        self.performance_seconds_2.setText(QCoreApplication.translate("LogecC3", u"6.16", None))
         self.label_90.setText(QCoreApplication.translate("LogecC3", u"Seconds", None))
+        self.label_86.setText(QCoreApplication.translate("LogecC3", u"Network Specs", None))
         self.label_88.setText(QCoreApplication.translate("LogecC3", u"Upload (MBPS)", None))
-        self.checkBox_24.setText(QCoreApplication.translate("LogecC3", u"Count to 10 Million", None))
-        self.performance_seconds_5.setText(QCoreApplication.translate("LogecC3", u"6.16", None))
-        self.label_121.setText(QCoreApplication.translate("LogecC3", u"Seconds", None))
         self.label_87.setText(QCoreApplication.translate("LogecC3", u"Download (MBPS)", None))
         self.performance_speedtest_2.setText(QCoreApplication.translate("LogecC3", u"Run SpeedTest", None))
         self.performance_benchmark_button_2.setText(QCoreApplication.translate("LogecC3", u"Start Benchmark", None))
+        self.tabWidget_16.setTabText(self.tabWidget_16.indexOf(self.tab_75), QCoreApplication.translate("LogecC3", u"Benchmarks And Processes", None))
+        self.table_RefreshDB_Button_performance.setText(QCoreApplication.translate("LogecC3", u"-->> Refresh DB <<--", None))
+        self.tabWidget_16.setTabText(self.tabWidget_16.indexOf(self.tab_76), QCoreApplication.translate("LogecC3", u"Error List", None))
+        self.lineEdit_10.setText(QCoreApplication.translate("LogecC3", u"1", None))
+        self.label_89.setText(QCoreApplication.translate("LogecC3", u"Graph Refresh (Seconds)", None))
+        self.label_122.setText(QCoreApplication.translate("LogecC3", u"Graph Color ", None))
+        self.comboBox_7.setItemText(0, QCoreApplication.translate("LogecC3", u"Red", None))
+        self.comboBox_7.setItemText(1, QCoreApplication.translate("LogecC3", u"Green", None))
+        self.comboBox_7.setItemText(2, QCoreApplication.translate("LogecC3", u"Blue", None))
+        self.comboBox_7.setItemText(3, QCoreApplication.translate("LogecC3", u"Yellow", None))
+
+        self.tabWidget_16.setTabText(self.tabWidget_16.indexOf(self.tab_77), QCoreApplication.translate("LogecC3", u"Page", None))
+        self.label_80.setText(QCoreApplication.translate("LogecC3", u"System Ram Usage", None))
+        self.label_81.setText(QCoreApplication.translate("LogecC3", u"Program Ram Usage", None))
         self.tabWidget_10.setTabText(self.tabWidget_10.indexOf(self.tab_52), QCoreApplication.translate("LogecC3", u"Performance2", None))
         self.tabWidget_11.setTabText(self.tabWidget_11.indexOf(self.tab_29), QCoreApplication.translate("LogecC3", u"Tab 1", None))
         self.textEdit_5.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

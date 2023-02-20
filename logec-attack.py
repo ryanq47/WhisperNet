@@ -1676,7 +1676,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
         
         pen = QPen()
         pen.setWidth(3)
-        pen.setColor(Qt.blue)
+        pen.setColor(Qt.white)
 
         for i in range(1, 10):
             ran = random.randint(1, 10)
