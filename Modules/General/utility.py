@@ -44,6 +44,14 @@ class Performance(QObject):
         print(self.PID)
         print("Program CPU USAGE")
         return p.cpu_percent()
+    
+    def CPU_temp(self):
+        ## Doesn't work in most VM's need to do a try/except for this
+        try:
+            temp = psutil.sensors_temperatures()['coretemp'][0].current
+        except:
+            temp = "N/A"
+        return temp
         
     def RAM_all(self):
         self.p = int((psutil.virtual_memory()[2]))

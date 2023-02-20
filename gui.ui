@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1459</width>
-    <height>857</height>
+    <width>1346</width>
+    <height>806</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -722,8 +722,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1395</width>
-                 <height>573</height>
+                 <width>1282</width>
+                 <height>522</height>
                 </rect>
                </property>
                <widget class="QLabel" name="label_62">
@@ -4328,7 +4328,20 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item row="1" column="0" colspan="2">
-             <widget class="QGraphicsView" name="testgraph"/>
+             <widget class="QGraphicsView" name="other_cpu_performance">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>100</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>100</height>
+               </size>
+              </property>
+             </widget>
             </item>
             <item row="0" column="0">
              <widget class="QLabel" name="label_14">
@@ -4451,7 +4464,7 @@ p, li { white-space: pre-wrap; }
                 <item row="3" column="3" colspan="2">
                  <widget class="QCheckBox" name="checkBox_23">
                   <property name="text">
-                   <string>Count to 10 Million</string>
+                   <string>Count to 10 Million (Single Thread)</string>
                   </property>
                  </widget>
                 </item>
@@ -4488,7 +4501,7 @@ p, li { white-space: pre-wrap; }
                 <item row="6" column="3">
                  <widget class="QCheckBox" name="checkBox_24">
                   <property name="text">
-                   <string>Some Fancy Benchmark or math</string>
+                   <string>Multi Thread</string>
                   </property>
                  </widget>
                 </item>
@@ -4675,7 +4688,20 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item row="3" column="0" colspan="2">
-             <widget class="QGraphicsView" name="testgraph_2"/>
+             <widget class="QGraphicsView" name="other_ram_performance">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>100</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>100</height>
+               </size>
+              </property>
+             </widget>
             </item>
             <item row="4" column="0">
              <widget class="QLabel" name="label_81">
@@ -4685,7 +4711,20 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item row="5" column="0" colspan="2">
-             <widget class="QGraphicsView" name="testgraph_3"/>
+             <widget class="QGraphicsView" name="testgraph_3">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>100</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>100</height>
+               </size>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -5015,8 +5054,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1395</width>
-                 <height>686</height>
+                 <width>1282</width>
+                 <height>635</height>
                 </rect>
                </property>
                <widget class="QLabel" name="label_56">
@@ -5569,7 +5608,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1459</width>
+     <width>1346</width>
      <height>24</height>
     </rect>
    </property>

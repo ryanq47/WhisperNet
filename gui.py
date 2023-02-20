@@ -29,7 +29,7 @@ class Ui_LogecC3(object):
         if not LogecC3.objectName():
             LogecC3.setObjectName(u"LogecC3")
         LogecC3.setWindowModality(Qt.NonModal)
-        LogecC3.resize(1459, 857)
+        LogecC3.resize(1346, 806)
         LogecC3.setMinimumSize(QSize(850, 688))
         LogecC3.setMaximumSize(QSize(10000, 10000))
         font = QFont()
@@ -416,7 +416,7 @@ class Ui_LogecC3(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.scrollAreaWidgetContents_4 = QWidget()
         self.scrollAreaWidgetContents_4.setObjectName(u"scrollAreaWidgetContents_4")
-        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 1395, 573))
+        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 1282, 522))
         self.label_62 = QLabel(self.scrollAreaWidgetContents_4)
         self.label_62.setObjectName(u"label_62")
         self.label_62.setGeometry(QRect(10, 10, 91, 19))
@@ -2277,10 +2277,12 @@ class Ui_LogecC3(object):
 
         self.gridLayout_55.addWidget(self.line_20, 8, 1, 1, 1)
 
-        self.testgraph = QGraphicsView(self.tab_52)
-        self.testgraph.setObjectName(u"testgraph")
+        self.other_cpu_performance = QGraphicsView(self.tab_52)
+        self.other_cpu_performance.setObjectName(u"other_cpu_performance")
+        self.other_cpu_performance.setMinimumSize(QSize(0, 100))
+        self.other_cpu_performance.setMaximumSize(QSize(16777215, 100))
 
-        self.gridLayout_55.addWidget(self.testgraph, 1, 0, 1, 2)
+        self.gridLayout_55.addWidget(self.other_cpu_performance, 1, 0, 1, 2)
 
         self.label_14 = QLabel(self.tab_52)
         self.label_14.setObjectName(u"label_14")
@@ -2467,6 +2469,7 @@ class Ui_LogecC3(object):
         self.comboBox_7.addItem("")
         self.comboBox_7.addItem("")
         self.comboBox_7.addItem("")
+        self.comboBox_7.addItem("")
         self.comboBox_7.setObjectName(u"comboBox_7")
         self.comboBox_7.setGeometry(QRect(10, 100, 361, 27))
         self.tabWidget_16.addTab(self.tab_77, "")
@@ -2478,10 +2481,12 @@ class Ui_LogecC3(object):
 
         self.gridLayout_55.addWidget(self.label_80, 2, 0, 1, 1)
 
-        self.testgraph_2 = QGraphicsView(self.tab_52)
-        self.testgraph_2.setObjectName(u"testgraph_2")
+        self.other_ram_performance = QGraphicsView(self.tab_52)
+        self.other_ram_performance.setObjectName(u"other_ram_performance")
+        self.other_ram_performance.setMinimumSize(QSize(0, 100))
+        self.other_ram_performance.setMaximumSize(QSize(16777215, 100))
 
-        self.gridLayout_55.addWidget(self.testgraph_2, 3, 0, 1, 2)
+        self.gridLayout_55.addWidget(self.other_ram_performance, 3, 0, 1, 2)
 
         self.label_81 = QLabel(self.tab_52)
         self.label_81.setObjectName(u"label_81")
@@ -2490,6 +2495,8 @@ class Ui_LogecC3(object):
 
         self.testgraph_3 = QGraphicsView(self.tab_52)
         self.testgraph_3.setObjectName(u"testgraph_3")
+        self.testgraph_3.setMinimumSize(QSize(0, 100))
+        self.testgraph_3.setMaximumSize(QSize(16777215, 100))
 
         self.gridLayout_55.addWidget(self.testgraph_3, 5, 0, 1, 2)
 
@@ -2638,7 +2645,7 @@ class Ui_LogecC3(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.scrollAreaWidgetContents_3 = QWidget()
         self.scrollAreaWidgetContents_3.setObjectName(u"scrollAreaWidgetContents_3")
-        self.scrollAreaWidgetContents_3.setGeometry(QRect(0, 0, 1395, 686))
+        self.scrollAreaWidgetContents_3.setGeometry(QRect(0, 0, 1282, 635))
         self.label_56 = QLabel(self.scrollAreaWidgetContents_3)
         self.label_56.setObjectName(u"label_56")
         self.label_56.setGeometry(QRect(9, 152, 59, 19))
@@ -2761,7 +2768,7 @@ class Ui_LogecC3(object):
         LogecC3.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(LogecC3)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1459, 24))
+        self.menubar.setGeometry(QRect(0, 0, 1346, 24))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
         self.menuTarget = QMenu(self.menubar)
@@ -3564,6 +3571,7 @@ class Ui_LogecC3(object):
         self.comboBox_7.setItemText(1, QCoreApplication.translate("LogecC3", u"Green", None))
         self.comboBox_7.setItemText(2, QCoreApplication.translate("LogecC3", u"Blue", None))
         self.comboBox_7.setItemText(3, QCoreApplication.translate("LogecC3", u"Yellow", None))
+        self.comboBox_7.setItemText(4, QCoreApplication.translate("LogecC3", u"White", None))
 
         self.tabWidget_16.setTabText(self.tabWidget_16.indexOf(self.tab_77), QCoreApplication.translate("LogecC3", u"Page", None))
         self.label_80.setText(QCoreApplication.translate("LogecC3", u"System Ram Usage", None))

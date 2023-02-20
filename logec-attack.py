@@ -9,10 +9,10 @@ sys_path = os.path.dirname(os.path.abspath(sys.argv[0]))
 print("Syspath:" + sys_path)
 
 ## pyqt singal needs to be moved to "signal"
-from PySide6.QtCore import Qt, QObject, QThread, Signal, QFile, Slot, QThreadPool, QCoreApplication
+from PySide6.QtCore import Qt, QObject, QThread, Signal, QFile, Slot, QThreadPool, QCoreApplication, QTimer
 from PySide6 import QtWidgets
 from PySide6.QtUiTools import loadUiType
-from PySide6.QtGui import QIcon, QAction
+from PySide6.QtGui import QIcon, QAction, QPen
 from PySide6 import QtUiTools
 from PySide6.QtSql import QSqlDatabase, QSqlTableModel, QSqlQuery
 from PySide6.QtWidgets import (
@@ -26,7 +26,10 @@ from PySide6.QtWidgets import (
     QTableWidget,
     QTableWidgetItem,
     QHeaderView,
-    QFileDialog
+    QFileDialog,
+    QGraphicsScene,
+    QGraphicsView,
+    QGraphicsTextItem
 )
 
 
@@ -87,8 +90,19 @@ class MyApp(QMainWindow, Ui_LogecC3):
         ##### SQL Startup/Init
         self.sql_global()
         
-        self.draw_graph()
+        ##### Performance Tab Inits
+        self.other_cpu_scene = QGraphicsScene()
+        self.other_cpu_performance.setScene(self.other_cpu_scene)
+        #self.other_cpu_scene.setSceneRect(0, 0, 1000, 200)
+        self.other_ram_scene = QGraphicsScene()
+        self.other_ram_performance.setScene(self.other_ram_scene)
         
+        self.cpu_data = []
+        self.ram_data = []
+        self.Perf = utility.Performance()
+        self.x = 0
+        self.draw_graph_refresh()
+        #####
         
         self.connected = False
         self.connected_list = []
@@ -1663,25 +1677,100 @@ class MyApp(QMainWindow, Ui_LogecC3):
     ## ========================================
     ## Other Tab ==============================
     ## ========================================
+    def draw_graph_refresh(self):
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.draw_graph)
+        self.timer.start(1000)
     
-    def draw_graph(self):
-        import random
-        from PySide6.QtWidgets import QApplication, QGraphicsScene, QGraphicsView, QMainWindow
-        from PySide6.QtGui import QPainter, QPen
+        #self.prev_x, self.prev_y = 0, 0
+        
+    def draw_graph(self):        
+        ## Disabling scroll bar CPU
+        self.other_cpu_performance.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.other_cpu_performance.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
 
-        
-        self.scene = QGraphicsScene()
-        #self.view = self.testgraph(self.scene) #QGraphicsView(self.scene)
-        self.testgraph.setScene(self.scene)
-        
+        ## ram
+        self.other_ram_performance.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.other_ram_performance.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+ 
+        ## Defining Pen        
         pen = QPen()
-        pen.setWidth(3)
+        pen.setWidth(1)
         pen.setColor(Qt.white)
 
-        for i in range(1, 10):
-            ran = random.randint(1, 10)
-            self.scene.addLine(1 * ran, 10* ran, 100* ran, 10* ran, pen)
-    
+        ## Gather data from system
+       
+        ## plus 10 for each update for all
+        self.x = self.x + 10
+        
+         ## CPU
+        cpu_y = self.Perf.CPU_all()
+        
+        cpu_temp = self.Perf.CPU_temp()
+
+        ## RAM
+        ram_y = self.Perf.RAM_all()
+
+        # Append Data to list (Note, should probably clear after so long for memory reasons)
+        self.cpu_data.append((self.x, (cpu_y*-1))) ## negative for properly facing graph (was inverted)
+        self.ram_data.append((self.x, (ram_y*-1)))
+        
+        
+        ## CPU graph
+        # Clear the scene and add all the lines
+        self.other_cpu_scene.clear()
+        self.cpu_items = []
+        
+        for i in range(1, len(self.cpu_data)):
+            x1, y1 = self.cpu_data[i-1]
+            x2, y2 = self.cpu_data[i]
+            self.other_cpu_scene.addLine(x1, y1, x2, y2, pen)
+            ## Adding %
+            cpu_percent = QGraphicsTextItem(f"{cpu_y}%, {cpu_temp} °C")
+            cpu_percent.setPos(x2, y2)
+            self.other_cpu_scene.addItem(cpu_percent)
+            
+            self.cpu_items.append(cpu_percent)
+
+            if i > 1:
+                self.other_cpu_scene.removeItem(self.cpu_items[i-2])
+            
+        ## Autoscroll
+        if self.other_cpu_performance.sceneRect().width() > 0:
+            self.other_cpu_performance.ensureVisible(
+                self.other_cpu_performance.sceneRect().width(), 
+                0,
+                0, 
+                self.other_cpu_performance.height()
+            )
+
+        ## RAM Graph
+        self.other_ram_scene.clear()
+        self.ram_items = []
+        
+        for i in range(1, len(self.ram_data)):
+            x1, y1 = self.ram_data[i-1]
+            x2, y2 = self.ram_data[i]
+            self.other_ram_scene.addLine(x1, y1, x2, y2, pen)
+            
+            ram_percent = QGraphicsTextItem(f"{ram_y}%")
+            ram_percent.setPos(x2, y2)
+            self.other_ram_scene.addItem(ram_percent)
+        
+            self.ram_items.append(ram_percent)
+
+            if i > 1:
+                self.other_ram_scene.removeItem(self.ram_items[i-2])
+        
+        ## Autoscroll
+        if self.other_ram_performance.sceneRect().width() > 0:
+            self.other_ram_performance.ensureVisible(
+                self.other_ram_performance.sceneRect().width(), 
+                0,
+                0, 
+                self.other_ram_performance.height()
+            )
+
     
     def performance(self):
         p_thread = threading.Thread(target=self.p_thread)
