@@ -87,6 +87,8 @@ class MyApp(QMainWindow, Ui_LogecC3):
         ##### SQL Startup/Init
         self.sql_global()
         
+        self.draw_graph()
+        
         
         self.connected = False
         self.connected_list = []
@@ -1661,6 +1663,26 @@ class MyApp(QMainWindow, Ui_LogecC3):
     ## ========================================
     ## Other Tab ==============================
     ## ========================================
+    
+    def draw_graph(self):
+        import random
+        from PySide6.QtWidgets import QApplication, QGraphicsScene, QGraphicsView, QMainWindow
+        from PySide6.QtGui import QPainter, QPen
+
+        
+        self.scene = QGraphicsScene()
+        #self.view = self.testgraph(self.scene) #QGraphicsView(self.scene)
+        self.testgraph.setScene(self.scene)
+        
+        pen = QPen()
+        pen.setWidth(3)
+        pen.setColor(Qt.blue)
+
+        for i in range(1, 10):
+            ran = random.randint(1, 10)
+            self.scene.addLine(1 * ran, 10* ran, 100* ran, 10* ran, pen)
+    
+    
     def performance(self):
         p_thread = threading.Thread(target=self.p_thread)
         # thread = threading.Thread(target=self.listen_popup())

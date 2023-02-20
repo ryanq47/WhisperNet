@@ -17,11 +17,12 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDoubleSpinBox,
-    QFrame, QGridLayout, QHeaderView, QLCDNumber,
-    QLabel, QLineEdit, QMainWindow, QMenu,
-    QMenuBar, QProgressBar, QPushButton, QRadioButton,
-    QScrollArea, QSizePolicy, QSpinBox, QTabWidget,
-    QTableWidget, QTableWidgetItem, QTextEdit, QWidget)
+    QFrame, QGraphicsView, QGridLayout, QHeaderView,
+    QLCDNumber, QLabel, QLineEdit, QMainWindow,
+    QMenu, QMenuBar, QProgressBar, QPushButton,
+    QRadioButton, QScrollArea, QSizePolicy, QSpinBox,
+    QTabWidget, QTableWidget, QTableWidgetItem, QTextEdit,
+    QWidget)
 
 class Ui_LogecC3(object):
     def setupUi(self, LogecC3):
@@ -2265,6 +2266,183 @@ class Ui_LogecC3(object):
         self.gridLayout_24.addWidget(self.performance_lcd_upload, 9, 3, 1, 2)
 
         self.tabWidget_10.addTab(self.tab_33, "")
+        self.tab_52 = QWidget()
+        self.tab_52.setObjectName(u"tab_52")
+        self.gridLayout_54 = QGridLayout(self.tab_52)
+        self.gridLayout_54.setObjectName(u"gridLayout_54")
+        self.label_14 = QLabel(self.tab_52)
+        self.label_14.setObjectName(u"label_14")
+
+        self.gridLayout_54.addWidget(self.label_14, 0, 0, 1, 1)
+
+        self.testgraph = QGraphicsView(self.tab_52)
+        self.testgraph.setObjectName(u"testgraph")
+
+        self.gridLayout_54.addWidget(self.testgraph, 1, 0, 1, 10)
+
+        self.label_80 = QLabel(self.tab_52)
+        self.label_80.setObjectName(u"label_80")
+
+        self.gridLayout_54.addWidget(self.label_80, 2, 0, 1, 1)
+
+        self.testgraph_2 = QGraphicsView(self.tab_52)
+        self.testgraph_2.setObjectName(u"testgraph_2")
+
+        self.gridLayout_54.addWidget(self.testgraph_2, 3, 0, 1, 10)
+
+        self.label_81 = QLabel(self.tab_52)
+        self.label_81.setObjectName(u"label_81")
+
+        self.gridLayout_54.addWidget(self.label_81, 4, 0, 1, 1)
+
+        self.testgraph_3 = QGraphicsView(self.tab_52)
+        self.testgraph_3.setObjectName(u"testgraph_3")
+
+        self.gridLayout_54.addWidget(self.testgraph_3, 5, 0, 1, 10)
+
+        self.label_86 = QLabel(self.tab_52)
+        self.label_86.setObjectName(u"label_86")
+        self.label_86.setFont(font3)
+
+        self.gridLayout_54.addWidget(self.label_86, 6, 0, 1, 1)
+
+        self.label_83 = QLabel(self.tab_52)
+        self.label_83.setObjectName(u"label_83")
+
+        self.gridLayout_54.addWidget(self.label_83, 6, 1, 1, 1)
+
+        self.line_20 = QFrame(self.tab_52)
+        self.line_20.setObjectName(u"line_20")
+        self.line_20.setFrameShape(QFrame.VLine)
+        self.line_20.setFrameShadow(QFrame.Sunken)
+
+        self.gridLayout_54.addWidget(self.line_20, 6, 2, 10, 1)
+
+        self.label_91 = QLabel(self.tab_52)
+        self.label_91.setObjectName(u"label_91")
+        font9 = QFont()
+        font9.setUnderline(True)
+        font9.setKerning(True)
+        self.label_91.setFont(font9)
+
+        self.gridLayout_54.addWidget(self.label_91, 6, 3, 1, 2)
+
+        self.line_21 = QFrame(self.tab_52)
+        self.line_21.setObjectName(u"line_21")
+        self.line_21.setFrameShape(QFrame.VLine)
+        self.line_21.setFrameShadow(QFrame.Sunken)
+
+        self.gridLayout_54.addWidget(self.line_21, 6, 5, 10, 1)
+
+        self.textEdit_29 = QTextEdit(self.tab_52)
+        self.textEdit_29.setObjectName(u"textEdit_29")
+
+        self.gridLayout_54.addWidget(self.textEdit_29, 6, 7, 10, 1)
+
+        self.line_22 = QFrame(self.tab_52)
+        self.line_22.setObjectName(u"line_22")
+        self.line_22.setFrameShape(QFrame.VLine)
+        self.line_22.setFrameShadow(QFrame.Sunken)
+
+        self.gridLayout_54.addWidget(self.line_22, 6, 8, 10, 1)
+
+        self.textEdit_23 = QTextEdit(self.tab_52)
+        self.textEdit_23.setObjectName(u"textEdit_23")
+
+        self.gridLayout_54.addWidget(self.textEdit_23, 6, 9, 10, 1)
+
+        self.label_85 = QLabel(self.tab_52)
+        self.label_85.setObjectName(u"label_85")
+        self.label_85.setFont(font)
+
+        self.gridLayout_54.addWidget(self.label_85, 7, 0, 1, 1)
+
+        self.label_82 = QLabel(self.tab_52)
+        self.label_82.setObjectName(u"label_82")
+
+        self.gridLayout_54.addWidget(self.label_82, 7, 1, 1, 1)
+
+        self.checkBox_23 = QCheckBox(self.tab_52)
+        self.checkBox_23.setObjectName(u"checkBox_23")
+
+        self.gridLayout_54.addWidget(self.checkBox_23, 7, 3, 1, 2)
+
+        self.label_84 = QLabel(self.tab_52)
+        self.label_84.setObjectName(u"label_84")
+
+        self.gridLayout_54.addWidget(self.label_84, 8, 0, 1, 1)
+
+        self.performance_seconds_2 = QLineEdit(self.tab_52)
+        self.performance_seconds_2.setObjectName(u"performance_seconds_2")
+        self.performance_seconds_2.setMaximumSize(QSize(19777, 16777215))
+
+        self.gridLayout_54.addWidget(self.performance_seconds_2, 8, 3, 2, 1)
+
+        self.label_90 = QLabel(self.tab_52)
+        self.label_90.setObjectName(u"label_90")
+
+        self.gridLayout_54.addWidget(self.label_90, 8, 4, 2, 1)
+
+        self.performance_lcd_ping_2 = QLCDNumber(self.tab_52)
+        self.performance_lcd_ping_2.setObjectName(u"performance_lcd_ping_2")
+
+        self.gridLayout_54.addWidget(self.performance_lcd_ping_2, 9, 0, 1, 2)
+
+        self.label_88 = QLabel(self.tab_52)
+        self.label_88.setObjectName(u"label_88")
+
+        self.gridLayout_54.addWidget(self.label_88, 10, 0, 1, 1)
+
+        self.checkBox_24 = QCheckBox(self.tab_52)
+        self.checkBox_24.setObjectName(u"checkBox_24")
+
+        self.gridLayout_54.addWidget(self.checkBox_24, 10, 3, 2, 2)
+
+        self.performance_lcd_upload_2 = QLCDNumber(self.tab_52)
+        self.performance_lcd_upload_2.setObjectName(u"performance_lcd_upload_2")
+        self.performance_lcd_upload_2.setFrameShape(QFrame.Panel)
+        self.performance_lcd_upload_2.setFrameShadow(QFrame.Sunken)
+        self.performance_lcd_upload_2.setDigitCount(5)
+        self.performance_lcd_upload_2.setProperty("value", 0.000000000000000)
+
+        self.gridLayout_54.addWidget(self.performance_lcd_upload_2, 11, 0, 2, 2)
+
+        self.performance_seconds_5 = QLineEdit(self.tab_52)
+        self.performance_seconds_5.setObjectName(u"performance_seconds_5")
+        self.performance_seconds_5.setMaximumSize(QSize(19777, 16777215))
+
+        self.gridLayout_54.addWidget(self.performance_seconds_5, 12, 3, 2, 1)
+
+        self.label_121 = QLabel(self.tab_52)
+        self.label_121.setObjectName(u"label_121")
+
+        self.gridLayout_54.addWidget(self.label_121, 12, 4, 2, 1)
+
+        self.label_87 = QLabel(self.tab_52)
+        self.label_87.setObjectName(u"label_87")
+
+        self.gridLayout_54.addWidget(self.label_87, 13, 0, 1, 1)
+
+        self.performance_lcd_download_2 = QLCDNumber(self.tab_52)
+        self.performance_lcd_download_2.setObjectName(u"performance_lcd_download_2")
+        self.performance_lcd_download_2.setFrameShape(QFrame.Panel)
+        self.performance_lcd_download_2.setFrameShadow(QFrame.Sunken)
+        self.performance_lcd_download_2.setDigitCount(5)
+        self.performance_lcd_download_2.setProperty("value", 0.000000000000000)
+
+        self.gridLayout_54.addWidget(self.performance_lcd_download_2, 14, 0, 1, 2)
+
+        self.performance_speedtest_2 = QPushButton(self.tab_52)
+        self.performance_speedtest_2.setObjectName(u"performance_speedtest_2")
+
+        self.gridLayout_54.addWidget(self.performance_speedtest_2, 15, 0, 1, 2)
+
+        self.performance_benchmark_button_2 = QPushButton(self.tab_52)
+        self.performance_benchmark_button_2.setObjectName(u"performance_benchmark_button_2")
+
+        self.gridLayout_54.addWidget(self.performance_benchmark_button_2, 15, 3, 1, 1)
+
+        self.tabWidget_10.addTab(self.tab_52, "")
         self.tab_28 = QWidget()
         self.tab_28.setObjectName(u"tab_28")
         self.gridLayout_26 = QGridLayout(self.tab_28)
@@ -2317,6 +2495,13 @@ class Ui_LogecC3(object):
         self.tabWidget_15.addTab(self.tab_49, "")
         self.tab_50 = QWidget()
         self.tab_50.setObjectName(u"tab_50")
+        self.gridLayout_46 = QGridLayout(self.tab_50)
+        self.gridLayout_46.setObjectName(u"gridLayout_46")
+        self.textEdit_22 = QTextEdit(self.tab_50)
+        self.textEdit_22.setObjectName(u"textEdit_22")
+
+        self.gridLayout_46.addWidget(self.textEdit_22, 0, 0, 1, 1)
+
         self.tabWidget_15.addTab(self.tab_50, "")
 
         self.gridLayout_36.addWidget(self.tabWidget_15, 0, 0, 1, 1)
@@ -2605,7 +2790,7 @@ class Ui_LogecC3(object):
 
         self.retranslateUi(LogecC3)
 
-        self.tabWidget.setCurrentIndex(5)
+        self.tabWidget.setCurrentIndex(8)
         self.text_PortScan_tab.setCurrentIndex(0)
         self.bruteforce_panel_2.setCurrentIndex(0)
         self.text_PortScan_tab_2.setCurrentIndex(2)
@@ -2614,7 +2799,7 @@ class Ui_LogecC3(object):
         self.tabWidget_3.setCurrentIndex(1)
         self.tabWidget_8.setCurrentIndex(1)
         self.tabWidget_9.setCurrentIndex(0)
-        self.tabWidget_6.setCurrentIndex(0)
+        self.tabWidget_6.setCurrentIndex(1)
         self.bruteforce_panel.setCurrentIndex(0)
         self.tabWidget_14.setCurrentIndex(1)
         self.bruteforce_download_seclist_topshort.setDefault(False)
@@ -2626,11 +2811,11 @@ class Ui_LogecC3(object):
         self.bruteforce_download_seclist_top10mil_usernames_5.setDefault(False)
         self.tabWidget_2.setCurrentIndex(2)
         self.tabWidget_4.setCurrentIndex(1)
-        self.tabWidget_10.setCurrentIndex(0)
+        self.tabWidget_10.setCurrentIndex(1)
         self.tabWidget_11.setCurrentIndex(2)
         self.tabWidget_12.setCurrentIndex(1)
-        self.tabWidget_15.setCurrentIndex(0)
-        self.tabWidget_7.setCurrentIndex(4)
+        self.tabWidget_15.setCurrentIndex(1)
+        self.tabWidget_7.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(LogecC3)
@@ -3288,6 +3473,38 @@ class Ui_LogecC3(object):
         self.label_45.setText(QCoreApplication.translate("LogecC3", u"Program Ram Usage:", None))
         self.label_19.setText(QCoreApplication.translate("LogecC3", u"Ping (MS)", None))
         self.tabWidget_10.setTabText(self.tabWidget_10.indexOf(self.tab_33), QCoreApplication.translate("LogecC3", u"Performance/Health", None))
+        self.label_14.setText(QCoreApplication.translate("LogecC3", u"System CPU Usage", None))
+        self.label_80.setText(QCoreApplication.translate("LogecC3", u"System Ram Usage", None))
+        self.label_81.setText(QCoreApplication.translate("LogecC3", u"Program Ram Usage", None))
+        self.label_86.setText(QCoreApplication.translate("LogecC3", u"Network Specs", None))
+        self.label_83.setText(QCoreApplication.translate("LogecC3", u"External IP:  123.456.111.333", None))
+        self.label_91.setText(QCoreApplication.translate("LogecC3", u"Benchmarks", None))
+        self.textEdit_29.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Process List?</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
+        self.textEdit_23.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Something else?</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
+        self.label_85.setText(QCoreApplication.translate("LogecC3", u"SpeedTest", None))
+        self.label_82.setText(QCoreApplication.translate("LogecC3", u"Local IP: 123.456.444.222", None))
+        self.checkBox_23.setText(QCoreApplication.translate("LogecC3", u"Count to 10 Million", None))
+        self.label_84.setText(QCoreApplication.translate("LogecC3", u"Ping (MS)", None))
+        self.performance_seconds_2.setText(QCoreApplication.translate("LogecC3", u"6.16", None))
+        self.label_90.setText(QCoreApplication.translate("LogecC3", u"Seconds", None))
+        self.label_88.setText(QCoreApplication.translate("LogecC3", u"Upload (MBPS)", None))
+        self.checkBox_24.setText(QCoreApplication.translate("LogecC3", u"Count to 10 Million", None))
+        self.performance_seconds_5.setText(QCoreApplication.translate("LogecC3", u"6.16", None))
+        self.label_121.setText(QCoreApplication.translate("LogecC3", u"Seconds", None))
+        self.label_87.setText(QCoreApplication.translate("LogecC3", u"Download (MBPS)", None))
+        self.performance_speedtest_2.setText(QCoreApplication.translate("LogecC3", u"Run SpeedTest", None))
+        self.performance_benchmark_button_2.setText(QCoreApplication.translate("LogecC3", u"Start Benchmark", None))
+        self.tabWidget_10.setTabText(self.tabWidget_10.indexOf(self.tab_52), QCoreApplication.translate("LogecC3", u"Performance2", None))
         self.tabWidget_11.setTabText(self.tabWidget_11.indexOf(self.tab_29), QCoreApplication.translate("LogecC3", u"Tab 1", None))
         self.textEdit_5.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -3325,7 +3542,15 @@ class Ui_LogecC3(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">	To save memory &amp; disk space, the requests are issued in batches. For example, if you have a wordlist with 100 "
                         "lines, and a batch size of 10, it will use the first 10 lines to brute force, then when completed the next ten,  etc. This greatly cuts down on memory for parallel tasks, as it (Thread Pool Executor) releases the memory once each batch is done.</p></body></html>", None))
         self.tabWidget_15.setTabText(self.tabWidget_15.indexOf(self.tab_49), QCoreApplication.translate("LogecC3", u"Bruteforce", None))
-        self.tabWidget_15.setTabText(self.tabWidget_15.indexOf(self.tab_50), QCoreApplication.translate("LogecC3", u"Tab 2", None))
+        self.textEdit_22.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" text-decoration: underline;\">Database: </span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">This database works differently than the rest (Save for the reddit DB). The others store all current, and past data gathered by the tool, but for the fuzzer, it only stores your most recent fuzz (One entry per atte"
+                        "mpt). The rationale is that you may be fuzzing hundreds, if not thousands of URL's, and a per-attempt entry makes it easier to sort through with SQL queries. </p></body></html>", None))
+        self.tabWidget_15.setTabText(self.tabWidget_15.indexOf(self.tab_50), QCoreApplication.translate("LogecC3", u"Fuzzer", None))
         self.tabWidget_11.setTabText(self.tabWidget_11.indexOf(self.tab_48), QCoreApplication.translate("LogecC3", u"Bruteforce", None))
         self.tabWidget_10.setTabText(self.tabWidget_10.indexOf(self.tab_28), QCoreApplication.translate("LogecC3", u"Guide", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_27), QCoreApplication.translate("LogecC3", u"Other", None))
