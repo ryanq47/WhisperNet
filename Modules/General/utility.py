@@ -35,6 +35,7 @@ class Performance(QObject):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.PID = os.getpid()
+        self.net_io_counters = psutil.net_io_counters()
         
     def CPU_all(self):
         return psutil.cpu_percent()
@@ -75,7 +76,14 @@ class Performance(QObject):
         
         mem_2 = (self.p[1] * mem)/100000
         
-        return mem_2
+    def Network_out(self):
+        bytes_sent = self.net_io_counters.bytes_sent
+        return round((bytes_sent / 1048576), 2)
+    
+    def Network_in(self):
+        bytes_recv = self.net_io_counters.bytes_recv
+        return bytes_recv
+
     def start_time(self):
         self._start_time = time.time()
         

@@ -2495,12 +2495,12 @@ class Ui_LogecC3(object):
 
         self.gridLayout_55.addWidget(self.label_81, 4, 0, 1, 1)
 
-        self.testgraph_3 = QGraphicsView(self.tab_52)
-        self.testgraph_3.setObjectName(u"testgraph_3")
-        self.testgraph_3.setMinimumSize(QSize(0, 100))
-        self.testgraph_3.setMaximumSize(QSize(16777215, 100))
+        self.other_network_performance = QGraphicsView(self.tab_52)
+        self.other_network_performance.setObjectName(u"other_network_performance")
+        self.other_network_performance.setMinimumSize(QSize(0, 100))
+        self.other_network_performance.setMaximumSize(QSize(16777215, 100))
 
-        self.gridLayout_55.addWidget(self.testgraph_3, 5, 0, 1, 2)
+        self.gridLayout_55.addWidget(self.other_network_performance, 5, 0, 1, 2)
 
         self.tabWidget_10.addTab(self.tab_52, "")
         self.tab_28 = QWidget()
@@ -2916,7 +2916,7 @@ class Ui_LogecC3(object):
         self.actionOther_More_Cool_DB.setText(QCoreApplication.translate("LogecC3", u"Other More Cool DB", None))
         self.actionPort_Scan.setText(QCoreApplication.translate("LogecC3", u"Port Scan", None))
         self.actionError_DB.setText(QCoreApplication.translate("LogecC3", u"Error DB", None))
-        self.actionRELOAD.setText(QCoreApplication.translate("LogecC3", u"Reload", None))
+        self.actionRELOAD.setText(QCoreApplication.translate("LogecC3", u"Reload - This has a mem leak so only use for dev", None))
         self.status_data_IPADDR.setText(QCoreApplication.translate("LogecC3", u"N/A", None))
         self.label.setText(QCoreApplication.translate("LogecC3", u"send '!quit' to disconnect", None))
         self.status_label_IPADDR.setText(QCoreApplication.translate("LogecC3", u"External IP:", None))
@@ -3582,7 +3582,7 @@ class Ui_LogecC3(object):
 
         self.tabWidget_16.setTabText(self.tabWidget_16.indexOf(self.tab_77), QCoreApplication.translate("LogecC3", u"Page", None))
         self.label_80.setText(QCoreApplication.translate("LogecC3", u"System Ram Usage", None))
-        self.label_81.setText(QCoreApplication.translate("LogecC3", u"Program Ram Usage", None))
+        self.label_81.setText(QCoreApplication.translate("LogecC3", u"Network Traffic In/Out", None))
         self.tabWidget_10.setTabText(self.tabWidget_10.indexOf(self.tab_52), QCoreApplication.translate("LogecC3", u"Performance2", None))
         self.tabWidget_11.setTabText(self.tabWidget_11.indexOf(self.tab_29), QCoreApplication.translate("LogecC3", u"Tab 1", None))
         self.textEdit_5.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

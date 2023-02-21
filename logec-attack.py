@@ -276,8 +276,13 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.other_ram_scene = QGraphicsScene()
         self.other_ram_performance.setScene(self.other_ram_scene)
         
+        self.other_network_scene = QGraphicsScene()
+        self.other_network_performance.setScene(self.other_network_scene)
+        
         self.cpu_data = []
         self.ram_data = []
+        self.network_out_data = []
+        self.network_in_data = []
         self.Perf = utility.Performance()
         self.x = 0
         self.draw_graph_refresh()
@@ -1702,6 +1707,9 @@ class MyApp(QMainWindow, Ui_LogecC3):
         ## ram
         self.other_ram_performance.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.other_ram_performance.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        
+        self.other_network_performance.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.other_network_performance.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
  
         ## Defining Pen        
         pen = QPen()
@@ -1721,10 +1729,15 @@ class MyApp(QMainWindow, Ui_LogecC3):
         ## RAM
         ram_y = self.Perf.RAM_all()
         ram_usage = self.Perf.RAM_HumanReadable()
+        
+        ##Netwokr 
+        network_in_y = self.Perf.Network_in()
+        network_out_y = self.Perf.Network_out()
 
         # Append Data to list (Note, should probably clear after so long for memory reasons)
         self.cpu_data.append((self.x, (cpu_y*-1))) ## negative for properly facing graph (was inverted)
         self.ram_data.append((self.x, (ram_y*-1)))
+        self.network_out_data.append((self.x, (ram_y*-1)))
         
         
         ## CPU graph
@@ -1781,6 +1794,34 @@ class MyApp(QMainWindow, Ui_LogecC3):
                 0, 
                 self.other_ram_performance.height()
             )
+
+        ## Network IN/Out
+        self.other_network_scene.clear()
+        self.network_out_items = []
+        
+        for i in range(1, len(self.network_out_data)):
+            x1, y1 = self.network_out_data[i-1]
+            x2, y2 = self.network_out_data[i]
+            self.other_network_scene.addLine(x1, y1, x2, y2, pen)
+            
+            network_out_percent = QGraphicsTextItem(f"{network_out_y} MB, OUT")
+            network_out_percent.setPos(x2, y2)
+            self.other_network_scene.addItem(network_out_percent)
+        
+            self.network_out_items.append(network_out_percent)
+
+            if i > 1:
+                self.other_network_scene.removeItem(self.network_out_items[i-2])
+        
+        ## Autoscroll
+        if self.other_network_performance.sceneRect().width() > 0:
+            self.other_network_performance.ensureVisible(
+                self.other_network_performance.sceneRect().width(), 
+                0,
+                0, 
+                self.other_network_performance.height()
+            )    
+        
 
     def performance_networkspeed(self):
         # print("CLICKED")
