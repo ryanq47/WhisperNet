@@ -9,4 +9,4 @@ compile:
 
 
 gui:
-	pyside6-uic gui.ui > gui.py 
+	/home/kali/.local/bin/pyside6-uic gui.ui > gui.py 
