@@ -44,6 +44,7 @@ import threading
 import time
 import webbrowser
 import time
+import json
 from functools import partial
 
 from agent.server import s_sock, s_action
@@ -69,6 +70,8 @@ from Modules.General.Bruteforce.bruteforce import Bruteforce, Fuzzer
 from Modules.General.OSINT.dork import Dork
 
 from Modules.General.SysShell.shell import Shell
+
+from Modules.General.ScriptGen import ScriptGen
 
 import Modules.General.utility as utility
 
@@ -188,6 +191,8 @@ class MyApp(QMainWindow, Ui_LogecC3):
         )
         self.table_QueryDB_Button_osint_reddit.setShortcut('Return')
 
+        
+
         ## Data Tab
         # == SQL
         self.actionHelp_Menu_DB.triggered.connect(self.help_shortcut)
@@ -267,6 +272,9 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.scanning_bruteforce_query.setShortcut('Return')
 
         ## other
+        # == BashBuikder
+        self.bashbuilder_generate.clicked.connect(self.bash_builder)
+        
         ## == Perf Tab
         
         ##### Performance Tab Inits
@@ -1145,6 +1153,48 @@ class MyApp(QMainWindow, Ui_LogecC3):
     # def data_download(self, msg):
     # download = threading.Thread(target=self.data_download_thread, args=(msg))
     # download.start()
+    
+    
+    ## ========================================
+    ## Not Sure yet tab (other?)===============
+    ## ========================================
+    
+    def bash_builder(self):
+        S = ScriptGen.Script()
+        
+        ## Doing json here for expandability, rather than a list
+        ## If the checks are checked, they return true. The scriptgen.py uses true & false
+        ## for which blocks to build with
+        print(self.bashbuild_diagnostic.isChecked())
+        
+        json_unpacked = {
+            "DIAGNOSTIC":
+                {
+                    "diagnostic":self.bashbuild_diagnostic.isChecked(),
+                },
+            
+            
+            "DNS":
+                {
+                    "dnsenum":self.bashbuild_dnsenum.isChecked(),
+                    "whois":"false"
+                },
+            
+            
+            "PORTSCAN":
+                {
+                    "nmap":self.bashbuild_nmap.isChecked(),
+                }
+        }
+        
+        packed_json = json.dumps(json_unpacked)
+        
+        print(packed_json)
+        
+        S.script_framework(packed_json)
+    
+
+    
 
     ## ========================================
     ## Scanning Tab ===========================

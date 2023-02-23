@@ -2073,7 +2073,7 @@ p, li { white-space: pre-wrap; }
                  <height>660</height>
                 </rect>
                </property>
-               <widget class="QToolBox" name="toolBox">
+               <widget class="QToolBox" name="bashbuild_toolBox">
                 <property name="geometry">
                  <rect>
                   <x>0</x>
@@ -2086,6 +2086,14 @@ p, li { white-space: pre-wrap; }
                  <number>3</number>
                 </property>
                 <widget class="QWidget" name="page_4">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>0</y>
+                   <width>241</width>
+                   <height>486</height>
+                  </rect>
+                 </property>
                  <attribute name="label">
                   <string>Quick Guide</string>
                  </attribute>
@@ -2123,7 +2131,7 @@ p, li { white-space: pre-wrap; }
                  <attribute name="label">
                   <string>DNS</string>
                  </attribute>
-                 <widget class="QCheckBox" name="checkBox_33">
+                 <widget class="QCheckBox" name="bashbuild_dnsenum">
                   <property name="geometry">
                    <rect>
                     <x>10</x>
@@ -2138,10 +2146,18 @@ p, li { white-space: pre-wrap; }
                  </widget>
                 </widget>
                 <widget class="QWidget" name="page_3">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>0</y>
+                   <width>241</width>
+                   <height>486</height>
+                  </rect>
+                 </property>
                  <attribute name="label">
                   <string>PortScan</string>
                  </attribute>
-                 <widget class="QCheckBox" name="checkBox_34">
+                 <widget class="QCheckBox" name="bashbuild_nmap">
                   <property name="geometry">
                    <rect>
                     <x>10</x>
@@ -2151,7 +2167,7 @@ p, li { white-space: pre-wrap; }
                    </rect>
                   </property>
                   <property name="text">
-                   <string>PortScan</string>
+                   <string>NMAP</string>
                   </property>
                  </widget>
                 </widget>
@@ -2167,7 +2183,7 @@ p, li { white-space: pre-wrap; }
                  <attribute name="label">
                   <string>Other</string>
                  </attribute>
-                 <widget class="QCheckBox" name="checkBox_25">
+                 <widget class="QCheckBox" name="bashbuild_diagnostic">
                   <property name="geometry">
                    <rect>
                     <x>10</x>
@@ -2179,9 +2195,20 @@ p, li { white-space: pre-wrap; }
                   <property name="text">
                    <string>Enable Diagnostic Data</string>
                   </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </widget>
                 <widget class="QWidget" name="page_5">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>0</y>
+                   <width>241</width>
+                   <height>486</height>
+                  </rect>
+                 </property>
                  <attribute name="label">
                   <string>Overview</string>
                  </attribute>
@@ -2313,7 +2340,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                </widget>
-               <widget class="QPushButton" name="pushButton_2">
+               <widget class="QPushButton" name="bashbuilder_generate">
                 <property name="geometry">
                  <rect>
                   <x>780</x>
@@ -5360,8 +5387,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1282</width>
-                 <height>635</height>
+                 <width>72</width>
+                 <height>16</height>
                 </rect>
                </property>
                <widget class="QLabel" name="label_56">
