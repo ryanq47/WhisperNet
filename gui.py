@@ -1017,6 +1017,10 @@ class Ui_LogecC3(object):
         self.bashbuild_diagnostic.setObjectName(u"bashbuild_diagnostic")
         self.bashbuild_diagnostic.setGeometry(QRect(10, 10, 201, 25))
         self.bashbuild_diagnostic.setChecked(True)
+        self.bashbuild_installpackages = QCheckBox(self.page_2)
+        self.bashbuild_installpackages.setObjectName(u"bashbuild_installpackages")
+        self.bashbuild_installpackages.setGeometry(QRect(10, 40, 211, 25))
+        self.bashbuild_installpackages.setChecked(True)
         self.bashbuild_toolBox.addItem(self.page_2, u"Other")
         self.page_5 = QWidget()
         self.page_5.setObjectName(u"page_5")
@@ -3326,6 +3330,10 @@ class Ui_LogecC3(object):
         self.bashbuild_nmap.setText(QCoreApplication.translate("LogecC3", u"NMAP", None))
         self.bashbuild_toolBox.setItemText(self.bashbuild_toolBox.indexOf(self.page_3), QCoreApplication.translate("LogecC3", u"PortScan", None))
         self.bashbuild_diagnostic.setText(QCoreApplication.translate("LogecC3", u"Enable Diagnostic Data", None))
+#if QT_CONFIG(tooltip)
+        self.bashbuild_installpackages.setToolTip(QCoreApplication.translate("LogecC3", u"Includes code to install packages. use --install wehn running the script", None))
+#endif // QT_CONFIG(tooltip)
+        self.bashbuild_installpackages.setText(QCoreApplication.translate("LogecC3", u"Install packages", None))
         self.bashbuild_toolBox.setItemText(self.bashbuild_toolBox.indexOf(self.page_2), QCoreApplication.translate("LogecC3", u"Other", None))
         self.textEdit_26.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

@@ -1171,6 +1171,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             "DIAGNOSTIC":
                 {
                     "diagnostic":self.bashbuild_diagnostic.isChecked(),
+                    "installpackages":self.bashbuild_installpackages.isChecked()
                 },
             
             

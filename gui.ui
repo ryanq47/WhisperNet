@@ -2199,6 +2199,25 @@ p, li { white-space: pre-wrap; }
                    <bool>true</bool>
                   </property>
                  </widget>
+                 <widget class="QCheckBox" name="bashbuild_installpackages">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>40</y>
+                    <width>211</width>
+                    <height>25</height>
+                   </rect>
+                  </property>
+                  <property name="toolTip">
+                   <string>Includes code to install packages. use --install when running the script</string>
+                  </property>
+                  <property name="text">
+                   <string>Install packages</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
                 </widget>
                 <widget class="QWidget" name="page_5">
                  <property name="geometry">
