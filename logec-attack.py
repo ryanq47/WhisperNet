@@ -1160,7 +1160,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
     ## ========================================
     
     def bash_builder(self):
-        S = ScriptGen.Script()
+        self.Script = ScriptGen.Script()
         
         ## Doing json here for expandability, rather than a list
         ## If the checks are checked, they return true. The scriptgen.py uses true & false
@@ -1191,7 +1191,16 @@ class MyApp(QMainWindow, Ui_LogecC3):
         
         print(packed_json)
         
-        S.script_framework(packed_json)
+        self.Script.script_results.connect(self.bash_builder_display)
+        
+        ## Has to go last to grab signals n stiff
+        self.Script.script_framework(packed_json)
+        
+        
+    
+    def bash_builder_display(self, final_script):
+        print("triggered")
+        self.bashbuild_textoutput.setText(final_script)
     
 
     
