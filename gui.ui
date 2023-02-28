@@ -2151,7 +2151,7 @@ p, li { white-space: pre-wrap; }
                    <x>0</x>
                    <y>0</y>
                    <width>241</width>
-                   <height>486</height>
+                   <height>453</height>
                   </rect>
                  </property>
                  <attribute name="label">
@@ -2168,6 +2168,63 @@ p, li { white-space: pre-wrap; }
                   </property>
                   <property name="text">
                    <string>NMAP</string>
+                  </property>
+                 </widget>
+                </widget>
+                <widget class="QWidget" name="page_6">
+                 <attribute name="label">
+                  <string>Local</string>
+                 </attribute>
+                 <widget class="QCheckBox" name="checkBox_25">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>10</y>
+                    <width>181</width>
+                    <height>25</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>Retrieve PASSWD file</string>
+                  </property>
+                 </widget>
+                 <widget class="QCheckBox" name="checkBox_26">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>40</y>
+                    <width>181</width>
+                    <height>25</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>Retrieve SHADOW file</string>
+                  </property>
+                 </widget>
+                 <widget class="QCheckBox" name="checkBox_27">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>70</y>
+                    <width>181</width>
+                    <height>25</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>Capture NETSTAT</string>
+                  </property>
+                 </widget>
+                 <widget class="QCheckBox" name="checkBox_28">
+                  <property name="geometry">
+                   <rect>
+                    <x>10</x>
+                    <y>100</y>
+                    <width>181</width>
+                    <height>25</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string>Capture Bash History</string>
                   </property>
                  </widget>
                 </widget>
