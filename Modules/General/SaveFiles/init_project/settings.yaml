@@ -1,0 +1,10 @@
+## SPACES! not tabs
+
+general:
+  theme: "Default"
+
+osint:
+  reddit:
+    key:
+    username:
+    password:
