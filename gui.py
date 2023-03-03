@@ -108,8 +108,8 @@ class Ui_LogecC3(object):
         self.actionRELOAD.setObjectName(u"actionRELOAD")
         self.actionSave_Project = QAction(LogecC3)
         self.actionSave_Project.setObjectName(u"actionSave_Project")
-        self.actionSave_Project_As = QAction(LogecC3)
-        self.actionSave_Project_As.setObjectName(u"actionSave_Project_As")
+        self.actionSaveAs_Project = QAction(LogecC3)
+        self.actionSaveAs_Project.setObjectName(u"actionSaveAs_Project")
         self.actionOpen_Project = QAction(LogecC3)
         self.actionOpen_Project.setObjectName(u"actionOpen_Project")
         self.actionExit = QAction(LogecC3)
@@ -2149,6 +2149,10 @@ class Ui_LogecC3(object):
         self.gridLayout_28.setObjectName(u"gridLayout_28")
         self.settings_edit = QTextEdit(self.tab_37)
         self.settings_edit.setObjectName(u"settings_edit")
+        font9 = QFont()
+        font9.setFamilies([u"Hack"])
+        font9.setPointSize(10)
+        self.settings_edit.setFont(font9)
 
         self.gridLayout_28.addWidget(self.settings_edit, 0, 0, 1, 2)
 
@@ -2450,10 +2454,10 @@ class Ui_LogecC3(object):
 
         self.label_91 = QLabel(self.tab_75)
         self.label_91.setObjectName(u"label_91")
-        font9 = QFont()
-        font9.setUnderline(True)
-        font9.setKerning(True)
-        self.label_91.setFont(font9)
+        font10 = QFont()
+        font10.setUnderline(True)
+        font10.setKerning(True)
+        self.label_91.setFont(font10)
 
         self.gridLayout_54.addWidget(self.label_91, 0, 3, 2, 1)
 
@@ -2916,7 +2920,7 @@ class Ui_LogecC3(object):
         self.menuFile.addAction(self.actionDEBUG)
         self.menuFile.addAction(self.actionRELOAD)
         self.menuFile.addAction(self.actionSave_Project)
-        self.menuFile.addAction(self.actionSave_Project_As)
+        self.menuFile.addAction(self.actionSaveAs_Project)
         self.menuFile.addAction(self.actionOpen_Project)
         self.menuFile.addAction(self.actionExit)
         self.menuTarget.addAction(self.action_Target_Listen)
@@ -2956,7 +2960,7 @@ class Ui_LogecC3(object):
 
         self.retranslateUi(LogecC3)
 
-        self.tabWidget.setCurrentIndex(4)
+        self.tabWidget.setCurrentIndex(7)
         self.text_PortScan_tab.setCurrentIndex(0)
         self.bruteforce_panel_2.setCurrentIndex(0)
         self.text_PortScan_tab_2.setCurrentIndex(2)
@@ -2966,7 +2970,7 @@ class Ui_LogecC3(object):
         self.tabWidget_8.setCurrentIndex(1)
         self.bashbuild_toolBox.setCurrentIndex(3)
         self.tabWidget_9.setCurrentIndex(0)
-        self.tabWidget_6.setCurrentIndex(1)
+        self.tabWidget_6.setCurrentIndex(0)
         self.bruteforce_panel.setCurrentIndex(0)
         self.tabWidget_14.setCurrentIndex(1)
         self.bruteforce_download_seclist_topshort.setDefault(False)
@@ -3030,7 +3034,7 @@ class Ui_LogecC3(object):
 #if QT_CONFIG(shortcut)
         self.actionSave_Project.setShortcut(QCoreApplication.translate("LogecC3", u"Ctrl+S", None))
 #endif // QT_CONFIG(shortcut)
-        self.actionSave_Project_As.setText(QCoreApplication.translate("LogecC3", u"Save Project As...", None))
+        self.actionSaveAs_Project.setText(QCoreApplication.translate("LogecC3", u"Save Project As...", None))
         self.actionOpen_Project.setText(QCoreApplication.translate("LogecC3", u"Open Project", None))
         self.actionExit.setText(QCoreApplication.translate("LogecC3", u"Exit", None))
         self.status_data_IPADDR.setText(QCoreApplication.translate("LogecC3", u"N/A", None))
@@ -3784,8 +3788,8 @@ class Ui_LogecC3(object):
         self.settings_edit.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
+"</style></head><body style=\" font-family:'Hack'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:11pt;\"><br /></p></body></html>", None))
         self.settings_reload.setText(QCoreApplication.translate("LogecC3", u"-->> Reload <<--", None))
         self.settings_write.setText(QCoreApplication.translate("LogecC3", u"-->> Write <<--", None))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_37), QCoreApplication.translate("LogecC3", u"Settings", None))

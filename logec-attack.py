@@ -96,6 +96,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.sql_global()
         self.settings_global()
         self.PF = fileops.SaveFiles()
+        self.ProjectPath = None
         
         ## Need to move this
         self.connected = False
@@ -125,7 +126,8 @@ class MyApp(QMainWindow, Ui_LogecC3):
         ## File Menu ========================
 
         self.actionOpen_Project.triggered.connect(self.project_open)
-
+        self.actionSave_Project.triggered.connect(self.project_save)
+        self.actionSaveAs_Project.triggered.connect(self.project_saveAs)
         ## ========================================
         ## Shell (Depreacated, needs to be redone) ========================
         ## ========================================
@@ -1898,8 +1900,9 @@ class MyApp(QMainWindow, Ui_LogecC3):
         
         ## This can be shortened into a function somehwere I'm sure
         options = QFileDialog.Options()
-        options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "","All Files (*);;ProjectFiles (*.zip)", options=options)
+        #options |= QFileDialog.DontUseNativeDialog ## Makes a custom popup, sticking with system popup
+        #QFileDialog.setDirectory("Modules/General/SaveFiles/")
+        fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", f"{sys_path}/Modules/General/SaveFiles/","ProjectFiles (*.zip)", options=options)
         
         print(fileName)
         
@@ -1909,25 +1912,62 @@ class MyApp(QMainWindow, Ui_LogecC3):
         ]
         
         print(fileName)
+        
+        ## Setting global project path
+        self.ProjectPath = fileName
         self.PF.save_framework(options_list)
         
         try:
             ## Sending to loaders, hardcoded because this is where ALL open projects go:
             self.settings_global("/Modules/General/SaveFiles/.tmp_projectfolder/")
             self.sql_global("/Modules/General/SaveFiles/.tmp_projectfolder/")
-            self.success_popup()
+            self.success_popup([fileName,""])
         except:
             self.ERROR("something","error","Get better at coding lol")
-            
     
+    def project_save(self):
+        ## if not projectpath #aka if the path for the save file dosen't exist, popopen a save browser
+        if self.ProjectPath:
+            options_list = [
+                "save",
+                self.ProjectPath.replace(".zip",""),
+            ]
+            
+            print(self.ProjectPath)
+            
+            self.PF.save_framework(options_list)
+        
+        else:
+            self.project_saveAs()
+
+    def project_saveAs(self):
+        
+        dialog = QFileDialog()
+        dialog.setAcceptMode(QFileDialog.AcceptSave)  # set the dialog to "save" mode
+        dialog.setNameFilter("Text Files (*.zip)")  # set a filter for text files
+        # show the dialog and get the selected file name
+        if dialog.exec() == QFileDialog.Accepted:
+            Project_SaveAs_Location = dialog.selectedFiles()[0]
+            
+        #print(Project_SaveAs_Location)
+
+        options_list = [
+            "save",
+            Project_SaveAs_Location,
+        ]
+            
+        self.PF.save_framework(options_list)
+
     ## Need to change to make more useful & allow inputs with name, (throw error for failed attempts)
-    def success_popup(self):
+    def success_popup(self, info_list):
+        filename, placeholder = info_list
+        
         QMessageBox.information(
             None,
             ## Title
             'Success! Project Loaded!',
             ## Actual Error
-            f'Project NAME was loaded!',
+            f'Project {filename} was loaded!',
         )
     ## ========================================
     ## Settings ===============================

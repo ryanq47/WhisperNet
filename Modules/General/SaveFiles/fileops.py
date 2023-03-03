@@ -17,14 +17,16 @@ class SaveFiles:
         
         if action == "load":
             self.loadfile()
-        
+        elif action == "save":
+            self.savefile()
         
     def createfile(self):
         os.mkdir(f'{self.sys_path}/Modules/General/SaveFiles/Projects')
         os.mkdir(f'{self.sys_path}/Modules/General/SaveFiles/.tmp_projectfolder')
     
     def savefile(self):
-        make_archive(f'{self.sys_path}/Modules/General/SaveFiles/Projects/{self.filename}','zip',f'{self.sys_path}/Modules/General/SaveFiles/.tmp_projectfolder/')
+        print(self.filename)
+        make_archive(self.filename,'zip',f'{self.sys_path}/Modules/General/SaveFiles/.tmp_projectfolder/')
 
     def loadfile(self):
         unpack_archive(self.filename, f'{self.sys_path}/Modules/General/SaveFiles/.tmp_projectfolder/','zip')
@@ -32,9 +34,4 @@ class SaveFiles:
         ## Returning path of loaded file
         #return f'{self.sys_path}/Modules/General/SaveFiles/.tmp_projectfolder/'
 
-S = SaveFiles()
-
-S.save_framework([1,2])
-S.savefile()
-#S.loadfile()
 
