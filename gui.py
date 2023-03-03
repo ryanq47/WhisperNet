@@ -29,7 +29,7 @@ class Ui_LogecC3(object):
         if not LogecC3.objectName():
             LogecC3.setObjectName(u"LogecC3")
         LogecC3.setWindowModality(Qt.NonModal)
-        LogecC3.resize(1346, 806)
+        LogecC3.resize(1346, 932)
         LogecC3.setMinimumSize(QSize(850, 688))
         LogecC3.setMaximumSize(QSize(10000, 10000))
         font = QFont()
@@ -345,17 +345,24 @@ class Ui_LogecC3(object):
         self.c2_systemshell.setObjectName(u"c2_systemshell")
         self.c2_systemshell.setEnabled(True)
         self.c2_systemshell.setGeometry(QRect(10, 10, 929, 487))
-        self.c2_systemshell.setFont(font2)
+        font3 = QFont()
+        font3.setFamilies([u"Monospace"])
+        font3.setPointSize(9)
+        self.c2_systemshell.setFont(font3)
         self.c2_systemshell.setStyleSheet(u"background-color: rgb(29, 29, 29);")
         self.c2_systemshell.setReadOnly(True)
         self.c2_systemshell_input = QLineEdit(self.tab_59)
         self.c2_systemshell_input.setObjectName(u"c2_systemshell_input")
         self.c2_systemshell_input.setGeometry(QRect(10, 496, 861, 31))
+        font4 = QFont()
+        font4.setFamilies([u"DejaVu Sans Mono"])
+        font4.setPointSize(9)
+        self.c2_systemshell_input.setFont(font4)
         self.c2_systemshell_input.setStyleSheet(u"background-color: rgb(29, 29, 29);")
         self.c2_systemshell_send = QPushButton(self.tab_59)
         self.c2_systemshell_send.setObjectName(u"c2_systemshell_send")
         self.c2_systemshell_send.setEnabled(True)
-        self.c2_systemshell_send.setGeometry(QRect(881, 500, 61, 27))
+        self.c2_systemshell_send.setGeometry(QRect(871, 500, 71, 27))
         self.text_PortScan_tab_2.addTab(self.tab_59, "")
         self.textEdit_25 = QTextEdit(self.tab_53)
         self.textEdit_25.setObjectName(u"textEdit_25")
@@ -426,13 +433,13 @@ class Ui_LogecC3(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.scrollAreaWidgetContents_4 = QWidget()
         self.scrollAreaWidgetContents_4.setObjectName(u"scrollAreaWidgetContents_4")
-        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 1282, 522))
+        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 1282, 648))
         self.label_62 = QLabel(self.scrollAreaWidgetContents_4)
         self.label_62.setObjectName(u"label_62")
         self.label_62.setGeometry(QRect(10, 10, 91, 19))
-        font3 = QFont()
-        font3.setUnderline(True)
-        self.label_62.setFont(font3)
+        font5 = QFont()
+        font5.setUnderline(True)
+        self.label_62.setFont(font5)
         self.lineEdit_12 = QLineEdit(self.scrollAreaWidgetContents_4)
         self.lineEdit_12.setObjectName(u"lineEdit_12")
         self.lineEdit_12.setGeometry(QRect(10, 510, 113, 27))
@@ -553,7 +560,7 @@ class Ui_LogecC3(object):
         self.label_11 = QLabel(self.scrollAreaWidgetContents_2)
         self.label_11.setObjectName(u"label_11")
         self.label_11.setGeometry(QRect(10, 10, 66, 19))
-        self.label_11.setFont(font3)
+        self.label_11.setFont(font5)
         self.lineEdit_6 = QLineEdit(self.scrollAreaWidgetContents_2)
         self.lineEdit_6.setObjectName(u"lineEdit_6")
         self.lineEdit_6.setGeometry(QRect(10, 510, 113, 27))
@@ -989,7 +996,7 @@ class Ui_LogecC3(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.scrollAreaWidgetContents_5 = QWidget()
         self.scrollAreaWidgetContents_5.setObjectName(u"scrollAreaWidgetContents_5")
-        self.scrollAreaWidgetContents_5.setGeometry(QRect(0, 0, 1282, 660))
+        self.scrollAreaWidgetContents_5.setGeometry(QRect(0, 0, 1282, 786))
         self.bashbuild_toolBox = QToolBox(self.scrollAreaWidgetContents_5)
         self.bashbuild_toolBox.setObjectName(u"bashbuild_toolBox")
         self.bashbuild_toolBox.setGeometry(QRect(0, 0, 241, 651))
@@ -1271,10 +1278,10 @@ class Ui_LogecC3(object):
         self.gridLayout_13.setObjectName(u"gridLayout_13")
         self.label_30 = QLabel(self.tab_16)
         self.label_30.setObjectName(u"label_30")
-        font4 = QFont()
-        font4.setPointSize(10)
-        font4.setUnderline(False)
-        self.label_30.setFont(font4)
+        font6 = QFont()
+        font6.setPointSize(10)
+        font6.setUnderline(False)
+        self.label_30.setFont(font6)
 
         self.gridLayout_13.addWidget(self.label_30, 6, 0, 1, 1)
 
@@ -1295,7 +1302,7 @@ class Ui_LogecC3(object):
 
         self.label_28 = QLabel(self.tab_16)
         self.label_28.setObjectName(u"label_28")
-        self.label_28.setFont(font4)
+        self.label_28.setFont(font6)
 
         self.gridLayout_13.addWidget(self.label_28, 4, 0, 1, 1)
 
@@ -1311,9 +1318,9 @@ class Ui_LogecC3(object):
 
         self.label_29 = QLabel(self.tab_16)
         self.label_29.setObjectName(u"label_29")
-        font5 = QFont()
-        font5.setPointSize(10)
-        self.label_29.setFont(font5)
+        font7 = QFont()
+        font7.setPointSize(10)
+        self.label_29.setFont(font7)
 
         self.gridLayout_13.addWidget(self.label_29, 4, 1, 1, 1)
 
@@ -1333,7 +1340,7 @@ class Ui_LogecC3(object):
 
         self.label_31 = QLabel(self.tab_16)
         self.label_31.setObjectName(u"label_31")
-        self.label_31.setFont(font4)
+        self.label_31.setFont(font6)
 
         self.gridLayout_13.addWidget(self.label_31, 8, 0, 1, 1)
 
@@ -1345,7 +1352,7 @@ class Ui_LogecC3(object):
         self.label_26 = QLabel(self.tab_16)
         self.label_26.setObjectName(u"label_26")
         self.label_26.setMaximumSize(QSize(16777215, 15))
-        self.label_26.setFont(font5)
+        self.label_26.setFont(font7)
 
         self.gridLayout_13.addWidget(self.label_26, 2, 0, 1, 1)
 
@@ -1356,7 +1363,7 @@ class Ui_LogecC3(object):
 
         self.label_27 = QLabel(self.tab_16)
         self.label_27.setObjectName(u"label_27")
-        self.label_27.setFont(font5)
+        self.label_27.setFont(font7)
 
         self.gridLayout_13.addWidget(self.label_27, 2, 1, 1, 1)
 
@@ -1599,9 +1606,9 @@ class Ui_LogecC3(object):
 
         self.bruteforce_download_seclist_topshort = QPushButton(self.tab_44)
         self.bruteforce_download_seclist_topshort.setObjectName(u"bruteforce_download_seclist_topshort")
-        font6 = QFont()
-        font6.setStrikeOut(False)
-        self.bruteforce_download_seclist_topshort.setFont(font6)
+        font8 = QFont()
+        font8.setStrikeOut(False)
+        self.bruteforce_download_seclist_topshort.setFont(font8)
         self.bruteforce_download_seclist_topshort.setAutoDefault(False)
         self.bruteforce_download_seclist_topshort.setFlat(False)
 
@@ -1620,10 +1627,10 @@ class Ui_LogecC3(object):
         self.label_74 = QLabel(self.tab_44)
         self.label_74.setObjectName(u"label_74")
         self.label_74.setMaximumSize(QSize(16777215, 20))
-        font7 = QFont()
-        font7.setBold(True)
-        font7.setUnderline(True)
-        self.label_74.setFont(font7)
+        font9 = QFont()
+        font9.setBold(True)
+        font9.setUnderline(True)
+        self.label_74.setFont(font9)
 
         self.gridLayout_37.addWidget(self.label_74, 1, 0, 1, 1)
 
@@ -1634,7 +1641,7 @@ class Ui_LogecC3(object):
 
         self.bruteforce_download_seclist_top10mil_usernames = QPushButton(self.tab_44)
         self.bruteforce_download_seclist_top10mil_usernames.setObjectName(u"bruteforce_download_seclist_top10mil_usernames")
-        self.bruteforce_download_seclist_top10mil_usernames.setFont(font6)
+        self.bruteforce_download_seclist_top10mil_usernames.setFont(font8)
         self.bruteforce_download_seclist_top10mil_usernames.setAutoDefault(False)
         self.bruteforce_download_seclist_top10mil_usernames.setFlat(False)
 
@@ -1662,7 +1669,7 @@ class Ui_LogecC3(object):
 
         self.label_73 = QLabel(self.tab_44)
         self.label_73.setObjectName(u"label_73")
-        self.label_73.setFont(font7)
+        self.label_73.setFont(font9)
 
         self.gridLayout_37.addWidget(self.label_73, 0, 2, 1, 1)
 
@@ -1878,13 +1885,13 @@ class Ui_LogecC3(object):
         self.label_167 = QLabel(self.tab_128)
         self.label_167.setObjectName(u"label_167")
         self.label_167.setMaximumSize(QSize(16777215, 15))
-        self.label_167.setFont(font7)
+        self.label_167.setFont(font9)
 
         self.gridLayout_94.addWidget(self.label_167, 0, 0, 1, 1)
 
         self.label_166 = QLabel(self.tab_128)
         self.label_166.setObjectName(u"label_166")
-        self.label_166.setFont(font7)
+        self.label_166.setFont(font9)
 
         self.gridLayout_94.addWidget(self.label_166, 0, 2, 1, 1)
 
@@ -1895,7 +1902,7 @@ class Ui_LogecC3(object):
 
         self.bruteforce_download_seclist_top10mil_usernames_4 = QPushButton(self.tab_128)
         self.bruteforce_download_seclist_top10mil_usernames_4.setObjectName(u"bruteforce_download_seclist_top10mil_usernames_4")
-        self.bruteforce_download_seclist_top10mil_usernames_4.setFont(font6)
+        self.bruteforce_download_seclist_top10mil_usernames_4.setFont(font8)
         self.bruteforce_download_seclist_top10mil_usernames_4.setAutoDefault(False)
         self.bruteforce_download_seclist_top10mil_usernames_4.setFlat(False)
 
@@ -1918,7 +1925,7 @@ class Ui_LogecC3(object):
 
         self.bruteforce_download_seclist_topshort_4 = QPushButton(self.tab_128)
         self.bruteforce_download_seclist_topshort_4.setObjectName(u"bruteforce_download_seclist_topshort_4")
-        self.bruteforce_download_seclist_topshort_4.setFont(font6)
+        self.bruteforce_download_seclist_topshort_4.setFont(font8)
         self.bruteforce_download_seclist_topshort_4.setAutoDefault(False)
         self.bruteforce_download_seclist_topshort_4.setFlat(False)
 
@@ -1980,7 +1987,7 @@ class Ui_LogecC3(object):
         self.label_75 = QLabel(self.tab_60)
         self.label_75.setObjectName(u"label_75")
         self.label_75.setGeometry(QRect(440, 10, 191, 19))
-        self.label_75.setFont(font3)
+        self.label_75.setFont(font5)
         self.lineEdit_25 = QLineEdit(self.tab_60)
         self.lineEdit_25.setObjectName(u"lineEdit_25")
         self.lineEdit_25.setGeometry(QRect(12, 70, 131, 27))
@@ -2003,7 +2010,7 @@ class Ui_LogecC3(object):
         self.bruteforce_download_seclist_top10mil_usernames_5 = QPushButton(self.tab_60)
         self.bruteforce_download_seclist_top10mil_usernames_5.setObjectName(u"bruteforce_download_seclist_top10mil_usernames_5")
         self.bruteforce_download_seclist_top10mil_usernames_5.setGeometry(QRect(150, 70, 80, 27))
-        self.bruteforce_download_seclist_top10mil_usernames_5.setFont(font6)
+        self.bruteforce_download_seclist_top10mil_usernames_5.setFont(font8)
         self.bruteforce_download_seclist_top10mil_usernames_5.setAutoDefault(False)
         self.bruteforce_download_seclist_top10mil_usernames_5.setFlat(False)
         self.checkBox_22 = QCheckBox(self.tab_60)
@@ -2015,9 +2022,9 @@ class Ui_LogecC3(object):
         self.label_77 = QLabel(self.tab_60)
         self.label_77.setObjectName(u"label_77")
         self.label_77.setGeometry(QRect(760, 310, 81, 19))
-        font8 = QFont()
-        font8.setPointSize(6)
-        self.label_77.setFont(font8)
+        font10 = QFont()
+        font10.setPointSize(6)
+        self.label_77.setFont(font10)
         self.tabWidget_29.addTab(self.tab_60, "")
 
         self.gridLayout_98.addWidget(self.tabWidget_29, 9, 0, 9, 5)
@@ -2149,10 +2156,10 @@ class Ui_LogecC3(object):
         self.gridLayout_28.setObjectName(u"gridLayout_28")
         self.settings_edit = QTextEdit(self.tab_37)
         self.settings_edit.setObjectName(u"settings_edit")
-        font9 = QFont()
-        font9.setFamilies([u"Hack"])
-        font9.setPointSize(10)
-        self.settings_edit.setFont(font9)
+        font11 = QFont()
+        font11.setFamilies([u"Hack"])
+        font11.setPointSize(10)
+        self.settings_edit.setFont(font11)
 
         self.gridLayout_28.addWidget(self.settings_edit, 0, 0, 1, 3)
 
@@ -2220,7 +2227,7 @@ class Ui_LogecC3(object):
 
         self.label_40 = QLabel(self.tab_33)
         self.label_40.setObjectName(u"label_40")
-        self.label_40.setFont(font3)
+        self.label_40.setFont(font5)
 
         self.gridLayout_24.addWidget(self.label_40, 3, 3, 1, 1)
 
@@ -2459,10 +2466,10 @@ class Ui_LogecC3(object):
 
         self.label_91 = QLabel(self.tab_75)
         self.label_91.setObjectName(u"label_91")
-        font10 = QFont()
-        font10.setUnderline(True)
-        font10.setKerning(True)
-        self.label_91.setFont(font10)
+        font12 = QFont()
+        font12.setUnderline(True)
+        font12.setKerning(True)
+        self.label_91.setFont(font12)
 
         self.gridLayout_54.addWidget(self.label_91, 0, 3, 2, 1)
 
@@ -2525,7 +2532,7 @@ class Ui_LogecC3(object):
 
         self.label_86 = QLabel(self.tab_75)
         self.label_86.setObjectName(u"label_86")
-        self.label_86.setFont(font3)
+        self.label_86.setFont(font5)
 
         self.gridLayout_54.addWidget(self.label_86, 0, 0, 2, 1)
 
@@ -2883,34 +2890,8 @@ class Ui_LogecC3(object):
         self.menubar.setGeometry(QRect(0, 0, 1346, 24))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
-        self.menuTarget = QMenu(self.menubar)
-        self.menuTarget.setObjectName(u"menuTarget")
-        self.menu_Target_SpawnShell = QMenu(self.menuTarget)
-        self.menu_Target_SpawnShell.setObjectName(u"menu_Target_SpawnShell")
-        self.menu_Target_PythonShells = QMenu(self.menu_Target_SpawnShell)
-        self.menu_Target_PythonShells.setObjectName(u"menu_Target_PythonShells")
-        self.action_Target_Perl_binbash = QMenu(self.menu_Target_SpawnShell)
-        self.action_Target_Perl_binbash.setObjectName(u"action_Target_Perl_binbash")
-        self.menuRuby_Shells = QMenu(self.menu_Target_SpawnShell)
-        self.menuRuby_Shells.setObjectName(u"menuRuby_Shells")
-        self.menu_Target_Destruction = QMenu(self.menuTarget)
-        self.menu_Target_Destruction.setObjectName(u"menu_Target_Destruction")
-        self.menu_Target_Encryption = QMenu(self.menu_Target_Destruction)
-        self.menu_Target_Encryption.setObjectName(u"menu_Target_Encryption")
-        self.menu_Target_Info = QMenu(self.menuTarget)
-        self.menu_Target_Info.setObjectName(u"menu_Target_Info")
         self.menu_GettingStarted = QMenu(self.menubar)
         self.menu_GettingStarted.setObjectName(u"menu_GettingStarted")
-        self.menuExternal_Target = QMenu(self.menubar)
-        self.menuExternal_Target.setObjectName(u"menuExternal_Target")
-        self.menuExploits = QMenu(self.menuExternal_Target)
-        self.menuExploits.setObjectName(u"menuExploits")
-        self.menuWindows = QMenu(self.menuExploits)
-        self.menuWindows.setObjectName(u"menuWindows")
-        self.menuSMB = QMenu(self.menuWindows)
-        self.menuSMB.setObjectName(u"menuSMB")
-        self.menuEnumeration = QMenu(self.menuExternal_Target)
-        self.menuEnumeration.setObjectName(u"menuEnumeration")
         self.menuData = QMenu(self.menubar)
         self.menuData.setObjectName(u"menuData")
         self.menuSQL_Shortcuts = QMenu(self.menuData)
@@ -2918,8 +2899,6 @@ class Ui_LogecC3(object):
         LogecC3.setMenuBar(self.menubar)
 
         self.menubar.addAction(self.menuFile.menuAction())
-        self.menubar.addAction(self.menuTarget.menuAction())
-        self.menubar.addAction(self.menuExternal_Target.menuAction())
         self.menubar.addAction(self.menuData.menuAction())
         self.menubar.addAction(self.menu_GettingStarted.menuAction())
         self.menuFile.addAction(self.actionDEBUG)
@@ -2928,33 +2907,8 @@ class Ui_LogecC3(object):
         self.menuFile.addAction(self.actionSaveAs_Project)
         self.menuFile.addAction(self.actionOpen_Project)
         self.menuFile.addAction(self.actionExit)
-        self.menuTarget.addAction(self.action_Target_Listen)
-        self.menuTarget.addAction(self.menu_Target_Info.menuAction())
-        self.menuTarget.addAction(self.menu_Target_SpawnShell.menuAction())
-        self.menuTarget.addAction(self.menu_Target_Destruction.menuAction())
-        self.menu_Target_SpawnShell.addSeparator()
-        self.menu_Target_SpawnShell.addAction(self.actionLanguage)
-        self.menu_Target_SpawnShell.addSeparator()
-        self.menu_Target_SpawnShell.addAction(self.menu_Target_PythonShells.menuAction())
-        self.menu_Target_SpawnShell.addAction(self.action_Target_Perl_binbash.menuAction())
-        self.menu_Target_SpawnShell.addAction(self.menuRuby_Shells.menuAction())
-        self.menu_Target_PythonShells.addAction(self.action_Target_Python_binbash)
-        self.menu_Target_PythonShells.addAction(self.action_Target_Python_win)
-        self.action_Target_Perl_binbash.addAction(self.action_Perl)
-        self.menuRuby_Shells.addAction(self.action_Target_Ruby_NonInteractive)
-        self.menu_Target_Destruction.addAction(self.menu_Target_Encryption.menuAction())
-        self.menu_Target_Encryption.addAction(self.actionEncrypt_Files)
-        self.menu_Target_Info.addAction(self.actionNetInfo)
         self.menu_GettingStarted.addAction(self.GettingStarted_Readme)
         self.menu_GettingStarted.addAction(self.actionRead_Me_webview)
-        self.menuExternal_Target.addAction(self.menuEnumeration.menuAction())
-        self.menuExternal_Target.addAction(self.menuExploits.menuAction())
-        self.menuExploits.addAction(self.menuWindows.menuAction())
-        self.menuExploits.addAction(self.actionLinux)
-        self.menuExploits.addAction(self.actionOther)
-        self.menuWindows.addAction(self.menuSMB.menuAction())
-        self.menuSMB.addAction(self.actionCVE_2017_0144_Eternal_Blue)
-        self.menuEnumeration.addAction(self.actionPort_Scan)
         self.menuData.addAction(self.menuSQL_Shortcuts.menuAction())
         self.menuSQL_Shortcuts.addAction(self.actionHelp_Menu_DB)
         self.menuSQL_Shortcuts.addAction(self.actionError_DB)
@@ -2965,7 +2919,7 @@ class Ui_LogecC3(object):
 
         self.retranslateUi(LogecC3)
 
-        self.tabWidget.setCurrentIndex(7)
+        self.tabWidget.setCurrentIndex(1)
         self.text_PortScan_tab.setCurrentIndex(0)
         self.bruteforce_panel_2.setCurrentIndex(0)
         self.text_PortScan_tab_2.setCurrentIndex(2)
@@ -3146,8 +3100,8 @@ class Ui_LogecC3(object):
         self.c2_systemshell.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
+"</style></head><body style=\" font-family:'Monospace'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:11pt;\"><br /></p></body></html>", None))
         self.c2_systemshell.setPlaceholderText(QCoreApplication.translate("LogecC3", u"root@127.0.0.1> ", None))
 #if QT_CONFIG(tooltip)
         self.c2_systemshell_input.setToolTip("")
@@ -3157,6 +3111,9 @@ class Ui_LogecC3(object):
         self.c2_systemshell_send.setToolTip(QCoreApplication.translate("LogecC3", u"Hit the Enter Key", None))
 #endif // QT_CONFIG(tooltip)
         self.c2_systemshell_send.setText(QCoreApplication.translate("LogecC3", u"-->> Send <<-- ", None))
+#if QT_CONFIG(shortcut)
+        self.c2_systemshell_send.setShortcut(QCoreApplication.translate("LogecC3", u"Return", None))
+#endif // QT_CONFIG(shortcut)
         self.text_PortScan_tab_2.setTabText(self.text_PortScan_tab_2.indexOf(self.tab_59), QCoreApplication.translate("LogecC3", u"LocalShell", None))
         self.textEdit_25.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -4073,20 +4030,7 @@ class Ui_LogecC3(object):
         self.tabWidget_7.setTabText(self.tabWidget_7.indexOf(self.tab_15), QCoreApplication.translate("LogecC3", u"SQL Injection?", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_20), QCoreApplication.translate("LogecC3", u"Ideas/POC", None))
         self.menuFile.setTitle(QCoreApplication.translate("LogecC3", u"File", None))
-        self.menuTarget.setTitle(QCoreApplication.translate("LogecC3", u"Client", None))
-        self.menu_Target_SpawnShell.setTitle(QCoreApplication.translate("LogecC3", u"Spawn Shell", None))
-        self.menu_Target_PythonShells.setTitle(QCoreApplication.translate("LogecC3", u"Python Shells", None))
-        self.action_Target_Perl_binbash.setTitle(QCoreApplication.translate("LogecC3", u"Perl Shells", None))
-        self.menuRuby_Shells.setTitle(QCoreApplication.translate("LogecC3", u"Ruby Shells", None))
-        self.menu_Target_Destruction.setTitle(QCoreApplication.translate("LogecC3", u"Destruction", None))
-        self.menu_Target_Encryption.setTitle(QCoreApplication.translate("LogecC3", u"Encryption", None))
-        self.menu_Target_Info.setTitle(QCoreApplication.translate("LogecC3", u"Target Info", None))
         self.menu_GettingStarted.setTitle(QCoreApplication.translate("LogecC3", u"Getting Started", None))
-        self.menuExternal_Target.setTitle(QCoreApplication.translate("LogecC3", u"External Target", None))
-        self.menuExploits.setTitle(QCoreApplication.translate("LogecC3", u"Exploits", None))
-        self.menuWindows.setTitle(QCoreApplication.translate("LogecC3", u"Windows", None))
-        self.menuSMB.setTitle(QCoreApplication.translate("LogecC3", u"SMB", None))
-        self.menuEnumeration.setTitle(QCoreApplication.translate("LogecC3", u"Enumeration", None))
         self.menuData.setTitle(QCoreApplication.translate("LogecC3", u"Data", None))
         self.menuSQL_Shortcuts.setTitle(QCoreApplication.translate("LogecC3", u"SQL Shortcuts", None))
     # retranslateUi

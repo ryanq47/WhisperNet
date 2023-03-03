@@ -138,39 +138,10 @@ class MyApp(QMainWindow, Ui_LogecC3):
         ## Shell (Depreacated, needs to be redone) ========================
         ## ========================================
 
-        ## Main GUI
-        self.action_Target_Listen.triggered.connect(self.listen_popup)
-        # self.action_Target_Info.triggered.connect(self.target_info)
-
         ## Sys Shell
         self.c2_systemshell_send.clicked.connect(self.sys_shell)
-
-        ## button for sending commands
-        self.shell_input_enter.clicked.connect(self.run_command)
-        self.shell_input_enter.setShortcut('Return')
-
-        ## PopUp for shells:
-        # self.action_Target_Python_binbash.triggered.connect(self.shell_py_binbash)
-        self.action_Target_Python_binbash.triggered.connect(
-            self.python_shell_popup
-        )
-        self.action_Target_Perl_binbash.triggered.connect(
-            self.perl_shell_popup
-        )
-        self.action_Target_Ruby_NonInteractive.triggered.connect(
-            self.ruby_shell_popup
-        )
-
-        ## Windows Shells
-        self.action_Target_Python_win.triggered.connect(
-            self.python_shell_popup_win
-        )
-
-        ## Destruciton tab
-        self.actionEncrypt_Files.triggered.connect(self.encrypt_popup)
-
-        ## External target tab:
-        self.actionPort_Scan.triggered.connect(self.portscan_popup)
+        self.c2_systemshell_input.setFocus()
+        #self.c2_systemshell.textChanged.connect(self.sys_shell)
 
         ## debug:
         self.actionDEBUG.triggered.connect(self.DEBUG)
@@ -335,22 +306,16 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.program_reload.clicked.connect(self.restart)
         
         ## ========================================
-        ## Init Values/Main Thread ===========================
+        ## Init Values/Main Thread ================
         ## ========================================
-        
-        ## == Status Bar init
-        ## sets connected to red on startup
-        self.status_Connected.setStyleSheet('background-color: red')
-        ## setting buttons to disabled
-        self.not_connected()
 
-        ## Object instances
+
+        ## Object Instances ==================
         self.N = utility.Network()
         self.H = utility.Host()
         # self.P = Portscan()        self.bruteforce_user_browse.clicked.connect(self.browser_popup)
 
-
-        ## Portscam Inits
+        ## Portscan Inits ==================
         self.portscan_1_1024.toggled.connect(
             lambda: self.portscan_minport.setText('1')
         )
@@ -372,14 +337,8 @@ class MyApp(QMainWindow, Ui_LogecC3):
             lambda: self.portscan_maxport.setText('65535')
         )
 
-        """
-        ## Disabling fields if clicked
-        self.portscan_fast_check.stateChanged.connect(lambda: self.portscan_minport.setDisabled(True))
-        self.portscan_fast_check.stateChanged.connect(lambda: self.portscan_maxport.setDisabled(True))
-        self.portscan_fast_check.stateChanged.connect(lambda: self.portscan_extraport.setDisabled(True))"""
-
-        ## == SQL init
-        ## Setting DB
+        ## SQL Inits =====================
+        ## Setting the DB
         self.view = self.table_SQLDB
 
         ## Showing help table on startup
@@ -397,7 +356,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
 
         self.custom_query('performance_error_db')
 
-        ## == Other Init
+        ## Other inits ==================
         
         ## Loading Settings
         self.edit_settings()
@@ -405,7 +364,10 @@ class MyApp(QMainWindow, Ui_LogecC3):
         ## Once loaded, setting startlist to 1
         self.startlist = self.startlist = 1
 
-    
+    ## ========================================
+    ## Error, Checks & Debug ==================
+    ## ========================================
+        
     def restart(self): ## MEMORY LEAK !!
         # Restart the Python interpreter
         args = sys.argv[:]
@@ -413,10 +375,6 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.close()
         sys.exit(os.spawnvp(os.P_WAIT, sys.executable, args))
         
-    ## ========================================
-    ## Error, Checks & Debug ==================
-    ## ========================================
-
     def DEBUG(self):
         self.client_connected()
         self.text_Program_Output.setText(
@@ -445,37 +403,11 @@ class MyApp(QMainWindow, Ui_LogecC3):
         #time.sleep(10)
         error_list = [severity, error, fix, Time, Date]
         
-
         self.db_error_write(error_list)
 
     def root_check(self, name):
         if os.getuid() != 0:
             self.ERROR([f"You are not running as root, note that {name} may not work as expected","Medium","Restart program as root"])
-
-    ## ========================================
-    ## Conn/NotConn ===========================
-    ## ========================================
-
-    def not_connected(self):
-        ## Disabling stuff that needs to be disabled at startup:
-        # == top buttons
-        self.menu_Target_Info.setDisabled(True)
-        self.menu_Target_SpawnShell.setDisabled(True)
-        self.menu_Target_Destruction.setDisabled(True)
-        # == CMD input
-        self.shell_input.setDisabled(True)
-        self.shell_input_enter.setDisabled(True)
-
-    def client_connected(self):
-        self.menu_Target_Info.setDisabled(False)
-        self.menu_Target_SpawnShell.setDisabled(False)
-        self.menu_Target_Destruction.setDisabled(False)
-
-        # == CMD input
-        self.shell_input.setDisabled(False)
-        self.shell_input_enter.setDisabled(False)
-
-        self.ERROR(['', 'clear', ''])
 
     ## ========================================
     ## Getting started tab ====================
@@ -488,8 +420,10 @@ class MyApp(QMainWindow, Ui_LogecC3):
             self.text_Program_Output.setText(welcome_message)
 
     ## ========================================
-    ## SQLDB stuff ============================
+    ## SQLDB Functions ========================
     ## ========================================
+
+    ## This is where all the SQL Processing code is housed.
 
     def clear_db_table(self):
         self.view.clear()
@@ -538,8 +472,6 @@ class MyApp(QMainWindow, Ui_LogecC3):
                 ['No Query Input Provided', 'Low', 'Enter an input to fix']
             )
         
-        
-
         ## Shortcuts not working for some reason
         # Temp workaround
         query_input = query_input_raw
@@ -613,200 +545,59 @@ class MyApp(QMainWindow, Ui_LogecC3):
     def error_shortcut(self):
         self.DB_Query.setText('!_error')
         self.custom_query('main_db')
+
+## ========================================
+## C2 Tab =================================
+## ========================================
+
+    # Eveything related to the C2 tab & functions
+
     ## ========================================
-    ## System Shell     =======================
+    ## System Shell ===========================
     ## ========================================
+    
+    ## A semi-interactive bash shell for the local system
+    
     ## Gonna need some work, this currently creates one thread for each command
     def sys_shell(self):
-        
-        
-        print("CLICKED")
+
+        # The Enter key was pressed
+        #print("Enter key pressed")
         input_list = [
                 self.c2_systemshell_input.text()
                 ]
-        
-        self.sysshell_thread = QThread()
+            
+        #self.sysshell_thread = QThread()
         self.sysshell_worker = Shell()
-        self.sysshell_worker.moveToThread(self.sysshell_thread)
-            
-            ## Queing up the function to run (Slots n signals too)
-        print("Starting Shell Qthread")
-        self.sysshell_thread.started.connect(partial(self.sysshell_worker.shell_framework, input_list))
-        self.sysshell_worker.finished.connect(self.sysshell_thread.exit) # exi works better than quit
-        self.sysshell_worker.finished.connect(self.sysshell_worker.deleteLater)
-        self.sysshell_worker.finished.connect(self.sysshell_thread.deleteLater)
-            
-            #Could be a lambda
+        #self.sysshell_worker.moveToThread(self.sysshell_thread)
+        self.thread_manager.start(partial(self.sysshell_worker.shell_framework, input_list))
+                
+        ## Queing up the function to run (Slots n signals too)
+        #print("Starting Shell Qthread")
+                
+        #Could be a lambda
         self.sysshell_worker.sys_out.connect(self.sys_shell_results)
     
-        self.sysshell_thread.start()
-
-    
     def sys_shell_results(self, results):
-        self.c2_systemshell.setText(results)
+        try:
+            self.c2_systemshell.setText(results)
+            self.c2_systemshell_input.setText("")
+        except Exception as e:
+            print(e)
 
-    ## ========================================
-    ## Unix Shell PopUps =======================
-    ## ========================================
+## ========================================
+## Scanning/Enumeration ====================
+## ========================================
 
-    ## Python Shell Unix
-    def python_shell_popup(self):
-        ## Inits for the popup gui
-        self.window = QtWidgets.QMainWindow()
-        self.shell_popup = Ui_shell_SEND()
-        self.shell_popup.setupUi(self.window)
-        self.window.show()
-
-        ## popping the shell prompt & running
-        self.shell_popup.popup_shell_SEND.clicked.connect(
-            self.python_shell_run_thread
-        )
-
-    def python_shell_run_thread(self):
-        thread = threading.Thread(target=self.python_shell_run)
-        # thread = threading.Thread(target=self.listen_popup())
-        thread.start()
-
-    def python_shell_run(self):
-        ip = self.shell_popup.popup_shell_IP.text()
-        port = self.shell_popup.popup_shell_PORT.text()
-        program = self.shell_popup.popup_shell_SHELL.text()
-
-        ## Hiding window after send button
-        self.window.hide()
-
-        payload = rev_shell_target.pyshell(ip, port, program)
-
-        self.text_Program_Output.setText(s_sock.send_msg(s_sock, payload))
-
-    ## Perl Shell Unix
-    def perl_shell_popup(self):
-        ## Inits for the popup gui
-        self.window = QtWidgets.QMainWindow()
-        self.shell_popup = Ui_shell_SEND()
-        self.shell_popup.setupUi(self.window)
-        self.window.show()
-
-        ## popping the shell prompt & running
-        self.shell_popup.popup_shell_SEND.clicked.connect(
-            self.perl_shell_run_thread
-        )
-
-    def perl_shell_run_thread(self):
-        thread = threading.Thread(target=self.perl_shell_run)
-        thread.start()
-
-    def perl_shell_run(self):
-        ip = self.shell_popup.popup_shell_IP.text()
-        port = self.shell_popup.popup_shell_PORT.text()
-        program = self.shell_popup.popup_shell_SHELL.text()
-
-        ## Hiding window after send button
-        self.window.hide()
-
-        payload = rev_shell_target.perlshell(ip, port, program)
-        self.text_Program_Output.setText(s_sock.send_msg(s_sock, payload))
-
-    ## Ruby Shell Unix
-    def ruby_shell_popup(self):
-        ## Inits for the popup gui
-        self.window = QtWidgets.QMainWindow()
-        self.shell_popup = Ui_shell_SEND()
-        self.shell_popup.setupUi(self.window)
-        self.window.show()
-
-        ## popping the shell prompt & running
-        self.shell_popup.popup_shell_SEND.clicked.connect(
-            self.ruby_shell_run_thread
-        )
-
-    def ruby_shell_run_thread(self):
-        thread = threading.Thread(target=self.ruby_shell_run)
-        thread.start()
-
-    def ruby_shell_run(self):
-        ip = self.shell_popup.popup_shell_IP.text()
-        port = self.shell_popup.popup_shell_PORT.text()
-        program = self.shell_popup.popup_shell_SHELL.text()
-
-        ## Hiding window after send button
-        self.window.hide()
-
-        payload = rev_shell_target.rubyshell(ip, port, program)
-        self.text_Program_Output.setText(s_sock.send_msg(s_sock, payload))
-
-    ## ========================================
-    ## Windows Shell PopUps ====================
-    ## ========================================
-
-    def python_shell_popup_win(self):
-        ## Inits for the popup gui
-        self.window = QtWidgets.QMainWindow()
-        self.shell_popup = Ui_shell_SEND()
-        self.shell_popup.setupUi(self.window)
-        self.window.show()
-
-        ## popping the shell prompt & running
-        self.shell_popup.popup_shell_SEND.clicked.connect(
-            self.python_shell_run_thread_win
-        )
-
-    def python_shell_run_thread_win(self):
-        thread = threading.Thread(target=self.python_shell_run)
-        # thread = threading.Thread(target=self.listen_popup())
-        thread.start()
-
-    def python_shell_run_win(self):
-        ip = self.shell_popup.popup_shell_IP.text()
-        port = self.shell_popup.popup_shell_PORT.text()
-        program = self.shell_popup.popup_shell_SHELL.text()
-
-        ## Hiding window after send button
-        self.window.hide()
-
-        payload = rev_shell_target_win.pyshell(ip, port, program)
-
-        self.text_Program_Output.setText(s_sock.send_msg(s_sock, payload))
-
-    ## LA Listen Shell
-    def listen_popup(self):
-        self.window = QtWidgets.QMainWindow()
-        self.listen_popup = Ui_listener_popup()
-        self.listen_popup.setupUi(self.window)
-        self.window.show()
-
-        self.listen_ip = self.listen_popup.popup_listen_ip.text()
-        self.listen_port = self.listen_popup.popup_listen_port.text()
-
-        # print(self.listen_ip, self.listen_port)
-
-        self.listen_popup.popup_listen_LISTEN.clicked.connect(
-            self.target_listen_thread
-        )
-        # self.window.hide()
+## Everything related to scanning and enumeration
 
     ## ========================================
     ## PortScan Popup ========================
     ## ========================================
 
-    def portscan_popup(self):
-        # print("POPUP")
-        ## added _ to not conflict in namespace
-        self.window = QtWidgets.QMainWindow()
-        self._portscan_popup = Ui_PortScan_Popup()
-        self._portscan_popup.setupUi(self.window)
-        self.window.show()
-
-        portscan_IP = self._portscan_popup.portscan_IP.text()
-
-        self._portscan_popup.portscan_start.clicked.connect(
-            self.portscan
-        )
-
     def portscan(self, QObject):
         input_ip = self.portscan_IP.text()
         print(input_ip)
-        print('I')
 
         try:
             ## setting bar to 0
@@ -923,229 +714,12 @@ class MyApp(QMainWindow, Ui_LogecC3):
             
         except Exception as e:
             self.ERROR([e, "Medium", "??"])
-    ## ========================================
-    ## Destructoin PopUps =====================
-    ## ========================================
-
-    def encrypt_popup(self):
-        ## Inits for the popup gui
-        self.window = QtWidgets.QMainWindow()
-        self.Encryptor_Popup = Encryptor_Popup()
-        self.Encryptor_Popup.setupUi(self.window)
-        self.window.show()
-
-        self.Encryptor_Popup.encryptor_EncryptButton.clicked.connect(
-            self.encrypt_thread
-        )
-
-    def encrypt_thread(self):
-        thread = threading.Thread(target=self.encrypt)
-        thread.start()
-
-    def encrypt(self):
-        self.window.hide()
-
-        self.encrypt_folder = self.Encryptor_Popup.encryptor_Folder.text()
-        self.encrypt_extension = (
-            self.Encryptor_Popup.encryptor_Extension.text()
-        )
-        self.encrypt_password = self.Encryptor_Popup.encryptor_Password.text()
-
-        # print("ENCRYPTING")
-        # print(self.encrypt_folder + '\n' + self.encrypt_password)
-
-        s_action.encryptor(
-            self.encrypt_folder, self.encrypt_extension, self.encrypt_password
-        )
-        # print("Success")
-        # self.text_Program_Output.setText(f"Successful Encryption of {self.encrypt_folder}")
-        ## Run encryptor with those 2 above values
-
-    ## ========================================
-    ## Server Functions =======================
-    ## ========================================
-
-
-    ## Thread for listener
-    def target_listen_thread(self):
-        self.window.hide()
-        thread = threading.Thread(target=self.target_listen)
-        # thread = threading.Thread(target=self.listen_popup())
-
-        thread.start()
-
-    ## Start Listener
-    def target_listen(self):
-        ## This is essentially a block until a connection is established, that's why its in its own thread
-        ## clearning error messages
-        self.ERROR(['', 'clear', ''])
-        try:
-            self.status_Connected.setStyleSheet('background-color: purple')
-            self.status_Connected.setText('Connection: Listening')
-
-            s_sock.start_server(
-                s_sock,
-                self.listen_popup.popup_listen_ip.text(),
-                int(self.listen_popup.popup_listen_port.text()),
-            )
-
-            ## 2nd time around this does not turn green for some reason
-            self.status_Connected.setStyleSheet('background-color: green')
-            self.status_Connected.setText('Connection: Connected')
-
-            self.connected = True
-
-            ## makes it so the buttons open up, temp
-            self.client_connected()
-
-            ## On connected:
-
-            ## getting os type (nt, posix, etc) this sets the variable of self.os_type
-            self.os_info()
-            ## default getting info:
-            self.target_info()
-
-        ## Listener Error handling
-        except OSError as e:
-            # print(f"[SYS ERROR: ADDRESS ALREADY IN USE]: \n{e}")
-            self.connected = False
-
-            # setting connected to red
-            self.status_Connected.setStyleSheet('background-color: red')
-            self.status_Connected.setText(f'Connection: Disconnected')
-
-            fix = f'Kill the process listening on {self.listen_popup.popup_listen_ip.text()}:{self.listen_popup.popup_listen_port.text()}'
-
-            self.ERROR([e, 'medium', fix])
-            # self.text_Program_Output.setText()
-
-        except ValueError as e:
-            self.connected = False
-
-            # setting connected to red
-            self.status_Connected.setStyleSheet('background-color: red')
-            self.status_Connected.setText(f'Connection: Disconnected')
-
-            self.ERROR([e, 'medium','You probably put letters in the IP/PORT... try numbers. No DNS listener names at the moment'])
-
-        except Exception as e:
-            # print(f"SYS ERROR]: {e}")
-            print(e)
-            self.connected = False
-
-            # setting connected to red
-            self.status_Connected.setStyleSheet('background-color: red')
-            self.status_Connected.setText(f'Connection: Disconnected')
-
-            self.ERROR(
-                [e,
-                'medium',
-                'Not sure... This is the fail-safe error catcher, try a google?']
-            )
-
-        ##enabling buttons again on connection
-        if self.connected:
-            self.client_connected()
-
-    ## os info:
-    def os_info(self):
-        self.os_type = s_sock.get_os(s_sock)
-
-    ## ========================================
-    ## Shell Functions ========================
-    ## ========================================
-
-    ## Run a command, servver side command filters
-    def run_command(self):
-        try:
-            ## download
-            if 'get' in self.shell_input.text()[:3]:
-                self.data_download_thread(self.shell_input.text())
-
-            ## target info
-            elif self.shell_input.text() == 'info':
-                self.target_info()
-
-            ## send command to target
-            else:
-                # server.send_msg(self.shell_input.text())
-                self.text_Program_Output.setText(
-                    s_sock.send_msg(s_sock, self.shell_input.text())
-                )
-                ## Setting text back to nothing after a command
-                self.shell_input.setText('')
-
-        ## Error handling
-        except BrokenPipeError as e:
-            self.text_Program_Output.setText('')
-            ## connected on info bar
-            self.status_Connected.setStyleSheet('background-color: red')
-            self.status_Connected.setText('Connection: Disconnected')
-            self.shell_input.setText('')
-
-            self.ERROR([e, 'high', 'Client has disconnected, not sure why.'])
-
-            ## setting buttons to disabled
-            self.not_connected()
-
-    ## target info
-    def target_info(self):
-        os_type = (
-            self.os_type
-        )   ## had to use localized version of this for some reason
-        try:
-            hostname = s_action.c_get_hostname(str(os_type))
-            ip = s_action.c_pub_ip(os_type)
-            data_os = s_action.c_os(os_type)
-
-            self.status_data_HOSTNAME.setText(hostname)
-            self.status_data_IPADDR.setText(ip)
-            self.status_data_OS.setText(data_os)
-
-        ## error handling
-        except Exception as e:
-            print(e)
-            self.ERROR([e, 'high', 'Error getting data, not sure why'])
-
-        # self.browser_Target_Status.setText(client.host.info())
-
-    ## ========================================
-    ## Data Exfil =============================
-    ## ========================================
-
-    ## Data Upload - Not working/implemented
-    def data_upload_thread(self):
-        print('UPLOAD')
-        pass
-
-    def data_upload(self):
-        pass
-
-    ## Data Download
-
-    def data_download_thread(self, msg):
-        import Modules.General.filetransfer_server
-
-        lst = []
-        for i in msg.split():
-            lst.append(i)
-            ## ip   port    save location (not used)   Target File to download
-        self.text_Program_Output.setText(
-            s_sock.file_download(
-                s_sock, f'0.0.0.0 5000 /home/kali/data_from_client {lst[1]}'
-            )
-        )
-
-        self.shell_input.setText('')
-
-    # def data_download(self, msg):
-    # download = threading.Thread(target=self.data_download_thread, args=(msg))
-    # download.start()
-    
     
     ## ========================================
-    ## Not Sure yet tab (other?)===============
+    ## Bash Builder ===========================
     ## ========================================
+    
+    ## A bash script builder
     
     def bash_builder(self):
         self.Script = ScriptGen.Script()
@@ -1184,19 +758,17 @@ class MyApp(QMainWindow, Ui_LogecC3):
         
         ## Has to go last to grab signals n stiff
         self.Script.script_framework(packed_json)
-        
-        
-    
+
     def bash_builder_display(self, final_script):
         print("triggered")
         self.bashbuild_textoutput.setText(final_script)
-    
-
-    
 
     ## ========================================
-    ## Scanning Tab ===========================
+    ## DNS Lookup ===========================
     ## ========================================
+    
+    ## Quick DNS lookups
+    
     def dns_lookup(self):
 
         ## All handler
@@ -1301,15 +873,17 @@ class MyApp(QMainWindow, Ui_LogecC3):
                 row = row + 1
                 
                 
+## ========================================
+## BruteForce Tab =========================
+## ========================================
+
     ## ========================================
-    ## BruteForce Tab ==================
+    ## BruteForce Creds =======================
     ## ========================================
-    ## Bruteforce Creds
+
     def bruteforce(self):
         
         try:
-            #target_list = ["IP","port","protocol","user_wordlist_dir","pass_wordlist_dir","url_wordlist_dir"]
-            
             target_list = [
                 self.bruteforce_target.text(), 
                 self.bruteforce_port.text(),
@@ -1331,9 +905,6 @@ class MyApp(QMainWindow, Ui_LogecC3):
             ##self.bruteforce_worker.finished.connect(self.bruteforce_worker.deleteLater)
             #self.bruteforce_worker.finished.connect(self.bruteforce_worker.thread.terminate)
             #self.bruteforce_worker.finished.connect(self.bruteforce_thread.deleteLater)
-            
-            
-
             
             #Error
             self.bruteforce_worker.module_error.connect(partial(self.ERROR, target_list))
@@ -1474,7 +1045,12 @@ class MyApp(QMainWindow, Ui_LogecC3):
         except Exception as e:
             self.ERROR([e, "Medium", "??"])
    
-    ## Fuzzer
+    ## ========================================
+    ## BruteForce Fuzzer ======================
+    ## ========================================
+    
+    # A fuzzer
+    
     def bruteforce_fuzzer(self):
         
         try:
@@ -1635,9 +1211,14 @@ class MyApp(QMainWindow, Ui_LogecC3):
         except Exception as e:
             self.ERROR([e, "Medium", "??"])
             
+## ========================================
+## OSINT Tab ==============================
+## ========================================
+
     ## ========================================
-    ## OSINT Tab ==============================
+    ## Reddit Scraper =========================
     ## ========================================
+
     def osint_reddit(self):
         osint_red = threading.Thread(target=self.osint_reddit_thread)
         osint_red.start()
@@ -1705,6 +1286,12 @@ class MyApp(QMainWindow, Ui_LogecC3):
             self.reddit_progressbar.setMaximum(maxval)
             self.reddit_progressbar.setValue(currentval)
 
+    ## ========================================
+    ## Google Dork Builder=====================
+    ## ========================================
+
+    ## A google dork builder
+
     def dork(self):
         try:
 
@@ -1737,8 +1324,12 @@ class MyApp(QMainWindow, Ui_LogecC3):
     def dork_query_display(self, dork_query):
         self.osint_dork_output.setText(dork_query)
 
+## ========================================
+## Other Tab ==============================
+## ========================================
+
     ## ========================================
-    ## Other Tab ==============================
+    ## Performance(2) n stuff =================
     ## ========================================
     def draw_graph_refresh(self):
         self.timer = QTimer()
@@ -1870,7 +1461,6 @@ class MyApp(QMainWindow, Ui_LogecC3):
                 self.other_network_performance.height()
             )    
         
-
     def performance_networkspeed(self):
         # print("CLICKED")
         p_thread = threading.Thread(target=self.netspeed_thread)
@@ -1899,8 +1489,12 @@ class MyApp(QMainWindow, Ui_LogecC3):
         #print("PERF SET TIME")
         self.performance_seconds.setText(time)
 
+## ========================================
+## Projects, Settings, etc. System Functions
+## ========================================
+
     ## ========================================
-    ## Project Controls ===============================
+    ## Project Controls =======================
     ## ========================================
     def project_open(self):
         
@@ -1975,6 +1569,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             ## Actual Error
             f'Project {filename} was loaded!',
         )
+        
     ## ========================================
     ## Settings ===============================
     ## ========================================
@@ -2110,7 +1705,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
         ## Giving the DB a refresh
 
     ## ========================================
-    ## Themes ===============================
+    ## Themes =================================
     ## ========================================
     def set_theme(self, theme_name):
         if theme_name != "Default":
@@ -2120,6 +1715,11 @@ class MyApp(QMainWindow, Ui_LogecC3):
             self.setStyleSheet(stylesheet)
         else:
             pass
+
+
+## ========================================
+## Startup/Init Code=======================
+## ========================================
 
 if __name__ == '__main__':
     try:
