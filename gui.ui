@@ -4406,7 +4406,7 @@ p, li { white-space: pre-wrap; }
             <string>Settings</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_28">
-            <item row="0" column="0" colspan="2">
+            <item row="0" column="0" colspan="3">
              <widget class="QTextEdit" name="settings_edit">
               <property name="font">
                <font>
@@ -4424,16 +4424,23 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item row="1" column="0">
-             <widget class="QPushButton" name="settings_reload">
+             <widget class="QPushButton" name="program_reload">
               <property name="text">
-               <string>--&gt;&gt; Reload &lt;&lt;--</string>
+               <string>--&gt;&gt; Reload Program &lt;&lt;--</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QPushButton" name="settings_write">
+              <property name="text">
+               <string>--&gt;&gt; Write FIle &lt;&lt;--</string>
               </property>
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QPushButton" name="settings_write">
+             <widget class="QPushButton" name="settings_reload">
               <property name="text">
-               <string>--&gt;&gt; Write &lt;&lt;--</string>
+               <string>--&gt;&gt; Reload File &lt;&lt;--</string>
               </property>
              </widget>
             </item>

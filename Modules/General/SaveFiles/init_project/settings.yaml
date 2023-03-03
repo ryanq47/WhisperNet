@@ -1,6 +1,9 @@
 ## SPACES! not tabs
 
 general:
+
+  ## Theme's are in beta, may not work as expected!
+  #Ex: theme: "mytheme.css"
   theme: "Default"
 
 osint:

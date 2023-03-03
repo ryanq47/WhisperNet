@@ -88,15 +88,21 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.setupUi(self)
         #####
         
+
+        
         ##### Class Thread Manager:
         self.thread_manager = QThreadPool()
         #####
         
-        ##### Project Loading
+        ##### Project & settings Loading
         self.sql_global()
         self.settings_global()
         self.PF = fileops.SaveFiles()
         self.ProjectPath = None
+        
+        
+        ##### Init Gui Settings:
+        self.set_theme(self.settings['general']['theme'])
         
         ## Need to move this
         self.connected = False
@@ -326,7 +332,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
         ## Settings
         self.settings_reload.clicked.connect(self.edit_settings)
         self.settings_write.clicked.connect(self.write_settings)
-        
+        self.program_reload.clicked.connect(self.restart)
         
         ## ========================================
         ## Init Values/Main Thread ===========================
@@ -2102,7 +2108,18 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.custom_query('performance_error_db')
 
         ## Giving the DB a refresh
-        
+
+    ## ========================================
+    ## Themes ===============================
+    ## ========================================
+    def set_theme(self, theme_name):
+        if theme_name != "Default":
+            with open(f"{sys_path}/Gui/themes/{theme_name}","r") as f:
+                stylesheet = f.read()
+                
+            self.setStyleSheet(stylesheet)
+        else:
+            pass
 
 if __name__ == '__main__':
     try:

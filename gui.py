@@ -2154,17 +2154,22 @@ class Ui_LogecC3(object):
         font9.setPointSize(10)
         self.settings_edit.setFont(font9)
 
-        self.gridLayout_28.addWidget(self.settings_edit, 0, 0, 1, 2)
+        self.gridLayout_28.addWidget(self.settings_edit, 0, 0, 1, 3)
 
-        self.settings_reload = QPushButton(self.tab_37)
-        self.settings_reload.setObjectName(u"settings_reload")
+        self.program_reload = QPushButton(self.tab_37)
+        self.program_reload.setObjectName(u"program_reload")
 
-        self.gridLayout_28.addWidget(self.settings_reload, 1, 0, 1, 1)
+        self.gridLayout_28.addWidget(self.program_reload, 1, 0, 1, 1)
 
         self.settings_write = QPushButton(self.tab_37)
         self.settings_write.setObjectName(u"settings_write")
 
-        self.gridLayout_28.addWidget(self.settings_write, 1, 1, 1, 1)
+        self.gridLayout_28.addWidget(self.settings_write, 1, 2, 1, 1)
+
+        self.settings_reload = QPushButton(self.tab_37)
+        self.settings_reload.setObjectName(u"settings_reload")
+
+        self.gridLayout_28.addWidget(self.settings_reload, 1, 1, 1, 1)
 
         self.tabWidget_2.addTab(self.tab_37, "")
 
@@ -3790,8 +3795,9 @@ class Ui_LogecC3(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Hack'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:11pt;\"><br /></p></body></html>", None))
-        self.settings_reload.setText(QCoreApplication.translate("LogecC3", u"-->> Reload <<--", None))
-        self.settings_write.setText(QCoreApplication.translate("LogecC3", u"-->> Write <<--", None))
+        self.program_reload.setText(QCoreApplication.translate("LogecC3", u"-->> Reload Program <<--", None))
+        self.settings_write.setText(QCoreApplication.translate("LogecC3", u"-->> Write FIle <<--", None))
+        self.settings_reload.setText(QCoreApplication.translate("LogecC3", u"-->> Reload File <<--", None))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_37), QCoreApplication.translate("LogecC3", u"Settings", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), QCoreApplication.translate("LogecC3", u"Settings", None))
         self.table_RefreshDB_Button_performance2.setText(QCoreApplication.translate("LogecC3", u"-->> Refresh DB <<--", None))
