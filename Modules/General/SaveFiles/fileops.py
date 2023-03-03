@@ -13,9 +13,10 @@ class SaveFiles:
         action, self.filename = options
         
         self.sys_path = os.path.dirname(os.path.abspath(sys.argv[0]))
-        
-        
         self.time = datetime.now(timezone.utc)
+        
+        if action == "load":
+            self.loadfile()
         
         
     def createfile(self):
@@ -26,7 +27,10 @@ class SaveFiles:
         make_archive(f'{self.sys_path}/Modules/General/SaveFiles/Projects/{self.filename}','zip',f'{self.sys_path}/Modules/General/SaveFiles/.tmp_projectfolder/')
 
     def loadfile(self):
-        unpack_archive(f'{self.sys_path}/Modules/General/SaveFiles/Projects/{self.filename}',f'{self.sys_path}/Modules/General/SaveFiles/.tmp_projectfolder/','zip')
+        unpack_archive(self.filename, f'{self.sys_path}/Modules/General/SaveFiles/.tmp_projectfolder/','zip')
+        
+        ## Returning path of loaded file
+        #return f'{self.sys_path}/Modules/General/SaveFiles/.tmp_projectfolder/'
 
 S = SaveFiles()
 

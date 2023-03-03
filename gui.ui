@@ -6028,8 +6028,8 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionDEBUG"/>
     <addaction name="actionRELOAD"/>
     <addaction name="actionSave_Project"/>
+    <addaction name="actionSave_Project_As"/>
     <addaction name="actionOpen_Project"/>
-    <addaction name="actionOpen_Project_2"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuTarget">
@@ -6323,12 +6323,12 @@ p, li { white-space: pre-wrap; }
     <string>Ctrl+S</string>
    </property>
   </action>
-  <action name="actionOpen_Project">
+  <action name="actionSave_Project_As">
    <property name="text">
     <string>Save Project As...</string>
    </property>
   </action>
-  <action name="actionOpen_Project_2">
+  <action name="actionOpen_Project">
    <property name="text">
     <string>Open Project</string>
    </property>

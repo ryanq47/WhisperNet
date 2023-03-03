@@ -32,7 +32,7 @@ from PySide6.QtWidgets import (
     QGraphicsTextItem
 )
 
-
+## Plugin path for sql driver (TLDR makes compiling easier by having a local copy)
 plugin_path = 'plugins'
 os.environ['QT_PLUGIN_PATH'] = plugin_path
 
@@ -75,6 +75,8 @@ from Modules.General.ScriptGen import ScriptGen
 
 import Modules.General.utility as utility
 
+import Modules.General.SaveFiles.fileops as fileops
+
 from gui import Ui_LogecC3
 
 class MyApp(QMainWindow, Ui_LogecC3):
@@ -90,8 +92,10 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.thread_manager = QThreadPool()
         #####
         
-        ##### SQL Startup/Init
+        ##### Project Loading
         self.sql_global()
+        self.settings_global()
+        self.PF = fileops.SaveFiles()
         
         ## Need to move this
         self.connected = False
@@ -116,6 +120,15 @@ class MyApp(QMainWindow, Ui_LogecC3):
                 'https://github.com/ryanq47/logec-attack/blob/main/README.md'
             )
         )
+        
+
+        ## File Menu ========================
+
+        self.actionOpen_Project.triggered.connect(self.project_open)
+
+        ## ========================================
+        ## Shell (Depreacated, needs to be redone) ========================
+        ## ========================================
 
         ## Main GUI
         self.action_Target_Listen.triggered.connect(self.listen_popup)
@@ -383,12 +396,9 @@ class MyApp(QMainWindow, Ui_LogecC3):
 
         ## Once loaded, setting startlist to 1
         self.startlist = self.startlist = 1
-        
-    ## ========================================
-    ## Program Restart==================
-    ## ========================================
 
-    def restart(self):
+    
+    def restart(self): ## MEMORY LEAK !!
         # Restart the Python interpreter
         args = sys.argv[:]
         args.insert(0, sys.executable)
@@ -433,38 +443,6 @@ class MyApp(QMainWindow, Ui_LogecC3):
     def root_check(self, name):
         if os.getuid() != 0:
             self.ERROR([f"You are not running as root, note that {name} may not work as expected","Medium","Restart program as root"])
-
-    ## ========================================
-    ## Settings ===============================
-    ## ========================================
-    def load_settings(self):
-        pass
-        # Loads settings for in program user
-    
-    def edit_settings(self):
-        try:
-        # Opens settings for editing
-            with open("settings.yaml","r") as s:
-                contents = s.read()
-            self.settings_edit.setText(contents)
-        except Exception as e:
-            self.ERROR([e, 'medium', "Make sure file exists?"])
-            
-        
-        #pass
-    ## Loads and puts settings file on display in the gUI
-    
-    def write_settings(self):
-        try:
-            updated_settings = self.settings_edit.toPlainText()
-            with open("settings.yaml", "w") as contents:
-                contents.write(updated_settings)
-        except Exception as e:
-            self.ERROR([e, 'medium', "Check permissions? If that fails, make sure the file exists"])
-        
-        #pass
-    # writes the settings back to the file
-
 
     ## ========================================
     ## Conn/NotConn ===========================
@@ -580,7 +558,9 @@ class MyApp(QMainWindow, Ui_LogecC3):
         query = QSqlQuery(f'{query_input}') ##<< setting
             
             ## Connecting to DB for more data
-        connection = sqlite3.connect(sys_path + '/logec_db')
+        connection = sqlite3.connect(self.database_file)
+        
+        
         cursor = connection.execute(query_input) 
         names = list(map(lambda x: x[0], cursor.description))
         connection.close()
@@ -1910,22 +1890,155 @@ class MyApp(QMainWindow, Ui_LogecC3):
     def performance_benchmark_settime(self, time):
         #print("PERF SET TIME")
         self.performance_seconds.setText(time)
+
+    ## ========================================
+    ## Project Controls ===============================
+    ## ========================================
+    def project_open(self):
+        
+        ## This can be shortened into a function somehwere I'm sure
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "","All Files (*);;ProjectFiles (*.zip)", options=options)
+        
+        print(fileName)
+        
+        options_list = [
+            "load",
+            fileName,
+        ]
+        
+        print(fileName)
+        self.PF.save_framework(options_list)
+        
+        try:
+            ## Sending to loaders, hardcoded because this is where ALL open projects go:
+            self.settings_global("/Modules/General/SaveFiles/.tmp_projectfolder/")
+            self.sql_global("/Modules/General/SaveFiles/.tmp_projectfolder/")
+            self.success_popup()
+        except:
+            self.ERROR("something","error","Get better at coding lol")
+            
+    
+    ## Need to change to make more useful & allow inputs with name, (throw error for failed attempts)
+    def success_popup(self):
+        QMessageBox.information(
+            None,
+            ## Title
+            'Success! Project Loaded!',
+            ## Actual Error
+            f'Project NAME was loaded!',
+        )
+    ## ========================================
+    ## Settings ===============================
+    ## ========================================
+    def settings_global(self, settings_file="default"):
+        # intentional lazy import
+        import yaml
+        try:
+            if settings_file != "default":
+                with open(sys_path + settings_file, 'r') as f:
+                    self.settings_path = sys_path + settings_file
+                    self.settings = yaml.safe_load(f)
+            
+            else:
+                with open(sys_path + '/Modules/General/SaveFiles/init_project/settings.yaml', 'r') as f:
+                    self.settings_path = sys_path + '/Modules/General/SaveFiles/init_project/settings.yaml'
+                    self.settings = yaml.safe_load(f)
+                    
+            # Getting settings
+            #print(self.settings['general']['theme'])
+              
+        except Exception as e:
+            print(e)
+        
+    
+    def load_settings(self):
+        pass
+        # Loads settings for in program user
+    
+    def edit_settings(self):
+        try:
+        # Opens settings for editing
+            with open(self.settings_path,"r") as s:
+                contents = s.read()
+            self.settings_edit.setText(contents)
+        except Exception as e:
+            self.ERROR([e, 'medium', "Make sure file exists?"])
+            
+        #pass
+    ## Loads and puts settings file on display in the gUI
+    
+    def write_settings(self):
+        try:
+            updated_settings = self.settings_edit.toPlainText()
+            with open(self.settings_path, "w") as contents:
+                contents.write(updated_settings)
+        except Exception as e:
+            self.ERROR([e, 'medium', "Check permissions? If that fails, make sure the file exists"])
+    
     ## ========================================
     ## SQL Conmn ==============================
     ## ========================================
-    def sql_global(self):
-        self.sqliteConnection = sqlite3.connect(sys_path + '/logec_db')
+    
+    ## Initial Connection =====================
+    def sql_global(self, database_file="default"):
+        ## The idea here is that this function (being the SQL parent function) gets passed the DB file location. 
+        ## once loaded, it creates the self.databse_file, essentially opening it up/passing it along to any other
+        ## functions in the program that need to access the DB. (Most notably in 'custom_query', and q_sql)
+        
+        ## The if else is a guarantee that a project gets loaded, as an extracted project exists in 
+        ## the path below. Loading projects uses .tmp_projectfolder which is empty by default
+        
+        if database_file != "default":
+            print("ELSE")
+            print(database_file)
+            self.sqliteConnection = sqlite3.connect(sys_path + f'/{database_file}/logec_db')
+            self.database_file = sys_path + f'/{database_file}/logec_db'
+            print(self.database_file)
+            #pass
+            
+        else:
+            print("DEFAULT")
+            self.sqliteConnection = sqlite3.connect(sys_path + '/Modules/General/SaveFiles/init_project/logec_db')
+            print(sys_path + '/Modules/General/SaveFiles/init_project/logec_db')
+            self.database_file = sys_path + '/Modules/General/SaveFiles/init_project/logec_db'
+            print(self.database_file)
+        
+        
+        ## Getting Q_sql set
+        self.q_sql()
 
+    def q_sql(self):
+        ## I'm using a mix of Qsql & Sqlite 3 cause I din't think it through before coding this. 
+        ## SO, until I fix it, this is gonna have to do.
+        ## This affects the query.next() in 'custom_query'
+        
+        con = QSqlDatabase.addDatabase('QSQLITE')
 
+        con.setDatabaseName(self.database_file)
+        print(self.database_file)
+        
+        print("Database location:", con.databaseName())
+
+        ## Qapp throwing a fit due to no DB and no constructed app
+        ## No DB outside of this dir, need to add that in setup too
+        if not con.open():
+            try:
+                QMessageBox.critical(
+                    None,
+                    'QTableView Example - Error!',
+                    'Database Error: %s' % con.lastError().databaseText(),
+                )
+                return False
+            except:
+                print('Error connecting to DB & QApp not constructed.')
+        #return True
+        
+
+    ## Using sqlite3 instead of QSqlite for some reason - I forgot why
     def db_error_write(self, error_list):
-        import sqlite3
-
         try:
-            # print(insert_list)
-            ## Accesing DB in root dir
-
-            #sqliteConnection = sqlite3.connect(sys_path + '/logec_db')
-
             cursor = self.sqliteConnection.cursor()
 
             ## if append is not true:
@@ -1949,71 +2062,33 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.custom_query('performance_error_db')
 
         ## Giving the DB a refresh
-
-
-## May need to move into the class eventually
-def createConnection():
-
-    con = QSqlDatabase.addDatabase('QSQLITE')
-
-    con.setDatabaseName(sys_path + '/logec_db')
-    print(sys_path + '/logec_db')
-    
-    print("Database location:", con.databaseName())
-
-    ## Qapp throwing a fit due to no DB and no constructed app
-    ## No DB outside of this dir, need to add that in setup too
-    if not con.open():
-        try:
-            QMessageBox.critical(
-                None,
-                'QTableView Example - Error!',
-                'Database Error: %s' % con.lastError().databaseText(),
-            )
-            return False
-        except:
-            print('Error connecting to DB & QApp not constructed.')
-    return True
-
+        
 
 if __name__ == '__main__':
     try:
-
-
-        ## Creating App
+        ## Creating App ==================
         app = QtWidgets.QApplication(sys.argv)
         
-        ## Connecting to DB
-        ## This has to go on top
-        if not createConnection():
-            print('FAILURE TO CONNECT TO DB')
-            #sys.exit(1)
-
-        
-        
+        ## Library Paths ==================
         library_paths = QCoreApplication.libraryPaths()
-
         # Print the path where QSqlDatabase is looking for drivers
         print(library_paths)
             
+        ## QT stuff ==================
         window = MyApp()
         window.show()
-        
         app.exec()
 
-
-
-
-        # sys.exit()
+        ## Kill when exec is closed ==============
         pid = os.getpid()
         os.kill(pid, 15)   ## SIGTERM
 
     except Exception as e:
-        print(e)
+        import traceback
+        #print(e)
         
-        exc_type, exc_obj, exc_tb = sys.exc_info()
-        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-        print(exc_type, fname, exc_tb.tb_lineno)
+        traceback.print_exc()
+        
         '''from plyer import notification
 
         notification.notify(
