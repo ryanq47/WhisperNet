@@ -29,7 +29,9 @@ from PySide6.QtWidgets import (
     QFileDialog,
     QGraphicsScene,
     QGraphicsView,
-    QGraphicsTextItem
+    QGraphicsTextItem,
+    QTabWidget,
+    QTabBar
 )
 
 ## Plugin path for sql driver (TLDR makes compiling easier by having a local copy)
@@ -142,6 +144,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.c2_systemshell_send.clicked.connect(self.sys_shell)
         self.c2_systemshell_input.setFocus()
         #self.c2_systemshell.textChanged.connect(self.sys_shell)
+        
 
         ## debug:
         self.actionDEBUG.triggered.connect(self.DEBUG)

