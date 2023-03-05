@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1370</width>
-    <height>962</height>
+    <width>1397</width>
+    <height>965</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -320,31 +320,39 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_53">
+      <widget class="QWidget" name="c2_tab">
        <attribute name="title">
         <string>C2New</string>
        </attribute>
-       <widget class="QTabWidget" name="bruteforce_panel_2">
-        <property name="geometry">
-         <rect>
-          <x>970</x>
-          <y>320</y>
-          <width>385</width>
-          <height>531</height>
-         </rect>
-        </property>
-        <property name="currentIndex">
-         <number>0</number>
-        </property>
-        <widget class="QWidget" name="tab_55">
-         <attribute name="title">
-          <string>Clients</string>
-         </attribute>
-         <layout class="QGridLayout" name="gridLayout_40">
-          <item row="0" column="0">
-           <widget class="QTextEdit" name="bruteforce_currentbatch_2">
-            <property name="html">
-             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+       <layout class="QGridLayout" name="gridLayout_57">
+        <item row="0" column="0">
+         <widget class="QTextEdit" name="textEdit_25">
+          <property name="html">
+           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Blank random space for something&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Layout could use some work&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QTabWidget" name="bruteforce_panel_2">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tab_55">
+           <attribute name="title">
+            <string>Clients</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_40">
+            <item row="0" column="0">
+             <widget class="QTextEdit" name="bruteforce_currentbatch_2">
+              <property name="html">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -353,293 +361,483 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IP: 51.16.91.8:7331 | User: Root | Length 41m 31s&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IP: 51.16.91.8:7331 | User: Root | Length 41m 31s&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QWidget" name="tab_54">
-         <attribute name="title">
-          <string>Connection Details</string>
-         </attribute>
-         <layout class="QGridLayout" name="gridLayout_39">
-          <item row="0" column="0">
-           <widget class="QTextEdit" name="bruteforce_goodcreds_2">
-            <property name="maximumSize">
-             <size>
-              <width>1677700</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="html">
-             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_54">
+           <attribute name="title">
+            <string>Connection Details</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_39">
+            <item row="0" column="0">
+             <widget class="QTextEdit" name="bruteforce_goodcreds_2">
+              <property name="maximumSize">
+               <size>
+                <width>1677700</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="html">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QWidget" name="tab_56">
-         <attribute name="title">
-          <string>Log (0)</string>
-         </attribute>
-         <layout class="QGridLayout" name="gridLayout_41">
-          <item row="0" column="0">
-           <widget class="QTextEdit" name="bruteforce_errlog_2">
-            <property name="html">
-             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_56">
+           <attribute name="title">
+            <string>Log (0)</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_41">
+            <item row="0" column="0">
+             <widget class="QTextEdit" name="bruteforce_errlog_2">
+              <property name="html">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </widget>
-       <widget class="QTabWidget" name="text_PortScan_tab_2">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>290</y>
-          <width>961</width>
-          <height>591</height>
-         </rect>
-        </property>
-        <property name="toolTip">
-         <string>Enter</string>
-        </property>
-        <property name="whatsThis">
-         <string>Enter</string>
-        </property>
-        <property name="currentIndex">
-         <number>0</number>
-        </property>
-        <widget class="QWidget" name="tab_57">
-         <attribute name="title">
-          <string>RemoteShell</string>
-         </attribute>
-         <layout class="QGridLayout" name="gridLayout_42">
-          <item row="0" column="0" colspan="2">
-           <widget class="QTextEdit" name="c2_remoteshell">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="font">
-             <font>
-              <family>Monospace</family>
-              <pointsize>9</pointsize>
-             </font>
-            </property>
-            <property name="toolTip">
-             <string/>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(29, 29, 29);</string>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-            <property name="html">
-             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="2">
+         <widget class="QTabWidget" name="c2_shell_tab">
+          <property name="toolTip">
+           <string>Enter</string>
+          </property>
+          <property name="whatsThis">
+           <string>Enter</string>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tab_57">
+           <attribute name="title">
+            <string>RemoteShell</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_42">
+            <item row="0" column="0" colspan="2">
+             <widget class="QTextEdit" name="c2_remoteshell">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="font">
+               <font>
+                <family>Monospace</family>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
+              <property name="toolTip">
+               <string/>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(29, 29, 29);</string>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+              <property name="html">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Monospace'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="placeholderText">
-             <string>root@127.0.0.1&gt; </string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QPushButton" name="c2_remoteshell_send">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="toolTip">
-             <string>Hit the Enter Key</string>
-            </property>
-            <property name="text">
-             <string>--&gt;&gt; Send &lt;&lt;-- </string>
-            </property>
-            <property name="shortcut">
-             <string>Return</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLineEdit" name="c2_remoteshell_input">
-            <property name="font">
-             <font>
-              <family>DejaVu Sans Mono</family>
-              <pointsize>9</pointsize>
-             </font>
-            </property>
-            <property name="toolTip">
-             <string extracomment="Commands"/>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(29, 29, 29);</string>
-            </property>
-            <property name="placeholderText">
-             <string>Enter Command Here!</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QWidget" name="tab_58">
-         <attribute name="title">
-          <string>Local DB</string>
-         </attribute>
-         <layout class="QGridLayout" name="gridLayout_43">
-          <item row="2" column="1">
-           <widget class="QPushButton" name="table_QueryDB_Button_2">
-            <property name="toolTip">
-             <string>Run a query on the DB</string>
-            </property>
-            <property name="text">
-             <string>--&gt;&gt; Query DB &lt;&lt;--</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QPushButton" name="table_RefreshDB_Button_2">
-            <property name="toolTip">
-             <string>Refresh the Database, updating values from the SQLITE DB file</string>
-            </property>
-            <property name="text">
-             <string>--&gt;&gt; Refresh DB &lt;&lt;--</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0" colspan="2">
-           <widget class="QLineEdit" name="DB_Query_2">
-            <property name="text">
-             <string/>
-            </property>
-            <property name="placeholderText">
-             <string>Enter SQL Query! Type !_help for help! </string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0" colspan="2">
-           <widget class="QTableWidget" name="table_SQLDB_2"/>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QWidget" name="tab_59">
-         <attribute name="title">
-          <string>LocalShell</string>
-         </attribute>
-         <layout class="QGridLayout" name="gridLayout_50">
-          <item row="0" column="0" colspan="2">
-           <widget class="QTextEdit" name="c2_systemshell">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="font">
-             <font>
-              <family>Monospace</family>
-              <pointsize>9</pointsize>
-             </font>
-            </property>
-            <property name="toolTip">
-             <string/>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(29, 29, 29);</string>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-            <property name="html">
-             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+              </property>
+              <property name="placeholderText">
+               <string>root@127.0.0.1&gt; </string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QPushButton" name="c2_remoteshell_send">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="toolTip">
+               <string>Hit the Enter Key</string>
+              </property>
+              <property name="text">
+               <string>--&gt;&gt; Send &lt;&lt;-- </string>
+              </property>
+              <property name="shortcut">
+               <string>Return</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLineEdit" name="c2_remoteshell_input">
+              <property name="font">
+               <font>
+                <family>DejaVu Sans Mono</family>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
+              <property name="toolTip">
+               <string extracomment="Commands"/>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(29, 29, 29);</string>
+              </property>
+              <property name="placeholderText">
+               <string>Enter Command Here!</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_58">
+           <attribute name="title">
+            <string>Local DB</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_43">
+            <item row="2" column="1">
+             <widget class="QPushButton" name="table_QueryDB_Button_2">
+              <property name="toolTip">
+               <string>Run a query on the DB</string>
+              </property>
+              <property name="text">
+               <string>--&gt;&gt; Query DB &lt;&lt;--</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QPushButton" name="table_RefreshDB_Button_2">
+              <property name="toolTip">
+               <string>Refresh the Database, updating values from the SQLITE DB file</string>
+              </property>
+              <property name="text">
+               <string>--&gt;&gt; Refresh DB &lt;&lt;--</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" colspan="2">
+             <widget class="QLineEdit" name="DB_Query_2">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="placeholderText">
+               <string>Enter SQL Query! Type !_help for help! </string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0" colspan="2">
+             <widget class="QTableWidget" name="table_SQLDB_2"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_59">
+           <attribute name="title">
+            <string>LocalShell</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_50">
+            <item row="0" column="0" colspan="2">
+             <widget class="QTextEdit" name="c2_systemshell">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="font">
+               <font>
+                <family>Monospace</family>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
+              <property name="toolTip">
+               <string/>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(29, 29, 29);</string>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+              <property name="html">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Monospace'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="placeholderText">
-             <string>$</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLineEdit" name="c2_systemshell_input">
-            <property name="font">
-             <font>
-              <family>DejaVu Sans Mono</family>
-              <pointsize>9</pointsize>
-             </font>
-            </property>
-            <property name="toolTip">
-             <string extracomment="Commands"/>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(29, 29, 29);</string>
-            </property>
-            <property name="placeholderText">
-             <string>Enter Command Here!</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QPushButton" name="c2_systemshell_send">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="toolTip">
-             <string>Hit the Enter Key</string>
-            </property>
-            <property name="text">
-             <string>--&gt;&gt; Send &lt;&lt;-- </string>
-            </property>
-            <property name="shortcut">
-             <string>Return</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </widget>
-       <widget class="QTextEdit" name="textEdit_25">
+              </property>
+              <property name="placeholderText">
+               <string>$</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLineEdit" name="c2_systemshell_input">
+              <property name="font">
+               <font>
+                <family>DejaVu Sans Mono</family>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
+              <property name="toolTip">
+               <string extracomment="Commands"/>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(29, 29, 29);</string>
+              </property>
+              <property name="placeholderText">
+               <string>Enter Command Here!</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QPushButton" name="c2_systemshell_send">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="toolTip">
+               <string>Hit the Enter Key</string>
+              </property>
+              <property name="text">
+               <string>--&gt;&gt; Send &lt;&lt;-- </string>
+              </property>
+              <property name="shortcut">
+               <string>Return</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_66">
+       <attribute name="title">
+        <string>C2_New2</string>
+       </attribute>
+       <widget class="QMdiArea" name="mdiArea_2">
         <property name="geometry">
          <rect>
-          <x>70</x>
-          <y>20</y>
-          <width>951</width>
-          <height>161</height>
+          <x>10</x>
+          <y>0</y>
+          <width>1361</width>
+          <height>891</height>
          </rect>
         </property>
-        <property name="html">
-         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <widget class="QWidget" name="subwindow_2">
+         <property name="windowTitle">
+          <string>Subwindow</string>
+         </property>
+         <widget class="QTabWidget" name="c2_shell_tab_2">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>961</width>
+            <height>591</height>
+           </rect>
+          </property>
+          <property name="toolTip">
+           <string>Enter</string>
+          </property>
+          <property name="whatsThis">
+           <string>Enter</string>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tab_67">
+           <attribute name="title">
+            <string>RemoteShell</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_51">
+            <item row="0" column="0" colspan="2">
+             <widget class="QTextEdit" name="c2_remoteshell_2">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="font">
+               <font>
+                <family>Monospace</family>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
+              <property name="toolTip">
+               <string/>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(29, 29, 29);</string>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+              <property name="html">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Fira Code';&quot;&gt;Adding a menu bar in here&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Fira Code';&quot;&gt;&lt;br /&gt;&lt;br /&gt;from PyQt5.QtWidgets import QApplication, QMainWindow, QMenuBar, QTabWidget, QWidget&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Fira Code';&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Fira Code';&quot;&gt;app = QApplication([])&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Fira Code';&quot;&gt;window = QMainWindow()&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Fira Code';&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Fira Code';&quot;&gt;menu_bar = QMenuBar()&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Fira Code';&quot;&gt;file_menu = menu_bar.addMenu(&amp;quot;File&amp;quot;)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Fira Code';&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Fira Code';&quot;&gt;tab_widget = QTabWidget()&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Fira Code';&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Fira Code';&quot;&gt;tab1 = QWidget()&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Fira Code';&quot;&gt;tab1.setLayout(menu_bar)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Fira Code';&quot;&gt;tab_widget.addTab(tab1, &amp;quot;Tab 1&amp;quot;)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Fira Code';&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Fira Code';&quot;&gt;window.setCentralWidget(tab_widget)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Fira Code';&quot;&gt;window.show()&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Monospace'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="placeholderText">
+               <string>root@127.0.0.1&gt; </string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QPushButton" name="c2_remoteshell_send_2">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="toolTip">
+               <string>Hit the Enter Key</string>
+              </property>
+              <property name="text">
+               <string>--&gt;&gt; Send &lt;&lt;-- </string>
+              </property>
+              <property name="shortcut">
+               <string>Return</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLineEdit" name="c2_remoteshell_input_2">
+              <property name="font">
+               <font>
+                <family>DejaVu Sans Mono</family>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
+              <property name="toolTip">
+               <string extracomment="Commands"/>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(29, 29, 29);</string>
+              </property>
+              <property name="placeholderText">
+               <string>Enter Command Here!</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_68">
+           <attribute name="title">
+            <string>Local DB</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_52">
+            <item row="2" column="1">
+             <widget class="QPushButton" name="table_QueryDB_Button_3">
+              <property name="toolTip">
+               <string>Run a query on the DB</string>
+              </property>
+              <property name="text">
+               <string>--&gt;&gt; Query DB &lt;&lt;--</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QPushButton" name="table_RefreshDB_Button_3">
+              <property name="toolTip">
+               <string>Refresh the Database, updating values from the SQLITE DB file</string>
+              </property>
+              <property name="text">
+               <string>--&gt;&gt; Refresh DB &lt;&lt;--</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" colspan="2">
+             <widget class="QLineEdit" name="DB_Query_3">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="placeholderText">
+               <string>Enter SQL Query! Type !_help for help! </string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0" colspan="2">
+             <widget class="QTableWidget" name="table_SQLDB_3"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_69">
+           <attribute name="title">
+            <string>LocalShell</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_53">
+            <item row="0" column="0" colspan="2">
+             <widget class="QTextEdit" name="c2_systemshell_2">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="font">
+               <font>
+                <family>Monospace</family>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
+              <property name="toolTip">
+               <string/>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(29, 29, 29);</string>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+              <property name="html">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Monospace'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="placeholderText">
+               <string>$</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLineEdit" name="c2_systemshell_input_2">
+              <property name="font">
+               <font>
+                <family>DejaVu Sans Mono</family>
+                <pointsize>9</pointsize>
+               </font>
+              </property>
+              <property name="toolTip">
+               <string extracomment="Commands"/>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(29, 29, 29);</string>
+              </property>
+              <property name="placeholderText">
+               <string>Enter Command Here!</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QPushButton" name="c2_systemshell_send_2">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="toolTip">
+               <string>Hit the Enter Key</string>
+              </property>
+              <property name="text">
+               <string>--&gt;&gt; Send &lt;&lt;-- </string>
+              </property>
+              <property name="shortcut">
+               <string>Return</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </widget>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_38">
@@ -736,8 +934,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1306</width>
-                 <height>678</height>
+                 <width>1333</width>
+                 <height>681</height>
                 </rect>
                </property>
                <widget class="QLabel" name="label_62">
@@ -1038,7 +1236,7 @@ p, li { white-space: pre-wrap; }
         <item row="0" column="0">
          <widget class="QTabWidget" name="osint_dork">
           <property name="currentIndex">
-           <number>3</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tab_12">
            <attribute name="title">
@@ -2083,8 +2281,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1306</width>
-                 <height>816</height>
+                 <width>1333</width>
+                 <height>819</height>
                 </rect>
                </property>
                <widget class="QToolBox" name="bashbuild_toolBox">
@@ -4423,17 +4621,14 @@ p, li { white-space: pre-wrap; }
             <item row="0" column="0" colspan="3">
              <widget class="QTextEdit" name="settings_edit">
               <property name="font">
-               <font>
-                <family>Hack</family>
-                <pointsize>10</pointsize>
-               </font>
+               <font/>
               </property>
               <property name="html">
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Hack'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
             </item>
@@ -6044,7 +6239,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1370</width>
+     <width>1397</width>
      <height>24</height>
     </rect>
    </property>

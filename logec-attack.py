@@ -31,7 +31,9 @@ from PySide6.QtWidgets import (
     QGraphicsView,
     QGraphicsTextItem,
     QTabWidget,
-    QTabBar
+    QTabBar,
+    QMenuBar,
+    QMenu
 )
 
 ## Plugin path for sql driver (TLDR makes compiling easier by having a local copy)
@@ -102,6 +104,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.PF = fileops.SaveFiles()
         self.ProjectPath = None
         
+        self.c2_layout()
         
         ##### Init Gui Settings:
         self.set_theme(self.settings['general']['theme'])
@@ -560,6 +563,33 @@ class MyApp(QMainWindow, Ui_LogecC3):
     ## ========================================
     
     ## A semi-interactive bash shell for the local system
+    
+    def c2_layout(self):
+        self.c2_menuBar = QMenuBar()
+        
+        ## Options Tab ==================
+        self.menuOptions = QMenu("Options", self.c2_menuBar)
+        self.actionQuit = QAction('Quit', self)
+        self.actionQuit.triggered.connect(self.close)
+
+        self.menuOptions.addAction(self.actionQuit)
+        self.c2_menuBar.addAction(self.menuOptions.menuAction())
+        
+        ## Client Tab ==================
+        self.menuClient = QMenu("Client", self.c2_menuBar)
+        self.actionStart_Listener = QAction('Start Listener', self)
+        
+        ## Adding actions to the bar
+        self.menuClient.addAction(self.actionStart_Listener)
+        self.c2_menuBar.addAction(self.menuClient.menuAction())
+        
+        ## Connect Actions:
+        self.actionStart_Listener.triggered.connect(self.listen) ## Stand in variable
+
+        #WARN! TAB widget must have a layout!
+        ##             ## Which tab
+        self.tabWidget.widget(1).layout().setMenuBar(self.c2_menuBar)
+    
     
     ## Gonna need some work, this currently creates one thread for each command
     def sys_shell(self):

@@ -153,7 +153,7 @@ class s_action:
 if __name__ == "__main__":
     ## could listen on multiple ports with threading this whole thing
     SERV = s_sock()
-    SERV.start_server('0.0.0.0',8081)
+    SERV.start_server('0.0.0.0',8082)
     while True:
         shellcommand = input("$: ")
         SERV.send_msg(shellcommand)
