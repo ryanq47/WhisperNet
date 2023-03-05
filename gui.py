@@ -2317,14 +2317,14 @@ class Ui_LogecC3(object):
 
         self.gridLayout_24.addWidget(self.label_44, 10, 0, 1, 1)
 
-        self.performance_lcd_download = QLCDNumber(self.tab_33)
-        self.performance_lcd_download.setObjectName(u"performance_lcd_download")
-        self.performance_lcd_download.setFrameShape(QFrame.Panel)
-        self.performance_lcd_download.setFrameShadow(QFrame.Sunken)
-        self.performance_lcd_download.setDigitCount(5)
-        self.performance_lcd_download.setProperty("value", 0.000000000000000)
+        self.performance_lcd_downloada = QLCDNumber(self.tab_33)
+        self.performance_lcd_downloada.setObjectName(u"performance_lcd_downloada")
+        self.performance_lcd_downloada.setFrameShape(QFrame.Panel)
+        self.performance_lcd_downloada.setFrameShadow(QFrame.Sunken)
+        self.performance_lcd_downloada.setDigitCount(5)
+        self.performance_lcd_downloada.setProperty("value", 0.000000000000000)
 
-        self.gridLayout_24.addWidget(self.performance_lcd_download, 11, 3, 1, 2)
+        self.gridLayout_24.addWidget(self.performance_lcd_downloada, 11, 3, 1, 2)
 
         self.label_39 = QLabel(self.tab_33)
         self.label_39.setObjectName(u"label_39")
@@ -2357,11 +2357,11 @@ class Ui_LogecC3(object):
 
         self.gridLayout_24.addWidget(self.label_78, 15, 3, 1, 2)
 
-        self.performance_seconds = QLineEdit(self.tab_33)
-        self.performance_seconds.setObjectName(u"performance_seconds")
-        self.performance_seconds.setMaximumSize(QSize(200, 16777215))
+        self.performance_secondsa = QLineEdit(self.tab_33)
+        self.performance_secondsa.setObjectName(u"performance_secondsa")
+        self.performance_secondsa.setMaximumSize(QSize(200, 16777215))
 
-        self.gridLayout_24.addWidget(self.performance_seconds, 16, 3, 1, 1)
+        self.gridLayout_24.addWidget(self.performance_secondsa, 16, 3, 1, 1)
 
         self.label_79 = QLabel(self.tab_33)
         self.label_79.setObjectName(u"label_79")
@@ -2380,10 +2380,10 @@ class Ui_LogecC3(object):
 
         self.gridLayout_24.addWidget(self.line_12, 0, 1, 22, 1)
 
-        self.performance_lcd_ping = QLCDNumber(self.tab_33)
-        self.performance_lcd_ping.setObjectName(u"performance_lcd_ping")
+        self.performance_lcd_pinga = QLCDNumber(self.tab_33)
+        self.performance_lcd_pinga.setObjectName(u"performance_lcd_pinga")
 
-        self.gridLayout_24.addWidget(self.performance_lcd_ping, 5, 3, 1, 2)
+        self.gridLayout_24.addWidget(self.performance_lcd_pinga, 5, 3, 1, 2)
 
         self.label_43 = QLabel(self.tab_33)
         self.label_43.setObjectName(u"label_43")
@@ -2440,15 +2440,15 @@ class Ui_LogecC3(object):
 
         self.gridLayout_24.addWidget(self.line_19, 14, 3, 1, 2)
 
-        self.performance_benchmark_button = QPushButton(self.tab_33)
-        self.performance_benchmark_button.setObjectName(u"performance_benchmark_button")
+        self.performance_benchmark_buttona = QPushButton(self.tab_33)
+        self.performance_benchmark_buttona.setObjectName(u"performance_benchmark_buttona")
 
-        self.gridLayout_24.addWidget(self.performance_benchmark_button, 17, 3, 1, 1)
+        self.gridLayout_24.addWidget(self.performance_benchmark_buttona, 17, 3, 1, 1)
 
-        self.performance_speedtest = QPushButton(self.tab_33)
-        self.performance_speedtest.setObjectName(u"performance_speedtest")
+        self.performance_speedtesta = QPushButton(self.tab_33)
+        self.performance_speedtesta.setObjectName(u"performance_speedtesta")
 
-        self.gridLayout_24.addWidget(self.performance_speedtest, 13, 3, 1, 2)
+        self.gridLayout_24.addWidget(self.performance_speedtesta, 13, 3, 1, 2)
 
         self.label_47 = QLabel(self.tab_33)
         self.label_47.setObjectName(u"label_47")
@@ -2482,14 +2482,14 @@ class Ui_LogecC3(object):
 
         self.gridLayout_24.addWidget(self.label_19, 4, 3, 1, 1)
 
-        self.performance_lcd_upload = QLCDNumber(self.tab_33)
-        self.performance_lcd_upload.setObjectName(u"performance_lcd_upload")
-        self.performance_lcd_upload.setFrameShape(QFrame.Panel)
-        self.performance_lcd_upload.setFrameShadow(QFrame.Sunken)
-        self.performance_lcd_upload.setDigitCount(5)
-        self.performance_lcd_upload.setProperty("value", 0.000000000000000)
+        self.performance_lcd_uploada = QLCDNumber(self.tab_33)
+        self.performance_lcd_uploada.setObjectName(u"performance_lcd_uploada")
+        self.performance_lcd_uploada.setFrameShape(QFrame.Panel)
+        self.performance_lcd_uploada.setFrameShadow(QFrame.Sunken)
+        self.performance_lcd_uploada.setDigitCount(5)
+        self.performance_lcd_uploada.setProperty("value", 0.000000000000000)
 
-        self.gridLayout_24.addWidget(self.performance_lcd_upload, 9, 3, 1, 2)
+        self.gridLayout_24.addWidget(self.performance_lcd_uploada, 9, 3, 1, 2)
 
         self.tabWidget_10.addTab(self.tab_33, "")
         self.tab_52 = QWidget()
@@ -2526,14 +2526,14 @@ class Ui_LogecC3(object):
 
         self.gridLayout_54.addWidget(self.label_84, 4, 0, 2, 1)
 
-        self.performance_lcd_upload_2 = QLCDNumber(self.tab_75)
-        self.performance_lcd_upload_2.setObjectName(u"performance_lcd_upload_2")
-        self.performance_lcd_upload_2.setFrameShape(QFrame.Panel)
-        self.performance_lcd_upload_2.setFrameShadow(QFrame.Sunken)
-        self.performance_lcd_upload_2.setDigitCount(5)
-        self.performance_lcd_upload_2.setProperty("value", 0.000000000000000)
+        self.performance_lcd_upload = QLCDNumber(self.tab_75)
+        self.performance_lcd_upload.setObjectName(u"performance_lcd_upload")
+        self.performance_lcd_upload.setFrameShape(QFrame.Panel)
+        self.performance_lcd_upload.setFrameShadow(QFrame.Sunken)
+        self.performance_lcd_upload.setDigitCount(5)
+        self.performance_lcd_upload.setProperty("value", 0.000000000000000)
 
-        self.gridLayout_54.addWidget(self.performance_lcd_upload_2, 9, 0, 1, 2)
+        self.gridLayout_54.addWidget(self.performance_lcd_upload, 9, 0, 1, 2)
 
         self.label_85 = QLabel(self.tab_75)
         self.label_85.setObjectName(u"label_85")
@@ -2592,10 +2592,10 @@ class Ui_LogecC3(object):
 
         self.gridLayout_54.addWidget(self.checkBox_23, 3, 3, 1, 2)
 
-        self.performance_lcd_ping_2 = QLCDNumber(self.tab_75)
-        self.performance_lcd_ping_2.setObjectName(u"performance_lcd_ping_2")
+        self.performance_lcd_ping = QLCDNumber(self.tab_75)
+        self.performance_lcd_ping.setObjectName(u"performance_lcd_ping")
 
-        self.gridLayout_54.addWidget(self.performance_lcd_ping_2, 6, 0, 1, 2)
+        self.gridLayout_54.addWidget(self.performance_lcd_ping, 6, 0, 1, 2)
 
         self.label_83 = QLabel(self.tab_75)
         self.label_83.setObjectName(u"label_83")
@@ -2607,11 +2607,11 @@ class Ui_LogecC3(object):
 
         self.gridLayout_54.addWidget(self.label_82, 3, 1, 1, 1)
 
-        self.performance_seconds_2 = QLineEdit(self.tab_75)
-        self.performance_seconds_2.setObjectName(u"performance_seconds_2")
-        self.performance_seconds_2.setMaximumSize(QSize(19777, 16777215))
+        self.performance_seconds = QLineEdit(self.tab_75)
+        self.performance_seconds.setObjectName(u"performance_seconds")
+        self.performance_seconds.setMaximumSize(QSize(19777, 16777215))
 
-        self.gridLayout_54.addWidget(self.performance_seconds_2, 4, 3, 1, 1)
+        self.gridLayout_54.addWidget(self.performance_seconds, 4, 3, 1, 1)
 
         self.checkBox_24 = QCheckBox(self.tab_75)
         self.checkBox_24.setObjectName(u"checkBox_24")
@@ -2628,14 +2628,14 @@ class Ui_LogecC3(object):
 
         self.gridLayout_54.addWidget(self.label_90, 4, 4, 1, 1)
 
-        self.performance_lcd_download_2 = QLCDNumber(self.tab_75)
-        self.performance_lcd_download_2.setObjectName(u"performance_lcd_download_2")
-        self.performance_lcd_download_2.setFrameShape(QFrame.Panel)
-        self.performance_lcd_download_2.setFrameShadow(QFrame.Sunken)
-        self.performance_lcd_download_2.setDigitCount(5)
-        self.performance_lcd_download_2.setProperty("value", 0.000000000000000)
+        self.performance_lcd_download = QLCDNumber(self.tab_75)
+        self.performance_lcd_download.setObjectName(u"performance_lcd_download")
+        self.performance_lcd_download.setFrameShape(QFrame.Panel)
+        self.performance_lcd_download.setFrameShadow(QFrame.Sunken)
+        self.performance_lcd_download.setDigitCount(5)
+        self.performance_lcd_download.setProperty("value", 0.000000000000000)
 
-        self.gridLayout_54.addWidget(self.performance_lcd_download_2, 12, 0, 1, 2)
+        self.gridLayout_54.addWidget(self.performance_lcd_download, 12, 0, 1, 2)
 
         self.label_86 = QLabel(self.tab_75)
         self.label_86.setObjectName(u"label_86")
@@ -2653,15 +2653,15 @@ class Ui_LogecC3(object):
 
         self.gridLayout_54.addWidget(self.label_87, 10, 0, 2, 1)
 
-        self.performance_speedtest_2 = QPushButton(self.tab_75)
-        self.performance_speedtest_2.setObjectName(u"performance_speedtest_2")
+        self.performance_speedtest = QPushButton(self.tab_75)
+        self.performance_speedtest.setObjectName(u"performance_speedtest")
 
-        self.gridLayout_54.addWidget(self.performance_speedtest_2, 13, 0, 1, 2)
+        self.gridLayout_54.addWidget(self.performance_speedtest, 13, 0, 1, 2)
 
-        self.performance_benchmark_button_2 = QPushButton(self.tab_75)
-        self.performance_benchmark_button_2.setObjectName(u"performance_benchmark_button_2")
+        self.performance_benchmark_button = QPushButton(self.tab_75)
+        self.performance_benchmark_button.setObjectName(u"performance_benchmark_button")
 
-        self.gridLayout_54.addWidget(self.performance_benchmark_button_2, 13, 3, 1, 2)
+        self.gridLayout_54.addWidget(self.performance_benchmark_button, 13, 3, 1, 2)
 
         self.tabWidget_16.addTab(self.tab_75, "")
         self.tab_76 = QWidget()
@@ -3026,7 +3026,7 @@ class Ui_LogecC3(object):
 
         self.retranslateUi(LogecC3)
 
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(9)
         self.text_PortScan_tab.setCurrentIndex(0)
         self.bruteforce_panel_2.setCurrentIndex(0)
         self.c2_shell_tab.setCurrentIndex(0)
@@ -3049,8 +3049,8 @@ class Ui_LogecC3(object):
         self.bruteforce_download_seclist_top10mil_usernames_5.setDefault(False)
         self.tabWidget_2.setCurrentIndex(4)
         self.tabWidget_4.setCurrentIndex(1)
-        self.tabWidget_10.setCurrentIndex(0)
-        self.tabWidget_16.setCurrentIndex(2)
+        self.tabWidget_10.setCurrentIndex(1)
+        self.tabWidget_16.setCurrentIndex(0)
         self.tabWidget_11.setCurrentIndex(2)
         self.tabWidget_12.setCurrentIndex(1)
         self.tabWidget_15.setCurrentIndex(1)
@@ -3919,7 +3919,7 @@ class Ui_LogecC3(object):
         self.label_40.setText(QCoreApplication.translate("LogecC3", u"SpeedTest", None))
         self.label_18.setText(QCoreApplication.translate("LogecC3", u"Network Specs", None))
         self.label_78.setText(QCoreApplication.translate("LogecC3", u"Benchmark (Count to 10 million)", None))
-        self.performance_seconds.setText(QCoreApplication.translate("LogecC3", u"6.16", None))
+        self.performance_secondsa.setText(QCoreApplication.translate("LogecC3", u"6.16", None))
         self.label_79.setText(QCoreApplication.translate("LogecC3", u"Seconds", None))
         self.label_41.setText(QCoreApplication.translate("LogecC3", u"System Ram Usage: ", None))
         self.label_43.setText(QCoreApplication.translate("LogecC3", u"Local IP:", None))
@@ -3927,8 +3927,8 @@ class Ui_LogecC3(object):
         self.label_46.setText(QCoreApplication.translate("LogecC3", u"Upload (MBPS)", None))
         self.label_20.setText(QCoreApplication.translate("LogecC3", u"Error Log", None))
         self.label_33.setText(QCoreApplication.translate("LogecC3", u"External IP: ", None))
-        self.performance_benchmark_button.setText(QCoreApplication.translate("LogecC3", u"Start Benchmark", None))
-        self.performance_speedtest.setText(QCoreApplication.translate("LogecC3", u"Run SpeedTest", None))
+        self.performance_benchmark_buttona.setText(QCoreApplication.translate("LogecC3", u"Start Benchmark", None))
+        self.performance_speedtesta.setText(QCoreApplication.translate("LogecC3", u"Run SpeedTest", None))
         self.label_47.setText(QCoreApplication.translate("LogecC3", u"Program CPU Usage:", None))
         self.label_42.setText(QCoreApplication.translate("LogecC3", u"Download (MBPS)", None))
         self.lineEdit_11.setText(QCoreApplication.translate("LogecC3", u"1234", None))
@@ -3953,7 +3953,7 @@ class Ui_LogecC3(object):
         self.checkBox_23.setText(QCoreApplication.translate("LogecC3", u"Count to 10 Million (Single Thread)", None))
         self.label_83.setText(QCoreApplication.translate("LogecC3", u"External IP:  123.456.111.333", None))
         self.label_82.setText(QCoreApplication.translate("LogecC3", u"Local IP: 123.456.444.222", None))
-        self.performance_seconds_2.setText(QCoreApplication.translate("LogecC3", u"6.16", None))
+        self.performance_seconds.setText(QCoreApplication.translate("LogecC3", u"6.16", None))
         self.checkBox_24.setText(QCoreApplication.translate("LogecC3", u"Multi Thread", None))
         self.textEdit_23.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -3965,8 +3965,8 @@ class Ui_LogecC3(object):
         self.label_86.setText(QCoreApplication.translate("LogecC3", u"Network Specs", None))
         self.label_88.setText(QCoreApplication.translate("LogecC3", u"Upload (MBPS)", None))
         self.label_87.setText(QCoreApplication.translate("LogecC3", u"Download (MBPS)", None))
-        self.performance_speedtest_2.setText(QCoreApplication.translate("LogecC3", u"Run SpeedTest", None))
-        self.performance_benchmark_button_2.setText(QCoreApplication.translate("LogecC3", u"Start Benchmark", None))
+        self.performance_speedtest.setText(QCoreApplication.translate("LogecC3", u"Run SpeedTest", None))
+        self.performance_benchmark_button.setText(QCoreApplication.translate("LogecC3", u"Start Benchmark", None))
         self.tabWidget_16.setTabText(self.tabWidget_16.indexOf(self.tab_75), QCoreApplication.translate("LogecC3", u"Benchmarks And Processes", None))
         self.table_RefreshDB_Button_performance.setText(QCoreApplication.translate("LogecC3", u"-->> Refresh DB <<--", None))
         self.tabWidget_16.setTabText(self.tabWidget_16.indexOf(self.tab_76), QCoreApplication.translate("LogecC3", u"Error List", None))

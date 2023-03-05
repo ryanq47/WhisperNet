@@ -584,7 +584,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.c2_menuBar.addAction(self.menuClient.menuAction())
         
         ## Connect Actions:
-        self.actionStart_Listener.triggered.connect(self.listen) ## Stand in variable
+        #self.actionStart_Listener.triggered.connect(self.listen) ## Stand in variable
 
         #WARN! TAB widget must have a layout!
         ##             ## Which tab
