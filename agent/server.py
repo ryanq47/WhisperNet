@@ -45,7 +45,7 @@ class s_sock:
     
     ## Each thread runs this, which will handle the client appropriatly.
     def handle_client(self, conn, addr):
-        print(f"New Connection from {addr}")
+        print(f"New Connection from {conn.getpeername()}")
         
         ## Listening for anythinf from the client
         while True:
