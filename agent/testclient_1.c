@@ -76,7 +76,7 @@ char * phone_home(int first_connection, char * client_id) {
 
     //here's that structure again, it's very similar to accessing a variable to another function in python (functionname.variable)
     serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = htons(8091);
+    serv_addr.sin_port = htons(8092);
        
     // convert IPv4 and IPv6 addresses from text to binary form
     if(inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr)<=0) { //does some conversion, not 100% the logic behind it

