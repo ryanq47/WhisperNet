@@ -43,9 +43,13 @@ class s_sock:
             
             self.response = self.conn.recv(1024).decode().split("\\|/")
             
+            
             response_list = []
             for i in self.response:
-                response_list.append(i)
+                print(f"split response {i}")
+                ## stripping out weird carriage returns from windows clients
+                ## SMiley face getting in the way, I think that's why nothing is being sent
+                response_list.append(i.strip("\x01").strip("\x02").rstrip("☻"))
                         
             self.id = response_list[0]
             try:
@@ -53,6 +57,9 @@ class s_sock:
             except:
                 self.message = "none"
                 print("list index out of range with self.message, setting to none")
+            
+            print(f"\nID: {self.id}")
+            print(f"MSG: {self.message}")
             
             #message = "ok"
             #self.conn.send(message.encode())
@@ -190,6 +197,9 @@ class s_perclient:
                 print(f"Current Job on server side: {self.current_job}")
             
             else:
+                ## sending wait anyways just to cover my ass incase something goes wrong on the client side
+                self.current_job = "wait\\|/wait"
+                self.send_msg(self.current_job)
                 print("No Current Job available, client will sleep\n\n")
     
     ## This part is what the user interacts with, and it sets self.current_job based on the decision. 
@@ -230,11 +240,13 @@ class s_perclient:
             self.current_job == "none"
             
     def cleanup(self):
-        self.current_job = "wait\\|/"
+        self.current_job = "wait\\|/wait"
         
     def send_msg(self, message):
         print(f"Message being sent: {message}")
+        ## 
         self.conn.send(message.encode())
+        
         
         ## wasn't running as it was waiting for a response
         #recieve_msg = self.conn.recv(1024).decode()
