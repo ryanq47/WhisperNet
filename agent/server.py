@@ -221,7 +221,10 @@ class s_perclient:
             self.current_job = "adjust_heartbeat"
         
         elif user_input == "current_job":
-            print(self.current_job)
+            print(self.current_job.strip("\\|/"))
+            
+        elif user_input == "":
+            print("No input provided!")
         
         else:
             self.current_job == "none"
