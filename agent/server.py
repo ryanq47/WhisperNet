@@ -127,6 +127,8 @@ class s_sock:
             
         else:
             print(f"{client_name} not found.")
+            os.system("clear")
+            self.client_interact()
             
 
 ##########
@@ -210,6 +212,12 @@ class s_perclient:
         
         if user_input == "jobs":
             print("Jobs: \nShell [IP, Port] ")
+
+        elif user_input == "home":
+            os.system("clear")
+            ## jumping out of the current class, back to the main one
+            ## might cause thread issues
+            SERV.client_interact()
             
         elif user_input == "run_command":
             command = input("Enter command: ")

