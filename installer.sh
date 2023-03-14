@@ -26,5 +26,5 @@ echo "##=================="
 
 ## Adding path so it can be read by pyqt GUI - need to refine this later
 echo "=================="
-echo "All done! Reboot for the new path to take effect. Then run ./logec-attack.py to start the program!"
+echo "All done!"
 echo "##=================="
