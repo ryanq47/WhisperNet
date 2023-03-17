@@ -2,9 +2,13 @@
 
 general:
 
-  ## Theme's are in beta, may not work as expected!
+  ## Themes are in beta, may not work as expected!
   #Ex: theme: "mytheme.css"
   theme: "Default"
+
+startup:
+  show-project-picker: True
+
 
 osint:
   reddit:
