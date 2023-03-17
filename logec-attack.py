@@ -51,7 +51,6 @@ import time
 import json
 from functools import partial
 
-from agent.server import s_sock, s_action
 
 ## importing other UI files
 from Gui.shell_popup import Ui_shell_SEND
@@ -80,6 +79,8 @@ from Modules.General.ScriptGen import ScriptGen
 import Modules.General.utility as utility
 
 import Modules.General.SaveFiles.fileops as fileops
+
+from Gui.startup_projectbox import Ui_startup_projectbox
 
 from gui import Ui_LogecC3
 
@@ -134,11 +135,18 @@ class MyApp(QMainWindow, Ui_LogecC3):
         )
         
 
-        ## File Menu ========================
+        ## ========================================
+        ## File Menu stuff ========================
+        ## ========================================
 
         self.actionOpen_Project.triggered.connect(self.project_open)
         self.actionSave_Project.triggered.connect(self.project_save)
         self.actionSaveAs_Project.triggered.connect(self.project_saveAs)
+        
+
+        #self.startup_project_openproject.clicked.connect(self.project_open)
+        #self.startup_project_exit.clicked.connect(quitprogram)
+        
         ## ========================================
         ## Shell (Depreacated, needs to be redone) ========================
         ## ========================================
@@ -369,17 +377,17 @@ class MyApp(QMainWindow, Ui_LogecC3):
 
         ## Once loaded, setting startlist to 1
         self.startlist = self.startlist = 1
+        
+        ## Project Popopen
+        ## if project_start:
+        self.startup_project_open()
+        ##else
+        ## pass
 
     ## ========================================
     ## Error, Checks & Debug ==================
     ## ========================================
-        
-    def restart(self): ## MEMORY LEAK !!
-        # Restart the Python interpreter
-        args = sys.argv[:]
-        args.insert(0, sys.executable)
-        self.close()
-        sys.exit(os.spawnvp(os.P_WAIT, sys.executable, args))
+
         
     def DEBUG(self):
         self.client_connected()
@@ -1527,6 +1535,26 @@ class MyApp(QMainWindow, Ui_LogecC3):
 ## ========================================
 
     ## ========================================
+    ## Project Startup ========================
+    ## ========================================
+    def startup_project_open(self):
+        ## Lazy imports
+        #from Gui.startup_projectbox import Ui_startup_projectbox
+        
+        self.window = QtWidgets.QMainWindow()
+        self.project_popup = Ui_startup_projectbox()
+        self.project_popup.setupUi(self.window)
+        self.window.show()
+        
+        ## ========================================
+        ## Startup Buttons ========================
+        ## ========================================
+        ## down here due to the import, and it technically being in a different class
+        self.project_popup.startup_project_openproject.clicked.connect(self.project_open)
+        self.project_popup.startup_project_exit.clicked.connect(self.program_exit)
+    
+
+    ## ========================================
     ## Project Controls =======================
     ## ========================================
     def project_open(self):
@@ -1749,7 +1777,19 @@ class MyApp(QMainWindow, Ui_LogecC3):
         else:
             pass
 
-
+    ## ========================================
+    ## System Functions ========================
+    ## ========================================
+        
+    def restart(self): ## MEMORY LEAK !!
+        # Restart the Python interpreter
+        args = sys.argv[:]
+        args.insert(0, sys.executable)
+        self.close()
+        sys.exit(os.spawnvp(os.P_WAIT, sys.executable, args))
+        
+    def program_exit(self):
+        sys.exit()
 ## ========================================
 ## Startup/Init Code=======================
 ## ========================================

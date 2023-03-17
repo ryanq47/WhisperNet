@@ -19,10 +19,10 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
 from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDoubleSpinBox,
     QFrame, QGraphicsView, QGridLayout, QHeaderView,
     QLCDNumber, QLabel, QLineEdit, QMainWindow,
-    QMdiArea, QMenu, QMenuBar, QProgressBar,
-    QPushButton, QRadioButton, QScrollArea, QSizePolicy,
-    QSpinBox, QTabWidget, QTableWidget, QTableWidgetItem,
-    QTextEdit, QToolBox, QWidget)
+    QMenu, QMenuBar, QProgressBar, QPushButton,
+    QRadioButton, QScrollArea, QSizePolicy, QSpinBox,
+    QTabWidget, QTableWidget, QTableWidgetItem, QTextEdit,
+    QToolBox, QWidget)
 
 class Ui_LogecC3(object):
     def setupUi(self, LogecC3):
@@ -387,97 +387,6 @@ class Ui_LogecC3(object):
         self.gridLayout_57.addWidget(self.c2_shell_tab, 1, 0, 1, 2)
 
         self.tabWidget.addTab(self.c2_tab, "")
-        self.tab_66 = QWidget()
-        self.tab_66.setObjectName(u"tab_66")
-        self.mdiArea_2 = QMdiArea(self.tab_66)
-        self.mdiArea_2.setObjectName(u"mdiArea_2")
-        self.mdiArea_2.setGeometry(QRect(10, 0, 1361, 891))
-        self.subwindow_2 = QWidget()
-        self.subwindow_2.setObjectName(u"subwindow_2")
-        self.c2_shell_tab_2 = QTabWidget(self.subwindow_2)
-        self.c2_shell_tab_2.setObjectName(u"c2_shell_tab_2")
-        self.c2_shell_tab_2.setGeometry(QRect(0, 0, 961, 591))
-        self.tab_67 = QWidget()
-        self.tab_67.setObjectName(u"tab_67")
-        self.gridLayout_51 = QGridLayout(self.tab_67)
-        self.gridLayout_51.setObjectName(u"gridLayout_51")
-        self.c2_remoteshell_2 = QTextEdit(self.tab_67)
-        self.c2_remoteshell_2.setObjectName(u"c2_remoteshell_2")
-        self.c2_remoteshell_2.setEnabled(True)
-        self.c2_remoteshell_2.setFont(font3)
-        self.c2_remoteshell_2.setStyleSheet(u"background-color: rgb(29, 29, 29);")
-        self.c2_remoteshell_2.setReadOnly(True)
-
-        self.gridLayout_51.addWidget(self.c2_remoteshell_2, 0, 0, 1, 2)
-
-        self.c2_remoteshell_send_2 = QPushButton(self.tab_67)
-        self.c2_remoteshell_send_2.setObjectName(u"c2_remoteshell_send_2")
-        self.c2_remoteshell_send_2.setEnabled(True)
-
-        self.gridLayout_51.addWidget(self.c2_remoteshell_send_2, 1, 1, 1, 1)
-
-        self.c2_remoteshell_input_2 = QLineEdit(self.tab_67)
-        self.c2_remoteshell_input_2.setObjectName(u"c2_remoteshell_input_2")
-        self.c2_remoteshell_input_2.setFont(font4)
-        self.c2_remoteshell_input_2.setStyleSheet(u"background-color: rgb(29, 29, 29);")
-
-        self.gridLayout_51.addWidget(self.c2_remoteshell_input_2, 1, 0, 1, 1)
-
-        self.c2_shell_tab_2.addTab(self.tab_67, "")
-        self.tab_68 = QWidget()
-        self.tab_68.setObjectName(u"tab_68")
-        self.gridLayout_52 = QGridLayout(self.tab_68)
-        self.gridLayout_52.setObjectName(u"gridLayout_52")
-        self.table_QueryDB_Button_3 = QPushButton(self.tab_68)
-        self.table_QueryDB_Button_3.setObjectName(u"table_QueryDB_Button_3")
-
-        self.gridLayout_52.addWidget(self.table_QueryDB_Button_3, 2, 1, 1, 1)
-
-        self.table_RefreshDB_Button_3 = QPushButton(self.tab_68)
-        self.table_RefreshDB_Button_3.setObjectName(u"table_RefreshDB_Button_3")
-
-        self.gridLayout_52.addWidget(self.table_RefreshDB_Button_3, 2, 0, 1, 1)
-
-        self.DB_Query_3 = QLineEdit(self.tab_68)
-        self.DB_Query_3.setObjectName(u"DB_Query_3")
-
-        self.gridLayout_52.addWidget(self.DB_Query_3, 1, 0, 1, 2)
-
-        self.table_SQLDB_3 = QTableWidget(self.tab_68)
-        self.table_SQLDB_3.setObjectName(u"table_SQLDB_3")
-
-        self.gridLayout_52.addWidget(self.table_SQLDB_3, 0, 0, 1, 2)
-
-        self.c2_shell_tab_2.addTab(self.tab_68, "")
-        self.tab_69 = QWidget()
-        self.tab_69.setObjectName(u"tab_69")
-        self.gridLayout_53 = QGridLayout(self.tab_69)
-        self.gridLayout_53.setObjectName(u"gridLayout_53")
-        self.c2_systemshell_2 = QTextEdit(self.tab_69)
-        self.c2_systemshell_2.setObjectName(u"c2_systemshell_2")
-        self.c2_systemshell_2.setEnabled(True)
-        self.c2_systemshell_2.setFont(font3)
-        self.c2_systemshell_2.setStyleSheet(u"background-color: rgb(29, 29, 29);")
-        self.c2_systemshell_2.setReadOnly(True)
-
-        self.gridLayout_53.addWidget(self.c2_systemshell_2, 0, 0, 1, 2)
-
-        self.c2_systemshell_input_2 = QLineEdit(self.tab_69)
-        self.c2_systemshell_input_2.setObjectName(u"c2_systemshell_input_2")
-        self.c2_systemshell_input_2.setFont(font4)
-        self.c2_systemshell_input_2.setStyleSheet(u"background-color: rgb(29, 29, 29);")
-
-        self.gridLayout_53.addWidget(self.c2_systemshell_input_2, 1, 0, 1, 1)
-
-        self.c2_systemshell_send_2 = QPushButton(self.tab_69)
-        self.c2_systemshell_send_2.setObjectName(u"c2_systemshell_send_2")
-        self.c2_systemshell_send_2.setEnabled(True)
-
-        self.gridLayout_53.addWidget(self.c2_systemshell_send_2, 1, 1, 1, 1)
-
-        self.c2_shell_tab_2.addTab(self.tab_69, "")
-        self.mdiArea_2.addSubWindow(self.subwindow_2)
-        self.tabWidget.addTab(self.tab_66, "")
         self.tab_38 = QWidget()
         self.tab_38.setObjectName(u"tab_38")
         self.gridLayout_29 = QGridLayout(self.tab_38)
@@ -1027,7 +936,7 @@ class Ui_LogecC3(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1282, 569))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 72, 16))
         self.dashboard_portscan_IP = QLineEdit(self.scrollAreaWidgetContents)
         self.dashboard_portscan_IP.setObjectName(u"dashboard_portscan_IP")
         self.dashboard_portscan_IP.setGeometry(QRect(10, 40, 211, 27))
@@ -1112,7 +1021,7 @@ class Ui_LogecC3(object):
         self.bashbuild_toolBox.setGeometry(QRect(0, 0, 241, 651))
         self.page_4 = QWidget()
         self.page_4.setObjectName(u"page_4")
-        self.page_4.setGeometry(QRect(0, 0, 241, 486))
+        self.page_4.setGeometry(QRect(0, 0, 92, 78))
         self.gridLayout_48 = QGridLayout(self.page_4)
         self.gridLayout_48.setObjectName(u"gridLayout_48")
         self.textEdit_24 = QTextEdit(self.page_4)
@@ -1123,20 +1032,21 @@ class Ui_LogecC3(object):
         self.bashbuild_toolBox.addItem(self.page_4, u"Quick Guide")
         self.page = QWidget()
         self.page.setObjectName(u"page")
-        self.page.setGeometry(QRect(0, 0, 241, 486))
+        self.page.setGeometry(QRect(0, 0, 100, 30))
         self.bashbuild_dnsenum = QCheckBox(self.page)
         self.bashbuild_dnsenum.setObjectName(u"bashbuild_dnsenum")
         self.bashbuild_dnsenum.setGeometry(QRect(10, 0, 92, 25))
         self.bashbuild_toolBox.addItem(self.page, u"DNS")
         self.page_3 = QWidget()
         self.page_3.setObjectName(u"page_3")
-        self.page_3.setGeometry(QRect(0, 0, 241, 453))
+        self.page_3.setGeometry(QRect(0, 0, 100, 30))
         self.bashbuild_nmap = QCheckBox(self.page_3)
         self.bashbuild_nmap.setObjectName(u"bashbuild_nmap")
         self.bashbuild_nmap.setGeometry(QRect(10, 20, 92, 25))
         self.bashbuild_toolBox.addItem(self.page_3, u"PortScan")
         self.page_6 = QWidget()
         self.page_6.setObjectName(u"page_6")
+        self.page_6.setGeometry(QRect(0, 0, 241, 453))
         self.checkBox_25 = QCheckBox(self.page_6)
         self.checkBox_25.setObjectName(u"checkBox_25")
         self.checkBox_25.setGeometry(QRect(10, 10, 181, 25))
@@ -1152,7 +1062,7 @@ class Ui_LogecC3(object):
         self.bashbuild_toolBox.addItem(self.page_6, u"Local")
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
-        self.page_2.setGeometry(QRect(0, 0, 241, 486))
+        self.page_2.setGeometry(QRect(0, 0, 100, 30))
         self.bashbuild_diagnostic = QCheckBox(self.page_2)
         self.bashbuild_diagnostic.setObjectName(u"bashbuild_diagnostic")
         self.bashbuild_diagnostic.setGeometry(QRect(10, 10, 201, 25))
@@ -1164,7 +1074,7 @@ class Ui_LogecC3(object):
         self.bashbuild_toolBox.addItem(self.page_2, u"Other")
         self.page_5 = QWidget()
         self.page_5.setObjectName(u"page_5")
-        self.page_5.setGeometry(QRect(0, 0, 241, 486))
+        self.page_5.setGeometry(QRect(0, 0, 92, 78))
         self.gridLayout_49 = QGridLayout(self.page_5)
         self.gridLayout_49.setObjectName(u"gridLayout_49")
         self.textEdit_26 = QTextEdit(self.page_5)
@@ -2296,202 +2206,6 @@ class Ui_LogecC3(object):
         self.gridLayout_25.setObjectName(u"gridLayout_25")
         self.tabWidget_10 = QTabWidget(self.tab_27)
         self.tabWidget_10.setObjectName(u"tabWidget_10")
-        self.tab_33 = QWidget()
-        self.tab_33.setObjectName(u"tab_33")
-        self.gridLayout_24 = QGridLayout(self.tab_33)
-        self.gridLayout_24.setObjectName(u"gridLayout_24")
-        self.table_RefreshDB_Button_performance2 = QPushButton(self.tab_33)
-        self.table_RefreshDB_Button_performance2.setObjectName(u"table_RefreshDB_Button_performance2")
-
-        self.gridLayout_24.addWidget(self.table_RefreshDB_Button_performance2, 21, 0, 1, 1)
-
-        self.line_10 = QFrame(self.tab_33)
-        self.line_10.setObjectName(u"line_10")
-        self.line_10.setFrameShape(QFrame.HLine)
-        self.line_10.setFrameShadow(QFrame.Sunken)
-
-        self.gridLayout_24.addWidget(self.line_10, 7, 0, 1, 1)
-
-        self.label_44 = QLabel(self.tab_33)
-        self.label_44.setObjectName(u"label_44")
-
-        self.gridLayout_24.addWidget(self.label_44, 10, 0, 1, 1)
-
-        self.performance_lcd_downloada = QLCDNumber(self.tab_33)
-        self.performance_lcd_downloada.setObjectName(u"performance_lcd_downloada")
-        self.performance_lcd_downloada.setFrameShape(QFrame.Panel)
-        self.performance_lcd_downloada.setFrameShadow(QFrame.Sunken)
-        self.performance_lcd_downloada.setDigitCount(5)
-        self.performance_lcd_downloada.setProperty("value", 0.000000000000000)
-
-        self.gridLayout_24.addWidget(self.performance_lcd_downloada, 11, 3, 1, 2)
-
-        self.label_39 = QLabel(self.tab_33)
-        self.label_39.setObjectName(u"label_39")
-        self.label_39.setFont(font2)
-
-        self.gridLayout_24.addWidget(self.label_39, 0, 0, 1, 1)
-
-        self.label_40 = QLabel(self.tab_33)
-        self.label_40.setObjectName(u"label_40")
-        self.label_40.setFont(font5)
-
-        self.gridLayout_24.addWidget(self.label_40, 3, 3, 1, 1)
-
-        self.progressBar_19 = QProgressBar(self.tab_33)
-        self.progressBar_19.setObjectName(u"progressBar_19")
-        self.progressBar_19.setValue(0)
-
-        self.gridLayout_24.addWidget(self.progressBar_19, 2, 0, 1, 1)
-
-        self.label_18 = QLabel(self.tab_33)
-        self.label_18.setObjectName(u"label_18")
-        self.label_18.setFont(font2)
-
-        self.gridLayout_24.addWidget(self.label_18, 0, 2, 1, 2)
-
-        self.label_78 = QLabel(self.tab_33)
-        self.label_78.setObjectName(u"label_78")
-        self.label_78.setMaximumSize(QSize(16777215, 20))
-        self.label_78.setFont(font2)
-
-        self.gridLayout_24.addWidget(self.label_78, 15, 3, 1, 2)
-
-        self.performance_secondsa = QLineEdit(self.tab_33)
-        self.performance_secondsa.setObjectName(u"performance_secondsa")
-        self.performance_secondsa.setMaximumSize(QSize(200, 16777215))
-
-        self.gridLayout_24.addWidget(self.performance_secondsa, 16, 3, 1, 1)
-
-        self.label_79 = QLabel(self.tab_33)
-        self.label_79.setObjectName(u"label_79")
-
-        self.gridLayout_24.addWidget(self.label_79, 16, 4, 1, 1)
-
-        self.label_41 = QLabel(self.tab_33)
-        self.label_41.setObjectName(u"label_41")
-
-        self.gridLayout_24.addWidget(self.label_41, 4, 0, 1, 1)
-
-        self.line_12 = QFrame(self.tab_33)
-        self.line_12.setObjectName(u"line_12")
-        self.line_12.setFrameShape(QFrame.VLine)
-        self.line_12.setFrameShadow(QFrame.Sunken)
-
-        self.gridLayout_24.addWidget(self.line_12, 0, 1, 22, 1)
-
-        self.performance_lcd_pinga = QLCDNumber(self.tab_33)
-        self.performance_lcd_pinga.setObjectName(u"performance_lcd_pinga")
-
-        self.gridLayout_24.addWidget(self.performance_lcd_pinga, 5, 3, 1, 2)
-
-        self.label_43 = QLabel(self.tab_33)
-        self.label_43.setObjectName(u"label_43")
-
-        self.gridLayout_24.addWidget(self.label_43, 1, 4, 1, 1)
-
-        self.progressBar_20 = QProgressBar(self.tab_33)
-        self.progressBar_20.setObjectName(u"progressBar_20")
-        self.progressBar_20.setValue(0)
-
-        self.gridLayout_24.addWidget(self.progressBar_20, 9, 0, 1, 1)
-
-        self.label_48 = QLabel(self.tab_33)
-        self.label_48.setObjectName(u"label_48")
-
-        self.gridLayout_24.addWidget(self.label_48, 12, 0, 1, 1)
-
-        self.label_46 = QLabel(self.tab_33)
-        self.label_46.setObjectName(u"label_46")
-
-        self.gridLayout_24.addWidget(self.label_46, 7, 3, 1, 1)
-
-        self.label_20 = QLabel(self.tab_33)
-        self.label_20.setObjectName(u"label_20")
-
-        self.gridLayout_24.addWidget(self.label_20, 15, 0, 1, 1)
-
-        self.other_performance_cpuall = QProgressBar(self.tab_33)
-        self.other_performance_cpuall.setObjectName(u"other_performance_cpuall")
-        self.other_performance_cpuall.setValue(24)
-
-        self.gridLayout_24.addWidget(self.other_performance_cpuall, 11, 0, 1, 1)
-
-        self.label_33 = QLabel(self.tab_33)
-        self.label_33.setObjectName(u"label_33")
-
-        self.gridLayout_24.addWidget(self.label_33, 1, 3, 1, 1)
-
-        self.other_performance_ramall = QProgressBar(self.tab_33)
-        self.other_performance_ramall.setObjectName(u"other_performance_ramall")
-        self.other_performance_ramall.setValue(24)
-
-        self.gridLayout_24.addWidget(self.other_performance_ramall, 5, 0, 1, 1)
-
-        self.table_SQLDB_performance_error2 = QTableWidget(self.tab_33)
-        self.table_SQLDB_performance_error2.setObjectName(u"table_SQLDB_performance_error2")
-
-        self.gridLayout_24.addWidget(self.table_SQLDB_performance_error2, 18, 0, 1, 1)
-
-        self.line_19 = QFrame(self.tab_33)
-        self.line_19.setObjectName(u"line_19")
-        self.line_19.setFrameShape(QFrame.HLine)
-        self.line_19.setFrameShadow(QFrame.Sunken)
-
-        self.gridLayout_24.addWidget(self.line_19, 14, 3, 1, 2)
-
-        self.performance_benchmark_buttona = QPushButton(self.tab_33)
-        self.performance_benchmark_buttona.setObjectName(u"performance_benchmark_buttona")
-
-        self.gridLayout_24.addWidget(self.performance_benchmark_buttona, 17, 3, 1, 1)
-
-        self.performance_speedtesta = QPushButton(self.tab_33)
-        self.performance_speedtesta.setObjectName(u"performance_speedtesta")
-
-        self.gridLayout_24.addWidget(self.performance_speedtesta, 13, 3, 1, 2)
-
-        self.label_47 = QLabel(self.tab_33)
-        self.label_47.setObjectName(u"label_47")
-
-        self.gridLayout_24.addWidget(self.label_47, 8, 0, 1, 1)
-
-        self.label_42 = QLabel(self.tab_33)
-        self.label_42.setObjectName(u"label_42")
-
-        self.gridLayout_24.addWidget(self.label_42, 10, 3, 1, 1)
-
-        self.line_11 = QFrame(self.tab_33)
-        self.line_11.setObjectName(u"line_11")
-        self.line_11.setFrameShape(QFrame.VLine)
-        self.line_11.setFrameShadow(QFrame.Sunken)
-
-        self.gridLayout_24.addWidget(self.line_11, 0, 5, 15, 1)
-
-        self.lineEdit_11 = QLineEdit(self.tab_33)
-        self.lineEdit_11.setObjectName(u"lineEdit_11")
-
-        self.gridLayout_24.addWidget(self.lineEdit_11, 13, 0, 1, 1)
-
-        self.label_45 = QLabel(self.tab_33)
-        self.label_45.setObjectName(u"label_45")
-
-        self.gridLayout_24.addWidget(self.label_45, 1, 0, 1, 1)
-
-        self.label_19 = QLabel(self.tab_33)
-        self.label_19.setObjectName(u"label_19")
-
-        self.gridLayout_24.addWidget(self.label_19, 4, 3, 1, 1)
-
-        self.performance_lcd_uploada = QLCDNumber(self.tab_33)
-        self.performance_lcd_uploada.setObjectName(u"performance_lcd_uploada")
-        self.performance_lcd_uploada.setFrameShape(QFrame.Panel)
-        self.performance_lcd_uploada.setFrameShadow(QFrame.Sunken)
-        self.performance_lcd_uploada.setDigitCount(5)
-        self.performance_lcd_uploada.setProperty("value", 0.000000000000000)
-
-        self.gridLayout_24.addWidget(self.performance_lcd_uploada, 9, 3, 1, 2)
-
-        self.tabWidget_10.addTab(self.tab_33, "")
         self.tab_52 = QWidget()
         self.tab_52.setObjectName(u"tab_52")
         self.gridLayout_55 = QGridLayout(self.tab_52)
@@ -3026,11 +2740,10 @@ class Ui_LogecC3(object):
 
         self.retranslateUi(LogecC3)
 
-        self.tabWidget.setCurrentIndex(9)
+        self.tabWidget.setCurrentIndex(1)
         self.text_PortScan_tab.setCurrentIndex(0)
         self.bruteforce_panel_2.setCurrentIndex(0)
         self.c2_shell_tab.setCurrentIndex(0)
-        self.c2_shell_tab_2.setCurrentIndex(0)
         self.tabWidget_5.setCurrentIndex(0)
         self.osint_dork.setCurrentIndex(1)
         self.tabWidget_3.setCurrentIndex(1)
@@ -3049,7 +2762,7 @@ class Ui_LogecC3(object):
         self.bruteforce_download_seclist_top10mil_usernames_5.setDefault(False)
         self.tabWidget_2.setCurrentIndex(4)
         self.tabWidget_4.setCurrentIndex(1)
-        self.tabWidget_10.setCurrentIndex(1)
+        self.tabWidget_10.setCurrentIndex(0)
         self.tabWidget_16.setCurrentIndex(0)
         self.tabWidget_11.setCurrentIndex(2)
         self.tabWidget_12.setCurrentIndex(1)
@@ -3061,7 +2774,7 @@ class Ui_LogecC3(object):
     # setupUi
 
     def retranslateUi(self, LogecC3):
-        LogecC3.setWindowTitle(QCoreApplication.translate("LogecC3", u"MainWindow", None))
+        LogecC3.setWindowTitle(QCoreApplication.translate("LogecC3", u"Logec-Suite", None))
         self.action_Target_Listen.setText(QCoreApplication.translate("LogecC3", u"Listen for connection", None))
         self.actionBash.setText(QCoreApplication.translate("LogecC3", u"/bin/bash", None))
         self.action_bin_sh.setText(QCoreApplication.translate("LogecC3", u"/bin/sh", None))
@@ -3235,67 +2948,6 @@ class Ui_LogecC3(object):
 #endif // QT_CONFIG(shortcut)
         self.c2_shell_tab.setTabText(self.c2_shell_tab.indexOf(self.tab_59), QCoreApplication.translate("LogecC3", u"LocalShell", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.c2_tab), QCoreApplication.translate("LogecC3", u"C2New", None))
-        self.subwindow_2.setWindowTitle(QCoreApplication.translate("LogecC3", u"Subwindow", None))
-#if QT_CONFIG(tooltip)
-        self.c2_shell_tab_2.setToolTip(QCoreApplication.translate("LogecC3", u"Enter", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(whatsthis)
-        self.c2_shell_tab_2.setWhatsThis(QCoreApplication.translate("LogecC3", u"Enter", None))
-#endif // QT_CONFIG(whatsthis)
-#if QT_CONFIG(tooltip)
-        self.c2_remoteshell_2.setToolTip("")
-#endif // QT_CONFIG(tooltip)
-        self.c2_remoteshell_2.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Monospace'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:11pt;\"><br /></p></body></html>", None))
-        self.c2_remoteshell_2.setPlaceholderText(QCoreApplication.translate("LogecC3", u"root@127.0.0.1> ", None))
-#if QT_CONFIG(tooltip)
-        self.c2_remoteshell_send_2.setToolTip(QCoreApplication.translate("LogecC3", u"Hit the Enter Key", None))
-#endif // QT_CONFIG(tooltip)
-        self.c2_remoteshell_send_2.setText(QCoreApplication.translate("LogecC3", u"-->> Send <<-- ", None))
-#if QT_CONFIG(shortcut)
-        self.c2_remoteshell_send_2.setShortcut(QCoreApplication.translate("LogecC3", u"Return", None))
-#endif // QT_CONFIG(shortcut)
-#if QT_CONFIG(tooltip)
-        self.c2_remoteshell_input_2.setToolTip("")
-#endif // QT_CONFIG(tooltip)
-        self.c2_remoteshell_input_2.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Enter Command Here!", None))
-        self.c2_shell_tab_2.setTabText(self.c2_shell_tab_2.indexOf(self.tab_67), QCoreApplication.translate("LogecC3", u"RemoteShell", None))
-#if QT_CONFIG(tooltip)
-        self.table_QueryDB_Button_3.setToolTip(QCoreApplication.translate("LogecC3", u"Run a query on the DB", None))
-#endif // QT_CONFIG(tooltip)
-        self.table_QueryDB_Button_3.setText(QCoreApplication.translate("LogecC3", u"-->> Query DB <<--", None))
-#if QT_CONFIG(tooltip)
-        self.table_RefreshDB_Button_3.setToolTip(QCoreApplication.translate("LogecC3", u"Refresh the Database, updating values from the SQLITE DB file", None))
-#endif // QT_CONFIG(tooltip)
-        self.table_RefreshDB_Button_3.setText(QCoreApplication.translate("LogecC3", u"-->> Refresh DB <<--", None))
-        self.DB_Query_3.setText("")
-        self.DB_Query_3.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Enter SQL Query! Type !_help for help! ", None))
-        self.c2_shell_tab_2.setTabText(self.c2_shell_tab_2.indexOf(self.tab_68), QCoreApplication.translate("LogecC3", u"Local DB", None))
-#if QT_CONFIG(tooltip)
-        self.c2_systemshell_2.setToolTip("")
-#endif // QT_CONFIG(tooltip)
-        self.c2_systemshell_2.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Monospace'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:11pt;\"><br /></p></body></html>", None))
-        self.c2_systemshell_2.setPlaceholderText(QCoreApplication.translate("LogecC3", u"$", None))
-#if QT_CONFIG(tooltip)
-        self.c2_systemshell_input_2.setToolTip("")
-#endif // QT_CONFIG(tooltip)
-        self.c2_systemshell_input_2.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Enter Command Here!", None))
-#if QT_CONFIG(tooltip)
-        self.c2_systemshell_send_2.setToolTip(QCoreApplication.translate("LogecC3", u"Hit the Enter Key", None))
-#endif // QT_CONFIG(tooltip)
-        self.c2_systemshell_send_2.setText(QCoreApplication.translate("LogecC3", u"-->> Send <<-- ", None))
-#if QT_CONFIG(shortcut)
-        self.c2_systemshell_send_2.setShortcut(QCoreApplication.translate("LogecC3", u"Return", None))
-#endif // QT_CONFIG(shortcut)
-        self.c2_shell_tab_2.setTabText(self.c2_shell_tab_2.indexOf(self.tab_69), QCoreApplication.translate("LogecC3", u"LocalShell", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_66), QCoreApplication.translate("LogecC3", u"C2_New2", None))
         self.label_70.setText(QCoreApplication.translate("LogecC3", u"Other?", None))
         self.label_67.setText(QCoreApplication.translate("LogecC3", u"Username", None))
         self.label_69.setText(QCoreApplication.translate("LogecC3", u"DC-IP", None))
@@ -3913,28 +3565,6 @@ class Ui_LogecC3(object):
         self.settings_reload.setText(QCoreApplication.translate("LogecC3", u"-->> Reload File <<--", None))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_37), QCoreApplication.translate("LogecC3", u"Settings", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), QCoreApplication.translate("LogecC3", u"Settings", None))
-        self.table_RefreshDB_Button_performance2.setText(QCoreApplication.translate("LogecC3", u"-->> Refresh DB <<--", None))
-        self.label_44.setText(QCoreApplication.translate("LogecC3", u"System CPU Usage:", None))
-        self.label_39.setText(QCoreApplication.translate("LogecC3", u"CPU/RAM Specs", None))
-        self.label_40.setText(QCoreApplication.translate("LogecC3", u"SpeedTest", None))
-        self.label_18.setText(QCoreApplication.translate("LogecC3", u"Network Specs", None))
-        self.label_78.setText(QCoreApplication.translate("LogecC3", u"Benchmark (Count to 10 million)", None))
-        self.performance_secondsa.setText(QCoreApplication.translate("LogecC3", u"6.16", None))
-        self.label_79.setText(QCoreApplication.translate("LogecC3", u"Seconds", None))
-        self.label_41.setText(QCoreApplication.translate("LogecC3", u"System Ram Usage: ", None))
-        self.label_43.setText(QCoreApplication.translate("LogecC3", u"Local IP:", None))
-        self.label_48.setText(QCoreApplication.translate("LogecC3", u"Process ID (PID)", None))
-        self.label_46.setText(QCoreApplication.translate("LogecC3", u"Upload (MBPS)", None))
-        self.label_20.setText(QCoreApplication.translate("LogecC3", u"Error Log", None))
-        self.label_33.setText(QCoreApplication.translate("LogecC3", u"External IP: ", None))
-        self.performance_benchmark_buttona.setText(QCoreApplication.translate("LogecC3", u"Start Benchmark", None))
-        self.performance_speedtesta.setText(QCoreApplication.translate("LogecC3", u"Run SpeedTest", None))
-        self.label_47.setText(QCoreApplication.translate("LogecC3", u"Program CPU Usage:", None))
-        self.label_42.setText(QCoreApplication.translate("LogecC3", u"Download (MBPS)", None))
-        self.lineEdit_11.setText(QCoreApplication.translate("LogecC3", u"1234", None))
-        self.label_45.setText(QCoreApplication.translate("LogecC3", u"Program Ram Usage:", None))
-        self.label_19.setText(QCoreApplication.translate("LogecC3", u"Ping (MS)", None))
-        self.tabWidget_10.setTabText(self.tabWidget_10.indexOf(self.tab_33), QCoreApplication.translate("LogecC3", u"Performance/Health", None))
 #if QT_CONFIG(tooltip)
         self.other_cpu_performance.setToolTip(QCoreApplication.translate("LogecC3", u"If 'N/A' shows up for temp, then your OS cannot read the CPU Temp, most likely due to a virtual machine", None))
 #endif // QT_CONFIG(tooltip)
@@ -3947,7 +3577,7 @@ class Ui_LogecC3(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Process List?</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Process List? (for i in process create a row in  a table view)</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
         self.label_91.setText(QCoreApplication.translate("LogecC3", u"Benchmarks", None))
         self.checkBox_23.setText(QCoreApplication.translate("LogecC3", u"Count to 10 Million (Single Thread)", None))
@@ -3982,7 +3612,7 @@ class Ui_LogecC3(object):
         self.tabWidget_16.setTabText(self.tabWidget_16.indexOf(self.tab_77), QCoreApplication.translate("LogecC3", u"Page", None))
         self.label_80.setText(QCoreApplication.translate("LogecC3", u"System Ram Usage", None))
         self.label_81.setText(QCoreApplication.translate("LogecC3", u"Network Traffic In/Out", None))
-        self.tabWidget_10.setTabText(self.tabWidget_10.indexOf(self.tab_52), QCoreApplication.translate("LogecC3", u"Performance2", None))
+        self.tabWidget_10.setTabText(self.tabWidget_10.indexOf(self.tab_52), QCoreApplication.translate("LogecC3", u"Performance and Diagnostics", None))
         self.tabWidget_11.setTabText(self.tabWidget_11.indexOf(self.tab_29), QCoreApplication.translate("LogecC3", u"Tab 1", None))
         self.textEdit_5.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
