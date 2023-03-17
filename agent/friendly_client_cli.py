@@ -25,7 +25,7 @@ class fclient():
         
         print(f"!_user_!\\|/{creds[0]}\\|/{creds[1]}") if global_debug else None
         
-        self.server.send(self.str_encode(f"!_user_!\\|/{creds[0]}//|\\\\{creds[1]}"))
+        self.server.send(self.str_encode(f"!_userlogin_!\\|/{creds[0]}//|\\\\{creds[1]}"))
         response = int(self.server.recv(1024).decode())
 
         print(f"Server Auth Response: {response}")
@@ -112,6 +112,11 @@ class fclient():
             print(stats_list)
             input("Type home for home: ")
             self.server_interact()
+
+
+        elif client_name.lower() == "clients":
+            self.server_request("clients")
+
         elif client_name.lower() == "help":
             print(
             "Home: \n" \
@@ -129,8 +134,14 @@ class fclient():
 
     ## THe main interface for gettin data from the server
     def server_request(self, request):
+        formatted_request = f"!_usercommand_!\\|/{self.username}//|\\\\{request}"
+        print(f"DEBUG: Formatted Request: {formatted_request}")
+
         if request == "clients":
-            self.server.send(self.str_encode(request))
+            self.server.send(self.str_encode(formatted_request))
+
+            ## return this eventually to the function that called it to print
+            print("waiting on response...")
             print(self.str_decode(self.server.recv(1024)))
     
     def credential_gather(self) -> list:
@@ -139,6 +150,8 @@ class fclient():
         
         creds_list[0] = input("Username: ")
         creds_list[1] = input("Password: ")
+
+        self.username = creds_list[0]
     
         return creds_list
         

@@ -73,7 +73,7 @@ class s_sock:
             
             ## I'm sorry for the nested if's :( can definently split this up a bit into functions
             ## interact with server, on first connection
-            if self.id == "!_user_!":
+            if self.id == "!_userlogin_!":
                 username, password = self.message.split("//|\\\\")
                 
                 ## == Password Eval
@@ -95,15 +95,30 @@ class s_sock:
                         
                         globals()[friendly_client_name] = self.friendly_client
                         
+                        ## drop into class, passing the connection, addr, and some other stuff
+                        ## starts the thread - re think this
+                        print(f"DEBUG: f_client msg: {self.response}")
+                        friendly_thread = threading.Thread(target=self.friendly_client.friendly_client_communication, args=(self.conn, self.ADDR, self.response, username))
+                        friendly_thread.start()
+
                         ## temp printing friendyl clients
                         print("FriendlyClients:") if global_debug else None
                         for var_name in globals():
                             if var_name.startswith("!!~"):
                                 print(var_name)
+                        #continue
+
+                    else:
+                        print("AlreadyAuth")
 
                 else:
                     print(f"Failed logon from {username}")
                     self.conn.send("1".encode())
+
+
+            elif self.id == "!_usercommand_!":
+                print("usercommand function")
+
 
             ## handling commands - ma ynot need this
             ## elif friendly_client_name in friendly_client_name_list:
@@ -112,6 +127,7 @@ class s_sock:
             
             ## Client filter, make this an elif somehow, so if nothing matches, it drops
             else:
+                print("else")
                 ## Creating the name in format of '127_0_0_1_QWERT' aka 'IP_ID'
                 client_name = "client_" + self.ip_address.replace(".", "_") + "_" + self.id
                 ## If the client hasn't been seen before, create new client ID n stuff
@@ -155,10 +171,41 @@ class s_sock:
         
        
 class s_friendlyclient:
-    
-    def incoming_command_process(self):
-        pass 
 
+    def friendly_client_communication(self, conn, addr, message, username):
+                
+        self.conn = conn
+        self.addr = addr
+        self.ip = addr[0]
+        self.port = addr[1]
+        ## listens for command
+        ## runs command_process
+        ## returns result to friedly client
+
+            
+        while message:
+            ## Receiveing message from server portion & running through filters
+            print("Call Decision Tree") if global_debug else None
+            self.decision_tree(message)
+            
+            if not message:
+
+                print("Conn Closed\n\n") if global_debug else None
+                break
+            
+            message = None
+
+        conn.close()
+
+
+    def decision_tree(self, message):
+
+        if message == "clients":
+            #send self.current_clients
+            print(self.current_clients)
+
+        else:
+            pass
 
 ##########
 ## Per Client Class
