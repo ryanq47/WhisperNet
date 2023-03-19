@@ -85,9 +85,15 @@ class fclient():
             
             self.shellformat(helpmenu)
 
+
+        ## !!!!!!!!!
+        ## Up next, getting individual clients to work
+        ## 1111111
         elif client_name in self.clients:
-            print("Valid Client. Control not implemented")
-            print("DEBUG: client is in the client list!") if global_debug else None
+            while True:
+                input(f"{client_name}@127.0.0.1:6969$: ")
+            #print("Valid Client. Control not implemented")
+            #print("DEBUG: client is in the client list!") if global_debug else None
             #pass
             ## send instance/client name
             ## server set instance to be that instance. (might be tough/run into threading issues)
