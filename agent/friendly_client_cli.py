@@ -1,7 +1,7 @@
 import socket
 import os
 
-global_debug = True
+global_debug = False
 
 
 class fclient():
@@ -32,7 +32,7 @@ class fclient():
         
         ## 0 is success, like in C
         if response == 0:
-            print("Connected!")
+            print("Connected!\n")
             while True:
                 self.server_interact()
         else:
@@ -46,32 +46,24 @@ class fclient():
 
     ##directly interacting with the server
     def server_interact(self):
+        ## Populating the lists needed & getting info from server
+        self.client_info_fetch()
         ## This will be returned to the client later
-        print(" ===== Logec C2 Manual Shell +++++\n\n")
         
-        print("\n\n========Current Clients========")
-        #self.server_request("clients")
-        '''for var_name in globals():
-            if var_name.startswith("client_"):
-                print(var_name)'''
-        print("FAKECLIENTS")
-        
-        
-        print("===============================")
-        print("!! Clients populate on heartbeat, be patient\n\n")
-        
-        ## dict 
-        client_name = input("Enter a client name to interact, 'help', or 'refresh': ").lower()
+        ## dict - can't do .lower() due to client names being capataliezed. fuck
+        client_name = input("Enter a client name to interact, 'help', or 'refresh': ")#.lower()
 
         ################
         ## Home Menu
         ################ 
 
-        if client_name == "clients":
-            print(self.server_request("clients"))
+        #request a manual client update
+        if client_name.lower() == "clients":
+            self.server_request("clients")
+            self.shellformat("")
         
         
-        elif client_name == "refresh":
+        elif client_name.lower() == "refresh":
             if os.name == "nt":
                 os.system("cls")
 
@@ -79,15 +71,10 @@ class fclient():
                 os.system("clear")
             self.client_info_fetch()
             
-            print(
-                f"Current Clients: {self.clients}" \
-                f"Stats: {self.client_stats}"
-                  )
-
-            #self.server_interact()
+            self.shellformat("")
             
-        elif client_name== "help":
-            print(
+        elif client_name.lower() == "help":
+            helpmenu = (
             "Home: \n" \
             "refresh - refreshes the current connected clients \n" \
             "stats - ' [BETA] Prints all clients stats'\n" \
@@ -95,13 +82,12 @@ class fclient():
             ## change these to enter
             #input("Type Home for Home: ")
             #self.server_interact()
-        
-        #!!!!!!!!!!
-        ## Left Off
-        #!!!!!!!!!!!
-        #### being a PITA and not recognizing clients
-        elif (client_name in self.clients) :
-            print("DEBUG: client is in the client list!")
+            
+            self.shellformat(helpmenu)
+
+        elif client_name in self.clients:
+            print("Valid Client. Control not implemented")
+            print("DEBUG: client is in the client list!") if global_debug else None
             #pass
             ## send instance/client name
             ## server set instance to be that instance. (might be tough/run into threading issues)
@@ -117,19 +103,29 @@ class fclient():
         ## Part of this needs to stay here, the other part needs to go back to the server
         else:
             print("command not found")
+            print(self.clients)
+            print(client_name)
         
-        '''
-        if client_name in self.clients:
-            client_instance = self.clients[client_name]
-            
-            while True:
-                user_input_for_client = input(f"Client (jobs for options): [{self.ip_address}]: ")
+                    
 
-                if user_input_for_client == "home":
-                    self.server_interact()
+    def shellformat(self, results):
+        if os.name == "nt":
+            os.system("cls")
 
-                else:
-                    client_instance.interact(user_input_for_client)'''
+        else:
+            os.system("clear")
+        
+        print(" ===== Logec C2 Manual Shell +++++\n\n")
+        
+        print("\n\n========Current Clients========")
+        #self.server_request("clients")
+        print(self.clients)
+        
+        print("===============================")
+        print("!! Clients populate on heartbeat, be patient\n\n")   
+        
+        print(results)
+        
 
 ################
 ## Client Interact
@@ -177,8 +173,9 @@ class fclient():
 ################  
     ## grabs info and foramts it
     def client_info_fetch(self):
+        print("Requesting self.clients...")
         self.clients = list(self.server_request("clients").split())
-        self.client_stats = self.server_request("stats")
+        #self.client_stats = self.server_request("stats")
 
     ## THe main interface for gettin data from the server
     ## will handle all encoding & bs, just pass it the string
@@ -186,15 +183,16 @@ class fclient():
         formatted_request = f"!_usercommand_!\\|/{self.username}//|\\\\{request}"
 
         if request == "clients":
-            print(f"DEBUG: Sending {formatted_request}")
+            print(f"DEBUG: Sending {formatted_request}") if global_debug else None
             self.server.send(self.str_encode(formatted_request))
 
             ## return this eventually to the function that called it to print
-            print("DEBUG: waiting on response...")
+            print("DEBUG: waiting on response...") if global_debug else None
             
             serv_response = self.str_decode(self.server.recv(1024))
-            print(f"DEBUG: Serv Response: {serv_response}")
+            print(f"DEBUG: Serv Response: {serv_response}") if global_debug else None
             return serv_response
+
 
     def credential_gather(self) -> list:
         ## HA yes this works! init the list with types!
