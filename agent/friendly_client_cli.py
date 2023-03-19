@@ -125,11 +125,11 @@ class fclient():
         
         print(" ===== Logec C2 Manual Shell +++++\n\n")
         
-        print("\n\n========Current Clients========")
+        print("\n\n========Current Clients (num)============"[:35])
         #self.server_request("clients")
         print(self.clients)
         
-        print("===============================")
+        print("=================================")
         print("!! Clients populate on heartbeat, be patient\n\n")   
         
         print(results)
