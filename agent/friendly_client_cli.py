@@ -1,5 +1,6 @@
 import socket
 import os
+import select
 
 global_debug = False
 
@@ -14,9 +15,10 @@ class fclient():
         print('Connecting to server') if global_debug else None
         
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+        #self.server.settimeout(5)
         
-        
-        self.ip, self.port = "127.0.0.1", 100
+        self.ip, self.port = "127.0.0.1", 101
         
         self.server_addr = (self.ip, self.port)
         self.server.connect(self.server_addr)
@@ -244,21 +246,51 @@ class fclient():
             ## return this eventually to the function that called it to print
             print("DEBUG: waiting on response...") if global_debug else None
             
-            serv_response = self.str_decode(self.server.recv(1024))
-            print(f"DEBUG: Serv Response: {serv_response}") if global_debug else None
-            return serv_response
+            return self.recieve()
+            
         
         elif "-" in request:
             formatted_request = f"!_usercommand_!\\|/{self.username}//|\\\\{request} {client_name}"
             print(f"Formatted request: {formatted_request}")
             self.server.send(self.str_encode(formatted_request))
+
+            ## seperate receieve cause it's long n ugly
+            return self.recieve()
             
-            serv_response = self.str_decode(self.server.recv(1024))
-            print(f"DEBUG: Serv Response: {serv_response}") if global_debug else None
-            return serv_response
-            
+
+
+
         else:
             print(f"Invalid Command: {request}")
+
+    ## blegh kinda ugly but it works
+    def recieve(self):
+        full_msg = ''
+        new_msg = True
+        HEADERSIZE = 10
+
+        while True:
+            msg = self.server.recv(32) ##<< adjustble, how many bytes you want to get per iteration
+            if new_msg:
+                ## Carving up msg into the first X bytes (X = headersize)
+                msglen = int(msg[:HEADERSIZE])
+                new_msg = False
+
+            print(f"full message length: {msglen}") if global_debug else None
+            print(f"msg partial:" + msg.decode()) if global_debug else None
+            full_msg += self.str_decode(msg)
+
+            print("total bytes received: " + str(len(full_msg))) if global_debug else None
+
+            ## if the full message mathces the originally sent message size (msglen) (excluding headers) message has been sent
+            if len(full_msg)-HEADERSIZE == msglen:
+                print("full msg recvd") if global_debug else None
+                print(full_msg[HEADERSIZE:]) if global_debug else None
+                new_msg = True
+
+                ## returning full message and stripping header
+                return full_msg[HEADERSIZE:]
+
 
     ## takes creds from friendly client
     def credential_gather(self) -> list:

@@ -314,8 +314,7 @@ class s_friendlyclient:
         if client_command == "get-data":
             data = f"{self.client.data_list}"
             self.send_msg(data)
-        
-        
+    
         # == Dynamic, To Client, validated
         elif client_command == "set-heartbeat":
             heartbeat_value = client_command_value
@@ -345,6 +344,14 @@ class s_friendlyclient:
     def send_msg(self, message:str):
         try:
             ## encoding with global str_encode
+
+            HEADERSIZE = 10
+
+            message = f"{len(message):<{HEADERSIZE}}" + message
+            print(message)
+            print("---head--|msg->")
+
+            #print(f"Message being sent back to fclient: {message}")
             encoded_response = str_encode(message)
             self.conn.send(encoded_response)
         except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
@@ -551,8 +558,10 @@ class s_perclient:
         self.current_job = "wait\\|/wait"
         
     def send_msg(self, message):
-        print(f"Message being sent: {message}") if global_debug else None
-        ## 
+        print(f"Message being sent to cleint: {message}") #if global_debug else None
+        ##Test >1024
+
+
         self.conn.send(message.encode())
         
         
@@ -583,7 +592,7 @@ if __name__ == "__main__":
     ## could listen on multiple ports with threading this whole thing
     SERV = s_sock()
 
-    background_listen = threading.Thread(target=SERV.start_server, args=('0.0.0.0',100))
+    background_listen = threading.Thread(target=SERV.start_server, args=('0.0.0.0',101))
     background_listen.start() 
     print("server started")
     
