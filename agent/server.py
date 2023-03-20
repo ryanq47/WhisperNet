@@ -5,7 +5,7 @@ import time
 import os
 import random
 import atexit
-from datetime import datetime
+from datetime import datetime, timezone
 import select
 
 HEADER = 64
@@ -318,7 +318,7 @@ class s_friendlyclient:
         # == Dynamic, To Client, validated
         elif client_command == "set-heartbeat":
             heartbeat_value = client_command_value
-            print(heartbeat)
+            print(heartbeat_value)
             
             
             self.client.interact("set-heartbeat", heartbeat_value)
@@ -466,7 +466,7 @@ class s_perclient:
             print(f"Recieved heartbeat from {self.ip}") if global_debug else None
             ## +1 to heartbeat
             self.stats_heartbeats = self.stats_heartbeats + 1
-            self.stats_latestcheckin = datetime.utcnow()
+            self.stats_latestcheckin = str(datetime.now(timezone.utc))
 
             ## check current_job, & send job ONLY on heartbeat
 

