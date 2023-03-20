@@ -82,6 +82,8 @@ import Modules.General.SaveFiles.fileops as fileops
 
 from Gui.startup_projectbox import Ui_startup_projectbox
 
+from agent.friendly_client import fclient
+
 from gui import Ui_LogecC3
 
 class MyApp(QMainWindow, Ui_LogecC3):
@@ -155,6 +157,11 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.c2_systemshell_send.clicked.connect(self.sys_shell)
         self.c2_systemshell_input.setFocus()
         #self.c2_systemshell.textChanged.connect(self.sys_shell)
+
+        self.c2_servershell_send.clicked.connect(self.c2_server_interact)
+        self.friendly_client = fclient()
+
+        self.c2_connect_button.clicked.connect(self.c2_server_connect)
         
 
         ## debug:
@@ -625,6 +632,29 @@ class MyApp(QMainWindow, Ui_LogecC3):
             self.c2_systemshell_input.setText("")
         except Exception as e:
             print(e)
+    
+    ## ========================================
+    ## C2 Server Shell ========================
+    ## ========================================
+    def c2_server_connect(self):
+        connlist = [
+            self.c2_server_ip.text(),
+            self.c2_server_port.text(),
+            self.c2_server_username.text(),
+            self.c2_server_password.text(),
+        ]
+
+        self.friendly_client.connect_to_server(connlist)
+
+    def c2_server_interact(self, command):
+        input = self.c2_servershell_input.text()
+
+        self.thread_manager.start(partial(self.friendly_client.server_interact, input))
+        self.friendly_client.shell_output.connect(self.shell_text_update)
+    
+    def shell_text_update(self, input):
+        print("shell_text_update" + input)
+        self.c2_servershell.setText(input)
 
 ## ========================================
 ## Scanning/Enumeration ====================

@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1397</width>
-    <height>965</height>
+    <width>1047</width>
+    <height>707</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -342,7 +342,7 @@ p, li { white-space: pre-wrap; }
         <item row="0" column="1">
          <widget class="QTabWidget" name="bruteforce_panel_2">
           <property name="currentIndex">
-           <number>0</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="tab_55">
            <attribute name="title">
@@ -408,6 +408,65 @@ p, li { white-space: pre-wrap; }
             </item>
            </layout>
           </widget>
+          <widget class="QWidget" name="tab_33">
+           <attribute name="title">
+            <string>ServerLogin</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_24">
+            <item row="2" column="0" colspan="2">
+             <widget class="QLineEdit" name="c2_server_password">
+              <property name="placeholderText">
+               <string>Password</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QLabel" name="label_18">
+              <property name="text">
+               <string>Status:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" colspan="2">
+             <widget class="QLineEdit" name="c2_server_username">
+              <property name="placeholderText">
+               <string>Username</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="c2_server_port">
+              <property name="placeholderText">
+               <string>Port</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLineEdit" name="c2_server_ip">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="placeholderText">
+               <string>IP</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QPushButton" name="pushButton_5">
+              <property name="text">
+               <string>Disconnect</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QPushButton" name="c2_connect_button">
+              <property name="text">
+               <string>Connect</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
          </widget>
         </item>
         <item row="1" column="0" colspan="2">
@@ -427,7 +486,7 @@ p, li { white-space: pre-wrap; }
            </attribute>
            <layout class="QGridLayout" name="gridLayout_42">
             <item row="0" column="0" colspan="2">
-             <widget class="QTextEdit" name="c2_remoteshell">
+             <widget class="QTextEdit" name="c2_servershell">
               <property name="enabled">
                <bool>true</bool>
               </property>
@@ -459,7 +518,7 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QPushButton" name="c2_remoteshell_send">
+             <widget class="QPushButton" name="c2_servershell_send">
               <property name="enabled">
                <bool>true</bool>
               </property>
@@ -475,7 +534,7 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item row="1" column="0">
-             <widget class="QLineEdit" name="c2_remoteshell_input">
+             <widget class="QLineEdit" name="c2_servershell_input">
               <property name="font">
                <font>
                 <family>DejaVu Sans Mono</family>
@@ -707,8 +766,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1333</width>
-                 <height>681</height>
+                 <width>983</width>
+                 <height>423</height>
                 </rect>
                </property>
                <widget class="QLabel" name="label_62">
@@ -2054,8 +2113,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1333</width>
-                 <height>819</height>
+                 <width>983</width>
+                 <height>561</height>
                 </rect>
                </property>
                <widget class="QToolBox" name="bashbuild_toolBox">
@@ -5746,7 +5805,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1397</width>
+     <width>1047</width>
      <height>24</height>
     </rect>
    </property>
