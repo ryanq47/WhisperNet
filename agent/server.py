@@ -235,6 +235,10 @@ class s_friendlyclient:
             self.server_decision_tree(user_command)
 
 
+################
+## Server Functions
+################ 
+
     def server_decision_tree(self, message):
         ## Always gets clients b4 running
         self.current_clientlist = ""
@@ -254,7 +258,7 @@ class s_friendlyclient:
             pass
             ## Need: client instance name
             ## then. client_instance.stats
-        
+            
         #else:
             #self.send_msg(self.InputNotUnderstood)
         
@@ -264,6 +268,20 @@ class s_friendlyclient:
             self.client_decision_tree(message)
             #print("!!Client Exists!!") if global_debug else None
 
+################
+## Client Fucntions
+################ 
+
+## If the job is not meant for the server, it filters down to here.
+## this interacts with the self.clients interact function, which sets jobs 
+## for the event loop to do on heartbeats
+
+## TLDR: This sets jobs or gets current data from the current selected client
+
+#                           Action      Value    Target Client 
+#requests look like this: set-heartbeat 15 client_127_0_0_1_FCECW
+
+
     def client_decision_tree(self, raw_message):
         message = self.parse_msg_for_client(raw_message)
         print(f"RawMSG: {raw_message}")
@@ -271,7 +289,11 @@ class s_friendlyclient:
         
 
         client_command = message [0]
-        client_name = message[1]
+        client_command_value = message [1]
+        
+        ## Name is always last
+        client_name = message[-1]
+        print(client_name)
         
         ## setting self.client to the client name passed by the fclient
         self.client = globals()[client_name]
@@ -292,11 +314,27 @@ class s_friendlyclient:
             data = f"{self.client.data_list}"
             self.send_msg(data)
             
-        elif client_command == "set-job":
+        elif client_command == "get-jobs":
+            pass
             #self.client.
+
+            #self.send_msg(server_supported_jobs)
             
-            data = "setjob"
-            self.send_msg(data)
+            ##get jobs for/from clients
+
+        elif client_command == "set-heartbeat":
+            heartbeat = client_command_value
+            print(heartbeat)
+            
+            
+            self.client.interact("set-heartbeat", heartbeat)
+            
+            ## sanity check
+            if self.client.current_job == f"set-heartbeat\\|/{heartbeat}":
+                self.send_msg(f"Heartbeat queued to be set to: {heartbeat}\nuse 'get-data' to verify the change\nDevNote: Need to make sure this actually works.Not sure how self.heartbeat gets it value - I forogr")
+            
+            else:
+                self.send_msg("Error setting heartbeat")
 
         elif client_command == "run-command":
             data = "runcommand"
@@ -358,7 +396,11 @@ class s_perclient:
         self.stats_latestcheckin = 0
         ## all the data in one spot
 
-    
+
+################
+## EventLoop
+################ 
+
     def handle_client(self, conn, addr, message, id):
         
         self.conn = conn
@@ -448,7 +490,19 @@ class s_perclient:
     ## This part is what the user interacts with, and it sets self.current_job based on the decision. 
     
     ## Self.job executes/gets sent out when the client recieves a heartbeat
-    def interact(self, user_input_raw):
+
+################
+## Direct comm with friendly client
+################ 
+
+#flow: friendly-client -> s_friendlyclient -> client.interact(this function) -> EventLoop
+## Basically, friendly client talks to this function, which sets jobs n stuff,
+# and then the event loop reads it/deals with it on heartbeats
+## I need to draw this out too
+
+
+    ## This is what gets interacted with by the friendly client
+    def interact(self, user_input_raw, command_value=None):
         ## Action categpries: set (sets a paramter), run (runs something), info (gets info)
         user_input = user_input_raw.lower()
         
@@ -478,7 +532,8 @@ class s_perclient:
             self.current_job = "wait\\|/wait"
             
         elif user_input == "set-heartbeat":
-            new_heartbeat = input("What is the new heartbeat? (seconds, ex 300): ")
+            #new_heartbeat = input("What is the new heartbeat? (seconds, ex 300): ")
+            new_heartbeat = command_value
             self.current_job = f"set-heartbeat\\|/{int(new_heartbeat)}"
 
         elif user_input == "kill":

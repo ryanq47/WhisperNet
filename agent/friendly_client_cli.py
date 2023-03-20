@@ -73,6 +73,17 @@ class fclient():
             
             self.shellformat("")
             
+        elif client_name.lower() == "get-jobs":
+            server_supported_jobs = (
+                "Possible Jobs (Some may not be available on older clients):\n" \
+                "set-heartbeat\n" \
+                "wait\n" \
+                "run-command\n" \
+            )
+            
+            #return self.server_request(f"get-jobs", client_name)
+            self.shellformat(server_supported_jobs)
+            
         elif client_name.lower() == "help":
             helpmenu = (
             "Home: \n" \
@@ -163,6 +174,20 @@ class fclient():
         
         elif client_command == "get-data":
             return self.server_request(f"get-data", client_name)
+
+        #elif client_command == "set-heartbeat":
+        
+        ## done like this so a value can be put in
+        ## !!!! Do all of them like this, with proper error checking as well
+        elif "set-heartbeat" in client_command:
+            try:
+                ## map: stripping of whitespace and splitting
+                command, value = map(str.strip, client_command.split())
+                value = int(value)
+            except ValueError:
+                print("Please provide a valid integer for the heartbeat timeout:\nset-heartbeat 120")
+            else:
+                return self.server_request(f"{client_command}", client_name)
 
         elif client_command == "set-job":
             return self.server_request(f"set-job", client_name)
