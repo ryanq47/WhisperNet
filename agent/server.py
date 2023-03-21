@@ -127,7 +127,7 @@ class s_sock:
             elif self.id == "!_usercommand_!":
                 print("usercomm")
                 
-            elif self.id in ["GET","POST","HEAD","TRACE"]:
+            elif ["GET","POST","HEAD","TRACE"] in self.id:
                 print("HTTP request... Filtering")
 
             
