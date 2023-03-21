@@ -126,6 +126,9 @@ class s_sock:
                 ## friendly_client_name.interact()
             elif self.id == "!_usercommand_!":
                 print("usercomm")
+                
+            elif self.id in ["GET","POST","HEAD","TRACE"]:
+                print("HTTP request... Filtering")
 
             
             ## Client filter, make this an elif somehow, so if nothing matches, it drops
