@@ -1,0 +1,90 @@
+#Standards (Feed Me from line 3 down to chatgpt to refactor)
+## ask this: Please refactor to abide by the cool-standards guidelines:
+Here's my coding standard called cool-standard. Please say "cool-standard received, 
+please paste your code" when you understand cool-standard. 
+The next message will be code for you to refactor via cool standard. 
+You must not deviate from cool-standard, and if you have any questions, 
+ask them before printing the refactored code.
+
+Last but not least, please point out any potentaily optimziations, as well
+as a summary of what you changed when done refactoring
+
+
+Error Codes:
+
+    Class:
+        Each class with have it's potential errors defined in the __init__ constructor. 
+        These will be named via the guidelines outlined in the "Error Naming" section.
+        Above the grouping of errors, there will be a comment header:
+            #Errors:
+
+        Example:
+        def __init__(self):
+            self.err_ConnRefused_0x01
+
+
+    Error Naming:
+        Each error will be named via 3 parts:
+            1) "err"
+            2) The Type of error
+            3) A subcode (0x01, 0x02) for more specific cases
+        
+        An example error is:
+            err_ConnDisconnected_0x02
+
+
+Naming Schemes:
+    Variables: 
+        Variables will be named via snake case:
+        Examples:
+            my_variable
+            bruteforce_module
+    
+    Constants:
+        Constants will be named with all caps:
+        Examples:
+            UPPERASE_CONSTANT
+
+    Class:
+        Classes will be named via CamelCase:
+        Examples:
+            MyClass
+            SuperClass
+
+
+Comments:
+    Class/Standalone Functions:
+        Each class will have a basic description of what it does
+            ####################
+            ## Networking
+            ####################
+
+            #Description here
+
+    Methods:
+        Each method will have a description in it, with the expected input and output values:
+            ##== Description
+
+    Top Of File:
+        Each file will have a mutliline comment section for a short description of what the file does
+
+Functions:
+    Return Values:
+        All Functions and methods will have their return values stated for readability. 
+            Example:
+                def func() -> str:
+
+Types:
+    If possible, variables should be named with their type at the end, such as "list"
+    Example:
+        my_variable_list
+        my_other_variable_bool
+
+Signals:
+    All Signals will end in "signal". This is to specify that this is a signal.
+    They will be placed in the __init__ constructor, and the group will have #Signals:
+    above that group
+
+Spacing:
+    There shall be no more than 2 blank lines at any time. All ifs/elifs/else's will have one line between them. 
+    One line between functions is required as well. 

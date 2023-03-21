@@ -84,7 +84,7 @@ import Modules.General.SaveFiles.fileops as fileops
 
 from Gui.startup_projectbox import Ui_startup_projectbox
 
-from agent.friendly_client import fclient
+from agent.friendly_client import FClient
 
 from gui import Ui_LogecC3
 
@@ -161,7 +161,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
         #self.c2_systemshell.textChanged.connect(self.sys_shell)
 
         self.c2_servershell_send.clicked.connect(self.c2_server_interact)
-        self.friendly_client = fclient()
+        self.friendly_client = FClient()
 
         self.c2_connect_button.clicked.connect(self.c2_server_connect)
         self.c2_disconnect_button.clicked.connect(self.c2_server_disconnect)
@@ -209,8 +209,8 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.table_QueryDB_Button_osint_reddit.setShortcut('Return')
 
         
-
-        ## Data Tab
+        ## OLD
+        ## Data Tab 
         # == SQL
         self.actionHelp_Menu_DB.triggered.connect(self.help_shortcut)
         self.actionTables_DB_2.triggered.connect(self.table_shortcut)
@@ -410,7 +410,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
         )
 
     ## Error handler
-    def ERROR(self, error_list):#, severity, fix):
+    def handle_error(self, error_list):#, severity, fix):
         Date = utility.Timestamp.UTC_Date()
         Time = utility.Timestamp.UTC_Time()
         
@@ -432,7 +432,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
 
     def root_check(self, name):
         if os.getuid() != 0:
-            self.ERROR([f"You are not running as root, note that {name} may not work as expected","Medium","Restart program as root"])
+            self.handle_error([f"You are not running as root, note that {name} may not work as expected","Medium","Restart program as root"])
 
     ## ========================================
     ## Getting started tab ====================
@@ -493,7 +493,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
         else: #query_input == '' and self.startlist != 0:
             query_input_raw  = ""
             self.view = ""
-            self.ERROR(
+            self.handle_error(
                 ['No Query Input Provided', 'Low', 'Enter an input to fix']
             )
         
@@ -661,6 +661,10 @@ class MyApp(QMainWindow, Ui_LogecC3):
             ## return not working, so getting validated authentication via the class itself
             if self.friendly_client.authenticated:
                 self.c2_status_label.setText(f"Status: Connected to {connlist[0]}:{connlist[1]}")
+            
+            if self.friendly_client.err_ConnRefused_0x01:
+                self.handle_error(["ConnRefused_0x01","Low","Make sure the server is alive"])
+                self.friendly_client.err_ConnRefused_0x01 = False
     
     def c2_server_disconnect(self):
         self.friendly_client.client_disconnect()
@@ -773,10 +777,10 @@ class MyApp(QMainWindow, Ui_LogecC3):
             self.portscan_liveports_browser.setText("")
 
         except ValueError as ve:
-            self.ERROR([ve, "low", "Make sure all respective fields are filled"])
+            self.handle_error([ve, "low", "Make sure all respective fields are filled"])
 
         except Exception as e:
-            self.ERROR([e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)"])
+            self.handle_error([e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)"])
     
     def portscan_bar(self, status): ## I wonder if this dosen't work due to all the threads waiting to join back up? maybe portscanner writing the value to a tmp file would have to do it, or to the DB in a .hiddentable
         self.stealth_bar.setValue(status)
@@ -808,7 +812,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             cursor.close()
             
         except Exception as e:
-            self.ERROR([e, "Medium", "??"])
+            self.handle_error([e, "Medium", "??"])
     
     ## ========================================
     ## Bash Builder ===========================
@@ -892,7 +896,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
         # dns_list = ["NONE","CNAME\nwww.google.com","MX\nmail.google.com","REVERSE \nexploit.tools", "TXT \ntext"]
 
         if self.scanning_dns_query.text() == '':
-            self.ERROR([
+            self.handle_error([
                 'No input for DNS',
                 'Low',
                 "Make sure the DNS field isn't empty",
@@ -1002,7 +1006,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             #self.bruteforce_worker.finished.connect(self.bruteforce_thread.deleteLater)
             
             #Error
-            self.bruteforce_worker.module_error.connect(partial(self.ERROR, target_list))
+            self.bruteforce_worker.module_error.connect(partial(self.handle_error, target_list))
             
             #errlog
             self.bruteforce_worker.errlog.connect(self.errlog_box)
@@ -1033,10 +1037,10 @@ class MyApp(QMainWindow, Ui_LogecC3):
             #self.bruteforce_thread.start()
         
         except ValueError as ve:
-            self.ERROR([ve, "low", "Make sure all respective fields are filled"])
+            self.handle_error([ve, "low", "Make sure all respective fields are filled"])
 
         except Exception as e:
-            self.ERROR([e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)"])
+            self.handle_error([e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)"])
 
     def bruteforce_hardstop(self):
         #pass
@@ -1047,7 +1051,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             #self.bruteforce_thread.exit() # exi works better than quit
             #self.bruteforce_worker.deleteLater()
         except Exception as e:
-            self.ERROR([e, "Low", "Bruteforce is probably not running"])
+            self.handle_error([e, "Low", "Bruteforce is probably not running"])
 
     def bf_browser_popup(self, whichbutton):
         from PySide6.QtWidgets import QFileDialog
@@ -1138,7 +1142,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             cursor.close()
             
         except Exception as e:
-            self.ERROR([e, "Medium", "??"])
+            self.handle_error([e, "Medium", "??"])
    
     ## ========================================
     ## BruteForce Fuzzer ======================
@@ -1170,7 +1174,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             
             
             #Error
-            self.fuzzer_worker.module_error.connect(partial(self.ERROR, target_list))
+            self.fuzzer_worker.module_error.connect(partial(self.handle_error, target_list))
             
             #errlog
             self.fuzzer_worker.errlog.connect(self.fuzz_errlog_box)
@@ -1198,10 +1202,10 @@ class MyApp(QMainWindow, Ui_LogecC3):
             self.fuzzer_worker.results_list.connect(self.bruteforce_fuzz_database_write)
         
         except ValueError as ve:
-            self.ERROR([ve, "low", "Make sure all respective fields are filled"])
+            self.handle_error([ve, "low", "Make sure all respective fields are filled"])
 
         except Exception as e:
-            self.ERROR([e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)"])
+            self.handle_error([e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)"])
             
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
@@ -1216,7 +1220,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             #self.fuzzer_thread.exit() # exi works better than quit
             #self.fuzzer_worker.deleteLater()
         except Exception as e:
-            self.ERROR([e, "Low", "Fuzzer is probably not running"])
+            self.handle_error([e, "Low", "Fuzzer is probably not running"])
 
     def bf_fuzz_browser_popup(self, whichbutton):
         from PySide6.QtWidgets import QFileDialog
@@ -1304,7 +1308,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             cursor.close()
             
         except Exception as e:
-            self.ERROR([e, "Medium", "??"])
+            self.handle_error([e, "Medium", "??"])
             
 ## ========================================
 ## OSINT Tab ==============================
@@ -1333,7 +1337,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
         ## == Error handling
 
         if keyword == '':
-            self.ERROR([
+            self.handle_error([
                 "'Keyword' Field Empty",
                 'low',
                 "Enter a value in the 'Keyword' field, or * for all results",
@@ -1414,7 +1418,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             self.dork_thread.start()
 
         except Exception as e:
-            self.ERROR([e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)"])
+            self.handle_error([e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)"])
         
     def dork_query_display(self, dork_query):
         self.osint_dork_output.setText(dork_query)
@@ -1638,7 +1642,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             self.sql_global("/Modules/General/SaveFiles/.tmp_projectfolder/")
             self.success_popup([fileName,""])
         except:
-            self.ERROR("something","error","Get better at coding lol")
+            self.handle_error("something","error","Get better at coding lol")
     
     def project_save(self):
         ## if not projectpath #aka if the path for the save file dosen't exist, popopen a save browser
@@ -1720,7 +1724,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
                 contents = s.read()
             self.settings_edit.setText(contents)
         except Exception as e:
-            self.ERROR([e, 'medium', "Make sure file exists?"])
+            self.handle_error([e, 'medium', "Make sure file exists?"])
             
         #pass
     ## Loads and puts settings file on display in the gUI
@@ -1731,7 +1735,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             with open(self.settings_path, "w") as contents:
                 contents.write(updated_settings)
         except Exception as e:
-            self.ERROR([e, 'medium', "Check permissions? If that fails, make sure the file exists"])
+            self.handle_error([e, 'medium', "Check permissions? If that fails, make sure the file exists"])
     
     ## ========================================
     ## SQL Conmn ==============================
