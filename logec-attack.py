@@ -1,164 +1,182 @@
 #!/bin/python3
+##== Global Debug:
+GLOBAL_DEBUG = True
+# if GLOBAL_DEBUG else None
 
-import sys
+##== Main Imports
+import json
 import os
+import sys
+import random
 import sqlite3
-
-# Get the absolute path of the directory where the script is located
-sys_path = os.path.dirname(os.path.abspath(sys.argv[0]))
-print("Syspath:" + sys_path)
-
-## pyqt singal needs to be moved to "signal"
-from PySide6.QtCore import Qt, QObject, QThread, Signal, QFile, Slot, QThreadPool, QCoreApplication, QTimer
-from PySide6 import QtWidgets
-from PySide6.QtUiTools import loadUiType
-from PySide6.QtGui import QIcon, QAction, QPen
-from PySide6 import QtUiTools
-from PySide6.QtSql import QSqlDatabase, QSqlTableModel, QSqlQuery
-from PySide6.QtWidgets import (
-    QMainWindow,
-    QLabel,
-    QMessageBox,
-    QPushButton,
-    QInputDialog,
-    QTableView,
-    QApplication,
-    QTableWidget,
-    QTableWidgetItem,
-    QHeaderView,
-    QFileDialog,
-    QGraphicsScene,
-    QGraphicsView,
-    QGraphicsTextItem,
-    QTabWidget,
-    QTabBar,
-    QMenuBar,
-    QMenu,
-    QLineEdit
-)
-
-## Plugin path for sql driver (TLDR makes compiling easier by having a local copy)
-plugin_path = 'plugins'
-os.environ['QT_PLUGIN_PATH'] = plugin_path
-
-# Add the path to the plugin directory
-QCoreApplication.addLibraryPath(plugin_path)
-
-
 import threading
 import time
 import webbrowser
-import time
-import json
 from functools import partial
-import random
+import traceback
 
+##== GUI Imports
+from PySide6 import QtWidgets
+from PySide6.QtCore import Qt, QObject, QThread, QFile, Signal, Slot, QThreadPool, QCoreApplication, QTimer
+from PySide6.QtGui import QIcon, QAction, QPen
+from PySide6.QtSql import QSqlDatabase, QSqlTableModel, QSqlQuery
+from PySide6.QtUiTools import loadUiType, QUiLoader
+from PySide6.QtWidgets import (
+    QApplication,
+    QFileDialog,
+    QHeaderView,
+    QInputDialog,
+    QLabel,
+    QLineEdit,
+    QMainWindow,
+    QMenuBar,
+    QMessageBox,
+    QPushButton,
+    QTableWidget,
+    QTableWidgetItem,
+    QTableView,
+    QTabBar,
+    QTabWidget,
+    QMenu,
+    QGraphicsScene, QGraphicsTextItem
+)
 
-## importing other UI files
-from Gui.shell_popup import Ui_shell_SEND
-from Gui.listen_popup import Ui_listener_popup
+##== Syspath, first so things can refrence it:
+sys_path = os.path.dirname(os.path.abspath(sys.argv[0]))
+print("Syspath:" + sys_path) if GLOBAL_DEBUG else None
+
+##== Plugin Path, for SQL driver 
+plugin_path = 'plugins'
+os.environ['QT_PLUGIN_PATH'] = plugin_path
+# Add the path to the plugin directory
+QCoreApplication.addLibraryPath(plugin_path)
+
+##== Internal Imports (later so they can refrence using sys path if needed)
 from Gui.Encryptor import Ui_Form as Encryptor_Popup
+from Gui.listen_popup import Ui_listener_popup
 from Gui.portscan_popup import Ui_PortScan_Popup
-
-
-### importing modules
-from Modules.Linux.Reverse_Shells.reverse_shells import (
-    target as rev_shell_target,
-)
-from Modules.Windows.Reverse_Shells.win_reverse_shells import (
-    target as rev_shell_target_win,
-)
-from Modules.General.portscanner import Portscan
+from Gui.shell_popup import Ui_shell_SEND
+from Gui.startup_projectbox import Ui_startup_projectbox
 
 from Modules.General.Bruteforce.bruteforce import Bruteforce, Fuzzer
-
 from Modules.General.OSINT.dork import Dork
-
-from Modules.General.SysShell.shell import Shell
-
-from Modules.General.ScriptGen import ScriptGen
-
-import Modules.General.utility as utility
-
+#from Modules.General.SaveFiles.fileops import *
 import Modules.General.SaveFiles.fileops as fileops
-
-from Gui.startup_projectbox import Ui_startup_projectbox
+from Modules.General.ScriptGen import ScriptGen
+from Modules.General.SysShell.shell import Shell
+from Modules.General.portscanner import Portscan
+import Modules.General.utility as utility
+from Modules.Linux.Reverse_Shells.reverse_shells import target as rev_shell_target
+from Modules.Windows.Reverse_Shells.win_reverse_shells import target as rev_shell_target_win
 
 from agent.friendly_client import FClient
 
 from gui import Ui_LogecC3
 
-class MyApp(QMainWindow, Ui_LogecC3):
-    print("hi")
-    def __init__(self, parent=None):
-        ##### UI SETUP
-        ## ELi5: Taking the imported gui.py and using that to make the gui n stuff
-        super(MyApp, self).__init__(parent)
-        self.setupUi(self)
-        #####
-        
+####################
+## Logec Suite Class
+####################
 
-        
-        ##### Class Thread Manager:
-        self.thread_manager = QThreadPool()
-        #####
-        
-        ##### Project & settings Loading
+class LogecSuite(QMainWindow, Ui_LogecC3):
+    def __init__(self, parent=None):
+        super(LogecSuite, self).__init__(parent)
+        self.setupUi(self)
+        ##!! Dev Note, can possible wrap these in a try/except, would help with error handling/developing
+
+        ##== Setup
+        self.init_project_settings()
+        self.init_thread_manager()
+
+        ##== SQL
+        self.init_sql_loading()
+
+        ##== Buttons
+        self.init_buttons_file_menu()
+        self.init_buttons_c2_shells()
+        self.init_buttons_bruteforce_credentials()
+        self.init_buttons_bruteforce_fuzzer()
+        self.init_buttons_bashbuilder()
+        self.init_buttons_performance_benchmarks()
+        self.init_buttons_settings_settings()
+
+        ##== Data / Tab Inits 
+        self.init_data_performance_graphs()
+        self.init_data_scanning_portscan()
+        self.init_data_sql_tables()
+        self.init_data_settings_edit()
+
+        ##== Last but not least, opening project picker
+        self.startup_project_open()
+
+    ##== Calling init's for project settings
+    def init_project_settings(self) -> None:
         self.sql_global()
         self.settings_global()
         self.PF = fileops.SaveFiles()
         self.ProjectPath = None
-        
         self.c2_layout()
-        
-        ##### Init Gui Settings:
+
+        ##== Setting theme
         self.set_theme(self.settings['general']['theme'])
+
+    ##== Thread Manager
+    def init_thread_manager(self) -> None:
+        self.thread_manager = QThreadPool()
+
+    ##!! Tempted to move these to their respective function groups, then just call in one init function
+
+    ##== Initial instances for other objects
+    def init_instances(self) -> None:
+        self.N = utility.Network()
+        self.H = utility.Host()
+
+    ##== SQL Table loading
+    def init_sql_loading(self) -> None:
+        self.table_RefreshDB_Button.clicked.connect(lambda: self.refresh_db('c2_db'))
+        self.table_RefreshDB_Button.setShortcut('r')
+
+        self.table_QueryDB_Button.clicked.connect(lambda: self.custom_query('c2_db'))
+        self.table_QueryDB_Button.setShortcut('Return')
+
+        self.table_RefreshDB_Button_main.clicked.connect(lambda: self.refresh_db('main_db'))
+        self.table_RefreshDB_Button_main.setShortcut('r')
+
+        self.table_QueryDB_Button_main.clicked.connect(lambda: self.custom_query('main_db'))
+        self.table_QueryDB_Button_main.setShortcut('Return')
+        ##== Reddit DB
+        self.table_RefreshDB_Button_osint_reddit.clicked.connect(lambda: self.refresh_db('reddit_osint_db'))
+        self.table_RefreshDB_Button_osint_reddit.setShortcut('r')
+
+        self.table_QueryDB_Button_osint_reddit.clicked.connect(lambda: self.custom_query('reddit_osint_db'))
+        self.table_QueryDB_Button_osint_reddit.setShortcut('Return')
+        ##== portscan DB
+        self.table_RefreshDB_Button_scanning_portscan.clicked.connect(lambda: self.refresh_db('scanning_portscan_db'))
+        self.table_RefreshDB_Button_scanning_portscan.setShortcut('r')
+
+        self.table_QueryDB_Button_scanning_portscan.clicked.connect(lambda: self.custom_query('scanning_portscan_db'))
+        self.table_QueryDB_Button_scanning_portscan.setShortcut('Return')
+        ##==Bruteforce DB
+        self.scanning_bruteforce_query.clicked.connect(lambda: self.custom_query('bruteforce_db'))
+        self.scanning_bruteforce_query.setShortcut('Return')
+        ##==Perfrormance
+        self.table_RefreshDB_Button_performance.clicked.connect(lambda: self.custom_query('performance_error_db'))
         
-        ## Need to move this
-        self.connected = False
-        self.connected_list = []
-
-        ## starting connections
-        self.PID = os.getpid()
-
-        self.startlist = 0
-        ## A check to see if the program is on its first iteration, aka when run the first time.
-        ## Handy for error messages, see the if statement in the DB section about empty queries
-
-        ## ========================================
-        ## Buttons n stuff ========================
-        ## ========================================
-
-        ## Getting started
-        
-        self.GettingStarted_Readme.triggered.connect(self.getting_started)
-        self.actionRead_Me_webview.triggered.connect(
-            lambda: webbrowser.open(
-                'https://github.com/ryanq47/logec-attack/blob/main/README.md'
-            )
-        )
-        
-
-        ## ========================================
-        ## File Menu stuff ========================
-        ## ========================================
-
+    ####################
+    ## Buttons
+    ####################
+    ##== Button Connectors for the file menu
+    def init_buttons_file_menu(self) -> None:
         self.actionOpen_Project.triggered.connect(self.project_open)
         self.actionSave_Project.triggered.connect(self.project_save)
         self.actionSaveAs_Project.triggered.connect(self.project_saveAs)
-        
 
-        #self.startup_project_openproject.clicked.connect(self.project_open)
-        #self.startup_project_exit.clicked.connect(quitprogram)
-        
-        ## ========================================
-        ## Shell (Depreacated, needs to be redone) ========================
-        ## ========================================
+        self.actionRELOAD.triggered.connect(self.restart)
 
-        ## Sys Shell
+
+    ##== Button Connectors for the c2 shell 
+    def init_buttons_c2_shells(self) -> None:
         self.c2_systemshell_send.clicked.connect(self.sys_shell)
         self.c2_systemshell_input.setFocus()
-        #self.c2_systemshell.textChanged.connect(self.sys_shell)
 
         self.c2_servershell_send.clicked.connect(self.c2_server_interact)
         self.friendly_client = FClient()
@@ -168,133 +186,45 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.c2_server_password.setEchoMode(QLineEdit.Password)
         self.c2_shell_startup()
 
-        ## debug:
-        self.actionDEBUG.triggered.connect(self.DEBUG)
-        self.actionRELOAD.triggered.connect(self.restart)
-
-        ## SQL
-
-        ## c2 table
-        self.table_RefreshDB_Button.clicked.connect(
-            lambda: self.refresh_db('c2_db')
-        )
-        self.table_RefreshDB_Button.setShortcut('r')
-
-        self.table_QueryDB_Button.clicked.connect(
-            lambda: self.custom_query('c2_db')
-        )
-        self.table_QueryDB_Button.setShortcut('Return')
-
-        ## main table
-        self.table_RefreshDB_Button_main.clicked.connect(
-            lambda: self.refresh_db('main_db')
-        )
-        self.table_RefreshDB_Button_main.setShortcut('r')
-
-        self.table_QueryDB_Button_main.clicked.connect(
-            lambda: self.custom_query('main_db')
-        )
-        self.table_QueryDB_Button_main.setShortcut('Return')
-
-        ## OSINT Tables
-        ## == Reddit Table
-        self.table_RefreshDB_Button_osint_reddit.clicked.connect(
-            lambda: self.refresh_db('reddit_osint_db')
-        )
-        self.table_RefreshDB_Button_osint_reddit.setShortcut('r')
-
-        self.table_QueryDB_Button_osint_reddit.clicked.connect(
-            lambda: self.custom_query('reddit_osint_db')
-        )
-        self.table_QueryDB_Button_osint_reddit.setShortcut('Return')
-
-        
-        ## OLD
-        ## Data Tab 
-        # == SQL
-        self.actionHelp_Menu_DB.triggered.connect(self.help_shortcut)
-        self.actionTables_DB_2.triggered.connect(self.table_shortcut)
-        self.actionPortScan_DB_3.triggered.connect(self.portscan_shortcut)
-        self.actionError_DB.triggered.connect(self.error_shortcut)
-
-        ## osint
-        ## == Dashboard ++
-        ## connecting checkbox to each module
-        ## Top Bar:
-        self.dashboard_osint_keyword.textChanged.connect(
-            self.osint_reddit_keyword.setText
-        )
-
-        ## Reddit
-        self.dashboard_reddit_onlycomments.stateChanged.connect(
-            self.osint_reddit_onlycomments.setChecked
-        )
-        self.dashboard_reddit_onlyprofile.stateChanged.connect(
-            self.osint_reddit_onlyprofile.setChecked
-        )
-        self.dashboard_reddit_downloadmedia.stateChanged.connect(
-            self.osint_reddit_downloadmedia.setChecked
-        )
-        self.dashboard_reddit_hideNSFW.stateChanged.connect(
-            self.osint_reddit_hideNSFW.setChecked
-        )
-        self.dashboard_reddit_subreddit.textChanged.connect(
-            self.osint_reddit_subreddit.setText
-        )
-
-        ## == Osint Reddit
-        self.osint_reddit_search.clicked.connect(self.osint_reddit)
-
-        ## == Osint Dork
-        self.osint_dork_generate.clicked.connect(self.dork)
-
-        ## Scanning
-        ##DNS lookup
-        self.scanning_dns_lookup.clicked.connect(self.dns_lookup)
-
-        # portscan
-        self.table_RefreshDB_Button_scanning_portscan.clicked.connect(
-            lambda: self.refresh_db('scanning_portscan_db')
-        )
-        self.table_RefreshDB_Button_scanning_portscan.setShortcut('r')
-
-        self.table_QueryDB_Button_scanning_portscan.clicked.connect(
-            lambda: self.custom_query('scanning_portscan_db')
-        )
-        self.table_QueryDB_Button_scanning_portscan.setShortcut('Return')
-
-        self.portscan_start.clicked.connect(self.portscan)
-
-        ## bruteforce
+    ##== buttons for Bruteforce Credentials
+    def init_buttons_bruteforce_credentials(self) -> None:
         self.bruteforce_start.clicked.connect(self.bruteforce)
         self.bruteforce_stop.clicked.connect(self.bruteforce_hardstop)
         self.bruteforce_user_browse.clicked.connect(partial(self.bf_browser_popup, "username"))
         self.bruteforce_pass_browse.clicked.connect(partial(self.bf_browser_popup, "password"))
-        
+        ##== List Downloads
         self.bruteforce_download_ignis_1M.clicked.connect(partial(self.bruteforce_download, "ignis-1M"))
         self.bruteforce_download_seclist_defaults.clicked.connect(partial(self.bruteforce_download, "seclist-defaults"))
         self.bruteforce_download_seclist_top10mil.clicked.connect(partial(self.bruteforce_download, "seclist-top10mil"))
         self.bruteforce_download_seclist_top10mil_usernames.clicked.connect(partial(self.bruteforce_download, "seclist-top10mil-usernames"))
         self.bruteforce_download_seclist_topshort.clicked.connect(partial(self.bruteforce_download, "seclist-top-short"))
-        
-        ## Bruteforce_fuzzer
+    
+    ##== buttons for Bruteforce Fuzzer
+    def init_buttons_bruteforce_fuzzer(self) -> None:
         self.bruteforce_fuzz_start.clicked.connect(self.bruteforce_fuzzer)
         self.bruteforce_stop.clicked.connect(self.bruteforce_fuzz_hardstop)
         self.bruteforce_fuzz_wordlist_browse.clicked.connect(partial(self.bf_fuzz_browser_popup, "wordlistdir"))
-
-        #== SQL bruteforce
-        self.scanning_bruteforce_query.clicked.connect(
-            lambda: self.custom_query('bruteforce_db')
-        )
-        self.scanning_bruteforce_query.setShortcut('Return')
-
-        ## other
-        # == BashBuikder
+    
+    ##== Buttons for bash builder
+    def init_buttons_bashbuilder(self) -> None:
         self.bashbuilder_generate.clicked.connect(self.bash_builder)
-        
-        ## == Perf Tab
-        
-        ##### Performance Tab Inits
+
+    ##== buttons for the benchmarks
+    def init_buttons_performance_benchmarks(self) -> None:
+        self.performance_speedtest.clicked.connect(self.performance_networkspeed)
+        self.performance_benchmark_button.clicked.connect(self.performance_benchmark)
+
+    ##== Buttons for settings 
+    def init_buttons_settings_settings(self) -> None:
+        self.settings_reload.clicked.connect(self.edit_settings)
+        self.settings_write.clicked.connect(self.write_settings)
+        self.program_reload.clicked.connect(self.restart)
+
+    ####################
+    ## Data / Tab Inits
+    ####################
+    ##== Data for the graphs
+    def init_data_performance_graphs(self) -> None:
         self.other_cpu_scene = QGraphicsScene()
         self.other_cpu_performance.setScene(self.other_cpu_scene)
         #self.other_cpu_scene.setSceneRect(0, 0, 1000, 200)
@@ -311,61 +241,21 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.Perf = utility.Performance()
         self.x = 0
         self.draw_graph_refresh()
-        #####
-        
-        ##### SQL Refresh
-        self.table_RefreshDB_Button_performance.clicked.connect(
-            lambda: self.custom_query('performance_error_db')
-        )
+    
+    ##== Live updates to port range
+    def init_data_scanning_portscan(self) -> None:
+        self.portscan_1_1024.toggled.connect(lambda: self.portscan_minport.setText('1'))
+        self.portscan_1_1024.toggled.connect(lambda: self.portscan_maxport.setText('1024'))
 
-        ## network speed test
-        self.performance_speedtest.clicked.connect(
-            self.performance_networkspeed
-        )
-        ## Benchmark
-        self.performance_benchmark_button.clicked.connect(self.performance_benchmark)
+        self.portscan_1_10000.toggled.connect(lambda: self.portscan_minport.setText('1'))
+        self.portscan_1_10000.toggled.connect(lambda: self.portscan_maxport.setText('10000'))
 
-        ## Settings
-        self.settings_reload.clicked.connect(self.edit_settings)
-        self.settings_write.clicked.connect(self.write_settings)
-        self.program_reload.clicked.connect(self.restart)
-        
-        ## ========================================
-        ## Init Values/Main Thread ================
-        ## ========================================
+        self.portscan_1_65535.toggled.connect(lambda: self.portscan_minport.setText('1'))
+        self.portscan_1_65535.toggled.connect(lambda: self.portscan_maxport.setText('65535'))
 
-
-        ## Object Instances ==================
-        self.N = utility.Network()
-        self.H = utility.Host()
-        # self.P = Portscan()        self.bruteforce_user_browse.clicked.connect(self.browser_popup)
-
-        ## Portscan Inits ==================
-        self.portscan_1_1024.toggled.connect(
-            lambda: self.portscan_minport.setText('1')
-        )
-        self.portscan_1_1024.toggled.connect(
-            lambda: self.portscan_maxport.setText('1024')
-        )
-
-        self.portscan_1_10000.toggled.connect(
-            lambda: self.portscan_minport.setText('1')
-        )
-        self.portscan_1_10000.toggled.connect(
-            lambda: self.portscan_maxport.setText('10000')
-        )
-
-        self.portscan_1_65535.toggled.connect(
-            lambda: self.portscan_minport.setText('1')
-        )
-        self.portscan_1_65535.toggled.connect(
-            lambda: self.portscan_maxport.setText('65535')
-        )
-
-        ## SQL Inits =====================
-        ## Setting the DB
+    ##== Loading all the data into the respective tables
+    def init_data_sql_tables(self) -> None:
         self.view = self.table_SQLDB
-
         ## Showing help table on startup
         self.DB_Query_main.setText('select * from Help')
         self.custom_query('main_db')
@@ -381,36 +271,26 @@ class MyApp(QMainWindow, Ui_LogecC3):
 
         self.custom_query('performance_error_db')
 
-        ## Other inits ==================
-        
-        ## Loading Settings
+    def init_data_settings_edit(self) -> None:
         self.edit_settings()
 
-        ## Once loaded, setting startlist to 1
-        self.startlist = self.startlist = 1
-        
-        ## Project Popopen
-        ## if project_start:
-        self.startup_project_open()
-        ##else
-        ## pass
+####################
+## Errors, Checks and Debugs
+####################
+    def handle_error(self, error_list: list) -> None:
+        """
+        ##== handle_error
 
-    ## ========================================
-    ## Error, Checks & Debug ==================
-    ## ========================================
+        Description:
+            Displays a critical error message box with the specified error message, severity, and fix.
+            It also writes the error to a database and emits an error signal.
 
-        
-    def DEBUG(self):
-        self.client_connected()
-        self.text_Program_Output.setText(
-            'IN DEBUG MODE - NOT CONNECTED, THINGS WILL BREAK'
-        )
-        self.text_connections_output.setText(
-            'IN DEBUG MODE - NOT CONNECTED, THINGS WILL BREAK'
-        )
+        Args:
+            error_list (list): A list containing the error, severity, and fix.
 
-    ## Error handler
-    def handle_error(self, error_list):#, severity, fix):
+        Returns:
+            None
+        """
         Date = utility.Timestamp.UTC_Date()
         Time = utility.Timestamp.UTC_Time()
         
@@ -425,80 +305,74 @@ class MyApp(QMainWindow, Ui_LogecC3):
             ## Actual Error
             f'SEVERITY: {severity} \nERRMSG: {error} \nFIX: {fix} \n',
         )
-        #time.sleep(10)
-        error_list = [severity, error, fix, Time, Date]
-        
+
+        error_list = [severity, error, fix, Time, Date]        
         self.db_error_write(error_list)
 
-    def root_check(self, name):
-        if os.getuid() != 0:
-            self.handle_error([f"You are not running as root, note that {name} may not work as expected","Medium","Restart program as root"])
+    def root_check(self, name:str) -> None:
+        """
+        ##== Description:
+        Check if the program is running as root user
 
-    ## ========================================
-    ## Getting started tab ====================
-    ## ========================================
+        :param name: name of the program
+        """
+        if os.geteuid() != 0:
+            self.handle_error([f"You are not running as root, note that {name} may not work as expected", "Medium", "Restart program as root"])
 
-    def getting_started(self):
+####################
+## Main SQL Handling
+####################
 
-        with open('Modules/GUI_System/gui_about', 'r') as f:
-            welcome_message = f.read()
-            self.text_Program_Output.setText(welcome_message)
-
-    ## ========================================
-    ## SQLDB Functions ========================
-    ## ========================================
-
-    ## This is where all the SQL Processing code is housed.
-
-    def clear_db_table(self):
+    def clear_db_table(self) -> None:
         self.view.clear()
         self.view.setRowCount(0)
 
-    def refresh_db(self, _from):
+    def refresh_db(self, _from) -> None:
         # removing old rows:
         self.clear_db_table()
-
         self.custom_query(_from)
 
-    def custom_query(self, _from):
-        ## Setting which QTable Object to output on
+    def custom_query(self, _from) -> None:
+        """
+        ##== custom Query
+
+        Description:
+            This handles all the SQL Queries in the program
+
+        Args:
+            _from: Where the query is coming from, so the function knows where to display
+            The data
+
+        Returns:
+            None
+        """
+
+        # Setting which QTable Object to output on
         if _from == 'c2_db':
-            # self._from = "c2_db"
             self.view = self.table_SQLDB
-            query_input_raw  = f'{self.DB_Query.text()}'
-
-        ## To main db section
+            query_input_raw = self.DB_Query.text()
         elif _from == 'main_db':
-            # self._from = "main_db"
             self.view = self.table_SQLDB_main
-            query_input_raw  = f'{self.DB_Query_main.text()}'
-
+            query_input_raw = self.DB_Query_main.text()
         elif _from == 'reddit_osint_db':
             self.view = self.table_SQLDB_osint_reddit
-            query_input_raw  = f'{self.DB_Query_osint_reddit.text()}'
-
+            query_input_raw = self.DB_Query_osint_reddit.text()
         elif _from == 'scanning_portscan_db':
             self.view = self.scanning_portscan_db
-            query_input_raw  = f'{self.DB_Query_scanning_portscan.text()} ORDER BY ScanDate DESC, ScanTime DESC'
-
+            query_input_raw = f'{self.DB_Query_scanning_portscan.text()} ORDER BY ScanDate DESC, ScanTime DESC'
         elif _from == 'performance_error_db':
             self.view = self.table_SQLDB_performance_error
-            query_input_raw  = f'select * from Error ORDER BY Date DESC, Time DESC'
-
+            query_input_raw = 'SELECT * FROM Error ORDER BY Date DESC, Time DESC'
         elif _from == 'bruteforce_db':
-            print("BF DB")
             self.view = self.scanning_bruteforce_db
-            query_input_raw  = f'{self.DB_Query_scanning_bruteforce.text()} ORDER BY DATE DESC, TIME DESC'
-
-        else: #query_input == '' and self.startlist != 0:
-            query_input_raw  = ""
+            query_input_raw = f'{self.DB_Query_scanning_bruteforce.text()} ORDER BY DATE DESC, TIME DESC'
+        else:
+            query_input_raw = ""
             self.view = ""
-            self.handle_error(
-                ['No Query Input Provided', 'Low', 'Enter an input to fix']
-            )
-        
-        ## Shortcuts not working for some reason
-        # Temp workaround
+            self.handle_error(['No Query Input Provided', 'Low', 'Enter an input to fix'])
+            return
+
+        # Temp workaround for shortcuts not working
         query_input = query_input_raw
         '''
         if query_input_raw == '!_help':
@@ -511,135 +385,124 @@ class MyApp(QMainWindow, Ui_LogecC3):
             query_input == "select * from PortScan ORDER BY Date DESC, Time DESC"
         else:
             query_input = query_input_raw
-        
-        print(query_input)'''
 
-        ## clearnig DB, and resetting from
-        # _from = None
+        print(query_input)
+        '''
+
+        # Clearing DB and resetting _from
         self.clear_db_table()
+        # _from = None
 
-
-            ## Getting query data 
-        query = QSqlQuery(f'{query_input}') ##<< setting
-            
-            ## Connecting to DB for more data
+        # Getting query data
+        query = QSqlQuery(query_input)
+        # Connecting to DB for more data
         connection = sqlite3.connect(self.database_file)
-        
-        
-        cursor = connection.execute(query_input) 
-        names = list(map(lambda x: x[0], cursor.description))
+        cursor = connection.execute(query_input)
+        names = [x[0] for x in cursor.description]
         connection.close()
-            
-            ## init vars
+
         names_num = 0
         names_list = []
         query_num = 0
-            
-            # Loop for column names
+
+        # Loop for column names
         for i in names:
             names_list.append(i)
-            names_num = names_num + 1
-            
+            names_num += 1
+
         self.view.setColumnCount(len(names_list))
         self.view.setHorizontalHeaderLabels(names_list)
-            
-            # Loop for data in each column
+
+        # Loop for data in each column
         while query.next():
             rows = self.view.rowCount()
             self.view.setRowCount(rows + 1)
-                
+
             for i in range(0, len(names_list)):
-                self.view.setItem(rows, i, QTableWidgetItem(query.value(i)))
-                
-            query_num = query_num + 1
+                self.view.setItem(rows, i, QTableWidgetItem(str(query.value(i))))
+
+            query_num += 1
 
         self.view.resizeColumnsToContents()
 
-    def help_shortcut(self):
-        self.DB_Query.setText('!_help')
-        self.custom_query('main_db')
 
-    def table_shortcut(self):
-        self.DB_Query.setText('!_tables')
-        self.custom_query('main_db')
+####################
+## C2
+####################
 
-    def portscan_shortcut(self):
-        self.DB_Query.setText('!_portscan')
-        self.custom_query('main_db')
+##== C2 Local 
 
-    def error_shortcut(self):
-        self.DB_Query.setText('!_error')
-        self.custom_query('main_db')
+    def c2_layout(self) -> None:
+        """
+        ##== c2_layout
 
-## ========================================
-## C2 Tab =================================
-## ========================================
+        Description:
+            This handles the layout of the C2 tab, as you can't add a nested bar with QT Designer
 
-    # Eveything related to the C2 tab & functions
-
-    ## ========================================
-    ## System Shell ===========================
-    ## ========================================
-    
-    ## A semi-interactive bash shell for the local system
-    
-    def c2_layout(self):
+        """
+        # create menu bar
         self.c2_menuBar = QMenuBar()
-        
-        ## Options Tab ==================
+
+        # create options tab
         self.menuOptions = QMenu("Options", self.c2_menuBar)
         self.actionQuit = QAction('Quit', self)
         self.actionQuit.triggered.connect(self.close)
-
         self.menuOptions.addAction(self.actionQuit)
         self.c2_menuBar.addAction(self.menuOptions.menuAction())
-        
-        ## Client Tab ==================
+
+        # create client tab
         self.menuClient = QMenu("Client", self.c2_menuBar)
         self.actionStart_Listener = QAction('Start Listener', self)
-        
-        ## Adding actions to the bar
+
+        # add actions to the menu bar
         self.menuClient.addAction(self.actionStart_Listener)
         self.c2_menuBar.addAction(self.menuClient.menuAction())
-        
-        ## Connect Actions:
-        #self.actionStart_Listener.triggered.connect(self.listen) ## Stand in variable
 
-        #WARN! TAB widget must have a layout!
-        ##             ## Which tab
+        # set menu bar
         self.tabWidget.widget(1).layout().setMenuBar(self.c2_menuBar)
-    
-    
+
     ## Gonna need some work, this currently creates one thread for each command
     def sys_shell(self):
+        """
+        Description:
+            The handler for the local system (partially interactive) shell
 
-        # The Enter key was pressed
-        #print("Enter key pressed")
-        input_list = [
-                self.c2_systemshell_input.text()
-                ]
-            
-        #self.sysshell_thread = QThread()
+        """
+        
+        # get input list from GUI
+        input_list = [self.c2_systemshell_input.text()]
+
+        # create worker
         self.sysshell_worker = Shell()
-        #self.sysshell_worker.moveToThread(self.sysshell_thread)
+
+        # start thread
         self.thread_manager.start(partial(self.sysshell_worker.shell_framework, input_list))
-                
-        ## Queing up the function to run (Slots n signals too)
-        #print("Starting Shell Qthread")
-                
-        #Could be a lambda
+
+        # connect output to function
         self.sysshell_worker.sys_out.connect(self.sys_shell_results)
-    
+
     def sys_shell_results(self, results):
+        """
+        Description:
+            Displays results onto the GUI
+
+        """
         try:
+            # set results
             self.c2_systemshell.setText(results)
             self.c2_systemshell_input.setText("")
         except Exception as e:
-            print(e)
-    
-    ## ========================================
-    ## C2 Server Shell ========================
-    ## ========================================
+            print(e) if GLOBAL_DEBUG else None
+
+##== C2 Server Interaction
+        """
+        ##== c2 Server
+
+        Description:
+            These functions handle the server connetion to the C2 server
+
+        """
+
     def c2_shell_startup(self):
         dir_path = sys_path + "/agent/ascii-art/"
         files = os.listdir(dir_path)
@@ -681,22 +544,29 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.c2_servershell_input.setText("")
     
     def shell_text_update(self, input):
-        print("shell_text_update" + input)
+        print("shell_text_update" + input) if GLOBAL_DEBUG else None
         self.c2_servershell.setText(input)
 
-## ========================================
-## Scanning/Enumeration ====================
-## ========================================
 
-## Everything related to scanning and enumeration
+####################
+## Scanning Enumeration
+####################
+        """
+        ##== Scanning & Enum
 
-    ## ========================================
-    ## PortScan Popup ========================
-    ## ========================================
+        Description:
+            These functions handle the server connetion to the C2 server
 
+        """
+##== Portscan Handler
+    """
+    ##== Portscan Handler
+
+    Description: The handler for the portscan module. 
+    """
     def portscan(self, QObject):
         input_ip = self.portscan_IP.text()
-        print(input_ip)
+        print(input_ip) if GLOBAL_DEBUG else None
 
         try:
             ## setting bar to 0
@@ -749,11 +619,10 @@ class MyApp(QMainWindow, Ui_LogecC3):
             }
             delay = delay_mapping.get(self.portscan_delay.currentText())
 
-            print(f'TIMOUT: {timeout}')
+            print(f'TIMOUT: {timeout}') if GLOBAL_DEBUG else None
             
-            print(f'DELAY: {delay}')       
+            print(f'DELAY: {delay}') if GLOBAL_DEBUG else None
             
-
             ## if clicked standard = true
             target_list = [ip, int(min_port), int(max_port), timeout, delay, extra_port]
             scantype_list = [
@@ -781,20 +650,27 @@ class MyApp(QMainWindow, Ui_LogecC3):
 
         except Exception as e:
             self.handle_error([e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)"])
-    
+
+##== GUI bar  
     def portscan_bar(self, status): ## I wonder if this dosen't work due to all the threads waiting to join back up? maybe portscanner writing the value to a tmp file would have to do it, or to the DB in a .hiddentable
         self.stealth_bar.setValue(status)
         if self.stealth_bar.value() == 99:
             self.stealth_bar.setValue(100)
-
+##GUI Liveports
     def portscan_liveports(self, ports):
         self.portscan_liveports_browser.setText("")
         #self.portscan_liveports_browser.setText(str(ports))
         for i in ports:
             self.portscan_liveports_browser.append(f"[+] {i}/tcp")
+## Database
+        """
+        Description:
+            Writing to the DB, will probably need a re-work, or at least point to a standard
+            DB write function
 
+        """
     def portscan_database_write(self, list):
-        print("DB Triggered")
+        print("DB Triggered") if GLOBAL_DEBUG else None
         try:
             cursor = self.sqliteConnection.cursor()
             
@@ -805,7 +681,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             VALUES
             ({IP}, {str(PORT).replace("{","").replace("}","")}, '{SCANTYPE}', '{SCANDATE}', '{SCANTIME}', '{RUNTIME}', "{SCANNEDPORTS}", '{DELAY}')"""
             
-            print(sqlite_insert_query)
+            print(sqlite_insert_query) if GLOBAL_DEBUG else None
 
             cursor.execute(sqlite_insert_query)
             self.sqliteConnection.commit()
@@ -813,20 +689,19 @@ class MyApp(QMainWindow, Ui_LogecC3):
             
         except Exception as e:
             self.handle_error([e, "Medium", "??"])
-    
-    ## ========================================
-    ## Bash Builder ===========================
-    ## ========================================
-    
-    ## A bash script builder
-    
+
+##== BashBuilder
+    """
+
+    Description: The Bash Builder function 
+    """
     def bash_builder(self):
         self.Script = ScriptGen.Script()
         
         ## Doing json here for expandability, rather than a list
         ## If the checks are checked, they return true. The scriptgen.py uses true & false
         ## for which blocks to build with
-        print(self.bashbuild_diagnostic.isChecked())
+        print(self.bashbuild_diagnostic.isChecked())  if GLOBAL_DEBUG else None
         
         json_unpacked = {
             "DIAGNOSTIC":
@@ -835,39 +710,36 @@ class MyApp(QMainWindow, Ui_LogecC3):
                     "installpackages":self.bashbuild_installpackages.isChecked()
                 },
             
-            
             "DNS":
                 {
                     "dnsenum":self.bashbuild_dnsenum.isChecked(),
                     "whois":"false"
                 },
             
-            
             "PORTSCAN":
                 {
                     "nmap":self.bashbuild_nmap.isChecked(),
                 }
         }
-        
+
         packed_json = json.dumps(json_unpacked)
         
-        print(packed_json)
+        print(packed_json) if GLOBAL_DEBUG else None
         
         self.Script.script_results.connect(self.bash_builder_display)
         
         ## Has to go last to grab signals n stiff
-        self.Script.script_framework(packed_json)
-
+        self.Script.script_framework(packed_json)        
+##GUI Updater
     def bash_builder_display(self, final_script):
-        print("triggered")
+        print("triggered") if GLOBAL_DEBUG else None
         self.bashbuild_textoutput.setText(final_script)
 
-    ## ========================================
-    ## DNS Lookup ===========================
-    ## ========================================
-    
-    ## Quick DNS lookups
-    
+##== dns_lookup
+    """
+
+    Description: The DNS handler code
+    """
     def dns_lookup(self):
 
         ## All handler
@@ -892,7 +764,6 @@ class MyApp(QMainWindow, Ui_LogecC3):
         # self.tablewidget.setItem(row,0, QTableWidgetItem(i))
         # row = row +1
         # row = 0
-
         # dns_list = ["NONE","CNAME\nwww.google.com","MX\nmail.google.com","REVERSE \nexploit.tools", "TXT \ntext"]
 
         if self.scanning_dns_query.text() == '':
@@ -935,7 +806,16 @@ class MyApp(QMainWindow, Ui_LogecC3):
             ) if dns_list[5] == 'NONE' else self.dns_table_formatting(
                 self.dns_NS_table, dns_list[5], 'NS'
             )
+## GUI Formatter
+    """
+    Desc: Formats the results into tables
 
+    Inputs:
+        table_object:
+        list: 
+        name:
+
+    """
     def dns_table_formatting(self, table_object, list, name):
         row = 0
         ## mockup to reduce code
@@ -970,16 +850,19 @@ class MyApp(QMainWindow, Ui_LogecC3):
                 self.dns_table.setItem(row, 0, QTableWidgetItem(i))
                 self.dns_table.setRowHeight(row, 13)
                 row = row + 1
-                
-                
-## ========================================
-## BruteForce Tab =========================
-## ========================================
 
-    ## ========================================
-    ## BruteForce Creds =======================
-    ## ========================================
+####################
+## Bruteforce
+####################
+## == Bruteforce (credentials)
+    """
+    Desc: Bruteforces credentials
 
+    inputs:
+        See target_list, all that is gathered from the GUI
+
+
+    """
     def bruteforce(self):
         
         try:
@@ -1044,7 +927,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
 
     def bruteforce_hardstop(self):
         #pass
-        print("clicked")
+        print("clicked") if GLOBAL_DEBUG else None
         try:
             pass
             #self.bruteforce_worker.thread_quit()
@@ -1055,7 +938,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
 
     def bf_browser_popup(self, whichbutton):
         from PySide6.QtWidgets import QFileDialog
-        print("Clicked")
+        print("Clicked") if GLOBAL_DEBUG else None
         
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
@@ -1066,6 +949,8 @@ class MyApp(QMainWindow, Ui_LogecC3):
         
         elif whichbutton == "password":
             self.bruteforce_passdir.setText(fileName)
+
+## Bruteforce GUI Stuff
 
     def live_attempts_box(self, attempts):
         self.bruteforce_livetries.setText(attempts)
@@ -1090,7 +975,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.bruteforce_progressbar.setValue(status)
         if self.bruteforce_progressbar.value() == 99:
             self.bruteforce_progressbar.setValue(100)
-
+## Bruteforce Downlaod Stuff
     def bruteforce_download(self, wordlist):
         if wordlist == "ignis-1M":
             self.H.download([
@@ -1122,9 +1007,9 @@ class MyApp(QMainWindow, Ui_LogecC3):
                 f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
                 "SecList-top1-short-usernames"
             ])
-
+## Bruteforce DB Stuff
     def bruteforce_database_write(self, list):
-        print("DB Triggered")
+        print("DB Triggered")  if GLOBAL_DEBUG else None
         try:
             cursor = self.sqliteConnection.cursor()
             
@@ -1135,7 +1020,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             VALUES
             ('{TARGET}', '{str(PORT).replace("{","").replace("}","")}', '{SERVICE}', '{CREDS}', '{TIME}', '{DATE}' )"""
             
-            print(sqlite_insert_query)
+            print(sqlite_insert_query) if GLOBAL_DEBUG else None
 
             cursor.execute(sqlite_insert_query)
             self.sqliteConnection.commit()
@@ -1144,12 +1029,15 @@ class MyApp(QMainWindow, Ui_LogecC3):
         except Exception as e:
             self.handle_error([e, "Medium", "??"])
    
-    ## ========================================
-    ## BruteForce Fuzzer ======================
-    ## ========================================
-    
-    # A fuzzer
-    
+##== Fuzzer    
+    """
+    Desc: Bruteforces websites/fuzzes things
+
+    inputs:
+        See target_list, all that is gathered from the GUI
+
+
+    """
     def bruteforce_fuzzer(self):
         
         try:
@@ -1209,11 +1097,11 @@ class MyApp(QMainWindow, Ui_LogecC3):
             
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-            print(exc_type, fname, exc_tb.tb_lineno)
+            print(exc_type, fname, exc_tb.tb_lineno) if GLOBAL_DEBUG else None
 
     def bruteforce_fuzz_hardstop(self):
         #pass
-        print("clicked")
+        print("clicked") if GLOBAL_DEBUG else None
         try:
             pass
             #self.fuzzer_worker.thread_quit()
@@ -1224,7 +1112,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
 
     def bf_fuzz_browser_popup(self, whichbutton):
         from PySide6.QtWidgets import QFileDialog
-        print("Clicked")
+        print("Clicked") if GLOBAL_DEBUG else None
         
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
@@ -1232,7 +1120,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
         
         if whichbutton == "wordlistdir":
             self.bruteforce_fuzz_wordlistdir.setText(fileName)
-
+##== Fuzzer GUI stuff
     def fuzz_live_attempts_box(self, attempts):
         self.bruteforce_fuzz_livetries.setText(attempts)
 
@@ -1288,9 +1176,9 @@ class MyApp(QMainWindow, Ui_LogecC3):
                 f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
                 "SecList-top1-short-usernames"
             ])
-
+##== Fuzzer DB Stuff
     def bruteforce_fuzz_database_write(self, list):
-        print("BF Fuzzer DB Triggered")
+        print("BF Fuzzer DB Triggered") if GLOBAL_DEBUG else None
         try:
             cursor = self.sqliteConnection.cursor()
             
@@ -1301,7 +1189,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             VALUES
             ('{TARGET}', '{str(PORT).replace("{","").replace("}","")}', '{CODE}', '{SHORT_URL}', '{LONG_URL}', '{TIME}', '{DATE}' )"""
             
-            print(sqlite_insert_query)
+            print(sqlite_insert_query)  if GLOBAL_DEBUG else None
 
             cursor.execute(sqlite_insert_query)
             self.sqliteConnection.commit()
@@ -1309,15 +1197,15 @@ class MyApp(QMainWindow, Ui_LogecC3):
             
         except Exception as e:
             self.handle_error([e, "Medium", "??"])
-            
-## ========================================
-## OSINT Tab ==============================
-## ========================================
 
-    ## ========================================
-    ## Reddit Scraper =========================
-    ## ========================================
+####################
+## OSINT
+####################       
 
+##== Reddit OSINT
+    """
+    Needs to move to Qthread
+    """
     def osint_reddit(self):
         osint_red = threading.Thread(target=self.osint_reddit_thread)
         osint_red.start()
@@ -1385,9 +1273,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             self.reddit_progressbar.setMaximum(maxval)
             self.reddit_progressbar.setValue(currentval)
 
-    ## ========================================
-    ## Google Dork Builder=====================
-    ## ========================================
+##== Google Dork
 
     ## A google dork builder
 
@@ -1419,17 +1305,19 @@ class MyApp(QMainWindow, Ui_LogecC3):
 
         except Exception as e:
             self.handle_error([e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)"])
-        
+## Google Dork GUI     
     def dork_query_display(self, dork_query):
         self.osint_dork_output.setText(dork_query)
 
-## ========================================
-## Other Tab ==============================
-## ========================================
 
-    ## ========================================
-    ## Performance(2) n stuff =================
-    ## ========================================
+###################
+## Other Tab
+###################
+    """
+    the other tab is for everything Ihave no idea where to put
+    """
+##== Graph Draw    
+
     def draw_graph_refresh(self):
         self.timer = QTimer()
         self.timer.timeout.connect(self.draw_graph)
@@ -1477,7 +1365,8 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.ram_data.append((self.x, (ram_y*-1)))
         self.network_out_data.append((self.x, (ram_y*-1)))
         
-        
+##== Graph Data    
+
         ## CPU graph
         # Clear the scene and add all the lines
         self.other_cpu_scene.clear()
@@ -1559,7 +1448,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
                 0, 
                 self.other_network_performance.height()
             )    
-        
+##== Netowrk Bench       
     def performance_networkspeed(self):
         # print("CLICKED")
         p_thread = threading.Thread(target=self.netspeed_thread)
@@ -1577,7 +1466,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
 
         self.performance_speedtest.setDisabled(False)
         self.performance_speedtest.setText('Run SpeedTest')
-    
+##== CPU Bench
     def performance_benchmark(self):
         self.benchmark_worker = utility.Performance()
         self.thread_manager.start(self.benchmark_worker.benchmark)
@@ -1588,13 +1477,17 @@ class MyApp(QMainWindow, Ui_LogecC3):
         #print("PERF SET TIME")
         self.performance_seconds.setText(time)
 
-## ========================================
-## Projects, Settings, etc. System Functions
-## ========================================
+####################
+## Settings & Controls
+####################
 
-    ## ========================================
-    ## Project Startup ========================
-    ## ========================================
+##== Project Startup
+        """
+
+        Description:
+            Handles the startup popup box
+
+        """
     def startup_project_open(self):
         ## Lazy imports
         #from Gui.startup_projectbox import Ui_startup_projectbox
@@ -1611,10 +1504,12 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.project_popup.startup_project_openproject.clicked.connect(self.project_open)
         self.project_popup.startup_project_exit.clicked.connect(self.program_exit)
     
+##== Project Controls
+        """
+        Description:
+            Handles the saving/opening of project files
 
-    ## ========================================
-    ## Project Controls =======================
-    ## ========================================
+        """
     def project_open(self):
         
         ## This can be shortened into a function somehwere I'm sure
@@ -1623,14 +1518,14 @@ class MyApp(QMainWindow, Ui_LogecC3):
         #QFileDialog.setDirectory("Modules/General/SaveFiles/")
         fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", f"{sys_path}/Modules/General/SaveFiles/","ProjectFiles (*.zip)", options=options)
         
-        print(fileName)
+        print(fileName) if GLOBAL_DEBUG else None
         
         options_list = [
             "load",
             fileName,
         ]
         
-        print(fileName)
+        print(fileName) if GLOBAL_DEBUG else None
         
         ## Setting global project path
         self.ProjectPath = fileName
@@ -1652,7 +1547,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
                 self.ProjectPath.replace(".zip",""),
             ]
             
-            print(self.ProjectPath)
+            print(self.ProjectPath) if GLOBAL_DEBUG else None
             
             self.PF.save_framework(options_list)
         
@@ -1689,9 +1584,12 @@ class MyApp(QMainWindow, Ui_LogecC3):
             f'Project {filename} was loaded!',
         )
         
-    ## ========================================
-    ## Settings ===============================
-    ## ========================================
+##== Settings
+        """
+        Description:
+            Handles the settings file
+
+        """
     def settings_global(self, settings_file="default"):
         # intentional lazy import
         import yaml
@@ -1710,7 +1608,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             #print(self.settings['general']['theme'])
               
         except Exception as e:
-            print(e)
+            print(e) if GLOBAL_DEBUG else None
         
     
     def load_settings(self):
@@ -1737,9 +1635,12 @@ class MyApp(QMainWindow, Ui_LogecC3):
         except Exception as e:
             self.handle_error([e, 'medium', "Check permissions? If that fails, make sure the file exists"])
     
-    ## ========================================
-    ## SQL Conmn ==============================
-    ## ========================================
+##== SQL Communication
+        """
+        Description:
+            Handles the SQL communication
+
+        """
     
     ## Initial Connection =====================
     def sql_global(self, database_file="default"):
@@ -1751,19 +1652,19 @@ class MyApp(QMainWindow, Ui_LogecC3):
         ## the path below. Loading projects uses .tmp_projectfolder which is empty by default
         
         if database_file != "default":
-            print("ELSE")
-            print(database_file)
+            print("ELSE") if GLOBAL_DEBUG else None
+            print(database_file) if GLOBAL_DEBUG else None
             self.sqliteConnection = sqlite3.connect(sys_path + f'/{database_file}/logec_db')
             self.database_file = sys_path + f'/{database_file}/logec_db'
-            print(self.database_file)
-            #pass
+            print(self.database_file) if GLOBAL_DEBUG else None
+            #pass 
             
         else:
-            print("DEFAULT")
+            print("DEFAULT") if GLOBAL_DEBUG else None
             self.sqliteConnection = sqlite3.connect(sys_path + '/Modules/General/SaveFiles/init_project/logec_db')
-            print(sys_path + '/Modules/General/SaveFiles/init_project/logec_db')
+            print(sys_path + '/Modules/General/SaveFiles/init_project/logec_db') if GLOBAL_DEBUG else None
             self.database_file = sys_path + '/Modules/General/SaveFiles/init_project/logec_db'
-            print(self.database_file)
+            print(self.database_file) if GLOBAL_DEBUG else None
         
         
         ## Getting Q_sql set
@@ -1777,9 +1678,9 @@ class MyApp(QMainWindow, Ui_LogecC3):
         con = QSqlDatabase.addDatabase('QSQLITE')
 
         con.setDatabaseName(self.database_file)
-        print(self.database_file)
+        print(self.database_file) if GLOBAL_DEBUG else None
         
-        print("Database location:", con.databaseName())
+        print("Database location:", con.databaseName()) if GLOBAL_DEBUG else None
 
         ## Qapp throwing a fit due to no DB and no constructed app
         ## No DB outside of this dir, need to add that in setup too
@@ -1792,7 +1693,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
                 )
                 return False
             except:
-                print('Error connecting to DB & QApp not constructed.')
+                print('Error connecting to DB & QApp not constructed.') if GLOBAL_DEBUG else None
         #return True
         
 
@@ -1813,7 +1714,7 @@ class MyApp(QMainWindow, Ui_LogecC3):
             cursor.close()
 
         except sqlite3.Error as error:
-            print('Error:', error)
+            print('Error:', error) if GLOBAL_DEBUG else None
 
         #finally:
             #if self.sqliteConnection:
@@ -1823,9 +1724,12 @@ class MyApp(QMainWindow, Ui_LogecC3):
 
         ## Giving the DB a refresh
 
-    ## ========================================
-    ## Themes =================================
-    ## ========================================
+##== Themes
+        """
+        Description:
+            Handles the theme settings
+
+        """
     def set_theme(self, theme_name):
         if theme_name != "Default":
             with open(f"{sys_path}/Gui/themes/{theme_name}","r") as f:
@@ -1835,9 +1739,11 @@ class MyApp(QMainWindow, Ui_LogecC3):
         else:
             pass
 
-    ## ========================================
-    ## System Functions ========================
-    ## ========================================
+##== Sys Functions
+        """
+        Description:
+            Handles the system functions like restarting the program
+        """
         
     def restart(self): ## MEMORY LEAK !!
         # Restart the Python interpreter
@@ -1848,41 +1754,27 @@ class MyApp(QMainWindow, Ui_LogecC3):
         
     def program_exit(self):
         sys.exit()
-## ========================================
-## Startup/Init Code=======================
-## ========================================
+
+
 
 if __name__ == '__main__':
     try:
-        ## Creating App ==================
+        # Creating App
         app = QtWidgets.QApplication(sys.argv)
-        
-        ## Library Paths ==================
+
+        # Library Paths
         library_paths = QCoreApplication.libraryPaths()
         # Print the path where QSqlDatabase is looking for drivers
-        print(library_paths)
-            
-        ## QT stuff ==================
-        window = MyApp()
-        window.show()
-        app.exec()
+        print(library_paths) if GLOBAL_DEBUG else None
 
-        ## Kill when exec is closed ==============
+        # QT stuff
+        window = LogecSuite()
+        window.show()
+        app.exec_()
+
+        # Kill when exec is closed
         pid = os.getpid()
-        os.kill(pid, 15)   ## SIGTERM
+        os.kill(pid, 15)   # SIGTERM
 
     except Exception as e:
-        import traceback
-        #print(e)
-        
         traceback.print_exc()
-        
-        '''from plyer import notification
-
-        notification.notify(
-            title = 'Logec Crash!',
-            message = f'SEV: High \nERRMSG: {e} ',
-            app_icon = None,
-            timeout = 10,
-        )
-        print(f'ERROR OCCURED: \n{e}')'''

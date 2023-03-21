@@ -13,8 +13,11 @@ as a summary of what you changed when done refactoring
 Error Codes:
 
     Class:
-        Each class with have it's potential errors defined in the __init__ constructor. 
+        Each class/function with have it's potential errors defined in the __init__ constructor. 
         These will be named via the guidelines outlined in the "Error Naming" section.
+
+        (still figuring out how to do this on/with the main logec file - maybe just emit the errors back to 
+        the error function)
         Above the grouping of errors, there will be a comment header:
             #Errors:
 
@@ -54,12 +57,28 @@ Naming Schemes:
 
 Comments:
     Class/Standalone Functions:
-        Each class will have a basic description of what it does
+        Each class/Function will have a basic description of what it does (within reason)
             ####################
             ## Networking
             ####################
+            """
+            ##== NAME
 
-            #Description here
+            Description:
+                Displays a critical error message box with the specified error message, severity, and fix.
+                It also writes the error to a database and emits an error signal.
+
+            Args:
+                error_list (list): A list containing the error, severity, and fix.
+
+            Returns:
+                None
+            
+            Modules: 
+                bruteforce.py
+            """
+        If there are multiple fucntions with few lines, (such as some gui functions) Group them together with
+        one comment block
 
     Methods:
         Each method will have a description in it, with the expected input and output values:
