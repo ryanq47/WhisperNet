@@ -412,6 +412,414 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
         self.view.resizeColumnsToContents()
 
+
+####################
+## C2
+####################
+
+##== C2 Local 
+
+    def c2_layout(self) -> None:
+        """
+        ##== c2_layout
+
+        Description:
+            This handles the layout of the C2 tab, as you can't add a nested bar with QT Designer
+
+        """
+        # create menu bar
+        self.c2_menuBar = QMenuBar()
+
+        # create options tab
+        self.menuOptions = QMenu("Options", self.c2_menuBar)
+        self.actionQuit = QAction('Quit', self)
+        self.actionQuit.triggered.connect(self.close)
+        self.menuOptions.addAction(self.actionQuit)
+        self.c2_menuBar.addAction(self.menuOptions.menuAction())
+
+        # create client tab
+        self.menuClient = QMenu("Client", self.c2_menuBar)
+        self.actionStart_Listener = QAction('Start Listener', self)
+
+        # add actions to the menu bar
+        self.menuClient.addAction(self.actionStart_Listener)
+        self.c2_menuBar.addAction(self.menuClient.menuAction())
+
+        # set menu bar
+        self.tabWidget.widget(1).layout().setMenuBar(self.c2_menuBar)
+
+    ## Gonna need some work, this currently creates one thread for each command
+    def sys_shell(self):
+        """
+        Description:
+            The handler for the local system (partially interactive) shell
+
+        """
+        
+        # get input list from GUI
+        input_list = [self.c2_systemshell_input.text()]
+
+        # create worker
+        self.sysshell_worker = Shell()
+
+        # start thread
+        self.thread_manager.start(partial(self.sysshell_worker.shell_framework, input_list))
+
+        # connect output to function
+        self.sysshell_worker.sys_out.connect(self.sys_shell_results)
+
+    def sys_shell_results(self, results):
+        """
+        Description:
+            Displays results onto the GUI
+
+        """
+        try:
+            # set results
+            self.c2_systemshell.setText(results)
+            self.c2_systemshell_input.setText("")
+        except Exception as e:
+            print(e)
+
+##== C2 Server Interaction
+        """
+        ##== c2 Server
+
+        Description:
+            These functions handle the server connetion to the C2 server
+
+        """
+
+    def c2_shell_startup(self):
+        dir_path = sys_path + "/agent/ascii-art/"
+        files = os.listdir(dir_path)
+        with open(dir_path + random.choice(files), "r") as graphic:
+            self.shell_text_update(graphic.read())
+        
+    def c2_server_connect(self):
+        ## if connected this stops you from connecting with an already active session
+        if not self.friendly_client.authenticated:
+            connlist = [
+                self.c2_server_ip.text(),
+                self.c2_server_port.text(),
+                self.c2_server_username.text(),
+                self.c2_server_password.text(),
+            ]
+
+            self.friendly_client.connect_to_server(connlist)
+
+            ## return not working, so getting validated authentication via the class itself
+            if self.friendly_client.authenticated:
+                self.c2_status_label.setText(f"Status: Connected to {connlist[0]}:{connlist[1]}")
+            
+            if self.friendly_client.err_ConnRefused_0x01:
+                self.handle_error(["ConnRefused_0x01","Low","Make sure the server is alive"])
+                self.friendly_client.err_ConnRefused_0x01 = False
+    
+    def c2_server_disconnect(self):
+        self.friendly_client.client_disconnect()
+        self.c2_status_label.setText(f"Status: Disconnected")
+        
+    def c2_server_interact(self, command):
+        input = self.c2_servershell_input.text()
+
+        
+        self.thread_manager.start(partial(self.friendly_client.server_interact, input))
+        self.friendly_client.shell_output.connect(self.shell_text_update)
+    
+        ## clearing text
+        self.c2_servershell_input.setText("")
+    
+    def shell_text_update(self, input):
+        print("shell_text_update" + input)
+        self.c2_servershell.setText(input)
+
+
+####################
+## Scanning Enumeration
+####################
+
+####################
+## Settings & Controls
+####################
+
+
+##== Project Startup
+        """
+
+        Description:
+            Handles the startup popup box
+
+        """
+    def startup_project_open(self):
+        ## Lazy imports
+        #from Gui.startup_projectbox import Ui_startup_projectbox
+        
+        self.window = QtWidgets.QMainWindow()
+        self.project_popup = Ui_startup_projectbox()
+        self.project_popup.setupUi(self.window)
+        self.window.show()
+        
+        ## ========================================
+        ## Startup Buttons ========================
+        ## ========================================
+        ## down here due to the import, and it technically being in a different class
+        self.project_popup.startup_project_openproject.clicked.connect(self.project_open)
+        self.project_popup.startup_project_exit.clicked.connect(self.program_exit)
+    
+##== Project Controls
+        """
+        Description:
+            Handles the saving/opening of project files
+
+        """
+    def project_open(self):
+        
+        ## This can be shortened into a function somehwere I'm sure
+        options = QFileDialog.Options()
+        #options |= QFileDialog.DontUseNativeDialog ## Makes a custom popup, sticking with system popup
+        #QFileDialog.setDirectory("Modules/General/SaveFiles/")
+        fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", f"{sys_path}/Modules/General/SaveFiles/","ProjectFiles (*.zip)", options=options)
+        
+        print(fileName)
+        
+        options_list = [
+            "load",
+            fileName,
+        ]
+        
+        print(fileName)
+        
+        ## Setting global project path
+        self.ProjectPath = fileName
+        self.PF.save_framework(options_list)
+        
+        try:
+            ## Sending to loaders, hardcoded because this is where ALL open projects go:
+            self.settings_global("/Modules/General/SaveFiles/.tmp_projectfolder/")
+            self.sql_global("/Modules/General/SaveFiles/.tmp_projectfolder/")
+            self.success_popup([fileName,""])
+        except:
+            self.handle_error("something","error","Get better at coding lol")
+    
+    def project_save(self):
+        ## if not projectpath #aka if the path for the save file dosen't exist, popopen a save browser
+        if self.ProjectPath:
+            options_list = [
+                "save",
+                self.ProjectPath.replace(".zip",""),
+            ]
+            
+            print(self.ProjectPath)
+            
+            self.PF.save_framework(options_list)
+        
+        else:
+            self.project_saveAs()
+
+    def project_saveAs(self):
+        
+        dialog = QFileDialog()
+        dialog.setAcceptMode(QFileDialog.AcceptSave)  # set the dialog to "save" mode
+        dialog.setNameFilter("Text Files (*.zip)")  # set a filter for text files
+        # show the dialog and get the selected file name
+        if dialog.exec() == QFileDialog.Accepted:
+            Project_SaveAs_Location = dialog.selectedFiles()[0]
+            
+        #print(Project_SaveAs_Location)
+
+        options_list = [
+            "save",
+            Project_SaveAs_Location,
+        ]
+            
+        self.PF.save_framework(options_list)
+
+    ## Need to change to make more useful & allow inputs with name, (throw error for failed attempts)
+    def success_popup(self, info_list):
+        filename, placeholder = info_list
+        
+        QMessageBox.information(
+            None,
+            ## Title
+            'Success! Project Loaded!',
+            ## Actual Error
+            f'Project {filename} was loaded!',
+        )
+        
+##== Settings
+        """
+        Description:
+            Handles the settings file
+
+        """
+    def settings_global(self, settings_file="default"):
+        # intentional lazy import
+        import yaml
+        try:
+            if settings_file != "default":
+                with open(sys_path + settings_file, 'r') as f:
+                    self.settings_path = sys_path + settings_file
+                    self.settings = yaml.safe_load(f)
+            
+            else:
+                with open(sys_path + '/Modules/General/SaveFiles/init_project/settings.yaml', 'r') as f:
+                    self.settings_path = sys_path + '/Modules/General/SaveFiles/init_project/settings.yaml'
+                    self.settings = yaml.safe_load(f)
+                    
+            # Getting settings
+            #print(self.settings['general']['theme'])
+              
+        except Exception as e:
+            print(e)
+        
+    
+    def load_settings(self):
+        pass
+        # Loads settings for in program user
+    
+    def edit_settings(self):
+        try:
+        # Opens settings for editing
+            with open(self.settings_path,"r") as s:
+                contents = s.read()
+            self.settings_edit.setText(contents)
+        except Exception as e:
+            self.handle_error([e, 'medium', "Make sure file exists?"])
+            
+        #pass
+    ## Loads and puts settings file on display in the gUI
+    
+    def write_settings(self):
+        try:
+            updated_settings = self.settings_edit.toPlainText()
+            with open(self.settings_path, "w") as contents:
+                contents.write(updated_settings)
+        except Exception as e:
+            self.handle_error([e, 'medium', "Check permissions? If that fails, make sure the file exists"])
+    
+##== SQL Communication
+        """
+        Description:
+            Handles the SQL communication
+
+        """
+    
+    ## Initial Connection =====================
+    def sql_global(self, database_file="default"):
+        ## The idea here is that this function (being the SQL parent function) gets passed the DB file location. 
+        ## once loaded, it creates the self.databse_file, essentially opening it up/passing it along to any other
+        ## functions in the program that need to access the DB. (Most notably in 'custom_query', and q_sql)
+        
+        ## The if else is a guarantee that a project gets loaded, as an extracted project exists in 
+        ## the path below. Loading projects uses .tmp_projectfolder which is empty by default
+        
+        if database_file != "default":
+            print("ELSE")
+            print(database_file)
+            self.sqliteConnection = sqlite3.connect(sys_path + f'/{database_file}/logec_db')
+            self.database_file = sys_path + f'/{database_file}/logec_db'
+            print(self.database_file)
+            #pass
+            
+        else:
+            print("DEFAULT")
+            self.sqliteConnection = sqlite3.connect(sys_path + '/Modules/General/SaveFiles/init_project/logec_db')
+            print(sys_path + '/Modules/General/SaveFiles/init_project/logec_db')
+            self.database_file = sys_path + '/Modules/General/SaveFiles/init_project/logec_db'
+            print(self.database_file)
+        
+        
+        ## Getting Q_sql set
+        self.q_sql()
+
+    def q_sql(self):
+        ## I'm using a mix of Qsql & Sqlite 3 cause I din't think it through before coding this. 
+        ## SO, until I fix it, this is gonna have to do.
+        ## This affects the query.next() in 'custom_query'
+        
+        con = QSqlDatabase.addDatabase('QSQLITE')
+
+        con.setDatabaseName(self.database_file)
+        print(self.database_file)
+        
+        print("Database location:", con.databaseName())
+
+        ## Qapp throwing a fit due to no DB and no constructed app
+        ## No DB outside of this dir, need to add that in setup too
+        if not con.open():
+            try:
+                QMessageBox.critical(
+                    None,
+                    'QTableView Example - Error!',
+                    'Database Error: %s' % con.lastError().databaseText(),
+                )
+                return False
+            except:
+                print('Error connecting to DB & QApp not constructed.')
+        #return True
+        
+
+    ## Using sqlite3 instead of QSqlite for some reason - I forgot why
+    def db_error_write(self, error_list):
+        try:
+            cursor = self.sqliteConnection.cursor()
+
+            ## if append is not true:
+            # [severity, error, fix, "time", "date"]
+
+            sqlite_insert_query = f"""INSERT INTO Error (Severity, ErrorMessage, Fix, Time, Date) 
+            VALUES
+            ("{error_list[0]}", "{error_list[1]}", "{error_list[2]}", '{error_list[3]}', '{error_list[4]}')"""
+
+            count = cursor.execute(sqlite_insert_query)
+            self.sqliteConnection.commit()
+            cursor.close()
+
+        except sqlite3.Error as error:
+            print('Error:', error)
+
+        #finally:
+            #if self.sqliteConnection:
+                #self.sqliteConnection.close()
+
+        self.custom_query('performance_error_db')
+
+        ## Giving the DB a refresh
+
+##== Themes
+        """
+        Description:
+            Handles the theme settings
+
+        """
+    def set_theme(self, theme_name):
+        if theme_name != "Default":
+            with open(f"{sys_path}/Gui/themes/{theme_name}","r") as f:
+                stylesheet = f.read()
+                
+            self.setStyleSheet(stylesheet)
+        else:
+            pass
+
+##== Sys Functions
+        """
+        Description:
+            Handles the system functions like restarting the program
+        """
+        
+    def restart(self): ## MEMORY LEAK !!
+        # Restart the Python interpreter
+        args = sys.argv[:]
+        args.insert(0, sys.executable)
+        self.close()
+        sys.exit(os.spawnvp(os.P_WAIT, sys.executable, args))
+        
+    def program_exit(self):
+        sys.exit()
+
+
+
 if __name__ == '__main__':
     try:
         # Creating App
