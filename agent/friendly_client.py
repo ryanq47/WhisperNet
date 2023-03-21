@@ -1,76 +1,77 @@
 import socket
 import os
 import select
-import maskpass
+#import maskpass
 from PySide6.QtCore import QThread, Signal, QObject, Slot
 
-global_debug = False
+global_debug = True
 
 
 class fclient(QObject):
     shell_output = Signal(str)
+    authenticated = Signal(bool)
 
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.encoding = 'utf-8'
         self.buffer = 1024
+        self.authenticated = False
         
     
     def connect_to_server(self, connlist):
-        ip, port, user, password = connlist
+        self.ip, self.port, self.username, password = connlist
 
         print('Connecting to server') if global_debug else None
         
+        ## Connection Stuff
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        
-        self.ip, self.port = ip, int(port)
-        
-        self.server_addr = (self.ip, self.port)
+        self.server_addr = (self.ip, int(self.port))
         self.server.connect(self.server_addr)
         
-        #creds = self.credential_gather()
         
-        print(f"!_user_!\\|/{creds[0]}\\|/{creds[1]}") if global_debug else None
+        print(f"!_user_!\\|/{self.username}\\|/{password}") if global_debug else None
         
-        self.server.send(self.str_encode(f"!_userlogin_!\\|/{user}//|\\\\{password}"))
+        ## Sending Login string
+        self.server.send(self.str_encode(f"!_userlogin_!\\|/{self.username}//|\\\\{password}"))
         response = int(self.server.recv(1024).decode())
 
-        print(f"Server Auth Response: {response}")
+        print(f"Server Auth Response: {response}") if global_debug else None
         
         ## 0 is success, like in C
         if response == 0:
-            print("Connected!\n")
-            #while True:
-                #self.server_interact()
+            print("Connected!\n") if global_debug else None
+            self.authenticated = True
+            
+            ## passing this to have the IP details pop up
+            self.shellformat("")
+
         else:
-            print("Auth failed.")
-            #self.connect_to_server()
+            print("Auth failed.") if global_debug else None
+            self.authenticated = False
 
 
 ################
 ## Server interact
 ################  
+    def client_disconnect(self):
+        ## Close instead of shutdown as shutodwn closes it on the server side (I am 90% sure)
+        self.server.close()
+        ## Need to reset to false so GUI understands & allows a re-connect
+        self.authenticated = False
 
     ##directly interacting with the server
     def server_interact(self, client_name):
         print("COMMAND:" + client_name)
         ## Populating the lists needed & getting info from server
         self.server_info_fetch()
-        ## This will be returned to the client later
-        
-        ## dict - can't do .lower() due to client names being capataliezed. fuck
 
-        #client_name = input("Enter a client name to interact, 'help', or 'refresh': ")#.lower()
-        #print(f"CLient Name: {client_name}")
         ################
         ## Home Menu
         ################ 
-
         #request a manual client update
         if client_name.lower() == "clients":
-            self.server_request("clients")
-            self.shellformat("")
+            self.shellformat(self.server_request("clients"))
         
         
         elif client_name.lower() == "refresh":
@@ -145,7 +146,7 @@ class fclient(QObject):
         print("Debug: " + results)
 
         formatted_results = (
-            f"server OR client IP depending on shell>\n{results}"
+            f"{self.server_addr}:{self.username}>\n{results}"
         )
 
         self.shell_output.emit(formatted_results)
@@ -246,7 +247,8 @@ class fclient(QObject):
 ################  
     ## grabs info and foramts it, meant to be an easy data-update method
     def server_info_fetch(self):
-        print("Requesting self.clients... DISABLED")
+        pass
+        #print("Requesting self.clients... DISABLED")
         #self.clients = list(self.server_request("clients").split())
     
     ## Grabs (per) client info and formats it
@@ -263,8 +265,9 @@ class fclient(QObject):
     def server_request(self, request, client_name=None):
     
         if request == "clients":
+            print("hi")
             formatted_request = f"!_usercommand_!\\|/{self.username}//|\\\\{request}"
-            
+            print("hi2")
             print(f"DEBUG: Sending {formatted_request}") if global_debug else None
             self.server.send(self.str_encode(formatted_request))
 

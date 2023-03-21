@@ -33,7 +33,8 @@ from PySide6.QtWidgets import (
     QTabWidget,
     QTabBar,
     QMenuBar,
-    QMenu
+    QMenu,
+    QLineEdit
 )
 
 ## Plugin path for sql driver (TLDR makes compiling easier by having a local copy)
@@ -50,6 +51,7 @@ import webbrowser
 import time
 import json
 from functools import partial
+import random
 
 
 ## importing other UI files
@@ -162,7 +164,9 @@ class MyApp(QMainWindow, Ui_LogecC3):
         self.friendly_client = fclient()
 
         self.c2_connect_button.clicked.connect(self.c2_server_connect)
-        
+        self.c2_disconnect_button.clicked.connect(self.c2_server_disconnect)
+        self.c2_server_password.setEchoMode(QLineEdit.Password)
+        self.c2_shell_startup()
 
         ## debug:
         self.actionDEBUG.triggered.connect(self.DEBUG)
@@ -636,21 +640,41 @@ class MyApp(QMainWindow, Ui_LogecC3):
     ## ========================================
     ## C2 Server Shell ========================
     ## ========================================
+    def c2_shell_startup(self):
+        dir_path = sys_path + "/agent/ascii-art/"
+        files = os.listdir(dir_path)
+        with open(dir_path + random.choice(files), "r") as graphic:
+            self.shell_text_update(graphic.read())
+        
     def c2_server_connect(self):
-        connlist = [
-            self.c2_server_ip.text(),
-            self.c2_server_port.text(),
-            self.c2_server_username.text(),
-            self.c2_server_password.text(),
-        ]
+        ## if connected this stops you from connecting with an already active session
+        if not self.friendly_client.authenticated:
+            connlist = [
+                self.c2_server_ip.text(),
+                self.c2_server_port.text(),
+                self.c2_server_username.text(),
+                self.c2_server_password.text(),
+            ]
 
-        self.friendly_client.connect_to_server(connlist)
+            self.friendly_client.connect_to_server(connlist)
 
+            ## return not working, so getting validated authentication via the class itself
+            if self.friendly_client.authenticated:
+                self.c2_status_label.setText(f"Status: Connected to {connlist[0]}:{connlist[1]}")
+    
+    def c2_server_disconnect(self):
+        self.friendly_client.client_disconnect()
+        self.c2_status_label.setText(f"Status: Disconnected")
+        
     def c2_server_interact(self, command):
         input = self.c2_servershell_input.text()
 
+        
         self.thread_manager.start(partial(self.friendly_client.server_interact, input))
         self.friendly_client.shell_output.connect(self.shell_text_update)
+    
+        ## clearing text
+        self.c2_servershell_input.setText("")
     
     def shell_text_update(self, input):
         print("shell_text_update" + input)

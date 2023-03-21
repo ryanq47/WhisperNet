@@ -11,7 +11,7 @@ import select
 HEADER = 64
 FORMAT = 'utf-8'
 
-global_debug = False
+global_debug = True
 
 class s_sock:
     ##########

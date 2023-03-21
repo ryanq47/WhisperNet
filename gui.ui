@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1047</width>
-    <height>707</height>
+    <width>1013</width>
+    <height>730</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -324,7 +324,7 @@
        <attribute name="title">
         <string>C2New</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_57">
+       <layout class="QGridLayout" name="gridLayout_52">
         <item row="0" column="0">
          <widget class="QTextEdit" name="textEdit_25">
           <property name="html">
@@ -415,20 +415,19 @@ p, li { white-space: pre-wrap; }
            <layout class="QGridLayout" name="gridLayout_24">
             <item row="2" column="0" colspan="2">
              <widget class="QLineEdit" name="c2_server_password">
+              <property name="text">
+               <string>1234</string>
+              </property>
               <property name="placeholderText">
                <string>Password</string>
               </property>
              </widget>
             </item>
-            <item row="5" column="0">
-             <widget class="QLabel" name="label_18">
-              <property name="text">
-               <string>Status:</string>
-              </property>
-             </widget>
-            </item>
             <item row="1" column="0" colspan="2">
              <widget class="QLineEdit" name="c2_server_username">
+              <property name="text">
+               <string>ryan</string>
+              </property>
               <property name="placeholderText">
                <string>Username</string>
               </property>
@@ -436,6 +435,9 @@ p, li { white-space: pre-wrap; }
             </item>
             <item row="0" column="1">
              <widget class="QLineEdit" name="c2_server_port">
+              <property name="text">
+               <string>101</string>
+              </property>
               <property name="placeholderText">
                <string>Port</string>
               </property>
@@ -444,7 +446,7 @@ p, li { white-space: pre-wrap; }
             <item row="0" column="0">
              <widget class="QLineEdit" name="c2_server_ip">
               <property name="text">
-               <string/>
+               <string>127.0.0.1</string>
               </property>
               <property name="placeholderText">
                <string>IP</string>
@@ -452,7 +454,7 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item row="4" column="0">
-             <widget class="QPushButton" name="pushButton_5">
+             <widget class="QPushButton" name="c2_disconnect_button">
               <property name="text">
                <string>Disconnect</string>
               </property>
@@ -465,12 +467,81 @@ p, li { white-space: pre-wrap; }
               </property>
              </widget>
             </item>
+            <item row="5" column="0" colspan="2">
+             <widget class="QLabel" name="c2_status_label">
+              <property name="text">
+               <string>Status: Not Connected</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_53">
+           <attribute name="title">
+            <string>LocalServer</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_51">
+            <item row="0" column="0">
+             <widget class="QLineEdit" name="c2_server_ip_2">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="placeholderText">
+               <string>IP</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="c2_server_port_2">
+              <property name="placeholderText">
+               <string>Port</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" colspan="2">
+             <widget class="QLineEdit" name="c2_server_password_2">
+              <property name="placeholderText">
+               <string>Password</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QPushButton" name="pushButton_6">
+              <property name="text">
+               <string>Stop</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QPushButton" name="c2_connect_button_2">
+              <property name="text">
+               <string>Start</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0" colspan="2">
+             <widget class="QTextEdit" name="textEdit_27">
+              <property name="html">
+               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If you'd like to spin up the server locally, you can do it here, or you can run the 'server.py' file&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
            </layout>
           </widget>
          </widget>
         </item>
         <item row="1" column="0" colspan="2">
          <widget class="QTabWidget" name="c2_shell_tab">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>400</height>
+           </size>
+          </property>
           <property name="toolTip">
            <string>Enter</string>
           </property>
@@ -503,7 +574,7 @@ p, li { white-space: pre-wrap; }
                <string notr="true">background-color: rgb(29, 29, 29);</string>
               </property>
               <property name="readOnly">
-               <bool>true</bool>
+               <bool>false</bool>
               </property>
               <property name="html">
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -766,8 +837,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>983</width>
-                 <height>423</height>
+                 <width>949</width>
+                 <height>446</height>
                 </rect>
                </property>
                <widget class="QLabel" name="label_62">
@@ -2113,8 +2184,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>983</width>
-                 <height>561</height>
+                 <width>949</width>
+                 <height>584</height>
                 </rect>
                </property>
                <widget class="QToolBox" name="bashbuild_toolBox">
@@ -5805,7 +5876,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1047</width>
+     <width>1013</width>
      <height>24</height>
     </rect>
    </property>
