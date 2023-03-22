@@ -129,7 +129,8 @@ class s_sock:
                 print("usercomm")
                 
             elif "GET" in self.id:
-                ## attempt 
+                ## sends a 403 denied via web browser/for scrapers
+                ## I should capture these too and see whos hitting it
                 self.conn.send(str_encode("<p1>403 Denied</p1>"))
                 print("HTTP request... Filtering")
 
@@ -597,15 +598,22 @@ class s_perclient:
 ################
 ## QOL Functions
 ################
-## bytes -> str
-def str_decode(input) -> str:
-    decoded_result = input.decode()
-    return decoded_result
-
 ## str -> bytes
-def str_encode(input) -> bytes:
-    encoded_result = input.encode()
-    return encoded_result
+def str_encode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]) -> bytes:
+    for format in formats:
+        try:
+            return input.encode(format)
+        except UnicodeEncodeError:
+            print("Unicode Encode Error") if global_debug else None
+
+## bytes -> str
+def str_decode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]) -> str:
+    for format in formats:
+        try:
+            return input.encode(format)
+        except UnicodeDecodeError:
+            print("Unicode Decode Error") if global_debug else None
+
     
     
 if __name__ == "__main__":

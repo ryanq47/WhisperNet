@@ -20,7 +20,7 @@ class fclient():
 
         #self.server.settimeout(5)
         
-        self.ip, self.port = "127.0.0.1", 101
+        self.ip, self.port = "127.0.0.1", 80
         
         self.server_addr = (self.ip, self.port)
         self.server.connect(self.server_addr)
