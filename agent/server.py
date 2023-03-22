@@ -55,7 +55,8 @@ class s_sock:
                 self.ip_address = self.conn.getpeername()[0]
                 
                 print("Waiting for a response...")
-                self.response = self.conn.recv(1024).decode().split("\\|/")
+                ## decode THEN split
+                self.response = str_decode(self.conn.recv(1024)).split("\\|/")
             
             except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
                 print("Client Disconnected")
@@ -174,6 +175,20 @@ class s_sock:
             return True
         else:
             return False
+        
+    def str_encode(self, input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]):
+        for format in formats:
+            try:
+                return input.encode(format)
+            except UnicodeEncodeError:
+                print("Unicode Encode Error") if global_debug else None
+
+    def str_decode(self, input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]):
+        for format in formats:
+            try:
+                return input.encode(format)
+            except UnicodeDecodeError:
+                 print("Unicode Decode Error") if global_debug else None
         
 ################
 ## Friendly Clients
