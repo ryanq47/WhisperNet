@@ -129,6 +129,8 @@ class s_sock:
                 print("usercomm")
                 
             elif "GET" in self.id:
+                ## attempt 
+                self.conn.send(str_encode("<p1>403 Denied</p1>"))
                 print("HTTP request... Filtering")
 
             
