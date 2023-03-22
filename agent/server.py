@@ -612,7 +612,7 @@ if __name__ == "__main__":
     ## could listen on multiple ports with threading this whole thing
     SERV = s_sock()
 
-    background_listen = threading.Thread(target=SERV.start_server, args=('0.0.0.0',101))
+    background_listen = threading.Thread(target=SERV.start_server, args=('0.0.0.0',80))
     background_listen.start() 
     print("server started")
     
