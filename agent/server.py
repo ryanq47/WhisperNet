@@ -610,7 +610,7 @@ def str_encode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]) 
 def str_decode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]) -> str:
     for format in formats:
         try:
-            return input.encode(format)
+            return input.decode(format)
         except UnicodeDecodeError:
             print("Unicode Decode Error") if global_debug else None
 
