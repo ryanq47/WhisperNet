@@ -189,7 +189,7 @@ class s_sock:
     def str_decode(self, input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]):
         for format in formats:
             try:
-                return input.encode(format)
+                return input.decode(format)
             except UnicodeDecodeError:
                  print("Unicode Decode Error") if global_debug else None
         
