@@ -39,8 +39,12 @@ Error Codes:
 
             
             0x00: Connection Errors
-                0x01: "conn_broken_pipe: A pipe was broken"  
-                0x02: "Socket Close: The socket was successfully closed"
+                0x01 = "conn_broken_pipe: A pipe was broken"  
+                0x02 = "Socket Close: The socket was successfully closed"
+                0x03 = "Socket Timeout: The socket timed out"
+                0x04 = "Socket Permission Error: You most likely don'y have permissions to open a socket"
+                0x05 = "Connection Refused or Reset: "
+
 
             0x10: Input/encode/decode Errors
                 0x10: "client_unkown_input: An unkown input was receieved from the client"
@@ -49,7 +53,7 @@ Error Codes:
 
             Handling unkowns:
                 SxXX: -1 means unkown, use thiscode as a catchall
-                        logging.warn(f"{self.Sx-1}:{e}")
+                        logging.warning(f"{self.Sx-1}:{e}")
 
 
             any additional info will be added on via a []:
