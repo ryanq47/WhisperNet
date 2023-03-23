@@ -10,3 +10,7 @@ compile:
 
 gui:
 	/home/kali/.local/bin/pyside6-uic gui.ui > gui.py 
+
+dev:
+	pip install -r requirements.txt
+	pip install pyqt5-tools

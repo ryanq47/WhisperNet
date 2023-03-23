@@ -4,10 +4,10 @@ echo "####################"
 echo "Logec Installer!"
 echo "####################"
 
-echo "##=================="
-echo "Checking for updates..."
-echo "##=================="
-sudo apt-get update -y
+#echo "##=================="
+#echo "Checking for updates..."
+#echo "##=================="
+#sudo apt-get update -y
 
 
 echo "##=================="

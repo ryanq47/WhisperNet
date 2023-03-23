@@ -4,8 +4,8 @@ import psutil
 import os
 
 import speedtest 
-import dns
-import dns.resolver
+#import dns
+#import dns.resolver
 import requests
 
 
