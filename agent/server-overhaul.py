@@ -55,6 +55,12 @@ class ServerSockHandler:
             logging.warning(f"{self.SxXX}:{e}")
 
     def start_server(self, ip, port):
+        """
+        Description: This is the starting point for this class, it listens for connections,
+        and then delegates/sorts them based on the clients response
+        """
+
+    ##== Initial Connection
         try:
             self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             # this allows the socket to be reelased immediatly on crash/exit
@@ -63,6 +69,7 @@ class ServerSockHandler:
             self.ADDR = (ip,port)
             self.server.bind(self.ADDR)  
             atexit.register(self.socket_cleanup)
+            self.server.listen()  
 
         ##Exceptions: https://docs.python.org/3/library/exceptions.html#TimeoutError
         except TimeoutError as e:
@@ -75,13 +82,78 @@ class ServerSockHandler:
             logging.warning(f"{self.SXX}:ERRMSG: {e}\n")
         
 
-    
+    ##== Clients & lists
+        self.clients = {}
+        self.current_clients = []
+        
+        self.friendly_current_clients = []
+        self.friendly_clients = {}
 
-            
-            #if value:
-                #err_string += f"Err: {i[1]}"
-                
-        #print(err_string)
+    ##== Connection Loop
+        while True:
+            ##== Initial  handling of client 
+            try:
+                logging.debug(f"\nServer Listening: {self.ADDR}")
+
+                self.conn, addr = self.server.accept()
+
+                ## Getting client id from the client, and the IP address
+                self.client_remote_ip_port = f"{self.conn.getpeername()[0]}:{self.conn.getpeername()[1]}"
+                logging.debug(f"Accepted Connection from: {self.client_remote_ip_port}")
+
+                ## decode THEN split
+                self.response = str_decode(self.conn.recv(1024)).split("\\|/")
+                logging.debug(f"{self.client_remote_ip_port} says: {self.response}")
+
+            except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
+                logging.warning(f"Client {self.client_remote_ip_port} disconnected")
+
+            ##== parsing client response
+            response_list = []
+            for i in self.response:
+                response_list.append(i)
+
+            logging.debug(f"Parsed response from {self.client_remote_ip_port}: {response_list}")
+
+            try:
+                self.id = response_list[0]
+                self.message = response_list[1]
+                logging.debug(f"Client Established: {self.client_remote_ip_port} id={self.id}")
+
+            except:
+                ## Not setting self.id as it's first in the list, and SHOULD alwys have a value
+                ## however an empty request may fool it
+                self.message = "None"
+                logging.debug(f"No message value was recieved. id={self.id} message={self.message}")
+
+
+
+################
+## QOL Functions
+################
+## str -> bytes
+def str_encode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]) -> bytes:
+    for format in formats:
+        try:
+            return input.encode(format)
+            logging.debug(f"Succesfully encoded bytes to {format}")
+        except UnicodeEncodeError:
+            logging.debug(f"Could not encode bytes to {format}")
+        except Exception as e:
+            logging.warning(f"{self.SXX}:ERRMSG: {e}\n")
+
+
+## bytes -> str
+def str_decode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]) -> str:
+    for format in formats:
+        try:
+            return input.decode(format)
+            logging.debug(f"Succesfully decoded bytes to {format}")
+        except UnicodeEncodeError:
+            logging.debug(f"Could not decode bytes to {format}")
+        except Exception as e:
+            logging.warning(f"{self.SXX}:ERRMSG: {e}\n")
+
 
 
 s = ServerSockHandler()
