@@ -33,6 +33,7 @@ class ServerSockHandler:
     """
 
     def __init__(self):
+        logging.debug(f"===== Startup | Time (UTC) {datetime.now(timezone.utc)} =====")
         self.server_password = "1234"
 
         ##Errors relevant to this funtion
@@ -93,7 +94,7 @@ class ServerSockHandler:
         while True:
             ##== Initial  handling of client 
             try:
-                logging.debug(f"\nServer Listening: {self.ADDR}")
+                logging.debug(f"Server Listening: {self.ADDR}")
 
                 self.conn, addr = self.server.accept()
 
