@@ -43,7 +43,7 @@ Error Codes:
                 0x02 = "Socket Close: The socket was successfully closed"
                 0x03 = "Socket Timeout: The socket timed out"
                 0x04 = "Socket Permission Error: You most likely don'y have permissions to open a socket"
-                0x05 = "Connection Refused or Reset: "
+                0x05 = "Connection Refused Reset or aborted: "
 
 
             0x10: Input/encode/decode Errors
