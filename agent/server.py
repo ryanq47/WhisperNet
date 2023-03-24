@@ -74,7 +74,7 @@ class s_sock:
             except:
                 self.message = "none"
                 print("list index out of range with self.message, setting to none") if global_debug else None
-            
+            ##=========================================================
             print(f"\nID: {self.id}") if global_debug else None
             print(f"MSG: {self.message}") if global_debug else None
             

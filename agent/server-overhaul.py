@@ -24,7 +24,9 @@ logging.basicConfig(filename='../server.log', filemode='a', format='%(name)s - %
 if global_debug:
     logging.getLogger().addHandler(logging.StreamHandler())
 
-
+################
+## Initial Handler
+################ 
 class ServerSockHandler:
     """
     Description: A class that handles the inital connections, and sends them
@@ -103,7 +105,7 @@ class ServerSockHandler:
                 logging.debug(f"Accepted Connection from: {self.client_remote_ip_port}")
 
                 ## decode THEN split
-                self.response = str_decode(self.conn.recv(1024)).split("\\|/")
+                self.response = bytes_decode(self.conn.recv(1024)).split("\\|/")
                 logging.debug(f"{self.client_remote_ip_port} says: {self.response}")
 
             except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
@@ -127,6 +129,58 @@ class ServerSockHandler:
                 self.message = "None"
                 logging.debug(f"No message value was recieved. id={self.id} message={self.message}")
 
+            ## == Decisions based on parsed messages
+            if self.id == "!_userlogin_!":
+                username, password = self.message.split("//|\\\\")
+
+                if self.password_eval(password):
+                    try:
+                    ##== sending the a-ok on successful authentication
+                        self.conn.send(str_encode("0"))
+                        friendly_client_name = f"!!~{username}"
+
+                        logging.debug(f"Successful Logon from: {friendly_client_name}")
+
+                        if friendly_client_name not in self.friendly_current_clients:
+                            self.friendly_current_clients.append(friendly_client_name)
+
+                        ## Addinng the class instance with the value of friendly_client_name
+                        ## to the globals so it can be called upon by name
+                        self.friendly_clients[friendly_client_name] = s_friendlyclient()
+                        globals()[friendly_client_name] = self.friendly_clients[friendly_client_name]              
+
+                    ## == Thread handler
+                        friendly_thread = threading.Thread(
+                            target=self.friendly_clients[friendly_client_name].friendly_client_communication,
+                            args=(self.conn, self.ADDR, self.response, username)
+                        )
+                        friendly_thread.start()
+                        logging.debug(f"Thread for object {friendly_client_name} created")
+
+                    except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
+                        logging.warning(f"Friendly Client {friendly_client_name} disconnected")
+                    except Exception as e:
+                        logging.warning(f"{self.Sx-1}:{e}")
+                else:
+                    logging.critical(f"Failed logon  from {username}, {self.client_remote_ip_port}")
+
+################
+## Client Fucntions
+################ 
+
+## If the job is not meant for the server, it filters down to here.
+## this interacts with the self.clients interact function, which sets jobs 
+## for the event loop to do on heartbeats
+
+## TLDR: This sets jobs or gets current data from the current selected client
+
+#                           Action      Value    Target Client 
+#requests look like this: set-heartbeat 15 client_127_0_0_1_FCECW
+
+
+##! Up next, per client, and then after that, friendlt client classes
+
+
 
 
 ################
@@ -145,7 +199,7 @@ def str_encode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]) 
 
 
 ## bytes -> str
-def str_decode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]) -> str:
+def bytes_decode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]) -> str:
     for format in formats:
         try:
             return input.decode(format)
