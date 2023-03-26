@@ -37,7 +37,12 @@ Error Codes:
                 (like an SSH timeout error in Briteforce would not apply to a DNS module)
                 I'm looking to avoid confusion/collusion of error codes. See list below
 
-            
+            4) Only create a code for the warning & higer levels.
+                if a debug is common, then a  dedicated error is okay
+                but most are one off's
+                The one off's will  have an idetifying tag:
+                [Server], [User] 
+
             0x00: Connection Errors
                 0x01 = "conn_broken_pipe: A pipe was broken"  
                 0x02 = "Socket Close: The socket was successfully closed"
@@ -46,10 +51,11 @@ Error Codes:
                 0x05 = "Connection Refused Reset or aborted: "
 
 
-            0x10: Input/encode/decode Errors
+            0x10: Server Erros
                 0x10: "client_unkown_input: An unkown input was receieved from the client"
+            
             0x20: User/frieendly client Errors
-            0x21: "[Friendly Client] conn_broken_pipe: A pipe was broken"
+                0x21: "[Friendly Client] conn_broken_pipe: A pipe was broken"
 
 
             Handling unkowns:

