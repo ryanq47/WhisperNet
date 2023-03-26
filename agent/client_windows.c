@@ -287,7 +287,7 @@ int send_message(int sock, char *response) {
 
     //combining the clinet ID, and the message to send back
 
-    sprintf(cat_response, "%s\\|/%s", server_connection.client_id, response);
+    sprintf(cat_response, "%s\\|/%s\\|/%s", "!_client_!", server_connection.client_id, response);
 
     printf("cat_response = %s", cat_response);
 

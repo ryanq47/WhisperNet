@@ -48,7 +48,8 @@ Error Codes:
 
             0x10: Input/encode/decode Errors
                 0x10: "client_unkown_input: An unkown input was receieved from the client"
-            0x20: User Errors
+            0x20: User/frieendly client Errors
+            0x21: "[Friendly Client] conn_broken_pipe: A pipe was broken"
 
 
             Handling unkowns:
