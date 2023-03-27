@@ -453,11 +453,12 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         # create client tab
         self.menuClient = QMenu("Client", self.c2_menuBar)
         self.actionStart_Listener = QAction('Start Listener', self)
+        self.actionClient_Editor = QAction('Client Editor', self)
 
         # add actions to the menu bar
         self.menuClient.addAction(self.actionStart_Listener)
+        self.menuClient.addAction(self.actionClient_Editor)
         self.c2_menuBar.addAction(self.menuClient.menuAction())
-
         # set menu bar
         self.tabWidget.widget(1).layout().setMenuBar(self.c2_menuBar)
 

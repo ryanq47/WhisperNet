@@ -297,7 +297,7 @@ p, li { white-space: pre-wrap; }
            <string>Enter</string>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="tab_57">
            <attribute name="title">
@@ -1326,8 +1326,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>98</width>
-                 <height>28</height>
+                 <width>949</width>
+                 <height>453</height>
                 </rect>
                </property>
                <widget class="QLabel" name="label_62">
@@ -1936,8 +1936,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>98</width>
-                 <height>28</height>
+                 <width>949</width>
+                 <height>587</height>
                 </rect>
                </property>
                <widget class="QToolBox" name="bashbuild_toolBox">
@@ -2043,8 +2043,8 @@ p, li { white-space: pre-wrap; }
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>98</width>
-                   <height>28</height>
+                   <width>241</width>
+                   <height>459</height>
                   </rect>
                  </property>
                  <attribute name="label">
