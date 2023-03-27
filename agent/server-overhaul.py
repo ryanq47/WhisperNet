@@ -136,7 +136,17 @@ class ServerSockHandler:
 
             ## == Decisions based on parsed messages
             if self.client_type == "!_userlogin_!":
-                username, password = self.message.split("//|\\\\")
+                try:
+                    username, password = self.message.split("//|\\\\")
+                except ValueError as e:
+                    username = None
+                    password = None
+                    logging.debug("Value error with login, credentials probably passed wrong")
+                    
+                except:
+                    username = None
+                    password = None
+                    logging.debug("Unkown error with logon process")
 
                 if self.password_eval(password):
                     try:
@@ -181,7 +191,7 @@ class ServerSockHandler:
                 if client_name not in self.current_clients:
                     self.current_clients.append(client_name)
                     ## creating object intance
-                    self.client = ServerFriendlyClientHandler()
+                    self.client = ServerMaliciousClientHandler()
                     # adding the instance self.client to the self.clients dict
                     self.clients[client_name] = self.client
                     globals()[client_name] = self.client
@@ -201,6 +211,12 @@ class ServerSockHandler:
             else:
                 logging.critical(f"Unexpected Connection from {self.client_remote_ip_port}. Received: {response_list} ")
 
+    def password_eval(self, password=None) -> bool:
+        ## decrypt pass
+        if password == self.server_password:
+            return True
+        else:
+            return False
 ################
 ## Friendly client
 ################ 
@@ -275,15 +291,15 @@ class ServerFriendlyClientHandler:
         Checks & adds any new clients to the self.current_client_list list
         """
         self.current_client_list = ""
-            for current_client in globals():
-                if current_client.startswith("client_"):
-                    self.current_client_list += f"{current_client}\n"
+        for current_client in globals():
+            if current_client.startswith("client_"):
+                self.current_client_list += f"{current_client}\n"
 
 
 ################
 ## Client Fucntions
 ################ 
-"""
+    """
     ## If the job is not meant for the server, it filters down to here.
     ## this interacts with the self.clients interact function, which sets jobs 
     ## for the event loop to do on heartbeats
@@ -293,7 +309,7 @@ class ServerFriendlyClientHandler:
     #                           Action      Value    Target Client 
     #requests look like this: set-heartbeat 15 client_127_0_0_1_FCECW
 
-"""
+    """
     def client_decision_tree(self, raw_message):
         message = self.parse_msg_for_client(raw_message)
         #logging.debug(f"RawMessage={raw_message}")
@@ -326,7 +342,7 @@ class ServerFriendlyClientHandler:
             ## sanity check
             if self.client.current_job == f"set-heartbeat\\|/{heartbeat_value}":
                 ## == Message back to client
-                self.send_msg(f"Heartbeat queued to be set to: {heartbeat_value}"
+                self.send_msg(f"Heartbeat queued to be set to: {heartbeat_value}")
             
             else:
                 self.send_msg(f"Error setting heartbeat for {self.client}")
@@ -379,6 +395,132 @@ class ServerFriendlyClientHandler:
 
 
 ## perclient & interact left
+class ServerMaliciousClientHandler:
+    """
+    This is the class that handles all the malicious clients, a new instance is spawned for 
+    each client that checks in.
+    """
+    def __init__(self):
+        self.first_time = 0
+        # setting current job to none to start
+        self.current_job = None
+
+        ## stats
+        self.stats_heartbeats = 0
+        self.stats_heartbeat_timer = 15
+        self.stats_jobsrun = 0
+        self.stats_latestcheckin = 0
+
+        ## errors
+        self.Sx12 = "[Server] A malicious client tried to connect without a valid ID:"
+
+
+    def handle_client(self, conn, addr, message, id):
+        
+        self.conn = conn
+        self.addr = addr
+        self.ip = addr[0]
+        self.port = addr[1]
+        self.id =  id
+        
+        self.data_list = [
+            self.stats_heartbeats,
+            self.stats_heartbeat_timer,
+            self.stats_jobsrun,
+            self.stats_latestcheckin
+        ]
+
+        while message:
+            self.decision_tree(message)
+
+            if not message: 
+                break
+            message = None
+        
+        ## Closing connection so a session doesn't stay established with the client
+        conn.close()
+
+    def decision_tree(self, received_msg):
+        ## might be better to put the full client name/ip+id instead of just ID
+        logging.debug(f"[{self.id}] MSG from Client: {received_msg}")
+
+        if received_msg[0] == self.id:
+            self.stats_heartbeats = self.stats_heartbeats + 1
+            self.stats_latestcheckin = str(datetime.now(timezone.utc))
+            logging.debug(f"[{self.id}] Heartbeat Recieved")
+
+            ## can do if msg == whatever AND this to cleanup
+            if self.current_job != None:
+                logging.debug(f"[Server] sending {self.current_job} to {self.id}")
+                ## sending job
+                self.send_msg(self.current_job) 
+
+                if self.current_job != "wait":
+                    ## stats
+                    self.stats_jobsrun = self.stats_jobsrun + 1  
+                self.cleanup()
+            else:
+                self.current_job = "wait\\|/wait"
+                self.send_msg(self.current_job)
+        else:
+            try:
+                logging.critical(f"{self.Sx12} {self.id}, {self.ip}:{self.port}")
+            except: 
+                logging.critical(f"{self.Sx12} Info Not Available - check for any weird clients")
+
+    def interact(self, user_input_raw, command_value=None):
+        """
+        This may be confusing
+
+        This function is used for taking the friendly client input (input comes from 
+        theServerSockHandler filter), and setting jobs for malicious clients. 
+        """
+        user_input = user_input_raw.lower()
+
+        ##  leaving jobs & descriptions out as that is handled on the logec side
+
+        if user_input == "run-command":
+            self.current_job = f"run-command\\|/{command_value}"
+            return f"standin-command-results, command run: {command_value}"
+
+        elif user_input == "wait":
+            self.current_job = "wait\\|/wait"
+
+        elif user_input == "set-heartbeat":
+            #new_heartbeat = input("What is the new heartbeat? (seconds, ex 300): ")
+            new_heartbeat = command_value
+            self.current_job = f"set-heartbeat\\|/{int(new_heartbeat)}"
+
+        elif user_input == "kill":
+            ## add additional actions like shutdown, or crash PC in the command slot
+            self.current_job = f"kill\\|/kill" 
+
+        elif user_input == "current_job":
+            pass
+            ##need to  send backcurrent job
+            #print(self.current_job.strip("\\|/"))
+            self.send_msg(self.current_job.strip("\\|/"))
+
+        elif user_input == "":
+            pass
+            #send bacck instead of print
+            #print("No input provided!")
+            self.send_msg("No input provided")
+
+        else:
+
+            #send back as well
+            #print("Job does not exist - type 'jobs' for jobs")
+            self.current_job == "none"
+            self.send_msg("Invalid job, type 'jobs' for jobs")
+        
+    def cleanup(self):
+        self.current_job = "wait\\|/wait"
+    
+    def send_msg(self, message):
+        #print(f"Message being sent to cleint: {message}") #if global_debug else None
+        ##Test >1024
+        self.conn.send(str_encode(message))
 
 ################
 ## QOL Functions

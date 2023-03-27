@@ -53,6 +53,7 @@ Error Codes:
 
             0x10: Server Erros
                 0x10: "client_unkown_input: An unkown input was receieved from the client"
+                0x12: [Server] A malicious client tried to connect without a valid ID
             
             0x20: User/frieendly client Errors
                 0x21: "[Friendly Client] conn_broken_pipe: A pipe was broken"
