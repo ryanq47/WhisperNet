@@ -57,6 +57,7 @@ from Gui.listen_popup import Ui_listener_popup
 from Gui.portscan_popup import Ui_PortScan_Popup
 from Gui.shell_popup import Ui_shell_SEND
 from Gui.startup_projectbox import Ui_startup_projectbox
+from Gui.agent_compile import Ui_AgentEditor
 
 from Modules.General.Bruteforce.bruteforce import Bruteforce, Fuzzer
 from Modules.General.OSINT.dork import Dork
@@ -132,11 +133,11 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
     ##== SQL Table loading
     def init_sql_loading(self) -> None:
-        self.table_RefreshDB_Button.clicked.connect(lambda: self.refresh_db('c2_db'))
-        self.table_RefreshDB_Button.setShortcut('r')
+        #self.table_RefreshDB_Button.clicked.connect(lambda: self.refresh_db('c2_db'))
+        #self.table_RefreshDB_Button.setShortcut('r')
 
-        self.table_QueryDB_Button.clicked.connect(lambda: self.custom_query('c2_db'))
-        self.table_QueryDB_Button.setShortcut('Return')
+        #self.table_QueryDB_Button.clicked.connect(lambda: self.custom_query('c2_db'))
+        #self.table_QueryDB_Button.setShortcut('Return')
 
         self.table_RefreshDB_Button_main.clicked.connect(lambda: self.refresh_db('main_db'))
         self.table_RefreshDB_Button_main.setShortcut('r')
@@ -185,6 +186,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.c2_disconnect_button.clicked.connect(self.c2_server_disconnect)
         self.c2_server_password.setEchoMode(QLineEdit.Password)
         self.c2_shell_startup()
+        
 
     ##== buttons for Bruteforce Credentials
     def init_buttons_bruteforce_credentials(self) -> None:
@@ -255,7 +257,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
     ##== Loading all the data into the respective tables
     def init_data_sql_tables(self) -> None:
-        self.view = self.table_SQLDB
+        #self.view = self.table_SQLDB
         ## Showing help table on startup
         self.DB_Query_main.setText('select * from Help')
         self.custom_query('main_db')
@@ -460,7 +462,10 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.menuClient.addAction(self.actionClient_Editor)
         self.c2_menuBar.addAction(self.menuClient.menuAction())
         # set menu bar
-        self.tabWidget.widget(1).layout().setMenuBar(self.c2_menuBar)
+        self.tabWidget.widget(0).layout().setMenuBar(self.c2_menuBar)
+
+        ##
+        self.actionClient_Editor.triggered.connect(self.c2_editor)
 
     ## Gonna need some work, this currently creates one thread for each command
     def sys_shell(self):
@@ -494,6 +499,22 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             self.c2_systemshell_input.setText("")
         except Exception as e:
             print(e) if GLOBAL_DEBUG else None
+
+    def c2_editor(self):
+        ## Lazy imports
+        #from Gui.startup_projectbox import Ui_startup_projectbox
+        
+        self.c2_window = QtWidgets.QMainWindow()
+        self.c2_editor_popup = Ui_AgentEditor()#Ui_startup_projectbox()
+        self.c2_editor_popup.setupUi(self.window)
+        self.window.show()
+        
+        ## ========================================
+        ## Startup Buttons ========================
+        ## ========================================
+        ## down here due to the import, and it technically being in a different class
+        #self.project_popup.startup_project_openproject.clicked.connect(self.project_open)
+        #self.project_popup.startup_project_exit.clicked.connect(self.program_exit)
 
 ##== C2 Server Interaction
         """
