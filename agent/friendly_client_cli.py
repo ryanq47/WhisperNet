@@ -29,7 +29,7 @@ class fclient():
         
         print(f"!_user_!\\|/{creds[0]}\\|/{creds[1]}") if global_debug else None
         
-        self.server.send(self.str_encode(f"!_userlogin_!\\|/{creds[0]}//|\\\\{creds[1]}"))
+        self.server.send(self.str_encode(f"!_userlogin_!\\|/{creds[0]}\\|/{creds[1]}"))
         response = int(self.server.recv(1024).decode())
 
         print(f"Server Auth Response: {response}")
@@ -250,7 +250,7 @@ class fclient():
     def server_request(self, request, client_name=None):
     
         if request == "clients":
-            formatted_request = f"!_usercommand_!\\|/{self.username}//|\\\\{request}"
+            formatted_request = f"!_clientcommand_!\\|/{self.username}//|\\\\{request}"
             
             print(f"DEBUG: Sending {formatted_request}") if global_debug else None
             self.server.send(self.str_encode(formatted_request))
@@ -262,7 +262,7 @@ class fclient():
             
         
         elif "-" in request:
-            formatted_request = f"!_usercommand_!\\|/{self.username}//|\\\\{request} {client_name}"
+            formatted_request = f"!_clientcommand_!\\|/{self.username}//|\\\\{request} {client_name}"
             print(f"Formatted request: {formatted_request}")
             self.server.send(self.str_encode(formatted_request))
 

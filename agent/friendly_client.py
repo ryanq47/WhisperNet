@@ -36,10 +36,10 @@ class FClient(QObject):
             self.err_ConnRefused_0x01 = True
                 
         if global_debug:
-            print(f"!_user_!\\|/{self.username}\\|/{password}")
+            print(f"!_userlogin_!\\|/{self.username}\\|/{password}")
         
         ## Sending Login string
-        self.server.send(self.str_encode(f"!_userlogin_!\\|/{self.username}//|\\\\{password}"))
+        self.server.send(self.str_encode(f"!_userlogin_!\\|/{self.username}\\|/{password}"))
         response = int(self.server.recv(1024).decode())
 
         if global_debug:
