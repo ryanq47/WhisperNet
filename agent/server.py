@@ -253,7 +253,15 @@ class ServerFriendlyClientHandler:
     
     def friendly_client_communication(self, message, username):
         """
-        aaaaa
+        This function handles the incoming messages from the friednly client,
+        and directs them on where to go based on the header
+
+        headers are: !_clientcommand_! and !_servercommand_!
+            client controls a client, and server controls a server
+
+        raw user input looks  like:
+        !_clientcommand_!\|/ryan\|/set-heartbeat 69 client_127_0_0_1_UDDSZ
+
         """
 
         logging.debug(f"Friendly Client authenticated, user={username}")
@@ -268,13 +276,14 @@ class ServerFriendlyClientHandler:
                 user_command= user_input[2]
 
                 if user_header == "!_servercommand_!":
+                    logging.debug("[!_servercommand_!]")
                     self.server_decision_tree(user_command)
                 
-                ## has to be done/sent on fclient end
                 ## format that fclient needs to send(see client_decision_tree)
                 ## !_servercommand_!\|/ryan\|/action value CLIENTNAME
                 ##client name is always last for future compatability
                 elif user_header == "!_clientcommand_!":
+                    logging.debug("[!_clientcommand_!]")
                     self.client_decision_tree(user_command)
                 
 
@@ -282,6 +291,10 @@ class ServerFriendlyClientHandler:
                 logging.debug(f"Error with username or command, input={raw_user_input}: {e}")
                 break
             #message = None
+
+################
+## Server Decision tree
+################ 
     def server_decision_tree(self, message):
         """
         Handles commands meant directly for the server
@@ -322,7 +335,7 @@ class ServerFriendlyClientHandler:
 
 
 ################
-## Client Fucntions
+## Client decision tree
 ################ 
     """
     ## If the job is not meant for the server, it filters down to here.
@@ -336,6 +349,7 @@ class ServerFriendlyClientHandler:
 
     """
     def client_decision_tree(self, raw_message):
+        logging.debug(f"[Client Decision Tree]: {raw_message}")
         message = self.parse_msg_for_client(raw_message)
         #logging.debug(f"RawMessage={raw_message}")
         #logging.debug(f"ParsedMessage{message}")
@@ -346,6 +360,8 @@ class ServerFriendlyClientHandler:
         ##== Client name is always last
         client_name = message[-1]
 
+        logging.debug(f"[client -> server] command:{client_command} value:{client_command_value} name:{client_name}")
+
         self.client = globals()[client_name]
         if client_name in self.current_client_list:
             pass
@@ -354,8 +370,16 @@ class ServerFriendlyClientHandler:
         
         # == Static, From Server, validated
         if client_command == "get-data":
-            data = f"{self.client.data_list}"
-            self.send_msg(data)  
+            if client_command_value == "stats":
+                data = f"{self.client.data_list}"
+                self.send_msg(data)  
+            elif client_command_value == "connection":
+                data = f"{self.client.conn}\n{self.client.ip}:{self.client.port}"
+                self.send_msg(data)  
+            elif client_command_value == "":
+                self.send_msg("Please enter a data type, options are \nstats, connection")
+            else:
+                self.send_msg("Not a valid data type")
 
         # == Dynamic, To Client, validated
         elif client_command == "set-heartbeat":
@@ -367,12 +391,13 @@ class ServerFriendlyClientHandler:
             if self.client.current_job == f"set-heartbeat\\|/{heartbeat_value}":
                 ## == Message back to client
                 self.send_msg(f"Heartbeat queued to be set to: {heartbeat_value}")
-            
+                logging.debug(f"Heartbeat queued to be set to: {heartbeat_value}")   
+
             else:
                 self.send_msg(f"Error setting heartbeat for {self.client}")
                 logging.debug(f"Error setting heartbeat for {self.client}")   
         
-               # == Dynamic, To Client
+        # == Dynamic, To Client
         elif client_command == "run-command":
             ## Sending back results of command run
             self.send_msg(self.client.interact("run-command", client_command_value))
@@ -380,6 +405,10 @@ class ServerFriendlyClientHandler:
         ## stats on a per client basis
         elif client_command == "stats":
             pass
+        
+        else:
+            self.send_msg(f"Invalid job/command: {client_command}")
+            logging.debug(f"Invalid job/command: {client_command}")
 
     def send_msg(self, message:str):
         try:
@@ -476,6 +505,7 @@ class ServerMaliciousClientHandler:
             self.stats_heartbeats = self.stats_heartbeats + 1
             self.stats_latestcheckin = str(datetime.now(timezone.utc))
             logging.debug(f"[{self.id} -> Server] Heartbeat")
+            logging.debug(f"[server] Current Job: {self.current_job}")
 
             ## can do if msg == whatever AND this to cleanup
             if self.current_job != None:
