@@ -110,14 +110,15 @@ class ServerSockHandler:
                 ## decode THEN split
                 self.response = bytes_decode(self.conn.recv(1024)).split("\\|/")
                 logging.debug(f"{self.client_remote_ip_port} says: {self.response}")
+                
+                ##== parsing client response
+                response_list = []
+                for i in self.response:
+                    response_list.append(i)
 
             except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
+                response_lisr = []
                 logging.warning(f"Client {self.client_remote_ip_port} disconnected")
-
-            ##== parsing client response
-            response_list = []
-            for i in self.response:
-                response_list.append(i)
 
             logging.debug(f"Parsed response from {self.client_remote_ip_port}: {response_list}")
 
@@ -597,7 +598,7 @@ def str_encode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]) 
         except UnicodeEncodeError:
             logging.debug(f"Could not encode bytes to {format}")
         except Exception as e:
-            logging.warning(f"{self.SXX}:ERRMSG: {e}\n")
+            logging.warning(f"ERRMSG: {e}\n")
 
 
 ## bytes -> str
@@ -609,7 +610,7 @@ def bytes_decode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]
         except UnicodeEncodeError:
             logging.debug(f"Could not decode bytes to {format}")
         except Exception as e:
-            logging.warning(f"{self.SXX}:ERRMSG: {e}\n")
+            logging.warning(f"ERRMSG: {e}\n")
 
 
 
