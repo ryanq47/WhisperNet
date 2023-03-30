@@ -9,6 +9,23 @@ ask them before printing the refactored code.
 Last but not least, please point out any potentaily optimziations, as well
 as a summary of what you changed when done refactoring
 
+Git Stuff:
+    For new features, create a new branch. Naming will be:
+        action/code
+        refactor/reddit-osint
+
+    to create & switch:
+        git branch NAME
+        git checkout NAME 
+    
+    to merge:
+        checkout master:
+        git checkout master
+
+        Merge to master:
+        git merge branch/name
+        (git merge refactor/reddit-osint)
+
 
 Error Codes:
 
