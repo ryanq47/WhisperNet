@@ -159,3 +159,6 @@ Signals:
 Spacing:
     There shall be no more than 2 blank lines at any time. All ifs/elifs/else's will have one line between them. 
     One line between functions is required as well. 
+
+GUI to Modules:
+    Use dict's if possible to pass data across, that way order does not matter & thus the program is less fragile

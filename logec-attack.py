@@ -57,7 +57,7 @@ from Gui.listen_popup import Ui_listener_popup
 from Gui.portscan_popup import Ui_PortScan_Popup
 from Gui.shell_popup import Ui_shell_SEND
 from Gui.startup_projectbox import Ui_startup_projectbox
-from Gui.agent_compile import Ui_AgentEditor
+#from Gui.agent_compile import Ui_AgentEditor
 
 from Modules.General.Bruteforce.bruteforce import Bruteforce, Fuzzer
 from Modules.General.OSINT.dork import Dork
@@ -94,6 +94,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         ##== Buttons
         self.init_buttons_file_menu()
         self.init_buttons_c2_shells()
+        self.init_buttons_osint_reddit()
         self.init_buttons_bruteforce_credentials()
         self.init_buttons_bruteforce_fuzzer()
         self.init_buttons_bashbuilder()
@@ -186,7 +187,15 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.c2_disconnect_button.clicked.connect(self.c2_server_disconnect)
         self.c2_server_password.setEchoMode(QLineEdit.Password)
         self.c2_shell_startup()
-        
+    
+    ##== Buttons for OSINT reddit
+    def init_buttons_osint_reddit(self) -> None:
+        self.osint_reddit_search.clicked.connect(self.osint_reddit)
+        ## DB table buttons
+        self.table_RefreshDB_Button_osint_reddit.clicked.connect(lambda: self.refresh_db('reddit_osint_db'))
+        self.table_RefreshDB_Button_osint_reddit.setShortcut('r')
+        self.table_QueryDB_Button_osint_reddit.clicked.connect(lambda: self.custom_query('reddit_osint_db'))
+        self.table_QueryDB_Button_osint_reddit.setShortcut('Return')
 
     ##== buttons for Bruteforce Credentials
     def init_buttons_bruteforce_credentials(self) -> None:
@@ -1228,17 +1237,24 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
     """
     Needs to move to Qthread
     """
+
     def osint_reddit(self):
-        osint_red = threading.Thread(target=self.osint_reddit_thread)
-        osint_red.start()
+        ## lazy import for performance/easy err handling
+        try:
+            from Modules.General.OSINT.reddit_osint import OsintReddit
+        except Exception as e:
+            self.handle_error(e, "Medium", "error")
 
-    def osint_reddit_thread(self):
-        self.reddit_progressbar.setValue(10)
-
-        from Modules.General.OSINT.reddit_osint import reddit
-
-        ## need to init the class by calling it first durrrr
-        r = reddit()
+        ## need to load credentials
+        ## using a dict so I don't have to worry about the order. Just makes this side cleaner
+        credentials = {
+            "username" : self.settings['osint']['reddit']['username'],
+            "password" : self.settings['osint']['reddit']['password'],
+            "secret_token" : self.settings['osint']['reddit']['secret_token'],
+            "client_id" : self.settings['osint']['reddit']['client_id']
+            }
+        ## creating class instance
+        r = OsintReddit(credentials)
 
         ##search_list: search_term, subreddit, time, sort, limit
         keyword = self.osint_reddit_keyword.text()
@@ -1276,6 +1292,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             else:
                 search_subbreddit = True
 
+            ## Convert to DICT eventuallly, keeping as list for now
             search_list = [keyword, subreddit, time, sort, limit]
             options_list = [
                 download_media,
@@ -1283,17 +1300,29 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
                 only_profile,
                 search_subbreddit,
             ]
+            
+            """
+            search_dict = {
+                "keyword" : keyword,
+                "subreddit" : subreddit,
+                "time" : time,
+                "sort" : sort,
+                "limit" : limit
+            }"""
 
-            r.main(search_list, options_list)
+            print("osint_reddit_framework")
+            r.osint_reddit_framework(search_list, options_list)
 
             self.osint_reddit_search.setText('-->> Search <<--')
             ## bar
             ## its putting the bar at 100% right away due to it being after the r.main... hmmm need a way to fix that
-            maxval = r.total_posts
-            currentval = r.current_post
+            
+            ##== progress bar stuff
+            #maxval = r.total_posts
+            #currentval = r.current_post
 
-            self.reddit_progressbar.setMaximum(maxval)
-            self.reddit_progressbar.setValue(currentval)
+            #self.reddit_progressbar.setMaximum(maxval)
+            #self.reddit_progressbar.setValue(currentval)
 
 ##== Google Dork
 
@@ -1610,6 +1639,9 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         """
         Description:
             Handles the settings file
+            
+        accesing settings:
+        self.settings[setting][setting]
 
         """
     def settings_global(self, settings_file="default"):
@@ -1625,9 +1657,10 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
                 with open(sys_path + '/Modules/General/SaveFiles/init_project/settings.yaml', 'r') as f:
                     self.settings_path = sys_path + '/Modules/General/SaveFiles/init_project/settings.yaml'
                     self.settings = yaml.safe_load(f)
+                    print("Succesfully opened default project")
                     
             # Getting settings
-            #print(self.settings['general']['theme'])
+            print(self.settings['general']['theme'])
               
         except Exception as e:
             print(e) if GLOBAL_DEBUG else None

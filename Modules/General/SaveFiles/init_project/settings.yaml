@@ -13,7 +13,7 @@ startup:
 osint:
   reddit:
     ## These are burner creds (link to a real, useless account)
-    secret_token:Uznjv2irCmmHWvb4iWuwDIjWxPTESw
-    client_id:JT_Ty95hGzprbPMQ6eEKFg
-    username:Level_Statement8564
-    password:s7zmf4@LJP*5C#^Nim3HU5ZtF&cpV9
+    secret_token: "nZbrbXJUJ8xgcITMCroDfg4YOB2pIA"
+    client_id: "GAlh4V1Wvo3h_lg2H9v4ZQ"
+    username: "Level_Statement8564"
+    password: "s7zmf4@LJP*5C#^Nim3HU5ZtF&cpV9"
