@@ -45,6 +45,8 @@ from PySide6.QtWidgets import (
 sys_path = os.path.dirname(os.path.abspath(sys.argv[0]))
 print("Syspath:" + sys_path) if GLOBAL_DEBUG else None
 
+
+
 ##== Plugin Path, for SQL driver 
 plugin_path = 'plugins'
 os.environ['QT_PLUGIN_PATH'] = plugin_path
@@ -73,6 +75,13 @@ from Modules.Windows.Reverse_Shells.win_reverse_shells import target as rev_shel
 from agent.friendly_client import FClient
 
 from gui import Ui_LogecC3
+
+## logging
+import logging
+logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(filename='osint_reddit.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s', force=True)
+#if global_debug:
+logging.getLogger().addHandler(logging.StreamHandler())
 
 ####################
 ## Logec Suite Class
@@ -1253,12 +1262,8 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             "secret_token" : self.settings['osint']['reddit']['secret_token'],
             "client_id" : self.settings['osint']['reddit']['client_id']
             }
-        ## creating class instance
-        r = OsintReddit(credentials)
-
-        ##search_list: search_term, subreddit, time, sort, limit
+    
         keyword = self.osint_reddit_keyword.text()
-        subreddit = self.osint_reddit_subreddit.text()
 
         ## == Error handling
 
@@ -1283,37 +1288,48 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
             ## Options list: download_media, only_comments, only_profile, search_subbreddit
             download_media = self.osint_reddit_downloadmedia.isChecked()
-            only_comments = self.osint_reddit_onlycomments.isChecked()
-            only_profile = self.osint_reddit_onlyprofile.isChecked()
+            
+            ## Type Filter
+            if self.osint_reddit_onlycomments.isChecked():
+                stype = "comments"
+            elif self.osint_reddit_onlyprofile.isChecked():
+                stype = "profile"
+            if self.osint_reddit_onlysubreddit.isChecked():
+                stype = "subreddit"
+            elif self.osint_reddit_onlypost.isChecked():
+                stype = "post"   
+            else:
+                stype = "post"       
+                
+            '''only_comments = self.osint_reddit_onlycomments.isChecked()
+            only_profile = self.osint_reddit_onlyprofile.isChecked()'''
 
             # if subreddit empty, don't search by sub
-            if subreddit != '':
+            '''if subreddit != '':
                 search_subbreddit = False
             else:
-                search_subbreddit = True
+                search_subbreddit = True'''
 
             ## Convert to DICT eventuallly, keeping as list for now
-            search_list = [keyword, subreddit, time, sort, limit]
+            search_list = [keyword, "subreddit", time, sort, limit, stype]
+            
             options_list = [
                 download_media,
-                only_comments,
-                only_profile,
-                search_subbreddit,
+                "search_subbreddit",
             ]
+
+            ## creating class instance
+            #r = OsintReddit(credentials)
+            self.osint_reddit_worker = OsintReddit(credentials)
+            self.thread_manager.start(partial(self.osint_reddit_worker.osint_reddit_framework, search_list, options_list))
+            #r.osint_reddit_framework(search_list, options_list)
+
+            print("test")
+            self.osint_reddit_worker.result_list.connect(self.osint_reddit_db_write)
+        
+            #self.osint_reddit_search.setText('-->> Search <<--')
             
-            """
-            search_dict = {
-                "keyword" : keyword,
-                "subreddit" : subreddit,
-                "time" : time,
-                "sort" : sort,
-                "limit" : limit
-            }"""
-
-            print("osint_reddit_framework")
-            r.osint_reddit_framework(search_list, options_list)
-
-            self.osint_reddit_search.setText('-->> Search <<--')
+        
             ## bar
             ## its putting the bar at 100% right away due to it being after the r.main... hmmm need a way to fix that
             
@@ -1323,6 +1339,32 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
             #self.reddit_progressbar.setMaximum(maxval)
             #self.reddit_progressbar.setValue(currentval)
+            
+    def osint_reddit_db_write(self, list_to_write):
+        print("DB WRITE TRIGGERED")
+        """Generates a string for sql_db_write to write to DB
+
+        Args:
+            list_to_write (list): a list with the info needed.
+        """ 
+        subreddit, title, comment, upvote, downvote, post_url, media_url, date, time, user = list_to_write
+
+        query = f"""INSERT INTO RedditResults  (
+            "Subreddit",
+            "Title",
+            "Comment",
+            "User",
+            "Upvotes",
+            "Downvotes",
+            "PostURL",
+            "MediaURL",
+            "CreationDate",
+            "CreationTime"
+        )
+        VALUES
+        ("{subreddit}", "{title}", "{comment}", '{upvote}', '{downvote}', "{post_url}", "{media_url}", "{date}", '{time}', '{user}')"""
+        
+        self.sql_db_write(query)
 
 ##== Google Dork
 
@@ -1750,7 +1792,31 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             except:
                 print('Error connecting to DB & QApp not constructed.') if GLOBAL_DEBUG else None
         #return True
+    
+    ## SQL global writer
+    def sql_db_write(self, query):
+        """
+        The global write function. Not fully utilized, some modules still need to be moved here. 
+        Handy as it's a one stop shop into the DB and prevents lockups
         
+        Each module that needs to write here needs a db_write method that provides the query string
+
+        Args:
+            query (str): The query for SQL
+            Looks like: INSER INTO tablename (column, column2)
+        """
+        try:
+            cursor = self.sqliteConnection.cursor()
+            
+            cursor.execute(query)
+            self.sqliteConnection.commit()
+            cursor.close()
+
+        except sqlite3.Error as error:
+            #print('Error:', error) if GLOBAL_DEBUG else None
+            logging.warn(f"[SQL]Error writing to SQL DB: {error}")
+        except Exception as e:
+            logging.warn(f"[SQL] Unkown error: {e}")
 
     ## Using sqlite3 instead of QSqlite for some reason - I forgot why
     def db_error_write(self, error_list):
@@ -1825,7 +1891,7 @@ if __name__ == '__main__':
         # QT stuff
         window = LogecSuite()
         window.show()
-        app.exec_()
+        app.exec()
 
         # Kill when exec is closed
         pid = os.getpid()
