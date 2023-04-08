@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1013</width>
-    <height>730</height>
+    <width>1111</width>
+    <height>866</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -501,7 +501,7 @@ p, li { white-space: pre-wrap; }
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="0" column="0">
-         <widget class="QTabWidget" name="osint_dork">
+         <widget class="QTabWidget" name="osint_reddit_tab">
           <property name="currentIndex">
            <number>1</number>
           </property>
@@ -850,232 +850,268 @@ p, li { white-space: pre-wrap; }
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="tab_13">
+          <widget class="QWidget" name="tab_2">
            <attribute name="title">
-            <string>Reddit</string>
+            <string>Page</string>
            </attribute>
-           <layout class="QGridLayout" name="gridLayout">
-            <item row="10" column="3">
-             <widget class="QLabel" name="label_18">
-              <property name="text">
-               <string>Other</string>
+           <layout class="QGridLayout" name="gridLayout_10">
+            <item row="0" column="0">
+             <widget class="QGroupBox" name="groupBox_2">
+              <property name="title">
+               <string/>
               </property>
+              <layout class="QGridLayout" name="gridLayout_2">
+               <item row="0" column="0" colspan="2">
+                <widget class="QTableWidget" name="table_SQLDB_osint_reddit"/>
+               </item>
+               <item row="1" column="0" colspan="2">
+                <widget class="QLineEdit" name="DB_Query_osint_reddit">
+                 <property name="placeholderText">
+                  <string>SELECT * FROM RedditResults</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QPushButton" name="table_RefreshDB_Button_osint_reddit">
+                 <property name="toolTip">
+                  <string>Refresh the Database, updating values from the SQLITE DB file</string>
+                 </property>
+                 <property name="text">
+                  <string>--&gt;&gt; Refresh DB &lt;&lt;--</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QPushButton" name="table_QueryDB_Button_osint_reddit">
+                 <property name="toolTip">
+                  <string>Run a query on the DB</string>
+                 </property>
+                 <property name="text">
+                  <string>--&gt;&gt; Query DB &lt;&lt;--</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </item>
-            <item row="4" column="0" colspan="4">
-             <widget class="Line" name="line_8">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+            <item row="1" column="0">
+             <widget class="QGroupBox" name="osint_reddit_searchbox">
+              <property name="title">
+               <string>Search</string>
               </property>
-             </widget>
-            </item>
-            <item row="2" column="1" colspan="3">
-             <widget class="QPushButton" name="table_QueryDB_Button_osint_reddit">
-              <property name="toolTip">
-               <string>Run a query on the DB</string>
-              </property>
-              <property name="text">
-               <string>--&gt;&gt; Query DB &lt;&lt;--</string>
-              </property>
+              <layout class="QGridLayout" name="gridLayout_3">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_42">
+                 <property name="text">
+                  <string>Search  Term*</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLabel" name="label_20">
+                 <property name="text">
+                  <string>SortBy</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QLabel" name="label_40">
+                 <property name="text">
+                  <string>Search for...</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="3">
+                <widget class="QLabel" name="label_33">
+                 <property name="text">
+                  <string>Other</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLineEdit" name="osint_reddit_keyword">
+                 <property name="placeholderText">
+                  <string>Windows</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QComboBox" name="combo_sort">
+                 <item>
+                  <property name="text">
+                   <string>Hot</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Top</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>New</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Controversial</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Comments</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QRadioButton" name="osint_reddit_onlypost">
+                 <property name="text">
+                  <string>Posts</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="3">
+                <widget class="QCheckBox" name="osint_reddit_hideNSFW">
+                 <property name="text">
+                  <string>Hide NSFW</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="Line" name="line_10">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="label_41">
+                 <property name="text">
+                  <string>SearchURL</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLabel" name="label_43">
+                 <property name="text">
+                  <string>Time</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="2">
+                <widget class="QRadioButton" name="osint_reddit_onlycomments">
+                 <property name="text">
+                  <string>Comments</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="3" rowspan="2">
+                <widget class="QCheckBox" name="osint_reddit_downloadmedia">
+                 <property name="toolTip">
+                  <string>Download Images/Videos associated with the posts searched</string>
+                 </property>
+                 <property name="text">
+                  <string>Download Media</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLineEdit" name="osint_reddit_searchurl">
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <widget class="QComboBox" name="combo_time">
+                 <item>
+                  <property name="text">
+                   <string>All</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Year</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Month</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Day</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Hour</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="4" column="2">
+                <widget class="QRadioButton" name="osint_reddit_onlysubreddit">
+                 <property name="text">
+                  <string>Subreddits</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLabel" name="label_39">
+                 <property name="text">
+                  <string>Items Found:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="2">
+                <widget class="QRadioButton" name="osint_reddit_onlyprofile">
+                 <property name="text">
+                  <string>Profiles</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="3">
+                <widget class="QCheckBox" name="checkBox_29">
+                 <property name="toolTip">
+                  <string>Add/append results to previous results</string>
+                 </property>
+                 <property name="statusTip">
+                  <string/>
+                 </property>
+                 <property name="text">
+                  <string>Append Results to DB</string>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <property name="tristate">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="1" colspan="3">
+                <widget class="QPushButton" name="osint_reddit_search">
+                 <property name="text">
+                  <string>--&gt;&gt; Search &lt;&lt;--</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </item>
             <item row="2" column="0">
-             <widget class="QPushButton" name="table_RefreshDB_Button_osint_reddit">
-              <property name="toolTip">
-               <string>Refresh the Database, updating values from the SQLITE DB file</string>
-              </property>
+             <widget class="QCheckBox" name="osint_reddit_gui_hide_search">
               <property name="text">
-               <string>--&gt;&gt; Refresh DB &lt;&lt;--</string>
-              </property>
-             </widget>
-            </item>
-            <item row="18" column="1" colspan="3">
-             <widget class="QPushButton" name="osint_reddit_search">
-              <property name="text">
-               <string>--&gt;&gt; Search &lt;&lt;--</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0" colspan="4">
-             <widget class="QLineEdit" name="DB_Query_osint_reddit">
-              <property name="placeholderText">
-               <string>SELECT * FROM RedditResults</string>
-              </property>
-             </widget>
-            </item>
-            <item row="14" column="2" rowspan="2">
-             <widget class="QRadioButton" name="osint_reddit_onlysubreddit">
-              <property name="text">
-               <string>Subreddits</string>
-              </property>
-             </widget>
-            </item>
-            <item row="11" column="2">
-             <widget class="QRadioButton" name="osint_reddit_onlypost">
-              <property name="text">
-               <string>Posts</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="17" column="2">
-             <widget class="QRadioButton" name="osint_reddit_onlyprofile">
-              <property name="text">
-               <string>Profiles</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0" colspan="4">
-             <widget class="QProgressBar" name="reddit_progressbar">
-              <property name="value">
-               <number>0</number>
-              </property>
-              <property name="invertedAppearance">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="10" column="1">
-             <widget class="QLabel" name="label_9">
-              <property name="text">
-               <string>SortBy</string>
-              </property>
-             </widget>
-            </item>
-            <item row="17" column="0">
-             <widget class="QLabel" name="label_6">
-              <property name="text">
-               <string>Search  Term*</string>
-              </property>
-             </widget>
-            </item>
-            <item row="18" column="0">
-             <widget class="QLineEdit" name="osint_reddit_keyword">
-              <property name="placeholderText">
-               <string>Windows</string>
-              </property>
-             </widget>
-            </item>
-            <item row="13" column="1">
-             <widget class="QComboBox" name="combo_sort">
-              <item>
-               <property name="text">
-                <string>Hot</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Top</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>New</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Controversial</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Comments</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item row="14" column="1">
-             <widget class="QLabel" name="label_10">
-              <property name="text">
-               <string>Time</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0" colspan="4">
-             <widget class="QTableWidget" name="table_SQLDB_osint_reddit"/>
-            </item>
-            <item row="15" column="3" rowspan="3">
-             <widget class="QCheckBox" name="checkBox_2">
-              <property name="toolTip">
-               <string>Add/append results to previous results</string>
-              </property>
-              <property name="statusTip">
-               <string/>
-              </property>
-              <property name="text">
-               <string>Append Results to DB</string>
-              </property>
-              <property name="checked">
-               <bool>false</bool>
-              </property>
-              <property name="tristate">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="17" column="1">
-             <widget class="QComboBox" name="combo_time">
-              <item>
-               <property name="text">
-                <string>All</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Year</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Month</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Day</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Hour</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item row="13" column="2">
-             <widget class="QRadioButton" name="osint_reddit_onlycomments">
-              <property name="text">
-               <string>Comments</string>
-              </property>
-             </widget>
-            </item>
-            <item row="10" column="2">
-             <widget class="QLabel" name="label">
-              <property name="text">
-               <string>Search for...</string>
-              </property>
-             </widget>
-            </item>
-            <item row="13" column="3" rowspan="2">
-             <widget class="QCheckBox" name="osint_reddit_downloadmedia">
-              <property name="toolTip">
-               <string>Download Images/Videos associated with the posts searched</string>
-              </property>
-              <property name="text">
-               <string>Download Media</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="11" column="3">
-             <widget class="QCheckBox" name="osint_reddit_hideNSFW">
-              <property name="text">
-               <string>Hide NSFW</string>
+               <string>Hide Search</string>
               </property>
              </widget>
             </item>
@@ -1218,407 +1254,6 @@ p, li { white-space: pre-wrap; }
           <widget class="QWidget" name="tab_14">
            <attribute name="title">
             <string>VideoCams(use qwebview)</string>
-           </attribute>
-           <widget class="QLineEdit" name="lineEdit_8">
-            <property name="geometry">
-             <rect>
-              <x>150</x>
-              <y>320</y>
-              <width>751</width>
-              <height>27</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>Non Functional</string>
-            </property>
-           </widget>
-          </widget>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_38">
-       <attribute name="title">
-        <string>AD</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_29">
-        <item row="1" column="0">
-         <widget class="QTabWidget" name="tabWidget_5">
-          <property name="currentIndex">
-           <number>0</number>
-          </property>
-          <widget class="QWidget" name="tab_39">
-           <attribute name="title">
-            <string>DashBoard</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_30">
-            <item row="3" column="1">
-             <widget class="QLineEdit" name="lineEdit_17"/>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="label_70">
-              <property name="text">
-               <string>Other?</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0" rowspan="2">
-             <widget class="QLabel" name="label_67">
-              <property name="text">
-               <string>Username</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="2">
-             <widget class="QLabel" name="label_69">
-              <property name="text">
-               <string>DC-IP</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="label_68">
-              <property name="text">
-               <string>Password</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1" rowspan="2">
-             <widget class="QLineEdit" name="lineEdit_14">
-              <property name="placeholderText">
-               <string>AldersonE</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="3" colspan="2">
-             <widget class="QPushButton" name="portscan_start_6">
-              <property name="text">
-               <string>--&gt;&gt; Start &lt;&lt;--</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLineEdit" name="lineEdit_15">
-              <property name="placeholderText">
-               <string>MR.Rob3t</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="3">
-             <widget class="QLineEdit" name="dashboard_osint_keyword_2">
-              <property name="placeholderText">
-               <string>AllSafe</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="3" rowspan="2">
-             <widget class="QLineEdit" name="lineEdit_16">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="placeholderText">
-               <string>Optional</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0" colspan="5">
-             <widget class="QScrollArea" name="scrollArea_4">
-              <property name="widgetResizable">
-               <bool>true</bool>
-              </property>
-              <widget class="QWidget" name="scrollAreaWidgetContents_4">
-               <property name="geometry">
-                <rect>
-                 <x>0</x>
-                 <y>0</y>
-                 <width>949</width>
-                 <height>446</height>
-                </rect>
-               </property>
-               <widget class="QLabel" name="label_62">
-                <property name="geometry">
-                 <rect>
-                  <x>10</x>
-                  <y>10</y>
-                  <width>91</width>
-                  <height>19</height>
-                 </rect>
-                </property>
-                <property name="font">
-                 <font>
-                  <underline>true</underline>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Kerberoast</string>
-                </property>
-               </widget>
-               <widget class="QLineEdit" name="lineEdit_12">
-                <property name="geometry">
-                 <rect>
-                  <x>10</x>
-                  <y>510</y>
-                  <width>113</width>
-                  <height>27</height>
-                 </rect>
-                </property>
-                <property name="text">
-                 <string>Length</string>
-                </property>
-               </widget>
-               <widget class="QCheckBox" name="dashboard_reddit_onlycomments_2">
-                <property name="geometry">
-                 <rect>
-                  <x>140</x>
-                  <y>70</y>
-                  <width>140</width>
-                  <height>25</height>
-                 </rect>
-                </property>
-                <property name="toolTip">
-                 <string>Search ONLY for comments with &quot;KEYWORD&quot; in the text</string>
-                </property>
-                <property name="text">
-                 <string>Comment Search</string>
-                </property>
-                <property name="checkable">
-                 <bool>true</bool>
-                </property>
-                <property name="checked">
-                 <bool>false</bool>
-                </property>
-               </widget>
-               <widget class="QComboBox" name="combo_time_3">
-                <property name="geometry">
-                 <rect>
-                  <x>15</x>
-                  <y>133</y>
-                  <width>123</width>
-                  <height>27</height>
-                 </rect>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>All</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Year</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Month</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Day</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Hour</string>
-                 </property>
-                </item>
-               </widget>
-               <widget class="QLabel" name="label_63">
-                <property name="geometry">
-                 <rect>
-                  <x>15</x>
-                  <y>38</y>
-                  <width>123</width>
-                  <height>25</height>
-                 </rect>
-                </property>
-                <property name="text">
-                 <string>SortBy</string>
-                </property>
-               </widget>
-               <widget class="QLabel" name="label_64">
-                <property name="geometry">
-                 <rect>
-                  <x>15</x>
-                  <y>102</y>
-                  <width>123</width>
-                  <height>25</height>
-                 </rect>
-                </property>
-                <property name="text">
-                 <string>Time</string>
-                </property>
-               </widget>
-               <widget class="QCheckBox" name="dashboard_reddit_onlyprofile_2">
-                <property name="geometry">
-                 <rect>
-                  <x>140</x>
-                  <y>100</y>
-                  <width>140</width>
-                  <height>25</height>
-                 </rect>
-                </property>
-                <property name="toolTip">
-                 <string>Search for a user profile, enter the username in &quot;keyword&quot;</string>
-                </property>
-                <property name="text">
-                 <string>Profile Search</string>
-                </property>
-               </widget>
-               <widget class="QComboBox" name="combo_sort_3">
-                <property name="geometry">
-                 <rect>
-                  <x>15</x>
-                  <y>69</y>
-                  <width>123</width>
-                  <height>27</height>
-                 </rect>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>Hot</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Top</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>New</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Controversial</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Comments</string>
-                 </property>
-                </item>
-               </widget>
-               <widget class="QCheckBox" name="dashboard_reddit_downloadmedia_2">
-                <property name="geometry">
-                 <rect>
-                  <x>140</x>
-                  <y>130</y>
-                  <width>170</width>
-                  <height>25</height>
-                 </rect>
-                </property>
-                <property name="toolTip">
-                 <string>Download Images/Videos associated with the posts searched</string>
-                </property>
-                <property name="text">
-                 <string>Download Media</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-               <widget class="Line" name="line_15">
-                <property name="geometry">
-                 <rect>
-                  <x>10</x>
-                  <y>230</y>
-                  <width>271</width>
-                  <height>21</height>
-                 </rect>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-               </widget>
-               <widget class="QLineEdit" name="dashboard_reddit_subreddit_2">
-                <property name="geometry">
-                 <rect>
-                  <x>10</x>
-                  <y>200</y>
-                  <width>271</width>
-                  <height>27</height>
-                 </rect>
-                </property>
-                <property name="placeholderText">
-                 <string>r/technology</string>
-                </property>
-               </widget>
-               <widget class="QLabel" name="label_65">
-                <property name="geometry">
-                 <rect>
-                  <x>20</x>
-                  <y>170</y>
-                  <width>151</width>
-                  <height>25</height>
-                 </rect>
-                </property>
-                <property name="text">
-                 <string>Subreddit (Optional)</string>
-                </property>
-               </widget>
-               <widget class="Line" name="line_16">
-                <property name="geometry">
-                 <rect>
-                  <x>290</x>
-                  <y>20</y>
-                  <width>21</width>
-                  <height>221</height>
-                 </rect>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-               </widget>
-               <widget class="QCheckBox" name="dashboard_reddit_hideNSFW_2">
-                <property name="geometry">
-                 <rect>
-                  <x>140</x>
-                  <y>40</y>
-                  <width>131</width>
-                  <height>25</height>
-                 </rect>
-                </property>
-                <property name="text">
-                 <string>Hide NSFW</string>
-                </property>
-               </widget>
-               <widget class="QLineEdit" name="lineEdit_13">
-                <property name="geometry">
-                 <rect>
-                  <x>182</x>
-                  <y>380</y>
-                  <width>751</width>
-                  <height>27</height>
-                 </rect>
-                </property>
-                <property name="text">
-                 <string>Non Functional</string>
-                </property>
-               </widget>
-              </widget>
-             </widget>
-            </item>
-            <item row="0" column="2">
-             <widget class="QLabel" name="label_66">
-              <property name="text">
-               <string>Domain</string>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="0" colspan="4">
-             <widget class="QProgressBar" name="progressBar">
-              <property name="value">
-               <number>0</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tab_40">
-           <attribute name="title">
-            <string>Kerberoast</string>
            </attribute>
           </widget>
          </widget>
@@ -1941,8 +1576,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>949</width>
-                 <height>584</height>
+                 <width>1047</width>
+                 <height>720</height>
                 </rect>
                </property>
                <widget class="QToolBox" name="bashbuild_toolBox">
@@ -4905,7 +4540,7 @@ p, li { white-space: pre-wrap; }
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_7">
           <property name="currentIndex">
-           <number>4</number>
+           <number>5</number>
           </property>
           <widget class="QWidget" name="tab_21">
            <attribute name="title">
@@ -5629,6 +5264,24 @@ p, li { white-space: pre-wrap; }
             <string>SQL Injection?</string>
            </attribute>
           </widget>
+          <widget class="QWidget" name="tab">
+           <attribute name="title">
+            <string>Page</string>
+           </attribute>
+           <widget class="QGroupBox" name="groupBox">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>60</y>
+              <width>621</width>
+              <height>291</height>
+             </rect>
+            </property>
+            <property name="title">
+             <string>GroupBox</string>
+            </property>
+           </widget>
+          </widget>
          </widget>
         </item>
        </layout>
@@ -5642,7 +5295,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1013</width>
+     <width>1111</width>
      <height>24</height>
     </rect>
    </property>

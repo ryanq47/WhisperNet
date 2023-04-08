@@ -25,6 +25,9 @@ import random
 import json
 from PySide6.QtCore import QThread, Signal, QObject, Slot
 
+from Modules.General.utility import Timestamp
+
+
 global_debug = True
 logging.basicConfig(level=logging.DEBUG)
 logging.basicConfig(filename='osint_reddit.log', filemode='a', format='[OSINT Reddit] %(name)s - %(levelname)s - %(message)s', force=True)
@@ -36,14 +39,19 @@ class OsintReddit(QObject):
     #True if authenticated
     authenticated = Signal()
     result_list = Signal(list)
+    search_url =  Signal(str)
 
     def  __init__(self, credentials_list, parent=None):
         super().__init__(parent)
+        ## Creds stuff
         self.username = credentials_list['username']
         self.password = credentials_list['password']
         self.secret_token = credentials_list['secret_token']
         self.client_id = credentials_list['client_id']
         self.authenticated = False
+
+        self.time = Timestamp.UTC_Time()
+        self.date = Timestamp.UTC_Date()
 
     def oauth(self):
         """
@@ -131,6 +139,9 @@ class OsintReddit(QObject):
         ##  May need to think through as the loop is usually a for loop, 
         ## so maybe emit one line, write (or append) said line, and return the next line and 
         ## so on? 
+        
+        ## only erturning the search URL, may be useful for more stats in the future
+        self.reddit_response_stats(url_request_list)
 
     def url_legos(self, search_list):
         ## List order: search_term, subreddit, time, sort, limit, username
@@ -185,24 +196,25 @@ class OsintReddit(QObject):
         
         """
         built_url = ""
+        print("STYPE:" + self.stype)
         #download_media, comments, profile, subreddit = options_list
         
         if self.stype == "subreddit":
-            built_url = "https://oauth.reddit.com/search/?q=" + self.search_term + self.filter_sort + self.filter_time + self.filter_limit
+            built_url = "https://oauth.reddit.com/search/?q=" + self.search_term + self.filter_sort + self.filter_time + self.filter_limit + "&type=sr"
         
         elif self.stype == "profile": ## profile search
-            built_url = "https://oauth.reddit.com/user/" + self.search_term + "/" + self.filter_sort.replace("&","?") + self.filter_time + self.filter_limit
+            built_url = "https://oauth.reddit.com/user/" + self.search_term + "/" + self.filter_sort.replace("&","?") + self.filter_time + self.filter_limit + "&type=user"
 
         elif self.stype == "posts":
-            built_url = "https://oauth.reddit.com/search/?q=" + self.search_term + self.filter_sort + self.filter_time + self.filter_limit      
+            built_url = "https://oauth.reddit.com/search/?q=" + self.search_term + self.filter_sort + self.filter_time + self.filter_limit  + "&type=link"     
         
         elif self.stype == "comments":
-            built_url = "https://oauth.reddit.com/search/?q=" + self.search_term + self.filter_sort + self.filter_time + self.filter_limit + "&type=comment",
+            built_url = "https://oauth.reddit.com/search/?q=" + self.search_term + self.filter_sort + self.filter_time + self.filter_limit + "&type=comment"
 
         ## Emergency catchall that will just search for posts. Identical to if stype is posts
         else:
             built_url = "https://oauth.reddit.com/search/?q=" + self.search_term + self.filter_sort + self.filter_time + self.filter_limit      
-    
+        
         return built_url
         #pass
     
@@ -224,7 +236,7 @@ class OsintReddit(QObject):
             request_output = json.loads(req.text)
         except Exception as e:
             logging.warning(f"Error with request to reddit:\n {e} \n{url_request_list}")
-            
+        
         return request_output
             
     
@@ -283,19 +295,16 @@ class OsintReddit(QObject):
                 media_url = "N/A"
             
             ## -- Comments -- ##
-            '''if comments:
+            '''if comments:'''
+            try:
                 comment_raw = post['data']['selftext']
                 if comment_raw == "":
                     comment = "Keyword found, check post"
                 else:
                     comment = comment_raw
-            else:
-                comment = "N/A"'''
-            comment = "N/A"
+            except:
+                comment = "N/A"
                 
-
-
-
             try:
                 upvote = post['data']['ups']
                 downvote = post['data']['downs']
@@ -303,16 +312,17 @@ class OsintReddit(QObject):
                 upvote = "Err with Upvotes"
                 downvote = "Err with Downvotes"
                 
-            db_list = [subreddit, title, comment, upvote, downvote, post_url, media_url, "date", "time", user]
+            
+                
+            db_list = [subreddit, title, comment, upvote, downvote, post_url, media_url, self.date, self.time, user]
 
-            print("Pre-Emit")
             self.result_list.emit(db_list)
-            print("Post Emit")
             #print(db_list)
         ## emit list to gui to DB write
             
             
-    
+    def reddit_response_stats(self, url):
+        self.search_url.emit(url)
 
     def user_agent_generator(self) -> str:
         ## Some random names, you can customize to whatever you want

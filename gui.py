@@ -17,19 +17,19 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDoubleSpinBox,
-    QFrame, QGraphicsView, QGridLayout, QHeaderView,
-    QLCDNumber, QLabel, QLineEdit, QMainWindow,
-    QMenu, QMenuBar, QProgressBar, QPushButton,
-    QRadioButton, QScrollArea, QSizePolicy, QSpinBox,
-    QTabWidget, QTableWidget, QTableWidgetItem, QTextEdit,
-    QToolBox, QWidget)
+    QFrame, QGraphicsView, QGridLayout, QGroupBox,
+    QHeaderView, QLCDNumber, QLabel, QLineEdit,
+    QMainWindow, QMenu, QMenuBar, QProgressBar,
+    QPushButton, QRadioButton, QScrollArea, QSizePolicy,
+    QSpinBox, QTabWidget, QTableWidget, QTableWidgetItem,
+    QTextEdit, QToolBox, QWidget)
 
 class Ui_LogecC3(object):
     def setupUi(self, LogecC3):
         if not LogecC3.objectName():
             LogecC3.setObjectName(u"LogecC3")
         LogecC3.setWindowModality(Qt.NonModal)
-        LogecC3.resize(1013, 730)
+        LogecC3.resize(1111, 866)
         LogecC3.setMinimumSize(QSize(850, 688))
         LogecC3.setMaximumSize(QSize(10000, 10000))
         font = QFont()
@@ -342,8 +342,8 @@ class Ui_LogecC3(object):
         self.tab_4.setObjectName(u"tab_4")
         self.gridLayout_5 = QGridLayout(self.tab_4)
         self.gridLayout_5.setObjectName(u"gridLayout_5")
-        self.osint_dork = QTabWidget(self.tab_4)
-        self.osint_dork.setObjectName(u"osint_dork")
+        self.osint_reddit_tab = QTabWidget(self.tab_4)
+        self.osint_reddit_tab.setObjectName(u"osint_reddit_tab")
         self.tab_12 = QWidget()
         self.tab_12.setObjectName(u"tab_12")
         self.gridLayout_8 = QGridLayout(self.tab_12)
@@ -458,56 +458,68 @@ class Ui_LogecC3(object):
 
         self.gridLayout_8.addWidget(self.progressBar_2, 3, 0, 1, 3)
 
-        self.osint_dork.addTab(self.tab_12, "")
-        self.tab_13 = QWidget()
-        self.tab_13.setObjectName(u"tab_13")
-        self.gridLayout = QGridLayout(self.tab_13)
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.line_8 = QFrame(self.tab_13)
-        self.line_8.setObjectName(u"line_8")
-        self.line_8.setFrameShape(QFrame.HLine)
-        self.line_8.setFrameShadow(QFrame.Sunken)
+        self.osint_reddit_tab.addTab(self.tab_12, "")
+        self.tab_2 = QWidget()
+        self.tab_2.setObjectName(u"tab_2")
+        self.gridLayout_10 = QGridLayout(self.tab_2)
+        self.gridLayout_10.setObjectName(u"gridLayout_10")
+        self.groupBox_2 = QGroupBox(self.tab_2)
+        self.groupBox_2.setObjectName(u"groupBox_2")
+        self.gridLayout_2 = QGridLayout(self.groupBox_2)
+        self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.table_SQLDB_osint_reddit = QTableWidget(self.groupBox_2)
+        self.table_SQLDB_osint_reddit.setObjectName(u"table_SQLDB_osint_reddit")
 
-        self.gridLayout.addWidget(self.line_8, 4, 0, 1, 4)
+        self.gridLayout_2.addWidget(self.table_SQLDB_osint_reddit, 0, 0, 1, 2)
 
-        self.table_QueryDB_Button_osint_reddit = QPushButton(self.tab_13)
-        self.table_QueryDB_Button_osint_reddit.setObjectName(u"table_QueryDB_Button_osint_reddit")
-
-        self.gridLayout.addWidget(self.table_QueryDB_Button_osint_reddit, 2, 1, 1, 3)
-
-        self.table_RefreshDB_Button_osint_reddit = QPushButton(self.tab_13)
-        self.table_RefreshDB_Button_osint_reddit.setObjectName(u"table_RefreshDB_Button_osint_reddit")
-
-        self.gridLayout.addWidget(self.table_RefreshDB_Button_osint_reddit, 2, 0, 1, 1)
-
-        self.osint_reddit_search = QPushButton(self.tab_13)
-        self.osint_reddit_search.setObjectName(u"osint_reddit_search")
-
-        self.gridLayout.addWidget(self.osint_reddit_search, 16, 1, 1, 3)
-
-        self.DB_Query_osint_reddit = QLineEdit(self.tab_13)
+        self.DB_Query_osint_reddit = QLineEdit(self.groupBox_2)
         self.DB_Query_osint_reddit.setObjectName(u"DB_Query_osint_reddit")
 
-        self.gridLayout.addWidget(self.DB_Query_osint_reddit, 1, 0, 1, 4)
+        self.gridLayout_2.addWidget(self.DB_Query_osint_reddit, 1, 0, 1, 2)
 
-        self.osint_reddit_onlysubreddit = QRadioButton(self.tab_13)
-        self.osint_reddit_onlysubreddit.setObjectName(u"osint_reddit_onlysubreddit")
+        self.table_RefreshDB_Button_osint_reddit = QPushButton(self.groupBox_2)
+        self.table_RefreshDB_Button_osint_reddit.setObjectName(u"table_RefreshDB_Button_osint_reddit")
 
-        self.gridLayout.addWidget(self.osint_reddit_onlysubreddit, 13, 2, 2, 1)
+        self.gridLayout_2.addWidget(self.table_RefreshDB_Button_osint_reddit, 2, 0, 1, 1)
 
-        self.osint_reddit_onlyprofile = QRadioButton(self.tab_13)
-        self.osint_reddit_onlyprofile.setObjectName(u"osint_reddit_onlyprofile")
+        self.table_QueryDB_Button_osint_reddit = QPushButton(self.groupBox_2)
+        self.table_QueryDB_Button_osint_reddit.setObjectName(u"table_QueryDB_Button_osint_reddit")
 
-        self.gridLayout.addWidget(self.osint_reddit_onlyprofile, 15, 2, 1, 1)
+        self.gridLayout_2.addWidget(self.table_QueryDB_Button_osint_reddit, 2, 1, 1, 1)
 
-        self.reddit_progressbar = QProgressBar(self.tab_13)
-        self.reddit_progressbar.setObjectName(u"reddit_progressbar")
-        self.reddit_progressbar.setValue(0)
-        self.reddit_progressbar.setInvertedAppearance(False)
 
-        self.gridLayout.addWidget(self.reddit_progressbar, 3, 0, 1, 4)
+        self.gridLayout_10.addWidget(self.groupBox_2, 0, 0, 1, 1)
 
-        self.combo_sort = QComboBox(self.tab_13)
+        self.osint_reddit_searchbox = QGroupBox(self.tab_2)
+        self.osint_reddit_searchbox.setObjectName(u"osint_reddit_searchbox")
+        self.gridLayout_3 = QGridLayout(self.osint_reddit_searchbox)
+        self.gridLayout_3.setObjectName(u"gridLayout_3")
+        self.label_42 = QLabel(self.osint_reddit_searchbox)
+        self.label_42.setObjectName(u"label_42")
+
+        self.gridLayout_3.addWidget(self.label_42, 0, 0, 1, 1)
+
+        self.label_20 = QLabel(self.osint_reddit_searchbox)
+        self.label_20.setObjectName(u"label_20")
+
+        self.gridLayout_3.addWidget(self.label_20, 0, 1, 1, 1)
+
+        self.label_40 = QLabel(self.osint_reddit_searchbox)
+        self.label_40.setObjectName(u"label_40")
+
+        self.gridLayout_3.addWidget(self.label_40, 0, 2, 1, 1)
+
+        self.label_33 = QLabel(self.osint_reddit_searchbox)
+        self.label_33.setObjectName(u"label_33")
+
+        self.gridLayout_3.addWidget(self.label_33, 0, 3, 1, 1)
+
+        self.osint_reddit_keyword = QLineEdit(self.osint_reddit_searchbox)
+        self.osint_reddit_keyword.setObjectName(u"osint_reddit_keyword")
+
+        self.gridLayout_3.addWidget(self.osint_reddit_keyword, 1, 0, 1, 1)
+
+        self.combo_sort = QComboBox(self.osint_reddit_searchbox)
         self.combo_sort.addItem("")
         self.combo_sort.addItem("")
         self.combo_sort.addItem("")
@@ -515,26 +527,54 @@ class Ui_LogecC3(object):
         self.combo_sort.addItem("")
         self.combo_sort.setObjectName(u"combo_sort")
 
-        self.gridLayout.addWidget(self.combo_sort, 12, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.combo_sort, 1, 1, 1, 1)
 
-        self.label_10 = QLabel(self.tab_13)
-        self.label_10.setObjectName(u"label_10")
+        self.osint_reddit_onlypost = QRadioButton(self.osint_reddit_searchbox)
+        self.osint_reddit_onlypost.setObjectName(u"osint_reddit_onlypost")
+        self.osint_reddit_onlypost.setChecked(True)
 
-        self.gridLayout.addWidget(self.label_10, 13, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.osint_reddit_onlypost, 1, 2, 1, 1)
 
-        self.table_SQLDB_osint_reddit = QTableWidget(self.tab_13)
-        self.table_SQLDB_osint_reddit.setObjectName(u"table_SQLDB_osint_reddit")
+        self.osint_reddit_hideNSFW = QCheckBox(self.osint_reddit_searchbox)
+        self.osint_reddit_hideNSFW.setObjectName(u"osint_reddit_hideNSFW")
 
-        self.gridLayout.addWidget(self.table_SQLDB_osint_reddit, 0, 0, 1, 4)
+        self.gridLayout_3.addWidget(self.osint_reddit_hideNSFW, 1, 3, 1, 1)
 
-        self.checkBox_2 = QCheckBox(self.tab_13)
-        self.checkBox_2.setObjectName(u"checkBox_2")
-        self.checkBox_2.setChecked(False)
-        self.checkBox_2.setTristate(False)
+        self.line_10 = QFrame(self.osint_reddit_searchbox)
+        self.line_10.setObjectName(u"line_10")
+        self.line_10.setFrameShape(QFrame.HLine)
+        self.line_10.setFrameShadow(QFrame.Sunken)
 
-        self.gridLayout.addWidget(self.checkBox_2, 14, 3, 2, 1)
+        self.gridLayout_3.addWidget(self.line_10, 2, 0, 1, 1)
 
-        self.combo_time = QComboBox(self.tab_13)
+        self.label_41 = QLabel(self.osint_reddit_searchbox)
+        self.label_41.setObjectName(u"label_41")
+
+        self.gridLayout_3.addWidget(self.label_41, 3, 0, 1, 1)
+
+        self.label_43 = QLabel(self.osint_reddit_searchbox)
+        self.label_43.setObjectName(u"label_43")
+
+        self.gridLayout_3.addWidget(self.label_43, 3, 1, 1, 1)
+
+        self.osint_reddit_onlycomments = QRadioButton(self.osint_reddit_searchbox)
+        self.osint_reddit_onlycomments.setObjectName(u"osint_reddit_onlycomments")
+
+        self.gridLayout_3.addWidget(self.osint_reddit_onlycomments, 3, 2, 1, 1)
+
+        self.osint_reddit_downloadmedia = QCheckBox(self.osint_reddit_searchbox)
+        self.osint_reddit_downloadmedia.setObjectName(u"osint_reddit_downloadmedia")
+        self.osint_reddit_downloadmedia.setChecked(True)
+
+        self.gridLayout_3.addWidget(self.osint_reddit_downloadmedia, 3, 3, 2, 1)
+
+        self.osint_reddit_searchurl = QLineEdit(self.osint_reddit_searchbox)
+        self.osint_reddit_searchurl.setObjectName(u"osint_reddit_searchurl")
+        self.osint_reddit_searchurl.setReadOnly(True)
+
+        self.gridLayout_3.addWidget(self.osint_reddit_searchurl, 4, 0, 1, 1)
+
+        self.combo_time = QComboBox(self.osint_reddit_searchbox)
         self.combo_time.addItem("")
         self.combo_time.addItem("")
         self.combo_time.addItem("")
@@ -542,56 +582,44 @@ class Ui_LogecC3(object):
         self.combo_time.addItem("")
         self.combo_time.setObjectName(u"combo_time")
 
-        self.gridLayout.addWidget(self.combo_time, 15, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.combo_time, 4, 1, 1, 1)
 
-        self.osint_reddit_onlycomments = QRadioButton(self.tab_13)
-        self.osint_reddit_onlycomments.setObjectName(u"osint_reddit_onlycomments")
+        self.osint_reddit_onlysubreddit = QRadioButton(self.osint_reddit_searchbox)
+        self.osint_reddit_onlysubreddit.setObjectName(u"osint_reddit_onlysubreddit")
 
-        self.gridLayout.addWidget(self.osint_reddit_onlycomments, 12, 2, 1, 1)
+        self.gridLayout_3.addWidget(self.osint_reddit_onlysubreddit, 4, 2, 1, 1)
 
-        self.osint_reddit_downloadmedia = QCheckBox(self.tab_13)
-        self.osint_reddit_downloadmedia.setObjectName(u"osint_reddit_downloadmedia")
-        self.osint_reddit_downloadmedia.setChecked(True)
+        self.label_39 = QLabel(self.osint_reddit_searchbox)
+        self.label_39.setObjectName(u"label_39")
 
-        self.gridLayout.addWidget(self.osint_reddit_downloadmedia, 12, 3, 2, 1)
+        self.gridLayout_3.addWidget(self.label_39, 5, 0, 1, 1)
 
-        self.osint_reddit_hideNSFW = QCheckBox(self.tab_13)
-        self.osint_reddit_hideNSFW.setObjectName(u"osint_reddit_hideNSFW")
+        self.osint_reddit_onlyprofile = QRadioButton(self.osint_reddit_searchbox)
+        self.osint_reddit_onlyprofile.setObjectName(u"osint_reddit_onlyprofile")
 
-        self.gridLayout.addWidget(self.osint_reddit_hideNSFW, 11, 3, 1, 1)
+        self.gridLayout_3.addWidget(self.osint_reddit_onlyprofile, 5, 2, 1, 1)
 
-        self.label_18 = QLabel(self.tab_13)
-        self.label_18.setObjectName(u"label_18")
+        self.checkBox_29 = QCheckBox(self.osint_reddit_searchbox)
+        self.checkBox_29.setObjectName(u"checkBox_29")
+        self.checkBox_29.setChecked(False)
+        self.checkBox_29.setTristate(False)
 
-        self.gridLayout.addWidget(self.label_18, 10, 3, 1, 1)
+        self.gridLayout_3.addWidget(self.checkBox_29, 5, 3, 1, 1)
 
-        self.osint_reddit_onlypost = QRadioButton(self.tab_13)
-        self.osint_reddit_onlypost.setObjectName(u"osint_reddit_onlypost")
-        self.osint_reddit_onlypost.setChecked(True)
+        self.osint_reddit_search = QPushButton(self.osint_reddit_searchbox)
+        self.osint_reddit_search.setObjectName(u"osint_reddit_search")
 
-        self.gridLayout.addWidget(self.osint_reddit_onlypost, 11, 2, 1, 1)
+        self.gridLayout_3.addWidget(self.osint_reddit_search, 6, 1, 1, 3)
 
-        self.label_9 = QLabel(self.tab_13)
-        self.label_9.setObjectName(u"label_9")
 
-        self.gridLayout.addWidget(self.label_9, 10, 1, 1, 1)
+        self.gridLayout_10.addWidget(self.osint_reddit_searchbox, 1, 0, 1, 1)
 
-        self.label = QLabel(self.tab_13)
-        self.label.setObjectName(u"label")
+        self.osint_reddit_gui_hide_search = QCheckBox(self.tab_2)
+        self.osint_reddit_gui_hide_search.setObjectName(u"osint_reddit_gui_hide_search")
 
-        self.gridLayout.addWidget(self.label, 10, 2, 1, 1)
+        self.gridLayout_10.addWidget(self.osint_reddit_gui_hide_search, 2, 0, 1, 1)
 
-        self.osint_reddit_keyword = QLineEdit(self.tab_13)
-        self.osint_reddit_keyword.setObjectName(u"osint_reddit_keyword")
-
-        self.gridLayout.addWidget(self.osint_reddit_keyword, 16, 0, 1, 1)
-
-        self.label_6 = QLabel(self.tab_13)
-        self.label_6.setObjectName(u"label_6")
-
-        self.gridLayout.addWidget(self.label_6, 15, 0, 1, 1)
-
-        self.osint_dork.addTab(self.tab_13, "")
+        self.osint_reddit_tab.addTab(self.tab_2, "")
         self.tab_18 = QWidget()
         self.tab_18.setObjectName(u"tab_18")
         self.gridLayout_20 = QGridLayout(self.tab_18)
@@ -701,169 +729,14 @@ class Ui_LogecC3(object):
 
         self.gridLayout_20.addWidget(self.tabWidget_3, 8, 0, 1, 5)
 
-        self.osint_dork.addTab(self.tab_18, "")
+        self.osint_reddit_tab.addTab(self.tab_18, "")
         self.tab_14 = QWidget()
         self.tab_14.setObjectName(u"tab_14")
-        self.lineEdit_8 = QLineEdit(self.tab_14)
-        self.lineEdit_8.setObjectName(u"lineEdit_8")
-        self.lineEdit_8.setGeometry(QRect(150, 320, 751, 27))
-        self.osint_dork.addTab(self.tab_14, "")
+        self.osint_reddit_tab.addTab(self.tab_14, "")
 
-        self.gridLayout_5.addWidget(self.osint_dork, 0, 0, 1, 1)
+        self.gridLayout_5.addWidget(self.osint_reddit_tab, 0, 0, 1, 1)
 
         self.tabWidget.addTab(self.tab_4, "")
-        self.tab_38 = QWidget()
-        self.tab_38.setObjectName(u"tab_38")
-        self.gridLayout_29 = QGridLayout(self.tab_38)
-        self.gridLayout_29.setObjectName(u"gridLayout_29")
-        self.tabWidget_5 = QTabWidget(self.tab_38)
-        self.tabWidget_5.setObjectName(u"tabWidget_5")
-        self.tab_39 = QWidget()
-        self.tab_39.setObjectName(u"tab_39")
-        self.gridLayout_30 = QGridLayout(self.tab_39)
-        self.gridLayout_30.setObjectName(u"gridLayout_30")
-        self.lineEdit_17 = QLineEdit(self.tab_39)
-        self.lineEdit_17.setObjectName(u"lineEdit_17")
-
-        self.gridLayout_30.addWidget(self.lineEdit_17, 3, 1, 1, 1)
-
-        self.label_70 = QLabel(self.tab_39)
-        self.label_70.setObjectName(u"label_70")
-
-        self.gridLayout_30.addWidget(self.label_70, 3, 0, 1, 1)
-
-        self.label_67 = QLabel(self.tab_39)
-        self.label_67.setObjectName(u"label_67")
-
-        self.gridLayout_30.addWidget(self.label_67, 0, 0, 2, 1)
-
-        self.label_69 = QLabel(self.tab_39)
-        self.label_69.setObjectName(u"label_69")
-
-        self.gridLayout_30.addWidget(self.label_69, 2, 2, 1, 1)
-
-        self.label_68 = QLabel(self.tab_39)
-        self.label_68.setObjectName(u"label_68")
-
-        self.gridLayout_30.addWidget(self.label_68, 2, 0, 1, 1)
-
-        self.lineEdit_14 = QLineEdit(self.tab_39)
-        self.lineEdit_14.setObjectName(u"lineEdit_14")
-
-        self.gridLayout_30.addWidget(self.lineEdit_14, 0, 1, 2, 1)
-
-        self.portscan_start_6 = QPushButton(self.tab_39)
-        self.portscan_start_6.setObjectName(u"portscan_start_6")
-
-        self.gridLayout_30.addWidget(self.portscan_start_6, 3, 3, 1, 2)
-
-        self.lineEdit_15 = QLineEdit(self.tab_39)
-        self.lineEdit_15.setObjectName(u"lineEdit_15")
-
-        self.gridLayout_30.addWidget(self.lineEdit_15, 2, 1, 1, 1)
-
-        self.dashboard_osint_keyword_2 = QLineEdit(self.tab_39)
-        self.dashboard_osint_keyword_2.setObjectName(u"dashboard_osint_keyword_2")
-
-        self.gridLayout_30.addWidget(self.dashboard_osint_keyword_2, 0, 3, 1, 1)
-
-        self.lineEdit_16 = QLineEdit(self.tab_39)
-        self.lineEdit_16.setObjectName(u"lineEdit_16")
-
-        self.gridLayout_30.addWidget(self.lineEdit_16, 1, 3, 2, 1)
-
-        self.scrollArea_4 = QScrollArea(self.tab_39)
-        self.scrollArea_4.setObjectName(u"scrollArea_4")
-        self.scrollArea_4.setWidgetResizable(True)
-        self.scrollAreaWidgetContents_4 = QWidget()
-        self.scrollAreaWidgetContents_4.setObjectName(u"scrollAreaWidgetContents_4")
-        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 949, 446))
-        self.label_62 = QLabel(self.scrollAreaWidgetContents_4)
-        self.label_62.setObjectName(u"label_62")
-        self.label_62.setGeometry(QRect(10, 10, 91, 19))
-        self.label_62.setFont(font3)
-        self.lineEdit_12 = QLineEdit(self.scrollAreaWidgetContents_4)
-        self.lineEdit_12.setObjectName(u"lineEdit_12")
-        self.lineEdit_12.setGeometry(QRect(10, 510, 113, 27))
-        self.dashboard_reddit_onlycomments_2 = QCheckBox(self.scrollAreaWidgetContents_4)
-        self.dashboard_reddit_onlycomments_2.setObjectName(u"dashboard_reddit_onlycomments_2")
-        self.dashboard_reddit_onlycomments_2.setGeometry(QRect(140, 70, 140, 25))
-        self.dashboard_reddit_onlycomments_2.setCheckable(True)
-        self.dashboard_reddit_onlycomments_2.setChecked(False)
-        self.combo_time_3 = QComboBox(self.scrollAreaWidgetContents_4)
-        self.combo_time_3.addItem("")
-        self.combo_time_3.addItem("")
-        self.combo_time_3.addItem("")
-        self.combo_time_3.addItem("")
-        self.combo_time_3.addItem("")
-        self.combo_time_3.setObjectName(u"combo_time_3")
-        self.combo_time_3.setGeometry(QRect(15, 133, 123, 27))
-        self.label_63 = QLabel(self.scrollAreaWidgetContents_4)
-        self.label_63.setObjectName(u"label_63")
-        self.label_63.setGeometry(QRect(15, 38, 123, 25))
-        self.label_64 = QLabel(self.scrollAreaWidgetContents_4)
-        self.label_64.setObjectName(u"label_64")
-        self.label_64.setGeometry(QRect(15, 102, 123, 25))
-        self.dashboard_reddit_onlyprofile_2 = QCheckBox(self.scrollAreaWidgetContents_4)
-        self.dashboard_reddit_onlyprofile_2.setObjectName(u"dashboard_reddit_onlyprofile_2")
-        self.dashboard_reddit_onlyprofile_2.setGeometry(QRect(140, 100, 140, 25))
-        self.combo_sort_3 = QComboBox(self.scrollAreaWidgetContents_4)
-        self.combo_sort_3.addItem("")
-        self.combo_sort_3.addItem("")
-        self.combo_sort_3.addItem("")
-        self.combo_sort_3.addItem("")
-        self.combo_sort_3.addItem("")
-        self.combo_sort_3.setObjectName(u"combo_sort_3")
-        self.combo_sort_3.setGeometry(QRect(15, 69, 123, 27))
-        self.dashboard_reddit_downloadmedia_2 = QCheckBox(self.scrollAreaWidgetContents_4)
-        self.dashboard_reddit_downloadmedia_2.setObjectName(u"dashboard_reddit_downloadmedia_2")
-        self.dashboard_reddit_downloadmedia_2.setGeometry(QRect(140, 130, 170, 25))
-        self.dashboard_reddit_downloadmedia_2.setChecked(True)
-        self.line_15 = QFrame(self.scrollAreaWidgetContents_4)
-        self.line_15.setObjectName(u"line_15")
-        self.line_15.setGeometry(QRect(10, 230, 271, 21))
-        self.line_15.setFrameShape(QFrame.HLine)
-        self.line_15.setFrameShadow(QFrame.Sunken)
-        self.dashboard_reddit_subreddit_2 = QLineEdit(self.scrollAreaWidgetContents_4)
-        self.dashboard_reddit_subreddit_2.setObjectName(u"dashboard_reddit_subreddit_2")
-        self.dashboard_reddit_subreddit_2.setGeometry(QRect(10, 200, 271, 27))
-        self.label_65 = QLabel(self.scrollAreaWidgetContents_4)
-        self.label_65.setObjectName(u"label_65")
-        self.label_65.setGeometry(QRect(20, 170, 151, 25))
-        self.line_16 = QFrame(self.scrollAreaWidgetContents_4)
-        self.line_16.setObjectName(u"line_16")
-        self.line_16.setGeometry(QRect(290, 20, 21, 221))
-        self.line_16.setFrameShape(QFrame.VLine)
-        self.line_16.setFrameShadow(QFrame.Sunken)
-        self.dashboard_reddit_hideNSFW_2 = QCheckBox(self.scrollAreaWidgetContents_4)
-        self.dashboard_reddit_hideNSFW_2.setObjectName(u"dashboard_reddit_hideNSFW_2")
-        self.dashboard_reddit_hideNSFW_2.setGeometry(QRect(140, 40, 131, 25))
-        self.lineEdit_13 = QLineEdit(self.scrollAreaWidgetContents_4)
-        self.lineEdit_13.setObjectName(u"lineEdit_13")
-        self.lineEdit_13.setGeometry(QRect(182, 380, 751, 27))
-        self.scrollArea_4.setWidget(self.scrollAreaWidgetContents_4)
-
-        self.gridLayout_30.addWidget(self.scrollArea_4, 5, 0, 1, 5)
-
-        self.label_66 = QLabel(self.tab_39)
-        self.label_66.setObjectName(u"label_66")
-
-        self.gridLayout_30.addWidget(self.label_66, 0, 2, 1, 1)
-
-        self.progressBar = QProgressBar(self.tab_39)
-        self.progressBar.setObjectName(u"progressBar")
-        self.progressBar.setValue(0)
-
-        self.gridLayout_30.addWidget(self.progressBar, 6, 0, 1, 4)
-
-        self.tabWidget_5.addTab(self.tab_39, "")
-        self.tab_40 = QWidget()
-        self.tab_40.setObjectName(u"tab_40")
-        self.tabWidget_5.addTab(self.tab_40, "")
-
-        self.gridLayout_29.addWidget(self.tabWidget_5, 1, 0, 1, 1)
-
-        self.tabWidget.addTab(self.tab_38, "")
         self.tab_22 = QWidget()
         self.tab_22.setObjectName(u"tab_22")
         self.gridLayout_17 = QGridLayout(self.tab_22)
@@ -975,7 +848,7 @@ class Ui_LogecC3(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.scrollAreaWidgetContents_5 = QWidget()
         self.scrollAreaWidgetContents_5.setObjectName(u"scrollAreaWidgetContents_5")
-        self.scrollAreaWidgetContents_5.setGeometry(QRect(0, 0, 949, 584))
+        self.scrollAreaWidgetContents_5.setGeometry(QRect(0, 0, 1047, 720))
         self.bashbuild_toolBox = QToolBox(self.scrollAreaWidgetContents_5)
         self.bashbuild_toolBox.setObjectName(u"bashbuild_toolBox")
         self.bashbuild_toolBox.setGeometry(QRect(0, 0, 241, 651))
@@ -2659,6 +2532,12 @@ class Ui_LogecC3(object):
         self.tab_15 = QWidget()
         self.tab_15.setObjectName(u"tab_15")
         self.tabWidget_7.addTab(self.tab_15, "")
+        self.tab = QWidget()
+        self.tab.setObjectName(u"tab")
+        self.groupBox = QGroupBox(self.tab)
+        self.groupBox.setObjectName(u"groupBox")
+        self.groupBox.setGeometry(QRect(140, 60, 621, 291))
+        self.tabWidget_7.addTab(self.tab, "")
 
         self.gridLayout_9.addWidget(self.tabWidget_7, 0, 0, 1, 1)
 
@@ -2669,7 +2548,7 @@ class Ui_LogecC3(object):
         LogecC3.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(LogecC3)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1013, 24))
+        self.menubar.setGeometry(QRect(0, 0, 1111, 24))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
         self.menu_GettingStarted = QMenu(self.menubar)
@@ -2692,9 +2571,8 @@ class Ui_LogecC3(object):
         self.tabWidget.setCurrentIndex(1)
         self.bruteforce_panel_2.setCurrentIndex(3)
         self.c2_shell_tab.setCurrentIndex(2)
-        self.osint_dork.setCurrentIndex(1)
+        self.osint_reddit_tab.setCurrentIndex(1)
         self.tabWidget_3.setCurrentIndex(1)
-        self.tabWidget_5.setCurrentIndex(0)
         self.tabWidget_8.setCurrentIndex(1)
         self.bashbuild_toolBox.setCurrentIndex(3)
         self.tabWidget_9.setCurrentIndex(0)
@@ -2715,7 +2593,7 @@ class Ui_LogecC3(object):
         self.tabWidget_11.setCurrentIndex(2)
         self.tabWidget_12.setCurrentIndex(1)
         self.tabWidget_15.setCurrentIndex(1)
-        self.tabWidget_7.setCurrentIndex(4)
+        self.tabWidget_7.setCurrentIndex(5)
 
 
         QMetaObject.connectSlotsByName(LogecC3)
@@ -2921,52 +2799,57 @@ class Ui_LogecC3(object):
         self.lineEdit_7.setText(QCoreApplication.translate("LogecC3", u"Non Functional", None))
         self.portscan_start_5.setText(QCoreApplication.translate("LogecC3", u"-->> Start <<--", None))
         self.label_24.setText(QCoreApplication.translate("LogecC3", u"Preset", None))
-        self.osint_dork.setTabText(self.osint_dork.indexOf(self.tab_12), QCoreApplication.translate("LogecC3", u"Dashboard", None))
-#if QT_CONFIG(tooltip)
-        self.table_QueryDB_Button_osint_reddit.setToolTip(QCoreApplication.translate("LogecC3", u"Run a query on the DB", None))
-#endif // QT_CONFIG(tooltip)
-        self.table_QueryDB_Button_osint_reddit.setText(QCoreApplication.translate("LogecC3", u"-->> Query DB <<--", None))
+        self.osint_reddit_tab.setTabText(self.osint_reddit_tab.indexOf(self.tab_12), QCoreApplication.translate("LogecC3", u"Dashboard", None))
+        self.groupBox_2.setTitle("")
+        self.DB_Query_osint_reddit.setPlaceholderText(QCoreApplication.translate("LogecC3", u"SELECT * FROM RedditResults", None))
 #if QT_CONFIG(tooltip)
         self.table_RefreshDB_Button_osint_reddit.setToolTip(QCoreApplication.translate("LogecC3", u"Refresh the Database, updating values from the SQLITE DB file", None))
 #endif // QT_CONFIG(tooltip)
         self.table_RefreshDB_Button_osint_reddit.setText(QCoreApplication.translate("LogecC3", u"-->> Refresh DB <<--", None))
-        self.osint_reddit_search.setText(QCoreApplication.translate("LogecC3", u"-->> Search <<--", None))
-        self.DB_Query_osint_reddit.setPlaceholderText(QCoreApplication.translate("LogecC3", u"SELECT * FROM RedditResults", None))
-        self.osint_reddit_onlysubreddit.setText(QCoreApplication.translate("LogecC3", u"Subreddit", None))
-        self.osint_reddit_onlyprofile.setText(QCoreApplication.translate("LogecC3", u"Profile", None))
+#if QT_CONFIG(tooltip)
+        self.table_QueryDB_Button_osint_reddit.setToolTip(QCoreApplication.translate("LogecC3", u"Run a query on the DB", None))
+#endif // QT_CONFIG(tooltip)
+        self.table_QueryDB_Button_osint_reddit.setText(QCoreApplication.translate("LogecC3", u"-->> Query DB <<--", None))
+        self.osint_reddit_searchbox.setTitle(QCoreApplication.translate("LogecC3", u"Search", None))
+        self.label_42.setText(QCoreApplication.translate("LogecC3", u"Search  Term*", None))
+        self.label_20.setText(QCoreApplication.translate("LogecC3", u"SortBy", None))
+        self.label_40.setText(QCoreApplication.translate("LogecC3", u"Search for...", None))
+        self.label_33.setText(QCoreApplication.translate("LogecC3", u"Other", None))
+        self.osint_reddit_keyword.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Windows", None))
         self.combo_sort.setItemText(0, QCoreApplication.translate("LogecC3", u"Hot", None))
         self.combo_sort.setItemText(1, QCoreApplication.translate("LogecC3", u"Top", None))
         self.combo_sort.setItemText(2, QCoreApplication.translate("LogecC3", u"New", None))
         self.combo_sort.setItemText(3, QCoreApplication.translate("LogecC3", u"Controversial", None))
         self.combo_sort.setItemText(4, QCoreApplication.translate("LogecC3", u"Comments", None))
 
-        self.label_10.setText(QCoreApplication.translate("LogecC3", u"Time", None))
+        self.osint_reddit_onlypost.setText(QCoreApplication.translate("LogecC3", u"Posts", None))
+        self.osint_reddit_hideNSFW.setText(QCoreApplication.translate("LogecC3", u"Hide NSFW", None))
+        self.label_41.setText(QCoreApplication.translate("LogecC3", u"SearchURL", None))
+        self.label_43.setText(QCoreApplication.translate("LogecC3", u"Time", None))
+        self.osint_reddit_onlycomments.setText(QCoreApplication.translate("LogecC3", u"Comments", None))
 #if QT_CONFIG(tooltip)
-        self.checkBox_2.setToolTip(QCoreApplication.translate("LogecC3", u"Add/append results to previous results", None))
+        self.osint_reddit_downloadmedia.setToolTip(QCoreApplication.translate("LogecC3", u"Download Images/Videos associated with the posts searched", None))
 #endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        self.checkBox_2.setStatusTip("")
-#endif // QT_CONFIG(statustip)
-        self.checkBox_2.setText(QCoreApplication.translate("LogecC3", u"Append Results to DB", None))
+        self.osint_reddit_downloadmedia.setText(QCoreApplication.translate("LogecC3", u"Download Media", None))
         self.combo_time.setItemText(0, QCoreApplication.translate("LogecC3", u"All", None))
         self.combo_time.setItemText(1, QCoreApplication.translate("LogecC3", u"Year", None))
         self.combo_time.setItemText(2, QCoreApplication.translate("LogecC3", u"Month", None))
         self.combo_time.setItemText(3, QCoreApplication.translate("LogecC3", u"Day", None))
         self.combo_time.setItemText(4, QCoreApplication.translate("LogecC3", u"Hour", None))
 
-        self.osint_reddit_onlycomments.setText(QCoreApplication.translate("LogecC3", u"Comment", None))
+        self.osint_reddit_onlysubreddit.setText(QCoreApplication.translate("LogecC3", u"Subreddits", None))
+        self.label_39.setText(QCoreApplication.translate("LogecC3", u"Items Found:", None))
+        self.osint_reddit_onlyprofile.setText(QCoreApplication.translate("LogecC3", u"Profiles", None))
 #if QT_CONFIG(tooltip)
-        self.osint_reddit_downloadmedia.setToolTip(QCoreApplication.translate("LogecC3", u"Download Images/Videos associated with the posts searched", None))
+        self.checkBox_29.setToolTip(QCoreApplication.translate("LogecC3", u"Add/append results to previous results", None))
 #endif // QT_CONFIG(tooltip)
-        self.osint_reddit_downloadmedia.setText(QCoreApplication.translate("LogecC3", u"Download Media", None))
-        self.osint_reddit_hideNSFW.setText(QCoreApplication.translate("LogecC3", u"Hide NSFW", None))
-        self.label_18.setText(QCoreApplication.translate("LogecC3", u"Other", None))
-        self.osint_reddit_onlypost.setText(QCoreApplication.translate("LogecC3", u"Post", None))
-        self.label_9.setText(QCoreApplication.translate("LogecC3", u"SortBy", None))
-        self.label.setText(QCoreApplication.translate("LogecC3", u"Type", None))
-        self.osint_reddit_keyword.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Windows", None))
-        self.label_6.setText(QCoreApplication.translate("LogecC3", u"Search  Term*", None))
-        self.osint_dork.setTabText(self.osint_dork.indexOf(self.tab_13), QCoreApplication.translate("LogecC3", u"Reddit", None))
+#if QT_CONFIG(statustip)
+        self.checkBox_29.setStatusTip("")
+#endif // QT_CONFIG(statustip)
+        self.checkBox_29.setText(QCoreApplication.translate("LogecC3", u"Append Results to DB", None))
+        self.osint_reddit_search.setText(QCoreApplication.translate("LogecC3", u"-->> Search <<--", None))
+        self.osint_reddit_gui_hide_search.setText(QCoreApplication.translate("LogecC3", u"Hide Search", None))
+        self.osint_reddit_tab.setTabText(self.osint_reddit_tab.indexOf(self.tab_2), QCoreApplication.translate("LogecC3", u"Page", None))
         self.label_54.setText(QCoreApplication.translate("LogecC3", u"Search Term", None))
         self.label_53.setText(QCoreApplication.translate("LogecC3", u"In Title", None))
         self.label_52.setText(QCoreApplication.translate("LogecC3", u"FileType", None))
@@ -2979,56 +2862,9 @@ class Ui_LogecC3(object):
         self.tabWidget_3.setTabText(self.tabWidget_3.indexOf(self.tab_31), QCoreApplication.translate("LogecC3", u"Results", None))
         self.lineEdit_18.setText(QCoreApplication.translate("LogecC3", u"Put a DB view (or multiple) of a table in the DB with cheathssset google dorks", None))
         self.tabWidget_3.setTabText(self.tabWidget_3.indexOf(self.tab_42), QCoreApplication.translate("LogecC3", u"CheatSheet", None))
-        self.osint_dork.setTabText(self.osint_dork.indexOf(self.tab_18), QCoreApplication.translate("LogecC3", u"DorkGen", None))
-        self.lineEdit_8.setText(QCoreApplication.translate("LogecC3", u"Non Functional", None))
-        self.osint_dork.setTabText(self.osint_dork.indexOf(self.tab_14), QCoreApplication.translate("LogecC3", u"VideoCams(use qwebview)", None))
+        self.osint_reddit_tab.setTabText(self.osint_reddit_tab.indexOf(self.tab_18), QCoreApplication.translate("LogecC3", u"DorkGen", None))
+        self.osint_reddit_tab.setTabText(self.osint_reddit_tab.indexOf(self.tab_14), QCoreApplication.translate("LogecC3", u"VideoCams(use qwebview)", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), QCoreApplication.translate("LogecC3", u"Osint", None))
-        self.label_70.setText(QCoreApplication.translate("LogecC3", u"Other?", None))
-        self.label_67.setText(QCoreApplication.translate("LogecC3", u"Username", None))
-        self.label_69.setText(QCoreApplication.translate("LogecC3", u"DC-IP", None))
-        self.label_68.setText(QCoreApplication.translate("LogecC3", u"Password", None))
-        self.lineEdit_14.setPlaceholderText(QCoreApplication.translate("LogecC3", u"AldersonE", None))
-        self.portscan_start_6.setText(QCoreApplication.translate("LogecC3", u"-->> Start <<--", None))
-        self.lineEdit_15.setPlaceholderText(QCoreApplication.translate("LogecC3", u"MR.Rob3t", None))
-        self.dashboard_osint_keyword_2.setPlaceholderText(QCoreApplication.translate("LogecC3", u"AllSafe", None))
-        self.lineEdit_16.setText("")
-        self.lineEdit_16.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Optional", None))
-        self.label_62.setText(QCoreApplication.translate("LogecC3", u"Kerberoast", None))
-        self.lineEdit_12.setText(QCoreApplication.translate("LogecC3", u"Length", None))
-#if QT_CONFIG(tooltip)
-        self.dashboard_reddit_onlycomments_2.setToolTip(QCoreApplication.translate("LogecC3", u"Search ONLY for comments with \"KEYWORD\" in the text", None))
-#endif // QT_CONFIG(tooltip)
-        self.dashboard_reddit_onlycomments_2.setText(QCoreApplication.translate("LogecC3", u"Comment Search", None))
-        self.combo_time_3.setItemText(0, QCoreApplication.translate("LogecC3", u"All", None))
-        self.combo_time_3.setItemText(1, QCoreApplication.translate("LogecC3", u"Year", None))
-        self.combo_time_3.setItemText(2, QCoreApplication.translate("LogecC3", u"Month", None))
-        self.combo_time_3.setItemText(3, QCoreApplication.translate("LogecC3", u"Day", None))
-        self.combo_time_3.setItemText(4, QCoreApplication.translate("LogecC3", u"Hour", None))
-
-        self.label_63.setText(QCoreApplication.translate("LogecC3", u"SortBy", None))
-        self.label_64.setText(QCoreApplication.translate("LogecC3", u"Time", None))
-#if QT_CONFIG(tooltip)
-        self.dashboard_reddit_onlyprofile_2.setToolTip(QCoreApplication.translate("LogecC3", u"Search for a user profile, enter the username in \"keyword\"", None))
-#endif // QT_CONFIG(tooltip)
-        self.dashboard_reddit_onlyprofile_2.setText(QCoreApplication.translate("LogecC3", u"Profile Search", None))
-        self.combo_sort_3.setItemText(0, QCoreApplication.translate("LogecC3", u"Hot", None))
-        self.combo_sort_3.setItemText(1, QCoreApplication.translate("LogecC3", u"Top", None))
-        self.combo_sort_3.setItemText(2, QCoreApplication.translate("LogecC3", u"New", None))
-        self.combo_sort_3.setItemText(3, QCoreApplication.translate("LogecC3", u"Controversial", None))
-        self.combo_sort_3.setItemText(4, QCoreApplication.translate("LogecC3", u"Comments", None))
-
-#if QT_CONFIG(tooltip)
-        self.dashboard_reddit_downloadmedia_2.setToolTip(QCoreApplication.translate("LogecC3", u"Download Images/Videos associated with the posts searched", None))
-#endif // QT_CONFIG(tooltip)
-        self.dashboard_reddit_downloadmedia_2.setText(QCoreApplication.translate("LogecC3", u"Download Media", None))
-        self.dashboard_reddit_subreddit_2.setPlaceholderText(QCoreApplication.translate("LogecC3", u"r/technology", None))
-        self.label_65.setText(QCoreApplication.translate("LogecC3", u"Subreddit (Optional)", None))
-        self.dashboard_reddit_hideNSFW_2.setText(QCoreApplication.translate("LogecC3", u"Hide NSFW", None))
-        self.lineEdit_13.setText(QCoreApplication.translate("LogecC3", u"Non Functional", None))
-        self.label_66.setText(QCoreApplication.translate("LogecC3", u"Domain", None))
-        self.tabWidget_5.setTabText(self.tabWidget_5.indexOf(self.tab_39), QCoreApplication.translate("LogecC3", u"DashBoard", None))
-        self.tabWidget_5.setTabText(self.tabWidget_5.indexOf(self.tab_40), QCoreApplication.translate("LogecC3", u"Kerberoast", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_38), QCoreApplication.translate("LogecC3", u"AD", None))
         self.label_16.setText(QCoreApplication.translate("LogecC3", u"Preset", None))
         self.comboBox_2.setItemText(0, QCoreApplication.translate("LogecC3", u"WebScan (Nikto, dirbuster)", None))
         self.comboBox_2.setItemText(1, QCoreApplication.translate("LogecC3", u"Full Scan (Everything, portscan first)", None))
@@ -3742,6 +3578,8 @@ class Ui_LogecC3(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Integrate some C, (do the scanning with C) nmap is kicking my ass interms of speed</p></body></html>", None))
         self.tabWidget_7.setTabText(self.tabWidget_7.indexOf(self.tab_36), QCoreApplication.translate("LogecC3", u"Dev Track", None))
         self.tabWidget_7.setTabText(self.tabWidget_7.indexOf(self.tab_15), QCoreApplication.translate("LogecC3", u"SQL Injection?", None))
+        self.groupBox.setTitle(QCoreApplication.translate("LogecC3", u"GroupBox", None))
+        self.tabWidget_7.setTabText(self.tabWidget_7.indexOf(self.tab), QCoreApplication.translate("LogecC3", u"Page", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_20), QCoreApplication.translate("LogecC3", u"Ideas/POC", None))
         self.menuFile.setTitle(QCoreApplication.translate("LogecC3", u"File", None))
         self.menu_GettingStarted.setTitle(QCoreApplication.translate("LogecC3", u"Getting Started", None))

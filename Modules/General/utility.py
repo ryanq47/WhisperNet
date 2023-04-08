@@ -14,14 +14,15 @@ from PySide6.QtCore import Signal, QObject
 
 
 class Timestamp:
-    
+    ## using static here cause ther is no need to initialize this class all over. 
+    @staticmethod
     def UTC_Time():
         current_date_time = datetime.now(timezone.utc)
         
         current_time = current_date_time.strftime("%H:%M:%S")
         #print(current_time)
         return current_time
-    
+    @staticmethod
     def UTC_Date():
         current_date_time = datetime.now(timezone.utc)
         

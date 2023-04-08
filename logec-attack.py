@@ -205,6 +205,9 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.table_RefreshDB_Button_osint_reddit.setShortcut('r')
         self.table_QueryDB_Button_osint_reddit.clicked.connect(lambda: self.custom_query('reddit_osint_db'))
         self.table_QueryDB_Button_osint_reddit.setShortcut('Return')
+        ## GUI buttons
+        ## lamdba for reverse toggle
+        self.osint_reddit_gui_hide_search.toggled.connect(lambda x: self.osint_reddit_searchbox.setVisible(not x))
 
     ##== buttons for Bruteforce Credentials
     def init_buttons_bruteforce_credentials(self) -> None:
@@ -392,7 +395,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             self.handle_error(['No Query Input Provided', 'Low', 'Enter an input to fix'])
             return
 
-        # Temp workaround for shortcuts not working
+        # Temp workaround for shortcuts not working"
         query_input = query_input_raw
         '''
         if query_input_raw == '!_help':
@@ -417,33 +420,43 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         query = QSqlQuery(query_input)
         # Connecting to DB for more data
         connection = sqlite3.connect(self.database_file)
-        cursor = connection.execute(query_input)
-        names = [x[0] for x in cursor.description]
-        connection.close()
+        try:
+            cursor = connection.execute(query_input)
+            names = [x[0] for x in cursor.description]
+            connection.close()
+            ## variabels for the column/row names
+            names_num = 0
+            names_list = []
+            query_num = 0
 
-        names_num = 0
-        names_list = []
-        query_num = 0
+            # Loop for column names
+            for i in names:
+                names_list.append(i)
+                names_num += 1
 
-        # Loop for column names
-        for i in names:
-            names_list.append(i)
-            names_num += 1
+            self.view.setColumnCount(len(names_list))
+            self.view.setHorizontalHeaderLabels(names_list)
 
-        self.view.setColumnCount(len(names_list))
-        self.view.setHorizontalHeaderLabels(names_list)
+            # Loop for data in each column
+            while query.next():
+                rows = self.view.rowCount()
+                self.view.setRowCount(rows + 1)
 
-        # Loop for data in each column
-        while query.next():
-            rows = self.view.rowCount()
-            self.view.setRowCount(rows + 1)
+                for i in range(0, len(names_list)):
+                    self.view.setItem(rows, i, QTableWidgetItem(str(query.value(i))))
 
-            for i in range(0, len(names_list)):
-                self.view.setItem(rows, i, QTableWidgetItem(str(query.value(i))))
+                query_num += 1
 
-            query_num += 1
+            self.view.resizeColumnsToContents()
 
-        self.view.resizeColumnsToContents()
+        except sqlite3.OperationalError as operror:
+            logging.warn(f"[SQL] Operational error: {operror}")
+            self.handle_error([operror, "warn", "Enter a valid SQL query"])
+        except sqlite3.Error as error:
+            #print('Error:', error) if GLOBAL_DEBUG else None
+            logging.warn(f"[SQL]Error writing to SQL DB: {error}")
+        except Exception as e:
+            logging.warn(f"[SQL] Unkown error: {e}")
 
 
 ####################
@@ -1294,12 +1307,13 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
                 stype = "comments"
             elif self.osint_reddit_onlyprofile.isChecked():
                 stype = "profile"
-            if self.osint_reddit_onlysubreddit.isChecked():
+            elif self.osint_reddit_onlysubreddit.isChecked():
                 stype = "subreddit"
             elif self.osint_reddit_onlypost.isChecked():
                 stype = "post"   
             else:
-                stype = "post"       
+                print("STYPE ERROR")
+                #stype = "post"       
                 
             '''only_comments = self.osint_reddit_onlycomments.isChecked()
             only_profile = self.osint_reddit_onlyprofile.isChecked()'''
@@ -1324,8 +1338,11 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             self.thread_manager.start(partial(self.osint_reddit_worker.osint_reddit_framework, search_list, options_list))
             #r.osint_reddit_framework(search_list, options_list)
 
-            print("test")
+            ## Clearing RedditResults table
+            self.sql_db_write("DELETE FROM RedditResults")
+
             self.osint_reddit_worker.result_list.connect(self.osint_reddit_db_write)
+            self.osint_reddit_worker.search_url.connect(self.osint_reddit_search_url_display)
         
             #self.osint_reddit_search.setText('-->> Search <<--')
             
@@ -1339,32 +1356,40 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
             #self.reddit_progressbar.setMaximum(maxval)
             #self.reddit_progressbar.setValue(currentval)
+    def osint_reddit_search_url_display(self, url):
+        print("URL SET TRIGGERED")
+        self.osint_reddit_searchurl.setText(url.replace("oauth.",""))
             
     def osint_reddit_db_write(self, list_to_write):
-        print("DB WRITE TRIGGERED")
         """Generates a string for sql_db_write to write to DB
 
         Args:
             list_to_write (list): a list with the info needed.
         """ 
-        subreddit, title, comment, upvote, downvote, post_url, media_url, date, time, user = list_to_write
+        try:
+            subreddit, title, comment, upvote, downvote, post_url, media_url, date, time, user = list_to_write
+            
+            #print(list_to_write)
+            
+            query = f"""INSERT INTO RedditResults  (
+                "Subreddit",
+                "Title",
+                "Comment",
+                "User",
+                "Upvotes",
+                "Downvotes",
+                "PostURL",
+                "MediaURL",
+                "CreationDate",
+                "CreationTime"
+            )
+            VALUES
+            ("{subreddit}", "{title}", "{comment}", '{user}', '{upvote}', "{downvote}", "{post_url}", "{media_url}", '{time}', '{date}')"""
+            self.sql_db_write(query)
 
-        query = f"""INSERT INTO RedditResults  (
-            "Subreddit",
-            "Title",
-            "Comment",
-            "User",
-            "Upvotes",
-            "Downvotes",
-            "PostURL",
-            "MediaURL",
-            "CreationDate",
-            "CreationTime"
-        )
-        VALUES
-        ("{subreddit}", "{title}", "{comment}", '{upvote}', '{downvote}', "{post_url}", "{media_url}", "{date}", '{time}', '{user}')"""
+        except Exception as e:
+            logging.warning("[Logec (RedditOsint)]Error with formatting SQL Query")
         
-        self.sql_db_write(query)
 
 ##== Google Dork
 
@@ -1812,9 +1837,15 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             self.sqliteConnection.commit()
             cursor.close()
 
+        ## this first as sqlite3.error is a catchall
+        except sqlite3.OperationalError as operror:
+            logging.warn(f"[SQL] Operational error: {operror}")
+            self.handle_error([operror, "warn", "Enter a valid SQL query"])
+
         except sqlite3.Error as error:
             #print('Error:', error) if GLOBAL_DEBUG else None
             logging.warn(f"[SQL]Error writing to SQL DB: {error}")
+
         except Exception as e:
             logging.warn(f"[SQL] Unkown error: {e}")
 

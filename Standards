@@ -87,6 +87,16 @@ Error Codes:
         
         An example error is:
             err_0x01: client_unknown_input: An unknown inputwas recieved
+        
+
+        GUI/module Errors:
+            GUI:
+                [Logec (function area name)]
+                [Logec (RedditOsint)]
+            Modules:
+                [Module Name]
+                [RedditOsint]
+
 
 Naming Schemes:
     Variables: 
