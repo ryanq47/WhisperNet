@@ -34,7 +34,7 @@ from PySide6.QtWidgets import (
     QPushButton,
     QTableWidget,
     QTableWidgetItem,
-    QTableView,
+    QTableView, QSizePolicy,
     QTabBar,
     QTabWidget,
     QMenu,
@@ -428,14 +428,17 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             names_num = 0
             names_list = []
             query_num = 0
+            
 
             # Loop for column names
             for i in names:
                 names_list.append(i)
                 names_num += 1
 
+            ## Column formattiing
             self.view.setColumnCount(len(names_list))
             self.view.setHorizontalHeaderLabels(names_list)
+
 
             # Loop for data in each column
             while query.next():
@@ -448,7 +451,12 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
                 query_num += 1
 
             self.view.resizeColumnsToContents()
-
+            ## setting
+            max_width = int(self.settings['sql_table_view']['max_column_width'])
+            for i in range(self.view.columnCount()):
+                width = min(self.view.columnWidth(i), max_width)
+                self.view.setColumnWidth(i, width)
+                
         except sqlite3.OperationalError as operror:
             logging.warn(f"[SQL] Operational error: {operror}")
             self.handle_error([operror, "warn", "Enter a valid SQL query"])
@@ -1730,6 +1738,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             print(self.settings['general']['theme'])
               
         except Exception as e:
+            logging.warning(f"[LogecSuite (Settings)] Error loading Settings: {e}")
             print(e) if GLOBAL_DEBUG else None
         
     

@@ -1,5 +1,17 @@
 ## SPACES! not tabs
 
+Guide: |     
+    Quick Guidelines for YAML
+  
+    !!str: A string value (the default if no type is specified).
+    !!bool: A boolean value (true or false).
+    !!int: An integer value.
+    !!float: A floating-point value.
+    !!null: A null value (equivalent to None in Python).
+    !!timestamp: A date/time value.
+    !!binary: A binary data value.
+
+
 general:
 
   ## Themes are in beta, may not work as expected!
@@ -9,6 +21,10 @@ general:
 startup:
   show-project-picker: True
 
+sql_table_view:
+  ## The widest the columns DEFAULT to. Can still manually expand to any size
+  max_column_width: !!int 100
+
 
 osint:
   reddit:
@@ -17,3 +33,4 @@ osint:
     client_id: "GAlh4V1Wvo3h_lg2H9v4ZQ"
     username: "Level_Statement8564"
     password: "s7zmf4@LJP*5C#^Nim3HU5ZtF&cpV9"
+
