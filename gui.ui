@@ -57,7 +57,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>5</number>
+       <number>1</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -862,7 +862,14 @@ p, li { white-space: pre-wrap; }
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
                <item row="0" column="0" colspan="2">
-                <widget class="QTableWidget" name="table_SQLDB_osint_reddit"/>
+                <widget class="QTableWidget" name="table_SQLDB_osint_reddit">
+                 <property name="verticalScrollMode">
+                  <enum>QAbstractItemView::ScrollPerPixel</enum>
+                 </property>
+                 <property name="horizontalScrollMode">
+                  <enum>QAbstractItemView::ScrollPerPixel</enum>
+                 </property>
+                </widget>
                </item>
                <item row="1" column="0" colspan="2">
                 <widget class="QLineEdit" name="DB_Query_osint_reddit">

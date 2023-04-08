@@ -34,7 +34,7 @@ from PySide6.QtWidgets import (
     QPushButton,
     QTableWidget,
     QTableWidgetItem,
-    QTableView, QSizePolicy,
+    QTableView, QSizePolicy, QAbstractItemView,
     QTabBar,
     QTabWidget,
     QMenu,
@@ -450,12 +450,25 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
                 query_num += 1
 
+            ## auto resizes
             self.view.resizeColumnsToContents()
-            ## setting
+            
+            ## Scroll Mode:
+            self.view.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
+            self.view.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
+            
+            ## width
             max_width = int(self.settings['sql_table_view']['max_column_width'])
             for i in range(self.view.columnCount()):
                 width = min(self.view.columnWidth(i), max_width)
                 self.view.setColumnWidth(i, width)
+            
+            ##height 
+            max_height = int(self.settings['sql_table_view']['max_row_height'])
+            for i in range(self.view.rowCount()):
+                height = min(self.view.rowHeight(i), max_height)
+                self.view.setRowHeight(i, height)
+
                 
         except sqlite3.OperationalError as operror:
             logging.warn(f"[SQL] Operational error: {operror}")

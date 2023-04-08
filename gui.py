@@ -16,13 +16,13 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDoubleSpinBox,
-    QFrame, QGraphicsView, QGridLayout, QGroupBox,
-    QHeaderView, QLCDNumber, QLabel, QLineEdit,
-    QMainWindow, QMenu, QMenuBar, QProgressBar,
-    QPushButton, QRadioButton, QScrollArea, QSizePolicy,
-    QSpinBox, QTabWidget, QTableWidget, QTableWidgetItem,
-    QTextEdit, QToolBox, QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QComboBox,
+    QDoubleSpinBox, QFrame, QGraphicsView, QGridLayout,
+    QGroupBox, QHeaderView, QLCDNumber, QLabel,
+    QLineEdit, QMainWindow, QMenu, QMenuBar,
+    QProgressBar, QPushButton, QRadioButton, QScrollArea,
+    QSizePolicy, QSpinBox, QTabWidget, QTableWidget,
+    QTableWidgetItem, QTextEdit, QToolBox, QWidget)
 
 class Ui_LogecC3(object):
     def setupUi(self, LogecC3):
@@ -469,6 +469,8 @@ class Ui_LogecC3(object):
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.table_SQLDB_osint_reddit = QTableWidget(self.groupBox_2)
         self.table_SQLDB_osint_reddit.setObjectName(u"table_SQLDB_osint_reddit")
+        self.table_SQLDB_osint_reddit.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
+        self.table_SQLDB_osint_reddit.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
 
         self.gridLayout_2.addWidget(self.table_SQLDB_osint_reddit, 0, 0, 1, 2)
 
@@ -2014,20 +2016,25 @@ class Ui_LogecC3(object):
 
         self.gridLayout_28.addWidget(self.settings_edit, 0, 0, 1, 3)
 
+        self.settings_reload = QPushButton(self.tab_37)
+        self.settings_reload.setObjectName(u"settings_reload")
+
+        self.gridLayout_28.addWidget(self.settings_reload, 2, 1, 1, 1)
+
         self.program_reload = QPushButton(self.tab_37)
         self.program_reload.setObjectName(u"program_reload")
 
-        self.gridLayout_28.addWidget(self.program_reload, 1, 0, 1, 1)
+        self.gridLayout_28.addWidget(self.program_reload, 2, 0, 1, 1)
 
         self.settings_write = QPushButton(self.tab_37)
         self.settings_write.setObjectName(u"settings_write")
 
-        self.gridLayout_28.addWidget(self.settings_write, 1, 2, 1, 1)
+        self.gridLayout_28.addWidget(self.settings_write, 2, 2, 1, 1)
 
-        self.settings_reload = QPushButton(self.tab_37)
-        self.settings_reload.setObjectName(u"settings_reload")
+        self.lineEdit_5 = QLineEdit(self.tab_37)
+        self.lineEdit_5.setObjectName(u"lineEdit_5")
 
-        self.gridLayout_28.addWidget(self.settings_reload, 1, 1, 1, 1)
+        self.gridLayout_28.addWidget(self.lineEdit_5, 1, 0, 1, 3)
 
         self.tabWidget_2.addTab(self.tab_37, "")
 
@@ -3324,9 +3331,10 @@ class Ui_LogecC3(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
+        self.settings_reload.setText(QCoreApplication.translate("LogecC3", u"-->> Reload File <<--", None))
         self.program_reload.setText(QCoreApplication.translate("LogecC3", u"-->> Reload Program <<--", None))
         self.settings_write.setText(QCoreApplication.translate("LogecC3", u"-->> Write FIle <<--", None))
-        self.settings_reload.setText(QCoreApplication.translate("LogecC3", u"-->> Reload File <<--", None))
+        self.lineEdit_5.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Status Bar (success, failure, etc)", None))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_37), QCoreApplication.translate("LogecC3", u"Settings", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), QCoreApplication.translate("LogecC3", u"Settings", None))
 #if QT_CONFIG(tooltip)

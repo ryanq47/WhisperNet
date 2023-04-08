@@ -24,6 +24,7 @@ startup:
 sql_table_view:
   ## The widest the columns DEFAULT to. Can still manually expand to any size
   max_column_width: !!int 100
+  max_row_height: !!int 5
 
 
 osint:
