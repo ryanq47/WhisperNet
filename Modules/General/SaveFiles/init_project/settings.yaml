@@ -27,6 +27,11 @@ sql_table_view:
   ## 5-10 Reccomended
   max_row_height: !!int 5
 
+  sql_rightclick_menu:
+    ## THe search url for the browser you want, no http/s
+    ## Google: google.com/search?q=
+    default_browser_url: "duckduckgo.com/?q="
+
 
 osint:
   reddit:

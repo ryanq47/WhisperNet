@@ -43,7 +43,7 @@ from PySide6.QtWidgets import (
 
 ##== Syspath, first so things can refrence it:
 sys_path = os.path.dirname(os.path.abspath(sys.argv[0]))
-print("Syspath:" + sys_path) if GLOBAL_DEBUG else None
+#print("Syspath:" + sys_path) if GLOBAL_DEBUG else None
 
 
 
@@ -439,7 +439,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
             ## Get current value of selected item, pass to right click menu
             
-            self.sql_right_click_menu(self.view, current_value)
+            self.sql_right_click_menu(self.view, "http://google.com")
 
             ## Column formattiing
             self.view.setColumnCount(len(names_list))
@@ -507,7 +507,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         global_pos.setX(global_pos.x() + 50)
         
         ## this is a blocking call, waits for an action to happen or it to be dismissed
-        menu.exec_(global_pos)
+        menu.exec(global_pos)
 
 ####################
 ## C2
@@ -579,7 +579,8 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             self.c2_systemshell.setText(results)
             self.c2_systemshell_input.setText("")
         except Exception as e:
-            print(e) if GLOBAL_DEBUG else None
+            logging.debug(f"[Logec (System Shell)]: {e}")
+            #print(e) if GLOBAL_DEBUG else None
 
     def c2_editor(self):
         ## Lazy imports
@@ -647,7 +648,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.c2_servershell_input.setText("")
     
     def shell_text_update(self, input):
-        print("shell_text_update" + input) if GLOBAL_DEBUG else None
+        #print("shell_text_update" + input) if GLOBAL_DEBUG else None
         self.c2_servershell.setText(input)
 
 
@@ -669,7 +670,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
     """
     def portscan(self, QObject):
         input_ip = self.portscan_IP.text()
-        print(input_ip) if GLOBAL_DEBUG else None
+        #print(input_ip) if GLOBAL_DEBUG else None
 
         try:
             ## setting bar to 0
@@ -722,9 +723,9 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             }
             delay = delay_mapping.get(self.portscan_delay.currentText())
 
-            print(f'TIMOUT: {timeout}') if GLOBAL_DEBUG else None
+            #print(f'TIMOUT: {timeout}') if GLOBAL_DEBUG else None
             
-            print(f'DELAY: {delay}') if GLOBAL_DEBUG else None
+            #print(f'DELAY: {delay}') if GLOBAL_DEBUG else None
             
             ## if clicked standard = true
             target_list = [ip, int(min_port), int(max_port), timeout, delay, extra_port]
@@ -773,7 +774,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
         """
     def portscan_database_write(self, list):
-        print("DB Triggered") if GLOBAL_DEBUG else None
+        #print("DB Triggered") if GLOBAL_DEBUG else None
         try:
             cursor = self.sqliteConnection.cursor()
             
@@ -784,7 +785,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             VALUES
             ({IP}, {str(PORT).replace("{","").replace("}","")}, '{SCANTYPE}', '{SCANDATE}', '{SCANTIME}', '{RUNTIME}', "{SCANNEDPORTS}", '{DELAY}')"""
             
-            print(sqlite_insert_query) if GLOBAL_DEBUG else None
+            #print(sqlite_insert_query) if GLOBAL_DEBUG else None
 
             cursor.execute(sqlite_insert_query)
             self.sqliteConnection.commit()
@@ -804,7 +805,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         ## Doing json here for expandability, rather than a list
         ## If the checks are checked, they return true. The scriptgen.py uses true & false
         ## for which blocks to build with
-        print(self.bashbuild_diagnostic.isChecked())  if GLOBAL_DEBUG else None
+        #print(self.bashbuild_diagnostic.isChecked())  if GLOBAL_DEBUG else None
         
         json_unpacked = {
             "DIAGNOSTIC":
@@ -827,7 +828,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
         packed_json = json.dumps(json_unpacked)
         
-        print(packed_json) if GLOBAL_DEBUG else None
+        #print(packed_json) if GLOBAL_DEBUG else None
         
         self.Script.script_results.connect(self.bash_builder_display)
         
@@ -835,7 +836,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.Script.script_framework(packed_json)        
 ##GUI Updater
     def bash_builder_display(self, final_script):
-        print("triggered") if GLOBAL_DEBUG else None
+        #print("triggered") if GLOBAL_DEBUG else None
         self.bashbuild_textoutput.setText(final_script)
 
 ##== dns_lookup
@@ -1030,7 +1031,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
     def bruteforce_hardstop(self):
         #pass
-        print("clicked") if GLOBAL_DEBUG else None
+        #print("clicked") if GLOBAL_DEBUG else None
         try:
             pass
             #self.bruteforce_worker.thread_quit()
@@ -1041,7 +1042,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
     def bf_browser_popup(self, whichbutton):
         from PySide6.QtWidgets import QFileDialog
-        print("Clicked") if GLOBAL_DEBUG else None
+        #print("Clicked") if GLOBAL_DEBUG else None
         
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
@@ -1112,7 +1113,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             ])
 ## Bruteforce DB Stuff
     def bruteforce_database_write(self, list):
-        print("DB Triggered")  if GLOBAL_DEBUG else None
+        #print("DB Triggered")  if GLOBAL_DEBUG else None
         try:
             cursor = self.sqliteConnection.cursor()
             
@@ -1123,7 +1124,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             VALUES
             ('{TARGET}', '{str(PORT).replace("{","").replace("}","")}', '{SERVICE}', '{CREDS}', '{TIME}', '{DATE}' )"""
             
-            print(sqlite_insert_query) if GLOBAL_DEBUG else None
+            #print(sqlite_insert_query) if GLOBAL_DEBUG else None
 
             cursor.execute(sqlite_insert_query)
             self.sqliteConnection.commit()
@@ -1200,11 +1201,11 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-            print(exc_type, fname, exc_tb.tb_lineno) if GLOBAL_DEBUG else None
+            #print(exc_type, fname, exc_tb.tb_lineno) if GLOBAL_DEBUG else None
 
     def bruteforce_fuzz_hardstop(self):
         #pass
-        print("clicked") if GLOBAL_DEBUG else None
+        #print("clicked") if GLOBAL_DEBUG else None
         try:
             pass
             #self.fuzzer_worker.thread_quit()
@@ -1215,7 +1216,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
     def bf_fuzz_browser_popup(self, whichbutton):
         from PySide6.QtWidgets import QFileDialog
-        print("Clicked") if GLOBAL_DEBUG else None
+        #print("Clicked") if GLOBAL_DEBUG else None
         
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
@@ -1281,7 +1282,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             ])
 ##== Fuzzer DB Stuff
     def bruteforce_fuzz_database_write(self, list):
-        print("BF Fuzzer DB Triggered") if GLOBAL_DEBUG else None
+        #print("BF Fuzzer DB Triggered") if GLOBAL_DEBUG else None
         try:
             cursor = self.sqliteConnection.cursor()
             
@@ -1292,7 +1293,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             VALUES
             ('{TARGET}', '{str(PORT).replace("{","").replace("}","")}', '{CODE}', '{SHORT_URL}', '{LONG_URL}', '{TIME}', '{DATE}' )"""
             
-            print(sqlite_insert_query)  if GLOBAL_DEBUG else None
+            #print(sqlite_insert_query)  if GLOBAL_DEBUG else None
 
             cursor.execute(sqlite_insert_query)
             self.sqliteConnection.commit()
@@ -1362,7 +1363,8 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             elif self.osint_reddit_onlypost.isChecked():
                 stype = "post"   
             else:
-                print("STYPE ERROR")
+                logging.debug("[Logec (OSINT Reddit)] Error with search type. Most likely due to a bug")
+                #print("STYPE ERROR")
                 #stype = "post"       
                 
             '''only_comments = self.osint_reddit_onlycomments.isChecked()
@@ -1407,7 +1409,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             #self.reddit_progressbar.setMaximum(maxval)
             #self.reddit_progressbar.setValue(currentval)
     def osint_reddit_search_url_display(self, url):
-        print("URL SET TRIGGERED")
+        #print("URL SET TRIGGERED")
         self.osint_reddit_searchurl.setText(url.replace("oauth.",""))
             
     def osint_reddit_db_write(self, list_to_write):
@@ -1648,8 +1650,22 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 ####################
 ## Other functions, webbrowser etc
 ####################
-    def global_browser(self, site):
-        import webbrowser
+    def global_browser(self, site: str):
+        """Used for popping a websearch/direct url. 
+
+        Args:
+            site (str): the site/URL/URI that the user wants to go to
+        """
+        ## Lazy Import
+        try:
+            import webbrowser
+        except ImportError as IE:
+            logging.warning(f"[Logec (Webbrowser)]: 'webbrowser' import error: {IE}")
+        
+        ## maybe use a regex to validate the url
+        if "http://" or "https://" not in site:
+            site = f"https://{self.settings['sql_table_view']['sql_rightclick_menu']['default_browser_url']}{site}"
+            
         try:
             webbrowser.open(site)
         except Exception as e:
@@ -1697,14 +1713,15 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         #QFileDialog.setDirectory("Modules/General/SaveFiles/")
         fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", f"{sys_path}/Modules/General/SaveFiles/","ProjectFiles (*.zip)", options=options)
         
-        print(fileName) if GLOBAL_DEBUG else None
+        #print(fileName) if GLOBAL_DEBUG else None
+        logging.debug(f"[Logec (ProjectFile)] ProjectName: {fileName}")
         
         options_list = [
             "load",
             fileName,
         ]
         
-        print(fileName) if GLOBAL_DEBUG else None
+        #print(fileName) if GLOBAL_DEBUG else None
         
         ## Setting global project path
         self.ProjectPath = fileName
@@ -1726,7 +1743,8 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
                 self.ProjectPath.replace(".zip",""),
             ]
             
-            print(self.ProjectPath) if GLOBAL_DEBUG else None
+            #print(self.ProjectPath) if GLOBAL_DEBUG else None
+            logging.debug(f"[Logec (ProjectFile)] Project Path: {self.ProjectPath}")
             
             self.PF.save_framework(options_list)
         
@@ -1785,14 +1803,15 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
                 with open(sys_path + '/Modules/General/SaveFiles/init_project/settings.yaml', 'r') as f:
                     self.settings_path = sys_path + '/Modules/General/SaveFiles/init_project/settings.yaml'
                     self.settings = yaml.safe_load(f)
-                    print("Succesfully opened default project")
+                    logging.debug("[Logec (Project Files)] Default project loaded")
+                    #print("Succesfully opened default project")
                     
             # Getting settings
-            print(self.settings['general']['theme'])
+            #print(self.settings['general']['theme'])
               
         except Exception as e:
             logging.warning(f"[LogecSuite (Settings)] Error loading Settings: {e}")
-            print(e) if GLOBAL_DEBUG else None
+            #print(e) if GLOBAL_DEBUG else None
         
     
     def load_settings(self):
@@ -1836,20 +1855,20 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         ## the path below. Loading projects uses .tmp_projectfolder which is empty by default
         
         if database_file != "default":
-            print("ELSE") if GLOBAL_DEBUG else None
-            print(database_file) if GLOBAL_DEBUG else None
+            #print(database_file) if GLOBAL_DEBUG else None
             self.sqliteConnection = sqlite3.connect(sys_path + f'/{database_file}/logec_db')
             self.database_file = sys_path + f'/{database_file}/logec_db'
-            print(self.database_file) if GLOBAL_DEBUG else None
+            #print(self.database_file) if GLOBAL_DEBUG else None
             #pass 
+            logging.debug(f"[Logec (Project Files)] Project NAME SQL loaded")
             
         else:
-            print("DEFAULT") if GLOBAL_DEBUG else None
+            #print("DEFAULT") if GLOBAL_DEBUG else None
             self.sqliteConnection = sqlite3.connect(sys_path + '/Modules/General/SaveFiles/init_project/logec_db')
-            print(sys_path + '/Modules/General/SaveFiles/init_project/logec_db') if GLOBAL_DEBUG else None
+            #print(sys_path + '/Modules/General/SaveFiles/init_project/logec_db') if GLOBAL_DEBUG else None
             self.database_file = sys_path + '/Modules/General/SaveFiles/init_project/logec_db'
-            print(self.database_file) if GLOBAL_DEBUG else None
-        
+            #print(self.database_file) if GLOBAL_DEBUG else None
+            logging.debug(f"[Logec (Project Files)] Default Project SQL loaded")
         
         ## Getting Q_sql set
         self.q_sql()
@@ -1862,9 +1881,9 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         con = QSqlDatabase.addDatabase('QSQLITE')
 
         con.setDatabaseName(self.database_file)
-        print(self.database_file) if GLOBAL_DEBUG else None
+        #print(self.database_file) if GLOBAL_DEBUG else None
         
-        print("Database location:", con.databaseName()) if GLOBAL_DEBUG else None
+        #print("Database location:", con.databaseName()) if GLOBAL_DEBUG else None
 
         ## Qapp throwing a fit due to no DB and no constructed app
         ## No DB outside of this dir, need to add that in setup too
@@ -1876,8 +1895,9 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
                     'Database Error: %s' % con.lastError().databaseText(),
                 )
                 return False
-            except:
-                print('Error connecting to DB & QApp not constructed.') if GLOBAL_DEBUG else None
+            except Exception as e:
+                logging.warning(f"[Logec (Project File)] Error connecting to DB: {e}")
+                #print('Error connecting to DB & QApp not constructed.') if GLOBAL_DEBUG else None
         #return True
     
     ## SQL global writer
@@ -1928,7 +1948,8 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             cursor.close()
 
         except sqlite3.Error as error:
-            print('Error:', error) if GLOBAL_DEBUG else None
+            logging.warning(f"[Logec (SQL)] Error: {error}")
+            #print('Error:', error) if GLOBAL_DEBUG else None
 
         #finally:
             #if self.sqliteConnection:
@@ -1979,7 +2000,8 @@ if __name__ == '__main__':
         # Library Paths
         library_paths = QCoreApplication.libraryPaths()
         # Print the path where QSqlDatabase is looking for drivers
-        print(library_paths) if GLOBAL_DEBUG else None
+        # not a logging.debug YEt as it's only useful for dev
+        #print(library_paths) if GLOBAL_DEBUG else None
 
         # QT stuff
         window = LogecSuite()
@@ -1991,4 +2013,5 @@ if __name__ == '__main__':
         os.kill(pid, 15)   # SIGTERM
 
     except Exception as e:
+        print("===== Traceback =====")
         traceback.print_exc()
