@@ -17,8 +17,8 @@ import traceback
 
 ##== GUI Imports
 from PySide6 import QtWidgets
-from PySide6.QtCore import Qt, QObject, QThread, QFile, Signal, Slot, QThreadPool, QCoreApplication, QTimer
-from PySide6.QtGui import QIcon, QAction, QPen
+from PySide6.QtCore import Qt, QObject, QThread, QFile, Signal, Slot, QThreadPool, QCoreApplication, QTimer, QPoint
+from PySide6.QtGui import QIcon, QAction, QPen, QStandardItemModel, QStandardItem
 from PySide6.QtSql import QSqlDatabase, QSqlTableModel, QSqlQuery
 from PySide6.QtUiTools import loadUiType, QUiLoader
 from PySide6.QtWidgets import (
@@ -354,6 +354,8 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         # removing old rows:
         self.clear_db_table()
         self.custom_query(_from)
+    
+
 
     def custom_query(self, _from) -> None:
         """
@@ -435,6 +437,10 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
                 names_list.append(i)
                 names_num += 1
 
+            ## Get current value of selected item, pass to right click menu
+            
+            self.sql_right_click_menu(self.view, current_value)
+
             ## Column formattiing
             self.view.setColumnCount(len(names_list))
             self.view.setHorizontalHeaderLabels(names_list)
@@ -478,7 +484,30 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             logging.warn(f"[SQL]Error writing to SQL DB: {error}")
         except Exception as e:
             logging.warn(f"[SQL] Unkown error: {e}")
+            
+    ## right click stuff
+    def sql_right_click_menu(self, tablename, cellvalue):
+        self.view.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.view.customContextMenuRequested.connect(partial(self.show_cell_menu, cellvalue))
 
+    def show_cell_menu(self, cellvalue, pos: QPoint):
+        global_pos = self.view.mapToGlobal(pos)
+        menu = QMenu()
+        web_search = menu.addAction("Web Search")
+        menu.addAction("Action 2")
+        
+        web_search.triggered.connect(partial(self.global_browser, cellvalue))
+        
+        #print(menu_height)
+        
+        ## Long story short, this gets the menu to appear right next to the cursor
+        ## no it's not the right way to do it, and it doesn't scale well but idc 
+        menu_height = window.height()
+        global_pos.setY(global_pos.y() - (menu_height/3))
+        global_pos.setX(global_pos.x() + 50)
+        
+        ## this is a blocking call, waits for an action to happen or it to be dismissed
+        menu.exec_(global_pos)
 
 ####################
 ## C2
@@ -1615,6 +1644,17 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
     def performance_benchmark_settime(self, time):
         #print("PERF SET TIME")
         self.performance_seconds.setText(time)
+
+####################
+## Other functions, webbrowser etc
+####################
+    def global_browser(self, site):
+        import webbrowser
+        try:
+            webbrowser.open(site)
+        except Exception as e:
+            logging.warning(f"[Logec (Webbrowser)] Error: {e}")
+
 
 ####################
 ## Settings & Controls
