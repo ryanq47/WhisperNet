@@ -12,27 +12,34 @@ Guide: |
     !!binary: A binary data value.
 
 
-general:
+system:
+  themes: 
+    ## Themes are in beta, may not work as expected!
+    #Ex: theme: "mytheme.css"
+    theme: !!str "Default"
 
-  ## Themes are in beta, may not work as expected!
-  #Ex: theme: "mytheme.css"
-  theme: "Default"
+  startup:
+    show_project_picker: !!bool False
 
-startup:
-  show-project-picker: True
-
-sql_table_view:
-  ## The widest the columns DEFAULT to. Can still manually expand to any size
-  max_column_width: !!int 100 
-  ## 5-10 Reccomended
-  max_row_height: !!int 5
-
-  sql_rightclick_menu:
-    ## THe search url for the browser you want, no http/s
-    ## Google: google.com/search?q=
-    default_browser_url: "duckduckgo.com/?q="
+  logging:
+    #Not Working
+    logs_to_stdout: !!bool True
 
 
+sql:
+  ## settings for the tables displayed in the program
+  sql_table_view:
+    ## The widest the columns DEFAULT to. Can still manually expand to any size
+    max_column_width: !!int 100 
+    ## 5-10 Reccomended
+    max_row_height: !!int 5
+
+    sql_rightclick_menu:
+      ## THe search url for the browser you want, no http/s
+      ## Google: google.com/search?q=
+      default_browser_url: !!str "duckduckgo.com/?q="
+
+## modules n stuff
 osint:
   reddit:
     ## These are burner creds (link to a real, useless account)

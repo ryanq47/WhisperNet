@@ -128,7 +128,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.c2_layout()
 
         ##== Setting theme
-        self.set_theme(self.settings['general']['theme'])
+        self.set_theme(self.settings['system']['themes']['theme'])
 
     ##== Thread Manager
     def init_thread_manager(self) -> None:
@@ -464,13 +464,13 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             self.view.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
             
             ## width
-            max_width = int(self.settings['sql_table_view']['max_column_width'])
+            max_width = int(self.settings['sql']['sql_table_view']['max_column_width'])
             for i in range(self.view.columnCount()):
                 width = min(self.view.columnWidth(i), max_width)
                 self.view.setColumnWidth(i, width)
             
             ##height 
-            max_height = int(self.settings['sql_table_view']['max_row_height'])
+            max_height = int(self.settings['sql']['sql_table_view']['max_row_height'])
             for i in range(self.view.rowCount()):
                 height = min(self.view.rowHeight(i), max_height)
                 self.view.setRowHeight(i, height)
@@ -1664,7 +1664,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         
         ## maybe use a regex to validate the url
         if "http://" or "https://" not in site:
-            site = f"https://{self.settings['sql_table_view']['sql_rightclick_menu']['default_browser_url']}{site}"
+            site = f"https://{self.settings['sql']['sql_table_view']['sql_rightclick_menu']['default_browser_url']}{site}"
             
         try:
             webbrowser.open(site)
@@ -1686,18 +1686,18 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
     def startup_project_open(self):
         ## Lazy imports
         #from Gui.startup_projectbox import Ui_startup_projectbox
-        
-        self.window = QtWidgets.QMainWindow()
-        self.project_popup = Ui_startup_projectbox()
-        self.project_popup.setupUi(self.window)
-        self.window.show()
-        
-        ## ========================================
-        ## Startup Buttons ========================
-        ## ========================================
-        ## down here due to the import, and it technically being in a different class
-        self.project_popup.startup_project_openproject.clicked.connect(self.project_open)
-        self.project_popup.startup_project_exit.clicked.connect(self.program_exit)
+        if self.settings['system']['startup']['show_project_picker']:
+            self.window = QtWidgets.QMainWindow()
+            self.project_popup = Ui_startup_projectbox()
+            self.project_popup.setupUi(self.window)
+            self.window.show()
+            
+            ## ========================================
+            ## Startup Buttons ========================
+            ## ========================================
+            ## down here due to the import, and it technically being in a different class
+            self.project_popup.startup_project_openproject.clicked.connect(self.project_open)
+            self.project_popup.startup_project_exit.clicked.connect(self.program_exit)
     
 ##== Project Controls
         """
