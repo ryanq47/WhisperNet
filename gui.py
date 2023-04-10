@@ -19,17 +19,18 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QComboBox,
     QDoubleSpinBox, QFrame, QGraphicsView, QGridLayout,
     QGroupBox, QHeaderView, QLCDNumber, QLabel,
-    QLineEdit, QMainWindow, QMenu, QMenuBar,
-    QProgressBar, QPushButton, QRadioButton, QScrollArea,
-    QSizePolicy, QSpinBox, QTabWidget, QTableWidget,
-    QTableWidgetItem, QTextEdit, QToolBox, QWidget)
+    QLineEdit, QListWidget, QListWidgetItem, QMainWindow,
+    QMenu, QMenuBar, QProgressBar, QPushButton,
+    QRadioButton, QScrollArea, QSizePolicy, QSpinBox,
+    QTabWidget, QTableWidget, QTableWidgetItem, QTextEdit,
+    QToolBox, QWidget)
 
 class Ui_LogecC3(object):
     def setupUi(self, LogecC3):
         if not LogecC3.objectName():
             LogecC3.setObjectName(u"LogecC3")
         LogecC3.setWindowModality(Qt.NonModal)
-        LogecC3.resize(1111, 866)
+        LogecC3.resize(1111, 909)
         LogecC3.setMinimumSize(QSize(850, 688))
         LogecC3.setMaximumSize(QSize(10000, 10000))
         font = QFont()
@@ -126,25 +127,41 @@ class Ui_LogecC3(object):
         self.tabWidget.setTabBarAutoHide(False)
         self.c2_tab = QWidget()
         self.c2_tab.setObjectName(u"c2_tab")
-        self.gridLayout_52 = QGridLayout(self.c2_tab)
-        self.gridLayout_52.setObjectName(u"gridLayout_52")
-        self.textEdit_25 = QTextEdit(self.c2_tab)
-        self.textEdit_25.setObjectName(u"textEdit_25")
-
-        self.gridLayout_52.addWidget(self.textEdit_25, 0, 0, 1, 1)
-
-        self.bruteforce_panel_2 = QTabWidget(self.c2_tab)
-        self.bruteforce_panel_2.setObjectName(u"bruteforce_panel_2")
-        self.tab_55 = QWidget()
-        self.tab_55.setObjectName(u"tab_55")
-        self.gridLayout_40 = QGridLayout(self.tab_55)
+        self.gridLayout_40 = QGridLayout(self.c2_tab)
         self.gridLayout_40.setObjectName(u"gridLayout_40")
-        self.bruteforce_currentbatch_2 = QTextEdit(self.tab_55)
-        self.bruteforce_currentbatch_2.setObjectName(u"bruteforce_currentbatch_2")
+        self.c2_gui_hide_clients = QCheckBox(self.c2_tab)
+        self.c2_gui_hide_clients.setObjectName(u"c2_gui_hide_clients")
 
-        self.gridLayout_40.addWidget(self.bruteforce_currentbatch_2, 0, 0, 1, 1)
+        self.gridLayout_40.addWidget(self.c2_gui_hide_clients, 0, 0, 1, 1)
 
-        self.bruteforce_panel_2.addTab(self.tab_55, "")
+        self.c2_gui_hide_shells = QCheckBox(self.c2_tab)
+        self.c2_gui_hide_shells.setObjectName(u"c2_gui_hide_shells")
+
+        self.gridLayout_40.addWidget(self.c2_gui_hide_shells, 0, 1, 1, 1)
+
+        self.c2_gui_hide_options = QCheckBox(self.c2_tab)
+        self.c2_gui_hide_options.setObjectName(u"c2_gui_hide_options")
+
+        self.gridLayout_40.addWidget(self.c2_gui_hide_options, 0, 2, 1, 1)
+
+        self.groupBox = QGroupBox(self.c2_tab)
+        self.groupBox.setObjectName(u"groupBox")
+        self.gridLayout_12 = QGridLayout(self.groupBox)
+        self.gridLayout_12.setObjectName(u"gridLayout_12")
+        self.listWidget = QListWidget(self.groupBox)
+        self.listWidget.setObjectName(u"listWidget")
+
+        self.gridLayout_12.addWidget(self.listWidget, 0, 0, 1, 1)
+
+
+        self.gridLayout_40.addWidget(self.groupBox, 1, 0, 1, 3)
+
+        self.groupBox_3 = QGroupBox(self.c2_tab)
+        self.groupBox_3.setObjectName(u"groupBox_3")
+        self.gridLayout_29 = QGridLayout(self.groupBox_3)
+        self.gridLayout_29.setObjectName(u"gridLayout_29")
+        self.bruteforce_panel_2 = QTabWidget(self.groupBox_3)
+        self.bruteforce_panel_2.setObjectName(u"bruteforce_panel_2")
         self.tab_54 = QWidget()
         self.tab_54.setObjectName(u"tab_54")
         self.gridLayout_39 = QGridLayout(self.tab_54)
@@ -170,25 +187,15 @@ class Ui_LogecC3(object):
         self.tab_33.setObjectName(u"tab_33")
         self.gridLayout_24 = QGridLayout(self.tab_33)
         self.gridLayout_24.setObjectName(u"gridLayout_24")
-        self.c2_server_password = QLineEdit(self.tab_33)
-        self.c2_server_password.setObjectName(u"c2_server_password")
-
-        self.gridLayout_24.addWidget(self.c2_server_password, 2, 0, 1, 2)
-
         self.c2_server_username = QLineEdit(self.tab_33)
         self.c2_server_username.setObjectName(u"c2_server_username")
 
         self.gridLayout_24.addWidget(self.c2_server_username, 1, 0, 1, 2)
 
-        self.c2_server_port = QLineEdit(self.tab_33)
-        self.c2_server_port.setObjectName(u"c2_server_port")
+        self.c2_status_label = QLabel(self.tab_33)
+        self.c2_status_label.setObjectName(u"c2_status_label")
 
-        self.gridLayout_24.addWidget(self.c2_server_port, 0, 1, 1, 1)
-
-        self.c2_server_ip = QLineEdit(self.tab_33)
-        self.c2_server_ip.setObjectName(u"c2_server_ip")
-
-        self.gridLayout_24.addWidget(self.c2_server_ip, 0, 0, 1, 1)
+        self.gridLayout_24.addWidget(self.c2_status_label, 5, 0, 1, 2)
 
         self.c2_disconnect_button = QPushButton(self.tab_33)
         self.c2_disconnect_button.setObjectName(u"c2_disconnect_button")
@@ -200,10 +207,20 @@ class Ui_LogecC3(object):
 
         self.gridLayout_24.addWidget(self.c2_connect_button, 4, 1, 1, 1)
 
-        self.c2_status_label = QLabel(self.tab_33)
-        self.c2_status_label.setObjectName(u"c2_status_label")
+        self.c2_server_password = QLineEdit(self.tab_33)
+        self.c2_server_password.setObjectName(u"c2_server_password")
 
-        self.gridLayout_24.addWidget(self.c2_status_label, 5, 0, 1, 2)
+        self.gridLayout_24.addWidget(self.c2_server_password, 2, 0, 1, 2)
+
+        self.c2_server_port = QLineEdit(self.tab_33)
+        self.c2_server_port.setObjectName(u"c2_server_port")
+
+        self.gridLayout_24.addWidget(self.c2_server_port, 0, 1, 1, 1)
+
+        self.c2_server_ip = QLineEdit(self.tab_33)
+        self.c2_server_ip.setObjectName(u"c2_server_ip")
+
+        self.gridLayout_24.addWidget(self.c2_server_ip, 0, 0, 1, 1)
 
         self.bruteforce_panel_2.addTab(self.tab_33, "")
         self.tab_53 = QWidget()
@@ -242,9 +259,16 @@ class Ui_LogecC3(object):
 
         self.bruteforce_panel_2.addTab(self.tab_53, "")
 
-        self.gridLayout_52.addWidget(self.bruteforce_panel_2, 0, 1, 1, 1)
+        self.gridLayout_29.addWidget(self.bruteforce_panel_2, 0, 0, 1, 1)
 
-        self.c2_shell_tab = QTabWidget(self.c2_tab)
+
+        self.gridLayout_40.addWidget(self.groupBox_3, 1, 3, 1, 1)
+
+        self.groupBox_4 = QGroupBox(self.c2_tab)
+        self.groupBox_4.setObjectName(u"groupBox_4")
+        self.gridLayout_30 = QGridLayout(self.groupBox_4)
+        self.gridLayout_30.setObjectName(u"gridLayout_30")
+        self.c2_shell_tab = QTabWidget(self.groupBox_4)
         self.c2_shell_tab.setObjectName(u"c2_shell_tab")
         self.c2_shell_tab.setMinimumSize(QSize(0, 400))
         self.tab_57 = QWidget()
@@ -335,7 +359,10 @@ class Ui_LogecC3(object):
 
         self.c2_shell_tab.addTab(self.tab_59, "")
 
-        self.gridLayout_52.addWidget(self.c2_shell_tab, 1, 0, 1, 2)
+        self.gridLayout_30.addWidget(self.c2_shell_tab, 0, 0, 1, 1)
+
+
+        self.gridLayout_40.addWidget(self.groupBox_4, 2, 0, 1, 4)
 
         self.tabWidget.addTab(self.c2_tab, "")
         self.tab_4 = QWidget()
@@ -771,7 +798,7 @@ class Ui_LogecC3(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 72, 16))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1047, 672))
         self.dashboard_portscan_IP = QLineEdit(self.scrollAreaWidgetContents)
         self.dashboard_portscan_IP.setObjectName(u"dashboard_portscan_IP")
         self.dashboard_portscan_IP.setGeometry(QRect(10, 40, 211, 27))
@@ -2454,12 +2481,34 @@ class Ui_LogecC3(object):
         self.tab_15 = QWidget()
         self.tab_15.setObjectName(u"tab_15")
         self.tabWidget_7.addTab(self.tab_15, "")
+        self.Eagle = QWidget()
+        self.Eagle.setObjectName(u"Eagle")
+        self.gridLayout = QGridLayout(self.Eagle)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.tabWidget_4 = QTabWidget(self.Eagle)
+        self.tabWidget_4.setObjectName(u"tabWidget_4")
         self.tab = QWidget()
         self.tab.setObjectName(u"tab")
-        self.groupBox = QGroupBox(self.tab)
-        self.groupBox.setObjectName(u"groupBox")
-        self.groupBox.setGeometry(QRect(140, 60, 621, 291))
-        self.tabWidget_7.addTab(self.tab, "")
+        self.tabWidget_4.addTab(self.tab, "")
+        self.tab_3 = QWidget()
+        self.tab_3.setObjectName(u"tab_3")
+        self.gridLayout_11 = QGridLayout(self.tab_3)
+        self.gridLayout_11.setObjectName(u"gridLayout_11")
+        self.scrollArea_4 = QScrollArea(self.tab_3)
+        self.scrollArea_4.setObjectName(u"scrollArea_4")
+        self.scrollArea_4.setWidgetResizable(True)
+        self.scrollAreaWidgetContents_4 = QWidget()
+        self.scrollAreaWidgetContents_4.setObjectName(u"scrollAreaWidgetContents_4")
+        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 1025, 712))
+        self.scrollArea_4.setWidget(self.scrollAreaWidgetContents_4)
+
+        self.gridLayout_11.addWidget(self.scrollArea_4, 0, 0, 1, 1)
+
+        self.tabWidget_4.addTab(self.tab_3, "")
+
+        self.gridLayout.addWidget(self.tabWidget_4, 0, 0, 1, 1)
+
+        self.tabWidget_7.addTab(self.Eagle, "")
 
         self.gridLayout_9.addWidget(self.tabWidget_7, 0, 0, 1, 1)
 
@@ -2490,12 +2539,12 @@ class Ui_LogecC3(object):
 
         self.retranslateUi(LogecC3)
 
-        self.tabWidget.setCurrentIndex(1)
-        self.bruteforce_panel_2.setCurrentIndex(3)
-        self.c2_shell_tab.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
+        self.bruteforce_panel_2.setCurrentIndex(0)
+        self.c2_shell_tab.setCurrentIndex(0)
         self.osint_reddit_tab.setCurrentIndex(1)
         self.tabWidget_3.setCurrentIndex(1)
-        self.tabWidget_8.setCurrentIndex(1)
+        self.tabWidget_8.setCurrentIndex(0)
         self.bashbuild_toolBox.setCurrentIndex(3)
         self.tabWidget_9.setCurrentIndex(0)
         self.tabWidget_6.setCurrentIndex(0)
@@ -2515,6 +2564,7 @@ class Ui_LogecC3(object):
         self.tabWidget_12.setCurrentIndex(1)
         self.tabWidget_15.setCurrentIndex(1)
         self.tabWidget_7.setCurrentIndex(5)
+        self.tabWidget_4.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(LogecC3)
@@ -2564,25 +2614,11 @@ class Ui_LogecC3(object):
         self.actionSaveAs_Project.setText(QCoreApplication.translate("LogecC3", u"Save Project As...", None))
         self.actionOpen_Project.setText(QCoreApplication.translate("LogecC3", u"Open Project", None))
         self.actionExit.setText(QCoreApplication.translate("LogecC3", u"Exit", None))
-        self.textEdit_25.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Blank random space for something</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Layout could use some work</p></body></html>", None))
-        self.bruteforce_currentbatch_2.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">IP: 51.16.91.8:7331 | User: Root | Length 41m 31s</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">IP: 51.16.91.8:7331 | User: Root | Length 41m 31s</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style"
-                        "=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">IP: 51.16.91.8:7331 | User: Root | Length 41m 31s</p></body></html>", None))
-        self.bruteforce_panel_2.setTabText(self.bruteforce_panel_2.indexOf(self.tab_55), QCoreApplication.translate("LogecC3", u"Clients", None))
+        self.c2_gui_hide_clients.setText(QCoreApplication.translate("LogecC3", u"Hide Clients", None))
+        self.c2_gui_hide_shells.setText(QCoreApplication.translate("LogecC3", u"Hide Shells", None))
+        self.c2_gui_hide_options.setText(QCoreApplication.translate("LogecC3", u"Hide Options", None))
+        self.groupBox.setTitle("")
+        self.groupBox_3.setTitle("")
         self.bruteforce_goodcreds_2.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -2595,17 +2631,17 @@ class Ui_LogecC3(object):
 "</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
         self.bruteforce_panel_2.setTabText(self.bruteforce_panel_2.indexOf(self.tab_56), QCoreApplication.translate("LogecC3", u"Log (0)", None))
-        self.c2_server_password.setText(QCoreApplication.translate("LogecC3", u"1234", None))
-        self.c2_server_password.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Password", None))
         self.c2_server_username.setText(QCoreApplication.translate("LogecC3", u"ryan", None))
         self.c2_server_username.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Username", None))
+        self.c2_status_label.setText(QCoreApplication.translate("LogecC3", u"Status: Not Connected", None))
+        self.c2_disconnect_button.setText(QCoreApplication.translate("LogecC3", u"Disconnect", None))
+        self.c2_connect_button.setText(QCoreApplication.translate("LogecC3", u"Connect", None))
+        self.c2_server_password.setText(QCoreApplication.translate("LogecC3", u"1234", None))
+        self.c2_server_password.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Password", None))
         self.c2_server_port.setText(QCoreApplication.translate("LogecC3", u"101", None))
         self.c2_server_port.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Port", None))
         self.c2_server_ip.setText(QCoreApplication.translate("LogecC3", u"127.0.0.1", None))
         self.c2_server_ip.setPlaceholderText(QCoreApplication.translate("LogecC3", u"IP", None))
-        self.c2_disconnect_button.setText(QCoreApplication.translate("LogecC3", u"Disconnect", None))
-        self.c2_connect_button.setText(QCoreApplication.translate("LogecC3", u"Connect", None))
-        self.c2_status_label.setText(QCoreApplication.translate("LogecC3", u"Status: Not Connected", None))
         self.bruteforce_panel_2.setTabText(self.bruteforce_panel_2.indexOf(self.tab_33), QCoreApplication.translate("LogecC3", u"ServerLogin", None))
         self.c2_server_ip_2.setText("")
         self.c2_server_ip_2.setPlaceholderText(QCoreApplication.translate("LogecC3", u"IP", None))
@@ -2619,6 +2655,7 @@ class Ui_LogecC3(object):
 "</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If you'd like to spin up the server locally, you can do it here, or you can run the 'server.py' file</p></body></html>", None))
         self.bruteforce_panel_2.setTabText(self.bruteforce_panel_2.indexOf(self.tab_53), QCoreApplication.translate("LogecC3", u"LocalServer", None))
+        self.groupBox_4.setTitle("")
 #if QT_CONFIG(tooltip)
         self.c2_shell_tab.setToolTip(QCoreApplication.translate("LogecC3", u"Enter", None))
 #endif // QT_CONFIG(tooltip)
@@ -3481,8 +3518,9 @@ class Ui_LogecC3(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Integrate some C, (do the scanning with C) nmap is kicking my ass interms of speed</p></body></html>", None))
         self.tabWidget_7.setTabText(self.tabWidget_7.indexOf(self.tab_36), QCoreApplication.translate("LogecC3", u"Dev Track", None))
         self.tabWidget_7.setTabText(self.tabWidget_7.indexOf(self.tab_15), QCoreApplication.translate("LogecC3", u"SQL Injection?", None))
-        self.groupBox.setTitle(QCoreApplication.translate("LogecC3", u"GroupBox", None))
-        self.tabWidget_7.setTabText(self.tabWidget_7.indexOf(self.tab), QCoreApplication.translate("LogecC3", u"Page", None))
+        self.tabWidget_4.setTabText(self.tabWidget_4.indexOf(self.tab), QCoreApplication.translate("LogecC3", u"Config", None))
+        self.tabWidget_4.setTabText(self.tabWidget_4.indexOf(self.tab_3), QCoreApplication.translate("LogecC3", u"Jobs", None))
+        self.tabWidget_7.setTabText(self.tabWidget_7.indexOf(self.Eagle), QCoreApplication.translate("LogecC3", u"Eagle", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_20), QCoreApplication.translate("LogecC3", u"Ideas/POC", None))
         self.menuFile.setTitle(QCoreApplication.translate("LogecC3", u"File", None))
         self.menu_GettingStarted.setTitle(QCoreApplication.translate("LogecC3", u"Getting Started", None))

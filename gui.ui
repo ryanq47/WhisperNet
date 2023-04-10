@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1111</width>
-    <height>866</height>
+    <height>909</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -57,7 +57,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -72,425 +72,440 @@
        <attribute name="title">
         <string>C2</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_52">
+       <layout class="QGridLayout" name="gridLayout_40">
         <item row="0" column="0">
-         <widget class="QTextEdit" name="textEdit_25">
-          <property name="html">
-           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Blank random space for something&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Layout could use some work&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <widget class="QCheckBox" name="c2_gui_hide_clients">
+          <property name="text">
+           <string>Hide Clients</string>
           </property>
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QTabWidget" name="bruteforce_panel_2">
-          <property name="currentIndex">
-           <number>3</number>
+         <widget class="QCheckBox" name="c2_gui_hide_shells">
+          <property name="text">
+           <string>Hide Shells</string>
           </property>
-          <widget class="QWidget" name="tab_55">
-           <attribute name="title">
-            <string>Clients</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_40">
-            <item row="0" column="0">
-             <widget class="QTextEdit" name="bruteforce_currentbatch_2">
-              <property name="html">
-               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IP: 51.16.91.8:7331 | User: Root | Length 41m 31s&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IP: 51.16.91.8:7331 | User: Root | Length 41m 31s&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;IP: 51.16.91.8:7331 | User: Root | Length 41m 31s&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tab_54">
-           <attribute name="title">
-            <string>Connection Details</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_39">
-            <item row="0" column="0">
-             <widget class="QTextEdit" name="bruteforce_goodcreds_2">
-              <property name="maximumSize">
-               <size>
-                <width>1677700</width>
-                <height>16777215</height>
-               </size>
-              </property>
-              <property name="html">
-               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tab_56">
-           <attribute name="title">
-            <string>Log (0)</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_41">
-            <item row="0" column="0">
-             <widget class="QTextEdit" name="bruteforce_errlog_2">
-              <property name="html">
-               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QCheckBox" name="c2_gui_hide_options">
+          <property name="text">
+           <string>Hide Options</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="3">
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_12">
+           <item row="0" column="0">
+            <widget class="QListWidget" name="listWidget"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_29">
+           <item row="0" column="0">
+            <widget class="QTabWidget" name="bruteforce_panel_2">
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <widget class="QWidget" name="tab_54">
+              <attribute name="title">
+               <string>Connection Details</string>
+              </attribute>
+              <layout class="QGridLayout" name="gridLayout_39">
+               <item row="0" column="0">
+                <widget class="QTextEdit" name="bruteforce_goodcreds_2">
+                 <property name="maximumSize">
+                  <size>
+                   <width>1677700</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tab_33">
-           <attribute name="title">
-            <string>ServerLogin</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_24">
-            <item row="2" column="0" colspan="2">
-             <widget class="QLineEdit" name="c2_server_password">
-              <property name="text">
-               <string>1234</string>
-              </property>
-              <property name="placeholderText">
-               <string>Password</string>
-              </property>
+             <widget class="QWidget" name="tab_56">
+              <attribute name="title">
+               <string>Log (0)</string>
+              </attribute>
+              <layout class="QGridLayout" name="gridLayout_41">
+               <item row="0" column="0">
+                <widget class="QTextEdit" name="bruteforce_errlog_2">
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
-            </item>
-            <item row="1" column="0" colspan="2">
-             <widget class="QLineEdit" name="c2_server_username">
-              <property name="text">
-               <string>ryan</string>
-              </property>
-              <property name="placeholderText">
-               <string>Username</string>
-              </property>
+             <widget class="QWidget" name="tab_33">
+              <attribute name="title">
+               <string>ServerLogin</string>
+              </attribute>
+              <layout class="QGridLayout" name="gridLayout_24">
+               <item row="1" column="0" colspan="2">
+                <widget class="QLineEdit" name="c2_server_username">
+                 <property name="text">
+                  <string>ryan</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Username</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0" colspan="2">
+                <widget class="QLabel" name="c2_status_label">
+                 <property name="text">
+                  <string>Status: Not Connected</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QPushButton" name="c2_disconnect_button">
+                 <property name="text">
+                  <string>Disconnect</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <widget class="QPushButton" name="c2_connect_button">
+                 <property name="text">
+                  <string>Connect</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0" colspan="2">
+                <widget class="QLineEdit" name="c2_server_password">
+                 <property name="text">
+                  <string>1234</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Password</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLineEdit" name="c2_server_port">
+                 <property name="text">
+                  <string>101</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Port</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLineEdit" name="c2_server_ip">
+                 <property name="text">
+                  <string>127.0.0.1</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>IP</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="c2_server_port">
-              <property name="text">
-               <string>101</string>
-              </property>
-              <property name="placeholderText">
-               <string>Port</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLineEdit" name="c2_server_ip">
-              <property name="text">
-               <string>127.0.0.1</string>
-              </property>
-              <property name="placeholderText">
-               <string>IP</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QPushButton" name="c2_disconnect_button">
-              <property name="text">
-               <string>Disconnect</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="QPushButton" name="c2_connect_button">
-              <property name="text">
-               <string>Connect</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0" colspan="2">
-             <widget class="QLabel" name="c2_status_label">
-              <property name="text">
-               <string>Status: Not Connected</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tab_53">
-           <attribute name="title">
-            <string>LocalServer</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_51">
-            <item row="0" column="0">
-             <widget class="QLineEdit" name="c2_server_ip_2">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="placeholderText">
-               <string>IP</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="c2_server_port_2">
-              <property name="placeholderText">
-               <string>Port</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0" colspan="2">
-             <widget class="QLineEdit" name="c2_server_password_2">
-              <property name="placeholderText">
-               <string>Password</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QPushButton" name="pushButton_6">
-              <property name="text">
-               <string>Stop</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QPushButton" name="c2_connect_button_2">
-              <property name="text">
-               <string>Start</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0" colspan="2">
-             <widget class="QTextEdit" name="textEdit_27">
-              <property name="html">
-               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+             <widget class="QWidget" name="tab_53">
+              <attribute name="title">
+               <string>LocalServer</string>
+              </attribute>
+              <layout class="QGridLayout" name="gridLayout_51">
+               <item row="0" column="0">
+                <widget class="QLineEdit" name="c2_server_ip_2">
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="placeholderText">
+                  <string>IP</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLineEdit" name="c2_server_port_2">
+                 <property name="placeholderText">
+                  <string>Port</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0" colspan="2">
+                <widget class="QLineEdit" name="c2_server_password_2">
+                 <property name="placeholderText">
+                  <string>Password</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QPushButton" name="pushButton_6">
+                 <property name="text">
+                  <string>Stop</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QPushButton" name="c2_connect_button_2">
+                 <property name="text">
+                  <string>Start</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="2">
+                <widget class="QTextEdit" name="textEdit_27">
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If you'd like to spin up the server locally, you can do it here, or you can run the 'server.py' file&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
-            </item>
-           </layout>
-          </widget>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </item>
-        <item row="1" column="0" colspan="2">
-         <widget class="QTabWidget" name="c2_shell_tab">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>400</height>
-           </size>
+        <item row="2" column="0" colspan="4">
+         <widget class="QGroupBox" name="groupBox_4">
+          <property name="title">
+           <string/>
           </property>
-          <property name="toolTip">
-           <string>Enter</string>
-          </property>
-          <property name="whatsThis">
-           <string>Enter</string>
-          </property>
-          <property name="currentIndex">
-           <number>2</number>
-          </property>
-          <widget class="QWidget" name="tab_57">
-           <attribute name="title">
-            <string>RemoteShell</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_42">
-            <item row="0" column="0" colspan="2">
-             <widget class="QTextEdit" name="c2_servershell">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="font">
-               <font>
-                <family>Monospace</family>
-                <pointsize>9</pointsize>
-                <underline>false</underline>
-               </font>
-              </property>
-              <property name="toolTip">
-               <string/>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(29, 29, 29);</string>
-              </property>
-              <property name="readOnly">
-               <bool>false</bool>
-              </property>
-              <property name="html">
-               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+          <layout class="QGridLayout" name="gridLayout_30">
+           <item row="0" column="0">
+            <widget class="QTabWidget" name="c2_shell_tab">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>400</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Enter</string>
+             </property>
+             <property name="whatsThis">
+              <string>Enter</string>
+             </property>
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <widget class="QWidget" name="tab_57">
+              <attribute name="title">
+               <string>RemoteShell</string>
+              </attribute>
+              <layout class="QGridLayout" name="gridLayout_42">
+               <item row="0" column="0" colspan="2">
+                <widget class="QTextEdit" name="c2_servershell">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Monospace</family>
+                   <pointsize>9</pointsize>
+                   <underline>false</underline>
+                  </font>
+                 </property>
+                 <property name="toolTip">
+                  <string/>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(29, 29, 29);</string>
+                 </property>
+                 <property name="readOnly">
+                  <bool>false</bool>
+                 </property>
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Monospace'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <property name="placeholderText">
-               <string>root@127.0.0.1&gt; </string>
-              </property>
+                 </property>
+                 <property name="placeholderText">
+                  <string>root@127.0.0.1&gt; </string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QPushButton" name="c2_servershell_send">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="toolTip">
+                  <string>Hit the Enter Key</string>
+                 </property>
+                 <property name="text">
+                  <string>--&gt;&gt; Send &lt;&lt;-- </string>
+                 </property>
+                 <property name="shortcut">
+                  <string>Return</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLineEdit" name="c2_servershell_input">
+                 <property name="font">
+                  <font>
+                   <family>DejaVu Sans Mono</family>
+                   <pointsize>9</pointsize>
+                   <underline>false</underline>
+                  </font>
+                 </property>
+                 <property name="toolTip">
+                  <string extracomment="Commands"/>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(29, 29, 29);</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Enter Command Here!</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QPushButton" name="c2_servershell_send">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="toolTip">
-               <string>Hit the Enter Key</string>
-              </property>
-              <property name="text">
-               <string>--&gt;&gt; Send &lt;&lt;-- </string>
-              </property>
-              <property name="shortcut">
-               <string>Return</string>
-              </property>
+             <widget class="QWidget" name="tab_58">
+              <attribute name="title">
+               <string>Local DB</string>
+              </attribute>
+              <layout class="QGridLayout" name="gridLayout_43">
+               <item row="2" column="1">
+                <widget class="QPushButton" name="table_QueryDB_Button_2">
+                 <property name="toolTip">
+                  <string>Run a query on the DB</string>
+                 </property>
+                 <property name="text">
+                  <string>--&gt;&gt; Query DB &lt;&lt;--</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QPushButton" name="table_RefreshDB_Button_2">
+                 <property name="toolTip">
+                  <string>Refresh the Database, updating values from the SQLITE DB file</string>
+                 </property>
+                 <property name="text">
+                  <string>--&gt;&gt; Refresh DB &lt;&lt;--</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0" colspan="2">
+                <widget class="QLineEdit" name="DB_Query_2">
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Enter SQL Query! Type !_help for help! </string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0" colspan="2">
+                <widget class="QTableWidget" name="table_SQLDB_2"/>
+               </item>
+              </layout>
              </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLineEdit" name="c2_servershell_input">
-              <property name="font">
-               <font>
-                <family>DejaVu Sans Mono</family>
-                <pointsize>9</pointsize>
-                <underline>false</underline>
-               </font>
-              </property>
-              <property name="toolTip">
-               <string extracomment="Commands"/>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(29, 29, 29);</string>
-              </property>
-              <property name="placeholderText">
-               <string>Enter Command Here!</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tab_58">
-           <attribute name="title">
-            <string>Local DB</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_43">
-            <item row="2" column="1">
-             <widget class="QPushButton" name="table_QueryDB_Button_2">
-              <property name="toolTip">
-               <string>Run a query on the DB</string>
-              </property>
-              <property name="text">
-               <string>--&gt;&gt; Query DB &lt;&lt;--</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QPushButton" name="table_RefreshDB_Button_2">
-              <property name="toolTip">
-               <string>Refresh the Database, updating values from the SQLITE DB file</string>
-              </property>
-              <property name="text">
-               <string>--&gt;&gt; Refresh DB &lt;&lt;--</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0" colspan="2">
-             <widget class="QLineEdit" name="DB_Query_2">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="placeholderText">
-               <string>Enter SQL Query! Type !_help for help! </string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0" colspan="2">
-             <widget class="QTableWidget" name="table_SQLDB_2"/>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tab_59">
-           <attribute name="title">
-            <string>LocalShell</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_50">
-            <item row="0" column="0" colspan="2">
-             <widget class="QTextEdit" name="c2_systemshell">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="font">
-               <font>
-                <family>Monospace</family>
-                <pointsize>9</pointsize>
-                <underline>false</underline>
-               </font>
-              </property>
-              <property name="toolTip">
-               <string/>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(29, 29, 29);</string>
-              </property>
-              <property name="readOnly">
-               <bool>true</bool>
-              </property>
-              <property name="html">
-               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+             <widget class="QWidget" name="tab_59">
+              <attribute name="title">
+               <string>LocalShell</string>
+              </attribute>
+              <layout class="QGridLayout" name="gridLayout_50">
+               <item row="0" column="0" colspan="2">
+                <widget class="QTextEdit" name="c2_systemshell">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Monospace</family>
+                   <pointsize>9</pointsize>
+                   <underline>false</underline>
+                  </font>
+                 </property>
+                 <property name="toolTip">
+                  <string/>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(29, 29, 29);</string>
+                 </property>
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Monospace'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <property name="placeholderText">
-               <string>$</string>
-              </property>
+                 </property>
+                 <property name="placeholderText">
+                  <string>$</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLineEdit" name="c2_systemshell_input">
+                 <property name="font">
+                  <font>
+                   <family>DejaVu Sans Mono</family>
+                   <pointsize>9</pointsize>
+                   <underline>false</underline>
+                  </font>
+                 </property>
+                 <property name="toolTip">
+                  <string extracomment="Commands"/>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(29, 29, 29);</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Enter Command Here!</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QPushButton" name="c2_systemshell_send">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="toolTip">
+                  <string>Hit the Enter Key</string>
+                 </property>
+                 <property name="text">
+                  <string>--&gt;&gt; Send &lt;&lt;-- </string>
+                 </property>
+                 <property name="shortcut">
+                  <string>Return</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLineEdit" name="c2_systemshell_input">
-              <property name="font">
-               <font>
-                <family>DejaVu Sans Mono</family>
-                <pointsize>9</pointsize>
-                <underline>false</underline>
-               </font>
-              </property>
-              <property name="toolTip">
-               <string extracomment="Commands"/>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(29, 29, 29);</string>
-              </property>
-              <property name="placeholderText">
-               <string>Enter Command Here!</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QPushButton" name="c2_systemshell_send">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="toolTip">
-               <string>Hit the Enter Key</string>
-              </property>
-              <property name="text">
-               <string>--&gt;&gt; Send &lt;&lt;-- </string>
-              </property>
-              <property name="shortcut">
-               <string>Return</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </item>
        </layout>
@@ -1275,7 +1290,7 @@ p, li { white-space: pre-wrap; }
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_8">
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab_24">
            <attribute name="title">
@@ -1320,8 +1335,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>72</width>
-                 <height>16</height>
+                 <width>1047</width>
+                 <height>672</height>
                 </rect>
                </property>
                <widget class="QLineEdit" name="dashboard_portscan_IP">
@@ -5094,23 +5109,48 @@ p, li { white-space: pre-wrap; }
             <string>SQL Injection?</string>
            </attribute>
           </widget>
-          <widget class="QWidget" name="tab">
+          <widget class="QWidget" name="Eagle">
            <attribute name="title">
-            <string>Page</string>
+            <string>Eagle</string>
            </attribute>
-           <widget class="QGroupBox" name="groupBox">
-            <property name="geometry">
-             <rect>
-              <x>140</x>
-              <y>60</y>
-              <width>621</width>
-              <height>291</height>
-             </rect>
-            </property>
-            <property name="title">
-             <string>GroupBox</string>
-            </property>
-           </widget>
+           <layout class="QGridLayout" name="gridLayout">
+            <item row="0" column="0">
+             <widget class="QTabWidget" name="tabWidget_4">
+              <property name="currentIndex">
+               <number>1</number>
+              </property>
+              <widget class="QWidget" name="tab">
+               <attribute name="title">
+                <string>Config</string>
+               </attribute>
+              </widget>
+              <widget class="QWidget" name="tab_3">
+               <attribute name="title">
+                <string>Jobs</string>
+               </attribute>
+               <layout class="QGridLayout" name="gridLayout_11">
+                <item row="0" column="0">
+                 <widget class="QScrollArea" name="scrollArea_4">
+                  <property name="widgetResizable">
+                   <bool>true</bool>
+                  </property>
+                  <widget class="QWidget" name="scrollAreaWidgetContents_4">
+                   <property name="geometry">
+                    <rect>
+                     <x>0</x>
+                     <y>0</y>
+                     <width>1025</width>
+                     <height>712</height>
+                    </rect>
+                   </property>
+                  </widget>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </widget>
         </item>
