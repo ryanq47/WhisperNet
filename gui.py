@@ -18,19 +18,19 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QComboBox,
     QDoubleSpinBox, QFrame, QGraphicsView, QGridLayout,
-    QGroupBox, QHeaderView, QLCDNumber, QLabel,
-    QLineEdit, QListWidget, QListWidgetItem, QMainWindow,
-    QMenu, QMenuBar, QProgressBar, QPushButton,
-    QRadioButton, QScrollArea, QSizePolicy, QSpinBox,
-    QTabWidget, QTableWidget, QTableWidgetItem, QTextEdit,
-    QToolBox, QWidget)
+    QGroupBox, QHBoxLayout, QHeaderView, QLCDNumber,
+    QLabel, QLayout, QLineEdit, QListWidget,
+    QListWidgetItem, QMainWindow, QMenu, QMenuBar,
+    QProgressBar, QPushButton, QRadioButton, QScrollArea,
+    QSizePolicy, QSpinBox, QTabWidget, QTableWidget,
+    QTableWidgetItem, QTextEdit, QToolBox, QWidget)
 
 class Ui_LogecC3(object):
     def setupUi(self, LogecC3):
         if not LogecC3.objectName():
             LogecC3.setObjectName(u"LogecC3")
         LogecC3.setWindowModality(Qt.NonModal)
-        LogecC3.resize(1111, 909)
+        LogecC3.resize(1149, 909)
         LogecC3.setMinimumSize(QSize(850, 688))
         LogecC3.setMaximumSize(QSize(10000, 10000))
         font = QFont()
@@ -121,6 +121,7 @@ class Ui_LogecC3(object):
         self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.tabWidget = QTabWidget(self.centralwidget)
         self.tabWidget.setObjectName(u"tabWidget")
+        self.tabWidget.setAutoFillBackground(False)
         self.tabWidget.setTabPosition(QTabWidget.North)
         self.tabWidget.setTabsClosable(False)
         self.tabWidget.setMovable(True)
@@ -144,23 +145,27 @@ class Ui_LogecC3(object):
 
         self.gridLayout_40.addWidget(self.c2_gui_hide_options, 0, 2, 1, 1)
 
-        self.groupBox = QGroupBox(self.c2_tab)
-        self.groupBox.setObjectName(u"groupBox")
-        self.gridLayout_12 = QGridLayout(self.groupBox)
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.c2_gui_groupbox_clients = QGroupBox(self.c2_tab)
+        self.c2_gui_groupbox_clients.setObjectName(u"c2_gui_groupbox_clients")
+        self.c2_gui_groupbox_clients.setAlignment(Qt.AlignJustify|Qt.AlignVCenter)
+        self.gridLayout_12 = QGridLayout(self.c2_gui_groupbox_clients)
         self.gridLayout_12.setObjectName(u"gridLayout_12")
-        self.listWidget = QListWidget(self.groupBox)
+        self.gridLayout_12.setSizeConstraint(QLayout.SetNoConstraint)
+        self.listWidget = QListWidget(self.c2_gui_groupbox_clients)
         self.listWidget.setObjectName(u"listWidget")
 
         self.gridLayout_12.addWidget(self.listWidget, 0, 0, 1, 1)
 
 
-        self.gridLayout_40.addWidget(self.groupBox, 1, 0, 1, 3)
+        self.horizontalLayout.addWidget(self.c2_gui_groupbox_clients)
 
-        self.groupBox_3 = QGroupBox(self.c2_tab)
-        self.groupBox_3.setObjectName(u"groupBox_3")
-        self.gridLayout_29 = QGridLayout(self.groupBox_3)
+        self.c2_gui_groupbox_options = QGroupBox(self.c2_tab)
+        self.c2_gui_groupbox_options.setObjectName(u"c2_gui_groupbox_options")
+        self.gridLayout_29 = QGridLayout(self.c2_gui_groupbox_options)
         self.gridLayout_29.setObjectName(u"gridLayout_29")
-        self.bruteforce_panel_2 = QTabWidget(self.groupBox_3)
+        self.bruteforce_panel_2 = QTabWidget(self.c2_gui_groupbox_options)
         self.bruteforce_panel_2.setObjectName(u"bruteforce_panel_2")
         self.tab_54 = QWidget()
         self.tab_54.setObjectName(u"tab_54")
@@ -262,13 +267,16 @@ class Ui_LogecC3(object):
         self.gridLayout_29.addWidget(self.bruteforce_panel_2, 0, 0, 1, 1)
 
 
-        self.gridLayout_40.addWidget(self.groupBox_3, 1, 3, 1, 1)
+        self.horizontalLayout.addWidget(self.c2_gui_groupbox_options)
 
-        self.groupBox_4 = QGroupBox(self.c2_tab)
-        self.groupBox_4.setObjectName(u"groupBox_4")
-        self.gridLayout_30 = QGridLayout(self.groupBox_4)
+
+        self.gridLayout_40.addLayout(self.horizontalLayout, 1, 0, 1, 3)
+
+        self.c2_gui_groupbox_shells = QGroupBox(self.c2_tab)
+        self.c2_gui_groupbox_shells.setObjectName(u"c2_gui_groupbox_shells")
+        self.gridLayout_30 = QGridLayout(self.c2_gui_groupbox_shells)
         self.gridLayout_30.setObjectName(u"gridLayout_30")
-        self.c2_shell_tab = QTabWidget(self.groupBox_4)
+        self.c2_shell_tab = QTabWidget(self.c2_gui_groupbox_shells)
         self.c2_shell_tab.setObjectName(u"c2_shell_tab")
         self.c2_shell_tab.setMinimumSize(QSize(0, 400))
         self.tab_57 = QWidget()
@@ -362,7 +370,7 @@ class Ui_LogecC3(object):
         self.gridLayout_30.addWidget(self.c2_shell_tab, 0, 0, 1, 1)
 
 
-        self.gridLayout_40.addWidget(self.groupBox_4, 2, 0, 1, 4)
+        self.gridLayout_40.addWidget(self.c2_gui_groupbox_shells, 2, 0, 1, 3)
 
         self.tabWidget.addTab(self.c2_tab, "")
         self.tab_4 = QWidget()
@@ -2519,7 +2527,7 @@ class Ui_LogecC3(object):
         LogecC3.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(LogecC3)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1111, 24))
+        self.menubar.setGeometry(QRect(0, 0, 1149, 24))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
         self.menu_GettingStarted = QMenu(self.menubar)
@@ -2617,8 +2625,8 @@ class Ui_LogecC3(object):
         self.c2_gui_hide_clients.setText(QCoreApplication.translate("LogecC3", u"Hide Clients", None))
         self.c2_gui_hide_shells.setText(QCoreApplication.translate("LogecC3", u"Hide Shells", None))
         self.c2_gui_hide_options.setText(QCoreApplication.translate("LogecC3", u"Hide Options", None))
-        self.groupBox.setTitle("")
-        self.groupBox_3.setTitle("")
+        self.c2_gui_groupbox_clients.setTitle("")
+        self.c2_gui_groupbox_options.setTitle("")
         self.bruteforce_goodcreds_2.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -2655,7 +2663,7 @@ class Ui_LogecC3(object):
 "</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If you'd like to spin up the server locally, you can do it here, or you can run the 'server.py' file</p></body></html>", None))
         self.bruteforce_panel_2.setTabText(self.bruteforce_panel_2.indexOf(self.tab_53), QCoreApplication.translate("LogecC3", u"LocalServer", None))
-        self.groupBox_4.setTitle("")
+        self.c2_gui_groupbox_shells.setTitle("")
 #if QT_CONFIG(tooltip)
         self.c2_shell_tab.setToolTip(QCoreApplication.translate("LogecC3", u"Enter", None))
 #endif // QT_CONFIG(tooltip)

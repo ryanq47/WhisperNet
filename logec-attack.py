@@ -196,6 +196,11 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.c2_disconnect_button.clicked.connect(self.c2_server_disconnect)
         self.c2_server_password.setEchoMode(QLineEdit.Password)
         self.c2_shell_startup()
+
+        ## GUI buttons/toggles
+        self.c2_gui_hide_clients.toggled.connect(lambda x: self.c2_gui_groupbox_clients.setVisible(not x))
+        self.c2_gui_hide_shells.toggled.connect(lambda x: self.c2_gui_groupbox_shells.setVisible(not x))
+        self.c2_gui_hide_options.toggled.connect(lambda x: self.c2_gui_groupbox_options.setVisible(not x))
     
     ##== Buttons for OSINT reddit
     def init_buttons_osint_reddit(self) -> None:
