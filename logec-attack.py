@@ -113,7 +113,8 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.init_buttons_settings_settings()
 
         ##== Data / Tab Inits 
-        self.init_data_performance_graphs()
+        ## Graphs are using lots of CPU, disabled for now.
+        #self.init_data_performance_graphs()
         self.init_data_scanning_portscan()
         self.init_data_sql_tables()
         self.init_data_settings_edit()
@@ -2079,7 +2080,9 @@ if __name__ == '__main__':
         window = LogecSuite()
         window.show()
         window.system_theme_chooser()
-        app.exec()
+        
+        import cProfile
+        cProfile.run('app.exec()', filename=f'{sys_path}/logs/logec-perf.prof')
 
         # Kill when exec is closed
         pid = os.getpid()

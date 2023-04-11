@@ -105,7 +105,7 @@ class FClient(QObject):
             self.gui_to_client(command)
 
         else:
-            self.shellformat(f"command not found")
+            self.shellformat(f"command {command} not found")
             logging.debug(f"Command {command} not found.") 
 
     ##== requests to server
