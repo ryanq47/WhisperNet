@@ -14,9 +14,11 @@ Guide: |
 
 system:
   themes: 
-    ## Themes are in beta, may not work as expected!
-    #Ex: theme: "mytheme.css"
-    theme: !!str "Default"
+    ## Currenth themes: "default", "dark", "light", "system"
+    ## dark: https://github.com/5yutan5/PyQtDarkTheme
+    theme: !!str "system"
+    ## hex color code
+    accent: !!str "#7DF9FF"
 
   startup:
     show_project_picker: !!bool False
@@ -48,3 +50,7 @@ osint:
     username: "Level_Statement8564"
     password: "s7zmf4@LJP*5C#^Nim3HU5ZtF&cpV9"
 
+c2:
+  local:
+    ## Milliseconds
+    server_log_refresh: !!int 10000 

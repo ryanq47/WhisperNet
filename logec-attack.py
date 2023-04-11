@@ -6,6 +6,7 @@ GLOBAL_DEBUG = True
 ##== Main Imports
 import json
 import os
+import subprocess
 import sys
 import random
 import sqlite3
@@ -82,6 +83,7 @@ logging.basicConfig(level=logging.DEBUG)
 logging.basicConfig(filename='osint_reddit.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s', force=True)
 #if global_debug:
 logging.getLogger().addHandler(logging.StreamHandler())
+
 
 ####################
 ## Logec Suite Class
@@ -192,10 +194,17 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.c2_servershell_send.clicked.connect(self.c2_server_interact)
         self.friendly_client = FClient()
 
+        # conn to server
         self.c2_connect_button.clicked.connect(self.c2_server_connect)
         self.c2_disconnect_button.clicked.connect(self.c2_server_disconnect)
-        self.c2_server_password.setEchoMode(QLineEdit.Password)
+        self.c2_server_password.setEchoMode(QLineEdit.PasswordEchoOnEdit)
         self.c2_shell_startup()
+
+        #local server spin up
+        self.c2_server_password_local.setEchoMode(QLineEdit.PasswordEchoOnEdit)
+        self.c2_start_server_local.clicked.connect(self.c2_localserver_start)
+        self.c2_stop_server_local.clicked.connect(self.c2_localserver_start)
+        
 
         ## GUI buttons/toggles
         self.c2_gui_hide_clients.toggled.connect(lambda x: self.c2_gui_groupbox_clients.setVisible(not x))
@@ -602,6 +611,41 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         ## down here due to the import, and it technically being in a different class
         #self.project_popup.startup_project_openproject.clicked.connect(self.project_open)
         #self.project_popup.startup_project_exit.clicked.connect(self.program_exit)
+##== C2 Local Server
+    def c2_localserver_start(self):
+        port = self.c2_server_port_local.text()
+        ip =  self.c2_server_ip_local.text()
+
+        ##shell true is a vuln, allows command injection (;command). Only a concern IF this is compiled
+        ## have to do shell=true to pass args
+        #self.proc = subprocess.Popen([f"python3 {sys_path}/agent/server.py --ip {ip} --port {port}"], shell=True)
+        
+        ## fixed version
+        self.proc = subprocess.Popen(["python3", f"{sys_path}/agent/server.py", "--ip", ip, "--port", port, "--quiet"])
+        self.localserver_pid = self.proc.pid
+        self.c2_start_server_local.setDisabled(True)
+        self.c2_start_server_local.setText("Running")
+        
+        self.c2_localserver_logupdate_timer()
+        #pass
+
+    def c2_localserver_stop(self):
+        self.proc.terminate()
+        self.c2_start_server_local.setDisabled(False)
+        self.c2_start_server_local.setText("Start")
+
+    def c2_localserver_logupdate_timer(self):
+        self.localserver_timer = QTimer()
+        self.localserver_timer.timeout.connect(self.c2_localserver_logupdate)
+        self.localserver_timer.start(self.settings['c2']['local']['server_log_refresh'])
+    
+    def c2_localserver_logupdate(self):
+        ##read log file, update textedit to have new log
+        with open("server.log","r") as sl:
+            self.c2_server_log_local.setText(sl.read())
+
+        # this way too long doo dad just sets the scroll bar to all the way down
+        self.c2_server_log_local.verticalScrollBar().setValue(self.c2_server_log_local.verticalScrollBar().maximum())
 
 ##== C2 Server Interaction
         """
@@ -1970,14 +2014,35 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             Handles the theme settings
 
         """
+    def system_theme_chooser(self):
+        accent = self.settings['system']['themes']['accent']
+
+        if self.settings['system']['themes']['theme'] == "dark":
+            import qdarktheme
+            qdarktheme.setup_theme("dark", custom_colors={"primary": accent})
+        elif self.settings['system']['themes']['theme'] == "light":
+            import qdarktheme
+            qdarktheme.setup_theme("light", custom_colors={"primary": accent})
+        elif self.settings['system']['themes']['theme'] == "system":
+            import qdarktheme
+            qdarktheme.setup_theme("auto", custom_colors={"primary": accent})
+        elif self.settings['system']['themes']['theme'] == "default":
+            pass
+        else:
+            logging.debug(f"[Logec (Theme)] Unkown theme: {self.settings['system']['themes']['theme']}")
+
     def set_theme(self, theme_name):
+        """ Old/not used function for css themes
+        """
+        pass
+        '''
         if theme_name != "Default":
             with open(f"{sys_path}/Gui/themes/{theme_name}","r") as f:
                 stylesheet = f.read()
                 
             self.setStyleSheet(stylesheet)
         else:
-            pass
+            pass'''
 
 ##== Sys Functions
         """
@@ -1986,6 +2051,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         """
         
     def restart(self): ## MEMORY LEAK !!
+        logging.debug("[Logec] Restarting program & interpreter")
         # Restart the Python interpreter
         args = sys.argv[:]
         args.insert(0, sys.executable)
@@ -1993,9 +2059,8 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         sys.exit(os.spawnvp(os.P_WAIT, sys.executable, args))
         
     def program_exit(self):
+        logging.debug("[Logec] Exiting program")
         sys.exit()
-
-
 
 if __name__ == '__main__':
     try:
@@ -2008,9 +2073,12 @@ if __name__ == '__main__':
         # not a logging.debug YEt as it's only useful for dev
         #print(library_paths) if GLOBAL_DEBUG else None
 
+
+
         # QT stuff
         window = LogecSuite()
         window.show()
+        window.system_theme_chooser()
         app.exec()
 
         # Kill when exec is closed

@@ -9,18 +9,35 @@ import atexit
 from datetime import datetime, timezone
 import select
 import logging
+import argparse
+
+"""
+Argparse settings first in order to be able to change anything
+"""
+parser = argparse.ArgumentParser()
+parser.add_argument('--ip', help="The IP to listen on (0.0.0.0 is a good default", required=True)
+parser.add_argument('--port', help="The port to listen on", required=True)
+parser.add_argument('--quiet', help="No output to console", action='store_true')
+
+
+args = parser.parse_args()
+ip = args.ip
+port = int(args.port)
+quiet = args.quiet
 
 """
 Here's the global Debug + Logging settings. 
 Global Debug print to screen will be a setting in the future
 """
-global_debug = True
+if not quiet:
+    global_debug = True
+else:
+    global_debug = False
 
 ##Reference: https://realpython.com/python-logging/
 logging.basicConfig(level=logging.DEBUG)
 ## Change the path to the system path + a log folder/file somewhere
-logging.basicConfig(filename='../server.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s', force=True)
-
+logging.basicConfig(filename='server.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s', force=True)
 if global_debug:
     logging.getLogger().addHandler(logging.StreamHandler())
 
@@ -82,10 +99,10 @@ class ServerSockHandler:
             logging.warning(f"{self.Sx03}: \n ERRMSG: {e}\n")
         except PermissionError as e:
             logging.warning(f"{self.Sx04}: \nERRMSG:{e}\n")
-        except (ConnectionRefused, ErrorConnectionResetError, ConnectionAbortedError) as e:
+        except (ConnectionRefusedError, ConnectionResetError, ConnectionAbortedError) as e:
             logging.warning(f"{self.Sx05}: \nERRMSG:{e}\n")
         except Exception as e:
-            logging.warning(f"{self.SXX}:ERRMSG: {e}\n")
+            logging.warning(f"ERRMSG: {e}\n")
         
 
     ##== Clients & lists
@@ -615,5 +632,5 @@ def bytes_decode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]
 
 
 s = ServerSockHandler()
-s.start_server("127.0.0.1",80)
-logging.debug("ServerSockHandler Called")
+s.start_server(ip, port)
+logging.debug("[Server] Server Started")

@@ -10,13 +10,17 @@ import numpy as np
 import sqlite3
 import os
 import queue
-        
+
 import itertools  
 
 ## Connection Libs
 from ftplib import FTP
-import paramiko
-paramiko.util.log_to_file("main_paramiko_log.txt", level = "INFO") ## Tells paramiko to shut up
+
+import warnings
+with warnings.catch_warnings(): ## tells paramiko to shut up
+    warnings.simplefilter("ignore")
+    import paramiko
+
 
 
 import Modules.General.utility as utility

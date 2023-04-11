@@ -197,25 +197,10 @@ class Ui_LogecC3(object):
 
         self.gridLayout_24.addWidget(self.c2_server_username, 1, 0, 1, 2)
 
-        self.c2_status_label = QLabel(self.tab_33)
-        self.c2_status_label.setObjectName(u"c2_status_label")
-
-        self.gridLayout_24.addWidget(self.c2_status_label, 5, 0, 1, 2)
-
         self.c2_disconnect_button = QPushButton(self.tab_33)
         self.c2_disconnect_button.setObjectName(u"c2_disconnect_button")
 
-        self.gridLayout_24.addWidget(self.c2_disconnect_button, 4, 0, 1, 1)
-
-        self.c2_connect_button = QPushButton(self.tab_33)
-        self.c2_connect_button.setObjectName(u"c2_connect_button")
-
-        self.gridLayout_24.addWidget(self.c2_connect_button, 4, 1, 1, 1)
-
-        self.c2_server_password = QLineEdit(self.tab_33)
-        self.c2_server_password.setObjectName(u"c2_server_password")
-
-        self.gridLayout_24.addWidget(self.c2_server_password, 2, 0, 1, 2)
+        self.gridLayout_24.addWidget(self.c2_disconnect_button, 3, 0, 1, 1)
 
         self.c2_server_port = QLineEdit(self.tab_33)
         self.c2_server_port.setObjectName(u"c2_server_port")
@@ -227,40 +212,56 @@ class Ui_LogecC3(object):
 
         self.gridLayout_24.addWidget(self.c2_server_ip, 0, 0, 1, 1)
 
+        self.c2_status_label = QLabel(self.tab_33)
+        self.c2_status_label.setObjectName(u"c2_status_label")
+
+        self.gridLayout_24.addWidget(self.c2_status_label, 4, 0, 1, 2)
+
+        self.c2_server_password = QLineEdit(self.tab_33)
+        self.c2_server_password.setObjectName(u"c2_server_password")
+
+        self.gridLayout_24.addWidget(self.c2_server_password, 2, 0, 1, 2)
+
+        self.c2_connect_button = QPushButton(self.tab_33)
+        self.c2_connect_button.setObjectName(u"c2_connect_button")
+
+        self.gridLayout_24.addWidget(self.c2_connect_button, 3, 1, 1, 1)
+
         self.bruteforce_panel_2.addTab(self.tab_33, "")
         self.tab_53 = QWidget()
         self.tab_53.setObjectName(u"tab_53")
         self.gridLayout_51 = QGridLayout(self.tab_53)
         self.gridLayout_51.setObjectName(u"gridLayout_51")
-        self.c2_server_ip_2 = QLineEdit(self.tab_53)
-        self.c2_server_ip_2.setObjectName(u"c2_server_ip_2")
+        self.c2_start_server_local = QPushButton(self.tab_53)
+        self.c2_start_server_local.setObjectName(u"c2_start_server_local")
 
-        self.gridLayout_51.addWidget(self.c2_server_ip_2, 0, 0, 1, 1)
+        self.gridLayout_51.addWidget(self.c2_start_server_local, 2, 1, 1, 1)
 
-        self.c2_server_port_2 = QLineEdit(self.tab_53)
-        self.c2_server_port_2.setObjectName(u"c2_server_port_2")
+        self.c2_server_log_local = QTextEdit(self.tab_53)
+        self.c2_server_log_local.setObjectName(u"c2_server_log_local")
 
-        self.gridLayout_51.addWidget(self.c2_server_port_2, 0, 1, 1, 1)
+        self.gridLayout_51.addWidget(self.c2_server_log_local, 3, 0, 1, 2)
 
-        self.c2_server_password_2 = QLineEdit(self.tab_53)
-        self.c2_server_password_2.setObjectName(u"c2_server_password_2")
+        self.c2_server_password_local = QLineEdit(self.tab_53)
+        self.c2_server_password_local.setObjectName(u"c2_server_password_local")
+        self.c2_server_password_local.setInputMethodHints(Qt.ImhSensitiveData)
 
-        self.gridLayout_51.addWidget(self.c2_server_password_2, 1, 0, 1, 2)
+        self.gridLayout_51.addWidget(self.c2_server_password_local, 1, 0, 1, 2)
 
-        self.pushButton_6 = QPushButton(self.tab_53)
-        self.pushButton_6.setObjectName(u"pushButton_6")
+        self.c2_server_port_local = QLineEdit(self.tab_53)
+        self.c2_server_port_local.setObjectName(u"c2_server_port_local")
 
-        self.gridLayout_51.addWidget(self.pushButton_6, 2, 0, 1, 1)
+        self.gridLayout_51.addWidget(self.c2_server_port_local, 0, 1, 1, 1)
 
-        self.c2_connect_button_2 = QPushButton(self.tab_53)
-        self.c2_connect_button_2.setObjectName(u"c2_connect_button_2")
+        self.c2_stop_server_local = QPushButton(self.tab_53)
+        self.c2_stop_server_local.setObjectName(u"c2_stop_server_local")
 
-        self.gridLayout_51.addWidget(self.c2_connect_button_2, 2, 1, 1, 1)
+        self.gridLayout_51.addWidget(self.c2_stop_server_local, 2, 0, 1, 1)
 
-        self.textEdit_27 = QTextEdit(self.tab_53)
-        self.textEdit_27.setObjectName(u"textEdit_27")
+        self.c2_server_ip_local = QLineEdit(self.tab_53)
+        self.c2_server_ip_local.setObjectName(u"c2_server_ip_local")
 
-        self.gridLayout_51.addWidget(self.textEdit_27, 3, 0, 1, 2)
+        self.gridLayout_51.addWidget(self.c2_server_ip_local, 0, 0, 1, 1)
 
         self.bruteforce_panel_2.addTab(self.tab_53, "")
 
@@ -806,7 +807,7 @@ class Ui_LogecC3(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1047, 672))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1085, 672))
         self.dashboard_portscan_IP = QLineEdit(self.scrollAreaWidgetContents)
         self.dashboard_portscan_IP.setObjectName(u"dashboard_portscan_IP")
         self.dashboard_portscan_IP.setGeometry(QRect(10, 40, 211, 27))
@@ -885,7 +886,7 @@ class Ui_LogecC3(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.scrollAreaWidgetContents_5 = QWidget()
         self.scrollAreaWidgetContents_5.setObjectName(u"scrollAreaWidgetContents_5")
-        self.scrollAreaWidgetContents_5.setGeometry(QRect(0, 0, 1047, 720))
+        self.scrollAreaWidgetContents_5.setGeometry(QRect(0, 0, 1085, 763))
         self.bashbuild_toolBox = QToolBox(self.scrollAreaWidgetContents_5)
         self.bashbuild_toolBox.setObjectName(u"bashbuild_toolBox")
         self.bashbuild_toolBox.setGeometry(QRect(0, 0, 241, 651))
@@ -2507,7 +2508,7 @@ class Ui_LogecC3(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.scrollAreaWidgetContents_4 = QWidget()
         self.scrollAreaWidgetContents_4.setObjectName(u"scrollAreaWidgetContents_4")
-        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 1025, 712))
+        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 1063, 712))
         self.scrollArea_4.setWidget(self.scrollAreaWidgetContents_4)
 
         self.gridLayout_11.addWidget(self.scrollArea_4, 0, 0, 1, 1)
@@ -2548,11 +2549,11 @@ class Ui_LogecC3(object):
         self.retranslateUi(LogecC3)
 
         self.tabWidget.setCurrentIndex(0)
-        self.bruteforce_panel_2.setCurrentIndex(0)
+        self.bruteforce_panel_2.setCurrentIndex(3)
         self.c2_shell_tab.setCurrentIndex(0)
         self.osint_reddit_tab.setCurrentIndex(1)
         self.tabWidget_3.setCurrentIndex(1)
-        self.tabWidget_8.setCurrentIndex(0)
+        self.tabWidget_8.setCurrentIndex(2)
         self.bashbuild_toolBox.setCurrentIndex(3)
         self.tabWidget_9.setCurrentIndex(0)
         self.tabWidget_6.setCurrentIndex(0)
@@ -2641,27 +2642,31 @@ class Ui_LogecC3(object):
         self.bruteforce_panel_2.setTabText(self.bruteforce_panel_2.indexOf(self.tab_56), QCoreApplication.translate("LogecC3", u"Log (0)", None))
         self.c2_server_username.setText(QCoreApplication.translate("LogecC3", u"ryan", None))
         self.c2_server_username.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Username", None))
-        self.c2_status_label.setText(QCoreApplication.translate("LogecC3", u"Status: Not Connected", None))
         self.c2_disconnect_button.setText(QCoreApplication.translate("LogecC3", u"Disconnect", None))
-        self.c2_connect_button.setText(QCoreApplication.translate("LogecC3", u"Connect", None))
-        self.c2_server_password.setText(QCoreApplication.translate("LogecC3", u"1234", None))
-        self.c2_server_password.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Password", None))
         self.c2_server_port.setText(QCoreApplication.translate("LogecC3", u"101", None))
         self.c2_server_port.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Port", None))
         self.c2_server_ip.setText(QCoreApplication.translate("LogecC3", u"127.0.0.1", None))
         self.c2_server_ip.setPlaceholderText(QCoreApplication.translate("LogecC3", u"IP", None))
+        self.c2_status_label.setText(QCoreApplication.translate("LogecC3", u"Status: Not Connected", None))
+        self.c2_server_password.setText("")
+        self.c2_server_password.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Password (Converts to **  on de-select)", None))
+        self.c2_connect_button.setText(QCoreApplication.translate("LogecC3", u"Connect", None))
         self.bruteforce_panel_2.setTabText(self.bruteforce_panel_2.indexOf(self.tab_33), QCoreApplication.translate("LogecC3", u"ServerLogin", None))
-        self.c2_server_ip_2.setText("")
-        self.c2_server_ip_2.setPlaceholderText(QCoreApplication.translate("LogecC3", u"IP", None))
-        self.c2_server_port_2.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Port", None))
-        self.c2_server_password_2.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Password", None))
-        self.pushButton_6.setText(QCoreApplication.translate("LogecC3", u"Stop", None))
-        self.c2_connect_button_2.setText(QCoreApplication.translate("LogecC3", u"Start", None))
-        self.textEdit_27.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.c2_start_server_local.setText(QCoreApplication.translate("LogecC3", u"Start", None))
+        self.c2_server_log_local.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If you'd like to spin up the server locally, you can do it here, or you can run the 'server.py' file</p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If you'd like to spin up the server locally, you can do it here, or you can run the 'server.py' file</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">DevNote:</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">This is run via a traditional python t"
+                        "hread instead of a QThread, so I don't have 2 versions of the server.py floating around. Logs will be displayed here, and the start/stop button works, but that's the extent of the itneraction from the GUI (Segfaults happen with regular threads talking to the QT event loop)</p></body></html>", None))
+        self.c2_server_password_local.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Password (Converts to **  on de-select)", None))
+        self.c2_server_port_local.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Port", None))
+        self.c2_stop_server_local.setText(QCoreApplication.translate("LogecC3", u"Stop", None))
+        self.c2_server_ip_local.setText(QCoreApplication.translate("LogecC3", u"0.0.0.0", None))
+        self.c2_server_ip_local.setPlaceholderText(QCoreApplication.translate("LogecC3", u"IP", None))
         self.bruteforce_panel_2.setTabText(self.bruteforce_panel_2.indexOf(self.tab_53), QCoreApplication.translate("LogecC3", u"LocalServer", None))
         self.c2_gui_groupbox_shells.setTitle("")
 #if QT_CONFIG(tooltip)
