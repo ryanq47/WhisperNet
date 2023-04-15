@@ -623,6 +623,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         
         ## fixed version
         self.proc = subprocess.Popen(["python3", f"{sys_path}/agent/server.py", "--ip", ip, "--port", port, "--quiet"])
+        self.localserver_running = True
         self.localserver_pid = self.proc.pid
         self.c2_start_server_local.setDisabled(True)
         self.c2_start_server_local.setText("Running")
@@ -2061,7 +2062,15 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         
     def program_exit(self):
         logging.debug("[Logec] Exiting program")
+        self.exit_functions()
         sys.exit()
+    
+    def exit_functions(self):
+        ## kills local server if still running
+        if self.localserver_running and self.settings['c2']['local']['kill_server_on_gui_exit']:
+            logging.debug(f"[Logec (local server)] Server running, killing. setting: kill_server_on_gui_exit")
+            os.kill(self.proc.pid, 15)
+
 
 if __name__ == '__main__':
     try:
@@ -2085,8 +2094,10 @@ if __name__ == '__main__':
         cProfile.run('app.exec()', filename=f'{sys_path}/logs/logec-perf.prof')
 
         # Kill when exec is closed
-        pid = os.getpid()
-        os.kill(pid, 15)   # SIGTERM
+        #pid = os.getpid()
+        #os.kill(pid, 15)   # SIGTERM
+        
+        window.program_exit()
 
     except Exception as e:
         print("===== Traceback =====")

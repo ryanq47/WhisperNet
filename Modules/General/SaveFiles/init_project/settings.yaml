@@ -26,6 +26,8 @@ system:
   logging:
     #Not Working
     logs_to_stdout: !!bool True
+    ## in kb, zips up logs and starts a new file. otherwise some things may get bogged down
+    log_role_size: 1000
 
 
 sql:
@@ -54,3 +56,5 @@ c2:
   local:
     ## Milliseconds
     server_log_refresh: !!int 10000 
+    ## Kills the server when you close the GUI, False = leave it running
+    kill_server_on_gui_exit: True

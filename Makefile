@@ -14,3 +14,6 @@ gui:
 dev:
 	pip install -r requirements.txt
 	pip install pyqt5-tools
+
+req:
+	pipreqs ./ --force
