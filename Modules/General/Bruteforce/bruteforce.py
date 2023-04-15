@@ -1,16 +1,15 @@
-## NOTENOTE: Just write the combos to a file... its easier
+## Hi - this code isn't great, but it works and I haven't had the time to rewrite it - sooo yeah
 
 from PySide6.QtCore import QThread, Signal, QObject, Slot, QRunnable, QThreadPool
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 
 import time
 import random
-import requests
-import numpy as np
-import sqlite3
+#import sqlite3
 import os
 import queue
-
+import numpy as np
+import requests
 import itertools  
 
 ## Connection Libs
@@ -23,7 +22,24 @@ with warnings.catch_warnings(): ## tells paramiko to shut up
 
 
 
+
 import Modules.General.utility as utility
+
+## printing out a shitload of stuff for some reason
+import logging
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    filename='logs/bruteforce.log',
+    filemode='a',
+    format='%(name)s - %(levelname)s - %(message)s'
+)
+
+# Set the logging level for the requests & urllib library to CRITICAL
+logging.getLogger("requests").setLevel(logging.CRITICAL)
+logging.getLogger("urllib3").setLevel(logging.WARNING)
+#if global_debug:
+#logging.getLogger().addHandler(logging.StreamHandler())
 
 ## Use Yeild for progress updates to the bar
 
@@ -51,27 +67,32 @@ class Bruteforce(QObject):
         
         self.bruteforce_progress = 0
         self.number = 0
+        
+        self.log_tag = "[Bruteforce (Credentials)]"
     
     def error(self, Error, Severity, Message):
-        print("ERRORRRRRR")
+        logging.debug(f"{self.log_tag} {Error}")
+        #print("ERRORRRRRR")
         error_list = [Error, Severity, Message]
-        print(error_list)
+        #print(error_list)
         ## Emiting back to main thread
         
         self.module_error.emit(error_list)
         self.finished.emit()
         
-    def success(self, username, password):
+    def success(self, username, password, target=None):
         ## Done as a tuple to reduce mem size + so it can be appended
         self.good_creds.append((username, password))
         self.goodcreds.emit(self.good_creds)
+        logging.debug(f"{self.log_tag} Successful Credentials: {username}:{password}@{target}")
     
-    def db_write(self):
+    def db_emit(self):
+        """Emits valid credentials back to the main thread to be written to the DB
+        """
         good_creds = ""
         for i in self.good_creds:
             good_creds = good_creds + f"{i[0]}:{i[1]}, "
         
-        print("DB Write")
         self.results_list.emit([
             self.IP,
             self.port,
@@ -82,37 +103,56 @@ class Bruteforce(QObject):
         ])
 
     def thread_quit(self):
-        print("EXIT")
+        #print("EXIT")
         self.thread_quit = True
-        self.errlog.emit("Stopping BruteForce")
+        #self.errlog.emit("Stopping BruteForce")
+        logging.debug("{self.log_tag} Stopping Bruteforce")
         #exit()
         
     def fileopen(self, dir):
+        """Takes a file, opens it, and determins encoding based on the file. Prevents weird errors with 
+        different encoding types
+
+        Args:
+            dir (str): The file path
+
+        Returns:
+            str: The decoded file. 
+        """
         import chardet
-        
         with open(dir,"rb") as file_bytes:
             file_read_bytes = file_bytes.read()
             
             encoding= chardet.detect(file_read_bytes)
             decode_type =  encoding['encoding']
-            print(decode_type)
+            #print(decode_type)
             
             file = file_read_bytes.decode(decode_type)
             #file = file_raw.decode('utf-8')
-            self.errlog.emit(f"File Encoding: {decode_type}")
+            #self.errlog.emit(f"File Encoding: {decode_type}")
+            logging.debug(f"{self.log_tag} File Encoding for {dir}: {decode_type}")
             return file
         
     def generate_creds(self, usernames, passwords):
+        """A credential generator, takes each username, adds a password, and yeilds that combo
+
+        Args:
+            usernames (str): the usernames
+            passwords (_type_): the passwords
+
+        Yields:
+            _type_: the username/pass combo
+        """
         for username in usernames:
             for password in passwords:
                 yield (username, password)
              
-    def worker(self, creds):
+    def worker(self, creds): ## Not sure what this does
         pass
-    def bruteforce_framework(self, input_list):
+    
+    def bruteforce_framework(self, input_list): ## should probably migrate to a dict instead of a list eventually
         try:
-            print("STARTED BF")
-            
+            logging.debug(f"{self.log_tag} Attack Started: {input_list}")
             #self.GUI.ERROR("low", "error","something")
             
             self.Date = utility.Timestamp.UTC_Date()
@@ -122,21 +162,11 @@ class Bruteforce(QObject):
             self.errlog.emit("Time:" + str(self.Time))
             
             ## Breaking the list up
-            
-            self.IP = input_list[0]
-            self.port = input_list[1]
-            self.protocol = input_list[2]
-            user_wordlist_dir = input_list[3]
-            pass_wordlist_dir = input_list[4]
-            self.delay = input_list[5]
-            self.max_threads = input_list[6]
-            self.batchsize = input_list[7]
-            
+            self.IP, self.port, self.protocol, user_wordlist_dir, pass_wordlist_dir, self.delay, self.max_threads, self.batchsize = input_list[:8]
             
             user_list = []
             self.pass_list = []
             self.dir_list = []
-            
             
             ## Results list
             self.results_dir_list = []
@@ -145,23 +175,26 @@ class Bruteforce(QObject):
             #target_list = [ip, port, delay]
             
         except Exception as e:
-            print(e)
+            #print(e)
+            logging.debug(f"{self.log_tag} Error with attack: {e}")
             #self.error(e,"??","??")
             exit()
 
+        ## using the custom file open here for encoding type stuff
         username = self.fileopen(user_wordlist_dir)
         password = self.fileopen(pass_wordlist_dir)
-                    
+        
+        ## some data for stats on how big this is
         user_list_len = username.split()
         pass_list_len = password.split()
         self.total_combos = len(user_list_len) * len(pass_list_len)
             
         userpass_combo = itertools.product(username.split(),password.split())
         
-        print("BatchQueued")
         batch_size = self.batchsize
         batchnum = 0
         total_batches = round((len(user_list_len) * len(pass_list_len))/batch_size)
+
 
         for i in range(0, len(user_list_len) * len(pass_list_len), batch_size):
             if self.thread_quit == True:
@@ -173,8 +206,7 @@ class Bruteforce(QObject):
                 self.current_batch.emit(batch)
                 self.num_of_batches.emit([batchnum, total_batches])
                 
-            ## Deciding which processor to use
-                #print(batch)     
+            ## Deciding which processor to use    
                 if self.protocol == "SSH":
                     self.ssh_processor(batch)
                 if self.protocol == "FTP":
@@ -182,7 +214,7 @@ class Bruteforce(QObject):
         
         ## Returning Final values to write to DB
         #print("Emmiting final")
-        self.db_write()
+        self.db_emit()
                     
     def ssh_processor(self, batch):
         with ThreadPoolExecutor(max_workers=self.max_threads) as executor:
@@ -195,8 +227,6 @@ class Bruteforce(QObject):
             #print("BatchQueued")
             ssh_thread.result()
             self.done = True
-            #self.db_write()
-            #self.H.sys_notification(["TITLE",f"FTP Bruteforce Completed\n {len(self.good_creds)} valid credential(s) found!"])
 
     def ftp_processor(self, batch):
         with ThreadPoolExecutor(max_workers=self.max_threads) as executor:
@@ -205,18 +235,15 @@ class Bruteforce(QObject):
                 ## Generator to help cut down on ram usage
                 #print(i)##<< prints each attempt
                 ftp_thread = executor.submit(self.ftp, i)
-                    
-            print("BatchDone")
 
             ftp_thread.result()
             #print("Done")
             self.done = True
-            #print("Starting write")
-            #self.db_write()
             
     def ftp(self, creds):
-        username = creds[0]
-        password = creds[1]
+        username, password = creds
+        #sername = creds[0]
+        #password = creds[1]
         
         try:
             time.sleep(random.uniform(0,self.delay))
@@ -225,28 +252,28 @@ class Bruteforce(QObject):
             ftp.login(username, password)
             ftp.close() ## Close is a bit harsher than quit, but quits it asap
             
-            self.success(username, password)
+            self.success(username, password, self.IP)
             
         ## Blind exception becuase this will happen SO often
         except TimeoutError:
             pass
         
         except Exception as e:
-            #print(e)
-            self.errlog.emit(str(e))
-            #print("END")
+            ## closing FTP connection on error
+            logging.debug(f"[Bruteforce (Credentials: FTP)] Error: {e}")
+            self.errlog.emit(str(e))            
             try:
                 ftp.close()
-            except:
-                pass
+            except Exception as ee:
+                logging.debug(f"[Bruteforce (Credentials: FTP)] Error: {ee}")
                 #self.errlog.emit("Could Not close FTP session")
             #self.error(e,"low","testerror")
             
         finally:
             try:
                 ftp.close()
-            except:
-                pass
+            except Exception as ee:
+                logging.debug(f"[Bruteforce (Credentials: FTP)] Error: {ee}")
                 #self.errlog.emit("Could Not close FTP session")
 
             self.bruteforce_progress = self.bruteforce_progress + 1
@@ -259,9 +286,9 @@ class Bruteforce(QObject):
             self.number = 0
 
     def ssh(self, creds):
-
-        _username = creds[0] # _ for namespace reasons
-        _password = creds[1]
+        _username, _password = creds
+        #_username = creds[0] # _ for namespace reasons
+        #_password = creds[1]
         
         try:
             time.sleep(random.uniform(0,self.delay))
@@ -277,7 +304,7 @@ class Bruteforce(QObject):
             pass
         
         except Exception as e:
-            print(e)
+            logging.debug(f"[Bruteforce (Credentials: SSH)] Error: {e}")
             #self.error(e,"low","testerror")
         
         finally:
@@ -293,48 +320,6 @@ class Bruteforce(QObject):
             self.live_attempts.emit(_username + ":" + _password)
             self.number = 0
 
-
-    ## this does not go in the creds gui, but in the webdir one
-    def webdir(self, target_list, dir):
-        #target list = [ip, port]
-        ## Rate limiter so you don't get kicked out
-        time.sleep(np.random.uniform(.001,.01)) 
-        
-        base_url = target_list[0]
-        
-        if target_list[1] == None:
-            target_list[1] = 80
-        
-        target_url = f"http://{base_url}:{target_list[1]}/{dir}"
-        r = requests.get(target_url)
-        
-        print(target_url)
-        
-        if r.status_code == 200:
-            ##Successlist.append(target_url or somthing)
-            
-            
-            #print(target_url)
-            #self.results_dir_list
-            
-            '''
-            database_write(
-                self.GUI,
-                [
-                    target_url,
-                    base_url,
-                    target_list[1],
-                    r.status_code,
-                    self.Date,
-                    self.Time
-                ])'''
-
-        
-        #pass
-        # requests module, or something faster
-        
-        ## if code != 404:
-            ##list.append(dir)
 
 class Fuzzer(QObject):
     
@@ -358,19 +343,30 @@ class Fuzzer(QObject):
         self.bruteforce_progress = 0
         self.number = 0
         
-    def fileopen(self, dir):
-        import chardet
+        self.log_tag = "[Bruteforce (WebDir Fuzzer)]"
         
+    def fileopen(self, dir):
+        """Takes a file, opens it, and determins encoding based on the file. Prevents weird errors with 
+        different encoding types
+
+        Args:
+            dir (str): The file path
+
+        Returns:
+            str: The decoded file. 
+        """
+        import chardet
         with open(dir,"rb") as file_bytes:
             file_read_bytes = file_bytes.read()
             
             encoding= chardet.detect(file_read_bytes)
             decode_type =  encoding['encoding']
-            print(decode_type)
+            #print(decode_type)
             
             file = file_read_bytes.decode(decode_type)
             #file = file_raw.decode('utf-8')
-            self.errlog.emit(f"File Encoding: {decode_type}")
+            #self.errlog.emit(f"File Encoding: {decode_type}")
+            logging.debug(f"{self.log_tag} File Encoding for {dir}: {decode_type}")
             return file
         
     def success(self, dir):
@@ -379,30 +375,30 @@ class Fuzzer(QObject):
         self.gooddir.emit(self.good_dir_list)
         
         
-    def db_write(self, list):
+    def db_emit(self, emit_list):
         
-        print("DB Write")
+        logging.debug(f"{self.log_tag} Emiting to DB: {emit_list}")
         self.results_list.emit([
-            list[0],
-            list[1],
-            list[2],
-            list[3],
-            list[4],
-            list[5],
-            list[6]
+            emit_list[0],
+            emit_list[1],
+            emit_list[2],
+            emit_list[3],
+            emit_list[4],
+            emit_list[5],
+            emit_list[6]
         ])
 
 
     def thread_quit(self):
-        print("EXIT")
+        logging.debug(f"{self.log_tag} Attempting to stop the current attack")
         self.thread_quit = True
-        self.errlog.emit("Stopping BruteForce")
+        logging.debug(f"{self.log_tag} Stopping Fuzzer")
+        #self.errlog.emit("Stopping Fuzzer")
         #exit()
     
     def fuzzer_framework(self, input_list):
         try:
-            print("STARTED FUZZER")
-            
+            logging.debug(f"{self.log_tag} Starting attack: {input_list}")            
             #self.GUI.ERROR("low", "error","something")
             
             self.Date = utility.Timestamp.UTC_Date()
@@ -432,7 +428,7 @@ class Fuzzer(QObject):
             #target_list = [ip, port, delay]
             
         except Exception as e:
-            print(e)
+            logging.debug(f"{input_list} Error: {e}")
             #self.error(e,"??","??")
             exit()
 
@@ -453,6 +449,7 @@ class Fuzzer(QObject):
             batch_iteration = batch_iteration + 1
             
             batch = list(itertools.islice(batch_iter, self.batchsize))
+            #logging.debug(f"{self.log_tag} Dev: Starting ThreadPoolExecutor")
             self.fuzzer_processor(batch)
 
             self.current_batch.emit(batch)
@@ -471,9 +468,14 @@ class Fuzzer(QObject):
             #print("BatchDone")
             fuzzer_thread.result()
             self.done = True
+            #logging.debug(f"{self.log_tag} TPE Done")
 
     def fuzzer_request(self, fuzzvalue):
-        
+        """Makes the request to the targeted server.
+
+        Args:
+            fuzzvalue (str): the value that willbe placed where "FUZZ" is
+        """
         #ip = self.URL ## Currently unusued
         port = self.port
         #fuzzvalue = request_list[2]
@@ -501,7 +503,7 @@ class Fuzzer(QObject):
                 if i in str(r.status_code):
                     
                     ## Writing success to db
-                    self.db_write([
+                    self.db_emit([
                         raw_url,
                         port,
                         str(r.status_code),
@@ -521,48 +523,9 @@ class Fuzzer(QObject):
             #print("ITERATION")
             
         except Exception as e:
+            logging.debug(f"{self.log_tag} Error: {e}")
             self.errlog.emit(str(e))
-            print(e)
-            pass
         
         #print(target_url)
         
         #if r.status_code == 200:
-
-
-## Need to just emit things back, this causes a segfault
-def database_write(GUI, db_input_list):
-    try:
-        ## Accesing DB in root dir
-        bruteforce_sqliteConnection = sqlite3.connect(os.path.dirname(__file__) + '/../../logec_db')
-        cursor = bruteforce_sqliteConnection.cursor()
-        print("Successfully Connected to SQLite")
-        
-        ## QUick Data Fixes:
-
-
-        sqlite_insert_query = f"""INSERT INTO 'BRUTEFORCE-http' (URL, IP, PORT, CODE, DATE, TIME) 
-        VALUES
-        ('{db_input_list[0]}','{db_input_list[1]}','{db_input_list[2]}','{db_input_list[3]}','{db_input_list[4]}','{db_input_list[5]}')""" ## idfk - had to manually set the '' for some reason
-        
-        print(sqlite_insert_query)
-
-        #count = cursor.execute(sqlite_insert_query)
-        cursor.execute(sqlite_insert_query)
-        bruteforce_sqliteConnection.commit()
-        cursor.close()
-        
-    except sqlite3.Error as error:
-        GUI.ERROR(error, "Medium", "?")
-        print("Failed to insert data into sqlite table", error)
-        
-    finally:
-        if bruteforce_sqliteConnection:
-            bruteforce_sqliteConnection.close()
-            #print("The SQLite connection is closed")
-
-##B = Bruteforce()
-
-##B.framework(["127.0.0.1","22","webdir","userlist","passlist"])
-
-## holy f ssh is picky as hell

@@ -60,7 +60,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -1354,8 +1354,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1085</width>
-                 <height>672</height>
+                 <width>72</width>
+                 <height>16</height>
                 </rect>
                </property>
                <widget class="QLineEdit" name="dashboard_portscan_IP">
@@ -1617,8 +1617,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1085</width>
-                 <height>763</height>
+                 <width>72</width>
+                 <height>16</height>
                 </rect>
                </property>
                <widget class="QToolBox" name="bashbuild_toolBox">
@@ -2505,7 +2505,7 @@ p, li { white-space: pre-wrap; }
            <string/>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="webdir_bf">
            <attribute name="title">
@@ -2832,7 +2832,7 @@ p, li { white-space: pre-wrap; }
             <item row="5" column="0" rowspan="7" colspan="4">
              <widget class="QTabWidget" name="tabWidget_14">
               <property name="currentIndex">
-               <number>1</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="tab_87">
                <attribute name="title">
@@ -3085,7 +3085,7 @@ p, li { white-space: pre-wrap; }
             <item row="6" column="0">
              <widget class="QLineEdit" name="bruteforce_fuzz_wordlistdir">
               <property name="text">
-               <string>Modules/General/Bruteforce/Wordlists/SecList-top1-short-usernames</string>
+               <string>Modules/General/Bruteforce/dirlist</string>
               </property>
              </widget>
             </item>
@@ -3315,7 +3315,7 @@ p, li { white-space: pre-wrap; }
             <item row="9" column="0" rowspan="9" colspan="5">
              <widget class="QTabWidget" name="tabWidget_29">
               <property name="currentIndex">
-               <number>3</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="tab_127">
                <attribute name="title">
@@ -3323,7 +3323,7 @@ p, li { white-space: pre-wrap; }
                </attribute>
                <layout class="QGridLayout" name="gridLayout_93">
                 <item row="1" column="0" colspan="2">
-                 <widget class="QLineEdit" name="DB_Query_scanning_bruteforce_4">
+                 <widget class="QLineEdit" name="DB_Query_scanning_bruteforce_fuzzer">
                   <property name="text">
                    <string/>
                   </property>
@@ -3333,7 +3333,7 @@ p, li { white-space: pre-wrap; }
                  </widget>
                 </item>
                 <item row="2" column="0">
-                 <widget class="QPushButton" name="scanning_bruteforce_refresh_4">
+                 <widget class="QPushButton" name="scanning_bruteforce_fuzzer_refresh">
                   <property name="toolTip">
                    <string>Refresh the Database, updating values from the SQLITE DB file</string>
                   </property>
@@ -3343,10 +3343,10 @@ p, li { white-space: pre-wrap; }
                  </widget>
                 </item>
                 <item row="0" column="0" colspan="2">
-                 <widget class="QTableWidget" name="scanning_bruteforce_db_4"/>
+                 <widget class="QTableWidget" name="scanning_bruteforce_fuzzer_db"/>
                 </item>
                 <item row="2" column="1">
-                 <widget class="QPushButton" name="scanning_bruteforce_query_4">
+                 <widget class="QPushButton" name="scanning_bruteforce_fuzzer_query">
                   <property name="toolTip">
                    <string>Run a query on the DB</string>
                   </property>
@@ -3839,507 +3839,513 @@ p, li { white-space: pre-wrap; }
        <attribute name="title">
         <string>Other</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_25">
-        <item row="0" column="0">
-         <widget class="QTabWidget" name="tabWidget_10">
-          <property name="currentIndex">
-           <number>0</number>
-          </property>
-          <widget class="QWidget" name="tab_52">
-           <attribute name="title">
-            <string>Performance and Diagnostics</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_55">
-            <item row="8" column="1">
-             <widget class="Line" name="line_20">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0" colspan="2">
-             <widget class="QGraphicsView" name="other_cpu_performance">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>100</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>100</height>
-               </size>
-              </property>
-              <property name="toolTip">
-               <string>If 'N/A' shows up for temp, then your OS cannot read the CPU Temp, most likely due to a virtual machine</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_14">
-              <property name="text">
-               <string>System CPU Usage</string>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="0">
-             <widget class="QTabWidget" name="tabWidget_16">
-              <property name="currentIndex">
-               <number>0</number>
-              </property>
-              <widget class="QWidget" name="tab_75">
-               <attribute name="title">
-                <string>Benchmarks And Processes</string>
-               </attribute>
-               <layout class="QGridLayout" name="gridLayout_54">
-                <item row="4" column="0" rowspan="2">
-                 <widget class="QLabel" name="label_84">
-                  <property name="text">
-                   <string>Ping (MS)</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="9" column="0" colspan="2">
-                 <widget class="QLCDNumber" name="performance_lcd_upload">
-                  <property name="frameShape">
-                   <enum>QFrame::Panel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Sunken</enum>
-                  </property>
-                  <property name="digitCount">
-                   <number>5</number>
-                  </property>
-                  <property name="value" stdset="0">
-                   <double>0.000000000000000</double>
-                  </property>
-                 </widget>
-                </item>
-                <item row="3" column="0">
-                 <widget class="QLabel" name="label_85">
-                  <property name="font">
-                   <font>
-                    <underline>false</underline>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>SpeedTest</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="8" column="3">
-                 <widget class="QLineEdit" name="performance_seconds_5">
-                  <property name="maximumSize">
-                   <size>
-                    <width>19777</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>6.16</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="8" column="4">
-                 <widget class="QLabel" name="label_121">
-                  <property name="text">
-                   <string>Seconds</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="7" rowspan="14">
-                 <widget class="Line" name="line_22">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="5" rowspan="14">
-                 <widget class="Line" name="line_21">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="6" rowspan="14">
-                 <widget class="QTextEdit" name="textEdit_29">
-                  <property name="html">
-                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+       <widget class="QTabWidget" name="tabWidget_10">
+        <property name="geometry">
+         <rect>
+          <x>9</x>
+          <y>9</y>
+          <width>1109</width>
+          <height>816</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>2</number>
+        </property>
+        <widget class="QWidget" name="tab_52">
+         <attribute name="title">
+          <string>Performance and Diagnostics</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_55">
+          <item row="8" column="1">
+           <widget class="Line" name="line_20">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QGraphicsView" name="other_cpu_performance">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>If 'N/A' shows up for temp, then your OS cannot read the CPU Temp, most likely due to a virtual machine</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_14">
+            <property name="text">
+             <string>System CPU Usage</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QTabWidget" name="tabWidget_16">
+            <property name="currentIndex">
+             <number>0</number>
+            </property>
+            <widget class="QWidget" name="tab_75">
+             <attribute name="title">
+              <string>Benchmarks And Processes</string>
+             </attribute>
+             <layout class="QGridLayout" name="gridLayout_54">
+              <item row="4" column="0" rowspan="2">
+               <widget class="QLabel" name="label_84">
+                <property name="text">
+                 <string>Ping (MS)</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="0" colspan="2">
+               <widget class="QLCDNumber" name="performance_lcd_upload">
+                <property name="frameShape">
+                 <enum>QFrame::Panel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Sunken</enum>
+                </property>
+                <property name="digitCount">
+                 <number>5</number>
+                </property>
+                <property name="value" stdset="0">
+                 <double>0.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_85">
+                <property name="font">
+                 <font>
+                  <underline>false</underline>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>SpeedTest</string>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="3">
+               <widget class="QLineEdit" name="performance_seconds_5">
+                <property name="maximumSize">
+                 <size>
+                  <width>19777</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>6.16</string>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="4">
+               <widget class="QLabel" name="label_121">
+                <property name="text">
+                 <string>Seconds</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="7" rowspan="14">
+               <widget class="Line" name="line_22">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="5" rowspan="14">
+               <widget class="Line" name="line_21">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="6" rowspan="14">
+               <widget class="QTextEdit" name="textEdit_29">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Process List? (for i in process create a row in  a table view)&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="3" rowspan="2">
-                 <widget class="QLabel" name="label_91">
-                  <property name="font">
-                   <font>
-                    <underline>true</underline>
-                    <kerning>true</kerning>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Benchmarks</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="2" rowspan="13">
-                 <widget class="Line" name="line_30">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="3" column="3" colspan="2">
-                 <widget class="QCheckBox" name="checkBox_23">
-                  <property name="text">
-                   <string>Count to 10 Million (Single Thread)</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="6" column="0" colspan="2">
-                 <widget class="QLCDNumber" name="performance_lcd_ping"/>
-                </item>
-                <item row="1" column="1">
-                 <widget class="QLabel" name="label_83">
-                  <property name="text">
-                   <string>External IP:  123.456.111.333</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="3" column="1">
-                 <widget class="QLabel" name="label_82">
-                  <property name="text">
-                   <string>Local IP: 123.456.444.222</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="4" column="3">
-                 <widget class="QLineEdit" name="performance_seconds">
-                  <property name="maximumSize">
-                   <size>
-                    <width>19777</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>6.16</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="6" column="3">
-                 <widget class="QCheckBox" name="checkBox_24">
-                  <property name="text">
-                   <string>Multi Thread</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="8" rowspan="14">
-                 <widget class="QTextEdit" name="textEdit_23">
-                  <property name="html">
-                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="3" rowspan="2">
+               <widget class="QLabel" name="label_91">
+                <property name="font">
+                 <font>
+                  <underline>true</underline>
+                  <kerning>true</kerning>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Benchmarks</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2" rowspan="13">
+               <widget class="Line" name="line_30">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="3" colspan="2">
+               <widget class="QCheckBox" name="checkBox_23">
+                <property name="text">
+                 <string>Count to 10 Million (Single Thread)</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="0" colspan="2">
+               <widget class="QLCDNumber" name="performance_lcd_ping"/>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLabel" name="label_83">
+                <property name="text">
+                 <string>External IP:  123.456.111.333</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLabel" name="label_82">
+                <property name="text">
+                 <string>Local IP: 123.456.444.222</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="3">
+               <widget class="QLineEdit" name="performance_seconds">
+                <property name="maximumSize">
+                 <size>
+                  <width>19777</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>6.16</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="3">
+               <widget class="QCheckBox" name="checkBox_24">
+                <property name="text">
+                 <string>Multi Thread</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="8" rowspan="14">
+               <widget class="QTextEdit" name="textEdit_23">
+                <property name="html">
+                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Something else?&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="4" column="4">
-                 <widget class="QLabel" name="label_90">
-                  <property name="text">
-                   <string>Seconds</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="12" column="0" colspan="2">
-                 <widget class="QLCDNumber" name="performance_lcd_download">
-                  <property name="frameShape">
-                   <enum>QFrame::Panel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Sunken</enum>
-                  </property>
-                  <property name="digitCount">
-                   <number>5</number>
-                  </property>
-                  <property name="value" stdset="0">
-                   <double>0.000000000000000</double>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="0" rowspan="2">
-                 <widget class="QLabel" name="label_86">
-                  <property name="font">
-                   <font>
-                    <underline>true</underline>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Network Specs</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="7" column="0" rowspan="2">
-                 <widget class="QLabel" name="label_88">
-                  <property name="text">
-                   <string>Upload (MBPS)</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="10" column="0" rowspan="2">
-                 <widget class="QLabel" name="label_87">
-                  <property name="text">
-                   <string>Download (MBPS)</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="13" column="0" colspan="2">
-                 <widget class="QPushButton" name="performance_speedtest">
-                  <property name="text">
-                   <string>Run SpeedTest</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="13" column="3" colspan="2">
-                 <widget class="QPushButton" name="performance_benchmark_button">
-                  <property name="text">
-                   <string>Start Benchmark</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-              <widget class="QWidget" name="tab_76">
-               <attribute name="title">
-                <string>Error List</string>
-               </attribute>
-               <layout class="QGridLayout" name="gridLayout_56">
-                <item row="0" column="0">
-                 <widget class="QTableWidget" name="table_SQLDB_performance_error"/>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QPushButton" name="table_RefreshDB_Button_performance">
-                  <property name="text">
-                   <string>--&gt;&gt; Refresh DB &lt;&lt;--</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-              <widget class="QWidget" name="tab_77">
-               <attribute name="title">
-                <string>Page</string>
-               </attribute>
-               <widget class="QLineEdit" name="lineEdit_10">
-                <property name="geometry">
-                 <rect>
-                  <x>10</x>
-                  <y>30</y>
-                  <width>361</width>
-                  <height>27</height>
-                 </rect>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="4">
+               <widget class="QLabel" name="label_90">
+                <property name="text">
+                 <string>Seconds</string>
+                </property>
+               </widget>
+              </item>
+              <item row="12" column="0" colspan="2">
+               <widget class="QLCDNumber" name="performance_lcd_download">
+                <property name="frameShape">
+                 <enum>QFrame::Panel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Sunken</enum>
+                </property>
+                <property name="digitCount">
+                 <number>5</number>
+                </property>
+                <property name="value" stdset="0">
+                 <double>0.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0" rowspan="2">
+               <widget class="QLabel" name="label_86">
+                <property name="font">
+                 <font>
+                  <underline>true</underline>
+                 </font>
                 </property>
                 <property name="text">
-                 <string>1</string>
+                 <string>Network Specs</string>
                 </property>
                </widget>
-               <widget class="QLabel" name="label_89">
-                <property name="geometry">
-                 <rect>
-                  <x>10</x>
-                  <y>10</y>
-                  <width>171</width>
-                  <height>19</height>
-                 </rect>
-                </property>
+              </item>
+              <item row="7" column="0" rowspan="2">
+               <widget class="QLabel" name="label_88">
                 <property name="text">
-                 <string>Graph Refresh (Seconds)</string>
+                 <string>Upload (MBPS)</string>
                 </property>
                </widget>
-               <widget class="QLabel" name="label_122">
-                <property name="geometry">
-                 <rect>
-                  <x>10</x>
-                  <y>70</y>
-                  <width>171</width>
-                  <height>19</height>
-                 </rect>
-                </property>
+              </item>
+              <item row="10" column="0" rowspan="2">
+               <widget class="QLabel" name="label_87">
                 <property name="text">
-                 <string>Graph Color </string>
+                 <string>Download (MBPS)</string>
                 </property>
                </widget>
-               <widget class="QComboBox" name="comboBox_7">
-                <property name="geometry">
-                 <rect>
-                  <x>10</x>
-                  <y>100</y>
-                  <width>361</width>
-                  <height>27</height>
-                 </rect>
+              </item>
+              <item row="13" column="0" colspan="2">
+               <widget class="QPushButton" name="performance_speedtest">
+                <property name="text">
+                 <string>Run SpeedTest</string>
                 </property>
-                <item>
-                 <property name="text">
-                  <string>Red</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Green</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Blue</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Yellow</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>White</string>
-                 </property>
-                </item>
                </widget>
-              </widget>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="label_80">
+              </item>
+              <item row="13" column="3" colspan="2">
+               <widget class="QPushButton" name="performance_benchmark_button">
+                <property name="text">
+                 <string>Start Benchmark</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="tab_76">
+             <attribute name="title">
+              <string>Error List</string>
+             </attribute>
+             <layout class="QGridLayout" name="gridLayout_56">
+              <item row="0" column="0">
+               <widget class="QTableWidget" name="table_SQLDB_performance_error"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QPushButton" name="table_RefreshDB_Button_performance">
+                <property name="text">
+                 <string>--&gt;&gt; Refresh DB &lt;&lt;--</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="tab_77">
+             <attribute name="title">
+              <string>Page</string>
+             </attribute>
+             <widget class="QLineEdit" name="lineEdit_10">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>30</y>
+                <width>361</width>
+                <height>27</height>
+               </rect>
+              </property>
               <property name="text">
-               <string>System Ram Usage</string>
+               <string>1</string>
               </property>
              </widget>
-            </item>
-            <item row="3" column="0" colspan="2">
-             <widget class="QGraphicsView" name="other_ram_performance">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>100</height>
-               </size>
+             <widget class="QLabel" name="label_89">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>171</width>
+                <height>19</height>
+               </rect>
               </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>100</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="label_81">
               <property name="text">
-               <string>Network Traffic In/Out</string>
+               <string>Graph Refresh (Seconds)</string>
               </property>
              </widget>
-            </item>
-            <item row="5" column="0" colspan="2">
-             <widget class="QGraphicsView" name="other_network_performance">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>100</height>
-               </size>
+             <widget class="QLabel" name="label_122">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>70</y>
+                <width>171</width>
+                <height>19</height>
+               </rect>
               </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>100</height>
-               </size>
+              <property name="text">
+               <string>Graph Color </string>
               </property>
              </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tab_28">
-           <attribute name="title">
-            <string>Guide</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_26">
-            <item row="0" column="0">
-             <widget class="QTabWidget" name="tabWidget_11">
-              <property name="currentIndex">
-               <number>2</number>
+             <widget class="QComboBox" name="comboBox_7">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>100</y>
+                <width>361</width>
+                <height>27</height>
+               </rect>
               </property>
-              <widget class="QWidget" name="tab_29">
-               <attribute name="title">
-                <string>Tab 1</string>
-               </attribute>
-              </widget>
-              <widget class="QWidget" name="tab_30">
-               <attribute name="title">
-                <string>OSINT</string>
-               </attribute>
-               <layout class="QGridLayout" name="gridLayout_21">
-                <item row="0" column="0">
-                 <widget class="QTabWidget" name="tabWidget_12">
-                  <property name="tabPosition">
-                   <enum>QTabWidget::West</enum>
-                  </property>
-                  <property name="currentIndex">
-                   <number>1</number>
-                  </property>
-                  <widget class="QWidget" name="tab_34">
-                   <attribute name="title">
-                    <string>Reddit</string>
-                   </attribute>
-                   <layout class="QGridLayout" name="gridLayout_23">
-                    <item row="0" column="0">
-                     <widget class="QTextEdit" name="textEdit_5">
-                      <property name="html">
-                       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+              <item>
+               <property name="text">
+                <string>Red</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Green</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Blue</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Yellow</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>White</string>
+               </property>
+              </item>
+             </widget>
+            </widget>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_80">
+            <property name="text">
+             <string>System Ram Usage</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QGraphicsView" name="other_ram_performance">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>100</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_81">
+            <property name="text">
+             <string>Network Traffic In/Out</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0" colspan="2">
+           <widget class="QGraphicsView" name="other_network_performance">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>100</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tab_28">
+         <attribute name="title">
+          <string>Guide</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_26">
+          <item row="0" column="0">
+           <widget class="QTabWidget" name="tabWidget_11">
+            <property name="currentIndex">
+             <number>2</number>
+            </property>
+            <widget class="QWidget" name="tab_29">
+             <attribute name="title">
+              <string>Tab 1</string>
+             </attribute>
+            </widget>
+            <widget class="QWidget" name="tab_30">
+             <attribute name="title">
+              <string>OSINT</string>
+             </attribute>
+             <layout class="QGridLayout" name="gridLayout_21">
+              <item row="0" column="0">
+               <widget class="QTabWidget" name="tabWidget_12">
+                <property name="tabPosition">
+                 <enum>QTabWidget::West</enum>
+                </property>
+                <property name="currentIndex">
+                 <number>1</number>
+                </property>
+                <widget class="QWidget" name="tab_34">
+                 <attribute name="title">
+                  <string>Reddit</string>
+                 </attribute>
+                 <layout class="QGridLayout" name="gridLayout_23">
+                  <item row="0" column="0">
+                   <widget class="QTextEdit" name="textEdit_5">
+                    <property name="html">
+                     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&amp;quot;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&amp;quot;At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.&amp;quot;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                  <widget class="QWidget" name="tab_35">
-                   <attribute name="title">
-                    <string>Tab 2</string>
-                   </attribute>
-                  </widget>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-              <widget class="QWidget" name="tab_48">
-               <attribute name="title">
-                <string>Bruteforce</string>
-               </attribute>
-               <layout class="QGridLayout" name="gridLayout_36">
-                <item row="0" column="0">
-                 <widget class="QTabWidget" name="tabWidget_15">
-                  <property name="tabPosition">
-                   <enum>QTabWidget::West</enum>
-                  </property>
-                  <property name="currentIndex">
-                   <number>1</number>
-                  </property>
-                  <widget class="QWidget" name="tab_49">
-                   <attribute name="title">
-                    <string>Bruteforce</string>
-                   </attribute>
-                   <layout class="QGridLayout" name="gridLayout_35">
-                    <item row="0" column="0">
-                     <widget class="QTextEdit" name="textEdit_21">
-                      <property name="html">
-                       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QWidget" name="tab_35">
+                 <attribute name="title">
+                  <string>Tab 2</string>
+                 </attribute>
+                </widget>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="tab_48">
+             <attribute name="title">
+              <string>Bruteforce</string>
+             </attribute>
+             <layout class="QGridLayout" name="gridLayout_36">
+              <item row="0" column="0">
+               <widget class="QTabWidget" name="tabWidget_15">
+                <property name="tabPosition">
+                 <enum>QTabWidget::West</enum>
+                </property>
+                <property name="currentIndex">
+                 <number>1</number>
+                </property>
+                <widget class="QWidget" name="tab_49">
+                 <attribute name="title">
+                  <string>Bruteforce</string>
+                 </attribute>
+                 <layout class="QGridLayout" name="gridLayout_35">
+                  <item row="0" column="0">
+                   <widget class="QTextEdit" name="textEdit_21">
+                    <property name="html">
+                     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -4359,42 +4365,300 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;		FTP: ftplib&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bruteforcing:&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;	To save memory &amp;amp; disk space, the requests are issued in batches. For example, if you have a wordlist with 100 lines, and a batch size of 10, it will use the first 10 lines to brute force, then when completed the next ten,  etc. This greatly cuts down on memory for parallel tasks, as it (Thread Pool Executor) releases the memory once each batch is done.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                  <widget class="QWidget" name="tab_50">
-                   <attribute name="title">
-                    <string>Fuzzer</string>
-                   </attribute>
-                   <layout class="QGridLayout" name="gridLayout_46">
-                    <item row="0" column="0">
-                     <widget class="QTextEdit" name="textEdit_22">
-                      <property name="html">
-                       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QWidget" name="tab_50">
+                 <attribute name="title">
+                  <string>Fuzzer</string>
+                 </attribute>
+                 <layout class="QGridLayout" name="gridLayout_46">
+                  <item row="0" column="0">
+                   <widget class="QTextEdit" name="textEdit_22">
+                    <property name="html">
+                     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Database: &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This database works differently than the rest (Save for the reddit DB). The others store all current, and past data gathered by the tool, but for the fuzzer, it only stores your most recent fuzz (One entry per attempt). The rationale is that you may be fuzzing hundreds, if not thousands of URL's, and a per-attempt entry makes it easier to sort through with SQL queries. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </widget>
-                </item>
-               </layout>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tab_7">
+         <attribute name="title">
+          <string>Content</string>
+         </attribute>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>120</y>
+            <width>1061</width>
+            <height>411</height>
+           </rect>
+          </property>
+          <property name="title">
+           <string>Wordlists</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_52">
+           <item row="0" column="0">
+            <widget class="QTabWidget" name="tabWidget_5">
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <widget class="QWidget" name="tab_8">
+              <attribute name="title">
+               <string>Usernames</string>
+              </attribute>
+              <widget class="QPushButton" name="bruteforce_download_seclist_top10mil_usernames_3">
+               <property name="geometry">
+                <rect>
+                 <x>271</x>
+                 <y>20</y>
+                 <width>80</width>
+                 <height>27</height>
+                </rect>
+               </property>
+               <property name="font">
+                <font>
+                 <underline>false</underline>
+                 <strikeout>false</strikeout>
+                </font>
+               </property>
+               <property name="text">
+                <string>Download</string>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QLineEdit" name="lineEdit_33">
+               <property name="geometry">
+                <rect>
+                 <x>20</x>
+                 <y>53</y>
+                 <width>245</width>
+                 <height>27</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>SecList Top Usernames (Short List)</string>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="bruteforce_download_seclist_topshort_3">
+               <property name="geometry">
+                <rect>
+                 <x>271</x>
+                 <y>53</y>
+                 <width>80</width>
+                 <height>27</height>
+                </rect>
+               </property>
+               <property name="font">
+                <font>
+                 <underline>false</underline>
+                 <strikeout>false</strikeout>
+                </font>
+               </property>
+               <property name="text">
+                <string>Download</string>
+               </property>
+               <property name="autoDefault">
+                <bool>false</bool>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
+               </property>
+              </widget>
+              <widget class="QLineEdit" name="lineEdit_34">
+               <property name="geometry">
+                <rect>
+                 <x>20</x>
+                 <y>20</y>
+                 <width>245</width>
+                 <height>27</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>SecList 10mil Usernames</string>
+               </property>
+              </widget>
+              <widget class="QTextEdit" name="textEdit_25">
+               <property name="geometry">
+                <rect>
+                 <x>570</x>
+                 <y>50</y>
+                 <width>401</width>
+                 <height>221</height>
+                </rect>
+               </property>
+               <property name="html">
+                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If downloaded, either disblae button or have a downloaded check next to it (check may be better so It can be re-downloaded if needed)&lt;br /&gt;&lt;br /&gt;Also include a download bar&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Last, use the top box as a hide/show for different content type here&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
               </widget>
              </widget>
-            </item>
-           </layout>
-          </widget>
+             <widget class="QWidget" name="tab_9">
+              <attribute name="title">
+               <string>Passwords</string>
+              </attribute>
+              <widget class="QLineEdit" name="lineEdit_35">
+               <property name="geometry">
+                <rect>
+                 <x>9</x>
+                 <y>47</y>
+                 <width>245</width>
+                 <height>27</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>SecList Top 10 Million Passwords</string>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="bruteforce_download_seclist_defaults_3">
+               <property name="geometry">
+                <rect>
+                 <x>260</x>
+                 <y>14</y>
+                 <width>80</width>
+                 <height>27</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Download</string>
+               </property>
+              </widget>
+              <widget class="QLineEdit" name="lineEdit_36">
+               <property name="geometry">
+                <rect>
+                 <x>9</x>
+                 <y>14</y>
+                 <width>245</width>
+                 <height>27</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>SecList Default Passwords</string>
+               </property>
+              </widget>
+              <widget class="QLineEdit" name="lineEdit_37">
+               <property name="geometry">
+                <rect>
+                 <x>9</x>
+                 <y>80</y>
+                 <width>245</width>
+                 <height>27</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Ignis 1m Public Passwords</string>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="bruteforce_download_seclist_top10mil_3">
+               <property name="geometry">
+                <rect>
+                 <x>260</x>
+                 <y>47</y>
+                 <width>80</width>
+                 <height>27</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Download</string>
+               </property>
+              </widget>
+              <widget class="QPushButton" name="bruteforce_download_ignis_1M_3">
+               <property name="geometry">
+                <rect>
+                 <x>260</x>
+                 <y>80</y>
+                 <width>80</width>
+                 <height>27</height>
+                </rect>
+               </property>
+               <property name="text">
+                <string>Download</string>
+               </property>
+              </widget>
+             </widget>
+            </widget>
+           </item>
+          </layout>
          </widget>
-        </item>
-       </layout>
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>312</width>
+            <height>89</height>
+           </rect>
+          </property>
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_53">
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="checkBox_2">
+             <property name="text">
+              <string>Show Wordlists</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QCheckBox" name="checkBox_34">
+             <property name="text">
+              <string>CheckBox</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" rowspan="2">
+            <widget class="QCheckBox" name="checkBox_33">
+             <property name="text">
+              <string>CheckBox</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" rowspan="2">
+            <widget class="QCheckBox" name="checkBox_30">
+             <property name="text">
+              <string>CheckBox</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_20">
        <attribute name="title">
@@ -5136,7 +5400,7 @@ p, li { white-space: pre-wrap; }
             <item row="0" column="0">
              <widget class="QTabWidget" name="tabWidget_4">
               <property name="currentIndex">
-               <number>1</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="tab">
                <attribute name="title">

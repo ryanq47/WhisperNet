@@ -80,7 +80,8 @@ from gui import Ui_LogecC3
 ## logging
 import logging
 logging.basicConfig(level=logging.DEBUG)
-logging.basicConfig(filename='osint_reddit.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s', force=True)
+logging.basicConfig(filename='logs/logec-main.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s', force=True)
+
 #if global_debug:
 logging.getLogger().addHandler(logging.StreamHandler())
 
@@ -99,10 +100,10 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.init_project_settings()
         self.init_thread_manager()
 
-        ##== SQL
+        ##== SQL Buttons
         self.init_sql_loading()
 
-        ##== Buttons
+        ##== Other Buttons
         self.init_buttons_file_menu()
         self.init_buttons_c2_shells()
         self.init_buttons_osint_reddit()
@@ -146,6 +147,8 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
     ##== SQL Table loading
     def init_sql_loading(self) -> None:
+        """This maps all the SQL buttons for all the tables/viewers across the program
+        """
         #self.table_RefreshDB_Button.clicked.connect(lambda: self.refresh_db('c2_db'))
         #self.table_RefreshDB_Button.setShortcut('r')
 
@@ -172,6 +175,15 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         ##==Bruteforce DB
         self.scanning_bruteforce_query.clicked.connect(lambda: self.custom_query('bruteforce_db'))
         self.scanning_bruteforce_query.setShortcut('Return')
+        self.scanning_bruteforce_refresh.clicked.connect(lambda: self.refresh_db('bruteforce_db'))
+        self.scanning_bruteforce_refresh.setShortcut('r')
+
+        ##Bruteforce Fuzzer
+        self.scanning_bruteforce_fuzzer_query.clicked.connect(lambda: self.custom_query('bruteforce_fuzzer_db'))
+        self.scanning_bruteforce_fuzzer_query.setShortcut('Return')
+        self.scanning_bruteforce_fuzzer_refresh.clicked.connect(lambda: self.refresh_db('bruteforce_fuzzer_db'))
+        self.scanning_bruteforce_fuzzer_refresh.setShortcut('r')
+        
         ##==Perfrormance
         self.table_RefreshDB_Button_performance.clicked.connect(lambda: self.custom_query('performance_error_db'))
         
@@ -236,12 +248,13 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.bruteforce_download_seclist_top10mil.clicked.connect(partial(self.bruteforce_download, "seclist-top10mil"))
         self.bruteforce_download_seclist_top10mil_usernames.clicked.connect(partial(self.bruteforce_download, "seclist-top10mil-usernames"))
         self.bruteforce_download_seclist_topshort.clicked.connect(partial(self.bruteforce_download, "seclist-top-short"))
-    
+
     ##== buttons for Bruteforce Fuzzer
     def init_buttons_bruteforce_fuzzer(self) -> None:
         self.bruteforce_fuzz_start.clicked.connect(self.bruteforce_fuzzer)
         self.bruteforce_stop.clicked.connect(self.bruteforce_fuzz_hardstop)
         self.bruteforce_fuzz_wordlist_browse.clicked.connect(partial(self.bf_fuzz_browser_popup, "wordlistdir"))
+
     
     ##== Buttons for bash builder
     def init_buttons_bashbuilder(self) -> None:
@@ -293,6 +306,8 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
     ##== Loading all the data into the respective tables
     def init_data_sql_tables(self) -> None:
+        """this function LOADS the data into each table on starutp
+        """
         #self.view = self.table_SQLDB
         ## Showing help table on startup
         self.DB_Query_main.setText('select * from Help')
@@ -304,8 +319,11 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.DB_Query_scanning_portscan.setText('select * from PortScan')
         self.custom_query('scanning_portscan_db')
 
-        self.DB_Query_scanning_bruteforce.setText('select * from "BRUTEFORCE-http"')
+        self.DB_Query_scanning_bruteforce.setText('select * from "BRUTEFORCE-creds"')
         self.custom_query('bruteforce_db')
+        
+        self.DB_Query_scanning_bruteforce_fuzzer.setText('select * from "BRUTEFORCE-Fuzzer"')
+        self.custom_query('bruteforce_fuzzer_db')
 
         self.custom_query('performance_error_db')
 
@@ -406,6 +424,10 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         elif _from == 'bruteforce_db':
             self.view = self.scanning_bruteforce_db
             query_input_raw = f'{self.DB_Query_scanning_bruteforce.text()} ORDER BY DATE DESC, TIME DESC'
+        elif _from == 'bruteforce_fuzzer_db':
+            self.view = self.scanning_bruteforce_fuzzer_db
+            query_input_raw = f'{self.DB_Query_scanning_bruteforce_fuzzer.text()} ORDER BY DATE DESC, TIME DESC'    
+        
         else:
             query_input_raw = ""
             self.view = ""
@@ -1162,27 +1184,22 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
                 f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
                 "SecList-top1-short-usernames"
             ])
+            
 ## Bruteforce DB Stuff
     def bruteforce_database_write(self, list):
-        #print("DB Triggered")  if GLOBAL_DEBUG else None
+        ## Just in case a value doesn't make it back
         try:
-            cursor = self.sqliteConnection.cursor()
-            
-            ## Picked up this trick from chatGPT, basically each item coresponds to the number in list
             TARGET, PORT, SERVICE, CREDS, TIME, DATE = list
-            
-            sqlite_insert_query = f"""INSERT INTO 'BRUTEFORCE-Creds' (Target, Port, Service, Credentials, Time, Date) 
+        except Exception as e:
+            logging.debug(f"[Logec (Bruteforce Credentials)] Error with list values. {e}")
+            TARGET, PORT, SERVICE, CREDS, TIME, DATE = None, None, None, None, None, None
+
+        query = f"""INSERT INTO 'BRUTEFORCE-Creds' (Target, Port, Service, Credentials, Time, Date) 
             VALUES
             ('{TARGET}', '{str(PORT).replace("{","").replace("}","")}', '{SERVICE}', '{CREDS}', '{TIME}', '{DATE}' )"""
-            
-            #print(sqlite_insert_query) if GLOBAL_DEBUG else None
-
-            cursor.execute(sqlite_insert_query)
-            self.sqliteConnection.commit()
-            cursor.close()
-            
-        except Exception as e:
-            self.handle_error([e, "Medium", "??"])
+        
+        self.sql_db_write(query)
+        
    
 ##== Fuzzer    
     """
@@ -1333,25 +1350,19 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             ])
 ##== Fuzzer DB Stuff
     def bruteforce_fuzz_database_write(self, list):
-        #print("BF Fuzzer DB Triggered") if GLOBAL_DEBUG else None
+        ## Just in case a value doesn't make it back
         try:
-            cursor = self.sqliteConnection.cursor()
-            
-            ## Picked up this trick from chatGPT, basically each item coresponds to the number in list
             TARGET, PORT, CODE,SHORT_URL, LONG_URL, TIME, DATE = list
-            
-            sqlite_insert_query = f"""INSERT INTO 'BRUTEFORCE-Fuzzer' (Target, Port, Code, Short_Url, Long_Url, Time, Date) 
+
+        except Exception as e:
+            logging.debug(f"[Logec (Bruteforce Fuzzer)] Error with list values. {e}")
+            TARGET, PORT, CODE,SHORT_URL, LONG_URL, TIME, DATE = None, None, None, None, None, None, None
+
+        query = f"""INSERT INTO 'BRUTEFORCE-Fuzzer' (Target, Port, Code, Short_Url, Long_Url, Time, Date) 
             VALUES
             ('{TARGET}', '{str(PORT).replace("{","").replace("}","")}', '{CODE}', '{SHORT_URL}', '{LONG_URL}', '{TIME}', '{DATE}' )"""
-            
-            #print(sqlite_insert_query)  if GLOBAL_DEBUG else None
-
-            cursor.execute(sqlite_insert_query)
-            self.sqliteConnection.commit()
-            cursor.close()
-            
-        except Exception as e:
-            self.handle_error([e, "Medium", "??"])
+        
+        self.sql_db_write(query)
 
 ####################
 ## OSINT
@@ -1957,7 +1968,10 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         The global write function. Not fully utilized, some modules still need to be moved here. 
         Handy as it's a one stop shop into the DB and prevents lockups
         
-        Each module that needs to write here needs a db_write method that provides the query string
+        Each module that needs to write here needs a db_write method that provides the query string. Those methods
+        need to supply some data, even if it's "None"
+        
+        All the error handling is done here as well
 
         Args:
             query (str): The query for SQL
@@ -2061,15 +2075,18 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         sys.exit(os.spawnvp(os.P_WAIT, sys.executable, args))
         
     def program_exit(self):
-        logging.debug("[Logec] Exiting program")
+        logging.debug("[Logec (shutdown)] Exiting program")
         self.exit_functions()
         sys.exit()
     
     def exit_functions(self):
         ## kills local server if still running
-        if self.localserver_running and self.settings['c2']['local']['kill_server_on_gui_exit']:
-            logging.debug(f"[Logec (local server)] Server running, killing. setting: kill_server_on_gui_exit")
-            os.kill(self.proc.pid, 15)
+        try:
+            if self.localserver_running and self.settings['c2']['local']['kill_server_on_gui_exit']:
+                logging.debug(f"[Logec (local server)] Server running, killing. setting: kill_server_on_gui_exit")
+                os.kill(self.proc.pid, 15)
+        except:
+            logging.debug("[Logec (shutdown)] localserver not running, ignore")
 
 
 if __name__ == '__main__':
