@@ -886,7 +886,7 @@ class Ui_LogecC3(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.scrollAreaWidgetContents_5 = QWidget()
         self.scrollAreaWidgetContents_5.setObjectName(u"scrollAreaWidgetContents_5")
-        self.scrollAreaWidgetContents_5.setGeometry(QRect(0, 0, 72, 16))
+        self.scrollAreaWidgetContents_5.setGeometry(QRect(0, 0, 1085, 763))
         self.bashbuild_toolBox = QToolBox(self.scrollAreaWidgetContents_5)
         self.bashbuild_toolBox.setObjectName(u"bashbuild_toolBox")
         self.bashbuild_toolBox.setGeometry(QRect(0, 0, 241, 651))
@@ -1245,11 +1245,6 @@ class Ui_LogecC3(object):
 
         self.gridLayout_13.addWidget(self.label_26, 2, 0, 1, 1)
 
-        self.scanning_dns_A_4 = QTextEdit(self.tab_16)
-        self.scanning_dns_A_4.setObjectName(u"scanning_dns_A_4")
-
-        self.gridLayout_13.addWidget(self.scanning_dns_A_4, 7, 1, 1, 1)
-
         self.label_27 = QLabel(self.tab_16)
         self.label_27.setObjectName(u"label_27")
         self.label_27.setFont(font4)
@@ -1261,10 +1256,15 @@ class Ui_LogecC3(object):
 
         self.gridLayout_13.addWidget(self.dns_NS_table, 5, 1, 1, 1)
 
-        self.test_table = QTableWidget(self.tab_16)
-        self.test_table.setObjectName(u"test_table")
+        self.scanning_dns_A_4 = QTextEdit(self.tab_16)
+        self.scanning_dns_A_4.setObjectName(u"scanning_dns_A_4")
 
-        self.gridLayout_13.addWidget(self.test_table, 9, 1, 1, 1)
+        self.gridLayout_13.addWidget(self.scanning_dns_A_4, 7, 1, 3, 1)
+
+        self.label = QLabel(self.tab_16)
+        self.label.setObjectName(u"label")
+
+        self.gridLayout_13.addWidget(self.label, 6, 1, 1, 1)
 
         self.tabWidget_8.addTab(self.tab_16, "")
 
@@ -2627,12 +2627,12 @@ class Ui_LogecC3(object):
 
         self.retranslateUi(LogecC3)
 
-        self.tabWidget.setCurrentIndex(3)
+        self.tabWidget.setCurrentIndex(2)
         self.bruteforce_panel_2.setCurrentIndex(3)
         self.c2_shell_tab.setCurrentIndex(0)
         self.osint_reddit_tab.setCurrentIndex(1)
         self.tabWidget_3.setCurrentIndex(1)
-        self.tabWidget_8.setCurrentIndex(2)
+        self.tabWidget_8.setCurrentIndex(3)
         self.bashbuild_toolBox.setCurrentIndex(3)
         self.tabWidget_9.setCurrentIndex(0)
         self.tabWidget_6.setCurrentIndex(1)
@@ -3155,6 +3155,13 @@ class Ui_LogecC3(object):
         self.label_31.setText(QCoreApplication.translate("LogecC3", u"Reverse Lookup", None))
         self.label_26.setText(QCoreApplication.translate("LogecC3", u"A Record", None))
         self.label_27.setText(QCoreApplication.translate("LogecC3", u"TXT ", None))
+        self.scanning_dns_A_4.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">[Not Implemented]</p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
+        self.label.setText(QCoreApplication.translate("LogecC3", u"Raw records", None))
         self.tabWidget_8.setTabText(self.tabWidget_8.indexOf(self.tab_16), QCoreApplication.translate("LogecC3", u"DNS Lookup", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_22), QCoreApplication.translate("LogecC3", u"Scanning/Enumeration", None))
 #if QT_CONFIG(accessibility)

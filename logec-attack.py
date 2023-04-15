@@ -99,6 +99,9 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         ##== Setup
         self.init_project_settings()
         self.init_thread_manager()
+        
+        ##== instances
+        self.init_instances()
 
         ##== SQL Buttons
         self.init_sql_loading()
@@ -107,6 +110,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.init_buttons_file_menu()
         self.init_buttons_c2_shells()
         self.init_buttons_osint_reddit()
+        self.init_buttons_scanning()
         self.init_buttons_bruteforce_credentials()
         self.init_buttons_bruteforce_fuzzer()
         self.init_buttons_bashbuilder()
@@ -142,7 +146,9 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
     ##== Initial instances for other objects
     def init_instances(self) -> None:
-        self.N = utility.Network()
+        #self.N_worker = utility.Network()
+        #self.thread_manager.start(
+        
         self.H = utility.Host()
 
     ##== SQL Table loading
@@ -235,6 +241,10 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         ## GUI buttons
         ## lamdba for reverse toggle
         self.osint_reddit_gui_hide_search.toggled.connect(lambda x: self.osint_reddit_searchbox.setVisible(not x))
+
+    def init_buttons_scanning(self) -> None:
+        self.scanning_dns_lookup.clicked.connect(self.dns_lookup)
+        self.portscan_start.clicked.connect(self.portscan)
 
     ##== buttons for Bruteforce Credentials
     def init_buttons_bruteforce_credentials(self) -> None:
@@ -921,17 +931,17 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
         ## All handler
         ## Setting object instance
-        self.tablewidget = self.test_table
+        #self.tablewidget = self.test_table
 
-        self.tablewidget.setRowCount(4)
-        self.tablewidget.setColumnCount(1)
-        self.tablewidget.setItem(0, 0, QTableWidgetItem('ns2.google.com.'))
-        self.tablewidget.setItem(1, 0, QTableWidgetItem('ns3.google.com.'))
+        #self.tablewidget.setRowCount(4)
+        #self.tablewidget.setColumnCount(1)
+        ##self.tablewidget.setItem(0, 0, QTableWidgetItem('ns2.google.com.'))
+        #self.tablewidget.setItem(1, 0, QTableWidgetItem('ns3.google.com.'))
 
-        self.tablewidget.horizontalHeader().setStretchLastSection(True)
-        self.tablewidget.horizontalHeader().setSectionResizeMode(
-            QHeaderView.Stretch
-        )
+        #self.tablewidget.horizontalHeader().setStretchLastSection(True)
+        #self.tablewidget.horizontalHeader().setSectionResizeMode(
+        #    QHeaderView.Stretch
+        #)
 
         ## mockup to reduce code
         ## self.tablewidget = self.tablename
@@ -951,38 +961,23 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             ])
             dns_list = None
         else:
-            dns_list = self.N.lookup_All(self.scanning_dns_query.text())
-            ## One liners to save some space
-            self.dns_table_formatting(
-                self.dns_a_table, 'Not Found', 'A'
-            ) if dns_list[0] == 'NONE' else self.dns_table_formatting(
-                self.dns_a_table, dns_list[0], 'A'
-            )
-            self.dns_table_formatting(
-                self.dns_CNAME_table, 'Not Found', 'CNAME'
-            ) if dns_list[1] == 'NONE' else self.dns_table_formatting(
-                self.dns_CNAME_table, dns_list[1], 'CNAME'
-            )
-            self.dns_table_formatting(
-                self.dns_MX_table, 'Not Found', 'MX'
-            ) if dns_list[2] == 'NONE' else self.dns_table_formatting(
-                self.dns_MX_table, dns_list[2], 'MX'
-            )
-            self.dns_table_formatting(
-                self.dns_Reverse_table, 'Not Found', 'Reverse Lookup'
-            ) if dns_list[3] == 'NONE' else self.dns_table_formatting(
-                self.dns_Reverse_table, dns_list[3], 'Reverse Lookup'
-            )
-            self.dns_table_formatting(
-                self.dns_TXT_table, 'Not Found', 'TXT'
-            ) if dns_list[4] == 'NONE' else self.dns_table_formatting(
-                self.dns_TXT_table, dns_list[4], 'TXT'
-            )
-            self.dns_table_formatting(
-                self.dns_NS_table, 'Not Found', 'NS'
-            ) if dns_list[5] == 'NONE' else self.dns_table_formatting(
-                self.dns_NS_table, dns_list[5], 'NS'
-            )
+            #pass
+            self.N_worker = utility.Network()
+            self.thread_manager.start(partial(self.N_worker.lookup_All, self.scanning_dns_query.text()))
+            
+            self.N_worker.lookupall.connect(self.dns_lookup_table)
+
+    def dns_lookup_table(self, lookup_dict):
+        #print(lookup_dict)
+        self.dns_table_formatting(self.dns_a_table, 'Not Found', 'A') if lookup_dict['A'] == 'NONE' else self.dns_table_formatting(self.dns_a_table, lookup_dict['A'], 'A')
+        self.dns_table_formatting(self.dns_CNAME_table, 'Not Found', 'CNAME') if lookup_dict['CNAME'] == 'NONE' else self.dns_table_formatting(self.dns_CNAME_table, lookup_dict['CNAME'], 'CNAME')
+        self.dns_table_formatting(self.dns_MX_table, 'Not Found', 'MX') if lookup_dict['MX'] == 'NONE' else self.dns_table_formatting(self.dns_MX_table, lookup_dict['MX'], 'MX')
+        self.dns_table_formatting(self.dns_Reverse_table, 'Not Found', 'Reverse') if lookup_dict['Reverse'] == 'NONE' else self.dns_table_formatting(self.dns_Reverse_table, lookup_dict['Reverse'], 'Reverse')
+        self.dns_table_formatting(self.dns_TXT_table, 'Not Found', 'TXT') if lookup_dict['TXT'] == 'NONE' else self.dns_table_formatting(self.dns_TXT_table, lookup_dict['TXT'], 'TXT')
+        self.dns_table_formatting(self.dns_NS_table, 'Not Found', 'NS') if lookup_dict['NS'] == 'NONE' else self.dns_table_formatting(self.dns_NS_table, lookup_dict['NS'], 'NS')
+
+        #pass
+        
 ## GUI Formatter
     """
     Desc: Formats the results into tables

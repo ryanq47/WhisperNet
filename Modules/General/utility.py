@@ -5,7 +5,8 @@ import os
 
 import speedtest 
 #import dns
-#import dns.resolver
+import dns.resolver
+import dns.query
 import requests
 
 
@@ -134,11 +135,13 @@ class Host:
         open(dir,'wb').write(r.content)
         print("done")
  
-        
-class Network:
 
+## this guy could use a rewrite/optimization wiht some error handling too
+class Network(QObject):
+    lookupall = Signal(dict)
   
     def __init__(self):
+        super().__init__()
         try:
             self.st = speedtest.Speedtest()
         except:
@@ -158,12 +161,13 @@ class Network:
         self.st.get_servers(servernames)  
 
         #print(self.st.results.ping)
-    
         return self.st.results.ping
+    
     def lookup_A(self, cname):
         try:
             ## Returns a list of items
             name = dns.resolver.resolve(cname, 'A')
+            print(f"NAME: {name}")
             
             namelist = []
 
@@ -171,7 +175,8 @@ class Network:
                 namelist.append(i.to_text())
             
             return namelist
-        except:
+        except Exception as e:
+            print(e)
             return "NONE"
     
     def lookup_CNAME(self, name):
@@ -231,7 +236,7 @@ class Network:
         except:
             return "NONE"
     
-    def lookup_Reverse(self, IP):
+    def lookup_REVERSE(self, IP):
         try:
             ## Returns a list of items
             name = dns.reversename.from_address(IP)
@@ -242,18 +247,31 @@ class Network:
             return namelist  
         
         except:
-            return "NONE"  
+            return "NONE"
     
-    def lookup_All(self, IP):
-        A = self.lookup_A(IP)
-        CNAME = self.lookup_CNAME(IP)
-        MX = self.lookup_MX(IP)
-        TXT = self.lookup_TXT(IP)
-        NS = self.lookup_NS(IP)
-        Reverse = self.lookup_Reverse(IP)
+    def lookup_RAW(self, IP):
+        """Being a pain, will figure out later"""
+        try:
+            raw_record = dns.response.to_wire(IP)
         
-        record_list = [A,CNAME,MX,Reverse,TXT,NS]
-        return record_list
+        except:
+            raw_record = "NONE"
+            
+        return raw_record
+    
+    def lookup_All(self, IP):        
+        record_list = {
+            'A' : self.lookup_A(IP),
+            'CNAME' : self.lookup_CNAME(IP),
+            'MX' : self.lookup_MX(IP),
+            'Reverse': self.lookup_REVERSE(IP),
+            'TXT' : self.lookup_TXT(IP),
+            'NS' : self.lookup_NS(IP),
+            'RAW' : self.lookup_RAW(IP)
+            }
+        #print(record_list)
+        self.lookupall.emit(record_list)
+        #return record_list
         
             
     
