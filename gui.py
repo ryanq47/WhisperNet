@@ -30,7 +30,8 @@ class Ui_LogecC3(object):
         if not LogecC3.objectName():
             LogecC3.setObjectName(u"LogecC3")
         LogecC3.setWindowModality(Qt.NonModal)
-        LogecC3.resize(1149, 909)
+        LogecC3.setEnabled(True)
+        LogecC3.resize(1579, 888)
         LogecC3.setMinimumSize(QSize(850, 688))
         LogecC3.setMaximumSize(QSize(10000, 10000))
         font = QFont()
@@ -807,7 +808,7 @@ class Ui_LogecC3(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 72, 16))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1085, 672))
         self.dashboard_portscan_IP = QLineEdit(self.scrollAreaWidgetContents)
         self.dashboard_portscan_IP.setObjectName(u"dashboard_portscan_IP")
         self.dashboard_portscan_IP.setGeometry(QRect(10, 40, 211, 27))
@@ -886,7 +887,7 @@ class Ui_LogecC3(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.scrollAreaWidgetContents_5 = QWidget()
         self.scrollAreaWidgetContents_5.setObjectName(u"scrollAreaWidgetContents_5")
-        self.scrollAreaWidgetContents_5.setGeometry(QRect(0, 0, 1085, 763))
+        self.scrollAreaWidgetContents_5.setGeometry(QRect(0, 0, 1515, 742))
         self.bashbuild_toolBox = QToolBox(self.scrollAreaWidgetContents_5)
         self.bashbuild_toolBox.setObjectName(u"bashbuild_toolBox")
         self.bashbuild_toolBox.setGeometry(QRect(0, 0, 241, 651))
@@ -1994,9 +1995,10 @@ class Ui_LogecC3(object):
         self.tabWidget.addTab(self.tab_5, "")
         self.tab_27 = QWidget()
         self.tab_27.setObjectName(u"tab_27")
+        self.gridLayout_25 = QGridLayout(self.tab_27)
+        self.gridLayout_25.setObjectName(u"gridLayout_25")
         self.tabWidget_10 = QTabWidget(self.tab_27)
         self.tabWidget_10.setObjectName(u"tabWidget_10")
-        self.tabWidget_10.setGeometry(QRect(9, 9, 1109, 816))
         self.tab_52 = QWidget()
         self.tab_52.setObjectName(u"tab_52")
         self.gridLayout_55 = QGridLayout(self.tab_52)
@@ -2302,87 +2304,372 @@ class Ui_LogecC3(object):
         self.tabWidget_10.addTab(self.tab_28, "")
         self.tab_7 = QWidget()
         self.tab_7.setObjectName(u"tab_7")
-        self.groupBox = QGroupBox(self.tab_7)
-        self.groupBox.setObjectName(u"groupBox")
-        self.groupBox.setGeometry(QRect(10, 120, 1061, 411))
-        self.gridLayout_52 = QGridLayout(self.groupBox)
+        self.gridLayout_52 = QGridLayout(self.tab_7)
         self.gridLayout_52.setObjectName(u"gridLayout_52")
-        self.tabWidget_5 = QTabWidget(self.groupBox)
+        self.toolBox = QToolBox(self.tab_7)
+        self.toolBox.setObjectName(u"toolBox")
+        self.page_7 = QWidget()
+        self.page_7.setObjectName(u"page_7")
+        self.page_7.setGeometry(QRect(0, 0, 1517, 678))
+        self.gridLayout_53 = QGridLayout(self.page_7)
+        self.gridLayout_53.setObjectName(u"gridLayout_53")
+        self.tabWidget_5 = QTabWidget(self.page_7)
         self.tabWidget_5.setObjectName(u"tabWidget_5")
         self.tab_8 = QWidget()
         self.tab_8.setObjectName(u"tab_8")
-        self.bruteforce_download_seclist_top10mil_usernames_3 = QPushButton(self.tab_8)
-        self.bruteforce_download_seclist_top10mil_usernames_3.setObjectName(u"bruteforce_download_seclist_top10mil_usernames_3")
-        self.bruteforce_download_seclist_top10mil_usernames_3.setGeometry(QRect(271, 20, 80, 27))
-        self.bruteforce_download_seclist_top10mil_usernames_3.setFont(font5)
-        self.bruteforce_download_seclist_top10mil_usernames_3.setAutoDefault(False)
-        self.bruteforce_download_seclist_top10mil_usernames_3.setFlat(False)
-        self.lineEdit_33 = QLineEdit(self.tab_8)
-        self.lineEdit_33.setObjectName(u"lineEdit_33")
-        self.lineEdit_33.setGeometry(QRect(20, 53, 245, 27))
-        self.bruteforce_download_seclist_topshort_3 = QPushButton(self.tab_8)
-        self.bruteforce_download_seclist_topshort_3.setObjectName(u"bruteforce_download_seclist_topshort_3")
-        self.bruteforce_download_seclist_topshort_3.setGeometry(QRect(271, 53, 80, 27))
-        self.bruteforce_download_seclist_topshort_3.setFont(font5)
-        self.bruteforce_download_seclist_topshort_3.setAutoDefault(False)
-        self.bruteforce_download_seclist_topshort_3.setFlat(False)
-        self.lineEdit_34 = QLineEdit(self.tab_8)
-        self.lineEdit_34.setObjectName(u"lineEdit_34")
-        self.lineEdit_34.setGeometry(QRect(20, 20, 245, 27))
-        self.textEdit_25 = QTextEdit(self.tab_8)
-        self.textEdit_25.setObjectName(u"textEdit_25")
-        self.textEdit_25.setGeometry(QRect(570, 50, 401, 221))
+        self.gridLayout_58 = QGridLayout(self.tab_8)
+        self.gridLayout_58.setObjectName(u"gridLayout_58")
+        self.gridLayout_66 = QGridLayout()
+        self.gridLayout_66.setObjectName(u"gridLayout_66")
+        self.gridLayout_67 = QGridLayout()
+        self.gridLayout_67.setObjectName(u"gridLayout_67")
+        self.lineEdit_88 = QLineEdit(self.tab_8)
+        self.lineEdit_88.setObjectName(u"lineEdit_88")
+
+        self.gridLayout_67.addWidget(self.lineEdit_88, 2, 0, 1, 1)
+
+        self.lineEdit_89 = QLineEdit(self.tab_8)
+        self.lineEdit_89.setObjectName(u"lineEdit_89")
+
+        self.gridLayout_67.addWidget(self.lineEdit_89, 1, 0, 1, 1)
+
+        self.lineEdit_90 = QLineEdit(self.tab_8)
+        self.lineEdit_90.setObjectName(u"lineEdit_90")
+
+        self.gridLayout_67.addWidget(self.lineEdit_90, 3, 0, 1, 1)
+
+        self.bruteforce_download_seclist_top10mil_22 = QPushButton(self.tab_8)
+        self.bruteforce_download_seclist_top10mil_22.setObjectName(u"bruteforce_download_seclist_top10mil_22")
+
+        self.gridLayout_67.addWidget(self.bruteforce_download_seclist_top10mil_22, 3, 1, 1, 1)
+
+        self.bruteforce_download_seclist_defaults_13 = QPushButton(self.tab_8)
+        self.bruteforce_download_seclist_defaults_13.setObjectName(u"bruteforce_download_seclist_defaults_13")
+
+        self.gridLayout_67.addWidget(self.bruteforce_download_seclist_defaults_13, 1, 1, 1, 1)
+
+        self.bruteforce_download_seclist_top10mil_23 = QPushButton(self.tab_8)
+        self.bruteforce_download_seclist_top10mil_23.setObjectName(u"bruteforce_download_seclist_top10mil_23")
+
+        self.gridLayout_67.addWidget(self.bruteforce_download_seclist_top10mil_23, 2, 1, 1, 1)
+
+        self.label_6 = QLabel(self.tab_8)
+        self.label_6.setObjectName(u"label_6")
+
+        self.gridLayout_67.addWidget(self.label_6, 0, 0, 1, 1)
+
+
+        self.gridLayout_66.addLayout(self.gridLayout_67, 0, 0, 1, 1)
+
+        self.gridLayout_68 = QGridLayout()
+        self.gridLayout_68.setObjectName(u"gridLayout_68")
+        self.lineEdit_91 = QLineEdit(self.tab_8)
+        self.lineEdit_91.setObjectName(u"lineEdit_91")
+
+        self.gridLayout_68.addWidget(self.lineEdit_91, 3, 0, 1, 1)
+
+        self.bruteforce_download_seclist_top10mil_24 = QPushButton(self.tab_8)
+        self.bruteforce_download_seclist_top10mil_24.setObjectName(u"bruteforce_download_seclist_top10mil_24")
+
+        self.gridLayout_68.addWidget(self.bruteforce_download_seclist_top10mil_24, 3, 1, 1, 1)
+
+        self.lineEdit_92 = QLineEdit(self.tab_8)
+        self.lineEdit_92.setObjectName(u"lineEdit_92")
+
+        self.gridLayout_68.addWidget(self.lineEdit_92, 1, 0, 1, 1)
+
+        self.bruteforce_download_seclist_top10mil_25 = QPushButton(self.tab_8)
+        self.bruteforce_download_seclist_top10mil_25.setObjectName(u"bruteforce_download_seclist_top10mil_25")
+
+        self.gridLayout_68.addWidget(self.bruteforce_download_seclist_top10mil_25, 2, 1, 1, 1)
+
+        self.bruteforce_download_seclist_defaults_14 = QPushButton(self.tab_8)
+        self.bruteforce_download_seclist_defaults_14.setObjectName(u"bruteforce_download_seclist_defaults_14")
+
+        self.gridLayout_68.addWidget(self.bruteforce_download_seclist_defaults_14, 1, 1, 1, 1)
+
+        self.lineEdit_93 = QLineEdit(self.tab_8)
+        self.lineEdit_93.setObjectName(u"lineEdit_93")
+
+        self.gridLayout_68.addWidget(self.lineEdit_93, 2, 0, 1, 1)
+
+        self.label_8 = QLabel(self.tab_8)
+        self.label_8.setObjectName(u"label_8")
+
+        self.gridLayout_68.addWidget(self.label_8, 0, 0, 1, 1)
+
+
+        self.gridLayout_66.addLayout(self.gridLayout_68, 1, 0, 1, 1)
+
+        self.gridLayout_69 = QGridLayout()
+        self.gridLayout_69.setObjectName(u"gridLayout_69")
+        self.lineEdit_94 = QLineEdit(self.tab_8)
+        self.lineEdit_94.setObjectName(u"lineEdit_94")
+
+        self.gridLayout_69.addWidget(self.lineEdit_94, 1, 0, 1, 1)
+
+        self.bruteforce_download_seclist_top10mil_26 = QPushButton(self.tab_8)
+        self.bruteforce_download_seclist_top10mil_26.setObjectName(u"bruteforce_download_seclist_top10mil_26")
+
+        self.gridLayout_69.addWidget(self.bruteforce_download_seclist_top10mil_26, 3, 1, 1, 1)
+
+        self.bruteforce_download_seclist_top10mil_27 = QPushButton(self.tab_8)
+        self.bruteforce_download_seclist_top10mil_27.setObjectName(u"bruteforce_download_seclist_top10mil_27")
+
+        self.gridLayout_69.addWidget(self.bruteforce_download_seclist_top10mil_27, 2, 1, 1, 1)
+
+        self.lineEdit_95 = QLineEdit(self.tab_8)
+        self.lineEdit_95.setObjectName(u"lineEdit_95")
+
+        self.gridLayout_69.addWidget(self.lineEdit_95, 2, 0, 1, 1)
+
+        self.bruteforce_download_seclist_defaults_15 = QPushButton(self.tab_8)
+        self.bruteforce_download_seclist_defaults_15.setObjectName(u"bruteforce_download_seclist_defaults_15")
+
+        self.gridLayout_69.addWidget(self.bruteforce_download_seclist_defaults_15, 1, 1, 1, 1)
+
+        self.lineEdit_96 = QLineEdit(self.tab_8)
+        self.lineEdit_96.setObjectName(u"lineEdit_96")
+
+        self.gridLayout_69.addWidget(self.lineEdit_96, 3, 0, 1, 1)
+
+        self.label_9 = QLabel(self.tab_8)
+        self.label_9.setObjectName(u"label_9")
+
+        self.gridLayout_69.addWidget(self.label_9, 0, 0, 1, 1)
+
+
+        self.gridLayout_66.addLayout(self.gridLayout_69, 0, 1, 1, 1)
+
+        self.gridLayout_70 = QGridLayout()
+        self.gridLayout_70.setObjectName(u"gridLayout_70")
+        self.bruteforce_download_seclist_defaults_16 = QPushButton(self.tab_8)
+        self.bruteforce_download_seclist_defaults_16.setObjectName(u"bruteforce_download_seclist_defaults_16")
+
+        self.gridLayout_70.addWidget(self.bruteforce_download_seclist_defaults_16, 1, 1, 1, 1)
+
+        self.lineEdit_97 = QLineEdit(self.tab_8)
+        self.lineEdit_97.setObjectName(u"lineEdit_97")
+
+        self.gridLayout_70.addWidget(self.lineEdit_97, 2, 0, 1, 1)
+
+        self.lineEdit_98 = QLineEdit(self.tab_8)
+        self.lineEdit_98.setObjectName(u"lineEdit_98")
+
+        self.gridLayout_70.addWidget(self.lineEdit_98, 3, 0, 1, 1)
+
+        self.bruteforce_download_seclist_top10mil_28 = QPushButton(self.tab_8)
+        self.bruteforce_download_seclist_top10mil_28.setObjectName(u"bruteforce_download_seclist_top10mil_28")
+
+        self.gridLayout_70.addWidget(self.bruteforce_download_seclist_top10mil_28, 3, 1, 1, 1)
+
+        self.bruteforce_download_seclist_top10mil_29 = QPushButton(self.tab_8)
+        self.bruteforce_download_seclist_top10mil_29.setObjectName(u"bruteforce_download_seclist_top10mil_29")
+
+        self.gridLayout_70.addWidget(self.bruteforce_download_seclist_top10mil_29, 2, 1, 1, 1)
+
+        self.lineEdit_99 = QLineEdit(self.tab_8)
+        self.lineEdit_99.setObjectName(u"lineEdit_99")
+
+        self.gridLayout_70.addWidget(self.lineEdit_99, 1, 0, 1, 1)
+
+        self.label_10 = QLabel(self.tab_8)
+        self.label_10.setObjectName(u"label_10")
+
+        self.gridLayout_70.addWidget(self.label_10, 0, 0, 1, 1)
+
+
+        self.gridLayout_66.addLayout(self.gridLayout_70, 1, 1, 1, 1)
+
+
+        self.gridLayout_58.addLayout(self.gridLayout_66, 0, 0, 1, 1)
+
         self.tabWidget_5.addTab(self.tab_8, "")
         self.tab_9 = QWidget()
         self.tab_9.setObjectName(u"tab_9")
-        self.lineEdit_35 = QLineEdit(self.tab_9)
-        self.lineEdit_35.setObjectName(u"lineEdit_35")
-        self.lineEdit_35.setGeometry(QRect(9, 47, 245, 27))
-        self.bruteforce_download_seclist_defaults_3 = QPushButton(self.tab_9)
-        self.bruteforce_download_seclist_defaults_3.setObjectName(u"bruteforce_download_seclist_defaults_3")
-        self.bruteforce_download_seclist_defaults_3.setGeometry(QRect(260, 14, 80, 27))
-        self.lineEdit_36 = QLineEdit(self.tab_9)
-        self.lineEdit_36.setObjectName(u"lineEdit_36")
-        self.lineEdit_36.setGeometry(QRect(9, 14, 245, 27))
-        self.lineEdit_37 = QLineEdit(self.tab_9)
-        self.lineEdit_37.setObjectName(u"lineEdit_37")
-        self.lineEdit_37.setGeometry(QRect(9, 80, 245, 27))
-        self.bruteforce_download_seclist_top10mil_3 = QPushButton(self.tab_9)
-        self.bruteforce_download_seclist_top10mil_3.setObjectName(u"bruteforce_download_seclist_top10mil_3")
-        self.bruteforce_download_seclist_top10mil_3.setGeometry(QRect(260, 47, 80, 27))
-        self.bruteforce_download_ignis_1M_3 = QPushButton(self.tab_9)
-        self.bruteforce_download_ignis_1M_3.setObjectName(u"bruteforce_download_ignis_1M_3")
-        self.bruteforce_download_ignis_1M_3.setGeometry(QRect(260, 80, 80, 27))
+        self.gridLayout_57 = QGridLayout(self.tab_9)
+        self.gridLayout_57.setObjectName(u"gridLayout_57")
+        self.gridLayout_59 = QGridLayout()
+        self.gridLayout_59.setObjectName(u"gridLayout_59")
+        self.gridLayout_60 = QGridLayout()
+        self.gridLayout_60.setObjectName(u"gridLayout_60")
+        self.lineEdit_75 = QLineEdit(self.tab_9)
+        self.lineEdit_75.setObjectName(u"lineEdit_75")
+
+        self.gridLayout_60.addWidget(self.lineEdit_75, 2, 0, 1, 1)
+
+        self.lineEdit_73 = QLineEdit(self.tab_9)
+        self.lineEdit_73.setObjectName(u"lineEdit_73")
+
+        self.gridLayout_60.addWidget(self.lineEdit_73, 1, 0, 1, 1)
+
+        self.lineEdit_74 = QLineEdit(self.tab_9)
+        self.lineEdit_74.setObjectName(u"lineEdit_74")
+
+        self.gridLayout_60.addWidget(self.lineEdit_74, 3, 0, 1, 1)
+
+        self.bruteforce_download_seclist_top10mil_12 = QPushButton(self.tab_9)
+        self.bruteforce_download_seclist_top10mil_12.setObjectName(u"bruteforce_download_seclist_top10mil_12")
+
+        self.gridLayout_60.addWidget(self.bruteforce_download_seclist_top10mil_12, 3, 1, 1, 1)
+
+        self.bruteforce_download_seclist_defaults_8 = QPushButton(self.tab_9)
+        self.bruteforce_download_seclist_defaults_8.setObjectName(u"bruteforce_download_seclist_defaults_8")
+
+        self.gridLayout_60.addWidget(self.bruteforce_download_seclist_defaults_8, 1, 1, 1, 1)
+
+        self.bruteforce_download_seclist_top10mil_13 = QPushButton(self.tab_9)
+        self.bruteforce_download_seclist_top10mil_13.setObjectName(u"bruteforce_download_seclist_top10mil_13")
+
+        self.gridLayout_60.addWidget(self.bruteforce_download_seclist_top10mil_13, 2, 1, 1, 1)
+
+        self.label_2 = QLabel(self.tab_9)
+        self.label_2.setObjectName(u"label_2")
+
+        self.gridLayout_60.addWidget(self.label_2, 0, 0, 1, 1)
+
+
+        self.gridLayout_59.addLayout(self.gridLayout_60, 0, 0, 1, 1)
+
+        self.gridLayout_63 = QGridLayout()
+        self.gridLayout_63.setObjectName(u"gridLayout_63")
+        self.lineEdit_80 = QLineEdit(self.tab_9)
+        self.lineEdit_80.setObjectName(u"lineEdit_80")
+
+        self.gridLayout_63.addWidget(self.lineEdit_80, 3, 0, 1, 1)
+
+        self.bruteforce_download_seclist_top10mil_16 = QPushButton(self.tab_9)
+        self.bruteforce_download_seclist_top10mil_16.setObjectName(u"bruteforce_download_seclist_top10mil_16")
+
+        self.gridLayout_63.addWidget(self.bruteforce_download_seclist_top10mil_16, 3, 1, 1, 1)
+
+        self.lineEdit_79 = QLineEdit(self.tab_9)
+        self.lineEdit_79.setObjectName(u"lineEdit_79")
+
+        self.gridLayout_63.addWidget(self.lineEdit_79, 1, 0, 1, 1)
+
+        self.bruteforce_download_seclist_top10mil_17 = QPushButton(self.tab_9)
+        self.bruteforce_download_seclist_top10mil_17.setObjectName(u"bruteforce_download_seclist_top10mil_17")
+
+        self.gridLayout_63.addWidget(self.bruteforce_download_seclist_top10mil_17, 2, 1, 1, 1)
+
+        self.bruteforce_download_seclist_defaults_10 = QPushButton(self.tab_9)
+        self.bruteforce_download_seclist_defaults_10.setObjectName(u"bruteforce_download_seclist_defaults_10")
+
+        self.gridLayout_63.addWidget(self.bruteforce_download_seclist_defaults_10, 1, 1, 1, 1)
+
+        self.lineEdit_81 = QLineEdit(self.tab_9)
+        self.lineEdit_81.setObjectName(u"lineEdit_81")
+
+        self.gridLayout_63.addWidget(self.lineEdit_81, 2, 0, 1, 1)
+
+        self.label_4 = QLabel(self.tab_9)
+        self.label_4.setObjectName(u"label_4")
+
+        self.gridLayout_63.addWidget(self.label_4, 0, 0, 1, 1)
+
+
+        self.gridLayout_59.addLayout(self.gridLayout_63, 1, 0, 1, 1)
+
+        self.gridLayout_64 = QGridLayout()
+        self.gridLayout_64.setObjectName(u"gridLayout_64")
+        self.lineEdit_82 = QLineEdit(self.tab_9)
+        self.lineEdit_82.setObjectName(u"lineEdit_82")
+
+        self.gridLayout_64.addWidget(self.lineEdit_82, 1, 0, 1, 1)
+
+        self.bruteforce_download_seclist_top10mil_18 = QPushButton(self.tab_9)
+        self.bruteforce_download_seclist_top10mil_18.setObjectName(u"bruteforce_download_seclist_top10mil_18")
+
+        self.gridLayout_64.addWidget(self.bruteforce_download_seclist_top10mil_18, 3, 1, 1, 1)
+
+        self.bruteforce_download_seclist_top10mil_19 = QPushButton(self.tab_9)
+        self.bruteforce_download_seclist_top10mil_19.setObjectName(u"bruteforce_download_seclist_top10mil_19")
+
+        self.gridLayout_64.addWidget(self.bruteforce_download_seclist_top10mil_19, 2, 1, 1, 1)
+
+        self.lineEdit_84 = QLineEdit(self.tab_9)
+        self.lineEdit_84.setObjectName(u"lineEdit_84")
+
+        self.gridLayout_64.addWidget(self.lineEdit_84, 2, 0, 1, 1)
+
+        self.bruteforce_download_seclist_defaults_11 = QPushButton(self.tab_9)
+        self.bruteforce_download_seclist_defaults_11.setObjectName(u"bruteforce_download_seclist_defaults_11")
+
+        self.gridLayout_64.addWidget(self.bruteforce_download_seclist_defaults_11, 1, 1, 1, 1)
+
+        self.lineEdit_83 = QLineEdit(self.tab_9)
+        self.lineEdit_83.setObjectName(u"lineEdit_83")
+
+        self.gridLayout_64.addWidget(self.lineEdit_83, 3, 0, 1, 1)
+
+        self.label_3 = QLabel(self.tab_9)
+        self.label_3.setObjectName(u"label_3")
+
+        self.gridLayout_64.addWidget(self.label_3, 0, 0, 1, 1)
+
+
+        self.gridLayout_59.addLayout(self.gridLayout_64, 0, 1, 1, 1)
+
+        self.gridLayout_65 = QGridLayout()
+        self.gridLayout_65.setObjectName(u"gridLayout_65")
+        self.bruteforce_download_seclist_defaults_12 = QPushButton(self.tab_9)
+        self.bruteforce_download_seclist_defaults_12.setObjectName(u"bruteforce_download_seclist_defaults_12")
+
+        self.gridLayout_65.addWidget(self.bruteforce_download_seclist_defaults_12, 1, 1, 1, 1)
+
+        self.lineEdit_87 = QLineEdit(self.tab_9)
+        self.lineEdit_87.setObjectName(u"lineEdit_87")
+
+        self.gridLayout_65.addWidget(self.lineEdit_87, 2, 0, 1, 1)
+
+        self.lineEdit_86 = QLineEdit(self.tab_9)
+        self.lineEdit_86.setObjectName(u"lineEdit_86")
+
+        self.gridLayout_65.addWidget(self.lineEdit_86, 3, 0, 1, 1)
+
+        self.bruteforce_download_seclist_top10mil_20 = QPushButton(self.tab_9)
+        self.bruteforce_download_seclist_top10mil_20.setObjectName(u"bruteforce_download_seclist_top10mil_20")
+
+        self.gridLayout_65.addWidget(self.bruteforce_download_seclist_top10mil_20, 3, 1, 1, 1)
+
+        self.bruteforce_download_seclist_top10mil_21 = QPushButton(self.tab_9)
+        self.bruteforce_download_seclist_top10mil_21.setObjectName(u"bruteforce_download_seclist_top10mil_21")
+
+        self.gridLayout_65.addWidget(self.bruteforce_download_seclist_top10mil_21, 2, 1, 1, 1)
+
+        self.lineEdit_85 = QLineEdit(self.tab_9)
+        self.lineEdit_85.setObjectName(u"lineEdit_85")
+
+        self.gridLayout_65.addWidget(self.lineEdit_85, 1, 0, 1, 1)
+
+        self.label_5 = QLabel(self.tab_9)
+        self.label_5.setObjectName(u"label_5")
+
+        self.gridLayout_65.addWidget(self.label_5, 0, 0, 1, 1)
+
+
+        self.gridLayout_59.addLayout(self.gridLayout_65, 1, 1, 1, 1)
+
+
+        self.gridLayout_57.addLayout(self.gridLayout_59, 0, 0, 1, 1)
+
         self.tabWidget_5.addTab(self.tab_9, "")
 
-        self.gridLayout_52.addWidget(self.tabWidget_5, 0, 0, 1, 1)
+        self.gridLayout_53.addWidget(self.tabWidget_5, 0, 0, 1, 1)
 
-        self.groupBox_3 = QGroupBox(self.tab_7)
-        self.groupBox_3.setObjectName(u"groupBox_3")
-        self.groupBox_3.setGeometry(QRect(10, 10, 312, 89))
-        self.gridLayout_53 = QGridLayout(self.groupBox_3)
-        self.gridLayout_53.setObjectName(u"gridLayout_53")
-        self.checkBox_2 = QCheckBox(self.groupBox_3)
-        self.checkBox_2.setObjectName(u"checkBox_2")
+        self.toolBox.addItem(self.page_7, u"Wordlists")
+        self.page_8 = QWidget()
+        self.page_8.setObjectName(u"page_8")
+        self.page_8.setGeometry(QRect(0, 0, 1101, 105))
+        self.toolBox.addItem(self.page_8, u"Page 2")
 
-        self.gridLayout_53.addWidget(self.checkBox_2, 0, 0, 1, 1)
-
-        self.checkBox_34 = QCheckBox(self.groupBox_3)
-        self.checkBox_34.setObjectName(u"checkBox_34")
-
-        self.gridLayout_53.addWidget(self.checkBox_34, 2, 1, 1, 1)
-
-        self.checkBox_33 = QCheckBox(self.groupBox_3)
-        self.checkBox_33.setObjectName(u"checkBox_33")
-
-        self.gridLayout_53.addWidget(self.checkBox_33, 0, 1, 2, 1)
-
-        self.checkBox_30 = QCheckBox(self.groupBox_3)
-        self.checkBox_30.setObjectName(u"checkBox_30")
-
-        self.gridLayout_53.addWidget(self.checkBox_30, 1, 0, 2, 1)
+        self.gridLayout_52.addWidget(self.toolBox, 0, 0, 1, 1)
 
         self.tabWidget_10.addTab(self.tab_7, "")
+
+        self.gridLayout_25.addWidget(self.tabWidget_10, 0, 0, 1, 1)
+
         self.tabWidget.addTab(self.tab_27, "")
         self.tab_20 = QWidget()
         self.tab_20.setObjectName(u"tab_20")
@@ -2607,7 +2894,7 @@ class Ui_LogecC3(object):
         LogecC3.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(LogecC3)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1149, 24))
+        self.menubar.setGeometry(QRect(0, 0, 1579, 24))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
         self.menu_GettingStarted = QMenu(self.menubar)
@@ -2627,12 +2914,12 @@ class Ui_LogecC3(object):
 
         self.retranslateUi(LogecC3)
 
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(6)
         self.bruteforce_panel_2.setCurrentIndex(3)
         self.c2_shell_tab.setCurrentIndex(0)
         self.osint_reddit_tab.setCurrentIndex(1)
         self.tabWidget_3.setCurrentIndex(1)
-        self.tabWidget_8.setCurrentIndex(3)
+        self.tabWidget_8.setCurrentIndex(1)
         self.bashbuild_toolBox.setCurrentIndex(3)
         self.tabWidget_9.setCurrentIndex(0)
         self.tabWidget_6.setCurrentIndex(1)
@@ -2641,7 +2928,7 @@ class Ui_LogecC3(object):
         self.bruteforce_download_seclist_topshort.setDefault(False)
         self.bruteforce_download_seclist_top10mil_usernames.setDefault(False)
         self.bruteforce_fuzz_panel.setCurrentIndex(0)
-        self.tabWidget_29.setCurrentIndex(0)
+        self.tabWidget_29.setCurrentIndex(1)
         self.bruteforce_download_seclist_top10mil_usernames_4.setDefault(False)
         self.bruteforce_download_seclist_topshort_4.setDefault(False)
         self.bruteforce_download_seclist_top10mil_usernames_5.setDefault(False)
@@ -2651,9 +2938,8 @@ class Ui_LogecC3(object):
         self.tabWidget_11.setCurrentIndex(2)
         self.tabWidget_12.setCurrentIndex(1)
         self.tabWidget_15.setCurrentIndex(1)
+        self.toolBox.setCurrentIndex(0)
         self.tabWidget_5.setCurrentIndex(0)
-        self.bruteforce_download_seclist_top10mil_usernames_3.setDefault(False)
-        self.bruteforce_download_seclist_topshort_3.setDefault(False)
         self.tabWidget_7.setCurrentIndex(5)
         self.tabWidget_4.setCurrentIndex(0)
 
@@ -3467,33 +3753,66 @@ class Ui_LogecC3(object):
         self.tabWidget_15.setTabText(self.tabWidget_15.indexOf(self.tab_50), QCoreApplication.translate("LogecC3", u"Fuzzer", None))
         self.tabWidget_11.setTabText(self.tabWidget_11.indexOf(self.tab_48), QCoreApplication.translate("LogecC3", u"Bruteforce", None))
         self.tabWidget_10.setTabText(self.tabWidget_10.indexOf(self.tab_28), QCoreApplication.translate("LogecC3", u"Guide", None))
-        self.groupBox.setTitle(QCoreApplication.translate("LogecC3", u"Wordlists", None))
-        self.bruteforce_download_seclist_top10mil_usernames_3.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.lineEdit_33.setText(QCoreApplication.translate("LogecC3", u"SecList Top Usernames (Short List)", None))
-        self.bruteforce_download_seclist_topshort_3.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.lineEdit_34.setText(QCoreApplication.translate("LogecC3", u"SecList 10mil Usernames", None))
-        self.textEdit_25.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If downloaded, either disblae button or have a downloaded check next to it (check may be better so It can be re-downloaded if needed)<br /><br />Also include a download bar</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; "
-                        "margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Last, use the top box as a hide/show for different content type here</p></body></html>", None))
+        self.lineEdit_88.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
+        self.lineEdit_89.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
+        self.lineEdit_90.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
+        self.bruteforce_download_seclist_top10mil_22.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.bruteforce_download_seclist_defaults_13.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.bruteforce_download_seclist_top10mil_23.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.label_6.setText(QCoreApplication.translate("LogecC3", u"SecList", None))
+        self.lineEdit_91.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
+        self.bruteforce_download_seclist_top10mil_24.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.lineEdit_92.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
+        self.bruteforce_download_seclist_top10mil_25.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.bruteforce_download_seclist_defaults_14.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.lineEdit_93.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
+        self.label_8.setText(QCoreApplication.translate("LogecC3", u"Other", None))
+        self.lineEdit_94.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
+        self.bruteforce_download_seclist_top10mil_26.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.bruteforce_download_seclist_top10mil_27.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.lineEdit_95.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
+        self.bruteforce_download_seclist_defaults_15.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.lineEdit_96.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
+        self.label_9.setText(QCoreApplication.translate("LogecC3", u"Default Usernames", None))
+        self.bruteforce_download_seclist_defaults_16.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.lineEdit_97.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
+        self.lineEdit_98.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
+        self.bruteforce_download_seclist_top10mil_28.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.bruteforce_download_seclist_top10mil_29.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.lineEdit_99.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
+        self.label_10.setText(QCoreApplication.translate("LogecC3", u"Other", None))
         self.tabWidget_5.setTabText(self.tabWidget_5.indexOf(self.tab_8), QCoreApplication.translate("LogecC3", u"Usernames", None))
-        self.lineEdit_35.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
-        self.bruteforce_download_seclist_defaults_3.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.lineEdit_36.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
-        self.lineEdit_37.setText(QCoreApplication.translate("LogecC3", u"Ignis 1m Public Passwords", None))
-        self.bruteforce_download_seclist_top10mil_3.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.bruteforce_download_ignis_1M_3.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.lineEdit_75.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
+        self.lineEdit_73.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
+        self.lineEdit_74.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
+        self.bruteforce_download_seclist_top10mil_12.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.bruteforce_download_seclist_defaults_8.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.bruteforce_download_seclist_top10mil_13.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.label_2.setText(QCoreApplication.translate("LogecC3", u"SecList", None))
+        self.lineEdit_80.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
+        self.bruteforce_download_seclist_top10mil_16.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.lineEdit_79.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
+        self.bruteforce_download_seclist_top10mil_17.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.bruteforce_download_seclist_defaults_10.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.lineEdit_81.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
+        self.label_4.setText(QCoreApplication.translate("LogecC3", u"Weak Passwords", None))
+        self.lineEdit_82.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
+        self.bruteforce_download_seclist_top10mil_18.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.bruteforce_download_seclist_top10mil_19.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.lineEdit_84.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
+        self.bruteforce_download_seclist_defaults_11.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.lineEdit_83.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
+        self.label_3.setText(QCoreApplication.translate("LogecC3", u"Default Passwords", None))
+        self.bruteforce_download_seclist_defaults_12.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.lineEdit_87.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
+        self.lineEdit_86.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
+        self.bruteforce_download_seclist_top10mil_20.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.bruteforce_download_seclist_top10mil_21.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.lineEdit_85.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
+        self.label_5.setText(QCoreApplication.translate("LogecC3", u"Leaked Passwords", None))
         self.tabWidget_5.setTabText(self.tabWidget_5.indexOf(self.tab_9), QCoreApplication.translate("LogecC3", u"Passwords", None))
-        self.groupBox_3.setTitle("")
-        self.checkBox_2.setText(QCoreApplication.translate("LogecC3", u"Show Wordlists", None))
-        self.checkBox_34.setText(QCoreApplication.translate("LogecC3", u"CheckBox", None))
-        self.checkBox_33.setText(QCoreApplication.translate("LogecC3", u"CheckBox", None))
-        self.checkBox_30.setText(QCoreApplication.translate("LogecC3", u"CheckBox", None))
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page_7), QCoreApplication.translate("LogecC3", u"Wordlists", None))
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page_8), QCoreApplication.translate("LogecC3", u"Page 2", None))
         self.tabWidget_10.setTabText(self.tabWidget_10.indexOf(self.tab_7), QCoreApplication.translate("LogecC3", u"Content", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_27), QCoreApplication.translate("LogecC3", u"Other", None))
         self.textEdit_3.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
