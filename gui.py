@@ -2485,6 +2485,104 @@ class Ui_LogecC3(object):
         self.gridLayout_58.addLayout(self.gridLayout_66, 0, 0, 1, 1)
 
         self.tabWidget_5.addTab(self.tab_8, "")
+        self.tab_10 = QWidget()
+        self.tab_10.setObjectName(u"tab_10")
+        self.gridLayout_76 = QGridLayout(self.tab_10)
+        self.gridLayout_76.setObjectName(u"gridLayout_76")
+        self.gridLayout_71 = QGridLayout()
+        self.gridLayout_71.setObjectName(u"gridLayout_71")
+        self.other_content_directory_layout_SecList = QGridLayout()
+        self.other_content_directory_layout_SecList.setObjectName(u"other_content_directory_layout_SecList")
+        self.other_content_directory_layout_SecList_placeholder_button = QPushButton(self.tab_10)
+        self.other_content_directory_layout_SecList_placeholder_button.setObjectName(u"other_content_directory_layout_SecList_placeholder_button")
+        self.other_content_directory_layout_SecList_placeholder_button.setEnabled(False)
+
+        self.other_content_directory_layout_SecList.addWidget(self.other_content_directory_layout_SecList_placeholder_button, 2, 1, 1, 1)
+
+        self.other_content_directory_layout_SecList_placeholder = QLineEdit(self.tab_10)
+        self.other_content_directory_layout_SecList_placeholder.setObjectName(u"other_content_directory_layout_SecList_placeholder")
+        self.other_content_directory_layout_SecList_placeholder.setEnabled(False)
+
+        self.other_content_directory_layout_SecList.addWidget(self.other_content_directory_layout_SecList_placeholder, 2, 0, 1, 1)
+
+        self.label_18 = QLabel(self.tab_10)
+        self.label_18.setObjectName(u"label_18")
+
+        self.other_content_directory_layout_SecList.addWidget(self.label_18, 1, 0, 1, 1)
+
+
+        self.gridLayout_71.addLayout(self.other_content_directory_layout_SecList, 0, 0, 1, 1)
+
+        self.other_content_directory_layout_WeakPasswords = QGridLayout()
+        self.other_content_directory_layout_WeakPasswords.setObjectName(u"other_content_directory_layout_WeakPasswords")
+        self.other_content_directory_layout_WeakPasswords_placeholder_button = QPushButton(self.tab_10)
+        self.other_content_directory_layout_WeakPasswords_placeholder_button.setObjectName(u"other_content_directory_layout_WeakPasswords_placeholder_button")
+        self.other_content_directory_layout_WeakPasswords_placeholder_button.setEnabled(False)
+
+        self.other_content_directory_layout_WeakPasswords.addWidget(self.other_content_directory_layout_WeakPasswords_placeholder_button, 1, 1, 1, 1)
+
+        self.label_19 = QLabel(self.tab_10)
+        self.label_19.setObjectName(u"label_19")
+
+        self.other_content_directory_layout_WeakPasswords.addWidget(self.label_19, 0, 0, 1, 1)
+
+        self.other_content_directory_layout_WeakPasswords_placeholder = QLineEdit(self.tab_10)
+        self.other_content_directory_layout_WeakPasswords_placeholder.setObjectName(u"other_content_directory_layout_WeakPasswords_placeholder")
+        self.other_content_directory_layout_WeakPasswords_placeholder.setEnabled(False)
+
+        self.other_content_directory_layout_WeakPasswords.addWidget(self.other_content_directory_layout_WeakPasswords_placeholder, 1, 0, 1, 1)
+
+
+        self.gridLayout_71.addLayout(self.other_content_directory_layout_WeakPasswords, 1, 0, 1, 1)
+
+        self.other_content_directory_layout_DefaultPasswords = QGridLayout()
+        self.other_content_directory_layout_DefaultPasswords.setObjectName(u"other_content_directory_layout_DefaultPasswords")
+        self.other_content_directory_layout_DefaultPasswords_placeholder_button = QPushButton(self.tab_10)
+        self.other_content_directory_layout_DefaultPasswords_placeholder_button.setObjectName(u"other_content_directory_layout_DefaultPasswords_placeholder_button")
+        self.other_content_directory_layout_DefaultPasswords_placeholder_button.setEnabled(False)
+
+        self.other_content_directory_layout_DefaultPasswords.addWidget(self.other_content_directory_layout_DefaultPasswords_placeholder_button, 1, 1, 1, 1)
+
+        self.label_32 = QLabel(self.tab_10)
+        self.label_32.setObjectName(u"label_32")
+
+        self.other_content_directory_layout_DefaultPasswords.addWidget(self.label_32, 0, 0, 1, 1)
+
+        self.other_content_directory_layout_DefaultPasswords_placeholder = QLineEdit(self.tab_10)
+        self.other_content_directory_layout_DefaultPasswords_placeholder.setObjectName(u"other_content_directory_layout_DefaultPasswords_placeholder")
+        self.other_content_directory_layout_DefaultPasswords_placeholder.setEnabled(False)
+
+        self.other_content_directory_layout_DefaultPasswords.addWidget(self.other_content_directory_layout_DefaultPasswords_placeholder, 1, 0, 1, 1)
+
+
+        self.gridLayout_71.addLayout(self.other_content_directory_layout_DefaultPasswords, 0, 1, 1, 1)
+
+        self.other_content_directory_layout_LeakedPasswords = QGridLayout()
+        self.other_content_directory_layout_LeakedPasswords.setObjectName(u"other_content_directory_layout_LeakedPasswords")
+        self.label_44 = QLabel(self.tab_10)
+        self.label_44.setObjectName(u"label_44")
+
+        self.other_content_directory_layout_LeakedPasswords.addWidget(self.label_44, 0, 0, 1, 1)
+
+        self.other_content_directory_layout_LeakedPasswords_placeholder = QLineEdit(self.tab_10)
+        self.other_content_directory_layout_LeakedPasswords_placeholder.setObjectName(u"other_content_directory_layout_LeakedPasswords_placeholder")
+        self.other_content_directory_layout_LeakedPasswords_placeholder.setEnabled(False)
+
+        self.other_content_directory_layout_LeakedPasswords.addWidget(self.other_content_directory_layout_LeakedPasswords_placeholder, 1, 0, 1, 1)
+
+        self.other_content_directory_layout_LeakedPasswords_placeholder_button = QPushButton(self.tab_10)
+        self.other_content_directory_layout_LeakedPasswords_placeholder_button.setObjectName(u"other_content_directory_layout_LeakedPasswords_placeholder_button")
+        self.other_content_directory_layout_LeakedPasswords_placeholder_button.setEnabled(False)
+
+        self.other_content_directory_layout_LeakedPasswords.addWidget(self.other_content_directory_layout_LeakedPasswords_placeholder_button, 1, 1, 1, 1)
+
+
+        self.gridLayout_71.addLayout(self.other_content_directory_layout_LeakedPasswords, 1, 1, 1, 1)
+
+
+        self.gridLayout_76.addLayout(self.gridLayout_71, 0, 0, 1, 1)
+
+        self.tabWidget_5.addTab(self.tab_10, "")
         self.tab_9 = QWidget()
         self.tab_9.setObjectName(u"tab_9")
         self.gridLayout_57 = QGridLayout(self.tab_9)
@@ -2661,8 +2759,8 @@ class Ui_LogecC3(object):
         self.toolBox.addItem(self.page_7, u"Wordlists")
         self.page_8 = QWidget()
         self.page_8.setObjectName(u"page_8")
-        self.page_8.setGeometry(QRect(0, 0, 1101, 105))
-        self.toolBox.addItem(self.page_8, u"Page 2")
+        self.page_8.setGeometry(QRect(0, 0, 1517, 678))
+        self.toolBox.addItem(self.page_8, u"Other - Not Yet Occupied")
 
         self.gridLayout_52.addWidget(self.toolBox, 0, 0, 1, 1)
 
@@ -2939,7 +3037,7 @@ class Ui_LogecC3(object):
         self.tabWidget_12.setCurrentIndex(1)
         self.tabWidget_15.setCurrentIndex(1)
         self.toolBox.setCurrentIndex(0)
-        self.tabWidget_5.setCurrentIndex(0)
+        self.tabWidget_5.setCurrentIndex(1)
         self.tabWidget_7.setCurrentIndex(5)
         self.tabWidget_4.setCurrentIndex(0)
 
@@ -3669,7 +3767,7 @@ class Ui_LogecC3(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Process List? (for i in process create a row in  a table view)</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Process List? (for i in process create a list in list widget, + a right click menu that can kill a process (maybe have this window be all processes, the other be python specific?</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
         self.label_91.setText(QCoreApplication.translate("LogecC3", u"Benchmarks", None))
         self.checkBox_23.setText(QCoreApplication.translate("LogecC3", u"Count to 10 Million (Single Thread)", None))
@@ -3782,6 +3880,19 @@ class Ui_LogecC3(object):
         self.lineEdit_99.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
         self.label_10.setText(QCoreApplication.translate("LogecC3", u"Other", None))
         self.tabWidget_5.setTabText(self.tabWidget_5.indexOf(self.tab_8), QCoreApplication.translate("LogecC3", u"Usernames", None))
+        self.other_content_directory_layout_SecList_placeholder_button.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.other_content_directory_layout_SecList_placeholder.setText(QCoreApplication.translate("LogecC3", u"Placeholder - if u see me then I screwed up my code :) consider it an easter egg", None))
+        self.label_18.setText(QCoreApplication.translate("LogecC3", u"SecList", None))
+        self.other_content_directory_layout_WeakPasswords_placeholder_button.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.label_19.setText(QCoreApplication.translate("LogecC3", u"Weak Passwords", None))
+        self.other_content_directory_layout_WeakPasswords_placeholder.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
+        self.other_content_directory_layout_DefaultPasswords_placeholder_button.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.label_32.setText(QCoreApplication.translate("LogecC3", u"Default Passwords", None))
+        self.other_content_directory_layout_DefaultPasswords_placeholder.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
+        self.label_44.setText(QCoreApplication.translate("LogecC3", u"Leaked Passwords", None))
+        self.other_content_directory_layout_LeakedPasswords_placeholder.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
+        self.other_content_directory_layout_LeakedPasswords_placeholder_button.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.tabWidget_5.setTabText(self.tabWidget_5.indexOf(self.tab_10), QCoreApplication.translate("LogecC3", u"Passwords", None))
         self.lineEdit_75.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
         self.lineEdit_73.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
         self.lineEdit_74.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
@@ -3810,9 +3921,9 @@ class Ui_LogecC3(object):
         self.bruteforce_download_seclist_top10mil_21.setText(QCoreApplication.translate("LogecC3", u"Download", None))
         self.lineEdit_85.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
         self.label_5.setText(QCoreApplication.translate("LogecC3", u"Leaked Passwords", None))
-        self.tabWidget_5.setTabText(self.tabWidget_5.indexOf(self.tab_9), QCoreApplication.translate("LogecC3", u"Passwords", None))
+        self.tabWidget_5.setTabText(self.tabWidget_5.indexOf(self.tab_9), QCoreApplication.translate("LogecC3", u"Directory", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_7), QCoreApplication.translate("LogecC3", u"Wordlists", None))
-        self.toolBox.setItemText(self.toolBox.indexOf(self.page_8), QCoreApplication.translate("LogecC3", u"Page 2", None))
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page_8), QCoreApplication.translate("LogecC3", u"Other - Not Yet Occupied", None))
         self.tabWidget_10.setTabText(self.tabWidget_10.indexOf(self.tab_7), QCoreApplication.translate("LogecC3", u"Content", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_27), QCoreApplication.translate("LogecC3", u"Other", None))
         self.textEdit_3.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

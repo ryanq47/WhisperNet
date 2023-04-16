@@ -110,10 +110,9 @@ class Performance(QObject):
         self.return_value.emit(str(self.end_time()))
 
 
-class Host:
-    
+class Host(QObject):
     def __init__(self):
-        pass
+        super().__init__()
     
     def sys_notification(self, notif_list):
         notification.notify(
@@ -122,17 +121,23 @@ class Host:
             app_icon = "IMAGE",
             timeout = 10
             )
-    def download(self, download_list):
-        url = download_list[0]
-        save_location = download_list[1]
-        name = download_list[2]
+        
+    def download(self, download_dict):
+        #url = download_list[0]
+        #save_location = download_list[1]
+        #name = download_list[2]
     
-        dir = save_location + "/" +name
+        dir = download_dict['SavePath'] + "/" + download_dict['SaveName']
 
         print("Making Request")
-        r = requests.get(url, allow_redirects=True)
+        r = requests.get(download_dict['URL'], allow_redirects=True)
         print("writing")
-        open(dir,'wb').write(r.content)
+        print(r.content)
+        try:
+            with open(dir,'wb+') as filewrite:
+                filewrite.write(r.content)
+        except Exception as e:
+            print(e)
         print("done")
  
 

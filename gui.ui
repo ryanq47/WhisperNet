@@ -4416,7 +4416,7 @@ p, li { white-space: pre-wrap; }
             <item row="0" column="0">
              <widget class="QToolBox" name="toolBox">
               <property name="currentIndex">
-               <number>1</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="page_7">
                <property name="geometry">
@@ -4434,7 +4434,7 @@ p, li { white-space: pre-wrap; }
                 <item row="0" column="0">
                  <widget class="QTabWidget" name="tabWidget_5">
                   <property name="currentIndex">
-                   <number>0</number>
+                   <number>1</number>
                   </property>
                   <widget class="QWidget" name="tab_8">
                    <attribute name="title">
@@ -4659,9 +4659,144 @@ p, li { white-space: pre-wrap; }
                     </item>
                    </layout>
                   </widget>
-                  <widget class="QWidget" name="tab_9">
+                  <widget class="QWidget" name="tab_10">
                    <attribute name="title">
                     <string>Passwords</string>
+                   </attribute>
+                   <layout class="QGridLayout" name="gridLayout_76">
+                    <item row="0" column="0">
+                     <layout class="QGridLayout" name="gridLayout_71">
+                      <item row="0" column="0">
+                       <layout class="QGridLayout" name="other_content_directory_layout_SecList">
+                        <item row="2" column="1">
+                         <widget class="QPushButton" name="other_content_directory_layout_SecList_placeholder_button">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string>Download</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="0">
+                         <widget class="QLineEdit" name="other_content_directory_layout_SecList_placeholder">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string>Placeholder - if u see me then I screwed up my code :) consider it an easter egg</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="0">
+                         <widget class="QLabel" name="label_18">
+                          <property name="text">
+                           <string>SecList</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item row="1" column="0">
+                       <layout class="QGridLayout" name="other_content_directory_layout_WeakPasswords">
+                        <item row="1" column="1">
+                         <widget class="QPushButton" name="other_content_directory_layout_WeakPasswords_placeholder_button">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string>Download</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="0">
+                         <widget class="QLabel" name="label_19">
+                          <property name="text">
+                           <string>Weak Passwords</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="0">
+                         <widget class="QLineEdit" name="other_content_directory_layout_WeakPasswords_placeholder">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string>SecList Default Passwords</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item row="0" column="1">
+                       <layout class="QGridLayout" name="other_content_directory_layout_DefaultPasswords">
+                        <item row="1" column="1">
+                         <widget class="QPushButton" name="other_content_directory_layout_DefaultPasswords_placeholder_button">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string>Download</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="0">
+                         <widget class="QLabel" name="label_32">
+                          <property name="text">
+                           <string>Default Passwords</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="0">
+                         <widget class="QLineEdit" name="other_content_directory_layout_DefaultPasswords_placeholder">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string>SecList Default Passwords</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item row="1" column="1">
+                       <layout class="QGridLayout" name="other_content_directory_layout_LeakedPasswords">
+                        <item row="0" column="0">
+                         <widget class="QLabel" name="label_44">
+                          <property name="text">
+                           <string>Leaked Passwords</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="0">
+                         <widget class="QLineEdit" name="other_content_directory_layout_LeakedPasswords_placeholder">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string>SecList Default Passwords</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="1">
+                         <widget class="QPushButton" name="other_content_directory_layout_LeakedPasswords_placeholder_button">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string>Download</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QWidget" name="tab_9">
+                   <attribute name="title">
+                    <string>Directory</string>
                    </attribute>
                    <layout class="QGridLayout" name="gridLayout_57">
                     <item row="0" column="0">

@@ -28,7 +28,7 @@ from PySide6.QtWidgets import (
     QHeaderView,
     QInputDialog,
     QLabel,
-    QLineEdit,
+    QLineEdit, QTextEdit,
     QMainWindow,
     QMenuBar,
     QMessageBox,
@@ -126,6 +126,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
         ##== Last but not least, opening project picker
         self.startup_project_open()
+        self.content_setup()
 
     ##== Calling init's for project settings
     def init_project_settings(self) -> None:
@@ -405,7 +406,8 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         ##== custom Query
 
         Description:
-            This handles all the SQL Queries in the program
+            This handles all the SQL Queries in the program for the TABLE VIEWS. basically it grabs the data
+            and formats the tables as needed. Does not use sql_db_read as I have not moved it over to that yet
 
         Args:
             _from: Where the query is coming from, so the function knows where to display
@@ -1728,6 +1730,110 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         except Exception as e:
             logging.warning(f"[Logec (Webbrowser)] Error: {e}")
 
+##== Content
+    def content_setup(self):
+        """This is the logic behind the content tab. This coudl have been much simpler, but the expanding 
+        list design sounded cool, and was flexible as f*ck. Basically, this reads the CONTENT-Wordlists table,
+        and creates TextEdit (for showing the name) and a download button for each list in the db. it also formats where
+        those items go based on the Category key
+        
+        to add an entry, pop open the DB, and create a new row with the data needed. order does not matter as long as 
+        you set the Category
+        
+        Because these are in the DB, they are persistent in your project file
+        """
+        ## Hiding placeholder buttons, needed to keep layout in line
+        self.other_content_directory_layout_SecList_placeholder.hide()
+        self.other_content_directory_layout_SecList_placeholder_button.hide()
+
+        self.other_content_directory_layout_DefaultPasswords_placeholder_button.hide()
+        self.other_content_directory_layout_DefaultPasswords_placeholder.hide()
+    
+        self.other_content_directory_layout_WeakPasswords_placeholder.hide()
+        self.other_content_directory_layout_WeakPasswords_placeholder_button.hide()
+        
+        self.other_content_directory_layout_LeakedPasswords_placeholder.hide()
+        self.other_content_directory_layout_LeakedPasswords_placeholder_button.hide()
+    
+        ## read DB, 
+        ## DB here
+        sql_data = self.sql_db_read("select * from 'CONTENT-Wordlists'")
+        print(sql_data)
+        
+        ## for each in db, create qtextedit with name, and a button for downloading, button
+            ## is named whatever the name is, so when download is clicked, it gets the row, and url to download
+        
+        for i in sql_data:
+            ## this is inherently a limitation on categories, need to include an "other" tab
+            ## for others
+            
+            ## Names line up with names in DB, that's why they are capatalized
+            try:
+                Category = i[0].strip() ## removes accidental \n's if they occur
+                ListName = i[1]
+                ListUrl = i[2]
+            except:
+                logging.debug(f"[Logec (Content)] Error with reading SQL row: {i}")
+            
+            line_edit = QLineEdit()
+            push_button = QPushButton()
+            
+            ## stylesheet stuff
+            '''push_button.setStyleSheet(
+            "QPushButton:hover { background-color: grey }"
+            )'''
+            ##hover text
+            push_button.setToolTip(ListUrl)
+            push_button.clicked.connect(partial(self.content, url=ListUrl, savename=f"{Category}-{ListName}"))
+            
+            if Category == "SecList":
+                self.other_content_directory_layout_SecList.addWidget(line_edit)
+                self.other_content_directory_layout_SecList.addWidget(push_button)
+                
+                line_edit.setText(str(ListName))
+                push_button.setText("Download")
+                
+            elif Category == "DefaultPasswords":
+                #pass # other_content_directory_layout_DefaultPasswords
+                self.other_content_directory_layout_DefaultPasswords.addWidget(line_edit)
+                self.other_content_directory_layout_DefaultPasswords.addWidget(push_button)
+                
+                line_edit.setText(str(ListName))
+                push_button.setText("Download")
+                
+            elif Category == "WeakPasswords":
+                #pass # other_content_directory_layout_WeakPasswords
+                self.other_content_directory_layout_WeakPasswords.addWidget(line_edit)
+                self.other_content_directory_layout_WeakPasswords.addWidget(push_button)
+                
+                line_edit.setText(str(ListName))
+                push_button.setText("Download")
+                
+                
+            elif Category == "LeakedPasswords":
+                #pass # other_content_directory_layout_LeakedPasswords
+                self.other_content_directory_layout_LeakedPasswords.addWidget(line_edit)
+                self.other_content_directory_layout_LeakedPasswords.addWidget(push_button)
+                
+                line_edit.setText(str(ListName))
+                push_button.setText("Download")
+            
+            else:
+                logging.debug(f"[Logec (Content)] Row has invalid 'Content' key set: {i}")
+
+    def content(self, url=None, savepath=None, savename=None):
+        
+        download_dict = {
+            "URL" : str(url),
+            ## Hardcoded for now
+            "SavePath" : sys_path + "/Content/Wordlists",
+            "SaveName" : str(savename)
+        }
+        
+        ## Download in new thread
+        self.thread_manager.start(partial(self.H.download, download_dict))
+        
+
 
 ####################
 ## Settings & Controls
@@ -1990,7 +2096,44 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
         except Exception as e:
             logging.warn(f"[SQL] Unkown error: {e}")
+    
+    ## SQL global reader - similar to sql_db_write, but returns a value
+    def sql_db_read(self, query):
+        """
+        The global read function. Not fully utilized, some modules still need to be moved here. 
+        Handy as it's a one stop shop into the DB to read and prevents lockups
+        
+        All the error handling is done here as well
 
+        Args:
+            query (str): The query for SQL
+            Looks like: SELECT * FROM tablename (column, column2)
+        """
+        try:
+            cursor = self.sqliteConnection.cursor()
+            
+            results_raw = cursor.execute(query)
+            self.sqliteConnection.commit()
+            results = results_raw.fetchall()
+
+            cursor.close()
+            
+            return results
+
+        ## this first as sqlite3.error is a catchall
+        except sqlite3.OperationalError as operror:
+            logging.warn(f"[SQL] Operational error: {operror}")
+            self.handle_error([operror, "warn", "Enter a valid SQL query"])
+
+        except sqlite3.Error as error:
+            #print('Error:', error) if GLOBAL_DEBUG else None
+            logging.warn(f"[SQL]Error reading SQL DB: {error}")
+
+        except Exception as e:
+            logging.warn(f"[SQL] Unkown error: {e}")
+
+
+    ## THis is depracated, and will be removed once all modules are moved off of it
     ## Using sqlite3 instead of QSqlite for some reason - I forgot why
     def db_error_write(self, error_list):
         try:
