@@ -15,5 +15,8 @@ dev:
 	pip install -r requirements.txt
 	pip install pyqt5-tools
 
+clean:
+	echo "" > logs/bruteforce.log
+	echo "" > logs/logec-main.log
 req:
 	pipreqs ./ --force

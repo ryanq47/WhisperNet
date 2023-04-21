@@ -91,8 +91,8 @@ logging.getLogger().addHandler(logging.StreamHandler())
 ####################
 
 class LogecSuite(QMainWindow, Ui_LogecC3):
-    def __init__(self, parent=None):
-        super(LogecSuite, self).__init__(parent)
+    def __init__(self:
+        super(LogecSuite, self).__init__()
         self.setupUi(self)
         ##!! Dev Note, can possible wrap these in a try/except, would help with error handling/developing
 
