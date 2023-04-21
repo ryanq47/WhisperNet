@@ -99,12 +99,14 @@ class FClient(QObject):
             )
             self.shellformat(helpmenu)
 
-        elif (command.split())[0] in self.current_client_list:
+        elif (command.split())[2] in self.current_client_list:
             #logging.debug("Client Exists, and is present") 
             ## Getting hung here
+            print("[DEBUG]: Dropping off to client command (gui_to_client)")
             self.gui_to_client(command)
 
         else:
+            #self.gui_to_client(command)
             self.shellformat(f"command {command} not found")
             logging.debug(f"Command {command} not found.") 
 
@@ -137,20 +139,24 @@ class FClient(QObject):
         """
             This function is for controlling clients
             syntax is
-            client-name job value
+            job value clientname
 
             Error handling:
             The server does all the error handling on any bad commands,
             but if there is a local issue this code handles it. 
+            
+            This gets called if a client name is valid (see line 102:
+                    elif (command.split())[2] in self.current_client_list:)
 
         """
         #self.shellbanner = f"{client_name}"
         command = raw_command.split()
 
         try:
-            client_name = command[0]
-            client_command = command[1]
-            client_command_value = command[2]
+            
+            client_command = command[0]
+            client_command_value = command[1]
+            client_name = command[2]
         except:
             self.shellformat("Please enter a valid command")
 
@@ -160,8 +166,9 @@ class FClient(QObject):
             self.shellformat("Standin for help menu from server")
 
         else:
-            #print(f"Command not recognized: {client_command}")
+            #yes I know this is blindly sending commands to the server, but it makes it easier to manage all 3 puzzle pieces
             com = f"{client_command} {client_command_value}"
+            #print(f"[DEBUG] Command not known: {com} sending anyways [for testing only]")
             self.shellformat(self.client_request(com, client_name))
 
     ##==client requeset
