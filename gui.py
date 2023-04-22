@@ -19,11 +19,11 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QComboBox,
     QDoubleSpinBox, QFrame, QGraphicsView, QGridLayout,
     QGroupBox, QHBoxLayout, QHeaderView, QLCDNumber,
-    QLabel, QLayout, QLineEdit, QListWidget,
-    QListWidgetItem, QMainWindow, QMenu, QMenuBar,
-    QProgressBar, QPushButton, QRadioButton, QScrollArea,
-    QSizePolicy, QSpinBox, QTabWidget, QTableWidget,
-    QTableWidgetItem, QTextEdit, QToolBox, QWidget)
+    QLabel, QLayout, QLineEdit, QMainWindow,
+    QMenu, QMenuBar, QProgressBar, QPushButton,
+    QRadioButton, QScrollArea, QSizePolicy, QSpinBox,
+    QTabWidget, QTableWidget, QTableWidgetItem, QTextEdit,
+    QToolBox, QWidget)
 
 class Ui_LogecC3(object):
     def setupUi(self, LogecC3):
@@ -154,10 +154,10 @@ class Ui_LogecC3(object):
         self.gridLayout_12 = QGridLayout(self.c2_gui_groupbox_clients)
         self.gridLayout_12.setObjectName(u"gridLayout_12")
         self.gridLayout_12.setSizeConstraint(QLayout.SetNoConstraint)
-        self.listWidget = QListWidget(self.c2_gui_groupbox_clients)
-        self.listWidget.setObjectName(u"listWidget")
+        self.c2_gui_groupbox_client_table = QTableWidget(self.c2_gui_groupbox_clients)
+        self.c2_gui_groupbox_client_table.setObjectName(u"c2_gui_groupbox_client_table")
 
-        self.gridLayout_12.addWidget(self.listWidget, 0, 0, 1, 1)
+        self.gridLayout_12.addWidget(self.c2_gui_groupbox_client_table, 0, 0, 1, 1)
 
 
         self.horizontalLayout.addWidget(self.c2_gui_groupbox_clients)
@@ -3012,8 +3012,8 @@ class Ui_LogecC3(object):
 
         self.retranslateUi(LogecC3)
 
-        self.tabWidget.setCurrentIndex(6)
-        self.bruteforce_panel_2.setCurrentIndex(3)
+        self.tabWidget.setCurrentIndex(0)
+        self.bruteforce_panel_2.setCurrentIndex(2)
         self.c2_shell_tab.setCurrentIndex(0)
         self.osint_reddit_tab.setCurrentIndex(1)
         self.tabWidget_3.setCurrentIndex(1)

@@ -19,7 +19,7 @@ import traceback
 ##== GUI Imports
 from PySide6 import QtWidgets
 from PySide6.QtCore import Qt, QObject, QThread, QFile, Signal, Slot, QThreadPool, QCoreApplication, QTimer, QPoint
-from PySide6.QtGui import QIcon, QAction, QPen, QStandardItemModel, QStandardItem
+from PySide6.QtGui import QIcon, QAction, QPen, QStandardItemModel, QStandardItem, QFont
 from PySide6.QtSql import QSqlDatabase, QSqlTableModel, QSqlQuery
 from PySide6.QtUiTools import loadUiType, QUiLoader
 from PySide6.QtWidgets import (
@@ -137,7 +137,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.c2_layout()
 
         ##== Setting theme
-        self.set_theme(self.settings['system']['themes']['theme'])
+        self.set_theme(self.settings['System']['Themes']['Theme'])
 
     ##== Thread Manager
     def init_thread_manager(self) -> None:
@@ -230,6 +230,9 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.c2_gui_hide_clients.toggled.connect(lambda x: self.c2_gui_groupbox_clients.setVisible(not x))
         self.c2_gui_hide_shells.toggled.connect(lambda x: self.c2_gui_groupbox_shells.setVisible(not x))
         self.c2_gui_hide_options.toggled.connect(lambda x: self.c2_gui_groupbox_options.setVisible(not x))
+    
+        ## client gui
+        self.c2_client_table_setup()
     
     ##== Buttons for OSINT reddit
     def init_buttons_osint_reddit(self) -> None:
@@ -513,13 +516,13 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             self.view.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
             
             ## width
-            max_width = int(self.settings['sql']['sql_table_view']['max_column_width'])
+            max_width = int(self.settings['Sql']['SqlTableView']['MaxColumnWidth'])
             for i in range(self.view.columnCount()):
                 width = min(self.view.columnWidth(i), max_width)
                 self.view.setColumnWidth(i, width)
             
             ##height 
-            max_height = int(self.settings['sql']['sql_table_view']['max_row_height'])
+            max_height = int(self.settings['Sql']['SqlTableView']['MaxRowHeight'])
             for i in range(self.view.rowCount()):
                 height = min(self.view.rowHeight(i), max_height)
                 self.view.setRowHeight(i, height)
@@ -596,6 +599,47 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
         ##
         self.actionClient_Editor.triggered.connect(self.c2_editor)
+    
+    ## the client table part of the c2 stuff
+    def c2_client_table_setup(self):
+        self.c2_gui_groupbox_client_table.setColumnCount(5)
+        
+        ##naming
+        self.c2_gui_groupbox_client_table.setHorizontalHeaderLabels(['Client', 'IP/Port', 'Current Job','SleepTime', 'Last Checkin'])
+        
+        ##autostretch
+        header = self.c2_gui_groupbox_client_table.horizontalHeader()
+        # set resize mode for each section to Stretch
+        for i in range(header.count()):
+            header.setSectionResizeMode(i, QHeaderView.Stretch)
+
+
+        ## temp test rows
+        rowPosition = self.c2_gui_groupbox_client_table.rowCount()
+        self.c2_gui_groupbox_client_table.insertRow(rowPosition)
+
+
+        ## when adding rows, loop this & iterate the position to make it simpler
+        self.c2_gui_groupbox_client_table.setItem(rowPosition, 0, QTableWidgetItem("client_127.0.0.1_XCCDE"))
+        self.c2_gui_groupbox_client_table.setItem(rowPosition, 1, QTableWidgetItem("123.456.77.44"))
+        self.c2_gui_groupbox_client_table.setItem(rowPosition, 2, QTableWidgetItem("Wait"))
+        self.c2_gui_groupbox_client_table.setItem(rowPosition, 3, QTableWidgetItem("60s"))
+        self.c2_gui_groupbox_client_table.setItem(rowPosition, 4, QTableWidgetItem("06:34:51 UTC 02/02"))
+                
+        ##row height:
+        for i in range(self.c2_gui_groupbox_client_table.rowCount()):
+            self.c2_gui_groupbox_client_table.setRowHeight(i, 10)
+            
+        ## no more border or grid
+        self.c2_gui_groupbox_client_table.setStyleSheet("QTableView { border: none; } QTableView::item { border: none; }")
+        self.c2_gui_groupbox_client_table.setShowGrid(False)
+        self.c2_gui_groupbox_client_table.setGridStyle(Qt.NoPen)
+        ## selects whole row
+        self.c2_gui_groupbox_client_table.setSelectionBehavior(QAbstractItemView.SelectRows)
+        ## hiding row numbers
+        self.c2_gui_groupbox_client_table.verticalHeader().setVisible(False)
+
+        
 
     ## Gonna need some work, this currently creates one thread for each command
     def sys_shell(self):
@@ -673,7 +717,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
     def c2_localserver_logupdate_timer(self):
         self.localserver_timer = QTimer()
         self.localserver_timer.timeout.connect(self.c2_localserver_logupdate)
-        self.localserver_timer.start(self.settings['c2']['local']['server_log_refresh'])
+        self.localserver_timer.start(self.settings['C2']['Local']['server_log_refresh'])
     
     def c2_localserver_logupdate(self):
         ##read log file, update textedit to have new log
@@ -1380,10 +1424,10 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         ## need to load credentials
         ## using a dict so I don't have to worry about the order. Just makes this side cleaner
         credentials = {
-            "username" : self.settings['osint']['reddit']['username'],
-            "password" : self.settings['osint']['reddit']['password'],
-            "secret_token" : self.settings['osint']['reddit']['secret_token'],
-            "client_id" : self.settings['osint']['reddit']['client_id']
+            "username" : self.settings['Osint']['Reddit']['Username'],
+            "password" : self.settings['Osint']['Reddit']['Password'],
+            "secret_token" : self.settings['Osint']['Reddit']['SecretToken'],
+            "client_id" : self.settings['Osint']['Reddit']['ClientId']
             }
     
         keyword = self.osint_reddit_keyword.text()
@@ -1723,7 +1767,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         
         ## maybe use a regex to validate the url
         if "http://" or "https://" not in site:
-            site = f"https://{self.settings['sql']['sql_table_view']['sql_rightclick_menu']['default_browser_url']}{site}"
+            site = f"https://{self.settings['Sql']['SqlTableView']['SqlRightclickMenu']['DefaultBrowserUrl']}{site}"
             
         try:
             webbrowser.open(site)
@@ -1849,7 +1893,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
     def startup_project_open(self):
         ## Lazy imports
         #from Gui.startup_projectbox import Ui_startup_projectbox
-        if self.settings['system']['startup']['show_project_picker']:
+        if self.settings['System']['Startup']['ShowProjectPicker']:
             self.window = QtWidgets.QMainWindow()
             self.project_popup = Ui_startup_projectbox()
             self.project_popup.setupUi(self.window)
@@ -1970,7 +2014,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
                     #print("Succesfully opened default project")
                     
             # Getting settings
-            #print(self.settings['general']['theme'])
+            #print(self.settings['general']['Theme'])
               
         except Exception as e:
             logging.warning(f"[LogecSuite (Settings)] Error loading Settings: {e}")
@@ -2169,21 +2213,25 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
         """
     def system_theme_chooser(self):
-        accent = self.settings['system']['themes']['accent']
+        accent = self.settings['System']['Themes']['Accent']
 
-        if self.settings['system']['themes']['theme'] == "dark":
+        if self.settings['System']['Themes']['Theme'] == "dark":
             import qdarktheme
             qdarktheme.setup_theme("dark", custom_colors={"primary": accent})
-        elif self.settings['system']['themes']['theme'] == "light":
+        elif self.settings['System']['Themes']['Theme'] == "light":
             import qdarktheme
             qdarktheme.setup_theme("light", custom_colors={"primary": accent})
-        elif self.settings['system']['themes']['theme'] == "system":
+        elif self.settings['System']['Themes']['Theme'] == "system":
             import qdarktheme
             qdarktheme.setup_theme("auto", custom_colors={"primary": accent})
-        elif self.settings['system']['themes']['theme'] == "default":
+        elif self.settings['System']['Themes']['Theme'] == "default":
             pass
         else:
-            logging.debug(f"[Logec (Theme)] Unkown theme: {self.settings['system']['themes']['theme']}")
+            logging.debug(f"[Logec (Theme)] Unkown theme: {self.settings['System']['Themes']['Theme']}")
+            
+        ## Font handler here as well cause I didn't wanna make a new method        
+        font = QFont(self.settings['System']['Themes']['Font'], self.settings['System']['Themes']['FontSize'])
+        QApplication.setFont(font)
 
     def set_theme(self, theme_name):
         """ Old/not used function for css themes
@@ -2220,7 +2268,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
     def exit_functions(self):
         ## kills local server if still running
         try:
-            if self.localserver_running and self.settings['c2']['local']['kill_server_on_gui_exit']:
+            if self.localserver_running and self.settings['C2']['Local']['KillServerOnExit']:
                 logging.debug(f"[Logec (local server)] Server running, killing. setting: kill_server_on_gui_exit")
                 os.kill(self.proc.pid, 15)
         except:

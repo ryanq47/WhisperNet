@@ -63,7 +63,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>6</number>
+       <number>0</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -110,12 +110,12 @@
             <property name="alignment">
              <set>Qt::AlignJustify|Qt::AlignVCenter</set>
             </property>
-            <layout class="QGridLayout" name="gridLayout_12" rowstretch="0">
+            <layout class="QGridLayout" name="gridLayout_12" rowstretch="0,0">
              <property name="sizeConstraint">
               <enum>QLayout::SetNoConstraint</enum>
              </property>
              <item row="0" column="0">
-              <widget class="QListWidget" name="listWidget"/>
+              <widget class="QTableWidget" name="c2_gui_groupbox_client_table"/>
              </item>
             </layout>
            </widget>
@@ -129,7 +129,7 @@
              <item row="0" column="0">
               <widget class="QTabWidget" name="bruteforce_panel_2">
                <property name="currentIndex">
-                <number>3</number>
+                <number>2</number>
                </property>
                <widget class="QWidget" name="tab_54">
                 <attribute name="title">
