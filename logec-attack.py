@@ -645,6 +645,23 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         ## hiding row numbers
         self.c2_gui_groupbox_client_table.verticalHeader().setVisible(False)
 
+    def c2_client_update_timer(self):
+        ## A timer for updating the client view on the GUI. Goes every second
+        self.client_timer = QTimer()
+        self.client_timer.setInterval(1000) ## in MS
+        self.client_timer.timeout.connect(self.c2_client_update)
+        self.client_timer.start(self.settings['C2']['Local']['ClientRefresh'])
+        
+    def c2_client_update(self):
+        """ Talks to the server, gets client info"""
+        pass
+    
+        ## get server info
+        ## parse info, maybe put into a list of lists?: [(info, info), (info,info)]
+        ## or a dict, would need to find the best way to return data from the server. Maybe JSON
+        
+        ## create/append new rows based off of info
+        
         
 
     ## Gonna need some work, this currently creates one thread for each command

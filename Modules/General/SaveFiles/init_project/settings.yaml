@@ -60,3 +60,5 @@ C2:
     ServerRefreshLog: !!int 10000 
     ## Kills the server when you close the GUI, False = leave it running
     KillServerOnExit: True
+    ## In MS, 
+    ClientRefresh: !!int 3000

@@ -328,6 +328,21 @@ class ServerFriendlyClientHandler:
                 #logging.debug(f"[] Current Clients: {self.current_client_list}")
             else:
                 self.send_msg("No Current Clients")
+        
+        ################
+        ## Export Commands
+        ## These reutrn JSON data about stuff
+        ################ 
+        if message == "export-clients":
+            ## Expots MaliciousClients as JSON, may be a replacement to stats
+            try:
+                with open("server_json.json", "r+") as json_file:
+                    data = json.load(json_file)
+                    self.send_msg(str(data))
+                    logging.debug("[Server (export-clients)]: Success")
+            except Exception as e:
+                logging.debug(f"[Server (export-clients)] Error with exporting client data: {e}")
+                self.send_msg(f"[Server (export-clients)] Error with exporting client data: {e}")
 
         ## for all clients, 
         ## a  for loop might work well here
@@ -341,6 +356,10 @@ class ServerFriendlyClientHandler:
             #data_list
             ## Need: client instance name
             ## then call: client_instance.stats
+        elif message == "":
+            self.send_msg("Client send nothing")
+        
+        
         else:
             self.client_decision_tree(message)
 
@@ -399,22 +418,13 @@ class ServerFriendlyClientHandler:
             pass
         else:
             logging.debug(f"[Server] Client {self.client} not found")
-        
-        ################
-        ## Export Commands
-        ## These reutrn JSON data about stuff
-        ################ 
-        if client_command == "export-clients":
-            ## Expots MaliciousClients as JSON
-            pass
 
-  
         ################
         ## User Interaction commands,
         ## These reutrn readable data
         ################ 
         # == Static, From Server, not validated
-        elif client_command == "get-data":
+        if client_command == "get-data":
             if client_command_value == "stats":
                 data = f"{self.client.data_list}"
                 self.send_msg(data)  
@@ -784,7 +794,7 @@ Data.json_new_client('testclient')
 ## examle key update
 Data.json_update(keyname="ClientPort", value="1234", parent_key="MaliciousClients", client_name="testclient")
 
-'''
+
 s = ServerSockHandler()
 s.start_server(ip, port)
-logging.debug("[Server] Server Started")'''
+logging.debug("[Server] Server Started")
