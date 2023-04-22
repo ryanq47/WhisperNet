@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 import select
 import logging
 import argparse
+import json
 
 """
 Argparse settings first in order to be able to change anything
@@ -399,8 +400,21 @@ class ServerFriendlyClientHandler:
         else:
             logging.debug(f"[Server] Client {self.client} not found")
         
+        ################
+        ## Export Commands
+        ## These reutrn JSON data about stuff
+        ################ 
+        if client_command == "export-clients":
+            ## Expots MaliciousClients as JSON
+            pass
+
+  
+        ################
+        ## User Interaction commands,
+        ## These reutrn readable data
+        ################ 
         # == Static, From Server, not validated
-        if client_command == "get-data":
+        elif client_command == "get-data":
             if client_command_value == "stats":
                 data = f"{self.client.data_list}"
                 self.send_msg(data)  
@@ -487,6 +501,9 @@ class ServerFriendlyClientHandler:
         #print(f"Parsed Message: {parsed_results_list}") if global_debug else None
         return parsed_results_list
 
+################
+## Malicious Client Handler
+################ 
 
 ## perclient & interact left
 class ServerMaliciousClientHandler:
@@ -659,8 +676,115 @@ def bytes_decode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]
         except Exception as e:
             logging.warning(f"ERRMSG: {e}\n")
 
+################
+## JSON & Data
+################
+class Data:
+    """
+    A handler for JSON data. This is a static class
 
+    Current idea: Send data into it, and this function will handle the correct updating, writing, reading etc of the file.
 
+    The raw JSON exists here so this whole thing can be one file
+    """
+    default_json = {
+        "ServerName": "Server-Name",
+        "ServerIp": "127.0.0.1",
+        "MaliciousClients": [
+        ],
+        "FriendlyClients": [
+        ]
+    }
+    default_malicious_client = {
+        "ClientFullName": "client_127.0.0.1_DEFAULT",
+        "ClientIP": "127.0.0.1",
+        "ClientPort": "6969",
+        "ClientId": "DEFAULT",
+        "CurrentJob": "Wait",
+        "SleepTime": 60,
+        "LatestCheckin": "01:23:45 UTC 01/01",
+        "FirstCheckin": "01:23:45 UTC 01/01",
+        "Active": "No"
+    }
+    default_friendly_client = {
+        "ClientUserName": "Bob",
+        "ClientIP": "127.0.0.1",
+        "ClientPort": "6969",
+        "LatestLogin": "01:23:45 UTC 01/01",
+        "FirstLogin": "01:23:45 UTC 01/01"
+    }
+    
+    @staticmethod
+    def json_create():
+        """The default JSON file
+        """
+        ## needs to check if file exists
+        with open("server_json.json", "w+") as json_file:
+            json.dump(Data.default_json, json_file)
+        
+        #pass
+    @staticmethod
+    def json_new_client(fullname):
+        """ Creates a new client section/appendage to the json data"""
+        #print(type(Data.default_malicious_client))
+        ## loading json
+        default_malicious_client = json.loads(json.dumps(Data.default_malicious_client))
+        default_malicious_client['ClientFullName'] = fullname
+
+        #writing to json file
+        with open("server_json.json", "r+") as json_file:
+            data = json.load(json_file)
+            #print(type(data))
+            data["MaliciousClients"].append(default_malicious_client)
+            json_file.seek(0)  # move file pointer to the beginning of the file
+            json.dump(data, json_file)
+        
+        #pass
+
+    @staticmethod
+    def json_update(keyname=None, value=None, parent_key=None, client_name=None):
+        """_summary_
+
+        Args:
+            keyname (string, optional): The key to edit, Defaults to None.
+            value (str/int, optional): the value for the key that is being editoed. Defaults to None
+            parent_key (str, optional): the parent key for the item in question (for now, MaliciousClients or FriendlyClients ). Defaults to None.
+        """
+        
+        #pass
+        with open("server_json.json", "r+") as json_file:
+            data = json.load(json_file)
+            #print(type(data))
+            #print(data)
+
+        #print(data['MaliciousClients'])
+        
+        #print(data['MaliciousClients'][0]['ClientFullName'])
+        for client in data[parent_key]:
+            if client['ClientFullName'] == client_name:
+                logging.debug(f"[Server ({client_name})] JSON Record: Changing {keyname} to {value} from {client[keyname]}")
+                ## setting respective key to value
+                #print(client[keyname])
+                client[keyname] = value
+                break
+        ## old way
+        #data[parent_key][0][keyname] = value
+        
+        #print(data)
+        
+        ## write file after modification
+        with open("server_json.json", "w") as json_file:
+            json.dump(data, json_file)
+        
+        
+##creating file
+Data.json_create()
+## example new client
+Data.json_new_client('testclient')
+## examle key update
+Data.json_update(keyname="ClientPort", value="1234", parent_key="MaliciousClients", client_name="testclient")
+
+'''
 s = ServerSockHandler()
 s.start_server(ip, port)
-logging.debug("[Server] Server Started")
+logging.debug("[Server] Server Started")'''
