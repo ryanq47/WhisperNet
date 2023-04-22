@@ -20,7 +20,7 @@ System:
     ## hex color code
     Accent: !!str "#7DF9FF"
     Font: !!str "Roboto"
-    FontSize: !!int 11
+    FontSize: !!int 10
 
   Startup:
     ShowProjectPicker: !!bool False

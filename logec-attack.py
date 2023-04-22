@@ -124,9 +124,15 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.init_data_sql_tables()
         self.init_data_settings_edit()
 
+        ## Font has to be set here for some reason
+        font = QFont(self.settings['System']['Themes']['Font'], self.settings['System']['Themes']['FontSize'])
+        QApplication.setFont(font)
+
         ##== Last but not least, opening project picker
         self.startup_project_open()
         self.content_setup()
+        
+
 
     ##== Calling init's for project settings
     def init_project_settings(self) -> None:
@@ -2229,10 +2235,6 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         else:
             logging.debug(f"[Logec (Theme)] Unkown theme: {self.settings['System']['Themes']['Theme']}")
             
-        ## Font handler here as well cause I didn't wanna make a new method        
-        font = QFont(self.settings['System']['Themes']['Font'], self.settings['System']['Themes']['FontSize'])
-        QApplication.setFont(font)
-
     def set_theme(self, theme_name):
         """ Old/not used function for css themes
         """
