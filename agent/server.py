@@ -38,9 +38,12 @@ else:
 ##Reference: https://realpython.com/python-logging/
 logging.basicConfig(level=logging.DEBUG)
 ## Change the path to the system path + a log folder/file somewhere
-logging.basicConfig(filename='server.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s', force=True)
+logging.basicConfig(filename='server.log', filemode='a', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', force=True, datefmt='%Y-%m-%d %H:%M:%S')
 if global_debug:
     logging.getLogger().addHandler(logging.StreamHandler())
+
+
+##Global Time Var for consistent time
 
 ################
 ## Initial Handler
@@ -53,7 +56,7 @@ class ServerSockHandler:
     """
 
     def __init__(self):
-        logging.debug(f"===== Startup | Time (UTC) {datetime.now(timezone.utc)} =====")
+        logging.debug(f"===== Startup | Reference Time (UTC) {datetime.now(timezone.utc)} =====")
         self.server_password = "1234"
 
         ##Errors relevant to this funtion
@@ -565,7 +568,9 @@ class ServerMaliciousClientHandler:
         self.addr = addr
         self.ip = addr[0]
         self.port = addr[1]
-        self.id =  id
+        self.id = id
+        ## ugly yes, but it works for now. 
+        self.fullname = "client_" + self.ip.replace(".","_") + f"_{self.id}"
         
         self.data_list = [
             self.stats_heartbeats,
@@ -573,7 +578,26 @@ class ServerMaliciousClientHandler:
             self.stats_jobsrun,
             self.stats_latestcheckin
         ]
-
+        
+        new_client = {
+            "ClientFullName": f"{self.fullname}",
+            "ClientIP": f"{self.ip}",
+            "ClientPort": f"{self.port}",
+            "ClientId": f"{self.id}",
+            "CurrentJob": f"{self.current_job}",
+            "SleepTime": "60",
+            "LatestCheckin": str(datetime.now(timezone.utc)),
+            "FirstCheckin": str(datetime.now(timezone.utc)),
+            "Active": "yes"
+        }
+        
+        ## creating json for client
+        #client_127_0_0_1_FAUNI
+        ## Runs every checkin, howeer the method will not write data if a record of this client exists
+        Data.json_new_client(json.dumps(new_client))
+        
+        
+        
         while message:
             self.decision_tree(message)
 
@@ -720,10 +744,16 @@ class Data:
 
     The raw JSON exists here so this whole thing can be one file
     """
+    
+    ##placeholder needed so the loop iterates over something, otherwise it does nothing
+    ## see json_new_client
     default_json = {
         "ServerName": "Server-Name",
         "ServerIp": "127.0.0.1",
         "MaliciousClients": [
+            {
+                "ClientFullName":"Placeholder"
+            }
         ],
         "FriendlyClients": [
         ]
@@ -757,22 +787,33 @@ class Data:
         
         #pass
     @staticmethod
-    def json_new_client(fullname):
-        """ Creates a new client section/appendage to the json data"""
-        #print(type(Data.default_malicious_client))
-        ## loading json
-        default_malicious_client = json.loads(json.dumps(Data.default_malicious_client))
-        default_malicious_client['ClientFullName'] = fullname
+    def json_new_client(client_data_raw):
+        print(type(client_data_raw))
+        """ Creates a new client section/appendage to the json data, that json object is created in handle_client,
+        and is passed here. the defualt_malicious_client is for reference
+        
+        The loop checks if an entry already exists (via the ClientFullName), and if so, returns. Only if an entry does not exist does it create one
+        """
+        client_data = json.loads(client_data_raw)
 
+        print(type(client_data))
+        print(client_data)
+        
         #writing to json file
         with open("server_json.json", "r+") as json_file:
             data = json.load(json_file)
             #print(type(data))
-            data["MaliciousClients"].append(default_malicious_client)
-            json_file.seek(0)  # move file pointer to the beginning of the file
-            json.dump(data, json_file)
-        
-        #pass
+            ## if client already logged
+            for client in data['MaliciousClients']:
+                for client in data['MaliciousClients']:
+                    if client['ClientFullName'] == client_data['ClientFullName']:
+                        #print(f"A client with the name {client_data['ClientFullName']} already exists")
+                        return
+                
+                data["MaliciousClients"].append(client_data)
+                json_file.seek(0)  # move file pointer to the beginning of the file
+                json.dump(data, json_file)
+                logging.debug(f"[Server ({client_data['ClientFullName']})] JSON Record: New Record Created")
 
     @staticmethod
     def json_update(keyname=None, value=None, parent_key=None, client_name=None):
@@ -787,12 +828,7 @@ class Data:
         #pass
         with open("server_json.json", "r+") as json_file:
             data = json.load(json_file)
-            #print(type(data))
-            #print(data)
-
-        #print(data['MaliciousClients'])
         
-        #print(data['MaliciousClients'][0]['ClientFullName'])
         for client in data[parent_key]:
             if client['ClientFullName'] == client_name:
                 logging.debug(f"[Server ({client_name})] JSON Record: Changing {keyname} to {value} from {client[keyname]}")
@@ -810,14 +846,14 @@ class Data:
             json.dump(data, json_file)
         
         
-##creating file
-Data.json_create()
+
 ## example new client
-Data.json_new_client('testclient')
+#Data.json_new_client('testclient')
 ## examle key update
-Data.json_update(keyname="ClientPort", value="1234", parent_key="MaliciousClients", client_name="testclient")
+#Data.json_update(keyname="ClientFullName", value="1234", parent_key="MaliciousClients", client_name="Placeholder")
 
-
+##creating JSON file
+Data.json_create()
 s = ServerSockHandler()
 s.start_server(ip, port)
 logging.debug("[Server] Server Started")
