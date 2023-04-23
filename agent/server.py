@@ -178,7 +178,7 @@ class ServerSockHandler:
                     ##== sending the a-ok on successful authentication
                         self.conn.send(str_encode("0"))
 
-                        logging.debug(f"Successful Logon from: {friendly_client_name}")
+                        logging.debug(f"[Server (Logon)]Successful Logon from: {friendly_client_name}")
 
                         if friendly_client_name not in self.friendly_current_clients:
                             self.friendly_current_clients.append(friendly_client_name)
@@ -194,7 +194,7 @@ class ServerSockHandler:
                             args=(self.response, username)
                         )
                         friendly_thread.start()
-                        logging.debug(f"Thread for object {friendly_client_name} created")
+                        #logging.debug(f"Thread for object {friendly_client_name} created")
 
                     except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
                         logging.warning(f"Friendly Client {friendly_client_name} disconnected")
@@ -202,7 +202,7 @@ class ServerSockHandler:
                         logging.warning(f"{self.Sx-1}:{e}")
                 else:
                     self.conn.send(str_encode("1"))
-                    logging.critical(f"Failed logon  from {username}, {self.client_remote_ip_port}")
+                    logging.critical(f"[{self.client_remote_ip_port} -> Server (Logon)] Failed logon from '{username}'")
 
 ##====================================== Construction ===========
             elif self.client_type == "!_client_!":
@@ -283,33 +283,37 @@ class ServerFriendlyClientHandler:
         !_clientcommand_!\|/ryan\|/set-heartbeat 69 client_127_0_0_1_UDDSZ
 
         """
-
-        logging.debug(f"Friendly Client authenticated, user={username}")
+        self.username = username
+        logging.debug(f"[Server (ServerFriendlyClientHandler)]Friendly Client authenticated, user={self.username}")
 
         while message:
             raw_user_input = bytes_decode(self.conn.recv(1024))
             user_input = self.parse_msg_for_server(raw_user_input)         
-            print(f"HERE {raw_user_input}")
+            #print(f"HERE {raw_user_input}")
+            logging.debug(f"[client ({self.username}) -> Server] {raw_user_input}")
             try:
+                #print(user_input)
                 user_header = user_input[0]
                 user_username = user_input[1]
                 user_command= user_input[2]
 
                 if user_header == "!_servercommand_!":
-                    logging.debug("[!_servercommand_!]")
+                    #logging.debug("[!_servercommand_!]")
                     self.server_decision_tree(user_command)
                 
                 ## format that fclient needs to send(see client_decision_tree)
                 ## !_servercommand_!\|/ryan\|/action value CLIENTNAME
                 ##client name is always last for future compatability
                 elif user_header == "!_clientcommand_!":
-                    logging.debug("[!_clientcommand_!]")
+                    #logging.debug("[!_clientcommand_!]")
                     self.client_decision_tree(user_command)
                 
 
             except Exception as e:
-                logging.debug(f"Error with username or command, input={raw_user_input}: {e}")
-                break
+                err_str = f"[Server (ServerFriendlyClientHandler)] Error with username or command, input={raw_user_input}: {e}"
+                logging.debug(err_str)
+                self.send_msg(err_str)
+                #break
             #message = None
 
 ################
@@ -318,50 +322,68 @@ class ServerFriendlyClientHandler:
     def server_decision_tree(self, message):
         """
         Handles commands meant directly for the server
+        
+        Note: 
+            The try/exceot with message.split() is for checking if the message contains a command for
+            the client, or the server. Client commands have 3 parts to their command, while server commands
+            are a one word/no spaces command, see example below
+            
+            Server:
+                export-clients
+            Client:
+                set-heartbeat 15 CLIENT_123.324.135.135
+            
         """
         self.current_client_refresh()
 
-        if message == "clients":
-            if self.current_client_list != "":
-                self.send_msg(self.current_client_list)
-                ##== these can generate a lot of  messages very quickly, leaving disabled for now
-                #logging.debug(f"[] Current Clients: {self.current_client_list}")
-            else:
-                self.send_msg("No Current Clients")
-        
-        ################
-        ## Export Commands
-        ## These reutrn JSON data about stuff
-        ################ 
-        if message == "export-clients":
-            ## Expots MaliciousClients as JSON, may be a replacement to stats
-            try:
-                with open("server_json.json", "r+") as json_file:
-                    data = json.load(json_file)
-                    self.send_msg(str(data))
-                    logging.debug("[Server (export-clients)]: Success")
-            except Exception as e:
-                logging.debug(f"[Server (export-clients)] Error with exporting client data: {e}")
-                self.send_msg(f"[Server (export-clients)] Error with exporting client data: {e}")
-
-        ## for all clients, 
-        ## a  for loop might work well here
-        elif message == "stats":
-            pass
-            """
-            for i in current_client_list
-                client = globals()[i]
-                return_stats_list.append(client.data_list)
-            """
-            #data_list
-            ## Need: client instance name
-            ## then call: client_instance.stats
-        elif message == "":
-            self.send_msg("Client send nothing")
-        
-        
-        else:
+        #logging.debug(f"[Server (server_decision_tree)] command: {message}")
+        print(message)
+        try:
+            ## see docstring explanation
+            message.split()[2]
             self.client_decision_tree(message)
+        except:
+            if message == "clients":
+                if self.current_client_list != "":
+                    self.send_msg(self.current_client_list)
+                    ##== these can generate a lot of  messages very quickly, leaving disabled for now
+                    #logging.debug(f"[] Current Clients: {self.current_client_list}")
+                else:
+                    self.send_msg("No Current Clients")
+            
+            ################
+            ## Export Commands
+            ## These reutrn JSON data about stuff
+            ################ 
+            elif message == "export-clients":
+                ## Expots MaliciousClients as JSON, may be a replacement to stats
+                try:
+                    with open("server_json.json", "r+") as json_file:
+                        data = json.load(json_file)
+                        self.send_msg(str(data))
+                        logging.debug("[Server (export-clients)]: Success")
+                except Exception as e:
+                    logging.debug(f"[Server (export-clients)] Error with exporting client data: {e}")
+                    self.send_msg(f"[Server (export-clients)] Error with exporting client data: {e}")
+
+            ## for all clients, 
+            ## a  for loop might work well here
+            elif message == "stats":
+                pass
+                """
+                for i in current_client_list
+                    client = globals()[i]
+                    return_stats_list.append(client.data_list)
+                """
+                #data_list
+                ## Need: client instance name
+                ## then call: client_instance.stats
+            elif message == "":
+                self.send_msg("Client sent nothing")
+            
+            else:
+                self.send_msg("Command not found")
+                #elf.client_decision_tree(message)
 
     def current_client_refresh(self) -> None:
         """
@@ -406,12 +428,13 @@ class ServerFriendlyClientHandler:
         #logging.debug(f"ParsedMessage{message}")
 
         ## No try except due to parse_msg_for_X having builtin handling
+        
         client_command = message[0]
         client_command_value = message[1]
         ##== Client name is always last
         client_name = message[-1]
 
-        logging.debug(f"[client -> server] command:{client_command} value:{client_command_value} name:{client_name}")
+        logging.debug(f"[client ({self.username }) -> server] command:{client_command} value:{client_command_value} name:{client_name}")
 
         self.client = globals()[client_name]
         if client_name in self.current_client_list:
@@ -489,7 +512,7 @@ class ServerFriendlyClientHandler:
     ##== Dev Note!! These need to always return SOMETHING in their lists, 
     ## that way it's  played safely and doesnt error  out
     def parse_msg_for_server(self, raw_message) -> list:
-        print(f"Raw Message: {raw_message}")  if global_debug else None
+        #print(f"Raw Message: {raw_message}")  if global_debug else None
         
         ## strip uneeded code here, replace THEN strip (goes from str -> list, the split returns a list)
         try:

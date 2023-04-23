@@ -25,6 +25,7 @@ class FClient(QObject):
         self.shellbanner = "NotConnected"
         self.current_client_list = []
 
+    ## Connection to server
     def connect_to_server(self, connlist: Tuple[str, str, str, str]) -> None:
         self.ip, self.port, self.username, password = connlist
 
@@ -108,9 +109,10 @@ class FClient(QObject):
                 self.shellformat(self.send_msg("export-clients"))
                 
             else:
-                #self.gui_to_client(command)
-                self.shellformat(f"command {command} not found")
-                logging.debug(f"Command {command} not found.") 
+                self.shellformat(self.send_msg(command))
+                
+                #self.shellformat(f"command '{command}' not found")
+                #logging.debug(f"Command {command} not found.") 
 
     ##== GUI to client 
         """     
