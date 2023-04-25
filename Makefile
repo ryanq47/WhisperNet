@@ -20,3 +20,6 @@ clean:
 	echo "" > logs/logec-main.log
 req:
 	pipreqs ./ --force
+
+venv:
+	echo "run: source logec-suite/bin/activate"
