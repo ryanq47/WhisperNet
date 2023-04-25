@@ -204,6 +204,18 @@ class FClient(QObject):
         HEADERSIZE = 10
 
         logging.debug(f"[Logec (friendly_client: send_msg)] Waiting on response...")
+        
+        
+        ##===============================Recv Protocol==================================================
+        ## implement thison the server side for recieving.
+        ## basically, it keeps trying to receive messages until the message matches the whole message size, then it breaks
+        ## a bit weird and no official way to send things other than chuncking them back as one large ass byte array
+        # but it works
+        
+        ## actually, could fix that by getting value of header, and receiving until length of received msg matches header, instead of whole message
+        
+        ## test this outside of here
+        
         while True:
             msg = self.server.recv(int(self.buffer))  # << adjustble, how many bytes you want to get per iteration
             if new_msg:
@@ -225,6 +237,7 @@ class FClient(QObject):
 
                 # returning full message and stripping header
                 return full_msg[HEADERSIZE:]
+        ##==========================================================================================
 
 
     ##== QOL
