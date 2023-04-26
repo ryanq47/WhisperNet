@@ -23,3 +23,6 @@ req:
 
 venv:
 	echo "run: source logec-suite/bin/activate"
+	
+install:
+	pip install -r requirements.txt

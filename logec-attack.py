@@ -70,8 +70,6 @@ from Modules.General.ScriptGen import ScriptGen
 from Modules.General.SysShell.shell import Shell
 from Modules.General.portscanner import Portscan
 import Modules.General.utility as utility
-from Modules.Linux.Reverse_Shells.reverse_shells import target as rev_shell_target
-from Modules.Windows.Reverse_Shells.win_reverse_shells import target as rev_shell_target_win
 
 from agent.friendly_client import FClient
 

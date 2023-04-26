@@ -122,6 +122,7 @@ class Ui_LogecC3(object):
         self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.tabWidget = QTabWidget(self.centralwidget)
         self.tabWidget.setObjectName(u"tabWidget")
+        self.tabWidget.setEnabled(True)
         self.tabWidget.setAutoFillBackground(False)
         self.tabWidget.setTabPosition(QTabWidget.North)
         self.tabWidget.setTabsClosable(False)
@@ -381,121 +382,6 @@ class Ui_LogecC3(object):
         self.gridLayout_5.setObjectName(u"gridLayout_5")
         self.osint_reddit_tab = QTabWidget(self.tab_4)
         self.osint_reddit_tab.setObjectName(u"osint_reddit_tab")
-        self.tab_12 = QWidget()
-        self.tab_12.setObjectName(u"tab_12")
-        self.gridLayout_8 = QGridLayout(self.tab_12)
-        self.gridLayout_8.setObjectName(u"gridLayout_8")
-        self.label_7 = QLabel(self.tab_12)
-        self.label_7.setObjectName(u"label_7")
-
-        self.gridLayout_8.addWidget(self.label_7, 0, 0, 1, 1)
-
-        self.dashboard_osint_keyword = QLineEdit(self.tab_12)
-        self.dashboard_osint_keyword.setObjectName(u"dashboard_osint_keyword")
-
-        self.gridLayout_8.addWidget(self.dashboard_osint_keyword, 0, 1, 1, 2)
-
-        self.comboBox_3 = QComboBox(self.tab_12)
-        self.comboBox_3.addItem("")
-        self.comboBox_3.addItem("")
-        self.comboBox_3.addItem("")
-        self.comboBox_3.addItem("")
-        self.comboBox_3.setObjectName(u"comboBox_3")
-
-        self.gridLayout_8.addWidget(self.comboBox_3, 1, 1, 1, 1)
-
-        self.scrollArea_2 = QScrollArea(self.tab_12)
-        self.scrollArea_2.setObjectName(u"scrollArea_2")
-        self.scrollArea_2.setWidgetResizable(True)
-        self.scrollAreaWidgetContents_2 = QWidget()
-        self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 72, 16))
-        self.label_11 = QLabel(self.scrollAreaWidgetContents_2)
-        self.label_11.setObjectName(u"label_11")
-        self.label_11.setGeometry(QRect(10, 10, 66, 19))
-        font3 = QFont()
-        font3.setUnderline(True)
-        self.label_11.setFont(font3)
-        self.lineEdit_6 = QLineEdit(self.scrollAreaWidgetContents_2)
-        self.lineEdit_6.setObjectName(u"lineEdit_6")
-        self.lineEdit_6.setGeometry(QRect(10, 510, 113, 27))
-        self.dashboard_reddit_onlycomments = QCheckBox(self.scrollAreaWidgetContents_2)
-        self.dashboard_reddit_onlycomments.setObjectName(u"dashboard_reddit_onlycomments")
-        self.dashboard_reddit_onlycomments.setGeometry(QRect(140, 70, 140, 25))
-        self.dashboard_reddit_onlycomments.setCheckable(True)
-        self.dashboard_reddit_onlycomments.setChecked(False)
-        self.combo_time_2 = QComboBox(self.scrollAreaWidgetContents_2)
-        self.combo_time_2.addItem("")
-        self.combo_time_2.addItem("")
-        self.combo_time_2.addItem("")
-        self.combo_time_2.addItem("")
-        self.combo_time_2.addItem("")
-        self.combo_time_2.setObjectName(u"combo_time_2")
-        self.combo_time_2.setGeometry(QRect(15, 133, 123, 27))
-        self.label_15 = QLabel(self.scrollAreaWidgetContents_2)
-        self.label_15.setObjectName(u"label_15")
-        self.label_15.setGeometry(QRect(15, 38, 123, 25))
-        self.label_17 = QLabel(self.scrollAreaWidgetContents_2)
-        self.label_17.setObjectName(u"label_17")
-        self.label_17.setGeometry(QRect(15, 102, 123, 25))
-        self.dashboard_reddit_onlyprofile = QCheckBox(self.scrollAreaWidgetContents_2)
-        self.dashboard_reddit_onlyprofile.setObjectName(u"dashboard_reddit_onlyprofile")
-        self.dashboard_reddit_onlyprofile.setGeometry(QRect(140, 100, 140, 25))
-        self.combo_sort_2 = QComboBox(self.scrollAreaWidgetContents_2)
-        self.combo_sort_2.addItem("")
-        self.combo_sort_2.addItem("")
-        self.combo_sort_2.addItem("")
-        self.combo_sort_2.addItem("")
-        self.combo_sort_2.addItem("")
-        self.combo_sort_2.setObjectName(u"combo_sort_2")
-        self.combo_sort_2.setGeometry(QRect(15, 69, 123, 27))
-        self.dashboard_reddit_downloadmedia = QCheckBox(self.scrollAreaWidgetContents_2)
-        self.dashboard_reddit_downloadmedia.setObjectName(u"dashboard_reddit_downloadmedia")
-        self.dashboard_reddit_downloadmedia.setGeometry(QRect(140, 130, 170, 25))
-        self.dashboard_reddit_downloadmedia.setChecked(True)
-        self.line_3 = QFrame(self.scrollAreaWidgetContents_2)
-        self.line_3.setObjectName(u"line_3")
-        self.line_3.setGeometry(QRect(10, 230, 271, 21))
-        self.line_3.setFrameShape(QFrame.HLine)
-        self.line_3.setFrameShadow(QFrame.Sunken)
-        self.dashboard_reddit_subreddit = QLineEdit(self.scrollAreaWidgetContents_2)
-        self.dashboard_reddit_subreddit.setObjectName(u"dashboard_reddit_subreddit")
-        self.dashboard_reddit_subreddit.setGeometry(QRect(10, 200, 271, 27))
-        self.label_23 = QLabel(self.scrollAreaWidgetContents_2)
-        self.label_23.setObjectName(u"label_23")
-        self.label_23.setGeometry(QRect(20, 170, 151, 25))
-        self.line_7 = QFrame(self.scrollAreaWidgetContents_2)
-        self.line_7.setObjectName(u"line_7")
-        self.line_7.setGeometry(QRect(290, 20, 21, 221))
-        self.line_7.setFrameShape(QFrame.VLine)
-        self.line_7.setFrameShadow(QFrame.Sunken)
-        self.dashboard_reddit_hideNSFW = QCheckBox(self.scrollAreaWidgetContents_2)
-        self.dashboard_reddit_hideNSFW.setObjectName(u"dashboard_reddit_hideNSFW")
-        self.dashboard_reddit_hideNSFW.setGeometry(QRect(140, 40, 131, 25))
-        self.lineEdit_7 = QLineEdit(self.scrollAreaWidgetContents_2)
-        self.lineEdit_7.setObjectName(u"lineEdit_7")
-        self.lineEdit_7.setGeometry(QRect(182, 380, 751, 27))
-        self.scrollArea_2.setWidget(self.scrollAreaWidgetContents_2)
-
-        self.gridLayout_8.addWidget(self.scrollArea_2, 2, 0, 1, 3)
-
-        self.portscan_start_5 = QPushButton(self.tab_12)
-        self.portscan_start_5.setObjectName(u"portscan_start_5")
-
-        self.gridLayout_8.addWidget(self.portscan_start_5, 1, 2, 1, 1)
-
-        self.label_24 = QLabel(self.tab_12)
-        self.label_24.setObjectName(u"label_24")
-
-        self.gridLayout_8.addWidget(self.label_24, 1, 0, 1, 1)
-
-        self.progressBar_2 = QProgressBar(self.tab_12)
-        self.progressBar_2.setObjectName(u"progressBar_2")
-        self.progressBar_2.setValue(0)
-
-        self.gridLayout_8.addWidget(self.progressBar_2, 3, 0, 1, 3)
-
-        self.osint_reddit_tab.addTab(self.tab_12, "")
         self.tab_2 = QWidget()
         self.tab_2.setObjectName(u"tab_2")
         self.gridLayout_10 = QGridLayout(self.tab_2)
@@ -659,119 +545,6 @@ class Ui_LogecC3(object):
         self.gridLayout_10.addWidget(self.osint_reddit_gui_hide_search, 2, 0, 1, 1)
 
         self.osint_reddit_tab.addTab(self.tab_2, "")
-        self.tab_18 = QWidget()
-        self.tab_18.setObjectName(u"tab_18")
-        self.gridLayout_20 = QGridLayout(self.tab_18)
-        self.gridLayout_20.setObjectName(u"gridLayout_20")
-        self.label_54 = QLabel(self.tab_18)
-        self.label_54.setObjectName(u"label_54")
-
-        self.gridLayout_20.addWidget(self.label_54, 0, 0, 1, 1)
-
-        self.line_17 = QFrame(self.tab_18)
-        self.line_17.setObjectName(u"line_17")
-        self.line_17.setFrameShape(QFrame.VLine)
-        self.line_17.setFrameShadow(QFrame.Sunken)
-
-        self.gridLayout_20.addWidget(self.line_17, 0, 1, 7, 1)
-
-        self.label_53 = QLabel(self.tab_18)
-        self.label_53.setObjectName(u"label_53")
-
-        self.gridLayout_20.addWidget(self.label_53, 0, 2, 1, 1)
-
-        self.line_18 = QFrame(self.tab_18)
-        self.line_18.setObjectName(u"line_18")
-        self.line_18.setFrameShape(QFrame.VLine)
-        self.line_18.setFrameShadow(QFrame.Sunken)
-
-        self.gridLayout_20.addWidget(self.line_18, 0, 3, 7, 1)
-
-        self.label_52 = QLabel(self.tab_18)
-        self.label_52.setObjectName(u"label_52")
-
-        self.gridLayout_20.addWidget(self.label_52, 0, 4, 1, 1)
-
-        self.osint_dork_searchterm = QLineEdit(self.tab_18)
-        self.osint_dork_searchterm.setObjectName(u"osint_dork_searchterm")
-
-        self.gridLayout_20.addWidget(self.osint_dork_searchterm, 1, 0, 1, 1)
-
-        self.osint_dork_intitle = QLineEdit(self.tab_18)
-        self.osint_dork_intitle.setObjectName(u"osint_dork_intitle")
-
-        self.gridLayout_20.addWidget(self.osint_dork_intitle, 1, 2, 1, 1)
-
-        self.osint_dork_filetype = QLineEdit(self.tab_18)
-        self.osint_dork_filetype.setObjectName(u"osint_dork_filetype")
-
-        self.gridLayout_20.addWidget(self.osint_dork_filetype, 1, 4, 1, 1)
-
-        self.label_50 = QLabel(self.tab_18)
-        self.label_50.setObjectName(u"label_50")
-
-        self.gridLayout_20.addWidget(self.label_50, 2, 0, 1, 1)
-
-        self.label_51 = QLabel(self.tab_18)
-        self.label_51.setObjectName(u"label_51")
-
-        self.gridLayout_20.addWidget(self.label_51, 2, 2, 1, 1)
-
-        self.osint_dork_keyword = QLineEdit(self.tab_18)
-        self.osint_dork_keyword.setObjectName(u"osint_dork_keyword")
-
-        self.gridLayout_20.addWidget(self.osint_dork_keyword, 3, 0, 1, 1)
-
-        self.lineEdit_19 = QLineEdit(self.tab_18)
-        self.lineEdit_19.setObjectName(u"lineEdit_19")
-
-        self.gridLayout_20.addWidget(self.lineEdit_19, 3, 2, 1, 1)
-
-        self.checkBox_21 = QCheckBox(self.tab_18)
-        self.checkBox_21.setObjectName(u"checkBox_21")
-
-        self.gridLayout_20.addWidget(self.checkBox_21, 4, 2, 1, 1)
-
-        self.checkBox_19 = QCheckBox(self.tab_18)
-        self.checkBox_19.setObjectName(u"checkBox_19")
-
-        self.gridLayout_20.addWidget(self.checkBox_19, 5, 2, 1, 1)
-
-        self.checkBox_20 = QCheckBox(self.tab_18)
-        self.checkBox_20.setObjectName(u"checkBox_20")
-
-        self.gridLayout_20.addWidget(self.checkBox_20, 6, 2, 1, 1)
-
-        self.osint_dork_generate = QPushButton(self.tab_18)
-        self.osint_dork_generate.setObjectName(u"osint_dork_generate")
-
-        self.gridLayout_20.addWidget(self.osint_dork_generate, 7, 0, 1, 5)
-
-        self.tabWidget_3 = QTabWidget(self.tab_18)
-        self.tabWidget_3.setObjectName(u"tabWidget_3")
-        self.tab_31 = QWidget()
-        self.tab_31.setObjectName(u"tab_31")
-        self.gridLayout_32 = QGridLayout(self.tab_31)
-        self.gridLayout_32.setObjectName(u"gridLayout_32")
-        self.osint_dork_output = QTextEdit(self.tab_31)
-        self.osint_dork_output.setObjectName(u"osint_dork_output")
-
-        self.gridLayout_32.addWidget(self.osint_dork_output, 0, 0, 1, 1)
-
-        self.tabWidget_3.addTab(self.tab_31, "")
-        self.tab_42 = QWidget()
-        self.tab_42.setObjectName(u"tab_42")
-        self.lineEdit_18 = QLineEdit(self.tab_42)
-        self.lineEdit_18.setObjectName(u"lineEdit_18")
-        self.lineEdit_18.setGeometry(QRect(380, 110, 671, 27))
-        self.tabWidget_3.addTab(self.tab_42, "")
-
-        self.gridLayout_20.addWidget(self.tabWidget_3, 8, 0, 1, 5)
-
-        self.osint_reddit_tab.addTab(self.tab_18, "")
-        self.tab_14 = QWidget()
-        self.tab_14.setObjectName(u"tab_14")
-        self.osint_reddit_tab.addTab(self.tab_14, "")
 
         self.gridLayout_5.addWidget(self.osint_reddit_tab, 0, 0, 1, 1)
 
@@ -782,102 +555,6 @@ class Ui_LogecC3(object):
         self.gridLayout_17.setObjectName(u"gridLayout_17")
         self.tabWidget_8 = QTabWidget(self.tab_22)
         self.tabWidget_8.setObjectName(u"tabWidget_8")
-        self.tab_24 = QWidget()
-        self.tab_24.setObjectName(u"tab_24")
-        self.gridLayout_22 = QGridLayout(self.tab_24)
-        self.gridLayout_22.setObjectName(u"gridLayout_22")
-        self.label_16 = QLabel(self.tab_24)
-        self.label_16.setObjectName(u"label_16")
-
-        self.gridLayout_22.addWidget(self.label_16, 0, 0, 1, 1)
-
-        self.comboBox_2 = QComboBox(self.tab_24)
-        self.comboBox_2.addItem("")
-        self.comboBox_2.addItem("")
-        self.comboBox_2.setObjectName(u"comboBox_2")
-
-        self.gridLayout_22.addWidget(self.comboBox_2, 1, 0, 1, 1)
-
-        self.portscan_start_4 = QPushButton(self.tab_24)
-        self.portscan_start_4.setObjectName(u"portscan_start_4")
-
-        self.gridLayout_22.addWidget(self.portscan_start_4, 1, 1, 1, 1)
-
-        self.scrollArea = QScrollArea(self.tab_24)
-        self.scrollArea.setObjectName(u"scrollArea")
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollAreaWidgetContents = QWidget()
-        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1085, 672))
-        self.dashboard_portscan_IP = QLineEdit(self.scrollAreaWidgetContents)
-        self.dashboard_portscan_IP.setObjectName(u"dashboard_portscan_IP")
-        self.dashboard_portscan_IP.setGeometry(QRect(10, 40, 211, 27))
-        self.dashboard_portscan_stealth_check = QCheckBox(self.scrollAreaWidgetContents)
-        self.dashboard_portscan_stealth_check.setObjectName(u"dashboard_portscan_stealth_check")
-        self.dashboard_portscan_stealth_check.setGeometry(QRect(100, 140, 100, 25))
-        self.dashboard_portscan_stealth_check.setMaximumSize(QSize(100, 16777215))
-        self.checkBox_6 = QCheckBox(self.scrollAreaWidgetContents)
-        self.checkBox_6.setObjectName(u"checkBox_6")
-        self.checkBox_6.setGeometry(QRect(100, 160, 100, 25))
-        self.checkBox_6.setMaximumSize(QSize(100, 16777215))
-        self.dashboard_portscan_standard_check = QCheckBox(self.scrollAreaWidgetContents)
-        self.dashboard_portscan_standard_check.setObjectName(u"dashboard_portscan_standard_check")
-        self.dashboard_portscan_standard_check.setGeometry(QRect(10, 139, 100, 25))
-        self.dashboard_portscan_standard_check.setMaximumSize(QSize(100, 16777215))
-        self.dashboard_portscan_extraport = QLineEdit(self.scrollAreaWidgetContents)
-        self.dashboard_portscan_extraport.setObjectName(u"dashboard_portscan_extraport")
-        self.dashboard_portscan_extraport.setGeometry(QRect(10, 106, 211, 27))
-        self.dashboard_portscan_maxport = QLineEdit(self.scrollAreaWidgetContents)
-        self.dashboard_portscan_maxport.setObjectName(u"dashboard_portscan_maxport")
-        self.dashboard_portscan_maxport.setGeometry(QRect(120, 75, 101, 27))
-        self.dashboard_portscan_fast_check = QCheckBox(self.scrollAreaWidgetContents)
-        self.dashboard_portscan_fast_check.setObjectName(u"dashboard_portscan_fast_check")
-        self.dashboard_portscan_fast_check.setGeometry(QRect(10, 160, 100, 25))
-        self.dashboard_portscan_fast_check.setMaximumSize(QSize(100, 16777215))
-        self.dashboard_portscan_minport = QLineEdit(self.scrollAreaWidgetContents)
-        self.dashboard_portscan_minport.setObjectName(u"dashboard_portscan_minport")
-        self.dashboard_portscan_minport.setGeometry(QRect(10, 75, 101, 27))
-        self.label_21 = QLabel(self.scrollAreaWidgetContents)
-        self.label_21.setObjectName(u"label_21")
-        self.label_21.setGeometry(QRect(10, 10, 66, 19))
-        self.line_4 = QFrame(self.scrollAreaWidgetContents)
-        self.line_4.setObjectName(u"line_4")
-        self.line_4.setGeometry(QRect(10, 200, 211, 31))
-        self.line_4.setFrameShape(QFrame.HLine)
-        self.line_4.setFrameShadow(QFrame.Sunken)
-        self.dashboard_dnsName = QLineEdit(self.scrollAreaWidgetContents)
-        self.dashboard_dnsName.setObjectName(u"dashboard_dnsName")
-        self.dashboard_dnsName.setGeometry(QRect(240, 80, 211, 27))
-        self.label_22 = QLabel(self.scrollAreaWidgetContents)
-        self.label_22.setObjectName(u"label_22")
-        self.label_22.setGeometry(QRect(240, 10, 91, 19))
-        self.line_6 = QFrame(self.scrollAreaWidgetContents)
-        self.line_6.setObjectName(u"line_6")
-        self.line_6.setGeometry(QRect(220, 10, 16, 211))
-        self.line_6.setFrameShape(QFrame.VLine)
-        self.line_6.setFrameShadow(QFrame.Sunken)
-        self.line_5 = QFrame(self.scrollAreaWidgetContents)
-        self.line_5.setObjectName(u"line_5")
-        self.line_5.setGeometry(QRect(240, 200, 211, 31))
-        self.line_5.setFrameShape(QFrame.HLine)
-        self.line_5.setFrameShadow(QFrame.Sunken)
-        self.lineEdit_9 = QLineEdit(self.scrollAreaWidgetContents)
-        self.lineEdit_9.setObjectName(u"lineEdit_9")
-        self.lineEdit_9.setGeometry(QRect(140, 370, 751, 27))
-        self.label_38 = QLabel(self.scrollAreaWidgetContents)
-        self.label_38.setObjectName(u"label_38")
-        self.label_38.setGeometry(QRect(240, 50, 111, 19))
-        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-
-        self.gridLayout_22.addWidget(self.scrollArea, 2, 0, 1, 2)
-
-        self.progressBar_8 = QProgressBar(self.tab_24)
-        self.progressBar_8.setObjectName(u"progressBar_8")
-        self.progressBar_8.setValue(0)
-
-        self.gridLayout_22.addWidget(self.progressBar_8, 3, 0, 1, 2)
-
-        self.tabWidget_8.addTab(self.tab_24, "")
         self.tab_63 = QWidget()
         self.tab_63.setObjectName(u"tab_63")
         self.gridLayout_47 = QGridLayout(self.tab_63)
@@ -1170,10 +847,10 @@ class Ui_LogecC3(object):
         self.gridLayout_13.setObjectName(u"gridLayout_13")
         self.label_30 = QLabel(self.tab_16)
         self.label_30.setObjectName(u"label_30")
-        font4 = QFont()
-        font4.setPointSize(10)
-        font4.setUnderline(False)
-        self.label_30.setFont(font4)
+        font3 = QFont()
+        font3.setPointSize(10)
+        font3.setUnderline(False)
+        self.label_30.setFont(font3)
 
         self.gridLayout_13.addWidget(self.label_30, 6, 0, 1, 1)
 
@@ -1194,7 +871,7 @@ class Ui_LogecC3(object):
 
         self.label_28 = QLabel(self.tab_16)
         self.label_28.setObjectName(u"label_28")
-        self.label_28.setFont(font4)
+        self.label_28.setFont(font3)
 
         self.gridLayout_13.addWidget(self.label_28, 4, 0, 1, 1)
 
@@ -1210,7 +887,7 @@ class Ui_LogecC3(object):
 
         self.label_29 = QLabel(self.tab_16)
         self.label_29.setObjectName(u"label_29")
-        self.label_29.setFont(font4)
+        self.label_29.setFont(font3)
 
         self.gridLayout_13.addWidget(self.label_29, 4, 1, 1, 1)
 
@@ -1230,7 +907,7 @@ class Ui_LogecC3(object):
 
         self.label_31 = QLabel(self.tab_16)
         self.label_31.setObjectName(u"label_31")
-        self.label_31.setFont(font4)
+        self.label_31.setFont(font3)
 
         self.gridLayout_13.addWidget(self.label_31, 8, 0, 1, 1)
 
@@ -1242,13 +919,13 @@ class Ui_LogecC3(object):
         self.label_26 = QLabel(self.tab_16)
         self.label_26.setObjectName(u"label_26")
         self.label_26.setMaximumSize(QSize(16777215, 15))
-        self.label_26.setFont(font4)
+        self.label_26.setFont(font3)
 
         self.gridLayout_13.addWidget(self.label_26, 2, 0, 1, 1)
 
         self.label_27 = QLabel(self.tab_16)
         self.label_27.setObjectName(u"label_27")
-        self.label_27.setFont(font4)
+        self.label_27.setFont(font3)
 
         self.gridLayout_13.addWidget(self.label_27, 2, 1, 1, 1)
 
@@ -1496,10 +1173,10 @@ class Ui_LogecC3(object):
 
         self.bruteforce_download_seclist_topshort = QPushButton(self.tab_44)
         self.bruteforce_download_seclist_topshort.setObjectName(u"bruteforce_download_seclist_topshort")
-        font5 = QFont()
-        font5.setUnderline(False)
-        font5.setStrikeOut(False)
-        self.bruteforce_download_seclist_topshort.setFont(font5)
+        font4 = QFont()
+        font4.setUnderline(False)
+        font4.setStrikeOut(False)
+        self.bruteforce_download_seclist_topshort.setFont(font4)
         self.bruteforce_download_seclist_topshort.setAutoDefault(False)
         self.bruteforce_download_seclist_topshort.setFlat(False)
 
@@ -1518,10 +1195,10 @@ class Ui_LogecC3(object):
         self.label_74 = QLabel(self.tab_44)
         self.label_74.setObjectName(u"label_74")
         self.label_74.setMaximumSize(QSize(16777215, 20))
-        font6 = QFont()
-        font6.setBold(True)
-        font6.setUnderline(True)
-        self.label_74.setFont(font6)
+        font5 = QFont()
+        font5.setBold(True)
+        font5.setUnderline(True)
+        self.label_74.setFont(font5)
 
         self.gridLayout_37.addWidget(self.label_74, 1, 0, 1, 1)
 
@@ -1532,7 +1209,7 @@ class Ui_LogecC3(object):
 
         self.bruteforce_download_seclist_top10mil_usernames = QPushButton(self.tab_44)
         self.bruteforce_download_seclist_top10mil_usernames.setObjectName(u"bruteforce_download_seclist_top10mil_usernames")
-        self.bruteforce_download_seclist_top10mil_usernames.setFont(font5)
+        self.bruteforce_download_seclist_top10mil_usernames.setFont(font4)
         self.bruteforce_download_seclist_top10mil_usernames.setAutoDefault(False)
         self.bruteforce_download_seclist_top10mil_usernames.setFlat(False)
 
@@ -1560,7 +1237,7 @@ class Ui_LogecC3(object):
 
         self.label_73 = QLabel(self.tab_44)
         self.label_73.setObjectName(u"label_73")
-        self.label_73.setFont(font6)
+        self.label_73.setFont(font5)
 
         self.gridLayout_37.addWidget(self.label_73, 0, 2, 1, 1)
 
@@ -1776,13 +1453,13 @@ class Ui_LogecC3(object):
         self.label_167 = QLabel(self.tab_128)
         self.label_167.setObjectName(u"label_167")
         self.label_167.setMaximumSize(QSize(16777215, 15))
-        self.label_167.setFont(font6)
+        self.label_167.setFont(font5)
 
         self.gridLayout_94.addWidget(self.label_167, 0, 0, 1, 1)
 
         self.label_166 = QLabel(self.tab_128)
         self.label_166.setObjectName(u"label_166")
-        self.label_166.setFont(font6)
+        self.label_166.setFont(font5)
 
         self.gridLayout_94.addWidget(self.label_166, 0, 2, 1, 1)
 
@@ -1793,7 +1470,7 @@ class Ui_LogecC3(object):
 
         self.bruteforce_download_seclist_top10mil_usernames_4 = QPushButton(self.tab_128)
         self.bruteforce_download_seclist_top10mil_usernames_4.setObjectName(u"bruteforce_download_seclist_top10mil_usernames_4")
-        self.bruteforce_download_seclist_top10mil_usernames_4.setFont(font5)
+        self.bruteforce_download_seclist_top10mil_usernames_4.setFont(font4)
         self.bruteforce_download_seclist_top10mil_usernames_4.setAutoDefault(False)
         self.bruteforce_download_seclist_top10mil_usernames_4.setFlat(False)
 
@@ -1816,7 +1493,7 @@ class Ui_LogecC3(object):
 
         self.bruteforce_download_seclist_topshort_4 = QPushButton(self.tab_128)
         self.bruteforce_download_seclist_topshort_4.setObjectName(u"bruteforce_download_seclist_topshort_4")
-        self.bruteforce_download_seclist_topshort_4.setFont(font5)
+        self.bruteforce_download_seclist_topshort_4.setFont(font4)
         self.bruteforce_download_seclist_topshort_4.setAutoDefault(False)
         self.bruteforce_download_seclist_topshort_4.setFlat(False)
 
@@ -1878,7 +1555,9 @@ class Ui_LogecC3(object):
         self.label_75 = QLabel(self.tab_60)
         self.label_75.setObjectName(u"label_75")
         self.label_75.setGeometry(QRect(440, 10, 191, 19))
-        self.label_75.setFont(font3)
+        font6 = QFont()
+        font6.setUnderline(True)
+        self.label_75.setFont(font6)
         self.lineEdit_25 = QLineEdit(self.tab_60)
         self.lineEdit_25.setObjectName(u"lineEdit_25")
         self.lineEdit_25.setGeometry(QRect(12, 70, 131, 27))
@@ -1901,7 +1580,7 @@ class Ui_LogecC3(object):
         self.bruteforce_download_seclist_top10mil_usernames_5 = QPushButton(self.tab_60)
         self.bruteforce_download_seclist_top10mil_usernames_5.setObjectName(u"bruteforce_download_seclist_top10mil_usernames_5")
         self.bruteforce_download_seclist_top10mil_usernames_5.setGeometry(QRect(150, 70, 80, 27))
-        self.bruteforce_download_seclist_top10mil_usernames_5.setFont(font5)
+        self.bruteforce_download_seclist_top10mil_usernames_5.setFont(font4)
         self.bruteforce_download_seclist_top10mil_usernames_5.setAutoDefault(False)
         self.bruteforce_download_seclist_top10mil_usernames_5.setFlat(False)
         self.checkBox_22 = QCheckBox(self.tab_60)
@@ -2146,7 +1825,7 @@ class Ui_LogecC3(object):
 
         self.label_86 = QLabel(self.tab_75)
         self.label_86.setObjectName(u"label_86")
-        self.label_86.setFont(font3)
+        self.label_86.setFont(font6)
 
         self.gridLayout_54.addWidget(self.label_86, 0, 0, 2, 1)
 
@@ -2759,7 +2438,7 @@ class Ui_LogecC3(object):
         self.toolBox.addItem(self.page_7, u"Wordlists")
         self.page_8 = QWidget()
         self.page_8.setObjectName(u"page_8")
-        self.page_8.setGeometry(QRect(0, 0, 1517, 678))
+        self.page_8.setGeometry(QRect(0, 0, 100, 30))
         self.toolBox.addItem(self.page_8, u"Other - Not Yet Occupied")
 
         self.gridLayout_52.addWidget(self.toolBox, 0, 0, 1, 1)
@@ -2769,223 +2448,6 @@ class Ui_LogecC3(object):
         self.gridLayout_25.addWidget(self.tabWidget_10, 0, 0, 1, 1)
 
         self.tabWidget.addTab(self.tab_27, "")
-        self.tab_20 = QWidget()
-        self.tab_20.setObjectName(u"tab_20")
-        self.gridLayout_9 = QGridLayout(self.tab_20)
-        self.gridLayout_9.setObjectName(u"gridLayout_9")
-        self.tabWidget_7 = QTabWidget(self.tab_20)
-        self.tabWidget_7.setObjectName(u"tabWidget_7")
-        self.tab_21 = QWidget()
-        self.tab_21.setObjectName(u"tab_21")
-        self.gridLayout_14 = QGridLayout(self.tab_21)
-        self.gridLayout_14.setObjectName(u"gridLayout_14")
-        self.textEdit_3 = QTextEdit(self.tab_21)
-        self.textEdit_3.setObjectName(u"textEdit_3")
-
-        self.gridLayout_14.addWidget(self.textEdit_3, 0, 0, 1, 1)
-
-        self.tabWidget_7.addTab(self.tab_21, "")
-        self.tab_19 = QWidget()
-        self.tab_19.setObjectName(u"tab_19")
-        self.gridLayout_15 = QGridLayout(self.tab_19)
-        self.gridLayout_15.setObjectName(u"gridLayout_15")
-        self.label_12 = QLabel(self.tab_19)
-        self.label_12.setObjectName(u"label_12")
-
-        self.gridLayout_15.addWidget(self.label_12, 0, 0, 1, 1)
-
-        self.textEdit_4 = QTextEdit(self.tab_19)
-        self.textEdit_4.setObjectName(u"textEdit_4")
-
-        self.gridLayout_15.addWidget(self.textEdit_4, 1, 1, 1, 1)
-
-        self.tabWidget_7.addTab(self.tab_19, "")
-        self.tab_32 = QWidget()
-        self.tab_32.setObjectName(u"tab_32")
-        self.label_25 = QLabel(self.tab_32)
-        self.label_25.setObjectName(u"label_25")
-        self.label_25.setGeometry(QRect(20, 40, 201, 19))
-        self.label_34 = QLabel(self.tab_32)
-        self.label_34.setObjectName(u"label_34")
-        self.label_34.setGeometry(QRect(20, 140, 261, 19))
-        self.label_35 = QLabel(self.tab_32)
-        self.label_35.setObjectName(u"label_35")
-        self.label_35.setGeometry(QRect(20, 170, 101, 19))
-        self.label_36 = QLabel(self.tab_32)
-        self.label_36.setObjectName(u"label_36")
-        self.label_36.setGeometry(QRect(20, 200, 101, 19))
-        self.label_37 = QLabel(self.tab_32)
-        self.label_37.setObjectName(u"label_37")
-        self.label_37.setGeometry(QRect(20, 230, 131, 19))
-        self.textEdit = QTextEdit(self.tab_32)
-        self.textEdit.setObjectName(u"textEdit")
-        self.textEdit.setGeometry(QRect(260, 230, 621, 311))
-        self.progressBar_17 = QProgressBar(self.tab_32)
-        self.progressBar_17.setObjectName(u"progressBar_17")
-        self.progressBar_17.setGeometry(QRect(140, 600, 781, 23))
-        self.progressBar_17.setAutoFillBackground(False)
-        self.progressBar_17.setMaximum(100)
-        self.progressBar_17.setValue(75)
-        self.tabWidget_7.addTab(self.tab_32, "")
-        self.tab_36 = QWidget()
-        self.tab_36.setObjectName(u"tab_36")
-        self.gridLayout_27 = QGridLayout(self.tab_36)
-        self.gridLayout_27.setObjectName(u"gridLayout_27")
-        self.label_59 = QLabel(self.tab_36)
-        self.label_59.setObjectName(u"label_59")
-
-        self.gridLayout_27.addWidget(self.label_59, 0, 0, 1, 1)
-
-        self.scrollArea_3 = QScrollArea(self.tab_36)
-        self.scrollArea_3.setObjectName(u"scrollArea_3")
-        self.scrollArea_3.setWidgetResizable(True)
-        self.scrollAreaWidgetContents_3 = QWidget()
-        self.scrollAreaWidgetContents_3.setObjectName(u"scrollAreaWidgetContents_3")
-        self.scrollAreaWidgetContents_3.setGeometry(QRect(0, 0, 72, 16))
-        self.label_56 = QLabel(self.scrollAreaWidgetContents_3)
-        self.label_56.setObjectName(u"label_56")
-        self.label_56.setGeometry(QRect(9, 152, 59, 19))
-        self.checkBox_18 = QCheckBox(self.scrollAreaWidgetContents_3)
-        self.checkBox_18.setObjectName(u"checkBox_18")
-        self.checkBox_18.setGeometry(QRect(521, 500, 119, 25))
-        self.checkBox_13 = QCheckBox(self.scrollAreaWidgetContents_3)
-        self.checkBox_13.setObjectName(u"checkBox_13")
-        self.checkBox_13.setGeometry(QRect(521, 326, 119, 25))
-        self.checkBox_7 = QCheckBox(self.scrollAreaWidgetContents_3)
-        self.checkBox_7.setObjectName(u"checkBox_7")
-        self.checkBox_7.setGeometry(QRect(692, 152, 172, 25))
-        self.checkBox_8 = QCheckBox(self.scrollAreaWidgetContents_3)
-        self.checkBox_8.setObjectName(u"checkBox_8")
-        self.checkBox_8.setGeometry(QRect(870, 152, 149, 25))
-        self.checkBox_15 = QCheckBox(self.scrollAreaWidgetContents_3)
-        self.checkBox_15.setObjectName(u"checkBox_15")
-        self.checkBox_15.setGeometry(QRect(180, 500, 123, 25))
-        self.checkBox_16 = QCheckBox(self.scrollAreaWidgetContents_3)
-        self.checkBox_16.setObjectName(u"checkBox_16")
-        self.checkBox_16.setGeometry(QRect(351, 500, 83, 25))
-        self.label_57 = QLabel(self.scrollAreaWidgetContents_3)
-        self.label_57.setObjectName(u"label_57")
-        self.label_57.setGeometry(QRect(9, 326, 92, 19))
-        self.checkBox_5 = QCheckBox(self.scrollAreaWidgetContents_3)
-        self.checkBox_5.setObjectName(u"checkBox_5")
-        self.checkBox_5.setGeometry(QRect(521, 152, 119, 25))
-        self.label_58 = QLabel(self.scrollAreaWidgetContents_3)
-        self.label_58.setObjectName(u"label_58")
-        self.label_58.setGeometry(QRect(9, 500, 71, 19))
-        self.checkBox_9 = QCheckBox(self.scrollAreaWidgetContents_3)
-        self.checkBox_9.setObjectName(u"checkBox_9")
-        self.checkBox_9.setGeometry(QRect(692, 326, 172, 25))
-        self.checkBox_3 = QCheckBox(self.scrollAreaWidgetContents_3)
-        self.checkBox_3.setObjectName(u"checkBox_3")
-        self.checkBox_3.setGeometry(QRect(351, 152, 83, 25))
-        self.checkBox_3.setChecked(True)
-        self.checkBox_10 = QCheckBox(self.scrollAreaWidgetContents_3)
-        self.checkBox_10.setObjectName(u"checkBox_10")
-        self.checkBox_10.setGeometry(QRect(180, 326, 123, 25))
-        self.checkBox_17 = QCheckBox(self.scrollAreaWidgetContents_3)
-        self.checkBox_17.setObjectName(u"checkBox_17")
-        self.checkBox_17.setGeometry(QRect(870, 500, 149, 25))
-        self.checkBox_11 = QCheckBox(self.scrollAreaWidgetContents_3)
-        self.checkBox_11.setObjectName(u"checkBox_11")
-        self.checkBox_11.setGeometry(QRect(351, 326, 83, 25))
-        self.checkBox_12 = QCheckBox(self.scrollAreaWidgetContents_3)
-        self.checkBox_12.setObjectName(u"checkBox_12")
-        self.checkBox_12.setGeometry(QRect(870, 326, 149, 25))
-        self.checkBox = QCheckBox(self.scrollAreaWidgetContents_3)
-        self.checkBox.setObjectName(u"checkBox")
-        self.checkBox.setGeometry(QRect(180, 152, 123, 25))
-        self.checkBox.setChecked(True)
-        self.checkBox_14 = QCheckBox(self.scrollAreaWidgetContents_3)
-        self.checkBox_14.setObjectName(u"checkBox_14")
-        self.checkBox_14.setGeometry(QRect(692, 500, 172, 25))
-        self.textEdit_2 = QTextEdit(self.scrollAreaWidgetContents_3)
-        self.textEdit_2.setObjectName(u"textEdit_2")
-        self.textEdit_2.setGeometry(QRect(140, 180, 171, 131))
-        self.textEdit_6 = QTextEdit(self.scrollAreaWidgetContents_3)
-        self.textEdit_6.setObjectName(u"textEdit_6")
-        self.textEdit_6.setGeometry(QRect(330, 180, 171, 131))
-        self.textEdit_7 = QTextEdit(self.scrollAreaWidgetContents_3)
-        self.textEdit_7.setObjectName(u"textEdit_7")
-        self.textEdit_7.setGeometry(QRect(510, 180, 171, 131))
-        self.textEdit_8 = QTextEdit(self.scrollAreaWidgetContents_3)
-        self.textEdit_8.setObjectName(u"textEdit_8")
-        self.textEdit_8.setGeometry(QRect(690, 180, 171, 131))
-        self.textEdit_9 = QTextEdit(self.scrollAreaWidgetContents_3)
-        self.textEdit_9.setObjectName(u"textEdit_9")
-        self.textEdit_9.setGeometry(QRect(870, 180, 171, 131))
-        self.textEdit_10 = QTextEdit(self.scrollAreaWidgetContents_3)
-        self.textEdit_10.setObjectName(u"textEdit_10")
-        self.textEdit_10.setGeometry(QRect(150, 350, 171, 131))
-        self.textEdit_11 = QTextEdit(self.scrollAreaWidgetContents_3)
-        self.textEdit_11.setObjectName(u"textEdit_11")
-        self.textEdit_11.setGeometry(QRect(330, 350, 171, 131))
-        self.textEdit_12 = QTextEdit(self.scrollAreaWidgetContents_3)
-        self.textEdit_12.setObjectName(u"textEdit_12")
-        self.textEdit_12.setGeometry(QRect(510, 350, 171, 131))
-        self.textEdit_13 = QTextEdit(self.scrollAreaWidgetContents_3)
-        self.textEdit_13.setObjectName(u"textEdit_13")
-        self.textEdit_13.setGeometry(QRect(690, 350, 171, 131))
-        self.textEdit_14 = QTextEdit(self.scrollAreaWidgetContents_3)
-        self.textEdit_14.setObjectName(u"textEdit_14")
-        self.textEdit_14.setGeometry(QRect(870, 350, 171, 131))
-        self.textEdit_15 = QTextEdit(self.scrollAreaWidgetContents_3)
-        self.textEdit_15.setObjectName(u"textEdit_15")
-        self.textEdit_15.setGeometry(QRect(860, 530, 171, 131))
-        self.textEdit_16 = QTextEdit(self.scrollAreaWidgetContents_3)
-        self.textEdit_16.setObjectName(u"textEdit_16")
-        self.textEdit_16.setGeometry(QRect(320, 530, 171, 131))
-        self.textEdit_17 = QTextEdit(self.scrollAreaWidgetContents_3)
-        self.textEdit_17.setObjectName(u"textEdit_17")
-        self.textEdit_17.setGeometry(QRect(680, 530, 171, 131))
-        self.textEdit_18 = QTextEdit(self.scrollAreaWidgetContents_3)
-        self.textEdit_18.setObjectName(u"textEdit_18")
-        self.textEdit_18.setGeometry(QRect(500, 530, 171, 131))
-        self.textEdit_19 = QTextEdit(self.scrollAreaWidgetContents_3)
-        self.textEdit_19.setObjectName(u"textEdit_19")
-        self.textEdit_19.setGeometry(QRect(140, 530, 171, 131))
-        self.textEdit_20 = QTextEdit(self.scrollAreaWidgetContents_3)
-        self.textEdit_20.setObjectName(u"textEdit_20")
-        self.textEdit_20.setGeometry(QRect(0, 170, 131, 131))
-        self.scrollArea_3.setWidget(self.scrollAreaWidgetContents_3)
-
-        self.gridLayout_27.addWidget(self.scrollArea_3, 1, 0, 1, 1)
-
-        self.tabWidget_7.addTab(self.tab_36, "")
-        self.tab_15 = QWidget()
-        self.tab_15.setObjectName(u"tab_15")
-        self.tabWidget_7.addTab(self.tab_15, "")
-        self.Eagle = QWidget()
-        self.Eagle.setObjectName(u"Eagle")
-        self.gridLayout = QGridLayout(self.Eagle)
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.tabWidget_4 = QTabWidget(self.Eagle)
-        self.tabWidget_4.setObjectName(u"tabWidget_4")
-        self.tab = QWidget()
-        self.tab.setObjectName(u"tab")
-        self.tabWidget_4.addTab(self.tab, "")
-        self.tab_3 = QWidget()
-        self.tab_3.setObjectName(u"tab_3")
-        self.gridLayout_11 = QGridLayout(self.tab_3)
-        self.gridLayout_11.setObjectName(u"gridLayout_11")
-        self.scrollArea_4 = QScrollArea(self.tab_3)
-        self.scrollArea_4.setObjectName(u"scrollArea_4")
-        self.scrollArea_4.setWidgetResizable(True)
-        self.scrollAreaWidgetContents_4 = QWidget()
-        self.scrollAreaWidgetContents_4.setObjectName(u"scrollAreaWidgetContents_4")
-        self.scrollAreaWidgetContents_4.setGeometry(QRect(0, 0, 1063, 712))
-        self.scrollArea_4.setWidget(self.scrollAreaWidgetContents_4)
-
-        self.gridLayout_11.addWidget(self.scrollArea_4, 0, 0, 1, 1)
-
-        self.tabWidget_4.addTab(self.tab_3, "")
-
-        self.gridLayout.addWidget(self.tabWidget_4, 0, 0, 1, 1)
-
-        self.tabWidget_7.addTab(self.Eagle, "")
-
-        self.gridLayout_9.addWidget(self.tabWidget_7, 0, 0, 1, 1)
-
-        self.tabWidget.addTab(self.tab_20, "")
 
         self.gridLayout_4.addWidget(self.tabWidget, 0, 0, 1, 1)
 
@@ -3015,9 +2477,8 @@ class Ui_LogecC3(object):
         self.tabWidget.setCurrentIndex(0)
         self.bruteforce_panel_2.setCurrentIndex(2)
         self.c2_shell_tab.setCurrentIndex(0)
-        self.osint_reddit_tab.setCurrentIndex(1)
-        self.tabWidget_3.setCurrentIndex(1)
-        self.tabWidget_8.setCurrentIndex(1)
+        self.osint_reddit_tab.setCurrentIndex(0)
+        self.tabWidget_8.setCurrentIndex(0)
         self.bashbuild_toolBox.setCurrentIndex(3)
         self.tabWidget_9.setCurrentIndex(0)
         self.tabWidget_6.setCurrentIndex(1)
@@ -3038,8 +2499,6 @@ class Ui_LogecC3(object):
         self.tabWidget_15.setCurrentIndex(1)
         self.toolBox.setCurrentIndex(0)
         self.tabWidget_5.setCurrentIndex(1)
-        self.tabWidget_7.setCurrentIndex(5)
-        self.tabWidget_4.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(LogecC3)
@@ -3195,48 +2654,6 @@ class Ui_LogecC3(object):
 #endif // QT_CONFIG(shortcut)
         self.c2_shell_tab.setTabText(self.c2_shell_tab.indexOf(self.tab_59), QCoreApplication.translate("LogecC3", u"LocalShell", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.c2_tab), QCoreApplication.translate("LogecC3", u"C2", None))
-        self.label_7.setText(QCoreApplication.translate("LogecC3", u"Keyword(s) ", None))
-        self.dashboard_osint_keyword.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Windows", None))
-        self.comboBox_3.setItemText(0, QCoreApplication.translate("LogecC3", u"Everything (Grabs everything, all possible boxes are checked)", None))
-        self.comboBox_3.setItemText(1, QCoreApplication.translate("LogecC3", u"Username (pulls data with specific username in it)", None))
-        self.comboBox_3.setItemText(2, QCoreApplication.translate("LogecC3", u"Everythign Keyword (grabs wverything based off of specific keyword)", None))
-        self.comboBox_3.setItemText(3, QCoreApplication.translate("LogecC3", u"Custom (Nothing checked, up to user)", None))
-
-        self.label_11.setText(QCoreApplication.translate("LogecC3", u"Reddit", None))
-        self.lineEdit_6.setText(QCoreApplication.translate("LogecC3", u"Length", None))
-#if QT_CONFIG(tooltip)
-        self.dashboard_reddit_onlycomments.setToolTip(QCoreApplication.translate("LogecC3", u"Search ONLY for comments with \"KEYWORD\" in the text", None))
-#endif // QT_CONFIG(tooltip)
-        self.dashboard_reddit_onlycomments.setText(QCoreApplication.translate("LogecC3", u"Comment Search", None))
-        self.combo_time_2.setItemText(0, QCoreApplication.translate("LogecC3", u"All", None))
-        self.combo_time_2.setItemText(1, QCoreApplication.translate("LogecC3", u"Year", None))
-        self.combo_time_2.setItemText(2, QCoreApplication.translate("LogecC3", u"Month", None))
-        self.combo_time_2.setItemText(3, QCoreApplication.translate("LogecC3", u"Day", None))
-        self.combo_time_2.setItemText(4, QCoreApplication.translate("LogecC3", u"Hour", None))
-
-        self.label_15.setText(QCoreApplication.translate("LogecC3", u"SortBy", None))
-        self.label_17.setText(QCoreApplication.translate("LogecC3", u"Time", None))
-#if QT_CONFIG(tooltip)
-        self.dashboard_reddit_onlyprofile.setToolTip(QCoreApplication.translate("LogecC3", u"Search for a user profile, enter the username in \"keyword\"", None))
-#endif // QT_CONFIG(tooltip)
-        self.dashboard_reddit_onlyprofile.setText(QCoreApplication.translate("LogecC3", u"Profile Search", None))
-        self.combo_sort_2.setItemText(0, QCoreApplication.translate("LogecC3", u"Hot", None))
-        self.combo_sort_2.setItemText(1, QCoreApplication.translate("LogecC3", u"Top", None))
-        self.combo_sort_2.setItemText(2, QCoreApplication.translate("LogecC3", u"New", None))
-        self.combo_sort_2.setItemText(3, QCoreApplication.translate("LogecC3", u"Controversial", None))
-        self.combo_sort_2.setItemText(4, QCoreApplication.translate("LogecC3", u"Comments", None))
-
-#if QT_CONFIG(tooltip)
-        self.dashboard_reddit_downloadmedia.setToolTip(QCoreApplication.translate("LogecC3", u"Download Images/Videos associated with the posts searched", None))
-#endif // QT_CONFIG(tooltip)
-        self.dashboard_reddit_downloadmedia.setText(QCoreApplication.translate("LogecC3", u"Download Media", None))
-        self.dashboard_reddit_subreddit.setPlaceholderText(QCoreApplication.translate("LogecC3", u"r/technology", None))
-        self.label_23.setText(QCoreApplication.translate("LogecC3", u"Subreddit (Optional)", None))
-        self.dashboard_reddit_hideNSFW.setText(QCoreApplication.translate("LogecC3", u"Hide NSFW", None))
-        self.lineEdit_7.setText(QCoreApplication.translate("LogecC3", u"Non Functional", None))
-        self.portscan_start_5.setText(QCoreApplication.translate("LogecC3", u"-->> Start <<--", None))
-        self.label_24.setText(QCoreApplication.translate("LogecC3", u"Preset", None))
-        self.osint_reddit_tab.setTabText(self.osint_reddit_tab.indexOf(self.tab_12), QCoreApplication.translate("LogecC3", u"Dashboard", None))
         self.groupBox_2.setTitle("")
         self.DB_Query_osint_reddit.setPlaceholderText(QCoreApplication.translate("LogecC3", u"SELECT * FROM RedditResults", None))
 #if QT_CONFIG(tooltip)
@@ -3286,41 +2703,8 @@ class Ui_LogecC3(object):
         self.checkBox_29.setText(QCoreApplication.translate("LogecC3", u"Append Results to DB", None))
         self.osint_reddit_search.setText(QCoreApplication.translate("LogecC3", u"-->> Search <<--", None))
         self.osint_reddit_gui_hide_search.setText(QCoreApplication.translate("LogecC3", u"Hide Search", None))
-        self.osint_reddit_tab.setTabText(self.osint_reddit_tab.indexOf(self.tab_2), QCoreApplication.translate("LogecC3", u"Page", None))
-        self.label_54.setText(QCoreApplication.translate("LogecC3", u"Search Term", None))
-        self.label_53.setText(QCoreApplication.translate("LogecC3", u"In Title", None))
-        self.label_52.setText(QCoreApplication.translate("LogecC3", u"FileType", None))
-        self.label_50.setText(QCoreApplication.translate("LogecC3", u"Keyword", None))
-        self.label_51.setText(QCoreApplication.translate("LogecC3", u"Site", None))
-        self.checkBox_21.setText(QCoreApplication.translate("LogecC3", u"Search For Link", None))
-        self.checkBox_19.setText(QCoreApplication.translate("LogecC3", u"Related/Similar Sites", None))
-        self.checkBox_20.setText(QCoreApplication.translate("LogecC3", u"Show Cached Content", None))
-        self.osint_dork_generate.setText(QCoreApplication.translate("LogecC3", u"Generate", None))
-        self.tabWidget_3.setTabText(self.tabWidget_3.indexOf(self.tab_31), QCoreApplication.translate("LogecC3", u"Results", None))
-        self.lineEdit_18.setText(QCoreApplication.translate("LogecC3", u"Put a DB view (or multiple) of a table in the DB with cheathssset google dorks", None))
-        self.tabWidget_3.setTabText(self.tabWidget_3.indexOf(self.tab_42), QCoreApplication.translate("LogecC3", u"CheatSheet", None))
-        self.osint_reddit_tab.setTabText(self.osint_reddit_tab.indexOf(self.tab_18), QCoreApplication.translate("LogecC3", u"DorkGen", None))
-        self.osint_reddit_tab.setTabText(self.osint_reddit_tab.indexOf(self.tab_14), QCoreApplication.translate("LogecC3", u"VideoCams(use qwebview)", None))
+        self.osint_reddit_tab.setTabText(self.osint_reddit_tab.indexOf(self.tab_2), QCoreApplication.translate("LogecC3", u"Reddit Query", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), QCoreApplication.translate("LogecC3", u"Osint", None))
-        self.label_16.setText(QCoreApplication.translate("LogecC3", u"Preset", None))
-        self.comboBox_2.setItemText(0, QCoreApplication.translate("LogecC3", u"WebScan (Nikto, dirbuster)", None))
-        self.comboBox_2.setItemText(1, QCoreApplication.translate("LogecC3", u"Full Scan (Everything, portscan first)", None))
-
-        self.portscan_start_4.setText(QCoreApplication.translate("LogecC3", u"-->> Start <<--", None))
-        self.dashboard_portscan_IP.setPlaceholderText(QCoreApplication.translate("LogecC3", u"8.8.8.8", None))
-        self.dashboard_portscan_stealth_check.setText(QCoreApplication.translate("LogecC3", u"Stealth", None))
-        self.checkBox_6.setText(QCoreApplication.translate("LogecC3", u"Other2", None))
-        self.dashboard_portscan_standard_check.setText(QCoreApplication.translate("LogecC3", u"Standard", None))
-        self.dashboard_portscan_extraport.setPlaceholderText(QCoreApplication.translate("LogecC3", u"80, 443", None))
-        self.dashboard_portscan_maxport.setPlaceholderText(QCoreApplication.translate("LogecC3", u"1024", None))
-        self.dashboard_portscan_fast_check.setText(QCoreApplication.translate("LogecC3", u"Fast", None))
-        self.dashboard_portscan_minport.setPlaceholderText(QCoreApplication.translate("LogecC3", u"1", None))
-        self.label_21.setText(QCoreApplication.translate("LogecC3", u"PortScan", None))
-        self.dashboard_dnsName.setPlaceholderText(QCoreApplication.translate("LogecC3", u"8.8.8.8", None))
-        self.label_22.setText(QCoreApplication.translate("LogecC3", u"DNS Lookup", None))
-        self.lineEdit_9.setText(QCoreApplication.translate("LogecC3", u"Non Functional", None))
-        self.label_38.setText(QCoreApplication.translate("LogecC3", u"IP/Name", None))
-        self.tabWidget_8.setTabText(self.tabWidget_8.indexOf(self.tab_24), QCoreApplication.translate("LogecC3", u"DashBoard", None))
         self.textEdit_24.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -3926,162 +3310,6 @@ class Ui_LogecC3(object):
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_8), QCoreApplication.translate("LogecC3", u"Other - Not Yet Occupied", None))
         self.tabWidget_10.setTabText(self.tabWidget_10.indexOf(self.tab_7), QCoreApplication.translate("LogecC3", u"Content", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_27), QCoreApplication.translate("LogecC3", u"Other", None))
-        self.textEdit_3.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">An easy connect to at least openvpn, have a config file location input, location of openvpn executable, and have it open in its own thread</p></body></html>", None))
-        self.tabWidget_7.setTabText(self.tabWidget_7.indexOf(self.tab_21), QCoreApplication.translate("LogecC3", u"VPN", None))
-        self.label_12.setText(QCoreApplication.translate("LogecC3", u"HTML files", None))
-        self.textEdit_4.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">A quick way to spin up a simple flask webserver, have options for port, IP to put it on, html files (and a default fake page), and make it on its own thread</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">also do popup to take files from fielsystem if possible</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; mar"
-                        "gin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">can have preview of site in this tab too</p></body></html>", None))
-        self.tabWidget_7.setTabText(self.tabWidget_7.indexOf(self.tab_19), QCoreApplication.translate("LogecC3", u"FlaskWebSErver", None))
-        self.label_25.setText(QCoreApplication.translate("LogecC3", u"Current Risk Level", None))
-        self.label_34.setText(QCoreApplication.translate("LogecC3", u"# of Events that most likely had/were:", None))
-        self.label_35.setText(QCoreApplication.translate("LogecC3", u"SIEM Alert: 3", None))
-        self.label_36.setText(QCoreApplication.translate("LogecC3", u"Logged: 41", None))
-        self.label_37.setText(QCoreApplication.translate("LogecC3", u"No Detection: 2", None))
-        self.textEdit.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">THe idea here is to assign a risk level to each function, and feed it to this plugin. if something (such as running mimikatz) is most likely alerted/high risk, it gets a +1 to the alerted feild in the list, same as down the stack</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Overall, from those scores, a &quot;Risk somewo"
-                        "rd&quot; is created on how risky your operations are, aka how likely you are to get caught. Higher is worse/more likely.</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">long term it would be great if the C2 could give feedback on if an alert happened or not but that's a pipe dream<br /><br /><br />for the progress bar, each level =  total levels/100, and each level has a diff color (green to start, red to finish) s lets say there are 4 levels, 75% would be level 3 % a deep orange/redish if possible</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-        self.tabWidget_7.setTabText(self.tabWidget_7.indexOf(self.tab_32), QCoreApplication.translate("LogecC3", u"Risk Report", None))
-        self.label_59.setText(QCoreApplication.translate("LogecC3", u"Dev Tracker for current modules", None))
-        self.label_56.setText(QCoreApplication.translate("LogecC3", u"Portscan", None))
-        self.checkBox_18.setText(QCoreApplication.translate("LogecC3", u"Fully Built out", None))
-        self.checkBox_13.setText(QCoreApplication.translate("LogecC3", u"Fully Built out", None))
-        self.checkBox_7.setText(QCoreApplication.translate("LogecC3", u"Optimized/cleaned up", None))
-        self.checkBox_8.setText(QCoreApplication.translate("LogecC3", u"File in correct spot", None))
-        self.checkBox_15.setText(QCoreApplication.translate("LogecC3", u"Error Handling", None))
-        self.checkBox_16.setText(QCoreApplication.translate("LogecC3", u"Working", None))
-        self.label_57.setText(QCoreApplication.translate("LogecC3", u"Reddit OSINT", None))
-        self.checkBox_5.setText(QCoreApplication.translate("LogecC3", u"Fully Built out", None))
-        self.label_58.setText(QCoreApplication.translate("LogecC3", u"Bruteforce", None))
-        self.checkBox_9.setText(QCoreApplication.translate("LogecC3", u"Optimized/cleaned up", None))
-        self.checkBox_3.setText(QCoreApplication.translate("LogecC3", u"Working", None))
-        self.checkBox_10.setText(QCoreApplication.translate("LogecC3", u"Error Handling", None))
-        self.checkBox_17.setText(QCoreApplication.translate("LogecC3", u"File in correct spot", None))
-        self.checkBox_11.setText(QCoreApplication.translate("LogecC3", u"Working", None))
-        self.checkBox_12.setText(QCoreApplication.translate("LogecC3", u"File in correct spot", None))
-        self.checkBox.setText(QCoreApplication.translate("LogecC3", u"Error Handling", None))
-        self.checkBox_14.setText(QCoreApplication.translate("LogecC3", u"Optimized/cleaned up", None))
-        self.textEdit_2.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Mostly done, need to catch any other possibel errors</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Gonna be a bigger task than expected, as I need to use Qthreads and or signals to get a connector accross saying an error ocured</p></body></html>", None))
-        self.textEdit_6.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-        self.textEdit_7.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-        self.textEdit_8.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Optimized with executor, and failry cleaned up</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Need to do one more pass with cleaning commetns etc</p></body></html>", None))
-        self.textEdit_9.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-        self.textEdit_10.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-        self.textEdit_11.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Works, need to get subreddit function properly up and going though</p></body></html>", None))
-        self.textEdit_12.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-        self.textEdit_13.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-        self.textEdit_14.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-        self.textEdit_15.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-        self.textEdit_16.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Current Error: DB not in same thread :(</p></body></html>", None))
-        self.textEdit_17.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-        self.textEdit_18.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-        self.textEdit_19.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-        self.textEdit_20.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Integrate some C, (do the scanning with C) nmap is kicking my ass interms of speed</p></body></html>", None))
-        self.tabWidget_7.setTabText(self.tabWidget_7.indexOf(self.tab_36), QCoreApplication.translate("LogecC3", u"Dev Track", None))
-        self.tabWidget_7.setTabText(self.tabWidget_7.indexOf(self.tab_15), QCoreApplication.translate("LogecC3", u"SQL Injection?", None))
-        self.tabWidget_4.setTabText(self.tabWidget_4.indexOf(self.tab), QCoreApplication.translate("LogecC3", u"Config", None))
-        self.tabWidget_4.setTabText(self.tabWidget_4.indexOf(self.tab_3), QCoreApplication.translate("LogecC3", u"Jobs", None))
-        self.tabWidget_7.setTabText(self.tabWidget_7.indexOf(self.Eagle), QCoreApplication.translate("LogecC3", u"Eagle", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_20), QCoreApplication.translate("LogecC3", u"Ideas/POC", None))
         self.menuFile.setTitle(QCoreApplication.translate("LogecC3", u"File", None))
         self.menu_GettingStarted.setTitle(QCoreApplication.translate("LogecC3", u"Getting Started", None))
     # retranslateUi
