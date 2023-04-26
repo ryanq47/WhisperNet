@@ -3,6 +3,8 @@ import os
 from typing import Tuple
 import logging
 from PySide6.QtCore import QThread, Signal, QObject, Slot
+import math
+import time
 
 
 global_debug = True
@@ -86,6 +88,9 @@ class FClient(QObject):
                 This function decides if the command is meant for the server or the client. If a 3rd item in the list 
                 exists, that means the client name has been included in the command and it is meant for a client. 
                 It's right away to be more efficient/not cause any errors later
+                
+        Final notes, gui_to_client tries to split it's command into 3 parts, as it's meant for client commands, so if you only need a one 
+        liner command (i.e: sanity-check) put it here, otherwise it'll error out down there on the split
         
     """
     def gui_to_server(self, command):
@@ -100,16 +105,19 @@ class FClient(QObject):
         
         except:
             if command.lower() == "clients":
-                self.shellformat(self.send_msg(formatted_request))
+                self.shellformat(self.send_msg(msg=formatted_request, conn=self.server))
+            
+            elif command.lower() == "sanity-check":
+                self.shellformat(self.send_msg(msg=formatted_request, conn=self.server))
 
             elif command.lower() == "clear":
                 self.shellformat()
             
             elif command.lower() == "export-clients":
-                self.shellformat(self.send_msg("export-clients"))
+                self.shellformat(self.send_msg(msg="export-clients", conn=self.server))
                 
             else:
-                self.shellformat(self.send_msg(command))
+                self.shellformat(self.send_msg(msg=command, conn=self.server))
                 
                 #self.shellformat(f"command '{command}' not found")
                 #logging.debug(f"Command {command} not found.") 
@@ -150,7 +158,7 @@ class FClient(QObject):
         else:
             #print("ELSE")
             #yes I know this is blindly sending commands to the server, but it makes it easier to manage all 3 puzzle pieces
-            self.shellformat(self.send_msg(formatted_request))
+            self.shellformat(self.send_msg(msg=formatted_request, conn=self.server))
 
     ##== Additional GUI
         """     
@@ -190,53 +198,97 @@ class FClient(QObject):
 
         
         """
-    def send_msg(self, message=""):
-        ## Add error handling later
-        logging.debug(f"[Logec (friendly_client: send_msg)] sending: {message}")
-        try:
-            self.server.send(self.str_encode(message))
-        except Exception as e:
-            logging.debug(f"[Logec (friendly_client: send_msg)] Error Sending '{message}': {e}")
-
-
-        full_msg = ""
-        new_msg = True
-        HEADERSIZE = 10
-
-        logging.debug(f"[Logec (friendly_client: send_msg)] Waiting on response...")
+    
+    ### If you saw the note in the server code about these being indepent, ignore that for this instnace. They are chained together 
+    ### becuase it's easiest to send, recieve and return a message all in one go rather than have independent calls
+    
+    def send_msg(self, msg, conn):
+        #msg = str_encode(_msg)
+        
+        #conn = server
+        ## clients need to have a shared known header beforehand. Default is 10
+        HEADER_BYTES = 10
+        BUFFER = 1024
+        
+        ## get the length of the message in bytes
+        msg_length = len(msg)
+        
+        ## create a header for the message that includes the length of the message
+        header = self.str_encode(str(msg_length).zfill(HEADER_BYTES))#.encode()
+        
+        ## send the header followed by the message in chunks
+        print(f"SENDING HEADER: {header}")
+        conn.send(header)
+        
+        for i in range(0, math.ceil(msg_length/BUFFER)):
+            
+            ## gets the right spot in the message in a loop
+            chunk = msg[i*BUFFER:(i+1)*BUFFER]
+            print(f"SENDING CHUNK: {chunk}")
+            conn.send(self.str_encode(chunk))
+            print("CHUNK SENT ^^^^^^")
+            
+            ## test delay
+            time.sleep(0.01)
         
         
-        ##===============================Recv Protocol==================================================
-        ## implement thison the server side for recieving.
-        ## basically, it keeps trying to receive messages until the message matches the whole message size, then it breaks
-        ## a bit weird and no official way to send things other than chuncking them back as one large ass byte array
-        # but it works
+        ## calling receive msg
+        recv_msg = self.recieve_msg(self.server)
+        return recv_msg
+    
+    
+    def recieve_msg(self, conn):
+        complete_msg = ""
+        ## clients need to have a shared known header beforehand. Default is 10
+        HEADER_BYTES = 10
+        BUFFER = 1024
+        header_value = 0
+        header_contents = ""
         
-        ## actually, could fix that by getting value of header, and receiving until length of received msg matches header, instead of whole message
+        msg_bytes_recieved_so_far = 0
         
-        ## test this outside of here
+        print(f"WAITING ON HEADER TO BE SENT:")
+        header_msg_length = conn.recv(HEADER_BYTES).decode() #int(bytes_decode(msg)
+        print("HEADER:" + header_msg_length)
         
-        while True:
-            msg = self.server.recv(int(self.buffer))  # << adjustble, how many bytes you want to get per iteration
-            if new_msg:
-                # Carving up msg into the first X bytes (X = headersize)
-                msglen = int(msg[:HEADERSIZE])
-                new_msg = False
+        ## getting the amount of chunks/iterations eneded at 1024 bytes a message
+        chunks = math.ceil(int(header_msg_length)/BUFFER)
+        #print(chunks)
+        
+        #print(bytes_decode(msg))
+        
+        complete_msg = "" #bytes_decode(msg)[10:]
+        
+        #while True:
+        for i in range(0, chunks):
+            print(f"RECEVING CHUNK:")
+            msg = conn.recv(BUFFER)  # << adjustble, how many bytes you want to get per iteration
+            
+            ## getting the amount of bytes sent so far
+            msg_bytes_recieved_so_far = msg_bytes_recieved_so_far + len(self.bytes_decode(msg))
 
-            print(f"full message length: {msglen}") if global_debug else None
-            print(f"msg partial:" + msg.decode()) if global_debug else None
-            full_msg += self.str_decode(msg)
+            complete_msg += self.bytes_decode(msg)
+            
+            print(self.bytes_decode(msg))
+            
+            print(f"""DEBUG:
+                Full Message Length (based on header value) {header_msg_length}
+                Header size: {HEADER_BYTES}
 
-            print("total bytes received: " + str(len(full_msg))) if global_debug else None
-
-            # if the full message matches the originally sent message size (msglen) (excluding headers) message has been sent
-            if len(full_msg) - HEADERSIZE == msglen:
-                print("full msg recvd") if global_debug else None
-                print(full_msg[HEADERSIZE:]) if global_debug else None
-                new_msg = True
-
-                # returning full message and stripping header
-                return full_msg[HEADERSIZE:]
+                Size of message recieved so far: {msg_bytes_recieved_so_far}  
+                
+                Chunks: {chunks}          
+                
+                """)
+            
+            ## if complete_msg is the same length as what the headers says, consider it complete. 
+            if len(complete_msg) == header_msg_length:
+                print("MSG TRANSFER COMPLETE")
+        
+        print("VALUE OF MSG: \n" + complete_msg)
+        return complete_msg
+        
+        
         ##==========================================================================================
 
 
@@ -253,7 +305,7 @@ class FClient(QObject):
         Output/Return: Returns a string or bytes, depending on the respective function
         
         """
-    def str_decode(self, input) -> str:
+    def bytes_decode(self, input) -> str:
         decoded_result = input.decode()
         return decoded_result
 

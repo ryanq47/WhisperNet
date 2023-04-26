@@ -11,6 +11,7 @@ import select
 import logging
 import argparse
 import json
+import math
 
 """
 Argparse settings first in order to be able to change anything
@@ -323,7 +324,8 @@ class ServerFriendlyClientHandler:
         logging.debug(f"[Server (ServerFriendlyClientHandler)]Friendly Client authenticated, user={self.username}")
 
         while message:
-            raw_user_input = bytes_decode(self.conn.recv(1024))
+            print("receving msg from client")
+            raw_user_input = self.recieve_msg_from_client() #bytes_decode(self.conn.recv(1024))
             user_input = self.parse_msg_for_server(raw_user_input)         
 
             logging.debug(f"[client ({self.username}) -> Server] {raw_user_input}")
@@ -381,6 +383,25 @@ class ServerFriendlyClientHandler:
                     self.send_msg_to_friendlyclient(self.current_client_list)
                 else:
                     self.send_msg_to_friendlyclient("No Current Clients")
+                    
+            elif message == "sanity-check":
+                funnymsg = "BANG BANG... hmmm, yep it works! [This message was sent from the server]" \
+                    "If you see this & a lot of 'I Hate Buzzwords;' then everything between you and the server is working!"
+                
+                funny_msg_big = ("I Hate Buzzwords;") * 2048
+                
+                self.send_msg_to_friendlyclient(f"{funnymsg}\n\n{funny_msg_big}")
+                
+            elif message == "balls":
+                funny_msg = "I see you've reqeuested a lot of data from our ML, AI" \
+                    "Integrated, Algorythmic Next Gen earth shattering orchestration appliance firewall IDS XDR XD EDR SOAR IPS, "\
+                    "Here's the data it returned:"
+                    
+                funny_msg_big = ("I Hate Buzzwords;") * 2048
+                
+                #self.send_msg_to_friendlyclient(f"{funny_msg}{funny_msg_big}")
+                self.send_msg_to_friendlyclient("test?")
+                
             
             ################
             ## Export Commands
@@ -501,7 +522,8 @@ class ServerFriendlyClientHandler:
                     
                     print("SESSION LOOP")
                     ## listen for friendly client
-                    a = bytes_decode(self.conn.recv(1024))
+                    #a = bytes_decode(self.conn.recv(1024))
+                    a = self.recieve_msg_from_client(self.conn)
                     #print(a)
                     
                     #
@@ -542,19 +564,93 @@ class ServerFriendlyClientHandler:
 ################
 ## MSG to Friendly Client stuff
 ################ 
+    """ 
+    These are meant to be called upon independently, yes they can work together if hardcoded, but when you need to send something,
+    use send, and when you need to receive, use recieve
+    """
 
-    def send_msg_to_friendlyclient(self, message:str):
-        try:
-            HEADERSIZE = 10
-            message = f"{len(message):<{HEADERSIZE}}" + message
-            #print("---head--|msg->")
-            encoded_response = str_encode(message)
-            self.conn.send(encoded_response)
+    def send_msg_to_friendlyclient(self, msg:str):
+        ## lazy fix to map self.conn to conn
+        conn = self.conn
+        
+        ## clients need to have a shared known header beforehand. Default is 10
+        HEADER_BYTES = 10
+        BUFFER = 1024
+        
+        ## get the length of the message in bytes
+        msg_length = len(msg)
+        
+        ## create a header for the message that includes the length of the message
+        header = str_encode(str(msg_length).zfill(HEADER_BYTES))#.encode()
+        
+        ## send the header followed by the message in chunks
+        print(f"SENDING HEADER: {header}")
+        conn.send(header)
+        
+        for i in range(0, math.ceil(msg_length/BUFFER)):
+            
+            try:
+                ## gets the right spot in the message in a loop
+                chunk = msg[i*BUFFER:(i+1)*BUFFER]
+                print(f"SENDING CHUNK: {chunk}")
+                conn.send(str_encode(chunk))
+            except Exception as e:
+                print(f"error sending: {e}")
+        
+        
+        ## does not need to receive any data from client atm. this just sends it back
+        #recv_msg = self.recieve_msg_from_client(conn)
+        #return recv_msg
+            
+    def recieve_msg_from_client(self) -> str:
+        conn = self.conn
+        complete_msg = ""
+        ## clients need to have a shared known header beforehand. Default is 10
+        HEADER_BYTES = 10
+        BUFFER = 1024
+        header_value = 0
+        header_contents = ""
+        
+        msg_bytes_recieved_so_far = 0
+        
+        print(f"WAITING ON HEADER TO BE SENT:")
+        header_msg_length = conn.recv(HEADER_BYTES).decode() #int(bytes_decode(msg)
+        print("HEADER:" + header_msg_length)
+        
+        ## getting the amount of chunks/iterations eneded at 1024 bytes a message
+        chunks = math.ceil(int(header_msg_length)/BUFFER)
+        
+        complete_msg = "" #bytes_decode(msg)[10:]
+        
+        #while True:
+        for i in range(0, chunks):
+            print(f"WAITING TO RECEIEVE CHUNK {i + 1}/{chunks}:")
+            msg = conn.recv(BUFFER)  # << adjustble, how many bytes you want to get per iteration
+            
+            ## getting the amount of bytes sent so far
+            msg_bytes_recieved_so_far = msg_bytes_recieved_so_far + len(bytes_decode(msg))
 
-        except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
-            ## nuking the class on an error... could be better.
-            ##Class gets respawned on next heartbeat
-            exit()
+            complete_msg += bytes_decode(msg)
+            
+            print(bytes_decode(msg))
+            
+            print(f"""DEBUG:
+                Full Message Length (based on header value) {header_msg_length}
+                Header size: {HEADER_BYTES}
+
+                Size of message recieved so far: {msg_bytes_recieved_so_far}  
+                
+                Chunks: {chunks}          
+                
+                """)
+            
+            ## if complete_msg is the same length as what the headers says, consider it complete. 
+            if len(complete_msg) == header_msg_length:
+                print("MSG TRANSFER COMPLETE")
+        
+        print("VALUE OF MSG: \n" + complete_msg)
+        return complete_msg
+    
 
     ##== Dev Note!! These need to always return SOMETHING in their lists, 
     ## that way it's  played safely and doesnt error  out
