@@ -627,7 +627,13 @@ class ServerFriendlyClientHandler:
         print("HEADER:" + header_msg_length)
         
         ## getting the amount of chunks/iterations eneded at 1024 bytes a message
-        chunks = math.ceil(int(header_msg_length)/BUFFER)
+        try:
+            chunks = math.ceil(int(header_msg_length)/BUFFER)
+        except ValueError as ve:
+            logging.debug(f"[Server (recieve_msg_from_client)] Error calculating chunk size: {ve}")
+        
+        except Exception as e:
+            logging.debug(f"[Server (recieve_msg_from_client)] Unkown Error: {e}")
         
         complete_msg = "" #bytes_decode(msg)[10:]
         

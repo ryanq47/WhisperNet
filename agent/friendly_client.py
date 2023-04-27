@@ -94,11 +94,12 @@ class FClient(QObject):
         
     """
     def gui_to_server(self, command):
-        #print("gui to server triggered")
+        print("gui to server triggered")
         self.shellbanner = f"{self.ip}:{self.port}"
         
         formatted_request = f"!_servercommand_!\\|/{self.username}\\|/{command}"
         
+        ## if client name is valid, run/pass on to client, else run on server
         try:
             command.split()[2] in self.current_client_list
             self.gui_to_client(command)
@@ -115,6 +116,31 @@ class FClient(QObject):
             
             elif command.lower() == "export-clients":
                 self.shellformat(self.send_msg(msg="export-clients", conn=self.server))
+            
+            
+            ## upload/download from the server
+            elif command.lower() == "server-upload-file":
+                try:
+                    filepath = command.split()[1]
+                except Exception as e:
+                    logging.debug(f"[Friendly Client (gui_to_server)] Please enter a filepath: {e}")
+                
+                filedata = self.fileread(filepath)
+
+                ## Need to tell server that data is inbound
+                self.send_msg(f"!_servercommand_!\\|/{self.username}\\|/server-upload-file {filepath}")
+                
+                self.send_msg(filedata)
+            
+                ## file handler, returns file data
+                
+                #self.send_msg("filedata")
+                
+                self.shellformat("uploaded {name} to server")
+            
+            
+            elif command.lower() == "server-download-file":
+                pass
                 
             else:
                 self.shellformat(self.send_msg(msg=command, conn=self.server))
@@ -178,8 +204,6 @@ class FClient(QObject):
         
         """
     def shellformat(self, results="Empty Result Set") -> None:
-        #print("Debug: " + results)
-        #print("shellformat triggered")
         formatted_results = (
             f"{self.shellbanner}>\n{results}"
         )
@@ -215,10 +239,12 @@ class FClient(QObject):
         
         ## create a header for the message that includes the length of the message
         header = self.str_encode(str(msg_length).zfill(HEADER_BYTES))#.encode()
-        
         ## send the header followed by the message in chunks
-        print(f"SENDING HEADER: {header}")
+        #print(f"SENDING HEADER: {header}")
         conn.send(header)
+        
+        ## Visual Stuff
+        visual_bar = "Sending ["
         
         for i in range(0, math.ceil(msg_length/BUFFER)):
             
@@ -226,10 +252,13 @@ class FClient(QObject):
             chunk = msg[i*BUFFER:(i+1)*BUFFER]
             print(f"SENDING CHUNK: {chunk}")
             conn.send(self.str_encode(chunk))
-            print("CHUNK SENT ^^^^^^")
-            
+            #print("CHUNK SENT ^^^^^^")
+            visual_bar += "="
+            self.shellformat(visual_bar)
             ## test delay
             time.sleep(0.01)
+        
+        visual_bar += "] Done!"
         
         
         ## calling receive msg
@@ -249,7 +278,7 @@ class FClient(QObject):
         
         print(f"WAITING ON HEADER TO BE SENT:")
         header_msg_length = conn.recv(HEADER_BYTES).decode() #int(bytes_decode(msg)
-        print("HEADER:" + header_msg_length)
+        #print("HEADER:" + header_msg_length)
         
         ## getting the amount of chunks/iterations eneded at 1024 bytes a message
         chunks = math.ceil(int(header_msg_length)/BUFFER)
@@ -259,33 +288,24 @@ class FClient(QObject):
         
         complete_msg = "" #bytes_decode(msg)[10:]
         
+        ## Visual Stuff
+        visual_bar = "Receiving ["
+        
         #while True:
         for i in range(0, chunks):
-            print(f"RECEVING CHUNK:")
+            #print(f"RECEVING CHUNK:")
             msg = conn.recv(BUFFER)  # << adjustble, how many bytes you want to get per iteration
+            ## add a = to the bar & update
+            visual_bar += "="
+            self.shellformat(visual_bar)
             
             ## getting the amount of bytes sent so far
             msg_bytes_recieved_so_far = msg_bytes_recieved_so_far + len(self.bytes_decode(msg))
 
             complete_msg += self.bytes_decode(msg)
             
-            print(self.bytes_decode(msg))
-            
-            print(f"""DEBUG:
-                Full Message Length (based on header value) {header_msg_length}
-                Header size: {HEADER_BYTES}
-
-                Size of message recieved so far: {msg_bytes_recieved_so_far}  
-                
-                Chunks: {chunks}          
-                
-                """)
-            
-            ## if complete_msg is the same length as what the headers says, consider it complete. 
-            if len(complete_msg) == header_msg_length:
-                print("MSG TRANSFER COMPLETE")
-        
-        print("VALUE OF MSG: \n" + complete_msg)
+        visual_bar += "] Done!"
+        #print("VALUE OF MSG: \n" + complete_msg)
         return complete_msg
         
         
@@ -314,3 +334,27 @@ class FClient(QObject):
         encoded_result = input.encode()
         return encoded_result
     
+        """
+        =======================================
+        file read & write
+        
+        
+        A set of file handlers that have some error handling and other make-life-easy features built in. 
+        
+        """
+    
+    def fileread(self, filepath=""):        
+        if os.path.isfile(filepath):
+            with open(filepath, "r") as file_to_read:
+                file_data = file_to_read.read()  
+                return file_data
+        else:
+            logging.debug(f"[Friendly Client (fileread)] File does not exist at: {filepath}")
+        
+    def filewrite(self, filepath="", data=""):
+        if os.path.exists(filepath):
+            with open(filepath, "w") as file_to_write:
+                file_to_write.write(data)  
+            
+        else:
+            logging.debug(f"[Friendly Client (filewrite)] Directory does not exist at: {filepath}")
