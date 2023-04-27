@@ -99,54 +99,47 @@ class FClient(QObject):
         
         formatted_request = f"!_servercommand_!\\|/{self.username}\\|/{command}"
         
-        ## if client name is valid, run/pass on to client, else run on server
-        try:
-            command.split()[2] in self.current_client_list
-            self.gui_to_client(command)
-        
-        except:
-            if command.lower() == "clients":
-                self.shellformat(self.send_msg(msg=formatted_request, conn=self.server))
-            
-            elif command.lower() == "sanity-check":
-                self.shellformat(self.send_msg(msg=formatted_request, conn=self.server))
 
-            elif command.lower() == "clear":
-                self.shellformat()
+        if command.lower() == "clients":
+            self.shellformat(self.send_msg(msg=formatted_request, conn=self.server))
             
-            elif command.lower() == "export-clients":
-                self.shellformat(self.send_msg(msg="export-clients", conn=self.server))
+        elif command.lower() == "sanity-check":
+            self.shellformat(self.send_msg(msg=formatted_request, conn=self.server))
+
+        elif command.lower() == "clear":
+            self.shellformat()
+            
+        elif command.lower() == "export-clients":
+            self.shellformat(self.send_msg(msg="export-clients", conn=self.server))
             
             
             ## upload/download from the server
-            elif command.lower() == "server-upload-file":
-                try:
-                    filepath = command.split()[1]
-                except Exception as e:
-                    logging.debug(f"[Friendly Client (gui_to_server)] Please enter a filepath: {e}")
+        elif command.lower() == "server-upload-file":
+            try:
+                filepath = command.split()[1]
+            except Exception as e:
+                logging.debug(f"[Friendly Client (gui_to_server)] Please enter a filepath: {e}")
                 
-                filedata = self.fileread(filepath)
+            filedata = self.fileread(filepath)
 
-                ## Need to tell server that data is inbound
-                self.send_msg(f"!_servercommand_!\\|/{self.username}\\|/server-upload-file {filepath}")
+            ## Need to tell server that data is inbound
+            self.send_msg(f"!_servercommand_!\\|/{self.username}\\|/server-upload-file {filepath}")
                 
-                self.send_msg(filedata)
+            self.send_msg(filedata)
             
-                ## file handler, returns file data
+            ## file handler, returns file data
                 
-                #self.send_msg("filedata")
+            #self.send_msg("filedata")
                 
-                self.shellformat("uploaded {name} to server")
+            self.shellformat("uploaded {name} to server")
             
             
-            elif command.lower() == "server-download-file":
-                pass
+        elif command.lower() == "server-download-file":
+            pass
                 
-            else:
-                self.shellformat(self.send_msg(msg=command, conn=self.server))
-                
-                #self.shellformat(f"command '{command}' not found")
-                #logging.debug(f"Command {command} not found.") 
+        else:
+            ## filter down to gui_to_client if not a server command
+            self.gui_to_client(command)
 
     ##== GUI to client 
         """     
@@ -158,33 +151,17 @@ class FClient(QObject):
                                  !!>>   If valid client name-> gui_to_client -> server <<!!
         Flow: GUI -> gui_to_server ^-> send function -> Server
         
-        TLDR: Sends command to server that are meant for clients. 
-        
-        if/else actions & Explanation:
-        
+        TLDR: Sends command to server that are meant for clients. In its own method
+        just incase I need to hardcode any special commands in
+                
         """
         
     def gui_to_client(self, raw_command):
+ 
+        formatted_request = f"!_clientcommand_!\\|/{self.username}\\|/{raw_command}"
 
-        #self.shellbanner = f"{client_name}"
-        command = raw_command.split()
-
-        try:
-            client_command = command[0]
-            client_command_value = command[1]
-            client_name = command[2]
-        except:
-            self.shellformat("Please enter a valid command")
-            
-        formatted_request = f"!_clientcommand_!\\|/{self.username}\\|/{client_command} {client_command_value} {client_name}"
-        
-        if client_command == "" or client_command == "help":
-            self.shellformat("Standin for help menu from server")
-
-        else:
-            #print("ELSE")
-            #yes I know this is blindly sending commands to the server, but it makes it easier to manage all 3 puzzle pieces
-            self.shellformat(self.send_msg(msg=formatted_request, conn=self.server))
+        #yes I know this is blindly sending commands to the server, but it makes it easier to manage all 3 puzzle pieces
+        self.shellformat(self.send_msg(msg=formatted_request, conn=self.server))
 
     ##== Additional GUI
         """     
