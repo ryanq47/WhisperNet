@@ -53,12 +53,12 @@ namespace Client
             KEEP_USERNAME = 0x100000,
         }
 
-        public string[] Prompt()
+        public string[] Prompt(string message, string applicationName)
         {
             CREDUI_INFO info = new CREDUI_INFO();
             info.cbSize = Marshal.SizeOf(info);
-            info.pszCaptionText = "Enter Credentials";
-            info.pszMessageText = "Please enter your username and password.";
+            info.pszCaptionText = applicationName;
+            info.pszMessageText = message; //"Please enter your username and password.";
 
             string targetName = "target-name"; // replace with your target name
 
