@@ -371,66 +371,73 @@ class ServerFriendlyClientHandler:
         """
         self.current_client_refresh()
 
-        #logging.debug(f"[Server (server_decision_tree)] command: {message}")
-        print(message)
-        try:
-            ## see docstring explanation
-            message.split()[2]
-            self.client_decision_tree(message)
-        except:
-            if message == "clients":
-                if self.current_client_list != "":
-                    self.send_msg_to_friendlyclient(self.current_client_list)
-                else:
-                    self.send_msg_to_friendlyclient("No Current Clients")
-                    
-            elif message == "sanity-check":
-                funnymsg = "BANG BANG... hmmm, yep it works! [This message was sent from the server]" \
-                    "If you see this & a lot of 'I Hate Buzzwords;' then everything between you and the server is working!"
-                
-                funny_msg_big = ("I Hate Buzzwords;") * 2048
-                
-                self.send_msg_to_friendlyclient(f"{funnymsg}\n\n{funny_msg_big}")
-                
-            elif message == "balls":
-                funny_msg = "I see you've reqeuested a lot of data from our ML, AI" \
-                    "Integrated, Algorythmic Next Gen earth shattering orchestration appliance firewall IDS XDR XD EDR SOAR IPS, "\
-                    "Here's the data it returned:"
-                    
-                funny_msg_big = ("I Hate Buzzwords;") * 2048
-                
-                #self.send_msg_to_friendlyclient(f"{funny_msg}{funny_msg_big}")
-                self.send_msg_to_friendlyclient("test?")
-                
-            
-            ################
-            ## Export Commands
-            ## These reutrn JSON data about stuff
-            ################ 
-            elif message == "export-clients":
-                ## Expots MaliciousClients as JSON, may be a replacement to stats
-                try:
-                    with open("server_json.json", "r+") as json_file:
-                        data = json.load(json_file)
-                        self.send_msg_to_friendlyclient(str(data))
-                        logging.debug("[Server (export-clients)]: Success")
-                except Exception as e:
-                    logging.debug(f"[Server (export-clients)] Error with exporting client data: {e}")
-                    self.send_msg_to_friendlyclient(f"[Server (export-clients)] Error with exporting client data: {e}")
+        logging.debug(f"[Server (server_decision_tree)] Message from friendly client: {message}")
 
-            elif message == "stats":
-                pass
-                """
-                for i in current_client_list
-                    client = globals()[i]
-                    return_stats_list.append(client.data_list)
-                """
-            elif message == "":
-                self.send_msg_to_friendlyclient("Client sent nothing")
-            
+        #logging.debug(f"[Server (server_decision_tree)] command: {message}")
+        if message == "clients":
+            if self.current_client_list != "":
+                self.send_msg_to_friendlyclient(self.current_client_list)
+                
             else:
-                self.send_msg_to_friendlyclient("Command not found")
-                #elf.client_decision_tree(message)
+                self.send_msg_to_friendlyclient("No Current Clients")   
+                                 
+        elif message == "sanity-check":
+            funnymsg = "BANG BANG... hmmm, yep it works! [This message was sent from the server]" \
+                "If you see this & a lot of 'I Hate Buzzwords;' then everything between you and the server is working!"                
+            funny_msg_big = ("I Hate Buzzwords;") * 2048                
+            self.send_msg_to_friendlyclient(f"{funnymsg}\n\n{funny_msg_big}")    
+                        
+        elif message == "balls":
+            funny_msg = "I see you've reqeuested a lot of data from our ML, AI" \
+                "Integrated, Algorythmic Next Gen earth shattering orchestration appliance firewall IDS XDR XD EDR SOAR IPS, "\
+                "Here's the data it returned:"                    
+            funny_msg_big = ("I Hate Buzzwords;") * 2048                
+            #self.send_msg_to_friendlyclient(f"{funny_msg}{funny_msg_big}")
+            self.send_msg_to_friendlyclient("test?")   
+                                     
+        ################
+        ## Export Commands
+        ## These reutrn JSON data about stuff
+        ################ 
+        
+        elif message == "export-clients":
+            ## Expots MaliciousClients as JSON, may be a replacement to stats
+            try:
+                with open("server_json.json", "r+") as json_file:
+                    data = json.load(json_file)
+                    self.send_msg_to_friendlyclient(str(data))
+                    logging.debug("[Server (export-clients)]: Success")
+                    
+            except Exception as e:
+                logging.debug(f"[Server (export-clients)] Error with exporting client data: {e}")
+                self.send_msg_to_friendlyclient(f"[Server (export-clients)] Error with exporting client data: {e}")
+                
+        elif "server-download-file" in message:
+            logging.debug("[Server (download file)]: Downloading file called")                
+            try:
+                filepath = message[1]
+                ## maybe get some input validation here. because server runs as root, you could totally hijack it by reading passwd files etc
+                file_data = self.fileread(filepath)
+                self.send_msg_to_friendlyclient(file_data) 
+               
+            except Exception as e:
+                self.send_msg_to_friendlyclient(f"[Server (server-download-file)] Error with downloading file: {e}")    
+                            
+        elif message == "stats":
+            pass
+            """
+            for i in current_client_list
+                client = globals()[i]
+                return_stats_list.append(client.data_list)
+            """
+        elif message == "":
+            self.send_msg_to_friendlyclient("Client sent nothing")   
+                     
+        else:
+            ## if not meant for the server, filter down
+            self.client_decision_tree(message)
+            #self.send_msg_to_friendlyclient("Command not found")
+            #elf.client_decision_tree(message)
 
     def current_client_refresh(self) -> None:
         """
@@ -494,10 +501,13 @@ class ServerFriendlyClientHandler:
 
         ## No try except due to parse_msg_for_X having builtin handling
         
-        client_command = message[0]
-        client_command_value = message[1]
-        ##== Client name is always last
-        client_name = message[-1]
+        try:
+            client_command = message[0]
+            client_command_value = message[1]
+            ##== Client name is always last
+            client_name = message[-1]
+        except Exception as e:
+            logging.debug(f"[Server (client_decision_tree)] Error in command for client: {e}")
 
         logging.debug(f"[client ({self.username }) -> server] command:{client_command} value:{client_command_value} name:{client_name}")
 
@@ -691,6 +701,22 @@ class ServerFriendlyClientHandler:
             parsed_results_list = ["EMPTY","EMPTY","EMPTY"]
         
         return parsed_results_list
+    
+    def fileread(self, filepath=""):        
+        if os.path.isfile(filepath):
+            with open(filepath, "r") as file_to_read:
+                file_data = file_to_read.read()  
+                return file_data
+        else:
+            logging.debug(f"[Friendly Client (fileread)] File does not exist at: {filepath}")
+        
+    def filewrite(self, filepath="", data=""):
+        if os.path.exists(filepath):
+            with open(filepath, "w") as file_to_write:
+                file_to_write.write(data)  
+            
+        else:
+            logging.debug(f"[Friendly Client (filewrite)] Directory does not exist at: {filepath}")
 
 
 ################

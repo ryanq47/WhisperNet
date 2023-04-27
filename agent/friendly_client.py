@@ -5,15 +5,18 @@ import logging
 from PySide6.QtCore import QThread, Signal, QObject, Slot
 import math
 import time
+import sys
 
 
 global_debug = True
+sys_path = os.path.dirname(os.path.abspath(sys.argv[0]))
 
 logging.basicConfig(level=logging.DEBUG)
 logging.basicConfig(filename='friendly_client.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s', force=True)
 
 #if global_debug:
 logging.getLogger().addHandler(logging.StreamHandler())
+
 
 class FClient(QObject):
     shell_output = Signal(str)
@@ -134,8 +137,18 @@ class FClient(QObject):
             self.shellformat("uploaded {name} to server")
             
             
-        elif command.lower() == "server-download-file":
-            pass
+        elif "server-download-file" in command.lower():
+            #pass
+            try:
+                filepath = command.split()[1]
+            
+            except Exception as e:
+                self.shellformat(f"[Friendlyclient (server-download-file)] Error: {e}")
+            
+            self.send_msg(f"!_servercommand_!\\|/{self.username}\\|/server-download-file {filepath}")
+            data_to_write = self.recieve_msg(self.server)
+                
+            self.filewrite(filepath = f"{sys_path}/Content/DataExfil/FromServer/TEMPNAME", data=data_to_write)
                 
         else:
             ## filter down to gui_to_client if not a server command
@@ -157,7 +170,7 @@ class FClient(QObject):
         """
         
     def gui_to_client(self, raw_command):
- 
+        logging.debug(f"[FriendlyClient (gui-to-client)] command: {raw_command} ")
         formatted_request = f"!_clientcommand_!\\|/{self.username}\\|/{raw_command}"
 
         #yes I know this is blindly sending commands to the server, but it makes it easier to manage all 3 puzzle pieces
@@ -327,6 +340,7 @@ class FClient(QObject):
                 return file_data
         else:
             logging.debug(f"[Friendly Client (fileread)] File does not exist at: {filepath}")
+            self.shellformat(f"[Friendly Client (fileread)] File does not exist at: {filepath}")
         
     def filewrite(self, filepath="", data=""):
         if os.path.exists(filepath):
@@ -335,3 +349,4 @@ class FClient(QObject):
             
         else:
             logging.debug(f"[Friendly Client (filewrite)] Directory does not exist at: {filepath}")
+            self.shellformat(logging.debug(f"[Friendly Client (filewrite)] Directory does not exist at: {filepath}"))
