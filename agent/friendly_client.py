@@ -114,9 +114,11 @@ class FClient(QObject):
             self.shellformat()
             
         elif command.lower() == "export-clients":
+            logging.debug("[Friendly Client (gui_to_server)] requesting client JSON data from server")
             #self.shellformat(self.send_msg(msg="export-clients", conn=self.server))
             json_data_from_server = self.send_msg(msg=f"!_servercommand_!\\|/{self.username}\\|/export-clients", conn=self.server)
             self.json_data.emit(json_data_from_server)
+
             ## upload/download from the server
         elif command.lower() == "server-upload-file":
             try:

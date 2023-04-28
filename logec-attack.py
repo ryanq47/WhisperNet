@@ -787,6 +787,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
     # The subsection that updates the client GUI in the background
     def c2_client_update_timer(self):
+        logging.debug("[Logec (C2 client_update_timer)]")
         ## A timer for updating the client view on the GUI. Goes every second
         # call me when succesffully authenticated to the server
         self.client_timer = QTimer()
@@ -796,19 +797,23 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
     def c2_client_update(self):
         """ subtask, Talks to the server, gets client info"""
-        #pass
         # Requesting clients (in JSON form), and sending to client_list_update
         logging.debug("[Server (Friendly Client] Starting Subtask: Updating malicious clients for GUI")
-        self.thread_manager.start(partial(self.friendly_client.gui_to_server, "export-clients"))
+
+
+        ## doesn't freeze the whole thread at the moment...
+        # thread manager code is here just incase It's needed
+        # self.thread_manager.start(partial(self.friendly_client.gui_to_server, "export-clients"))
+        self.friendly_client.gui_to_server("export-clients")
         self.friendly_client.json_data.connect(self.client_list_update)
 
         # Other subtasks go here
 
-    # Seems to be a problem, this keeps getting called for some reason, maybe due to a thread issue?
     def client_list_update(self, client_data_from_server):
         """ takes data of current clients, parses, and updates on the GUI
 
              json to json obj, json obj to string for sending -> string to dict via json loads
+
         """
         logging.debug(f"[Server (client_list_update)] Succesfully called")
 
@@ -821,7 +826,6 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             ['Client', 'IP/Port', 'Current Job', 'SleepTime', 'Last Checkin'])
 
         for client in data['MaliciousClients']:
-            #pass
             try:
                 # I believe this adds a row? there are prolly better ways to do this
                 rowPosition = self.c2_gui_groupbox_client_table.rowCount()
@@ -832,13 +836,12 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
                 self.c2_gui_groupbox_client_table.setItem(rowPosition, 2, QTableWidgetItem(client['CurrentJob']))
                 self.c2_gui_groupbox_client_table.setItem(rowPosition, 3, QTableWidgetItem(client['SleepTime']))
                 self.c2_gui_groupbox_client_table.setItem(rowPosition, 4, QTableWidgetItem(client['LatestCheckin']))
-            except:
-                logging.debug(f"[Server (client_list_update)] Error with a row of json, skipping: {data['MaliciousClients']}")
-            ## append table
+            except Exception as e:
+                logging.debug(f"[Server (client_list_update)] Error with a row of json, skipping: {e}")
 
-
-
-
+        # Need to disconnect at the end for some reason, otherwise exponential repeat calls to
+        # this function happen
+        self.friendly_client.json_data.disconnect(self.client_list_update)
 
 ####################
 ## Scanning Enumeration

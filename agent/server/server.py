@@ -613,7 +613,7 @@ class ServerFriendlyClientHandler:
         try:
             conn.send(header)
         except BrokenPipeError as bpe:
-            logging.debug(f"[Server (send_msg_to_friendlyclient)] Broken pipe, friendly client most likely disconnected, or crashed: {bpe}")
+            logging.debug(f"[Server (send_msg_to_friendlyclient)] Broken pipe, friendly client most likely disconnected, or crashed, closing thread: {bpe}")
             ## kills thread, need to make a cleaner way to do this
             exit()
 
@@ -933,7 +933,15 @@ class Data:
         "ServerIp": "127.0.0.1",
         "MaliciousClients": [
             {
-                "ClientFullName":"Placeholder"
+                "ClientFullName":"Placeholder",
+                "ClientIP": "127.0.0.1",
+                "ClientPort": "6969",
+                "ClientId": "DEFAULT",
+                "CurrentJob": "Wait",
+                "SleepTime": 60,
+                "LatestCheckin": "01:23:45 UTC 01/01",
+                "FirstCheckin": "01:23:45 UTC 01/01",
+                "Active": "No"
             }
         ],
         "FriendlyClients": [
@@ -960,7 +968,7 @@ class Data:
     
     @staticmethod
     def json_create():
-        """The default JSON file
+        """creates the default JSON file
         """
         ## needs to check if file exists
         with open("server_json.json", "w+") as json_file:
