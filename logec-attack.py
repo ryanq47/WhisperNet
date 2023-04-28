@@ -11,33 +11,28 @@ import sys
 import random
 import sqlite3
 import threading
-import time
-import webbrowser
+#import time
+#import webbrowser
 from functools import partial
 import traceback
 
 ##== GUI Imports
 from PySide6 import QtWidgets
-from PySide6.QtCore import Qt, QObject, QThread, QFile, Signal, Slot, QThreadPool, QCoreApplication, QTimer, QPoint
-from PySide6.QtGui import QIcon, QAction, QPen, QStandardItemModel, QStandardItem, QFont
-from PySide6.QtSql import QSqlDatabase, QSqlTableModel, QSqlQuery
-from PySide6.QtUiTools import loadUiType, QUiLoader
+from PySide6.QtCore import Qt, QThread, QThreadPool, QCoreApplication, QTimer, QPoint
+from PySide6.QtGui import QAction, QPen, QFont
+from PySide6.QtSql import QSqlDatabase, QSqlQuery
+#from PySide6.QtUiTools import loadUiType, QUiLoader
 from PySide6.QtWidgets import (
     QApplication,
     QFileDialog,
     QHeaderView,
-    QInputDialog,
-    QLabel,
-    QLineEdit, QTextEdit,
+    QLineEdit,
     QMainWindow,
     QMenuBar,
     QMessageBox,
     QPushButton,
-    QTableWidget,
     QTableWidgetItem,
-    QTableView, QSizePolicy, QAbstractItemView,
-    QTabBar,
-    QTabWidget,
+    QAbstractItemView,
     QMenu,
     QGraphicsScene, QGraphicsTextItem
 )
@@ -76,11 +71,11 @@ from gui import Ui_LogecC3
 
 ## logging
 import logging
-logging.basicConfig(level=logging.DEBUG)
-logging.basicConfig(filename='logs/logec-main.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s', force=True)
+#logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(filename='logs/logec-main.log', filemode='a', format='%(asctime)s - %(levelname)s - %(message)s', force=True)
 
 #if global_debug:
-logging.getLogger().addHandler(logging.StreamHandler())
+#logging.getLogger().addHandler(logging.StreamHandler())
 
 
 ####################
@@ -96,6 +91,8 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         ##== Setup
         self.init_project_settings()
         self.init_thread_manager()
+        ##== Getting logging going ASAP
+
         
         ##== instances
         self.init_instances()
@@ -147,6 +144,28 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.thread_manager = QThreadPool()
 
     ##!! Tempted to move these to their respective function groups, then just call in one init function
+
+    def log_level_handler(self):
+        ## these are class vars and not local so I can change them if needed anywhere in the program
+        self.log_level = self.settings['System']['Logging']['LogLevel']
+        self.print_logs_to_console = self.settings['System']['Logging']['PrintToConsole']
+
+        if self.log_level.lower() == "debug":
+            logging.basicConfig(level=logging.DEBUG)
+        elif self.log_level.lower() == "info":
+            logging.basicConfig(level=logging.INFO)
+        elif self.log_level.lower() == "warning":
+            logging.basicConfig(level=logging.WARNING)
+        elif self.log_level.lower() == "critical":
+            logging.basicConfig(level=logging.CRITICAL)
+        ## backup to insure logging incase these break for some reason
+        else:
+            logging.basicConfig(level=logging.DEBUG)
+        # print to console or not
+        if self.print_logs_to_console:
+            logging.getLogger().addHandler(logging.StreamHandler())
+
+        logging.info(f"[Logec (log_level_handler)]: Log settings: LogLevel: {self.log_level} PrintToConsole: {self.print_logs_to_console}")
 
     ##== Initial instances for other objects
     def init_instances(self) -> None:
@@ -215,7 +234,10 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.c2_systemshell_input.setFocus()
 
         self.c2_servershell_send.clicked.connect(self.c2_server_interact)
+        # Main account that the user interacts with
         self.friendly_client = FClient()
+        # Account used for background work
+        self.friendly_client_background_worker = FClient()
 
         # conn to server
         self.c2_connect_button.clicked.connect(self.c2_server_connect)
@@ -757,9 +779,19 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
             self.friendly_client.connect_to_server(connlist)
 
+            # Authenticating to server with the background account
+            self.friendly_client_background_worker.connect_to_server([
+                connlist[0],
+                connlist[1],
+                f"background_worker_{connlist[2]}",
+                connlist[3]
+            ])
+
             ## return not working, so getting validated authentication via the class itself
             if self.friendly_client.authenticated:
                 self.c2_status_label.setText(f"Status: Connected to {connlist[0]}:{connlist[1]}")
+
+            if self.friendly_client_background_worker.authenticated:
                 # calling subtasks to be run
                 self.c2_client_update_timer()
             
@@ -798,14 +830,14 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
     def c2_client_update(self):
         """ subtask, Talks to the server, gets client info"""
         # Requesting clients (in JSON form), and sending to client_list_update
-        logging.debug("[Server (Friendly Client] Starting Subtask: Updating malicious clients for GUI")
+        logging.debug("[Logec (Friendly Client] Starting Subtask: Updating malicious clients for GUI")
 
 
         ## doesn't freeze the whole thread at the moment...
         # thread manager code is here just incase It's needed
         # self.thread_manager.start(partial(self.friendly_client.gui_to_server, "export-clients"))
-        self.friendly_client.gui_to_server("export-clients")
-        self.friendly_client.json_data.connect(self.client_list_update)
+        self.friendly_client_background_worker.gui_to_server("export-clients")
+        self.friendly_client_background_worker.json_data.connect(self.client_list_update)
 
         # Other subtasks go here
 
@@ -815,7 +847,8 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
              json to json obj, json obj to string for sending -> string to dict via json loads
 
         """
-        logging.debug(f"[Server (client_list_update)] Succesfully called")
+        # turn into a GUI category for these types of logs
+        logging.debug(f"[Logec (client_list_update)] Updating client table")
 
         # clear table on calling to get new data - may change this later, could be a PITA for users
         self.c2_gui_groupbox_client_table.clear()
@@ -841,7 +874,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
         # Need to disconnect at the end for some reason, otherwise exponential repeat calls to
         # this function happen
-        self.friendly_client.json_data.disconnect(self.client_list_update)
+        self.friendly_client_background_worker.json_data.disconnect(self.client_list_update)
 
 ####################
 ## Scanning Enumeration
@@ -1864,7 +1897,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         ## read DB, 
         ## DB here
         sql_data = self.sql_db_read("select * from 'CONTENT-Wordlists'")
-        print(sql_data)
+        #print(sql_data)
         
         ## for each in db, create qtextedit with name, and a button for downloading, button
             ## is named whatever the name is, so when download is clicked, it gets the row, and url to download

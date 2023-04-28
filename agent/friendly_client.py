@@ -2,37 +2,37 @@ import socket
 import os
 from typing import Tuple
 import logging
-from PySide6.QtCore import QThread, Signal, QObject, Slot
+from PySide6.QtCore import Signal, QObject
 import math
 import time
 import sys
 
-
-global_debug = True
 sys_path = os.path.dirname(os.path.abspath(sys.argv[0]))
 
 logging.basicConfig(level=logging.DEBUG)
-logging.basicConfig(filename='friendly_client.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s', force=True)
-
-#if global_debug:
-logging.getLogger().addHandler(logging.StreamHandler())
-
+logging.basicConfig(filename='logs/friendly_client.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s', force=True)
 
 class FClient(QObject):
     shell_output = Signal(str)
     authenticated = Signal(bool)
     json_data = Signal(str)
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, log_level="debug", print_logs_to_console=True):
         super().__init__(parent)
         self.encoding = 'utf-8'
         self.buffer = 1024
         self.authenticated = False
         self.shellbanner = "NotConnected"
         self.current_client_list = []
+        ## log level, defaults to debug if not supplied
+        self.log_level = log_level
+        self.print_logs_to_console = print_logs_to_console
+
+        # calling the log level handler
+
 
     ## Connection to server
-    def connect_to_server(self, connlist: Tuple[str, str, str, str]) -> None:
+    def connect_to_server(self, connlist) -> None:
         self.ip, self.port, self.username, password = connlist
 
         logging.debug(f"Connection List: {connlist}")
@@ -98,7 +98,6 @@ class FClient(QObject):
         
     """
     def gui_to_server(self, command):
-        print("gui to server triggered")
         self.shellbanner = f"{self.ip}:{self.port}"
         
         formatted_request = f"!_servercommand_!\\|/{self.username}\\|/{command}"
@@ -233,25 +232,23 @@ class FClient(QObject):
         ## create a header for the message that includes the length of the message
         header = self.str_encode(str(msg_length).zfill(HEADER_BYTES))#.encode()
         ## send the header followed by the message in chunks
-        #print(f"SENDING HEADER: {header}")
+        logging.debug(f"[FriendlyClient (send_msg)] SENDING HEADER: {header}")
         conn.send(header)
         
         ## Visual Stuff
-        visual_bar = "Sending ["
+        #visual_bar = "Sending ["
         
         for i in range(0, math.ceil(msg_length/BUFFER)):
-            
             ## gets the right spot in the message in a loop
             chunk = msg[i*BUFFER:(i+1)*BUFFER]
-            print(f"SENDING CHUNK: {chunk}")
+            logging.debug(f"[FriendlyClient (send_msg)] SENDING CHUNK: {chunk}")
             conn.send(self.str_encode(chunk))
-            #print("CHUNK SENT ^^^^^^")
-            visual_bar += "="
-            self.shellformat(visual_bar)
+            #visual_bar += "="
+            #self.shellformat(visual_bar)
             ## test delay
             time.sleep(0.01)
         
-        visual_bar += "] Done!"
+        #visual_bar += "] Done!"
         
         
         ## calling receive msg
@@ -268,37 +265,34 @@ class FClient(QObject):
         header_contents = ""
         
         msg_bytes_recieved_so_far = 0
-        
-        print(f"WAITING ON HEADER TO BE SENT:")
+
         header_msg_length = conn.recv(HEADER_BYTES).decode() #int(bytes_decode(msg)
         #print("HEADER:" + header_msg_length)
-        
+        logging.debug(f"[FriendlyClient (recieve_msg)] HEADER: {header_msg_length}")
+
         ## getting the amount of chunks/iterations eneded at 1024 bytes a message
         chunks = math.ceil(int(header_msg_length)/BUFFER)
-        #print(chunks)
-        
-        #print(bytes_decode(msg))
-        
-        complete_msg = "" #bytes_decode(msg)[10:]
+
+        complete_msg = ""
         
         ## Visual Stuff
-        visual_bar = "Receiving ["
+        #visual_bar = "Receiving ["
         
         #while True:
         for i in range(0, chunks):
-            #print(f"RECEVING CHUNK:")
+            # i + 1 as i starts at 0
+            logging.debug(f"[FriendlyClient (recieve_msg)] RECEVING CHUNK {i + 1}/{chunks}")
             msg = conn.recv(BUFFER)  # << adjustble, how many bytes you want to get per iteration
             ## add a = to the bar & update
-            visual_bar += "="
-            self.shellformat(visual_bar)
+            #visual_bar += "="
+            #self.shellformat(visual_bar)
             
             ## getting the amount of bytes sent so far
             msg_bytes_recieved_so_far = msg_bytes_recieved_so_far + len(self.bytes_decode(msg))
 
             complete_msg += self.bytes_decode(msg)
             
-        visual_bar += "] Done!"
-        #print("VALUE OF MSG: \n" + complete_msg)
+        #visual_bar += "] Done!"
         return complete_msg
         
         

@@ -26,10 +26,19 @@ System:
     ShowProjectPicker: !!bool False
 
   Logging:
-    #Not Working
+    # (not implemented)
     LogsToStdout: !!bool True
-    ## in kb, zips up logs and starts a new file. otherwise some things may get bogged down
+    ## (not implemented) in kb, zips up logs and starts a new file. otherwise some things may get bogged down
     LogRoleSize: 1000
+
+    ## Info Level:
+      # Debug: EVERYTHING, very heavy on file size.
+      # Info: Handy things to know about how the program is operating, a well rounded level
+      # Warning: Only show warnings
+      # Critical: Only show criticals
+    LogLevel: !!str info
+    ## whether you want logs to print to console or not, can get noisy quick
+    PrintToConsole: !!bool False
 
 
 Sql:
@@ -37,7 +46,7 @@ Sql:
   SqlTableView:
     ## The widest the columns DEFAULT to. Can still manually expand to any size
     MaxColumnWidth: !!int 100 
-    ## 5-10 Reccomended
+    ## 5-10 Recomended
     MaxRowHeight: !!int 5
 
     SqlRightclickMenu:
