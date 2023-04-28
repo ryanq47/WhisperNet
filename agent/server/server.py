@@ -404,8 +404,9 @@ class ServerFriendlyClientHandler:
             ## Expots MaliciousClients as JSON, may be a replacement to stats
             try:
                 with open("server_json.json", "r+") as json_file:
-                    data = json.load(json_file)
-                    self.send_msg_to_friendlyclient(str(data))
+                    ## json to json obj, json obj to string for sending
+                    data = json.dumps(json.load(json_file))
+                    self.send_msg_to_friendlyclient(data)
                     logging.debug("[Server (export-clients)]: Success")
                     
             except Exception as e:
@@ -609,8 +610,16 @@ class ServerFriendlyClientHandler:
         
         ## send the header followed by the message in chunks
         print(f"SENDING HEADER: {header}")
-        conn.send(header)
-        
+        try:
+            conn.send(header)
+        except BrokenPipeError as bpe:
+            logging.debug(f"[Server (send_msg_to_friendlyclient)] Broken pipe, friendly client most likely disconnected, or crashed: {bpe}")
+            ## kills thread, need to make a cleaner way to do this
+            exit()
+
+        except Exception as e:
+            logging.debug(f"[Server (send_msg_to_friendlyclient)] Error when sending message: {e}")
+
         for i in range(0, math.ceil(msg_length/BUFFER)):
             
             try:
@@ -646,6 +655,7 @@ class ServerFriendlyClientHandler:
             chunks = math.ceil(int(header_msg_length)/BUFFER)
         except ValueError as ve:
             logging.debug(f"[Server (recieve_msg_from_client)] Error calculating chunk size: {ve}")
+            chunks = 0
         
         except Exception as e:
             logging.debug(f"[Server (recieve_msg_from_client)] Unkown Error: {e}")
@@ -975,11 +985,11 @@ class Data:
             data = json.load(json_file)
             #print(type(data))
             ## if client already logged
+            #for client in data['MaliciousClients']:
             for client in data['MaliciousClients']:
-                for client in data['MaliciousClients']:
-                    if client['ClientFullName'] == client_data['ClientFullName']:
-                        #print(f"A client with the name {client_data['ClientFullName']} already exists")
-                        return
+                if client['ClientFullName'] == client_data['ClientFullName']:
+                    #print(f"A client with the name {client_data['ClientFullName']} already exists")
+                    return
                 
                 data["MaliciousClients"].append(client_data)
                 json_file.seek(0)  # move file pointer to the beginning of the file

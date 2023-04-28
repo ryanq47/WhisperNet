@@ -642,24 +642,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         ## hiding row numbers
         self.c2_gui_groupbox_client_table.verticalHeader().setVisible(False)
 
-    def c2_client_update_timer(self):
-        ## A timer for updating the client view on the GUI. Goes every second
-        self.client_timer = QTimer()
-        self.client_timer.setInterval(1000) ## in MS
-        self.client_timer.timeout.connect(self.c2_client_update)
-        self.client_timer.start(self.settings['C2']['Local']['ClientRefresh'])
-        
-    def c2_client_update(self):
-        """ Talks to the server, gets client info"""
-        pass
-    
-        ## get server info
-        ## parse info, maybe put into a list of lists?: [(info, info), (info,info)]
-        ## or a dict, would need to find the best way to return data from the server. Maybe JSON
-        
-        ## create/append new rows based off of info
-        
-        
+
 
     ## Gonna need some work, this currently creates one thread for each command
     def sys_shell(self):
@@ -777,6 +760,8 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             ## return not working, so getting validated authentication via the class itself
             if self.friendly_client.authenticated:
                 self.c2_status_label.setText(f"Status: Connected to {connlist[0]}:{connlist[1]}")
+                # calling subtasks to be run
+                self.c2_client_update_timer()
             
            # if self.friendly_client.err_ConnRefused_0x01:
                 #self.handle_error(["ConnRefused_0x01","Low","Make sure the server is alive"])
@@ -789,7 +774,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
     def c2_server_interact(self, command):
         input = self.c2_servershell_input.text()
 
-        
+        # still the same class instance, however starting a new thread for this method
         self.thread_manager.start(partial(self.friendly_client.gui_to_server, input))
         self.friendly_client.shell_output.connect(self.shell_text_update)
     
@@ -799,6 +784,60 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
     def shell_text_update(self, input):
         #print("shell_text_update" + input) if GLOBAL_DEBUG else None
         self.c2_servershell.setText(input)
+
+    # The subsection that updates the client GUI in the background
+    def c2_client_update_timer(self):
+        ## A timer for updating the client view on the GUI. Goes every second
+        # call me when succesffully authenticated to the server
+        self.client_timer = QTimer()
+        self.client_timer.setInterval(3000)  ## in MS
+        self.client_timer.timeout.connect(self.c2_client_update)
+        self.client_timer.start(self.settings['C2']['Local']['ClientRefresh'])
+
+    def c2_client_update(self):
+        """ subtask, Talks to the server, gets client info"""
+        #pass
+        # Requesting clients (in JSON form), and sending to client_list_update
+        logging.debug("[Server (Friendly Client] Starting Subtask: Updating malicious clients for GUI")
+        self.thread_manager.start(partial(self.friendly_client.gui_to_server, "export-clients"))
+        self.friendly_client.json_data.connect(self.client_list_update)
+
+        # Other subtasks go here
+
+    # Seems to be a problem, this keeps getting called for some reason, maybe due to a thread issue?
+    def client_list_update(self, client_data_from_server):
+        """ takes data of current clients, parses, and updates on the GUI
+
+             json to json obj, json obj to string for sending -> string to dict via json loads
+        """
+        logging.debug(f"[Server (client_list_update)] Succesfully called")
+
+        # clear table on calling to get new data - may change this later, could be a PITA for users
+        self.c2_gui_groupbox_client_table.clear()
+        self.c2_gui_groupbox_client_table.setRowCount(0)
+        ##parse json
+        data = json.loads(client_data_from_server)
+        self.c2_gui_groupbox_client_table.setHorizontalHeaderLabels(
+            ['Client', 'IP/Port', 'Current Job', 'SleepTime', 'Last Checkin'])
+
+        for client in data['MaliciousClients']:
+            #pass
+            try:
+                # I believe this adds a row? there are prolly better ways to do this
+                rowPosition = self.c2_gui_groupbox_client_table.rowCount()
+                self.c2_gui_groupbox_client_table.insertRow(rowPosition)
+
+                self.c2_gui_groupbox_client_table.setItem(rowPosition, 0, QTableWidgetItem(client['ClientFullName']))
+                self.c2_gui_groupbox_client_table.setItem(rowPosition, 1, QTableWidgetItem(client['ClientIP']))
+                self.c2_gui_groupbox_client_table.setItem(rowPosition, 2, QTableWidgetItem(client['CurrentJob']))
+                self.c2_gui_groupbox_client_table.setItem(rowPosition, 3, QTableWidgetItem(client['SleepTime']))
+                self.c2_gui_groupbox_client_table.setItem(rowPosition, 4, QTableWidgetItem(client['LatestCheckin']))
+            except:
+                logging.debug(f"[Server (client_list_update)] Error with a row of json, skipping: {data['MaliciousClients']}")
+            ## append table
+
+
+
 
 
 ####################

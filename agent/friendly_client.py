@@ -21,6 +21,7 @@ logging.getLogger().addHandler(logging.StreamHandler())
 class FClient(QObject):
     shell_output = Signal(str)
     authenticated = Signal(bool)
+    json_data = Signal(str)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -113,9 +114,9 @@ class FClient(QObject):
             self.shellformat()
             
         elif command.lower() == "export-clients":
-            self.shellformat(self.send_msg(msg="export-clients", conn=self.server))
-            
-            
+            #self.shellformat(self.send_msg(msg="export-clients", conn=self.server))
+            json_data_from_server = self.send_msg(msg=f"!_servercommand_!\\|/{self.username}\\|/export-clients", conn=self.server)
+            self.json_data.emit(json_data_from_server)
             ## upload/download from the server
         elif command.lower() == "server-upload-file":
             try:
