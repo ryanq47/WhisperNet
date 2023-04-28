@@ -47,7 +47,6 @@ sys_path = os.path.dirname(os.path.abspath(sys.argv[0]))
 #print("Syspath:" + sys_path) if GLOBAL_DEBUG else None
 
 
-
 ##== Plugin Path, for SQL driver 
 plugin_path = 'plugins'
 os.environ['QT_PLUGIN_PATH'] = plugin_path
