@@ -37,7 +37,7 @@ Note, these next 2 may get nuked on future iterations of the suite, as they eat 
 
 ## Scapy/libc.a Error
 
-cd /usr/lib/x86_64-linux-gnu/
+cd /usr/lib/x86_64-linux-gnu/ <br>
 ln -s -f libc.a liblibc.a
 
 
