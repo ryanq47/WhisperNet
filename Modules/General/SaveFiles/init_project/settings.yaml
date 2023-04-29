@@ -36,9 +36,9 @@ System:
       # Info: Handy things to know about how the program is operating, a well rounded level
       # Warning: Only show warnings
       # Critical: Only show criticals
-    LogLevel: !!str info
+    LogLevel: !!str debug
     ## whether you want logs to print to console or not, can get noisy quick
-    PrintToConsole: !!bool False
+    PrintToConsole: !!bool True
 
 
 Sql:

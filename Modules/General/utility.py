@@ -8,12 +8,16 @@ import speedtest
 import dns.resolver
 import dns.query
 import requests
+import logging
 
+import zipfile
+import tarfile
 
 from plyer import notification
 from PySide6.QtCore import Signal, QObject
 
-
+logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(filename='logs/utility.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s', force=True)
 class Timestamp:
     ## using static here cause ther is no need to initialize this class all over. 
     @staticmethod
@@ -129,17 +133,37 @@ class Host(QObject):
     
         dir = download_dict['SavePath'] + "/" + download_dict['SaveName']
 
-        print("Making Request")
+        logging.info(f"[Utility (download)] Making request for: {download_dict['URL']}")
+        #print("Making Request")
         r = requests.get(download_dict['URL'], allow_redirects=True)
-        print("writing")
-        print(r.content)
+        #print("writing")
+        #print(r.content)
         try:
             with open(dir,'wb+') as filewrite:
                 filewrite.write(r.content)
         except Exception as e:
             print(e)
-        print("done")
- 
+        logging.info(f"[Utility (download)] Download Complete: {download_dict['URL']}")
+
+        if download_dict['IsZipArchive']:
+            logging.info(f"[Utility (download)] Extracting {download_dict['SavePathAndName']} to {download_dict['SavePath']}")
+            FileOps.unzip(filepath=download_dict['SavePathAndName'], extract_path=download_dict['SavePath'])
+
+
+class FileOps:
+    @staticmethod
+    def unzip(filepath="", extract_path=""):
+        """Extract files from archive, handles tar.gz and .zip"""
+        if filepath.endswith('.zip'):
+            with zipfile.ZipFile(filepath, 'r') as archive:
+                archive.extractall(extract_path)
+
+        elif filepath.endswith('.tar.gz') or filepath.endswith('.tgz'):
+            with tarfile.open(filepath, 'r:gz') as archive:
+                archive.extractall(extract_path)
+        else:
+            logging.debug(f"[Utility (FileOps.unzip)] Unknown filetype: {filepath}")
+
 
 ## this guy could use a rewrite/optimization wiht some error handling too
 class Network(QObject):

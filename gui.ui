@@ -66,7 +66,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -831,7 +831,7 @@ p, li { white-space: pre-wrap; }
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_8">
           <property name="currentIndex">
-           <number>0</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="tab_63">
            <attribute name="title">
@@ -1731,6 +1731,36 @@ p, li { white-space: pre-wrap; }
                <string>Raw records</string>
               </property>
              </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab">
+           <attribute name="title">
+            <string>ExploitAndVulnSearch</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_8">
+            <item row="2" column="0" colspan="2">
+             <widget class="QPushButton" name="exploitandvuln_search_button">
+              <property name="toolTip">
+               <string>Run a query on the DB</string>
+              </property>
+              <property name="text">
+               <string>--&gt;&gt; Query Exploit DB &lt;&lt;--</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" colspan="2">
+             <widget class="QLineEdit" name="exploitandvuln_search">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="placeholderText">
+               <string>Enter search</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QTableWidget" name="exploitandvuln_tableview"/>
             </item>
            </layout>
           </widget>
@@ -3644,7 +3674,7 @@ p, li { white-space: pre-wrap; }
             <item row="0" column="0">
              <widget class="QToolBox" name="toolBox">
               <property name="currentIndex">
-               <number>0</number>
+               <number>1</number>
               </property>
               <widget class="QWidget" name="page_7">
                <property name="geometry">
@@ -4254,13 +4284,143 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>100</width>
-                 <height>30</height>
+                 <width>1517</width>
+                 <height>678</height>
                 </rect>
                </property>
                <attribute name="label">
-                <string>Other - Not Yet Occupied</string>
+                <string>Vulnerability Databases and Exploits</string>
                </attribute>
+               <layout class="QGridLayout" name="gridLayout">
+                <item row="0" column="0">
+                 <layout class="QGridLayout" name="gridLayout_72">
+                  <item row="0" column="0">
+                   <layout class="QGridLayout" name="other_content_exploit_layou_exploitdb">
+                    <item row="2" column="1">
+                     <widget class="QPushButton" name="other_content_exploit_layou_exploitdb_placeholder_button">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="text">
+                       <string>Download</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QLineEdit" name="other_content_exploit_layou_exploitdb_placeholder">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="text">
+                       <string>Placeholder - if u see me then I screwed up my code :) consider it an easter egg</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="label_21">
+                      <property name="text">
+                       <string>ExploitDB</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item row="1" column="0">
+                   <layout class="QGridLayout" name="other_content_directory_layout_WeakPasswords_2">
+                    <item row="1" column="1">
+                     <widget class="QPushButton" name="other_content_directory_layout_WeakPasswords_placeholder_button_2">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="text">
+                       <string>Download</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="label_22">
+                      <property name="text">
+                       <string>Coming Later</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLineEdit" name="other_content_directory_layout_WeakPasswords_placeholder_2">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="text">
+                       <string>SecList Default Passwords</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item row="0" column="1">
+                   <layout class="QGridLayout" name="other_content_directory_layout_DefaultPasswords_2">
+                    <item row="1" column="1">
+                     <widget class="QPushButton" name="other_content_directory_layout_DefaultPasswords_placeholder_button_2">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="text">
+                       <string>Download</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="label_34">
+                      <property name="text">
+                       <string>Coming Later</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLineEdit" name="other_content_directory_layout_DefaultPasswords_placeholder_2">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="text">
+                       <string>SecList Default Passwords</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item row="1" column="1">
+                   <layout class="QGridLayout" name="other_content_directory_layout_LeakedPasswords_2">
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="label_45">
+                      <property name="text">
+                       <string>Coming Later</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLineEdit" name="other_content_directory_layout_LeakedPasswords_placeholder_2">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="text">
+                       <string>SecList Default Passwords</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QPushButton" name="other_content_directory_layout_LeakedPasswords_placeholder_button_2">
+                      <property name="enabled">
+                       <bool>false</bool>
+                      </property>
+                      <property name="text">
+                       <string>Download</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
               </widget>
              </widget>
             </item>

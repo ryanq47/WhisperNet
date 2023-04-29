@@ -945,6 +945,26 @@ class Ui_LogecC3(object):
         self.gridLayout_13.addWidget(self.label, 6, 1, 1, 1)
 
         self.tabWidget_8.addTab(self.tab_16, "")
+        self.tab = QWidget()
+        self.tab.setObjectName(u"tab")
+        self.gridLayout_8 = QGridLayout(self.tab)
+        self.gridLayout_8.setObjectName(u"gridLayout_8")
+        self.exploitandvuln_search_button = QPushButton(self.tab)
+        self.exploitandvuln_search_button.setObjectName(u"exploitandvuln_search_button")
+
+        self.gridLayout_8.addWidget(self.exploitandvuln_search_button, 2, 0, 1, 2)
+
+        self.exploitandvuln_search = QLineEdit(self.tab)
+        self.exploitandvuln_search.setObjectName(u"exploitandvuln_search")
+
+        self.gridLayout_8.addWidget(self.exploitandvuln_search, 1, 0, 1, 2)
+
+        self.exploitandvuln_tableview = QTableWidget(self.tab)
+        self.exploitandvuln_tableview.setObjectName(u"exploitandvuln_tableview")
+
+        self.gridLayout_8.addWidget(self.exploitandvuln_tableview, 0, 0, 1, 1)
+
+        self.tabWidget_8.addTab(self.tab, "")
 
         self.gridLayout_17.addWidget(self.tabWidget_8, 0, 0, 1, 1)
 
@@ -2438,8 +2458,103 @@ class Ui_LogecC3(object):
         self.toolBox.addItem(self.page_7, u"Wordlists")
         self.page_8 = QWidget()
         self.page_8.setObjectName(u"page_8")
-        self.page_8.setGeometry(QRect(0, 0, 100, 30))
-        self.toolBox.addItem(self.page_8, u"Other - Not Yet Occupied")
+        self.page_8.setGeometry(QRect(0, 0, 1517, 678))
+        self.gridLayout = QGridLayout(self.page_8)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.gridLayout_72 = QGridLayout()
+        self.gridLayout_72.setObjectName(u"gridLayout_72")
+        self.other_content_exploit_layou_exploitdb = QGridLayout()
+        self.other_content_exploit_layou_exploitdb.setObjectName(u"other_content_exploit_layou_exploitdb")
+        self.other_content_exploit_layou_exploitdb_placeholder_button = QPushButton(self.page_8)
+        self.other_content_exploit_layou_exploitdb_placeholder_button.setObjectName(u"other_content_exploit_layou_exploitdb_placeholder_button")
+        self.other_content_exploit_layou_exploitdb_placeholder_button.setEnabled(False)
+
+        self.other_content_exploit_layou_exploitdb.addWidget(self.other_content_exploit_layou_exploitdb_placeholder_button, 2, 1, 1, 1)
+
+        self.other_content_exploit_layou_exploitdb_placeholder = QLineEdit(self.page_8)
+        self.other_content_exploit_layou_exploitdb_placeholder.setObjectName(u"other_content_exploit_layou_exploitdb_placeholder")
+        self.other_content_exploit_layou_exploitdb_placeholder.setEnabled(False)
+
+        self.other_content_exploit_layou_exploitdb.addWidget(self.other_content_exploit_layou_exploitdb_placeholder, 2, 0, 1, 1)
+
+        self.label_21 = QLabel(self.page_8)
+        self.label_21.setObjectName(u"label_21")
+
+        self.other_content_exploit_layou_exploitdb.addWidget(self.label_21, 1, 0, 1, 1)
+
+
+        self.gridLayout_72.addLayout(self.other_content_exploit_layou_exploitdb, 0, 0, 1, 1)
+
+        self.other_content_directory_layout_WeakPasswords_2 = QGridLayout()
+        self.other_content_directory_layout_WeakPasswords_2.setObjectName(u"other_content_directory_layout_WeakPasswords_2")
+        self.other_content_directory_layout_WeakPasswords_placeholder_button_2 = QPushButton(self.page_8)
+        self.other_content_directory_layout_WeakPasswords_placeholder_button_2.setObjectName(u"other_content_directory_layout_WeakPasswords_placeholder_button_2")
+        self.other_content_directory_layout_WeakPasswords_placeholder_button_2.setEnabled(False)
+
+        self.other_content_directory_layout_WeakPasswords_2.addWidget(self.other_content_directory_layout_WeakPasswords_placeholder_button_2, 1, 1, 1, 1)
+
+        self.label_22 = QLabel(self.page_8)
+        self.label_22.setObjectName(u"label_22")
+
+        self.other_content_directory_layout_WeakPasswords_2.addWidget(self.label_22, 0, 0, 1, 1)
+
+        self.other_content_directory_layout_WeakPasswords_placeholder_2 = QLineEdit(self.page_8)
+        self.other_content_directory_layout_WeakPasswords_placeholder_2.setObjectName(u"other_content_directory_layout_WeakPasswords_placeholder_2")
+        self.other_content_directory_layout_WeakPasswords_placeholder_2.setEnabled(False)
+
+        self.other_content_directory_layout_WeakPasswords_2.addWidget(self.other_content_directory_layout_WeakPasswords_placeholder_2, 1, 0, 1, 1)
+
+
+        self.gridLayout_72.addLayout(self.other_content_directory_layout_WeakPasswords_2, 1, 0, 1, 1)
+
+        self.other_content_directory_layout_DefaultPasswords_2 = QGridLayout()
+        self.other_content_directory_layout_DefaultPasswords_2.setObjectName(u"other_content_directory_layout_DefaultPasswords_2")
+        self.other_content_directory_layout_DefaultPasswords_placeholder_button_2 = QPushButton(self.page_8)
+        self.other_content_directory_layout_DefaultPasswords_placeholder_button_2.setObjectName(u"other_content_directory_layout_DefaultPasswords_placeholder_button_2")
+        self.other_content_directory_layout_DefaultPasswords_placeholder_button_2.setEnabled(False)
+
+        self.other_content_directory_layout_DefaultPasswords_2.addWidget(self.other_content_directory_layout_DefaultPasswords_placeholder_button_2, 1, 1, 1, 1)
+
+        self.label_34 = QLabel(self.page_8)
+        self.label_34.setObjectName(u"label_34")
+
+        self.other_content_directory_layout_DefaultPasswords_2.addWidget(self.label_34, 0, 0, 1, 1)
+
+        self.other_content_directory_layout_DefaultPasswords_placeholder_2 = QLineEdit(self.page_8)
+        self.other_content_directory_layout_DefaultPasswords_placeholder_2.setObjectName(u"other_content_directory_layout_DefaultPasswords_placeholder_2")
+        self.other_content_directory_layout_DefaultPasswords_placeholder_2.setEnabled(False)
+
+        self.other_content_directory_layout_DefaultPasswords_2.addWidget(self.other_content_directory_layout_DefaultPasswords_placeholder_2, 1, 0, 1, 1)
+
+
+        self.gridLayout_72.addLayout(self.other_content_directory_layout_DefaultPasswords_2, 0, 1, 1, 1)
+
+        self.other_content_directory_layout_LeakedPasswords_2 = QGridLayout()
+        self.other_content_directory_layout_LeakedPasswords_2.setObjectName(u"other_content_directory_layout_LeakedPasswords_2")
+        self.label_45 = QLabel(self.page_8)
+        self.label_45.setObjectName(u"label_45")
+
+        self.other_content_directory_layout_LeakedPasswords_2.addWidget(self.label_45, 0, 0, 1, 1)
+
+        self.other_content_directory_layout_LeakedPasswords_placeholder_2 = QLineEdit(self.page_8)
+        self.other_content_directory_layout_LeakedPasswords_placeholder_2.setObjectName(u"other_content_directory_layout_LeakedPasswords_placeholder_2")
+        self.other_content_directory_layout_LeakedPasswords_placeholder_2.setEnabled(False)
+
+        self.other_content_directory_layout_LeakedPasswords_2.addWidget(self.other_content_directory_layout_LeakedPasswords_placeholder_2, 1, 0, 1, 1)
+
+        self.other_content_directory_layout_LeakedPasswords_placeholder_button_2 = QPushButton(self.page_8)
+        self.other_content_directory_layout_LeakedPasswords_placeholder_button_2.setObjectName(u"other_content_directory_layout_LeakedPasswords_placeholder_button_2")
+        self.other_content_directory_layout_LeakedPasswords_placeholder_button_2.setEnabled(False)
+
+        self.other_content_directory_layout_LeakedPasswords_2.addWidget(self.other_content_directory_layout_LeakedPasswords_placeholder_button_2, 1, 1, 1, 1)
+
+
+        self.gridLayout_72.addLayout(self.other_content_directory_layout_LeakedPasswords_2, 1, 1, 1, 1)
+
+
+        self.gridLayout.addLayout(self.gridLayout_72, 0, 0, 1, 1)
+
+        self.toolBox.addItem(self.page_8, u"Vulnerability Databases and Exploits")
 
         self.gridLayout_52.addWidget(self.toolBox, 0, 0, 1, 1)
 
@@ -2474,11 +2589,11 @@ class Ui_LogecC3(object):
 
         self.retranslateUi(LogecC3)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
         self.bruteforce_panel_2.setCurrentIndex(2)
         self.c2_shell_tab.setCurrentIndex(0)
         self.osint_reddit_tab.setCurrentIndex(0)
-        self.tabWidget_8.setCurrentIndex(0)
+        self.tabWidget_8.setCurrentIndex(3)
         self.bashbuild_toolBox.setCurrentIndex(3)
         self.tabWidget_9.setCurrentIndex(0)
         self.tabWidget_6.setCurrentIndex(1)
@@ -2497,7 +2612,7 @@ class Ui_LogecC3(object):
         self.tabWidget_11.setCurrentIndex(2)
         self.tabWidget_12.setCurrentIndex(1)
         self.tabWidget_15.setCurrentIndex(1)
-        self.toolBox.setCurrentIndex(0)
+        self.toolBox.setCurrentIndex(1)
         self.tabWidget_5.setCurrentIndex(1)
 
 
@@ -2931,6 +3046,13 @@ class Ui_LogecC3(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
         self.label.setText(QCoreApplication.translate("LogecC3", u"Raw records", None))
         self.tabWidget_8.setTabText(self.tabWidget_8.indexOf(self.tab_16), QCoreApplication.translate("LogecC3", u"DNS Lookup", None))
+#if QT_CONFIG(tooltip)
+        self.exploitandvuln_search_button.setToolTip(QCoreApplication.translate("LogecC3", u"Run a query on the DB", None))
+#endif // QT_CONFIG(tooltip)
+        self.exploitandvuln_search_button.setText(QCoreApplication.translate("LogecC3", u"-->> Query Exploit DB <<--", None))
+        self.exploitandvuln_search.setText("")
+        self.exploitandvuln_search.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Enter search", None))
+        self.tabWidget_8.setTabText(self.tabWidget_8.indexOf(self.tab), QCoreApplication.translate("LogecC3", u"ExploitAndVulnSearch", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_22), QCoreApplication.translate("LogecC3", u"Scanning/Enumeration", None))
 #if QT_CONFIG(accessibility)
         self.tabWidget_6.setAccessibleName("")
@@ -3307,7 +3429,19 @@ class Ui_LogecC3(object):
         self.label_5.setText(QCoreApplication.translate("LogecC3", u"Leaked Passwords", None))
         self.tabWidget_5.setTabText(self.tabWidget_5.indexOf(self.tab_9), QCoreApplication.translate("LogecC3", u"Directory", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_7), QCoreApplication.translate("LogecC3", u"Wordlists", None))
-        self.toolBox.setItemText(self.toolBox.indexOf(self.page_8), QCoreApplication.translate("LogecC3", u"Other - Not Yet Occupied", None))
+        self.other_content_exploit_layou_exploitdb_placeholder_button.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.other_content_exploit_layou_exploitdb_placeholder.setText(QCoreApplication.translate("LogecC3", u"Placeholder - if u see me then I screwed up my code :) consider it an easter egg", None))
+        self.label_21.setText(QCoreApplication.translate("LogecC3", u"ExploitDB", None))
+        self.other_content_directory_layout_WeakPasswords_placeholder_button_2.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.label_22.setText(QCoreApplication.translate("LogecC3", u"Coming Later", None))
+        self.other_content_directory_layout_WeakPasswords_placeholder_2.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
+        self.other_content_directory_layout_DefaultPasswords_placeholder_button_2.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.label_34.setText(QCoreApplication.translate("LogecC3", u"Coming Later", None))
+        self.other_content_directory_layout_DefaultPasswords_placeholder_2.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
+        self.label_45.setText(QCoreApplication.translate("LogecC3", u"Coming Later", None))
+        self.other_content_directory_layout_LeakedPasswords_placeholder_2.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
+        self.other_content_directory_layout_LeakedPasswords_placeholder_button_2.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page_8), QCoreApplication.translate("LogecC3", u"Vulnerability Databases and Exploits", None))
         self.tabWidget_10.setTabText(self.tabWidget_10.indexOf(self.tab_7), QCoreApplication.translate("LogecC3", u"Content", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_27), QCoreApplication.translate("LogecC3", u"Other", None))
         self.menuFile.setTitle(QCoreApplication.translate("LogecC3", u"File", None))

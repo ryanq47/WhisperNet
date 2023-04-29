@@ -9,7 +9,7 @@ compile:
 
 
 gui:
-	/home/kali/.local/bin/pyside6-uic gui.ui > gui.py 
+	/home/kali/PycharmProjects/logec-suite/venv/bin/pyside6-uic gui.ui > gui.py 
 
 dev:
 	pip install -r requirements.txt

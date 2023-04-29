@@ -64,6 +64,7 @@ from Modules.General.ScriptGen import ScriptGen
 from Modules.General.SysShell.shell import Shell
 from Modules.General.portscanner import Portscan
 import Modules.General.utility as utility
+from Modules.ExploitNVulns.exploitdb import LogecExploitdb
 
 from agent.friendly_client import FClient
 
@@ -92,6 +93,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.init_project_settings()
         self.init_thread_manager()
         ##== Getting logging going ASAP
+        self.log_level_handler()
 
         
         ##== instances
@@ -103,6 +105,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         ##== Other Buttons
         self.init_buttons_file_menu()
         self.init_buttons_c2_shells()
+        self.init_buttons_exploitandvuln()
         self.init_buttons_osint_reddit()
         self.init_buttons_scanning()
         self.init_buttons_bruteforce_credentials()
@@ -258,7 +261,10 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
     
         ## client gui
         self.c2_client_table_setup()
-    
+
+    def init_buttons_exploitandvuln(self):
+        self.exploitandvuln_search_button.clicked.connect(self.exploit_and_vuln_search)
+
     ##== Buttons for OSINT reddit
     def init_buttons_osint_reddit(self) -> None:
         self.osint_reddit_search.clicked.connect(self.osint_reddit)
@@ -875,6 +881,49 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         # Need to disconnect at the end for some reason, otherwise exponential repeat calls to
         # this function happen
         self.friendly_client_background_worker.json_data.disconnect(self.client_list_update)
+
+    ## exploit n vuln
+
+    def exploit_and_vuln_search(self):
+        ## load DB file path eventually, hardcoded for now
+        filepath = f"{sys_path}/Content/ExploitsNstuff/ExploitDB/exploitdb-2022-10-18/files_exploits.csv"
+        self.exploitdb_worker = LogecExploitdb(csv_filepath=filepath)
+
+        self.thread_manager.start(partial(self.exploitdb_worker.search, self.exploitandvuln_search.text()))
+        self.exploitdb_worker.results.connect(self.vuln_display_update)
+
+    def vuln_display_update(self, data):
+        ## turn into a table later
+
+        self.exploitandvuln_tableview.clear()
+        self.exploitandvuln_tableview.setRowCount(0)
+
+        self.exploitandvuln_tableview.setColumnCount(7)
+        self.exploitandvuln_tableview.setHorizontalHeaderLabels(
+            ['Column 1', 'Column 2', 'Column 3', 'Column 4', 'Column 5', 'Column 6', 'Column 7'])
+
+        ## NOT DISPLAYING FOR SOME REASON
+        for i in data:
+            try:
+                #print("NEWROTW")
+                #print(i)
+                rowPosition = self.exploitandvuln_tableview.rowCount()
+                self.exploitandvuln_tableview.insertRow(rowPosition)
+
+                self.exploitandvuln_tableview.setItem(rowPosition, 0, QTableWidgetItem(str(i[0])))
+                self.exploitandvuln_tableview.setItem(rowPosition, 1, QTableWidgetItem(str(i[1])))
+                self.exploitandvuln_tableview.setItem(rowPosition, 2, QTableWidgetItem(str(i[2])))
+                self.exploitandvuln_tableview.setItem(rowPosition, 3, QTableWidgetItem(str(i[3])))
+                self.exploitandvuln_tableview.setItem(rowPosition, 4, QTableWidgetItem(str(i[4])))
+                self.exploitandvuln_tableview.setItem(rowPosition, 5, QTableWidgetItem(str(i[5])))
+                self.exploitandvuln_tableview.setItem(rowPosition, 6, QTableWidgetItem(str(i[6])))
+                self.exploitandvuln_tableview.setItem(rowPosition, 7, QTableWidgetItem(str(i[7])))
+
+            except Exception as e:
+                print(e)
+
+
+        #self.exploitandvuln_textedit.tableview(str(data))
 
 ####################
 ## Scanning Enumeration
@@ -1879,7 +1928,10 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         to add an entry, pop open the DB, and create a new row with the data needed. order does not matter as long as 
         you set the Category
         
-        Because these are in the DB, they are persistent in your project file
+        Because these are in the DB, they are persistent in your project file.
+
+        Some insight on the for loop, each iteration creates a new button, & line edit that are
+        tied to data from each iteration
         """
         ## Hiding placeholder buttons, needed to keep layout in line
         self.other_content_directory_layout_SecList_placeholder.hide()
@@ -1893,7 +1945,10 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         
         self.other_content_directory_layout_LeakedPasswords_placeholder.hide()
         self.other_content_directory_layout_LeakedPasswords_placeholder_button.hide()
-    
+
+        self.other_content_exploit_layou_exploitdb_placeholder.hide()
+        self.other_content_exploit_layou_exploitdb_placeholder_button.hide()
+
         ## read DB, 
         ## DB here
         sql_data = self.sql_db_read("select * from 'CONTENT-Wordlists'")
@@ -1921,11 +1976,15 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             '''push_button.setStyleSheet(
             "QPushButton:hover { background-color: grey }"
             )'''
-            ##hover text
-            push_button.setToolTip(ListUrl)
-            push_button.clicked.connect(partial(self.content, url=ListUrl, savename=f"{Category}-{ListName}"))
+
             
             if Category == "SecList":
+                ##hover text
+                push_button.setToolTip(ListUrl)
+                ## This creates a button for each entry, which is tied to the data from the SQL entry
+                push_button.clicked.connect(partial(self.content, url=ListUrl, savepath=f"{sys_path}/Content/Wordlists",
+                                                    savename=f"{Category}-{ListName}"))
+
                 self.other_content_directory_layout_SecList.addWidget(line_edit)
                 self.other_content_directory_layout_SecList.addWidget(push_button)
                 
@@ -1933,6 +1992,10 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
                 push_button.setText("Download")
                 
             elif Category == "DefaultPasswords":
+                push_button.setToolTip(ListUrl)
+                push_button.clicked.connect(partial(self.content, url=ListUrl, savepath=f"{sys_path}/Content/Wordlists",
+                                                    savename=f"{Category}-{ListName}"))
+
                 #pass # other_content_directory_layout_DefaultPasswords
                 self.other_content_directory_layout_DefaultPasswords.addWidget(line_edit)
                 self.other_content_directory_layout_DefaultPasswords.addWidget(push_button)
@@ -1941,6 +2004,9 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
                 push_button.setText("Download")
                 
             elif Category == "WeakPasswords":
+                push_button.setToolTip(ListUrl)
+                push_button.clicked.connect(partial(self.content, url=ListUrl, savepath=f"{sys_path}/Content/Wordlists",
+                                                    savename=f"{Category}-{ListName}"))
                 #pass # other_content_directory_layout_WeakPasswords
                 self.other_content_directory_layout_WeakPasswords.addWidget(line_edit)
                 self.other_content_directory_layout_WeakPasswords.addWidget(push_button)
@@ -1950,28 +2016,56 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
                 
                 
             elif Category == "LeakedPasswords":
+                push_button.setToolTip(ListUrl)
+                push_button.clicked.connect(partial(self.content, url=ListUrl, savepath=f"{sys_path}/Content/Wordlists",
+                                                    savename=f"{Category}-{ListName}"))
                 #pass # other_content_directory_layout_LeakedPasswords
                 self.other_content_directory_layout_LeakedPasswords.addWidget(line_edit)
                 self.other_content_directory_layout_LeakedPasswords.addWidget(push_button)
                 
                 line_edit.setText(str(ListName))
                 push_button.setText("Download")
+
+            elif Category == "ExploitDB":
+                push_button.setToolTip(ListUrl)
+                push_button.clicked.connect(partial(self.content,
+                                                    url=ListUrl,
+                                                    savepath=f"{sys_path}/Content/ExploitsNstuff/ExploitDB/",
+                                                    savename=f"{Category}-{ListName}",
+                                                    isziparchive=True))
+
+                self.other_content_exploit_layou_exploitdb.addWidget(line_edit)
+                self.other_content_exploit_layou_exploitdb.addWidget(push_button)
+
+                line_edit.setText(str(ListName))
+                push_button.setText("Download and Extract")
+
+
             
             else:
                 logging.debug(f"[Logec (Content)] Row has invalid 'Content' key set: {i}")
 
-    def content(self, url=None, savepath=None, savename=None):
-        
+    def content(self, url=None, savepath=None, savename=None, isziparchive=False, istargzarchive=False):
+
+        if isziparchive:
+            savename = f"{savename}.zip"
+        elif istargzarchive:
+            savename = f"{savename}.tar.gz"
+
         download_dict = {
             "URL" : str(url),
             ## Hardcoded for now
-            "SavePath" : sys_path + "/Content/Wordlists",
-            "SaveName" : str(savename)
+            "SavePath" : savepath, #sys_path + "/Content/Wordlists",
+            "SaveName" : str(savename),
+            "SavePathAndName": f"{savepath}/{savename}",
+            "IsZipArchive": isziparchive,
+            "IsTarGzArchive" : istargzarchive
         }
-        
+        logging.debug(f"[Logec (content)] Starting download for {url}, saving to {savepath}")
         ## Download in new thread
         self.thread_manager.start(partial(self.H.download, download_dict))
-        
+
+
 
 
 ####################
