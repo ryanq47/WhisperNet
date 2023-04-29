@@ -11,6 +11,7 @@ import sys
 import random
 import sqlite3
 import threading
+import csv
 #import time
 #import webbrowser
 from functools import partial
@@ -884,46 +885,52 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
     ## exploit n vuln
 
+    """
+    These functions are what drive the current vuln & exploit seacher.
+    
+    The seraching is pretty basic, but eventually I'd like it to be similar to this:
+    name=OpenSSH platform=windows 
+    
+    with each field being searched and if it exists, get added. yes it won't be the fastest, but it'll work
+    
+    """
     def exploit_and_vuln_search(self):
         ## load DB file path eventually, hardcoded for now
-        filepath = f"{sys_path}/Content/ExploitsNstuff/ExploitDB/exploitdb-2022-10-18/files_exploits.csv"
+        filepath = f"{sys_path}/Content/ExploitsNstuff/ExploitDB/exploitdb-main/files_exploits.csv"
         self.exploitdb_worker = LogecExploitdb(csv_filepath=filepath)
+
+        with open(filepath) as csvFile:
+            reader = csv.reader(csvFile)
+            self.header_list = next(reader)
 
         self.thread_manager.start(partial(self.exploitdb_worker.search, self.exploitandvuln_search.text()))
         self.exploitdb_worker.results.connect(self.vuln_display_update)
 
     def vuln_display_update(self, data):
-        ## turn into a table later
-
         self.exploitandvuln_tableview.clear()
         self.exploitandvuln_tableview.setRowCount(0)
 
-        self.exploitandvuln_tableview.setColumnCount(7)
-        self.exploitandvuln_tableview.setHorizontalHeaderLabels(
-            ['Column 1', 'Column 2', 'Column 3', 'Column 4', 'Column 5', 'Column 6', 'Column 7'])
+        try:
+            self.exploitandvuln_tableview.setColumnCount(len(data[0]))
+            ## set AFTER column count
+            self.exploitandvuln_tableview.setHorizontalHeaderLabels(self.header_list)
 
-        ## NOT DISPLAYING FOR SOME REASON
-        for i in data:
-            try:
-                #print("NEWROTW")
-                #print(i)
+            #self.exploitandvuln_tableview.setColumnCount(2)
+            for i in data:
                 rowPosition = self.exploitandvuln_tableview.rowCount()
                 self.exploitandvuln_tableview.insertRow(rowPosition)
-
-                self.exploitandvuln_tableview.setItem(rowPosition, 0, QTableWidgetItem(str(i[0])))
-                self.exploitandvuln_tableview.setItem(rowPosition, 1, QTableWidgetItem(str(i[1])))
-                self.exploitandvuln_tableview.setItem(rowPosition, 2, QTableWidgetItem(str(i[2])))
-                self.exploitandvuln_tableview.setItem(rowPosition, 3, QTableWidgetItem(str(i[3])))
-                self.exploitandvuln_tableview.setItem(rowPosition, 4, QTableWidgetItem(str(i[4])))
-                self.exploitandvuln_tableview.setItem(rowPosition, 5, QTableWidgetItem(str(i[5])))
-                self.exploitandvuln_tableview.setItem(rowPosition, 6, QTableWidgetItem(str(i[6])))
-                self.exploitandvuln_tableview.setItem(rowPosition, 7, QTableWidgetItem(str(i[7])))
-
-            except Exception as e:
-                print(e)
-
-
-        #self.exploitandvuln_textedit.tableview(str(data))
+                for z in range(0, len(data[0])):
+                    try:
+                        self.exploitandvuln_tableview.setItem(rowPosition, z, QTableWidgetItem(str(i[z])))
+                    except Exception as e:
+                        #print(e)
+                        logging.debug(f"[Logec (exploit_and_vuln_search)] Error: {e}")
+        except Exception as e:
+            print(e)
+            logging.debug(f"[Logec (exploit_and_vuln_search)]: Search yielded no results")
+            self.exploitandvuln_tableview.setColumnCount(1)
+            self.exploitandvuln_tableview.insertRow(0)
+            self.exploitandvuln_tableview.setItem(0, 0, QTableWidgetItem("search yeilded no results"))
 
 ####################
 ## Scanning Enumeration

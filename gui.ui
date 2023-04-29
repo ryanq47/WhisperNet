@@ -848,8 +848,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1515</width>
-                 <height>742</height>
+                 <width>72</width>
+                 <height>16</height>
                 </rect>
                </property>
                <widget class="QToolBox" name="bashbuild_toolBox">
@@ -955,8 +955,8 @@ p, li { white-space: pre-wrap; }
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>241</width>
-                   <height>453</height>
+                   <width>100</width>
+                   <height>30</height>
                   </rect>
                  </property>
                  <attribute name="label">
@@ -3681,8 +3681,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1517</width>
-                 <height>678</height>
+                 <width>462</width>
+                 <height>319</height>
                 </rect>
                </property>
                <attribute name="label">
@@ -4284,8 +4284,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1517</width>
-                 <height>678</height>
+                 <width>382</width>
+                 <height>134</height>
                 </rect>
                </property>
                <attribute name="label">
