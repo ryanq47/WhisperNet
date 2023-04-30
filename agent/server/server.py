@@ -536,6 +536,8 @@ class ServerFriendlyClientHandler:
                     
                     ## listen for friendly client
                     #a = bytes_decode(self.conn.recv(1024))
+
+                    logging.debug("[Server (Session: )] Waiting on command from friendly client")
                     raw_session_message = self.recieve_msg_from_friendlyclient()
                     
                     ## msg looks like: !_clientcommand_!\\/id\|/command. This is done for server filtering purposes
@@ -543,7 +545,7 @@ class ServerFriendlyClientHandler:
                     session_command = raw_session_message.split("\\|/")[2]
 
                     # Updating GUI with latest session command
-                    self.client_stats_update(current_job=f"{session_command}", client_name=client_name)
+                    #self.client_stats_update(current_job=f"{session_command}", client_name=client_name)
 
                     if session_command == "break":
                         logging.debug(f"[Server (session: {self.client.fullname})] : Session breaking")

@@ -39,7 +39,7 @@ class Ui_LogecC3(object):
         LogecC3.setFont(font)
         LogecC3.setAcceptDrops(False)
         icon = QIcon()
-        icon.addFile(u"../../.designer/backup/Modules/GUI_System/Images/icon.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u"../../Documents/Screenshot_2023-04-30_01-44-21.png", QSize(), QIcon.Normal, QIcon.Off)
         LogecC3.setWindowIcon(icon)
         LogecC3.setAnimated(True)
         LogecC3.setDocumentMode(False)
@@ -124,6 +124,7 @@ class Ui_LogecC3(object):
         self.tabWidget.setObjectName(u"tabWidget")
         self.tabWidget.setEnabled(True)
         self.tabWidget.setAutoFillBackground(False)
+        self.tabWidget.setStyleSheet(u"")
         self.tabWidget.setTabPosition(QTabWidget.North)
         self.tabWidget.setTabsClosable(False)
         self.tabWidget.setMovable(True)
@@ -151,6 +152,7 @@ class Ui_LogecC3(object):
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.c2_gui_groupbox_clients = QGroupBox(self.c2_tab)
         self.c2_gui_groupbox_clients.setObjectName(u"c2_gui_groupbox_clients")
+        self.c2_gui_groupbox_clients.setStyleSheet(u"border:0")
         self.c2_gui_groupbox_clients.setAlignment(Qt.AlignJustify|Qt.AlignVCenter)
         self.gridLayout_12 = QGridLayout(self.c2_gui_groupbox_clients)
         self.gridLayout_12.setObjectName(u"gridLayout_12")
@@ -165,10 +167,12 @@ class Ui_LogecC3(object):
 
         self.c2_gui_groupbox_options = QGroupBox(self.c2_tab)
         self.c2_gui_groupbox_options.setObjectName(u"c2_gui_groupbox_options")
+        self.c2_gui_groupbox_options.setStyleSheet(u"border:0")
         self.gridLayout_29 = QGridLayout(self.c2_gui_groupbox_options)
         self.gridLayout_29.setObjectName(u"gridLayout_29")
         self.bruteforce_panel_2 = QTabWidget(self.c2_gui_groupbox_options)
         self.bruteforce_panel_2.setObjectName(u"bruteforce_panel_2")
+        self.bruteforce_panel_2.setStyleSheet(u"border:0")
         self.tab_54 = QWidget()
         self.tab_54.setObjectName(u"tab_54")
         self.gridLayout_39 = QGridLayout(self.tab_54)
@@ -277,6 +281,7 @@ class Ui_LogecC3(object):
 
         self.c2_gui_groupbox_shells = QGroupBox(self.c2_tab)
         self.c2_gui_groupbox_shells.setObjectName(u"c2_gui_groupbox_shells")
+        self.c2_gui_groupbox_shells.setStyleSheet(u"border:0")
         self.gridLayout_30 = QGridLayout(self.c2_gui_groupbox_shells)
         self.gridLayout_30.setObjectName(u"gridLayout_30")
         self.c2_shell_tab = QTabWidget(self.c2_gui_groupbox_shells)
@@ -565,12 +570,13 @@ class Ui_LogecC3(object):
         self.scrollAreaWidgetContents_5 = QWidget()
         self.scrollAreaWidgetContents_5.setObjectName(u"scrollAreaWidgetContents_5")
         self.scrollAreaWidgetContents_5.setGeometry(QRect(0, 0, 1515, 742))
+        self.gridLayout_9 = QGridLayout(self.scrollAreaWidgetContents_5)
+        self.gridLayout_9.setObjectName(u"gridLayout_9")
         self.bashbuild_toolBox = QToolBox(self.scrollAreaWidgetContents_5)
         self.bashbuild_toolBox.setObjectName(u"bashbuild_toolBox")
-        self.bashbuild_toolBox.setGeometry(QRect(0, 0, 241, 651))
         self.page_4 = QWidget()
         self.page_4.setObjectName(u"page_4")
-        self.page_4.setGeometry(QRect(0, 0, 92, 78))
+        self.page_4.setGeometry(QRect(0, 0, 1000, 526))
         self.gridLayout_48 = QGridLayout(self.page_4)
         self.gridLayout_48.setObjectName(u"gridLayout_48")
         self.textEdit_24 = QTextEdit(self.page_4)
@@ -581,21 +587,21 @@ class Ui_LogecC3(object):
         self.bashbuild_toolBox.addItem(self.page_4, u"Quick Guide")
         self.page = QWidget()
         self.page.setObjectName(u"page")
-        self.page.setGeometry(QRect(0, 0, 100, 30))
+        self.page.setGeometry(QRect(0, 0, 1000, 526))
         self.bashbuild_dnsenum = QCheckBox(self.page)
         self.bashbuild_dnsenum.setObjectName(u"bashbuild_dnsenum")
         self.bashbuild_dnsenum.setGeometry(QRect(10, 0, 92, 25))
         self.bashbuild_toolBox.addItem(self.page, u"DNS")
         self.page_3 = QWidget()
         self.page_3.setObjectName(u"page_3")
-        self.page_3.setGeometry(QRect(0, 0, 100, 30))
+        self.page_3.setGeometry(QRect(0, 0, 1000, 526))
         self.bashbuild_nmap = QCheckBox(self.page_3)
         self.bashbuild_nmap.setObjectName(u"bashbuild_nmap")
         self.bashbuild_nmap.setGeometry(QRect(10, 20, 92, 25))
         self.bashbuild_toolBox.addItem(self.page_3, u"PortScan")
         self.page_6 = QWidget()
         self.page_6.setObjectName(u"page_6")
-        self.page_6.setGeometry(QRect(0, 0, 241, 453))
+        self.page_6.setGeometry(QRect(0, 0, 1000, 526))
         self.checkBox_25 = QCheckBox(self.page_6)
         self.checkBox_25.setObjectName(u"checkBox_25")
         self.checkBox_25.setGeometry(QRect(10, 10, 181, 25))
@@ -611,7 +617,7 @@ class Ui_LogecC3(object):
         self.bashbuild_toolBox.addItem(self.page_6, u"Local")
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
-        self.page_2.setGeometry(QRect(0, 0, 100, 30))
+        self.page_2.setGeometry(QRect(0, 0, 1000, 526))
         self.bashbuild_diagnostic = QCheckBox(self.page_2)
         self.bashbuild_diagnostic.setObjectName(u"bashbuild_diagnostic")
         self.bashbuild_diagnostic.setGeometry(QRect(10, 10, 201, 25))
@@ -623,7 +629,7 @@ class Ui_LogecC3(object):
         self.bashbuild_toolBox.addItem(self.page_2, u"Other")
         self.page_5 = QWidget()
         self.page_5.setObjectName(u"page_5")
-        self.page_5.setGeometry(QRect(0, 0, 92, 78))
+        self.page_5.setGeometry(QRect(0, 0, 1000, 526))
         self.gridLayout_49 = QGridLayout(self.page_5)
         self.gridLayout_49.setObjectName(u"gridLayout_49")
         self.textEdit_26 = QTextEdit(self.page_5)
@@ -632,18 +638,29 @@ class Ui_LogecC3(object):
         self.gridLayout_49.addWidget(self.textEdit_26, 0, 0, 1, 1)
 
         self.bashbuild_toolBox.addItem(self.page_5, u"Overview")
+
+        self.gridLayout_9.addWidget(self.bashbuild_toolBox, 0, 0, 2, 1)
+
         self.bashbuild_textoutput = QTextEdit(self.scrollAreaWidgetContents_5)
         self.bashbuild_textoutput.setObjectName(u"bashbuild_textoutput")
-        self.bashbuild_textoutput.setGeometry(QRect(240, 10, 1031, 601))
-        self.bashbuilder_generate = QPushButton(self.scrollAreaWidgetContents_5)
-        self.bashbuilder_generate.setObjectName(u"bashbuilder_generate")
-        self.bashbuilder_generate.setGeometry(QRect(780, 620, 491, 27))
+
+        self.gridLayout_9.addWidget(self.bashbuild_textoutput, 0, 1, 1, 3)
+
         self.pushButton_3 = QPushButton(self.scrollAreaWidgetContents_5)
         self.pushButton_3.setObjectName(u"pushButton_3")
-        self.pushButton_3.setGeometry(QRect(240, 620, 261, 27))
+
+        self.gridLayout_9.addWidget(self.pushButton_3, 1, 1, 1, 1)
+
         self.pushButton_4 = QPushButton(self.scrollAreaWidgetContents_5)
         self.pushButton_4.setObjectName(u"pushButton_4")
-        self.pushButton_4.setGeometry(QRect(510, 620, 261, 27))
+
+        self.gridLayout_9.addWidget(self.pushButton_4, 1, 2, 1, 1)
+
+        self.bashbuilder_generate = QPushButton(self.scrollAreaWidgetContents_5)
+        self.bashbuilder_generate.setObjectName(u"bashbuilder_generate")
+
+        self.gridLayout_9.addWidget(self.bashbuilder_generate, 1, 3, 1, 1)
+
         self.scrollArea_5.setWidget(self.scrollAreaWidgetContents_5)
 
         self.gridLayout_47.addWidget(self.scrollArea_5, 0, 0, 1, 1)
@@ -951,6 +968,7 @@ class Ui_LogecC3(object):
         self.gridLayout_8.setObjectName(u"gridLayout_8")
         self.exploitandvuln_search_button = QPushButton(self.tab)
         self.exploitandvuln_search_button.setObjectName(u"exploitandvuln_search_button")
+        self.exploitandvuln_search_button.setStyleSheet(u"")
 
         self.gridLayout_8.addWidget(self.exploitandvuln_search_button, 2, 0, 1, 2)
 
@@ -2020,165 +2038,76 @@ class Ui_LogecC3(object):
         self.gridLayout_58.setObjectName(u"gridLayout_58")
         self.gridLayout_66 = QGridLayout()
         self.gridLayout_66.setObjectName(u"gridLayout_66")
-        self.gridLayout_67 = QGridLayout()
-        self.gridLayout_67.setObjectName(u"gridLayout_67")
-        self.lineEdit_88 = QLineEdit(self.tab_8)
-        self.lineEdit_88.setObjectName(u"lineEdit_88")
-
-        self.gridLayout_67.addWidget(self.lineEdit_88, 2, 0, 1, 1)
-
-        self.lineEdit_89 = QLineEdit(self.tab_8)
-        self.lineEdit_89.setObjectName(u"lineEdit_89")
-
-        self.gridLayout_67.addWidget(self.lineEdit_89, 1, 0, 1, 1)
-
-        self.lineEdit_90 = QLineEdit(self.tab_8)
-        self.lineEdit_90.setObjectName(u"lineEdit_90")
-
-        self.gridLayout_67.addWidget(self.lineEdit_90, 3, 0, 1, 1)
-
-        self.bruteforce_download_seclist_top10mil_22 = QPushButton(self.tab_8)
-        self.bruteforce_download_seclist_top10mil_22.setObjectName(u"bruteforce_download_seclist_top10mil_22")
-
-        self.gridLayout_67.addWidget(self.bruteforce_download_seclist_top10mil_22, 3, 1, 1, 1)
-
-        self.bruteforce_download_seclist_defaults_13 = QPushButton(self.tab_8)
-        self.bruteforce_download_seclist_defaults_13.setObjectName(u"bruteforce_download_seclist_defaults_13")
-
-        self.gridLayout_67.addWidget(self.bruteforce_download_seclist_defaults_13, 1, 1, 1, 1)
-
-        self.bruteforce_download_seclist_top10mil_23 = QPushButton(self.tab_8)
-        self.bruteforce_download_seclist_top10mil_23.setObjectName(u"bruteforce_download_seclist_top10mil_23")
-
-        self.gridLayout_67.addWidget(self.bruteforce_download_seclist_top10mil_23, 2, 1, 1, 1)
-
+        self.other_content_usernames_layout_general = QGridLayout()
+        self.other_content_usernames_layout_general.setObjectName(u"other_content_usernames_layout_general")
         self.label_6 = QLabel(self.tab_8)
         self.label_6.setObjectName(u"label_6")
+        self.label_6.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
-        self.gridLayout_67.addWidget(self.label_6, 0, 0, 1, 1)
+        self.other_content_usernames_layout_general.addWidget(self.label_6, 0, 0, 1, 1)
 
+        self.other_content_usernames_layout_general_button_placeholder = QPushButton(self.tab_8)
+        self.other_content_usernames_layout_general_button_placeholder.setObjectName(u"other_content_usernames_layout_general_button_placeholder")
+        self.other_content_usernames_layout_general_button_placeholder.setEnabled(False)
 
-        self.gridLayout_66.addLayout(self.gridLayout_67, 0, 0, 1, 1)
+        self.other_content_usernames_layout_general.addWidget(self.other_content_usernames_layout_general_button_placeholder, 1, 1, 1, 1)
 
-        self.gridLayout_68 = QGridLayout()
-        self.gridLayout_68.setObjectName(u"gridLayout_68")
-        self.lineEdit_91 = QLineEdit(self.tab_8)
-        self.lineEdit_91.setObjectName(u"lineEdit_91")
+        self.other_content_usernames_layout_general_placeholder = QLineEdit(self.tab_8)
+        self.other_content_usernames_layout_general_placeholder.setObjectName(u"other_content_usernames_layout_general_placeholder")
+        self.other_content_usernames_layout_general_placeholder.setEnabled(False)
+        self.other_content_usernames_layout_general_placeholder.setClearButtonEnabled(False)
 
-        self.gridLayout_68.addWidget(self.lineEdit_91, 3, 0, 1, 1)
-
-        self.bruteforce_download_seclist_top10mil_24 = QPushButton(self.tab_8)
-        self.bruteforce_download_seclist_top10mil_24.setObjectName(u"bruteforce_download_seclist_top10mil_24")
-
-        self.gridLayout_68.addWidget(self.bruteforce_download_seclist_top10mil_24, 3, 1, 1, 1)
-
-        self.lineEdit_92 = QLineEdit(self.tab_8)
-        self.lineEdit_92.setObjectName(u"lineEdit_92")
-
-        self.gridLayout_68.addWidget(self.lineEdit_92, 1, 0, 1, 1)
-
-        self.bruteforce_download_seclist_top10mil_25 = QPushButton(self.tab_8)
-        self.bruteforce_download_seclist_top10mil_25.setObjectName(u"bruteforce_download_seclist_top10mil_25")
-
-        self.gridLayout_68.addWidget(self.bruteforce_download_seclist_top10mil_25, 2, 1, 1, 1)
-
-        self.bruteforce_download_seclist_defaults_14 = QPushButton(self.tab_8)
-        self.bruteforce_download_seclist_defaults_14.setObjectName(u"bruteforce_download_seclist_defaults_14")
-
-        self.gridLayout_68.addWidget(self.bruteforce_download_seclist_defaults_14, 1, 1, 1, 1)
-
-        self.lineEdit_93 = QLineEdit(self.tab_8)
-        self.lineEdit_93.setObjectName(u"lineEdit_93")
-
-        self.gridLayout_68.addWidget(self.lineEdit_93, 2, 0, 1, 1)
-
-        self.label_8 = QLabel(self.tab_8)
-        self.label_8.setObjectName(u"label_8")
-
-        self.gridLayout_68.addWidget(self.label_8, 0, 0, 1, 1)
+        self.other_content_usernames_layout_general.addWidget(self.other_content_usernames_layout_general_placeholder, 1, 0, 1, 1)
 
 
-        self.gridLayout_66.addLayout(self.gridLayout_68, 1, 0, 1, 1)
+        self.gridLayout_66.addLayout(self.other_content_usernames_layout_general, 0, 0, 1, 1)
 
-        self.gridLayout_69 = QGridLayout()
-        self.gridLayout_69.setObjectName(u"gridLayout_69")
-        self.lineEdit_94 = QLineEdit(self.tab_8)
-        self.lineEdit_94.setObjectName(u"lineEdit_94")
-
-        self.gridLayout_69.addWidget(self.lineEdit_94, 1, 0, 1, 1)
-
-        self.bruteforce_download_seclist_top10mil_26 = QPushButton(self.tab_8)
-        self.bruteforce_download_seclist_top10mil_26.setObjectName(u"bruteforce_download_seclist_top10mil_26")
-
-        self.gridLayout_69.addWidget(self.bruteforce_download_seclist_top10mil_26, 3, 1, 1, 1)
-
-        self.bruteforce_download_seclist_top10mil_27 = QPushButton(self.tab_8)
-        self.bruteforce_download_seclist_top10mil_27.setObjectName(u"bruteforce_download_seclist_top10mil_27")
-
-        self.gridLayout_69.addWidget(self.bruteforce_download_seclist_top10mil_27, 2, 1, 1, 1)
-
-        self.lineEdit_95 = QLineEdit(self.tab_8)
-        self.lineEdit_95.setObjectName(u"lineEdit_95")
-
-        self.gridLayout_69.addWidget(self.lineEdit_95, 2, 0, 1, 1)
-
-        self.bruteforce_download_seclist_defaults_15 = QPushButton(self.tab_8)
-        self.bruteforce_download_seclist_defaults_15.setObjectName(u"bruteforce_download_seclist_defaults_15")
-
-        self.gridLayout_69.addWidget(self.bruteforce_download_seclist_defaults_15, 1, 1, 1, 1)
-
-        self.lineEdit_96 = QLineEdit(self.tab_8)
-        self.lineEdit_96.setObjectName(u"lineEdit_96")
-
-        self.gridLayout_69.addWidget(self.lineEdit_96, 3, 0, 1, 1)
-
+        self.other_content_usernames_layout_default = QGridLayout()
+        self.other_content_usernames_layout_default.setObjectName(u"other_content_usernames_layout_default")
         self.label_9 = QLabel(self.tab_8)
         self.label_9.setObjectName(u"label_9")
+        self.label_9.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
-        self.gridLayout_69.addWidget(self.label_9, 0, 0, 1, 1)
+        self.other_content_usernames_layout_default.addWidget(self.label_9, 0, 0, 1, 1)
 
+        self.other_content_usernames_layout_default_placeholder = QLineEdit(self.tab_8)
+        self.other_content_usernames_layout_default_placeholder.setObjectName(u"other_content_usernames_layout_default_placeholder")
+        self.other_content_usernames_layout_default_placeholder.setEnabled(False)
 
-        self.gridLayout_66.addLayout(self.gridLayout_69, 0, 1, 1, 1)
+        self.other_content_usernames_layout_default.addWidget(self.other_content_usernames_layout_default_placeholder, 1, 0, 1, 1)
 
-        self.gridLayout_70 = QGridLayout()
-        self.gridLayout_70.setObjectName(u"gridLayout_70")
-        self.bruteforce_download_seclist_defaults_16 = QPushButton(self.tab_8)
-        self.bruteforce_download_seclist_defaults_16.setObjectName(u"bruteforce_download_seclist_defaults_16")
+        self.other_content_usernames_layout_default_button_placeholder = QPushButton(self.tab_8)
+        self.other_content_usernames_layout_default_button_placeholder.setObjectName(u"other_content_usernames_layout_default_button_placeholder")
+        self.other_content_usernames_layout_default_button_placeholder.setEnabled(False)
 
-        self.gridLayout_70.addWidget(self.bruteforce_download_seclist_defaults_16, 1, 1, 1, 1)
-
-        self.lineEdit_97 = QLineEdit(self.tab_8)
-        self.lineEdit_97.setObjectName(u"lineEdit_97")
-
-        self.gridLayout_70.addWidget(self.lineEdit_97, 2, 0, 1, 1)
-
-        self.lineEdit_98 = QLineEdit(self.tab_8)
-        self.lineEdit_98.setObjectName(u"lineEdit_98")
-
-        self.gridLayout_70.addWidget(self.lineEdit_98, 3, 0, 1, 1)
-
-        self.bruteforce_download_seclist_top10mil_28 = QPushButton(self.tab_8)
-        self.bruteforce_download_seclist_top10mil_28.setObjectName(u"bruteforce_download_seclist_top10mil_28")
-
-        self.gridLayout_70.addWidget(self.bruteforce_download_seclist_top10mil_28, 3, 1, 1, 1)
-
-        self.bruteforce_download_seclist_top10mil_29 = QPushButton(self.tab_8)
-        self.bruteforce_download_seclist_top10mil_29.setObjectName(u"bruteforce_download_seclist_top10mil_29")
-
-        self.gridLayout_70.addWidget(self.bruteforce_download_seclist_top10mil_29, 2, 1, 1, 1)
-
-        self.lineEdit_99 = QLineEdit(self.tab_8)
-        self.lineEdit_99.setObjectName(u"lineEdit_99")
-
-        self.gridLayout_70.addWidget(self.lineEdit_99, 1, 0, 1, 1)
-
-        self.label_10 = QLabel(self.tab_8)
-        self.label_10.setObjectName(u"label_10")
-
-        self.gridLayout_70.addWidget(self.label_10, 0, 0, 1, 1)
+        self.other_content_usernames_layout_default.addWidget(self.other_content_usernames_layout_default_button_placeholder, 1, 1, 1, 1)
 
 
-        self.gridLayout_66.addLayout(self.gridLayout_70, 1, 1, 1, 1)
+        self.gridLayout_66.addLayout(self.other_content_usernames_layout_default, 0, 1, 1, 1)
+
+        self.other_content_usernames_layout_other = QGridLayout()
+        self.other_content_usernames_layout_other.setObjectName(u"other_content_usernames_layout_other")
+        self.label_8 = QLabel(self.tab_8)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setAutoFillBackground(False)
+        self.label_8.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+
+        self.other_content_usernames_layout_other.addWidget(self.label_8, 0, 0, 1, 1)
+
+        self.other_content_usernames_layout_other_placeholder = QLineEdit(self.tab_8)
+        self.other_content_usernames_layout_other_placeholder.setObjectName(u"other_content_usernames_layout_other_placeholder")
+        self.other_content_usernames_layout_other_placeholder.setEnabled(False)
+
+        self.other_content_usernames_layout_other.addWidget(self.other_content_usernames_layout_other_placeholder, 1, 0, 1, 1)
+
+        self.other_content_usernames_layout_other_button_placeholder = QPushButton(self.tab_8)
+        self.other_content_usernames_layout_other_button_placeholder.setObjectName(u"other_content_usernames_layout_other_button_placeholder")
+        self.other_content_usernames_layout_other_button_placeholder.setEnabled(False)
+
+        self.other_content_usernames_layout_other.addWidget(self.other_content_usernames_layout_other_button_placeholder, 1, 1, 1, 1)
+
+
+        self.gridLayout_66.addLayout(self.other_content_usernames_layout_other, 1, 0, 1, 2)
 
 
         self.gridLayout_58.addLayout(self.gridLayout_66, 0, 0, 1, 1)
@@ -2190,93 +2119,97 @@ class Ui_LogecC3(object):
         self.gridLayout_76.setObjectName(u"gridLayout_76")
         self.gridLayout_71 = QGridLayout()
         self.gridLayout_71.setObjectName(u"gridLayout_71")
-        self.other_content_directory_layout_SecList = QGridLayout()
-        self.other_content_directory_layout_SecList.setObjectName(u"other_content_directory_layout_SecList")
-        self.other_content_directory_layout_SecList_placeholder_button = QPushButton(self.tab_10)
-        self.other_content_directory_layout_SecList_placeholder_button.setObjectName(u"other_content_directory_layout_SecList_placeholder_button")
-        self.other_content_directory_layout_SecList_placeholder_button.setEnabled(False)
+        self.other_content_password_layout_SecList = QGridLayout()
+        self.other_content_password_layout_SecList.setObjectName(u"other_content_password_layout_SecList")
+        self.other_content_password_layout_SecList_placeholder_button = QPushButton(self.tab_10)
+        self.other_content_password_layout_SecList_placeholder_button.setObjectName(u"other_content_password_layout_SecList_placeholder_button")
+        self.other_content_password_layout_SecList_placeholder_button.setEnabled(False)
 
-        self.other_content_directory_layout_SecList.addWidget(self.other_content_directory_layout_SecList_placeholder_button, 2, 1, 1, 1)
+        self.other_content_password_layout_SecList.addWidget(self.other_content_password_layout_SecList_placeholder_button, 2, 1, 1, 1)
 
-        self.other_content_directory_layout_SecList_placeholder = QLineEdit(self.tab_10)
-        self.other_content_directory_layout_SecList_placeholder.setObjectName(u"other_content_directory_layout_SecList_placeholder")
-        self.other_content_directory_layout_SecList_placeholder.setEnabled(False)
+        self.other_content_password_layout_SecList_placeholder = QLineEdit(self.tab_10)
+        self.other_content_password_layout_SecList_placeholder.setObjectName(u"other_content_password_layout_SecList_placeholder")
+        self.other_content_password_layout_SecList_placeholder.setEnabled(False)
 
-        self.other_content_directory_layout_SecList.addWidget(self.other_content_directory_layout_SecList_placeholder, 2, 0, 1, 1)
+        self.other_content_password_layout_SecList.addWidget(self.other_content_password_layout_SecList_placeholder, 2, 0, 1, 1)
 
         self.label_18 = QLabel(self.tab_10)
         self.label_18.setObjectName(u"label_18")
+        self.label_18.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
-        self.other_content_directory_layout_SecList.addWidget(self.label_18, 1, 0, 1, 1)
+        self.other_content_password_layout_SecList.addWidget(self.label_18, 1, 0, 1, 1)
 
 
-        self.gridLayout_71.addLayout(self.other_content_directory_layout_SecList, 0, 0, 1, 1)
+        self.gridLayout_71.addLayout(self.other_content_password_layout_SecList, 0, 0, 1, 1)
 
-        self.other_content_directory_layout_WeakPasswords = QGridLayout()
-        self.other_content_directory_layout_WeakPasswords.setObjectName(u"other_content_directory_layout_WeakPasswords")
-        self.other_content_directory_layout_WeakPasswords_placeholder_button = QPushButton(self.tab_10)
-        self.other_content_directory_layout_WeakPasswords_placeholder_button.setObjectName(u"other_content_directory_layout_WeakPasswords_placeholder_button")
-        self.other_content_directory_layout_WeakPasswords_placeholder_button.setEnabled(False)
+        self.other_content_password_layout_WeakPasswords = QGridLayout()
+        self.other_content_password_layout_WeakPasswords.setObjectName(u"other_content_password_layout_WeakPasswords")
+        self.other_content_password_layout_WeakPasswords_placeholder_button = QPushButton(self.tab_10)
+        self.other_content_password_layout_WeakPasswords_placeholder_button.setObjectName(u"other_content_password_layout_WeakPasswords_placeholder_button")
+        self.other_content_password_layout_WeakPasswords_placeholder_button.setEnabled(False)
 
-        self.other_content_directory_layout_WeakPasswords.addWidget(self.other_content_directory_layout_WeakPasswords_placeholder_button, 1, 1, 1, 1)
+        self.other_content_password_layout_WeakPasswords.addWidget(self.other_content_password_layout_WeakPasswords_placeholder_button, 1, 1, 1, 1)
 
         self.label_19 = QLabel(self.tab_10)
         self.label_19.setObjectName(u"label_19")
+        self.label_19.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
-        self.other_content_directory_layout_WeakPasswords.addWidget(self.label_19, 0, 0, 1, 1)
+        self.other_content_password_layout_WeakPasswords.addWidget(self.label_19, 0, 0, 1, 1)
 
-        self.other_content_directory_layout_WeakPasswords_placeholder = QLineEdit(self.tab_10)
-        self.other_content_directory_layout_WeakPasswords_placeholder.setObjectName(u"other_content_directory_layout_WeakPasswords_placeholder")
-        self.other_content_directory_layout_WeakPasswords_placeholder.setEnabled(False)
+        self.other_content_password_layout_WeakPasswords_placeholder = QLineEdit(self.tab_10)
+        self.other_content_password_layout_WeakPasswords_placeholder.setObjectName(u"other_content_password_layout_WeakPasswords_placeholder")
+        self.other_content_password_layout_WeakPasswords_placeholder.setEnabled(False)
 
-        self.other_content_directory_layout_WeakPasswords.addWidget(self.other_content_directory_layout_WeakPasswords_placeholder, 1, 0, 1, 1)
+        self.other_content_password_layout_WeakPasswords.addWidget(self.other_content_password_layout_WeakPasswords_placeholder, 1, 0, 1, 1)
 
 
-        self.gridLayout_71.addLayout(self.other_content_directory_layout_WeakPasswords, 1, 0, 1, 1)
+        self.gridLayout_71.addLayout(self.other_content_password_layout_WeakPasswords, 1, 0, 1, 1)
 
-        self.other_content_directory_layout_DefaultPasswords = QGridLayout()
-        self.other_content_directory_layout_DefaultPasswords.setObjectName(u"other_content_directory_layout_DefaultPasswords")
-        self.other_content_directory_layout_DefaultPasswords_placeholder_button = QPushButton(self.tab_10)
-        self.other_content_directory_layout_DefaultPasswords_placeholder_button.setObjectName(u"other_content_directory_layout_DefaultPasswords_placeholder_button")
-        self.other_content_directory_layout_DefaultPasswords_placeholder_button.setEnabled(False)
+        self.other_content_password_layout_DefaultPasswords = QGridLayout()
+        self.other_content_password_layout_DefaultPasswords.setObjectName(u"other_content_password_layout_DefaultPasswords")
+        self.other_content_password_layout_DefaultPasswords_placeholder_button = QPushButton(self.tab_10)
+        self.other_content_password_layout_DefaultPasswords_placeholder_button.setObjectName(u"other_content_password_layout_DefaultPasswords_placeholder_button")
+        self.other_content_password_layout_DefaultPasswords_placeholder_button.setEnabled(False)
 
-        self.other_content_directory_layout_DefaultPasswords.addWidget(self.other_content_directory_layout_DefaultPasswords_placeholder_button, 1, 1, 1, 1)
+        self.other_content_password_layout_DefaultPasswords.addWidget(self.other_content_password_layout_DefaultPasswords_placeholder_button, 1, 1, 1, 1)
 
         self.label_32 = QLabel(self.tab_10)
         self.label_32.setObjectName(u"label_32")
+        self.label_32.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
-        self.other_content_directory_layout_DefaultPasswords.addWidget(self.label_32, 0, 0, 1, 1)
+        self.other_content_password_layout_DefaultPasswords.addWidget(self.label_32, 0, 0, 1, 1)
 
-        self.other_content_directory_layout_DefaultPasswords_placeholder = QLineEdit(self.tab_10)
-        self.other_content_directory_layout_DefaultPasswords_placeholder.setObjectName(u"other_content_directory_layout_DefaultPasswords_placeholder")
-        self.other_content_directory_layout_DefaultPasswords_placeholder.setEnabled(False)
+        self.other_content_password_layout_DefaultPasswords_placeholder = QLineEdit(self.tab_10)
+        self.other_content_password_layout_DefaultPasswords_placeholder.setObjectName(u"other_content_password_layout_DefaultPasswords_placeholder")
+        self.other_content_password_layout_DefaultPasswords_placeholder.setEnabled(False)
 
-        self.other_content_directory_layout_DefaultPasswords.addWidget(self.other_content_directory_layout_DefaultPasswords_placeholder, 1, 0, 1, 1)
+        self.other_content_password_layout_DefaultPasswords.addWidget(self.other_content_password_layout_DefaultPasswords_placeholder, 1, 0, 1, 1)
 
 
-        self.gridLayout_71.addLayout(self.other_content_directory_layout_DefaultPasswords, 0, 1, 1, 1)
+        self.gridLayout_71.addLayout(self.other_content_password_layout_DefaultPasswords, 0, 1, 1, 1)
 
-        self.other_content_directory_layout_LeakedPasswords = QGridLayout()
-        self.other_content_directory_layout_LeakedPasswords.setObjectName(u"other_content_directory_layout_LeakedPasswords")
+        self.other_content_password_layout_LeakedPasswords = QGridLayout()
+        self.other_content_password_layout_LeakedPasswords.setObjectName(u"other_content_password_layout_LeakedPasswords")
         self.label_44 = QLabel(self.tab_10)
         self.label_44.setObjectName(u"label_44")
+        self.label_44.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
-        self.other_content_directory_layout_LeakedPasswords.addWidget(self.label_44, 0, 0, 1, 1)
+        self.other_content_password_layout_LeakedPasswords.addWidget(self.label_44, 0, 0, 1, 1)
 
-        self.other_content_directory_layout_LeakedPasswords_placeholder = QLineEdit(self.tab_10)
-        self.other_content_directory_layout_LeakedPasswords_placeholder.setObjectName(u"other_content_directory_layout_LeakedPasswords_placeholder")
-        self.other_content_directory_layout_LeakedPasswords_placeholder.setEnabled(False)
+        self.other_content_password_layout_LeakedPasswords_placeholder = QLineEdit(self.tab_10)
+        self.other_content_password_layout_LeakedPasswords_placeholder.setObjectName(u"other_content_password_layout_LeakedPasswords_placeholder")
+        self.other_content_password_layout_LeakedPasswords_placeholder.setEnabled(False)
 
-        self.other_content_directory_layout_LeakedPasswords.addWidget(self.other_content_directory_layout_LeakedPasswords_placeholder, 1, 0, 1, 1)
+        self.other_content_password_layout_LeakedPasswords.addWidget(self.other_content_password_layout_LeakedPasswords_placeholder, 1, 0, 1, 1)
 
-        self.other_content_directory_layout_LeakedPasswords_placeholder_button = QPushButton(self.tab_10)
-        self.other_content_directory_layout_LeakedPasswords_placeholder_button.setObjectName(u"other_content_directory_layout_LeakedPasswords_placeholder_button")
-        self.other_content_directory_layout_LeakedPasswords_placeholder_button.setEnabled(False)
+        self.other_content_password_layout_LeakedPasswords_placeholder_button = QPushButton(self.tab_10)
+        self.other_content_password_layout_LeakedPasswords_placeholder_button.setObjectName(u"other_content_password_layout_LeakedPasswords_placeholder_button")
+        self.other_content_password_layout_LeakedPasswords_placeholder_button.setEnabled(False)
 
-        self.other_content_directory_layout_LeakedPasswords.addWidget(self.other_content_directory_layout_LeakedPasswords_placeholder_button, 1, 1, 1, 1)
+        self.other_content_password_layout_LeakedPasswords.addWidget(self.other_content_password_layout_LeakedPasswords_placeholder_button, 1, 1, 1, 1)
 
 
-        self.gridLayout_71.addLayout(self.other_content_directory_layout_LeakedPasswords, 1, 1, 1, 1)
+        self.gridLayout_71.addLayout(self.other_content_password_layout_LeakedPasswords, 1, 1, 1, 1)
 
 
         self.gridLayout_76.addLayout(self.gridLayout_71, 0, 0, 1, 1)
@@ -2288,165 +2221,97 @@ class Ui_LogecC3(object):
         self.gridLayout_57.setObjectName(u"gridLayout_57")
         self.gridLayout_59 = QGridLayout()
         self.gridLayout_59.setObjectName(u"gridLayout_59")
-        self.gridLayout_60 = QGridLayout()
-        self.gridLayout_60.setObjectName(u"gridLayout_60")
-        self.lineEdit_75 = QLineEdit(self.tab_9)
-        self.lineEdit_75.setObjectName(u"lineEdit_75")
-
-        self.gridLayout_60.addWidget(self.lineEdit_75, 2, 0, 1, 1)
-
-        self.lineEdit_73 = QLineEdit(self.tab_9)
-        self.lineEdit_73.setObjectName(u"lineEdit_73")
-
-        self.gridLayout_60.addWidget(self.lineEdit_73, 1, 0, 1, 1)
-
-        self.lineEdit_74 = QLineEdit(self.tab_9)
-        self.lineEdit_74.setObjectName(u"lineEdit_74")
-
-        self.gridLayout_60.addWidget(self.lineEdit_74, 3, 0, 1, 1)
-
-        self.bruteforce_download_seclist_top10mil_12 = QPushButton(self.tab_9)
-        self.bruteforce_download_seclist_top10mil_12.setObjectName(u"bruteforce_download_seclist_top10mil_12")
-
-        self.gridLayout_60.addWidget(self.bruteforce_download_seclist_top10mil_12, 3, 1, 1, 1)
-
-        self.bruteforce_download_seclist_defaults_8 = QPushButton(self.tab_9)
-        self.bruteforce_download_seclist_defaults_8.setObjectName(u"bruteforce_download_seclist_defaults_8")
-
-        self.gridLayout_60.addWidget(self.bruteforce_download_seclist_defaults_8, 1, 1, 1, 1)
-
-        self.bruteforce_download_seclist_top10mil_13 = QPushButton(self.tab_9)
-        self.bruteforce_download_seclist_top10mil_13.setObjectName(u"bruteforce_download_seclist_top10mil_13")
-
-        self.gridLayout_60.addWidget(self.bruteforce_download_seclist_top10mil_13, 2, 1, 1, 1)
-
+        self.other_content_directory_layout_general = QGridLayout()
+        self.other_content_directory_layout_general.setObjectName(u"other_content_directory_layout_general")
         self.label_2 = QLabel(self.tab_9)
         self.label_2.setObjectName(u"label_2")
+        self.label_2.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
-        self.gridLayout_60.addWidget(self.label_2, 0, 0, 1, 1)
+        self.other_content_directory_layout_general.addWidget(self.label_2, 0, 0, 1, 1)
+
+        self.other_content_directory_layout_general_placeholder = QLineEdit(self.tab_9)
+        self.other_content_directory_layout_general_placeholder.setObjectName(u"other_content_directory_layout_general_placeholder")
+        self.other_content_directory_layout_general_placeholder.setEnabled(False)
+
+        self.other_content_directory_layout_general.addWidget(self.other_content_directory_layout_general_placeholder, 1, 0, 1, 1)
+
+        self.other_content_directory_layout_general_button_placeholder = QPushButton(self.tab_9)
+        self.other_content_directory_layout_general_button_placeholder.setObjectName(u"other_content_directory_layout_general_button_placeholder")
+        self.other_content_directory_layout_general_button_placeholder.setEnabled(False)
+
+        self.other_content_directory_layout_general.addWidget(self.other_content_directory_layout_general_button_placeholder, 1, 1, 1, 1)
 
 
-        self.gridLayout_59.addLayout(self.gridLayout_60, 0, 0, 1, 1)
+        self.gridLayout_59.addLayout(self.other_content_directory_layout_general, 0, 0, 1, 1)
 
-        self.gridLayout_63 = QGridLayout()
-        self.gridLayout_63.setObjectName(u"gridLayout_63")
-        self.lineEdit_80 = QLineEdit(self.tab_9)
-        self.lineEdit_80.setObjectName(u"lineEdit_80")
+        self.other_content_directory_layout_commonURL = QGridLayout()
+        self.other_content_directory_layout_commonURL.setObjectName(u"other_content_directory_layout_commonURL")
+        self.other_content_directory_layout_commonURL_placeholder = QLineEdit(self.tab_9)
+        self.other_content_directory_layout_commonURL_placeholder.setObjectName(u"other_content_directory_layout_commonURL_placeholder")
+        self.other_content_directory_layout_commonURL_placeholder.setEnabled(False)
 
-        self.gridLayout_63.addWidget(self.lineEdit_80, 3, 0, 1, 1)
+        self.other_content_directory_layout_commonURL.addWidget(self.other_content_directory_layout_commonURL_placeholder, 1, 0, 1, 1)
 
-        self.bruteforce_download_seclist_top10mil_16 = QPushButton(self.tab_9)
-        self.bruteforce_download_seclist_top10mil_16.setObjectName(u"bruteforce_download_seclist_top10mil_16")
+        self.other_content_directory_layout_commonURL_button_placeholder = QPushButton(self.tab_9)
+        self.other_content_directory_layout_commonURL_button_placeholder.setObjectName(u"other_content_directory_layout_commonURL_button_placeholder")
+        self.other_content_directory_layout_commonURL_button_placeholder.setEnabled(False)
 
-        self.gridLayout_63.addWidget(self.bruteforce_download_seclist_top10mil_16, 3, 1, 1, 1)
-
-        self.lineEdit_79 = QLineEdit(self.tab_9)
-        self.lineEdit_79.setObjectName(u"lineEdit_79")
-
-        self.gridLayout_63.addWidget(self.lineEdit_79, 1, 0, 1, 1)
-
-        self.bruteforce_download_seclist_top10mil_17 = QPushButton(self.tab_9)
-        self.bruteforce_download_seclist_top10mil_17.setObjectName(u"bruteforce_download_seclist_top10mil_17")
-
-        self.gridLayout_63.addWidget(self.bruteforce_download_seclist_top10mil_17, 2, 1, 1, 1)
-
-        self.bruteforce_download_seclist_defaults_10 = QPushButton(self.tab_9)
-        self.bruteforce_download_seclist_defaults_10.setObjectName(u"bruteforce_download_seclist_defaults_10")
-
-        self.gridLayout_63.addWidget(self.bruteforce_download_seclist_defaults_10, 1, 1, 1, 1)
-
-        self.lineEdit_81 = QLineEdit(self.tab_9)
-        self.lineEdit_81.setObjectName(u"lineEdit_81")
-
-        self.gridLayout_63.addWidget(self.lineEdit_81, 2, 0, 1, 1)
+        self.other_content_directory_layout_commonURL.addWidget(self.other_content_directory_layout_commonURL_button_placeholder, 1, 1, 1, 1)
 
         self.label_4 = QLabel(self.tab_9)
         self.label_4.setObjectName(u"label_4")
+        self.label_4.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
-        self.gridLayout_63.addWidget(self.label_4, 0, 0, 1, 1)
+        self.other_content_directory_layout_commonURL.addWidget(self.label_4, 0, 0, 1, 1)
 
 
-        self.gridLayout_59.addLayout(self.gridLayout_63, 1, 0, 1, 1)
+        self.gridLayout_59.addLayout(self.other_content_directory_layout_commonURL, 1, 0, 1, 1)
 
-        self.gridLayout_64 = QGridLayout()
-        self.gridLayout_64.setObjectName(u"gridLayout_64")
-        self.lineEdit_82 = QLineEdit(self.tab_9)
-        self.lineEdit_82.setObjectName(u"lineEdit_82")
+        self.other_content_directory_layout_application = QGridLayout()
+        self.other_content_directory_layout_application.setObjectName(u"other_content_directory_layout_application")
+        self.other_content_directory_layout_application_button_placeholder = QPushButton(self.tab_9)
+        self.other_content_directory_layout_application_button_placeholder.setObjectName(u"other_content_directory_layout_application_button_placeholder")
+        self.other_content_directory_layout_application_button_placeholder.setEnabled(False)
 
-        self.gridLayout_64.addWidget(self.lineEdit_82, 1, 0, 1, 1)
+        self.other_content_directory_layout_application.addWidget(self.other_content_directory_layout_application_button_placeholder, 1, 1, 1, 1)
 
-        self.bruteforce_download_seclist_top10mil_18 = QPushButton(self.tab_9)
-        self.bruteforce_download_seclist_top10mil_18.setObjectName(u"bruteforce_download_seclist_top10mil_18")
+        self.other_content_directory_layout_application_placeholder = QLineEdit(self.tab_9)
+        self.other_content_directory_layout_application_placeholder.setObjectName(u"other_content_directory_layout_application_placeholder")
+        self.other_content_directory_layout_application_placeholder.setEnabled(False)
 
-        self.gridLayout_64.addWidget(self.bruteforce_download_seclist_top10mil_18, 3, 1, 1, 1)
-
-        self.bruteforce_download_seclist_top10mil_19 = QPushButton(self.tab_9)
-        self.bruteforce_download_seclist_top10mil_19.setObjectName(u"bruteforce_download_seclist_top10mil_19")
-
-        self.gridLayout_64.addWidget(self.bruteforce_download_seclist_top10mil_19, 2, 1, 1, 1)
-
-        self.lineEdit_84 = QLineEdit(self.tab_9)
-        self.lineEdit_84.setObjectName(u"lineEdit_84")
-
-        self.gridLayout_64.addWidget(self.lineEdit_84, 2, 0, 1, 1)
-
-        self.bruteforce_download_seclist_defaults_11 = QPushButton(self.tab_9)
-        self.bruteforce_download_seclist_defaults_11.setObjectName(u"bruteforce_download_seclist_defaults_11")
-
-        self.gridLayout_64.addWidget(self.bruteforce_download_seclist_defaults_11, 1, 1, 1, 1)
-
-        self.lineEdit_83 = QLineEdit(self.tab_9)
-        self.lineEdit_83.setObjectName(u"lineEdit_83")
-
-        self.gridLayout_64.addWidget(self.lineEdit_83, 3, 0, 1, 1)
+        self.other_content_directory_layout_application.addWidget(self.other_content_directory_layout_application_placeholder, 1, 0, 1, 1)
 
         self.label_3 = QLabel(self.tab_9)
         self.label_3.setObjectName(u"label_3")
+        self.label_3.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
-        self.gridLayout_64.addWidget(self.label_3, 0, 0, 1, 1)
+        self.other_content_directory_layout_application.addWidget(self.label_3, 0, 0, 1, 1)
 
 
-        self.gridLayout_59.addLayout(self.gridLayout_64, 0, 1, 1, 1)
+        self.gridLayout_59.addLayout(self.other_content_directory_layout_application, 0, 1, 1, 1)
 
-        self.gridLayout_65 = QGridLayout()
-        self.gridLayout_65.setObjectName(u"gridLayout_65")
-        self.bruteforce_download_seclist_defaults_12 = QPushButton(self.tab_9)
-        self.bruteforce_download_seclist_defaults_12.setObjectName(u"bruteforce_download_seclist_defaults_12")
+        self.other_content_directory_layout_other = QGridLayout()
+        self.other_content_directory_layout_other.setObjectName(u"other_content_directory_layout_other")
+        self.other_content_directory_layout_other_button_placeholder = QPushButton(self.tab_9)
+        self.other_content_directory_layout_other_button_placeholder.setObjectName(u"other_content_directory_layout_other_button_placeholder")
+        self.other_content_directory_layout_other_button_placeholder.setEnabled(False)
 
-        self.gridLayout_65.addWidget(self.bruteforce_download_seclist_defaults_12, 1, 1, 1, 1)
-
-        self.lineEdit_87 = QLineEdit(self.tab_9)
-        self.lineEdit_87.setObjectName(u"lineEdit_87")
-
-        self.gridLayout_65.addWidget(self.lineEdit_87, 2, 0, 1, 1)
-
-        self.lineEdit_86 = QLineEdit(self.tab_9)
-        self.lineEdit_86.setObjectName(u"lineEdit_86")
-
-        self.gridLayout_65.addWidget(self.lineEdit_86, 3, 0, 1, 1)
-
-        self.bruteforce_download_seclist_top10mil_20 = QPushButton(self.tab_9)
-        self.bruteforce_download_seclist_top10mil_20.setObjectName(u"bruteforce_download_seclist_top10mil_20")
-
-        self.gridLayout_65.addWidget(self.bruteforce_download_seclist_top10mil_20, 3, 1, 1, 1)
-
-        self.bruteforce_download_seclist_top10mil_21 = QPushButton(self.tab_9)
-        self.bruteforce_download_seclist_top10mil_21.setObjectName(u"bruteforce_download_seclist_top10mil_21")
-
-        self.gridLayout_65.addWidget(self.bruteforce_download_seclist_top10mil_21, 2, 1, 1, 1)
-
-        self.lineEdit_85 = QLineEdit(self.tab_9)
-        self.lineEdit_85.setObjectName(u"lineEdit_85")
-
-        self.gridLayout_65.addWidget(self.lineEdit_85, 1, 0, 1, 1)
+        self.other_content_directory_layout_other.addWidget(self.other_content_directory_layout_other_button_placeholder, 1, 1, 1, 1)
 
         self.label_5 = QLabel(self.tab_9)
         self.label_5.setObjectName(u"label_5")
+        self.label_5.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
-        self.gridLayout_65.addWidget(self.label_5, 0, 0, 1, 1)
+        self.other_content_directory_layout_other.addWidget(self.label_5, 0, 0, 1, 1)
+
+        self.other_content_directory_layout_other_placeholder = QLineEdit(self.tab_9)
+        self.other_content_directory_layout_other_placeholder.setObjectName(u"other_content_directory_layout_other_placeholder")
+        self.other_content_directory_layout_other_placeholder.setEnabled(False)
+
+        self.other_content_directory_layout_other.addWidget(self.other_content_directory_layout_other_placeholder, 1, 0, 1, 1)
 
 
-        self.gridLayout_59.addLayout(self.gridLayout_65, 1, 1, 1, 1)
+        self.gridLayout_59.addLayout(self.other_content_directory_layout_other, 1, 1, 1, 1)
 
 
         self.gridLayout_57.addLayout(self.gridLayout_59, 0, 0, 1, 1)
@@ -2479,6 +2344,7 @@ class Ui_LogecC3(object):
 
         self.label_21 = QLabel(self.page_8)
         self.label_21.setObjectName(u"label_21")
+        self.label_21.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
         self.other_content_exploit_layou_exploitdb.addWidget(self.label_21, 1, 0, 1, 1)
 
@@ -2495,6 +2361,7 @@ class Ui_LogecC3(object):
 
         self.label_22 = QLabel(self.page_8)
         self.label_22.setObjectName(u"label_22")
+        self.label_22.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
         self.other_content_directory_layout_WeakPasswords_2.addWidget(self.label_22, 0, 0, 1, 1)
 
@@ -2517,6 +2384,7 @@ class Ui_LogecC3(object):
 
         self.label_34 = QLabel(self.page_8)
         self.label_34.setObjectName(u"label_34")
+        self.label_34.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
         self.other_content_directory_layout_DefaultPasswords_2.addWidget(self.label_34, 0, 0, 1, 1)
 
@@ -2533,6 +2401,7 @@ class Ui_LogecC3(object):
         self.other_content_directory_layout_LeakedPasswords_2.setObjectName(u"other_content_directory_layout_LeakedPasswords_2")
         self.label_45 = QLabel(self.page_8)
         self.label_45.setObjectName(u"label_45")
+        self.label_45.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
 
         self.other_content_directory_layout_LeakedPasswords_2.addWidget(self.label_45, 0, 0, 1, 1)
 
@@ -2589,12 +2458,12 @@ class Ui_LogecC3(object):
 
         self.retranslateUi(LogecC3)
 
-        self.tabWidget.setCurrentIndex(2)
-        self.bruteforce_panel_2.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
+        self.bruteforce_panel_2.setCurrentIndex(0)
         self.c2_shell_tab.setCurrentIndex(0)
         self.osint_reddit_tab.setCurrentIndex(0)
         self.tabWidget_8.setCurrentIndex(3)
-        self.bashbuild_toolBox.setCurrentIndex(3)
+        self.bashbuild_toolBox.setCurrentIndex(4)
         self.tabWidget_9.setCurrentIndex(0)
         self.tabWidget_6.setCurrentIndex(1)
         self.bruteforce_panel.setCurrentIndex(0)
@@ -2602,18 +2471,18 @@ class Ui_LogecC3(object):
         self.bruteforce_download_seclist_topshort.setDefault(False)
         self.bruteforce_download_seclist_top10mil_usernames.setDefault(False)
         self.bruteforce_fuzz_panel.setCurrentIndex(0)
-        self.tabWidget_29.setCurrentIndex(1)
+        self.tabWidget_29.setCurrentIndex(0)
         self.bruteforce_download_seclist_top10mil_usernames_4.setDefault(False)
         self.bruteforce_download_seclist_topshort_4.setDefault(False)
         self.bruteforce_download_seclist_top10mil_usernames_5.setDefault(False)
         self.tabWidget_2.setCurrentIndex(0)
-        self.tabWidget_10.setCurrentIndex(2)
+        self.tabWidget_10.setCurrentIndex(1)
         self.tabWidget_16.setCurrentIndex(0)
         self.tabWidget_11.setCurrentIndex(2)
         self.tabWidget_12.setCurrentIndex(1)
         self.tabWidget_15.setCurrentIndex(1)
         self.toolBox.setCurrentIndex(1)
-        self.tabWidget_5.setCurrentIndex(1)
+        self.tabWidget_5.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(LogecC3)
@@ -2976,9 +2845,9 @@ class Ui_LogecC3(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;\\n${GREEN}########## &lt;End of Report&gt; ##########${NC}\\n\\n&quot; | tee -a Reports/$NAME</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p></body></html>", None))
-        self.bashbuilder_generate.setText(QCoreApplication.translate("LogecC3", u"-->> Generate <<--", None))
         self.pushButton_3.setText(QCoreApplication.translate("LogecC3", u"-->> Copy to Clipboard<<--", None))
         self.pushButton_4.setText(QCoreApplication.translate("LogecC3", u"-->> Save to File <<--", None))
+        self.bashbuilder_generate.setText(QCoreApplication.translate("LogecC3", u"-->> Generate <<--", None))
         self.tabWidget_8.setTabText(self.tabWidget_8.indexOf(self.tab_63), QCoreApplication.translate("LogecC3", u"BashBuild", None))
         self.portscan_fast_timeout.setItemText(0, QCoreApplication.translate("LogecC3", u"Normal Speed (1 Second Timeout)", None))
         self.portscan_fast_timeout.setItemText(1, QCoreApplication.translate("LogecC3", u"Light Speed (.5 Second Timeout)", None))
@@ -3357,76 +3226,41 @@ class Ui_LogecC3(object):
         self.tabWidget_15.setTabText(self.tabWidget_15.indexOf(self.tab_50), QCoreApplication.translate("LogecC3", u"Fuzzer", None))
         self.tabWidget_11.setTabText(self.tabWidget_11.indexOf(self.tab_48), QCoreApplication.translate("LogecC3", u"Bruteforce", None))
         self.tabWidget_10.setTabText(self.tabWidget_10.indexOf(self.tab_28), QCoreApplication.translate("LogecC3", u"Guide", None))
-        self.lineEdit_88.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
-        self.lineEdit_89.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
-        self.lineEdit_90.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
-        self.bruteforce_download_seclist_top10mil_22.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.bruteforce_download_seclist_defaults_13.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.bruteforce_download_seclist_top10mil_23.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.label_6.setText(QCoreApplication.translate("LogecC3", u"SecList", None))
-        self.lineEdit_91.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
-        self.bruteforce_download_seclist_top10mil_24.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.lineEdit_92.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
-        self.bruteforce_download_seclist_top10mil_25.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.bruteforce_download_seclist_defaults_14.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.lineEdit_93.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
-        self.label_8.setText(QCoreApplication.translate("LogecC3", u"Other", None))
-        self.lineEdit_94.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
-        self.bruteforce_download_seclist_top10mil_26.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.bruteforce_download_seclist_top10mil_27.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.lineEdit_95.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
-        self.bruteforce_download_seclist_defaults_15.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.lineEdit_96.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
+        self.label_6.setText(QCoreApplication.translate("LogecC3", u"General", None))
+        self.other_content_usernames_layout_general_button_placeholder.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.other_content_usernames_layout_general_placeholder.setText(QCoreApplication.translate("LogecC3", u"Placeholder - if u see me then I screwed up my code :) consider it an easter egg", None))
         self.label_9.setText(QCoreApplication.translate("LogecC3", u"Default Usernames", None))
-        self.bruteforce_download_seclist_defaults_16.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.lineEdit_97.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
-        self.lineEdit_98.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
-        self.bruteforce_download_seclist_top10mil_28.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.bruteforce_download_seclist_top10mil_29.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.lineEdit_99.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
-        self.label_10.setText(QCoreApplication.translate("LogecC3", u"Other", None))
+        self.other_content_usernames_layout_default_placeholder.setText(QCoreApplication.translate("LogecC3", u"Placeholder - if u see me then I screwed up my code :) consider it an easter egg", None))
+        self.other_content_usernames_layout_default_button_placeholder.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.label_8.setText(QCoreApplication.translate("LogecC3", u"Other", None))
+        self.other_content_usernames_layout_other_placeholder.setText(QCoreApplication.translate("LogecC3", u"Placeholder - if u see me then I screwed up my code :) consider it an easter egg", None))
+        self.other_content_usernames_layout_other_button_placeholder.setText(QCoreApplication.translate("LogecC3", u"Download", None))
         self.tabWidget_5.setTabText(self.tabWidget_5.indexOf(self.tab_8), QCoreApplication.translate("LogecC3", u"Usernames", None))
-        self.other_content_directory_layout_SecList_placeholder_button.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.other_content_directory_layout_SecList_placeholder.setText(QCoreApplication.translate("LogecC3", u"Placeholder - if u see me then I screwed up my code :) consider it an easter egg", None))
-        self.label_18.setText(QCoreApplication.translate("LogecC3", u"SecList", None))
-        self.other_content_directory_layout_WeakPasswords_placeholder_button.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.other_content_password_layout_SecList_placeholder_button.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.other_content_password_layout_SecList_placeholder.setText(QCoreApplication.translate("LogecC3", u"Placeholder - if u see me then I screwed up my code :) consider it an easter egg", None))
+        self.label_18.setText(QCoreApplication.translate("LogecC3", u"Other/Fun", None))
+        self.other_content_password_layout_WeakPasswords_placeholder_button.setText(QCoreApplication.translate("LogecC3", u"Download", None))
         self.label_19.setText(QCoreApplication.translate("LogecC3", u"Weak Passwords", None))
-        self.other_content_directory_layout_WeakPasswords_placeholder.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
-        self.other_content_directory_layout_DefaultPasswords_placeholder_button.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.other_content_password_layout_WeakPasswords_placeholder.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
+        self.other_content_password_layout_DefaultPasswords_placeholder_button.setText(QCoreApplication.translate("LogecC3", u"Download", None))
         self.label_32.setText(QCoreApplication.translate("LogecC3", u"Default Passwords", None))
-        self.other_content_directory_layout_DefaultPasswords_placeholder.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
+        self.other_content_password_layout_DefaultPasswords_placeholder.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
         self.label_44.setText(QCoreApplication.translate("LogecC3", u"Leaked Passwords", None))
-        self.other_content_directory_layout_LeakedPasswords_placeholder.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
-        self.other_content_directory_layout_LeakedPasswords_placeholder_button.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.other_content_password_layout_LeakedPasswords_placeholder.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
+        self.other_content_password_layout_LeakedPasswords_placeholder_button.setText(QCoreApplication.translate("LogecC3", u"Download", None))
         self.tabWidget_5.setTabText(self.tabWidget_5.indexOf(self.tab_10), QCoreApplication.translate("LogecC3", u"Passwords", None))
-        self.lineEdit_75.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
-        self.lineEdit_73.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
-        self.lineEdit_74.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
-        self.bruteforce_download_seclist_top10mil_12.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.bruteforce_download_seclist_defaults_8.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.bruteforce_download_seclist_top10mil_13.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.label_2.setText(QCoreApplication.translate("LogecC3", u"SecList", None))
-        self.lineEdit_80.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
-        self.bruteforce_download_seclist_top10mil_16.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.lineEdit_79.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
-        self.bruteforce_download_seclist_top10mil_17.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.bruteforce_download_seclist_defaults_10.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.lineEdit_81.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
-        self.label_4.setText(QCoreApplication.translate("LogecC3", u"Weak Passwords", None))
-        self.lineEdit_82.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
-        self.bruteforce_download_seclist_top10mil_18.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.bruteforce_download_seclist_top10mil_19.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.lineEdit_84.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
-        self.bruteforce_download_seclist_defaults_11.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.lineEdit_83.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
-        self.label_3.setText(QCoreApplication.translate("LogecC3", u"Default Passwords", None))
-        self.bruteforce_download_seclist_defaults_12.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.lineEdit_87.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
-        self.lineEdit_86.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
-        self.bruteforce_download_seclist_top10mil_20.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.bruteforce_download_seclist_top10mil_21.setText(QCoreApplication.translate("LogecC3", u"Download", None))
-        self.lineEdit_85.setText(QCoreApplication.translate("LogecC3", u"SecList Default Passwords", None))
-        self.label_5.setText(QCoreApplication.translate("LogecC3", u"Leaked Passwords", None))
+        self.label_2.setText(QCoreApplication.translate("LogecC3", u"General", None))
+        self.other_content_directory_layout_general_placeholder.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
+        self.other_content_directory_layout_general_button_placeholder.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.other_content_directory_layout_commonURL_placeholder.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
+        self.other_content_directory_layout_commonURL_button_placeholder.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.label_4.setText(QCoreApplication.translate("LogecC3", u"Common URL/I", None))
+        self.other_content_directory_layout_application_button_placeholder.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.other_content_directory_layout_application_placeholder.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
+        self.label_3.setText(QCoreApplication.translate("LogecC3", u"Applications", None))
+        self.other_content_directory_layout_other_button_placeholder.setText(QCoreApplication.translate("LogecC3", u"Download", None))
+        self.label_5.setText(QCoreApplication.translate("LogecC3", u"Other", None))
+        self.other_content_directory_layout_other_placeholder.setText(QCoreApplication.translate("LogecC3", u"SecList Top 10 Million Passwords", None))
         self.tabWidget_5.setTabText(self.tabWidget_5.indexOf(self.tab_9), QCoreApplication.translate("LogecC3", u"Directory", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_7), QCoreApplication.translate("LogecC3", u"Wordlists", None))
         self.other_content_exploit_layou_exploitdb_placeholder_button.setText(QCoreApplication.translate("LogecC3", u"Download", None))

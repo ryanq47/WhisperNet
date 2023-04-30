@@ -20,7 +20,7 @@ import traceback
 ##== GUI Imports
 from PySide6 import QtWidgets
 from PySide6.QtCore import Qt, QThread, QThreadPool, QCoreApplication, QTimer, QPoint
-from PySide6.QtGui import QAction, QPen, QFont
+from PySide6.QtGui import QAction, QPen, QFont, QIcon
 from PySide6.QtSql import QSqlDatabase, QSqlQuery
 #from PySide6.QtUiTools import loadUiType, QUiLoader
 from PySide6.QtWidgets import (
@@ -891,7 +891,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
     The seraching is pretty basic, but eventually I'd like it to be similar to this:
     name=OpenSSH platform=windows 
     
-    with each field being searched and if it exists, get added. yes it won't be the fastest, but it'll work
+    with each feild being searched and if it exists, get added. yes it won't be the fastest, but it'll work
     
     """
     def exploit_and_vuln_search(self):
@@ -1941,20 +1941,44 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         tied to data from each iteration
         """
         ## Hiding placeholder buttons, needed to keep layout in line
-        self.other_content_directory_layout_SecList_placeholder.hide()
-        self.other_content_directory_layout_SecList_placeholder_button.hide()
+        # there's prolly a more efficient way to do this.
+        self.other_content_password_layout_SecList_placeholder.hide()
+        self.other_content_password_layout_SecList_placeholder_button.hide()
 
-        self.other_content_directory_layout_DefaultPasswords_placeholder_button.hide()
-        self.other_content_directory_layout_DefaultPasswords_placeholder.hide()
+        self.other_content_password_layout_DefaultPasswords_placeholder_button.hide()
+        self.other_content_password_layout_DefaultPasswords_placeholder.hide()
     
-        self.other_content_directory_layout_WeakPasswords_placeholder.hide()
-        self.other_content_directory_layout_WeakPasswords_placeholder_button.hide()
+        self.other_content_password_layout_WeakPasswords_placeholder.hide()
+        self.other_content_password_layout_WeakPasswords_placeholder_button.hide()
         
-        self.other_content_directory_layout_LeakedPasswords_placeholder.hide()
-        self.other_content_directory_layout_LeakedPasswords_placeholder_button.hide()
+        self.other_content_password_layout_LeakedPasswords_placeholder.hide()
+        self.other_content_password_layout_LeakedPasswords_placeholder_button.hide()
 
         self.other_content_exploit_layou_exploitdb_placeholder.hide()
         self.other_content_exploit_layou_exploitdb_placeholder_button.hide()
+
+        ## usernames
+        self.other_content_usernames_layout_general_button_placeholder.hide()
+        self.other_content_usernames_layout_general_placeholder.hide()
+
+        self.other_content_usernames_layout_default_button_placeholder.hide()
+        self.other_content_usernames_layout_default_placeholder.hide()
+
+        self.other_content_usernames_layout_other_placeholder.hide()
+        self.other_content_usernames_layout_other_button_placeholder.hide()
+
+        # Directories:
+        self.other_content_directory_layout_general_placeholder.hide()
+        self.other_content_directory_layout_general_button_placeholder.hide()
+
+        self.other_content_directory_layout_application_placeholder.hide()
+        self.other_content_directory_layout_application_button_placeholder.hide()
+
+        self.other_content_directory_layout_commonURL_placeholder.hide()
+        self.other_content_directory_layout_commonURL_button_placeholder.hide()
+
+        self.other_content_directory_layout_other_placeholder.hide()
+        self.other_content_directory_layout_other_button_placeholder.hide()
 
         ## read DB, 
         ## DB here
@@ -1985,15 +2009,15 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             )'''
 
             
-            if Category == "SecList":
+            if Category == "Other/Fun":
                 ##hover text
                 push_button.setToolTip(ListUrl)
                 ## This creates a button for each entry, which is tied to the data from the SQL entry
                 push_button.clicked.connect(partial(self.content, url=ListUrl, savepath=f"{sys_path}/Content/Wordlists",
                                                     savename=f"{Category}-{ListName}"))
 
-                self.other_content_directory_layout_SecList.addWidget(line_edit)
-                self.other_content_directory_layout_SecList.addWidget(push_button)
+                self.other_content_password_layout_SecList.addWidget(line_edit)
+                self.other_content_password_layout_SecList.addWidget(push_button)
                 
                 line_edit.setText(str(ListName))
                 push_button.setText("Download")
@@ -2003,9 +2027,8 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
                 push_button.clicked.connect(partial(self.content, url=ListUrl, savepath=f"{sys_path}/Content/Wordlists",
                                                     savename=f"{Category}-{ListName}"))
 
-                #pass # other_content_directory_layout_DefaultPasswords
-                self.other_content_directory_layout_DefaultPasswords.addWidget(line_edit)
-                self.other_content_directory_layout_DefaultPasswords.addWidget(push_button)
+                self.other_content_password_layout_DefaultPasswords.addWidget(line_edit)
+                self.other_content_password_layout_DefaultPasswords.addWidget(push_button)
                 
                 line_edit.setText(str(ListName))
                 push_button.setText("Download")
@@ -2014,24 +2037,93 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
                 push_button.setToolTip(ListUrl)
                 push_button.clicked.connect(partial(self.content, url=ListUrl, savepath=f"{sys_path}/Content/Wordlists",
                                                     savename=f"{Category}-{ListName}"))
-                #pass # other_content_directory_layout_WeakPasswords
-                self.other_content_directory_layout_WeakPasswords.addWidget(line_edit)
-                self.other_content_directory_layout_WeakPasswords.addWidget(push_button)
+                self.other_content_password_layout_WeakPasswords.addWidget(line_edit)
+                self.other_content_password_layout_WeakPasswords.addWidget(push_button)
                 
                 line_edit.setText(str(ListName))
                 push_button.setText("Download")
-                
-                
+
             elif Category == "LeakedPasswords":
                 push_button.setToolTip(ListUrl)
                 push_button.clicked.connect(partial(self.content, url=ListUrl, savepath=f"{sys_path}/Content/Wordlists",
                                                     savename=f"{Category}-{ListName}"))
-                #pass # other_content_directory_layout_LeakedPasswords
-                self.other_content_directory_layout_LeakedPasswords.addWidget(line_edit)
-                self.other_content_directory_layout_LeakedPasswords.addWidget(push_button)
+                self.other_content_password_layout_LeakedPasswords.addWidget(line_edit)
+                self.other_content_password_layout_LeakedPasswords.addWidget(push_button)
                 
                 line_edit.setText(str(ListName))
                 push_button.setText("Download")
+
+            elif Category == "GeneralUsernames":
+                push_button.setToolTip(ListUrl)
+                push_button.clicked.connect(partial(self.content, url=ListUrl, savepath=f"{sys_path}/Content/Wordlists",
+                                                    savename=f"{Category}-{ListName}"))
+                self.other_content_usernames_layout_general.addWidget(line_edit)
+                self.other_content_usernames_layout_general.addWidget(push_button)
+
+                line_edit.setText(str(ListName))
+                push_button.setText("Download")
+
+            elif Category == "DefaultUsernames":
+                push_button.setToolTip(ListUrl)
+                push_button.clicked.connect(partial(self.content, url=ListUrl, savepath=f"{sys_path}/Content/Wordlists",
+                                                    savename=f"{Category}-{ListName}"))
+                self.other_content_usernames_layout_default.addWidget(line_edit)
+                self.other_content_usernames_layout_default.addWidget(push_button)
+
+                line_edit.setText(str(ListName))
+                push_button.setText("Download")
+
+            elif Category == "OtherUsernames":
+                push_button.setToolTip(ListUrl)
+                push_button.clicked.connect(partial(self.content, url=ListUrl, savepath=f"{sys_path}/Content/Wordlists",
+                                                    savename=f"{Category}-{ListName}"))
+                self.other_content_usernames_layout_other.addWidget(line_edit)
+                self.other_content_usernames_layout_other.addWidget(push_button)
+
+                line_edit.setText(str(ListName))
+                push_button.setText("Download")
+
+            elif Category == "GeneralDirectory":
+                push_button.setToolTip(ListUrl)
+                push_button.clicked.connect(partial(self.content, url=ListUrl, savepath=f"{sys_path}/Content/Wordlists",
+                                                    savename=f"{Category}-{ListName}"))
+                self.other_content_directory_layout_general.addWidget(line_edit)
+                self.other_content_directory_layout_general.addWidget(push_button)
+
+                line_edit.setText(str(ListName))
+                push_button.setText("Download")
+
+            elif Category == "CommonDirectory":
+                push_button.setToolTip(ListUrl)
+                push_button.clicked.connect(partial(self.content, url=ListUrl, savepath=f"{sys_path}/Content/Wordlists",
+                                                    savename=f"{Category}-{ListName}"))
+                self.other_content_directory_layout_commonURL.addWidget(line_edit)
+                self.other_content_directory_layout_commonURL.addWidget(push_button)
+
+                line_edit.setText(str(ListName))
+                push_button.setText("Download")
+
+            elif Category == "ApplicationsDirectory":
+                push_button.setToolTip(ListUrl)
+                push_button.clicked.connect(partial(self.content, url=ListUrl, savepath=f"{sys_path}/Content/Wordlists",
+                                                    savename=f"{Category}-{ListName}"))
+                self.other_content_directory_layout_application.addWidget(line_edit)
+                self.other_content_directory_layout_application.addWidget(push_button)
+
+                line_edit.setText(str(ListName))
+                push_button.setText("Download")
+
+            elif Category == "OtherDirectory":
+                push_button.setToolTip(ListUrl)
+                push_button.clicked.connect(partial(self.content, url=ListUrl, savepath=f"{sys_path}/Content/Wordlists",
+                                                    savename=f"{Category}-{ListName}"))
+                self.other_content_directory_layout_other.addWidget(line_edit)
+                self.other_content_directory_layout_other.addWidget(push_button)
+
+                line_edit.setText(str(ListName))
+                push_button.setText("Download")
+
+
 
             elif Category == "ExploitDB":
                 push_button.setToolTip(ListUrl)
@@ -2410,6 +2502,14 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         """
     def system_theme_chooser(self):
         accent = self.settings['System']['Themes']['Accent']
+        # random colors
+        if accent == "random":
+            color_list = ["#32b354","#347bc2","#7DF9FF","#be1cd4","#db1818","#ffff33","ff5e00"]
+            accent = random.choice(color_list)
+
+        elif accent == "professional":
+            accent = "#C0C0C0"
+
 
         if self.settings['System']['Themes']['Theme'] == "dark":
             import qdarktheme
@@ -2478,12 +2578,11 @@ if __name__ == '__main__':
         # not a logging.debug YEt as it's only useful for dev
         #print(library_paths) if GLOBAL_DEBUG else None
 
-
-
         # QT stuff
         window = LogecSuite()
         window.show()
         window.system_theme_chooser()
+
         
         import cProfile
         cProfile.run('app.exec()', filename=f'{sys_path}/logs/logec-perf.prof')

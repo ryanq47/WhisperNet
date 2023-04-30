@@ -41,7 +41,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../.designer/backup/Modules/GUI_System/Images/icon.png</normaloff>../../.designer/backup/Modules/GUI_System/Images/icon.png</iconset>
+    <normaloff>../../Documents/Screenshot_2023-04-30_01-44-21.png</normaloff>../../Documents/Screenshot_2023-04-30_01-44-21.png</iconset>
   </property>
   <property name="animated">
    <bool>true</bool>
@@ -62,11 +62,14 @@
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <property name="tabPosition">
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
@@ -107,6 +110,9 @@
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
            <widget class="QGroupBox" name="c2_gui_groupbox_clients">
+            <property name="styleSheet">
+             <string notr="true">border:0</string>
+            </property>
             <property name="title">
              <string/>
             </property>
@@ -125,14 +131,20 @@
           </item>
           <item>
            <widget class="QGroupBox" name="c2_gui_groupbox_options">
+            <property name="styleSheet">
+             <string notr="true">border:0</string>
+            </property>
             <property name="title">
              <string/>
             </property>
             <layout class="QGridLayout" name="gridLayout_29">
              <item row="0" column="0">
               <widget class="QTabWidget" name="bruteforce_panel_2">
+               <property name="styleSheet">
+                <string notr="true">border:0</string>
+               </property>
                <property name="currentIndex">
-                <number>2</number>
+                <number>0</number>
                </property>
                <widget class="QWidget" name="tab_54">
                 <attribute name="title">
@@ -315,6 +327,9 @@ p, li { white-space: pre-wrap; }
         </item>
         <item row="2" column="0" colspan="3">
          <widget class="QGroupBox" name="c2_gui_groupbox_shells">
+          <property name="styleSheet">
+           <string notr="true">border:0</string>
+          </property>
           <property name="title">
            <string/>
           </property>
@@ -848,39 +863,33 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>72</width>
-                 <height>16</height>
+                 <width>1515</width>
+                 <height>742</height>
                 </rect>
                </property>
-               <widget class="QToolBox" name="bashbuild_toolBox">
-                <property name="geometry">
-                 <rect>
-                  <x>0</x>
-                  <y>0</y>
-                  <width>241</width>
-                  <height>651</height>
-                 </rect>
-                </property>
-                <property name="currentIndex">
-                 <number>3</number>
-                </property>
-                <widget class="QWidget" name="page_4">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>92</width>
-                   <height>78</height>
-                  </rect>
-                 </property>
-                 <attribute name="label">
-                  <string>Quick Guide</string>
-                 </attribute>
-                 <layout class="QGridLayout" name="gridLayout_48">
-                  <item row="0" column="0">
-                   <widget class="QTextEdit" name="textEdit_24">
-                    <property name="html">
-                     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+               <layout class="QGridLayout" name="gridLayout_9">
+                <item row="0" column="0" rowspan="2">
+                 <widget class="QToolBox" name="bashbuild_toolBox">
+                  <property name="currentIndex">
+                   <number>4</number>
+                  </property>
+                  <widget class="QWidget" name="page_4">
+                   <property name="geometry">
+                    <rect>
+                     <x>0</x>
+                     <y>0</y>
+                     <width>1000</width>
+                     <height>526</height>
+                    </rect>
+                   </property>
+                   <attribute name="label">
+                    <string>Quick Guide</string>
+                   </attribute>
+                   <layout class="QGridLayout" name="gridLayout_48">
+                    <item row="0" column="0">
+                     <widget class="QTextEdit" name="textEdit_24">
+                      <property name="html">
+                       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -893,193 +902,193 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Note, you'll enter your target IP &amp;amp;Report name when you run the script, this allows for more flexibility that hardcoding it in &lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;DevNote, set tabname to each selected, OR have a final overview tab that shows all selected stuff (put it in a list or something)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                  <widget class="QWidget" name="page">
+                   <property name="geometry">
+                    <rect>
+                     <x>0</x>
+                     <y>0</y>
+                     <width>1000</width>
+                     <height>526</height>
+                    </rect>
+                   </property>
+                   <attribute name="label">
+                    <string>DNS</string>
+                   </attribute>
+                   <widget class="QCheckBox" name="bashbuild_dnsenum">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>0</y>
+                      <width>92</width>
+                      <height>25</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>DNSENUM</string>
                     </property>
                    </widget>
-                  </item>
-                 </layout>
-                </widget>
-                <widget class="QWidget" name="page">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>100</width>
-                   <height>30</height>
-                  </rect>
-                 </property>
-                 <attribute name="label">
-                  <string>DNS</string>
-                 </attribute>
-                 <widget class="QCheckBox" name="bashbuild_dnsenum">
-                  <property name="geometry">
-                   <rect>
-                    <x>10</x>
-                    <y>0</y>
-                    <width>92</width>
-                    <height>25</height>
-                   </rect>
-                  </property>
-                  <property name="text">
-                   <string>DNSENUM</string>
-                  </property>
-                 </widget>
-                </widget>
-                <widget class="QWidget" name="page_3">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>100</width>
-                   <height>30</height>
-                  </rect>
-                 </property>
-                 <attribute name="label">
-                  <string>PortScan</string>
-                 </attribute>
-                 <widget class="QCheckBox" name="bashbuild_nmap">
-                  <property name="geometry">
-                   <rect>
-                    <x>10</x>
-                    <y>20</y>
-                    <width>92</width>
-                    <height>25</height>
-                   </rect>
-                  </property>
-                  <property name="text">
-                   <string>NMAP</string>
-                  </property>
-                 </widget>
-                </widget>
-                <widget class="QWidget" name="page_6">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>100</width>
-                   <height>30</height>
-                  </rect>
-                 </property>
-                 <attribute name="label">
-                  <string>Local</string>
-                 </attribute>
-                 <widget class="QCheckBox" name="checkBox_25">
-                  <property name="geometry">
-                   <rect>
-                    <x>10</x>
-                    <y>10</y>
-                    <width>181</width>
-                    <height>25</height>
-                   </rect>
-                  </property>
-                  <property name="text">
-                   <string>Retrieve PASSWD file</string>
-                  </property>
-                 </widget>
-                 <widget class="QCheckBox" name="checkBox_26">
-                  <property name="geometry">
-                   <rect>
-                    <x>10</x>
-                    <y>40</y>
-                    <width>181</width>
-                    <height>25</height>
-                   </rect>
-                  </property>
-                  <property name="text">
-                   <string>Retrieve SHADOW file</string>
-                  </property>
-                 </widget>
-                 <widget class="QCheckBox" name="checkBox_27">
-                  <property name="geometry">
-                   <rect>
-                    <x>10</x>
-                    <y>70</y>
-                    <width>181</width>
-                    <height>25</height>
-                   </rect>
-                  </property>
-                  <property name="text">
-                   <string>Capture NETSTAT</string>
-                  </property>
-                 </widget>
-                 <widget class="QCheckBox" name="checkBox_28">
-                  <property name="geometry">
-                   <rect>
-                    <x>10</x>
-                    <y>100</y>
-                    <width>181</width>
-                    <height>25</height>
-                   </rect>
-                  </property>
-                  <property name="text">
-                   <string>Capture Bash History</string>
-                  </property>
-                 </widget>
-                </widget>
-                <widget class="QWidget" name="page_2">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>100</width>
-                   <height>30</height>
-                  </rect>
-                 </property>
-                 <attribute name="label">
-                  <string>Other</string>
-                 </attribute>
-                 <widget class="QCheckBox" name="bashbuild_diagnostic">
-                  <property name="geometry">
-                   <rect>
-                    <x>10</x>
-                    <y>10</y>
-                    <width>201</width>
-                    <height>25</height>
-                   </rect>
-                  </property>
-                  <property name="text">
-                   <string>Enable Diagnostic Data</string>
-                  </property>
-                  <property name="checked">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                 <widget class="QCheckBox" name="bashbuild_installpackages">
-                  <property name="geometry">
-                   <rect>
-                    <x>10</x>
-                    <y>40</y>
-                    <width>211</width>
-                    <height>25</height>
-                   </rect>
-                  </property>
-                  <property name="toolTip">
-                   <string>Includes code to install packages. use --install when running the script</string>
-                  </property>
-                  <property name="text">
-                   <string>Install packages</string>
-                  </property>
-                  <property name="checked">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </widget>
-                <widget class="QWidget" name="page_5">
-                 <property name="geometry">
-                  <rect>
-                   <x>0</x>
-                   <y>0</y>
-                   <width>92</width>
-                   <height>78</height>
-                  </rect>
-                 </property>
-                 <attribute name="label">
-                  <string>Overview</string>
-                 </attribute>
-                 <layout class="QGridLayout" name="gridLayout_49">
-                  <item row="0" column="0">
-                   <widget class="QTextEdit" name="textEdit_26">
-                    <property name="html">
-                     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                  </widget>
+                  <widget class="QWidget" name="page_3">
+                   <property name="geometry">
+                    <rect>
+                     <x>0</x>
+                     <y>0</y>
+                     <width>1000</width>
+                     <height>526</height>
+                    </rect>
+                   </property>
+                   <attribute name="label">
+                    <string>PortScan</string>
+                   </attribute>
+                   <widget class="QCheckBox" name="bashbuild_nmap">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>20</y>
+                      <width>92</width>
+                      <height>25</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>NMAP</string>
+                    </property>
+                   </widget>
+                  </widget>
+                  <widget class="QWidget" name="page_6">
+                   <property name="geometry">
+                    <rect>
+                     <x>0</x>
+                     <y>0</y>
+                     <width>1000</width>
+                     <height>526</height>
+                    </rect>
+                   </property>
+                   <attribute name="label">
+                    <string>Local</string>
+                   </attribute>
+                   <widget class="QCheckBox" name="checkBox_25">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>10</y>
+                      <width>181</width>
+                      <height>25</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Retrieve PASSWD file</string>
+                    </property>
+                   </widget>
+                   <widget class="QCheckBox" name="checkBox_26">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>40</y>
+                      <width>181</width>
+                      <height>25</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Retrieve SHADOW file</string>
+                    </property>
+                   </widget>
+                   <widget class="QCheckBox" name="checkBox_27">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>70</y>
+                      <width>181</width>
+                      <height>25</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Capture NETSTAT</string>
+                    </property>
+                   </widget>
+                   <widget class="QCheckBox" name="checkBox_28">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>100</y>
+                      <width>181</width>
+                      <height>25</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Capture Bash History</string>
+                    </property>
+                   </widget>
+                  </widget>
+                  <widget class="QWidget" name="page_2">
+                   <property name="geometry">
+                    <rect>
+                     <x>0</x>
+                     <y>0</y>
+                     <width>1000</width>
+                     <height>526</height>
+                    </rect>
+                   </property>
+                   <attribute name="label">
+                    <string>Other</string>
+                   </attribute>
+                   <widget class="QCheckBox" name="bashbuild_diagnostic">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>10</y>
+                      <width>201</width>
+                      <height>25</height>
+                     </rect>
+                    </property>
+                    <property name="text">
+                     <string>Enable Diagnostic Data</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                   <widget class="QCheckBox" name="bashbuild_installpackages">
+                    <property name="geometry">
+                     <rect>
+                      <x>10</x>
+                      <y>40</y>
+                      <width>211</width>
+                      <height>25</height>
+                     </rect>
+                    </property>
+                    <property name="toolTip">
+                     <string>Includes code to install packages. use --install when running the script</string>
+                    </property>
+                    <property name="text">
+                     <string>Install packages</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </widget>
+                  <widget class="QWidget" name="page_5">
+                   <property name="geometry">
+                    <rect>
+                     <x>0</x>
+                     <y>0</y>
+                     <width>1000</width>
+                     <height>526</height>
+                    </rect>
+                   </property>
+                   <attribute name="label">
+                    <string>Overview</string>
+                   </attribute>
+                   <layout class="QGridLayout" name="gridLayout_49">
+                    <item row="0" column="0">
+                     <widget class="QTextEdit" name="textEdit_26">
+                      <property name="html">
+                       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -1088,23 +1097,17 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;DNS:&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;	DNSENUM: Off (turn red)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </widget>
-               <widget class="QTextEdit" name="bashbuild_textoutput">
-                <property name="geometry">
-                 <rect>
-                  <x>240</x>
-                  <y>10</y>
-                  <width>1031</width>
-                  <height>601</height>
-                 </rect>
-                </property>
-                <property name="html">
-                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </widget>
+                </item>
+                <item row="0" column="1" colspan="3">
+                 <widget class="QTextEdit" name="bashbuild_textoutput">
+                  <property name="html">
+                   <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -1201,47 +1204,31 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;printf &amp;quot;\n${GREEN}########## &amp;lt;End of Report&amp;gt; ##########${NC}\n\n&amp;quot; | tee -a Reports/$NAME&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-               </widget>
-               <widget class="QPushButton" name="bashbuilder_generate">
-                <property name="geometry">
-                 <rect>
-                  <x>780</x>
-                  <y>620</y>
-                  <width>491</width>
-                  <height>27</height>
-                 </rect>
-                </property>
-                <property name="text">
-                 <string>--&gt;&gt; Generate &lt;&lt;--</string>
-                </property>
-               </widget>
-               <widget class="QPushButton" name="pushButton_3">
-                <property name="geometry">
-                 <rect>
-                  <x>240</x>
-                  <y>620</y>
-                  <width>261</width>
-                  <height>27</height>
-                 </rect>
-                </property>
-                <property name="text">
-                 <string>--&gt;&gt; Copy to Clipboard&lt;&lt;--</string>
-                </property>
-               </widget>
-               <widget class="QPushButton" name="pushButton_4">
-                <property name="geometry">
-                 <rect>
-                  <x>510</x>
-                  <y>620</y>
-                  <width>261</width>
-                  <height>27</height>
-                 </rect>
-                </property>
-                <property name="text">
-                 <string>--&gt;&gt; Save to File &lt;&lt;--</string>
-                </property>
-               </widget>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QPushButton" name="pushButton_3">
+                  <property name="text">
+                   <string>--&gt;&gt; Copy to Clipboard&lt;&lt;--</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="2">
+                 <widget class="QPushButton" name="pushButton_4">
+                  <property name="text">
+                   <string>--&gt;&gt; Save to File &lt;&lt;--</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="3">
+                 <widget class="QPushButton" name="bashbuilder_generate">
+                  <property name="text">
+                   <string>--&gt;&gt; Generate &lt;&lt;--</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </widget>
              </widget>
             </item>
@@ -1743,6 +1730,9 @@ p, li { white-space: pre-wrap; }
              <widget class="QPushButton" name="exploitandvuln_search_button">
               <property name="toolTip">
                <string>Run a query on the DB</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>--&gt;&gt; Query Exploit DB &lt;&lt;--</string>
@@ -2589,7 +2579,7 @@ p, li { white-space: pre-wrap; }
             <item row="9" column="0" rowspan="9" colspan="5">
              <widget class="QTabWidget" name="tabWidget_29">
               <property name="currentIndex">
-               <number>1</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="tab_127">
                <attribute name="title">
@@ -3117,7 +3107,7 @@ p, li { white-space: pre-wrap; }
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_10">
           <property name="currentIndex">
-           <number>2</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tab_52">
            <attribute name="title">
@@ -3681,8 +3671,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>462</width>
-                 <height>319</height>
+                 <width>1517</width>
+                 <height>678</height>
                 </rect>
                </property>
                <attribute name="label">
@@ -3692,7 +3682,7 @@ p, li { white-space: pre-wrap; }
                 <item row="0" column="0">
                  <widget class="QTabWidget" name="tabWidget_5">
                   <property name="currentIndex">
-                   <number>1</number>
+                   <number>2</number>
                   </property>
                   <widget class="QWidget" name="tab_8">
                    <attribute name="title">
@@ -3702,212 +3692,108 @@ p, li { white-space: pre-wrap; }
                     <item row="0" column="0">
                      <layout class="QGridLayout" name="gridLayout_66">
                       <item row="0" column="0">
-                       <layout class="QGridLayout" name="gridLayout_67">
-                        <item row="2" column="0">
-                         <widget class="QLineEdit" name="lineEdit_88">
-                          <property name="text">
-                           <string>SecList Top 10 Million Passwords</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="1" column="0">
-                         <widget class="QLineEdit" name="lineEdit_89">
-                          <property name="text">
-                           <string>SecList Default Passwords</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="3" column="0">
-                         <widget class="QLineEdit" name="lineEdit_90">
-                          <property name="text">
-                           <string>SecList Top 10 Million Passwords</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="3" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_top10mil_22">
-                          <property name="text">
-                           <string>Download</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="1" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_defaults_13">
-                          <property name="text">
-                           <string>Download</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="2" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_top10mil_23">
-                          <property name="text">
-                           <string>Download</string>
-                          </property>
-                         </widget>
-                        </item>
+                       <layout class="QGridLayout" name="other_content_usernames_layout_general">
                         <item row="0" column="0">
                          <widget class="QLabel" name="label_6">
                           <property name="text">
-                           <string>SecList</string>
+                           <string>General</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignHCenter|Qt::AlignTop</set>
                           </property>
                          </widget>
                         </item>
-                       </layout>
-                      </item>
-                      <item row="1" column="0">
-                       <layout class="QGridLayout" name="gridLayout_68">
-                        <item row="3" column="0">
-                         <widget class="QLineEdit" name="lineEdit_91">
-                          <property name="text">
-                           <string>SecList Top 10 Million Passwords</string>
+                        <item row="1" column="1">
+                         <widget class="QPushButton" name="other_content_usernames_layout_general_button_placeholder">
+                          <property name="enabled">
+                           <bool>false</bool>
                           </property>
-                         </widget>
-                        </item>
-                        <item row="3" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_top10mil_24">
                           <property name="text">
                            <string>Download</string>
                           </property>
                          </widget>
                         </item>
                         <item row="1" column="0">
-                         <widget class="QLineEdit" name="lineEdit_92">
-                          <property name="text">
-                           <string>SecList Default Passwords</string>
+                         <widget class="QLineEdit" name="other_content_usernames_layout_general_placeholder">
+                          <property name="enabled">
+                           <bool>false</bool>
                           </property>
-                         </widget>
-                        </item>
-                        <item row="2" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_top10mil_25">
                           <property name="text">
-                           <string>Download</string>
+                           <string>Placeholder - if u see me then I screwed up my code :) consider it an easter egg</string>
                           </property>
-                         </widget>
-                        </item>
-                        <item row="1" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_defaults_14">
-                          <property name="text">
-                           <string>Download</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="2" column="0">
-                         <widget class="QLineEdit" name="lineEdit_93">
-                          <property name="text">
-                           <string>SecList Top 10 Million Passwords</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="0" column="0">
-                         <widget class="QLabel" name="label_8">
-                          <property name="text">
-                           <string>Other</string>
+                          <property name="clearButtonEnabled">
+                           <bool>false</bool>
                           </property>
                          </widget>
                         </item>
                        </layout>
                       </item>
                       <item row="0" column="1">
-                       <layout class="QGridLayout" name="gridLayout_69">
-                        <item row="1" column="0">
-                         <widget class="QLineEdit" name="lineEdit_94">
-                          <property name="text">
-                           <string>SecList Default Passwords</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="3" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_top10mil_26">
-                          <property name="text">
-                           <string>Download</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="2" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_top10mil_27">
-                          <property name="text">
-                           <string>Download</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="2" column="0">
-                         <widget class="QLineEdit" name="lineEdit_95">
-                          <property name="text">
-                           <string>SecList Top 10 Million Passwords</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="1" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_defaults_15">
-                          <property name="text">
-                           <string>Download</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="3" column="0">
-                         <widget class="QLineEdit" name="lineEdit_96">
-                          <property name="text">
-                           <string>SecList Top 10 Million Passwords</string>
-                          </property>
-                         </widget>
-                        </item>
+                       <layout class="QGridLayout" name="other_content_usernames_layout_default">
                         <item row="0" column="0">
                          <widget class="QLabel" name="label_9">
                           <property name="text">
                            <string>Default Usernames</string>
                           </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                      <item row="1" column="1">
-                       <layout class="QGridLayout" name="gridLayout_70">
-                        <item row="1" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_defaults_16">
-                          <property name="text">
-                           <string>Download</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="2" column="0">
-                         <widget class="QLineEdit" name="lineEdit_97">
-                          <property name="text">
-                           <string>SecList Top 10 Million Passwords</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="3" column="0">
-                         <widget class="QLineEdit" name="lineEdit_98">
-                          <property name="text">
-                           <string>SecList Top 10 Million Passwords</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="3" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_top10mil_28">
-                          <property name="text">
-                           <string>Download</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="2" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_top10mil_29">
-                          <property name="text">
-                           <string>Download</string>
+                          <property name="alignment">
+                           <set>Qt::AlignHCenter|Qt::AlignTop</set>
                           </property>
                          </widget>
                         </item>
                         <item row="1" column="0">
-                         <widget class="QLineEdit" name="lineEdit_99">
+                         <widget class="QLineEdit" name="other_content_usernames_layout_default_placeholder">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
                           <property name="text">
-                           <string>SecList Default Passwords</string>
+                           <string>Placeholder - if u see me then I screwed up my code :) consider it an easter egg</string>
                           </property>
                          </widget>
                         </item>
+                        <item row="1" column="1">
+                         <widget class="QPushButton" name="other_content_usernames_layout_default_button_placeholder">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string>Download</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item row="1" column="0" colspan="2">
+                       <layout class="QGridLayout" name="other_content_usernames_layout_other">
                         <item row="0" column="0">
-                         <widget class="QLabel" name="label_10">
+                         <widget class="QLabel" name="label_8">
+                          <property name="autoFillBackground">
+                           <bool>false</bool>
+                          </property>
                           <property name="text">
                            <string>Other</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="0">
+                         <widget class="QLineEdit" name="other_content_usernames_layout_other_placeholder">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string>Placeholder - if u see me then I screwed up my code :) consider it an easter egg</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="1">
+                         <widget class="QPushButton" name="other_content_usernames_layout_other_button_placeholder">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string>Download</string>
                           </property>
                          </widget>
                         </item>
@@ -3925,9 +3811,9 @@ p, li { white-space: pre-wrap; }
                     <item row="0" column="0">
                      <layout class="QGridLayout" name="gridLayout_71">
                       <item row="0" column="0">
-                       <layout class="QGridLayout" name="other_content_directory_layout_SecList">
+                       <layout class="QGridLayout" name="other_content_password_layout_SecList">
                         <item row="2" column="1">
-                         <widget class="QPushButton" name="other_content_directory_layout_SecList_placeholder_button">
+                         <widget class="QPushButton" name="other_content_password_layout_SecList_placeholder_button">
                           <property name="enabled">
                            <bool>false</bool>
                           </property>
@@ -3937,7 +3823,7 @@ p, li { white-space: pre-wrap; }
                          </widget>
                         </item>
                         <item row="2" column="0">
-                         <widget class="QLineEdit" name="other_content_directory_layout_SecList_placeholder">
+                         <widget class="QLineEdit" name="other_content_password_layout_SecList_placeholder">
                           <property name="enabled">
                            <bool>false</bool>
                           </property>
@@ -3949,16 +3835,19 @@ p, li { white-space: pre-wrap; }
                         <item row="1" column="0">
                          <widget class="QLabel" name="label_18">
                           <property name="text">
-                           <string>SecList</string>
+                           <string>Other/Fun</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignHCenter|Qt::AlignTop</set>
                           </property>
                          </widget>
                         </item>
                        </layout>
                       </item>
                       <item row="1" column="0">
-                       <layout class="QGridLayout" name="other_content_directory_layout_WeakPasswords">
+                       <layout class="QGridLayout" name="other_content_password_layout_WeakPasswords">
                         <item row="1" column="1">
-                         <widget class="QPushButton" name="other_content_directory_layout_WeakPasswords_placeholder_button">
+                         <widget class="QPushButton" name="other_content_password_layout_WeakPasswords_placeholder_button">
                           <property name="enabled">
                            <bool>false</bool>
                           </property>
@@ -3972,10 +3861,13 @@ p, li { white-space: pre-wrap; }
                           <property name="text">
                            <string>Weak Passwords</string>
                           </property>
+                          <property name="alignment">
+                           <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                          </property>
                          </widget>
                         </item>
                         <item row="1" column="0">
-                         <widget class="QLineEdit" name="other_content_directory_layout_WeakPasswords_placeholder">
+                         <widget class="QLineEdit" name="other_content_password_layout_WeakPasswords_placeholder">
                           <property name="enabled">
                            <bool>false</bool>
                           </property>
@@ -3987,9 +3879,9 @@ p, li { white-space: pre-wrap; }
                        </layout>
                       </item>
                       <item row="0" column="1">
-                       <layout class="QGridLayout" name="other_content_directory_layout_DefaultPasswords">
+                       <layout class="QGridLayout" name="other_content_password_layout_DefaultPasswords">
                         <item row="1" column="1">
-                         <widget class="QPushButton" name="other_content_directory_layout_DefaultPasswords_placeholder_button">
+                         <widget class="QPushButton" name="other_content_password_layout_DefaultPasswords_placeholder_button">
                           <property name="enabled">
                            <bool>false</bool>
                           </property>
@@ -4003,10 +3895,13 @@ p, li { white-space: pre-wrap; }
                           <property name="text">
                            <string>Default Passwords</string>
                           </property>
+                          <property name="alignment">
+                           <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                          </property>
                          </widget>
                         </item>
                         <item row="1" column="0">
-                         <widget class="QLineEdit" name="other_content_directory_layout_DefaultPasswords_placeholder">
+                         <widget class="QLineEdit" name="other_content_password_layout_DefaultPasswords_placeholder">
                           <property name="enabled">
                            <bool>false</bool>
                           </property>
@@ -4018,16 +3913,19 @@ p, li { white-space: pre-wrap; }
                        </layout>
                       </item>
                       <item row="1" column="1">
-                       <layout class="QGridLayout" name="other_content_directory_layout_LeakedPasswords">
+                       <layout class="QGridLayout" name="other_content_password_layout_LeakedPasswords">
                         <item row="0" column="0">
                          <widget class="QLabel" name="label_44">
                           <property name="text">
                            <string>Leaked Passwords</string>
                           </property>
+                          <property name="alignment">
+                           <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                          </property>
                          </widget>
                         </item>
                         <item row="1" column="0">
-                         <widget class="QLineEdit" name="other_content_directory_layout_LeakedPasswords_placeholder">
+                         <widget class="QLineEdit" name="other_content_password_layout_LeakedPasswords_placeholder">
                           <property name="enabled">
                            <bool>false</bool>
                           </property>
@@ -4037,7 +3935,7 @@ p, li { white-space: pre-wrap; }
                          </widget>
                         </item>
                         <item row="1" column="1">
-                         <widget class="QPushButton" name="other_content_directory_layout_LeakedPasswords_placeholder_button">
+                         <widget class="QPushButton" name="other_content_password_layout_LeakedPasswords_placeholder_button">
                           <property name="enabled">
                            <bool>false</bool>
                           </property>
@@ -4060,150 +3958,90 @@ p, li { white-space: pre-wrap; }
                     <item row="0" column="0">
                      <layout class="QGridLayout" name="gridLayout_59">
                       <item row="0" column="0">
-                       <layout class="QGridLayout" name="gridLayout_60">
-                        <item row="2" column="0">
-                         <widget class="QLineEdit" name="lineEdit_75">
+                       <layout class="QGridLayout" name="other_content_directory_layout_general">
+                        <item row="0" column="0">
+                         <widget class="QLabel" name="label_2">
                           <property name="text">
-                           <string>SecList Top 10 Million Passwords</string>
+                           <string>General</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignHCenter|Qt::AlignTop</set>
                           </property>
                          </widget>
                         </item>
                         <item row="1" column="0">
-                         <widget class="QLineEdit" name="lineEdit_73">
-                          <property name="text">
-                           <string>SecList Default Passwords</string>
+                         <widget class="QLineEdit" name="other_content_directory_layout_general_placeholder">
+                          <property name="enabled">
+                           <bool>false</bool>
                           </property>
-                         </widget>
-                        </item>
-                        <item row="3" column="0">
-                         <widget class="QLineEdit" name="lineEdit_74">
                           <property name="text">
                            <string>SecList Top 10 Million Passwords</string>
                           </property>
                          </widget>
                         </item>
-                        <item row="3" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_top10mil_12">
-                          <property name="text">
-                           <string>Download</string>
-                          </property>
-                         </widget>
-                        </item>
                         <item row="1" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_defaults_8">
+                         <widget class="QPushButton" name="other_content_directory_layout_general_button_placeholder">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
                           <property name="text">
                            <string>Download</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="2" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_top10mil_13">
-                          <property name="text">
-                           <string>Download</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="0" column="0">
-                         <widget class="QLabel" name="label_2">
-                          <property name="text">
-                           <string>SecList</string>
                           </property>
                          </widget>
                         </item>
                        </layout>
                       </item>
                       <item row="1" column="0">
-                       <layout class="QGridLayout" name="gridLayout_63">
-                        <item row="3" column="0">
-                         <widget class="QLineEdit" name="lineEdit_80">
+                       <layout class="QGridLayout" name="other_content_directory_layout_commonURL">
+                        <item row="1" column="0">
+                         <widget class="QLineEdit" name="other_content_directory_layout_commonURL_placeholder">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
                           <property name="text">
                            <string>SecList Top 10 Million Passwords</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="3" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_top10mil_16">
-                          <property name="text">
-                           <string>Download</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="1" column="0">
-                         <widget class="QLineEdit" name="lineEdit_79">
-                          <property name="text">
-                           <string>SecList Default Passwords</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="2" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_top10mil_17">
-                          <property name="text">
-                           <string>Download</string>
                           </property>
                          </widget>
                         </item>
                         <item row="1" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_defaults_10">
+                         <widget class="QPushButton" name="other_content_directory_layout_commonURL_button_placeholder">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
                           <property name="text">
                            <string>Download</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="2" column="0">
-                         <widget class="QLineEdit" name="lineEdit_81">
-                          <property name="text">
-                           <string>SecList Top 10 Million Passwords</string>
                           </property>
                          </widget>
                         </item>
                         <item row="0" column="0">
                          <widget class="QLabel" name="label_4">
                           <property name="text">
-                           <string>Weak Passwords</string>
+                           <string>Common URL/I</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignHCenter|Qt::AlignTop</set>
                           </property>
                          </widget>
                         </item>
                        </layout>
                       </item>
                       <item row="0" column="1">
-                       <layout class="QGridLayout" name="gridLayout_64">
-                        <item row="1" column="0">
-                         <widget class="QLineEdit" name="lineEdit_82">
-                          <property name="text">
-                           <string>SecList Default Passwords</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="3" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_top10mil_18">
-                          <property name="text">
-                           <string>Download</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="2" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_top10mil_19">
-                          <property name="text">
-                           <string>Download</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="2" column="0">
-                         <widget class="QLineEdit" name="lineEdit_84">
-                          <property name="text">
-                           <string>SecList Top 10 Million Passwords</string>
-                          </property>
-                         </widget>
-                        </item>
+                       <layout class="QGridLayout" name="other_content_directory_layout_application">
                         <item row="1" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_defaults_11">
+                         <widget class="QPushButton" name="other_content_directory_layout_application_button_placeholder">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
                           <property name="text">
                            <string>Download</string>
                           </property>
                          </widget>
                         </item>
-                        <item row="3" column="0">
-                         <widget class="QLineEdit" name="lineEdit_83">
+                        <item row="1" column="0">
+                         <widget class="QLineEdit" name="other_content_directory_layout_application_placeholder">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
                           <property name="text">
                            <string>SecList Top 10 Million Passwords</string>
                           </property>
@@ -4212,60 +4050,44 @@ p, li { white-space: pre-wrap; }
                         <item row="0" column="0">
                          <widget class="QLabel" name="label_3">
                           <property name="text">
-                           <string>Default Passwords</string>
+                           <string>Applications</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignHCenter|Qt::AlignTop</set>
                           </property>
                          </widget>
                         </item>
                        </layout>
                       </item>
                       <item row="1" column="1">
-                       <layout class="QGridLayout" name="gridLayout_65">
+                       <layout class="QGridLayout" name="other_content_directory_layout_other">
                         <item row="1" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_defaults_12">
+                         <widget class="QPushButton" name="other_content_directory_layout_other_button_placeholder">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
                           <property name="text">
                            <string>Download</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="2" column="0">
-                         <widget class="QLineEdit" name="lineEdit_87">
-                          <property name="text">
-                           <string>SecList Top 10 Million Passwords</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="3" column="0">
-                         <widget class="QLineEdit" name="lineEdit_86">
-                          <property name="text">
-                           <string>SecList Top 10 Million Passwords</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="3" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_top10mil_20">
-                          <property name="text">
-                           <string>Download</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="2" column="1">
-                         <widget class="QPushButton" name="bruteforce_download_seclist_top10mil_21">
-                          <property name="text">
-                           <string>Download</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="1" column="0">
-                         <widget class="QLineEdit" name="lineEdit_85">
-                          <property name="text">
-                           <string>SecList Default Passwords</string>
                           </property>
                          </widget>
                         </item>
                         <item row="0" column="0">
                          <widget class="QLabel" name="label_5">
                           <property name="text">
-                           <string>Leaked Passwords</string>
+                           <string>Other</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="0">
+                         <widget class="QLineEdit" name="other_content_directory_layout_other_placeholder">
+                          <property name="enabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string>SecList Top 10 Million Passwords</string>
                           </property>
                          </widget>
                         </item>
@@ -4284,8 +4106,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>382</width>
-                 <height>134</height>
+                 <width>1517</width>
+                 <height>678</height>
                 </rect>
                </property>
                <attribute name="label">
@@ -4321,6 +4143,9 @@ p, li { white-space: pre-wrap; }
                       <property name="text">
                        <string>ExploitDB</string>
                       </property>
+                      <property name="alignment">
+                       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                      </property>
                      </widget>
                     </item>
                    </layout>
@@ -4341,6 +4166,9 @@ p, li { white-space: pre-wrap; }
                      <widget class="QLabel" name="label_22">
                       <property name="text">
                        <string>Coming Later</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignHCenter|Qt::AlignTop</set>
                       </property>
                      </widget>
                     </item>
@@ -4373,6 +4201,9 @@ p, li { white-space: pre-wrap; }
                       <property name="text">
                        <string>Coming Later</string>
                       </property>
+                      <property name="alignment">
+                       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                      </property>
                      </widget>
                     </item>
                     <item row="1" column="0">
@@ -4393,6 +4224,9 @@ p, li { white-space: pre-wrap; }
                      <widget class="QLabel" name="label_45">
                       <property name="text">
                        <string>Coming Later</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignHCenter|Qt::AlignTop</set>
                       </property>
                      </widget>
                     </item>

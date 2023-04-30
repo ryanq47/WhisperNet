@@ -17,8 +17,11 @@ System:
     ## Currenth themes: "default", "dark", "light", "system"
     ## dark: https://github.com/5yutan5/PyQtDarkTheme
     Theme: !!str "dark"
-    ## hex color code
-    Accent: !!str "#7DF9FF"
+    ## Color accent, options are:
+      # hex color code: HexCode for a custom color
+      # random: A random color
+      # professional: A hard steel/grey color, for showing to anyone who could fire you
+    Accent: !!str "random"
     Font: !!str "Roboto"
     FontSize: !!int 10
 
