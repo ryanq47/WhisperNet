@@ -3,7 +3,11 @@ Alrighty... Reducing this project down to just the c2/vuln side of things. I lov
 New Scope: C2 tool with easy exploitation.  <br>
  <br>
   Features: <br>
+  
     Previous C2 architecture <br>
+    
     Few Click Exploit Uploads & execution <br>
+    
     Vulnerability scan based on currently installed software <br> <br>
+    
     [maybe] Fake Webserver/a new HTTP based C&C method.  <br>
