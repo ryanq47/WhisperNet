@@ -35,6 +35,13 @@ Note, these next 2 may get nuked on future iterations of the suite, as they eat 
 
 ![image](https://user-images.githubusercontent.com/91687869/234417188-d083e89f-7b8b-4eb4-adfb-634f4c7d06a1.png)
 
+## Documentation
+This is some fairly basic documentation, but it covers how most of the C2 suite interacts, via the network, and the decision trees:
+![logec-suite-c2-network-diagram](https://user-images.githubusercontent.com/91687869/235392177-2574a711-4245-4bdd-9f24-a9c636b9b97a.png)
+<br>
+![logec-suite-c2-decision-diagram drawio](https://user-images.githubusercontent.com/91687869/235392171-28154410-9436-4e86-ad68-d7e856b5243b.png)
+
+
 ## Scapy/libc.a Error
 
 cd /usr/lib/x86_64-linux-gnu/ <br>
