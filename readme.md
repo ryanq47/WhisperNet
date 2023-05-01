@@ -8,6 +8,5 @@ New Scope: C2 tool with easy exploitation.  <br>
     
     Few Click Exploit Uploads & execution <br>
     
-    Vulnerability scan based on currently installed software <br> <br>
-    
+    Vulnerability scan based on currently installed software <br> 
     [maybe] Fake Webserver/a new HTTP based C&C method.  <br>
