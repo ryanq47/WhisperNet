@@ -4,9 +4,7 @@ New Scope: C2 tool with easy exploitation.  <br>
  <br>
   Features: <br>
   
-    Previous C2 architecture <br>
-    
-    Few Click Exploit Uploads & execution <br>
-    
-    Vulnerability scan based on currently installed software <br> 
-    [maybe] Fake Webserver/a new HTTP based C&C method.  <br>
+    Previous C2 architecture
+    Few Click Exploit Uploads & execution
+    Vulnerability scan based on currently installed software 
+    [maybe] Fake Webserver/a new HTTP based C&C method.  
