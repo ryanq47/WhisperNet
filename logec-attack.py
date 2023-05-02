@@ -20,8 +20,8 @@ import traceback
 
 ##== GUI Imports
 from PySide6 import QtWidgets
-from PySide6.QtCore import Qt, QThread, QThreadPool, QCoreApplication, QTimer, QPoint
-from PySide6.QtGui import QAction, QPen, QFont, QIcon
+from PySide6.QtCore import Qt, QThreadPool, QCoreApplication, QTimer, QPoint
+from PySide6.QtGui import QAction, QPen, QFont
 from PySide6.QtSql import QSqlDatabase, QSqlQuery
 #from PySide6.QtUiTools import loadUiType, QUiLoader
 from PySide6.QtWidgets import (
@@ -51,20 +51,12 @@ os.environ['QT_PLUGIN_PATH'] = plugin_path
 QCoreApplication.addLibraryPath(plugin_path)
 
 ##== Internal Imports (later so they can refrence using sys path if needed)
-from Gui.Encryptor import Ui_Form as Encryptor_Popup
-from Gui.listen_popup import Ui_listener_popup
-from Gui.portscan_popup import Ui_PortScan_Popup
-from Gui.shell_popup import Ui_shell_SEND
 from Gui.startup_projectbox import Ui_startup_projectbox
 #from Gui.agent_compile import Ui_AgentEditor
 
-from Modules.General.Bruteforce.bruteforce import Bruteforce, Fuzzer
-from Modules.General.OSINT.dork import Dork
-#from Modules.General.SaveFiles.fileops import *
 import Modules.General.SaveFiles.fileops as fileops
 from Modules.General.ScriptGen import ScriptGen
 from Modules.General.SysShell.shell import Shell
-from Modules.General.portscanner import Portscan
 import Modules.General.utility as utility
 from Modules.ExploitNVulns.exploitdb import LogecExploitdb
 
@@ -108,10 +100,6 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.init_buttons_file_menu()
         self.init_buttons_c2_shells()
         self.init_buttons_exploitandvuln()
-        self.init_buttons_osint_reddit()
-        self.init_buttons_scanning()
-        self.init_buttons_bruteforce_credentials()
-        self.init_buttons_bruteforce_fuzzer()
         self.init_buttons_bashbuilder()
         self.init_buttons_performance_benchmarks()
         self.init_buttons_settings_settings()
@@ -119,7 +107,6 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         ##== Data / Tab Inits 
         ## Graphs are using lots of CPU, disabled for now.
         #self.init_data_performance_graphs()
-        self.init_data_scanning_portscan()
         self.init_data_sql_tables()
         self.init_data_settings_edit()
 
@@ -194,30 +181,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
         self.table_QueryDB_Button_main.clicked.connect(lambda: self.custom_query('main_db'))
         self.table_QueryDB_Button_main.setShortcut('Return')
-        ##== Reddit DB
-        self.table_RefreshDB_Button_osint_reddit.clicked.connect(lambda: self.refresh_db('reddit_osint_db'))
-        self.table_RefreshDB_Button_osint_reddit.setShortcut('r')
 
-        self.table_QueryDB_Button_osint_reddit.clicked.connect(lambda: self.custom_query('reddit_osint_db'))
-        self.table_QueryDB_Button_osint_reddit.setShortcut('Return')
-        ##== portscan DB
-        self.table_RefreshDB_Button_scanning_portscan.clicked.connect(lambda: self.refresh_db('scanning_portscan_db'))
-        self.table_RefreshDB_Button_scanning_portscan.setShortcut('r')
-
-        self.table_QueryDB_Button_scanning_portscan.clicked.connect(lambda: self.custom_query('scanning_portscan_db'))
-        self.table_QueryDB_Button_scanning_portscan.setShortcut('Return')
-        ##==Bruteforce DB
-        self.scanning_bruteforce_query.clicked.connect(lambda: self.custom_query('bruteforce_db'))
-        self.scanning_bruteforce_query.setShortcut('Return')
-        self.scanning_bruteforce_refresh.clicked.connect(lambda: self.refresh_db('bruteforce_db'))
-        self.scanning_bruteforce_refresh.setShortcut('r')
-
-        ##Bruteforce Fuzzer
-        self.scanning_bruteforce_fuzzer_query.clicked.connect(lambda: self.custom_query('bruteforce_fuzzer_db'))
-        self.scanning_bruteforce_fuzzer_query.setShortcut('Return')
-        self.scanning_bruteforce_fuzzer_refresh.clicked.connect(lambda: self.refresh_db('bruteforce_fuzzer_db'))
-        self.scanning_bruteforce_fuzzer_refresh.setShortcut('r')
-        
         ##==Perfrormance
         self.table_RefreshDB_Button_performance.clicked.connect(lambda: self.custom_query('performance_error_db'))
         
@@ -267,42 +231,10 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
     def init_buttons_exploitandvuln(self):
         self.exploitandvuln_search_button.clicked.connect(self.exploit_and_vuln_search)
 
-    ##== Buttons for OSINT reddit
-    def init_buttons_osint_reddit(self) -> None:
-        self.osint_reddit_search.clicked.connect(self.osint_reddit)
-        ## DB table buttons
-        self.table_RefreshDB_Button_osint_reddit.clicked.connect(lambda: self.refresh_db('reddit_osint_db'))
-        self.table_RefreshDB_Button_osint_reddit.setShortcut('r')
-        self.table_QueryDB_Button_osint_reddit.clicked.connect(lambda: self.custom_query('reddit_osint_db'))
-        self.table_QueryDB_Button_osint_reddit.setShortcut('Return')
-        ## GUI buttons
-        ## lamdba for reverse toggle
-        self.osint_reddit_gui_hide_search.toggled.connect(lambda x: self.osint_reddit_searchbox.setVisible(not x))
-
     def init_buttons_scanning(self) -> None:
         self.scanning_dns_lookup.clicked.connect(self.dns_lookup)
         self.portscan_start.clicked.connect(self.portscan)
 
-    ##== buttons for Bruteforce Credentials
-    def init_buttons_bruteforce_credentials(self) -> None:
-        self.bruteforce_start.clicked.connect(self.bruteforce)
-        self.bruteforce_stop.clicked.connect(self.bruteforce_hardstop)
-        self.bruteforce_user_browse.clicked.connect(partial(self.bf_browser_popup, "username"))
-        self.bruteforce_pass_browse.clicked.connect(partial(self.bf_browser_popup, "password"))
-        ##== List Downloads
-        self.bruteforce_download_ignis_1M.clicked.connect(partial(self.bruteforce_download, "ignis-1M"))
-        self.bruteforce_download_seclist_defaults.clicked.connect(partial(self.bruteforce_download, "seclist-defaults"))
-        self.bruteforce_download_seclist_top10mil.clicked.connect(partial(self.bruteforce_download, "seclist-top10mil"))
-        self.bruteforce_download_seclist_top10mil_usernames.clicked.connect(partial(self.bruteforce_download, "seclist-top10mil-usernames"))
-        self.bruteforce_download_seclist_topshort.clicked.connect(partial(self.bruteforce_download, "seclist-top-short"))
-
-    ##== buttons for Bruteforce Fuzzer
-    def init_buttons_bruteforce_fuzzer(self) -> None:
-        self.bruteforce_fuzz_start.clicked.connect(self.bruteforce_fuzzer)
-        self.bruteforce_stop.clicked.connect(self.bruteforce_fuzz_hardstop)
-        self.bruteforce_fuzz_wordlist_browse.clicked.connect(partial(self.bf_fuzz_browser_popup, "wordlistdir"))
-
-    
     ##== Buttons for bash builder
     def init_buttons_bashbuilder(self) -> None:
         self.bashbuilder_generate.clicked.connect(self.bash_builder)
@@ -339,17 +271,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.Perf = utility.Performance()
         self.x = 0
         self.draw_graph_refresh()
-    
-    ##== Live updates to port range
-    def init_data_scanning_portscan(self) -> None:
-        self.portscan_1_1024.toggled.connect(lambda: self.portscan_minport.setText('1'))
-        self.portscan_1_1024.toggled.connect(lambda: self.portscan_maxport.setText('1024'))
 
-        self.portscan_1_10000.toggled.connect(lambda: self.portscan_minport.setText('1'))
-        self.portscan_1_10000.toggled.connect(lambda: self.portscan_maxport.setText('10000'))
-
-        self.portscan_1_65535.toggled.connect(lambda: self.portscan_minport.setText('1'))
-        self.portscan_1_65535.toggled.connect(lambda: self.portscan_maxport.setText('65535'))
 
     ##== Loading all the data into the respective tables
     def init_data_sql_tables(self) -> None:
@@ -359,18 +281,6 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         ## Showing help table on startup
         self.DB_Query_main.setText('select * from Help')
         self.custom_query('main_db')
-
-        self.DB_Query_osint_reddit.setText('SELECT * FROM RedditResults')
-        self.custom_query('reddit_osint_db')
-
-        self.DB_Query_scanning_portscan.setText('select * from PortScan')
-        self.custom_query('scanning_portscan_db')
-
-        self.DB_Query_scanning_bruteforce.setText('select * from "BRUTEFORCE-creds"')
-        self.custom_query('bruteforce_db')
-        
-        self.DB_Query_scanning_bruteforce_fuzzer.setText('select * from "BRUTEFORCE-Fuzzer"')
-        self.custom_query('bruteforce_fuzzer_db')
 
         self.custom_query('performance_error_db')
 
@@ -460,26 +370,11 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         elif _from == 'main_db':
             self.view = self.table_SQLDB_main
             query_input_raw = self.DB_Query_main.text()
-        elif _from == 'reddit_osint_db':
-            self.view = self.table_SQLDB_osint_reddit
-            query_input_raw = self.DB_Query_osint_reddit.text()
-        elif _from == 'scanning_portscan_db':
-            self.view = self.scanning_portscan_db
-            query_input_raw = f'{self.DB_Query_scanning_portscan.text()} ORDER BY ScanDate DESC, ScanTime DESC'
-        elif _from == 'performance_error_db':
-            self.view = self.table_SQLDB_performance_error
-            query_input_raw = 'SELECT * FROM Error ORDER BY Date DESC, Time DESC'
-        elif _from == 'bruteforce_db':
-            self.view = self.scanning_bruteforce_db
-            query_input_raw = f'{self.DB_Query_scanning_bruteforce.text()} ORDER BY DATE DESC, TIME DESC'
-        elif _from == 'bruteforce_fuzzer_db':
-            self.view = self.scanning_bruteforce_fuzzer_db
-            query_input_raw = f'{self.DB_Query_scanning_bruteforce_fuzzer.text()} ORDER BY DATE DESC, TIME DESC'    
-        
+
         else:
-            query_input_raw = ""
+            query_input_raw = "SELECT name FROM sqlite_schema WHERE type='table' ORDER BY name"
             self.view = ""
-            self.handle_error(['No Query Input Provided', 'Low', 'Enter an input to fix'])
+            #self.handle_error(['No Query Input Provided', 'Low', 'Enter an input to fix'])
             return
 
         # Temp workaround for shortcuts not working"
@@ -628,7 +523,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.menuClient.addAction(self.actionClient_Editor)
         self.c2_menuBar.addAction(self.menuClient.menuAction())
         # set menu bar
-        self.tabWidget.widget(0).layout().setMenuBar(self.c2_menuBar)
+        self.main_tab_widget.widget(0).layout().setMenuBar(self.c2_menuBar)
 
         ##
         self.actionClient_Editor.triggered.connect(self.c2_editor)
@@ -934,152 +829,17 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             self.exploitandvuln_tableview.setItem(0, 0, QTableWidgetItem("search yeilded no results"))
 
 ####################
-## Scanning Enumeration
+## Payload Builder
 ####################
-        """
-        ##== Scanning & Enum
-
-        Description:
-            These functions handle the server connetion to the C2 server
-
-        """
-##== Portscan Handler
+    """ The idea here is that you cn build payloads easily, wheter that be in 
+python, bash, powershell, etc. Really, this benefits me just as much as anyone else, 
+as I get to learn all these fun ways of doing things in different scripting languages
     """
-    ##== Portscan Handler
-
-    Description: The handler for the portscan module. 
-    """
-    def portscan(self, QObject):
-        input_ip = self.portscan_IP.text()
-        #print(input_ip) if GLOBAL_DEBUG else None
-
-        try:
-            ## setting bar to 0
-            self.stealth_bar.setValue(0)
-
-            ip = input_ip   # self._portscan_popup.portscan_IP.text()
-            min_port = self.portscan_minport.text()
-            max_port = self.portscan_maxport.text()
-            extra_port = self.portscan_extraport.text()
-        
-            ## init vars
-            standard = None
-            stealth = None
-
-            standard = (
-                True
-                if self.portscan_standard_check.isChecked()
-                else standard == False
-            )
-            stealth = (
-                True
-                if self.portscan_stealth_check.isChecked()
-                else stealth == False
-            )
-
-            if self.portscan_fast_check.isChecked():
-                fast = True
-                # min_port = 0
-                # max_port = 0
-                extra_port = '0'
-            else:
-                fast = False
-
-            ## Timeout logic
-            
-            timeout_mapping = {
-            'Normal Speed (1 Second Timeout)': 1,
-            'Light Speed (.5 Second Timeout)': 0.5,
-            'Ridiculous Speed (.25 Second Timeout)': 0.25,
-            'Ludicrous Speed (.1 Second Timeout)': 0.1,
-            'Plaid (.01 Second Timeout)': 0.01
-            }
-            timeout = timeout_mapping.get(self.portscan_fast_timeout.currentText())
-            
-            delay_mapping = {
-            'None': [0,0],
-            '.001-.1': [.001,0.1],
-            '.1-1.0': [.1,1],
-            '1.0-5.0': [1,5],
-            }
-            delay = delay_mapping.get(self.portscan_delay.currentText())
-
-            #print(f'TIMOUT: {timeout}') if GLOBAL_DEBUG else None
-            
-            #print(f'DELAY: {delay}') if GLOBAL_DEBUG else None
-            
-            ## if clicked standard = true
-            target_list = [ip, int(min_port), int(max_port), timeout, delay, extra_port]
-            scantype_list = [
-                standard,
-                stealth,
-                fast,
-                #timeout,
-            ]   ## timeout shoudl always be last
-
-            #self.portscan_start.setText('-->> Scanning... <<--')
-            self.portscan_worker = Portscan()
-            self.thread_manager.start(partial(self.portscan_worker.scan_framework, target_list, scantype_list))
-
-            self.portscan_worker.progress.connect(self.portscan_bar)
-            self.portscan_worker.liveports.connect(self.portscan_liveports) #<< not getting triggered'''
-
-            ## Getting results list & writing
-            self.portscan_worker.results_list.connect(self.portscan_database_write)
-
-            ## wiping live list
-            self.portscan_liveports_browser.setText("")
-
-        except ValueError as ve:
-            self.handle_error([ve, "low", "Make sure all respective fields are filled"])
-
-        except Exception as e:
-            self.handle_error([e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)"])
-
-##== GUI bar  
-    def portscan_bar(self, status): ## I wonder if this dosen't work due to all the threads waiting to join back up? maybe portscanner writing the value to a tmp file would have to do it, or to the DB in a .hiddentable
-        self.stealth_bar.setValue(status)
-        if self.stealth_bar.value() == 99:
-            self.stealth_bar.setValue(100)
-##GUI Liveports
-    def portscan_liveports(self, ports):
-        self.portscan_liveports_browser.setText("")
-        #self.portscan_liveports_browser.setText(str(ports))
-        for i in ports:
-            self.portscan_liveports_browser.append(f"[+] {i}/tcp")
-## Database
-        """
-        Description:
-            Writing to the DB, will probably need a re-work, or at least point to a standard
-            DB write function
-
-        """
-    def portscan_database_write(self, list):
-        #print("DB Triggered") if GLOBAL_DEBUG else None
-        try:
-            cursor = self.sqliteConnection.cursor()
-            
-            ## Picked up this trick from chatGPT, basically each item coresponds to the number in list
-            IP, PORT, SCANTYPE, SCANDATE, SCANTIME, RUNTIME, SCANNEDPORTS, DELAY = list
-            
-            sqlite_insert_query = f"""INSERT INTO PortScan (IP, PORT, ScanType, ScanDate, ScanTime, RunTime, ScannedPorts, Delay) 
-            VALUES
-            ({IP}, {str(PORT).replace("{","").replace("}","")}, '{SCANTYPE}', '{SCANDATE}', '{SCANTIME}', '{RUNTIME}', "{SCANNEDPORTS}", '{DELAY}')"""
-            
-            #print(sqlite_insert_query) if GLOBAL_DEBUG else None
-
-            cursor.execute(sqlite_insert_query)
-            self.sqliteConnection.commit()
-            cursor.close()
-            
-        except Exception as e:
-            self.handle_error([e, "Medium", "??"])
 
 ##== BashBuilder
-    """
 
-    Description: The Bash Builder function 
-    """
+    #Description: The Bash Builder function
+
     def bash_builder(self):
         self.Script = ScriptGen.Script()
         
@@ -1120,619 +880,6 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         #print("triggered") if GLOBAL_DEBUG else None
         self.bashbuild_textoutput.setText(final_script)
 
-##== dns_lookup
-    """
-
-    Description: The DNS handler code
-    """
-    def dns_lookup(self):
-
-        ## All handler
-        ## Setting object instance
-        #self.tablewidget = self.test_table
-
-        #self.tablewidget.setRowCount(4)
-        #self.tablewidget.setColumnCount(1)
-        ##self.tablewidget.setItem(0, 0, QTableWidgetItem('ns2.google.com.'))
-        #self.tablewidget.setItem(1, 0, QTableWidgetItem('ns3.google.com.'))
-
-        #self.tablewidget.horizontalHeader().setStretchLastSection(True)
-        #self.tablewidget.horizontalHeader().setSectionResizeMode(
-        #    QHeaderView.Stretch
-        #)
-
-        ## mockup to reduce code
-        ## self.tablewidget = self.tablename
-        ## self.tablewidget.setRowCount(len(list))
-        ##self.tablewidget.setColumnCount(1)
-        # for i in list:
-        # self.tablewidget.setItem(row,0, QTableWidgetItem(i))
-        # row = row +1
-        # row = 0
-        # dns_list = ["NONE","CNAME\nwww.google.com","MX\nmail.google.com","REVERSE \nexploit.tools", "TXT \ntext"]
-
-        if self.scanning_dns_query.text() == '':
-            self.handle_error([
-                'No input for DNS',
-                'Low',
-                "Make sure the DNS field isn't empty",
-            ])
-            dns_list = None
-        else:
-            #pass
-            self.N_worker = utility.Network()
-            self.thread_manager.start(partial(self.N_worker.lookup_All, self.scanning_dns_query.text()))
-            
-            self.N_worker.lookupall.connect(self.dns_lookup_table)
-
-    def dns_lookup_table(self, lookup_dict):
-        #print(lookup_dict)
-        self.dns_table_formatting(self.dns_a_table, 'Not Found', 'A') if lookup_dict['A'] == 'NONE' else self.dns_table_formatting(self.dns_a_table, lookup_dict['A'], 'A')
-        self.dns_table_formatting(self.dns_CNAME_table, 'Not Found', 'CNAME') if lookup_dict['CNAME'] == 'NONE' else self.dns_table_formatting(self.dns_CNAME_table, lookup_dict['CNAME'], 'CNAME')
-        self.dns_table_formatting(self.dns_MX_table, 'Not Found', 'MX') if lookup_dict['MX'] == 'NONE' else self.dns_table_formatting(self.dns_MX_table, lookup_dict['MX'], 'MX')
-        self.dns_table_formatting(self.dns_Reverse_table, 'Not Found', 'Reverse') if lookup_dict['Reverse'] == 'NONE' else self.dns_table_formatting(self.dns_Reverse_table, lookup_dict['Reverse'], 'Reverse')
-        self.dns_table_formatting(self.dns_TXT_table, 'Not Found', 'TXT') if lookup_dict['TXT'] == 'NONE' else self.dns_table_formatting(self.dns_TXT_table, lookup_dict['TXT'], 'TXT')
-        self.dns_table_formatting(self.dns_NS_table, 'Not Found', 'NS') if lookup_dict['NS'] == 'NONE' else self.dns_table_formatting(self.dns_NS_table, lookup_dict['NS'], 'NS')
-
-        #pass
-        
-## GUI Formatter
-    """
-    Desc: Formats the results into tables
-
-    Inputs:
-        table_object:
-        list: 
-        name:
-
-    """
-    def dns_table_formatting(self, table_object, list, name):
-        row = 0
-        ## mockup to reduce code
-        self.dns_table = table_object
-        ## formatting, aka autostretch
-
-        self.dns_table.horizontalHeader().setStretchLastSection(True)
-        self.dns_table.horizontalHeader().setSectionResizeMode(
-            QHeaderView.Stretch
-        )
-
-        ## calculating rows n columns
-        try:
-            self.dns_table.setRowCount(len(list))
-        except:
-            self.dns_table.setRowCount(5)
-        self.dns_table.setColumnCount(1)
-        self.dns_table.setHorizontalHeaderLabels([name])
-
-        # print(list)
-
-        if (
-            name == 'Reverse Lookup'
-        ):   ## special exception for PTR records, bandaid fix, will figure out later
-            for i in list.splitlines():
-                self.dns_table.setItem(row, 0, QTableWidgetItem(i))
-                self.dns_table.setRowHeight(row, 13)
-                row = row + 1
-
-        else:
-            for i in list:
-                self.dns_table.setItem(row, 0, QTableWidgetItem(i))
-                self.dns_table.setRowHeight(row, 13)
-                row = row + 1
-
-####################
-## Bruteforce
-####################
-## == Bruteforce (credentials)
-    """
-    Desc: Bruteforces credentials
-
-    inputs:
-        See target_list, all that is gathered from the GUI
-
-
-    """
-    def bruteforce(self):
-        
-        try:
-            target_list = [
-                self.bruteforce_target.text(), 
-                self.bruteforce_port.text(),
-                self.bruteforce_protocol.currentText(),
-                self.bruteforce_userdir.text(),
-                self.bruteforce_passdir.text(),
-                self.bruteforce_delay.value(),
-                self.bruteforce_threads.value(),
-                self.bruteforce_batchsize.value()
-                ]
-            
-            # Bar to 0
-            self.bruteforce_progressbar.setValue(0)
-            
-            
-            self.bruteforce_worker = Bruteforce()
-            self.thread_manager.start(partial(self.bruteforce_worker.bruteforce_framework, target_list))
-            
-            ##self.bruteforce_worker.finished.connect(self.bruteforce_worker.deleteLater)
-            #self.bruteforce_worker.finished.connect(self.bruteforce_worker.thread.terminate)
-            #self.bruteforce_worker.finished.connect(self.bruteforce_thread.deleteLater)
-            
-            #Error
-            self.bruteforce_worker.module_error.connect(partial(self.handle_error, target_list))
-            
-            #errlog
-            self.bruteforce_worker.errlog.connect(self.errlog_box)
-            self.bruteforce_errlog.setText("")
-            self.bruteforce_errlognum = 0
-                    
-            # Live attempts
-            self.bruteforce_worker.live_attempts.connect(self.live_attempts_box)
-
-            # Current Batch
-            self.bruteforce_worker.current_batch.connect(self.batch_update)
-
-            # Total batch
-            self.bruteforce_worker.num_of_batches.connect(self.batch_total)
-
-            # Progress
-            self.bruteforce_worker.progress.connect(self.bruteforce_bar)
-            #self.bruteforce_worker.goodcreds.connect(self.bruteforce_live_goodcreds) # FOr the live view
-            
-            # Good Creds
-            self.bruteforce_worker.goodcreds.connect(self.live_goodcreds_box)
-            self.bruteforce_goodcreds.setText("")
-            
-            ## Write to DB
-            self.bruteforce_worker.results_list.connect(self.bruteforce_database_write)
-            
-            # Starting Thread
-            #self.bruteforce_thread.start()
-        
-        except ValueError as ve:
-            self.handle_error([ve, "low", "Make sure all respective fields are filled"])
-
-        except Exception as e:
-            self.handle_error([e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)"])
-
-    def bruteforce_hardstop(self):
-        #pass
-        #print("clicked") if GLOBAL_DEBUG else None
-        try:
-            pass
-            #self.bruteforce_worker.thread_quit()
-            #self.bruteforce_thread.exit() # exi works better than quit
-            #self.bruteforce_worker.deleteLater()
-        except Exception as e:
-            self.handle_error([e, "Low", "Bruteforce is probably not running"])
-
-    def bf_browser_popup(self, whichbutton):
-        from PySide6.QtWidgets import QFileDialog
-        #print("Clicked") if GLOBAL_DEBUG else None
-        
-        options = QFileDialog.Options()
-        options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "","All Files (*);;Python Files (*.py)", options=options)
-        
-        if whichbutton == "username":
-            self.bruteforce_userdir.setText(fileName)
-        
-        elif whichbutton == "password":
-            self.bruteforce_passdir.setText(fileName)
-
-## Bruteforce GUI Stuff
-
-    def live_attempts_box(self, attempts):
-        self.bruteforce_livetries.setText(attempts)
-
-    def batch_total(self, total):
-        self.bruteforce_panel.setTabText(1, f"Current Batch ({total[0]}/{total[1]})")
-   
-    def batch_update(self, batch):
-        self.bruteforce_currentbatch.setText(str(batch))
-
-    def live_goodcreds_box(self, goodcreds):
-        self.bruteforce_goodcreds.setText(str(goodcreds))
-
-    def errlog_box(self, err):
-        self.bruteforce_errlog.append("[*] " + err)
-        self.bruteforce_errlognum = self.bruteforce_errlognum + 1
-        self.bruteforce_panel.setTabText(2, f"Log ({self.bruteforce_errlognum})")
-        
-    def bruteforce_bar(self, status):
-        self.bruteforce_progressbar.setFormat("{:.1f}%".format(self.bruteforce_progressbar.value()))
-        
-        self.bruteforce_progressbar.setValue(status)
-        if self.bruteforce_progressbar.value() == 99:
-            self.bruteforce_progressbar.setValue(100)
-## Bruteforce Downlaod Stuff
-    def bruteforce_download(self, wordlist):
-        if wordlist == "ignis-1M":
-            self.H.download([
-                "https://shorturl.at/bdgY7",
-                f"Modules/General/Bruteforce/Wordlists",
-                "ignis-1M-passwords"
-            ])
-        elif wordlist == "seclist-defaults":
-            self.H.download([
-                "https://shorturl.at/lDKN4",
-                f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
-                "SecList-Default-Passwords"
-            ])
-        elif wordlist == "seclist-top10mil":
-            self.H.download([
-                "https://shorturl.at/vCMPZ",
-                f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
-                "SecList-top10mil-Passwords"
-            ])
-        elif wordlist == "seclist-top10mil-usernames":
-            self.H.download([
-                "https://shorturl.at/bmS46",
-                f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
-                "SecList-top10mil-usernames"
-            ])
-        elif wordlist == "seclist-top-short":
-            self.H.download([
-                "https://shorturl.at/ryQV5",
-                f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
-                "SecList-top1-short-usernames"
-            ])
-            
-## Bruteforce DB Stuff
-    def bruteforce_database_write(self, list):
-        ## Just in case a value doesn't make it back
-        try:
-            TARGET, PORT, SERVICE, CREDS, TIME, DATE = list
-        except Exception as e:
-            logging.debug(f"[Logec (Bruteforce Credentials)] Error with list values. {e}")
-            TARGET, PORT, SERVICE, CREDS, TIME, DATE = None, None, None, None, None, None
-
-        query = f"""INSERT INTO 'BRUTEFORCE-Creds' (Target, Port, Service, Credentials, Time, Date) 
-            VALUES
-            ('{TARGET}', '{str(PORT).replace("{","").replace("}","")}', '{SERVICE}', '{CREDS}', '{TIME}', '{DATE}' )"""
-        
-        self.sql_db_write(query)
-        
-   
-##== Fuzzer    
-    """
-    Desc: Bruteforces websites/fuzzes things
-
-    inputs:
-        See target_list, all that is gathered from the GUI
-
-
-    """
-    def bruteforce_fuzzer(self):
-        
-        try:
-            #target_list = ["IP","port","wordlistdir","option1","option2"]
-            
-            target_list = [
-                self.bruteforce_fuzz_url.toPlainText(), 
-                self.bruteforce_fuzz_port.text(),
-                self.bruteforce_fuzz_wordlistdir.text(),
-                self.bruteforce_fuzz_delay.value(),
-                self.bruteforce_fuzz_threads.value(),
-                self.bruteforce_fuzz_batchsize.value(),
-                self.bruteforce_fuzz_validresponsecode.toPlainText(),
-                self.bruteforce_fuzz_showfullurl_option.isChecked()
-                ]
-            
-            # Bar to 0
-            self.bruteforce_fuzz_progressbar.setValue(0)
-            
-            self.fuzzer_worker = Fuzzer()
-            self.thread_manager.start(partial(self.fuzzer_worker.fuzzer_framework, target_list))
-            
-            
-            #Error
-            self.fuzzer_worker.module_error.connect(partial(self.handle_error, target_list))
-            
-            #errlog
-            self.fuzzer_worker.errlog.connect(self.fuzz_errlog_box)
-            self.bruteforce_fuzz_errlog.setText("")
-            self.bruteforce_fuzz_errlognum = 0
-                    
-            # Live attempts
-            self.fuzzer_worker.live_attempts.connect(self.fuzz_live_attempts_box)
-
-            # Current Batch
-            self.fuzzer_worker.current_batch.connect(self.fuzz_batch_update)
-
-            # Total batch
-            self.fuzzer_worker.num_of_batches.connect(self.fuzz_batch_total)
-
-            # Progress
-            self.fuzzer_worker.progress.connect(self.fuzz_bruteforce_bar)
-            #self.bruteforce_worker.goodcreds.connect(self.bruteforce_live_goodcreds) # FOr the live view
-            
-            # Good Creds
-            self.fuzzer_worker.gooddir.connect(self.fuzz_live_gooddir_box)
-            self.bruteforce_fuzz_gooddir_gui.setText("")
-            
-            # DB write
-            self.fuzzer_worker.results_list.connect(self.bruteforce_fuzz_database_write)
-        
-        except ValueError as ve:
-            self.handle_error([ve, "low", "Make sure all respective fields are filled"])
-
-        except Exception as e:
-            self.handle_error([e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)"])
-            
-            exc_type, exc_obj, exc_tb = sys.exc_info()
-            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-            #print(exc_type, fname, exc_tb.tb_lineno) if GLOBAL_DEBUG else None
-
-    def bruteforce_fuzz_hardstop(self):
-        #pass
-        #print("clicked") if GLOBAL_DEBUG else None
-        try:
-            pass
-            #self.fuzzer_worker.thread_quit()
-            #self.fuzzer_thread.exit() # exi works better than quit
-            #self.fuzzer_worker.deleteLater()
-        except Exception as e:
-            self.handle_error([e, "Low", "Fuzzer is probably not running"])
-
-    def bf_fuzz_browser_popup(self, whichbutton):
-        from PySide6.QtWidgets import QFileDialog
-        #print("Clicked") if GLOBAL_DEBUG else None
-        
-        options = QFileDialog.Options()
-        options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "","All Files (*);;Python Files (*.py)", options=options)
-        
-        if whichbutton == "wordlistdir":
-            self.bruteforce_fuzz_wordlistdir.setText(fileName)
-##== Fuzzer GUI stuff
-    def fuzz_live_attempts_box(self, attempts):
-        self.bruteforce_fuzz_livetries.setText(attempts)
-
-    def fuzz_batch_total(self, total):
-        self.bruteforce_fuzz_panel.setTabText(1, f"Current Batch ({total[0]}/{total[1]})")
-   
-    def fuzz_batch_update(self, batch):
-        self.bruteforce_fuzz_currentbatch.setText(str(batch))
-
-    def fuzz_live_gooddir_box(self, goodcreds):
-        self.bruteforce_fuzz_gooddir_gui.setText(str(goodcreds))
-
-    def fuzz_errlog_box(self, err):
-        self.bruteforce_fuzz_errlog.append("[*] " + err)
-        self.bruteforce_fuzz_errlognum = self.bruteforce_fuzz_errlognum + 1
-        self.bruteforce_fuzz_panel.setTabText(2, f"Log ({self.bruteforce_fuzz_errlognum})")
-        
-    def fuzz_bruteforce_bar(self, status):
-        self.bruteforce_fuzz_progressbar.setFormat("{:.1f}%".format(self.bruteforce_fuzz_progressbar.value()))
-        
-        self.bruteforce_fuzz_progressbar.setValue(status)
-        if self.bruteforce_fuzz_progressbar.value() == 99:
-            self.bruteforce_fuzz_progressbar.setValue(100)
-
-    def bruteforce_fuzz_download(self, wordlist):
-        if wordlist == "ignis-1M":
-            self.H.download([
-                "https://shorturl.at/bdgY7",
-                f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
-                "ignis-1M-passwords"
-            ])
-        elif wordlist == "seclist-defaults":
-            self.H.download([
-                "https://shorturl.at/lDKN4",
-                f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
-                "SecList-Default-Passwords"
-            ])
-        elif wordlist == "seclist-top10mil":
-            self.H.download([
-                "https://shorturl.at/vCMPZ",
-                f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
-                "SecList-top10mil-Passwords"
-            ])
-        elif wordlist == "seclist-top10mil-usernames":
-            self.H.download([
-                "https://shorturl.at/bmS46",
-                f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
-                "SecList-top10mil-usernames"
-            ])
-        elif wordlist == "seclist-top-short":
-            self.H.download([
-                "https://shorturl.at/ryQV5",
-                f"{syspath.path}/Modules/General/Bruteforce/Wordlists",
-                "SecList-top1-short-usernames"
-            ])
-##== Fuzzer DB Stuff
-    def bruteforce_fuzz_database_write(self, list):
-        ## Just in case a value doesn't make it back
-        try:
-            TARGET, PORT, CODE,SHORT_URL, LONG_URL, TIME, DATE = list
-
-        except Exception as e:
-            logging.debug(f"[Logec (Bruteforce Fuzzer)] Error with list values. {e}")
-            TARGET, PORT, CODE,SHORT_URL, LONG_URL, TIME, DATE = None, None, None, None, None, None, None
-
-        query = f"""INSERT INTO 'BRUTEFORCE-Fuzzer' (Target, Port, Code, Short_Url, Long_Url, Time, Date) 
-            VALUES
-            ('{TARGET}', '{str(PORT).replace("{","").replace("}","")}', '{CODE}', '{SHORT_URL}', '{LONG_URL}', '{TIME}', '{DATE}' )"""
-        
-        self.sql_db_write(query)
-
-####################
-## OSINT
-####################       
-
-##== Reddit OSINT
-    """
-    Needs to move to Qthread
-    """
-
-    def osint_reddit(self):
-        ## lazy import for performance/easy err handling
-        try:
-            from Modules.General.OSINT.reddit_osint import OsintReddit
-        except Exception as e:
-            self.handle_error(e, "Medium", "error")
-
-        ## need to load credentials
-        ## using a dict so I don't have to worry about the order. Just makes this side cleaner
-        credentials = {
-            "username" : self.settings['Osint']['Reddit']['Username'],
-            "password" : self.settings['Osint']['Reddit']['Password'],
-            "secret_token" : self.settings['Osint']['Reddit']['SecretToken'],
-            "client_id" : self.settings['Osint']['Reddit']['ClientId']
-            }
-    
-        keyword = self.osint_reddit_keyword.text()
-
-        ## == Error handling
-
-        if keyword == '':
-            self.handle_error([
-                "'Keyword' Field Empty",
-                'low',
-                "Enter a value in the 'Keyword' field, or * for all results",
-            ])
-            self.reddit_progressbar.setValue(0)
-
-        else:
-            sort = self.combo_sort.currentText().lower()
-            ## Supposed to block out button if not 'top'd, not working, maybe needs a signal on change
-            if sort != 'top':
-                self.combo_time.setDisabled(True)
-            else:
-                self.combo_time.setDisabled(False)
-
-            time = self.combo_time.currentText().lower()
-            limit = 10
-
-            ## Options list: download_media, only_comments, only_profile, search_subbreddit
-            download_media = self.osint_reddit_downloadmedia.isChecked()
-            
-            ## Type Filter
-            if self.osint_reddit_onlycomments.isChecked():
-                stype = "comments"
-            elif self.osint_reddit_onlyprofile.isChecked():
-                stype = "profile"
-            elif self.osint_reddit_onlysubreddit.isChecked():
-                stype = "subreddit"
-            elif self.osint_reddit_onlypost.isChecked():
-                stype = "post"   
-            else:
-                logging.debug("[Logec (OSINT Reddit)] Error with search type. Most likely due to a bug")
-                #print("STYPE ERROR")
-                #stype = "post"       
-                
-            '''only_comments = self.osint_reddit_onlycomments.isChecked()
-            only_profile = self.osint_reddit_onlyprofile.isChecked()'''
-
-            # if subreddit empty, don't search by sub
-            '''if subreddit != '':
-                search_subbreddit = False
-            else:
-                search_subbreddit = True'''
-
-            ## Convert to DICT eventuallly, keeping as list for now
-            search_list = [keyword, "subreddit", time, sort, limit, stype]
-            
-            options_list = [
-                download_media,
-                "search_subbreddit",
-            ]
-
-            ## creating class instance
-            #r = OsintReddit(credentials)
-            self.osint_reddit_worker = OsintReddit(credentials)
-            self.thread_manager.start(partial(self.osint_reddit_worker.osint_reddit_framework, search_list, options_list))
-            #r.osint_reddit_framework(search_list, options_list)
-
-            ## Clearing RedditResults table
-            self.sql_db_write("DELETE FROM RedditResults")
-
-            self.osint_reddit_worker.result_list.connect(self.osint_reddit_db_write)
-            self.osint_reddit_worker.search_url.connect(self.osint_reddit_search_url_display)
-        
-            #self.osint_reddit_search.setText('-->> Search <<--')
-            
-        
-            ## bar
-            ## its putting the bar at 100% right away due to it being after the r.main... hmmm need a way to fix that
-            
-            ##== progress bar stuff
-            #maxval = r.total_posts
-            #currentval = r.current_post
-
-            #self.reddit_progressbar.setMaximum(maxval)
-            #self.reddit_progressbar.setValue(currentval)
-    def osint_reddit_search_url_display(self, url):
-        #print("URL SET TRIGGERED")
-        self.osint_reddit_searchurl.setText(url.replace("oauth.",""))
-            
-    def osint_reddit_db_write(self, list_to_write):
-        """Generates a string for sql_db_write to write to DB
-
-        Args:
-            list_to_write (list): a list with the info needed.
-        """ 
-        try:
-            subreddit, title, comment, upvote, downvote, post_url, media_url, date, time, user = list_to_write
-            
-            #print(list_to_write)
-            
-            query = f"""INSERT INTO RedditResults  (
-                "Subreddit",
-                "Title",
-                "Comment",
-                "User",
-                "Upvotes",
-                "Downvotes",
-                "PostURL",
-                "MediaURL",
-                "CreationDate",
-                "CreationTime"
-            )
-            VALUES
-            ("{subreddit}", "{title}", "{comment}", '{user}', '{upvote}', "{downvote}", "{post_url}", "{media_url}", '{time}', '{date}')"""
-            self.sql_db_write(query)
-
-        except Exception as e:
-            logging.warning("[Logec (RedditOsint)]Error with formatting SQL Query")
-        
-
-##== Google Dork
-
-    ## A google dork builder
-
-    def dork(self):
-        try:
-
-            dork_list = [
-                self.osint_dork_searchterm.text(),
-                self.osint_dork_keyword.text(), 
-                self.osint_dork_intitle.text(),
-                self.osint_dork_filetype.text(),
-
-                ]
-
-            self.dork_thread = QThread()
-            self.dork_worker = Dork()
-            self.dork_worker.moveToThread(self.dork_thread)
-            
-            ## Queing up the function to run (Slots n signals too)
-            self.dork_thread.started.connect(partial(self.dork_worker.dork_framework, dork_list))
-            self.dork_worker.finished.connect(self.dork_thread.exit)
-            self.dork_worker.finished.connect(self.dork_worker.deleteLater)
-            self.dork_worker.finished.connect(self.dork_thread.deleteLater)
-            
-            self.dork_worker.dork_query.connect(self.dork_query_display)
-                            
-            # Starting Thread
-            self.dork_thread.start()
-
-        except Exception as e:
-            self.handle_error([e, "??", "Unkown Error - most likely a code issue (AKA Not your fault)"])
-## Google Dork GUI     
-    def dork_query_display(self, dork_query):
-        self.osint_dork_output.setText(dork_query)
 
 
 ###################
@@ -2525,6 +1672,12 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             pass
         else:
             logging.debug(f"[Logec (Theme)] Unkown theme: {self.settings['System']['Themes']['Theme']}")
+
+        ## tab widget to center(values: center, left, right)
+        self.main_tab_widget.setStyleSheet('''
+        QTabWidget::tab-bar {
+            alignment: left;
+        }''')
             
     def set_theme(self, theme_name):
         """ Old/not used function for css themes
