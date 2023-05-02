@@ -1,5 +1,7 @@
 Hey there! Still working on the readme, in a nutshell, this project is a C2 suite, that includes a server, client, and RAT/Malicious client(Currently in C#, working on a C & A python variant) - with a few other tidbits thrown in.
-It's currently in development, but I'm getting close to a release(ish) build. 
+
+This version is a POC, and a more honed-in, focused version is being worked on in the Clean & Consolidate branch
+
 
 My motto for this project is "It's not the best, but it's convenient"
 
