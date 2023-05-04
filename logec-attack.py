@@ -100,7 +100,6 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.init_buttons_file_menu()
         self.init_buttons_c2_shells()
         self.init_buttons_exploitandvuln()
-        self.init_buttons_bashbuilder()
         self.init_buttons_performance_benchmarks()
         self.init_buttons_settings_settings()
 
@@ -235,9 +234,6 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.scanning_dns_lookup.clicked.connect(self.dns_lookup)
         self.portscan_start.clicked.connect(self.portscan)
 
-    ##== Buttons for bash builder
-    def init_buttons_bashbuilder(self) -> None:
-        self.bashbuilder_generate.clicked.connect(self.bash_builder)
 
     ##== buttons for the benchmarks
     def init_buttons_performance_benchmarks(self) -> None:
@@ -832,54 +828,9 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 ## Payload Builder
 ####################
     """ The idea here is that you cn build payloads easily, wheter that be in 
-python, bash, powershell, etc. Really, this benefits me just as much as anyone else, 
+python, bash, powershell, c, C# etc. Really, this benefits me just as much as anyone else, 
 as I get to learn all these fun ways of doing things in different scripting languages
     """
-
-##== BashBuilder
-
-    #Description: The Bash Builder function
-
-    def bash_builder(self):
-        self.Script = ScriptGen.Script()
-        
-        ## Doing json here for expandability, rather than a list
-        ## If the checks are checked, they return true. The scriptgen.py uses true & false
-        ## for which blocks to build with
-        #print(self.bashbuild_diagnostic.isChecked())  if GLOBAL_DEBUG else None
-        
-        json_unpacked = {
-            "DIAGNOSTIC":
-                {
-                    "diagnostic":self.bashbuild_diagnostic.isChecked(),
-                    "installpackages":self.bashbuild_installpackages.isChecked()
-                },
-            
-            "DNS":
-                {
-                    "dnsenum":self.bashbuild_dnsenum.isChecked(),
-                    "whois":"false"
-                },
-            
-            "PORTSCAN":
-                {
-                    "nmap":self.bashbuild_nmap.isChecked(),
-                }
-        }
-
-        packed_json = json.dumps(json_unpacked)
-        
-        #print(packed_json) if GLOBAL_DEBUG else None
-        
-        self.Script.script_results.connect(self.bash_builder_display)
-        
-        ## Has to go last to grab signals n stiff
-        self.Script.script_framework(packed_json)        
-##GUI Updater
-    def bash_builder_display(self, final_script):
-        #print("triggered") if GLOBAL_DEBUG else None
-        self.bashbuild_textoutput.setText(final_script)
-
 
 
 ###################

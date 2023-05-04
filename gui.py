@@ -20,7 +20,7 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
     QGraphicsView, QGridLayout, QGroupBox, QHBoxLayout,
     QHeaderView, QLCDNumber, QLabel, QLayout,
     QLineEdit, QMainWindow, QMenu, QMenuBar,
-    QPushButton, QScrollArea, QSizePolicy, QTabWidget,
+    QPushButton, QSizePolicy, QSpacerItem, QTabWidget,
     QTableWidget, QTableWidgetItem, QTextEdit, QToolBox,
     QWidget)
 
@@ -388,324 +388,6 @@ class Ui_LogecC3(object):
         self.gridLayout_17.setObjectName(u"gridLayout_17")
         self.tabWidget_8 = QTabWidget(self.tab_22)
         self.tabWidget_8.setObjectName(u"tabWidget_8")
-        self.tab_63 = QWidget()
-        self.tab_63.setObjectName(u"tab_63")
-        self.gridLayout_47 = QGridLayout(self.tab_63)
-        self.gridLayout_47.setObjectName(u"gridLayout_47")
-        self.scrollArea_5 = QScrollArea(self.tab_63)
-        self.scrollArea_5.setObjectName(u"scrollArea_5")
-        self.scrollArea_5.setWidgetResizable(True)
-        self.scrollAreaWidgetContents_5 = QWidget()
-        self.scrollAreaWidgetContents_5.setObjectName(u"scrollAreaWidgetContents_5")
-        self.scrollAreaWidgetContents_5.setGeometry(QRect(0, 0, 1515, 742))
-        self.gridLayout_9 = QGridLayout(self.scrollAreaWidgetContents_5)
-        self.gridLayout_9.setObjectName(u"gridLayout_9")
-        self.bashbuild_toolBox = QToolBox(self.scrollAreaWidgetContents_5)
-        self.bashbuild_toolBox.setObjectName(u"bashbuild_toolBox")
-        self.page_4 = QWidget()
-        self.page_4.setObjectName(u"page_4")
-        self.page_4.setGeometry(QRect(0, 0, 1000, 526))
-        self.gridLayout_48 = QGridLayout(self.page_4)
-        self.gridLayout_48.setObjectName(u"gridLayout_48")
-        self.textEdit_24 = QTextEdit(self.page_4)
-        self.textEdit_24.setObjectName(u"textEdit_24")
-
-        self.gridLayout_48.addWidget(self.textEdit_24, 0, 0, 1, 1)
-
-        self.bashbuild_toolBox.addItem(self.page_4, u"Quick Guide")
-        self.page = QWidget()
-        self.page.setObjectName(u"page")
-        self.page.setGeometry(QRect(0, 0, 1000, 526))
-        self.bashbuild_dnsenum = QCheckBox(self.page)
-        self.bashbuild_dnsenum.setObjectName(u"bashbuild_dnsenum")
-        self.bashbuild_dnsenum.setGeometry(QRect(10, 0, 92, 25))
-        self.bashbuild_toolBox.addItem(self.page, u"DNS")
-        self.page_3 = QWidget()
-        self.page_3.setObjectName(u"page_3")
-        self.page_3.setGeometry(QRect(0, 0, 1000, 526))
-        self.bashbuild_nmap = QCheckBox(self.page_3)
-        self.bashbuild_nmap.setObjectName(u"bashbuild_nmap")
-        self.bashbuild_nmap.setGeometry(QRect(10, 20, 92, 25))
-        self.bashbuild_toolBox.addItem(self.page_3, u"PortScan")
-        self.page_6 = QWidget()
-        self.page_6.setObjectName(u"page_6")
-        self.page_6.setGeometry(QRect(0, 0, 1000, 526))
-        self.checkBox_25 = QCheckBox(self.page_6)
-        self.checkBox_25.setObjectName(u"checkBox_25")
-        self.checkBox_25.setGeometry(QRect(10, 10, 181, 25))
-        self.checkBox_26 = QCheckBox(self.page_6)
-        self.checkBox_26.setObjectName(u"checkBox_26")
-        self.checkBox_26.setGeometry(QRect(10, 40, 181, 25))
-        self.checkBox_27 = QCheckBox(self.page_6)
-        self.checkBox_27.setObjectName(u"checkBox_27")
-        self.checkBox_27.setGeometry(QRect(10, 70, 181, 25))
-        self.checkBox_28 = QCheckBox(self.page_6)
-        self.checkBox_28.setObjectName(u"checkBox_28")
-        self.checkBox_28.setGeometry(QRect(10, 100, 181, 25))
-        self.bashbuild_toolBox.addItem(self.page_6, u"Local")
-        self.page_2 = QWidget()
-        self.page_2.setObjectName(u"page_2")
-        self.page_2.setGeometry(QRect(0, 0, 1000, 526))
-        self.bashbuild_diagnostic = QCheckBox(self.page_2)
-        self.bashbuild_diagnostic.setObjectName(u"bashbuild_diagnostic")
-        self.bashbuild_diagnostic.setGeometry(QRect(10, 10, 201, 25))
-        self.bashbuild_diagnostic.setChecked(True)
-        self.bashbuild_installpackages = QCheckBox(self.page_2)
-        self.bashbuild_installpackages.setObjectName(u"bashbuild_installpackages")
-        self.bashbuild_installpackages.setGeometry(QRect(10, 40, 211, 25))
-        self.bashbuild_installpackages.setChecked(True)
-        self.bashbuild_toolBox.addItem(self.page_2, u"Other")
-        self.page_5 = QWidget()
-        self.page_5.setObjectName(u"page_5")
-        self.page_5.setGeometry(QRect(0, 0, 1000, 526))
-        self.gridLayout_49 = QGridLayout(self.page_5)
-        self.gridLayout_49.setObjectName(u"gridLayout_49")
-        self.textEdit_26 = QTextEdit(self.page_5)
-        self.textEdit_26.setObjectName(u"textEdit_26")
-
-        self.gridLayout_49.addWidget(self.textEdit_26, 0, 0, 1, 1)
-
-        self.bashbuild_toolBox.addItem(self.page_5, u"Overview")
-
-        self.gridLayout_9.addWidget(self.bashbuild_toolBox, 0, 0, 2, 1)
-
-        self.bashbuild_textoutput = QTextEdit(self.scrollAreaWidgetContents_5)
-        self.bashbuild_textoutput.setObjectName(u"bashbuild_textoutput")
-
-        self.gridLayout_9.addWidget(self.bashbuild_textoutput, 0, 1, 1, 3)
-
-        self.pushButton_3 = QPushButton(self.scrollAreaWidgetContents_5)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-
-        self.gridLayout_9.addWidget(self.pushButton_3, 1, 1, 1, 1)
-
-        self.pushButton_4 = QPushButton(self.scrollAreaWidgetContents_5)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-
-        self.gridLayout_9.addWidget(self.pushButton_4, 1, 2, 1, 1)
-
-        self.bashbuilder_generate = QPushButton(self.scrollAreaWidgetContents_5)
-        self.bashbuilder_generate.setObjectName(u"bashbuilder_generate")
-
-        self.gridLayout_9.addWidget(self.bashbuilder_generate, 1, 3, 1, 1)
-
-        self.scrollArea_5.setWidget(self.scrollAreaWidgetContents_5)
-
-        self.gridLayout_47.addWidget(self.scrollArea_5, 0, 0, 1, 1)
-
-        self.tabWidget_8.addTab(self.tab_63, "")
-        self.tab_2 = QWidget()
-        self.tab_2.setObjectName(u"tab_2")
-        self.gridLayout_2 = QGridLayout(self.tab_2)
-        self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.scrollArea_6 = QScrollArea(self.tab_2)
-        self.scrollArea_6.setObjectName(u"scrollArea_6")
-        self.scrollArea_6.setWidgetResizable(True)
-        self.scrollAreaWidgetContents_6 = QWidget()
-        self.scrollAreaWidgetContents_6.setObjectName(u"scrollAreaWidgetContents_6")
-        self.scrollAreaWidgetContents_6.setGeometry(QRect(0, 0, 1515, 742))
-        self.gridLayout_10 = QGridLayout(self.scrollAreaWidgetContents_6)
-        self.gridLayout_10.setObjectName(u"gridLayout_10")
-        self.bashbuild_toolBox_2 = QToolBox(self.scrollAreaWidgetContents_6)
-        self.bashbuild_toolBox_2.setObjectName(u"bashbuild_toolBox_2")
-        self.page_9 = QWidget()
-        self.page_9.setObjectName(u"page_9")
-        self.page_9.setGeometry(QRect(0, 0, 1000, 526))
-        self.gridLayout_60 = QGridLayout(self.page_9)
-        self.gridLayout_60.setObjectName(u"gridLayout_60")
-        self.textEdit_25 = QTextEdit(self.page_9)
-        self.textEdit_25.setObjectName(u"textEdit_25")
-
-        self.gridLayout_60.addWidget(self.textEdit_25, 0, 0, 1, 1)
-
-        self.bashbuild_toolBox_2.addItem(self.page_9, u"Quick Guide")
-        self.page_10 = QWidget()
-        self.page_10.setObjectName(u"page_10")
-        self.page_10.setGeometry(QRect(0, 0, 1000, 526))
-        self.bashbuild_dnsenum_2 = QCheckBox(self.page_10)
-        self.bashbuild_dnsenum_2.setObjectName(u"bashbuild_dnsenum_2")
-        self.bashbuild_dnsenum_2.setGeometry(QRect(10, 0, 92, 25))
-        self.bashbuild_toolBox_2.addItem(self.page_10, u"DNS")
-        self.page_11 = QWidget()
-        self.page_11.setObjectName(u"page_11")
-        self.page_11.setGeometry(QRect(0, 0, 1000, 526))
-        self.bashbuild_nmap_2 = QCheckBox(self.page_11)
-        self.bashbuild_nmap_2.setObjectName(u"bashbuild_nmap_2")
-        self.bashbuild_nmap_2.setGeometry(QRect(10, 20, 92, 25))
-        self.bashbuild_toolBox_2.addItem(self.page_11, u"PortScan")
-        self.page_12 = QWidget()
-        self.page_12.setObjectName(u"page_12")
-        self.page_12.setGeometry(QRect(0, 0, 1000, 526))
-        self.checkBox_29 = QCheckBox(self.page_12)
-        self.checkBox_29.setObjectName(u"checkBox_29")
-        self.checkBox_29.setGeometry(QRect(10, 10, 181, 25))
-        self.checkBox_30 = QCheckBox(self.page_12)
-        self.checkBox_30.setObjectName(u"checkBox_30")
-        self.checkBox_30.setGeometry(QRect(10, 40, 181, 25))
-        self.checkBox_31 = QCheckBox(self.page_12)
-        self.checkBox_31.setObjectName(u"checkBox_31")
-        self.checkBox_31.setGeometry(QRect(10, 70, 181, 25))
-        self.checkBox_32 = QCheckBox(self.page_12)
-        self.checkBox_32.setObjectName(u"checkBox_32")
-        self.checkBox_32.setGeometry(QRect(10, 100, 181, 25))
-        self.bashbuild_toolBox_2.addItem(self.page_12, u"Local")
-        self.page_13 = QWidget()
-        self.page_13.setObjectName(u"page_13")
-        self.page_13.setGeometry(QRect(0, 0, 1000, 526))
-        self.bashbuild_diagnostic_2 = QCheckBox(self.page_13)
-        self.bashbuild_diagnostic_2.setObjectName(u"bashbuild_diagnostic_2")
-        self.bashbuild_diagnostic_2.setGeometry(QRect(10, 10, 201, 25))
-        self.bashbuild_diagnostic_2.setChecked(True)
-        self.bashbuild_installpackages_2 = QCheckBox(self.page_13)
-        self.bashbuild_installpackages_2.setObjectName(u"bashbuild_installpackages_2")
-        self.bashbuild_installpackages_2.setGeometry(QRect(10, 40, 211, 25))
-        self.bashbuild_installpackages_2.setChecked(True)
-        self.bashbuild_toolBox_2.addItem(self.page_13, u"Other")
-        self.page_14 = QWidget()
-        self.page_14.setObjectName(u"page_14")
-        self.page_14.setGeometry(QRect(0, 0, 1000, 526))
-        self.gridLayout_61 = QGridLayout(self.page_14)
-        self.gridLayout_61.setObjectName(u"gridLayout_61")
-        self.textEdit_27 = QTextEdit(self.page_14)
-        self.textEdit_27.setObjectName(u"textEdit_27")
-
-        self.gridLayout_61.addWidget(self.textEdit_27, 0, 0, 1, 1)
-
-        self.bashbuild_toolBox_2.addItem(self.page_14, u"Overview")
-
-        self.gridLayout_10.addWidget(self.bashbuild_toolBox_2, 0, 0, 2, 1)
-
-        self.bashbuild_textoutput_2 = QTextEdit(self.scrollAreaWidgetContents_6)
-        self.bashbuild_textoutput_2.setObjectName(u"bashbuild_textoutput_2")
-
-        self.gridLayout_10.addWidget(self.bashbuild_textoutput_2, 0, 1, 1, 3)
-
-        self.pushButton_5 = QPushButton(self.scrollAreaWidgetContents_6)
-        self.pushButton_5.setObjectName(u"pushButton_5")
-
-        self.gridLayout_10.addWidget(self.pushButton_5, 1, 1, 1, 1)
-
-        self.pushButton_6 = QPushButton(self.scrollAreaWidgetContents_6)
-        self.pushButton_6.setObjectName(u"pushButton_6")
-
-        self.gridLayout_10.addWidget(self.pushButton_6, 1, 2, 1, 1)
-
-        self.bashbuilder_generate_2 = QPushButton(self.scrollAreaWidgetContents_6)
-        self.bashbuilder_generate_2.setObjectName(u"bashbuilder_generate_2")
-
-        self.gridLayout_10.addWidget(self.bashbuilder_generate_2, 1, 3, 1, 1)
-
-        self.scrollArea_6.setWidget(self.scrollAreaWidgetContents_6)
-
-        self.gridLayout_2.addWidget(self.scrollArea_6, 0, 0, 1, 1)
-
-        self.tabWidget_8.addTab(self.tab_2, "")
-        self.tab_3 = QWidget()
-        self.tab_3.setObjectName(u"tab_3")
-        self.gridLayout_3 = QGridLayout(self.tab_3)
-        self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.scrollArea_7 = QScrollArea(self.tab_3)
-        self.scrollArea_7.setObjectName(u"scrollArea_7")
-        self.scrollArea_7.setWidgetResizable(True)
-        self.scrollAreaWidgetContents_7 = QWidget()
-        self.scrollAreaWidgetContents_7.setObjectName(u"scrollAreaWidgetContents_7")
-        self.scrollAreaWidgetContents_7.setGeometry(QRect(0, 0, 1515, 742))
-        self.gridLayout_11 = QGridLayout(self.scrollAreaWidgetContents_7)
-        self.gridLayout_11.setObjectName(u"gridLayout_11")
-        self.bashbuild_toolBox_3 = QToolBox(self.scrollAreaWidgetContents_7)
-        self.bashbuild_toolBox_3.setObjectName(u"bashbuild_toolBox_3")
-        self.page_15 = QWidget()
-        self.page_15.setObjectName(u"page_15")
-        self.page_15.setGeometry(QRect(0, 0, 1000, 526))
-        self.gridLayout_62 = QGridLayout(self.page_15)
-        self.gridLayout_62.setObjectName(u"gridLayout_62")
-        self.textEdit_28 = QTextEdit(self.page_15)
-        self.textEdit_28.setObjectName(u"textEdit_28")
-
-        self.gridLayout_62.addWidget(self.textEdit_28, 0, 0, 1, 1)
-
-        self.bashbuild_toolBox_3.addItem(self.page_15, u"Quick Guide")
-        self.page_16 = QWidget()
-        self.page_16.setObjectName(u"page_16")
-        self.page_16.setGeometry(QRect(0, 0, 100, 30))
-        self.bashbuild_dnsenum_3 = QCheckBox(self.page_16)
-        self.bashbuild_dnsenum_3.setObjectName(u"bashbuild_dnsenum_3")
-        self.bashbuild_dnsenum_3.setGeometry(QRect(10, 0, 92, 25))
-        self.bashbuild_toolBox_3.addItem(self.page_16, u"DNS")
-        self.page_17 = QWidget()
-        self.page_17.setObjectName(u"page_17")
-        self.page_17.setGeometry(QRect(0, 0, 100, 30))
-        self.bashbuild_nmap_3 = QCheckBox(self.page_17)
-        self.bashbuild_nmap_3.setObjectName(u"bashbuild_nmap_3")
-        self.bashbuild_nmap_3.setGeometry(QRect(10, 20, 92, 25))
-        self.bashbuild_toolBox_3.addItem(self.page_17, u"PortScan")
-        self.page_18 = QWidget()
-        self.page_18.setObjectName(u"page_18")
-        self.page_18.setGeometry(QRect(0, 0, 100, 30))
-        self.checkBox_33 = QCheckBox(self.page_18)
-        self.checkBox_33.setObjectName(u"checkBox_33")
-        self.checkBox_33.setGeometry(QRect(10, 10, 181, 25))
-        self.checkBox_34 = QCheckBox(self.page_18)
-        self.checkBox_34.setObjectName(u"checkBox_34")
-        self.checkBox_34.setGeometry(QRect(10, 40, 181, 25))
-        self.checkBox_35 = QCheckBox(self.page_18)
-        self.checkBox_35.setObjectName(u"checkBox_35")
-        self.checkBox_35.setGeometry(QRect(10, 70, 181, 25))
-        self.checkBox_36 = QCheckBox(self.page_18)
-        self.checkBox_36.setObjectName(u"checkBox_36")
-        self.checkBox_36.setGeometry(QRect(10, 100, 181, 25))
-        self.bashbuild_toolBox_3.addItem(self.page_18, u"Local")
-        self.page_19 = QWidget()
-        self.page_19.setObjectName(u"page_19")
-        self.page_19.setGeometry(QRect(0, 0, 100, 30))
-        self.bashbuild_diagnostic_3 = QCheckBox(self.page_19)
-        self.bashbuild_diagnostic_3.setObjectName(u"bashbuild_diagnostic_3")
-        self.bashbuild_diagnostic_3.setGeometry(QRect(10, 10, 201, 25))
-        self.bashbuild_diagnostic_3.setChecked(True)
-        self.bashbuild_installpackages_3 = QCheckBox(self.page_19)
-        self.bashbuild_installpackages_3.setObjectName(u"bashbuild_installpackages_3")
-        self.bashbuild_installpackages_3.setGeometry(QRect(10, 40, 211, 25))
-        self.bashbuild_installpackages_3.setChecked(True)
-        self.bashbuild_toolBox_3.addItem(self.page_19, u"Other")
-        self.page_20 = QWidget()
-        self.page_20.setObjectName(u"page_20")
-        self.page_20.setGeometry(QRect(0, 0, 92, 78))
-        self.gridLayout_63 = QGridLayout(self.page_20)
-        self.gridLayout_63.setObjectName(u"gridLayout_63")
-        self.textEdit_30 = QTextEdit(self.page_20)
-        self.textEdit_30.setObjectName(u"textEdit_30")
-
-        self.gridLayout_63.addWidget(self.textEdit_30, 0, 0, 1, 1)
-
-        self.bashbuild_toolBox_3.addItem(self.page_20, u"Overview")
-
-        self.gridLayout_11.addWidget(self.bashbuild_toolBox_3, 0, 0, 2, 1)
-
-        self.bashbuild_textoutput_3 = QTextEdit(self.scrollAreaWidgetContents_7)
-        self.bashbuild_textoutput_3.setObjectName(u"bashbuild_textoutput_3")
-
-        self.gridLayout_11.addWidget(self.bashbuild_textoutput_3, 0, 1, 1, 3)
-
-        self.pushButton_7 = QPushButton(self.scrollAreaWidgetContents_7)
-        self.pushButton_7.setObjectName(u"pushButton_7")
-
-        self.gridLayout_11.addWidget(self.pushButton_7, 1, 1, 1, 1)
-
-        self.pushButton_8 = QPushButton(self.scrollAreaWidgetContents_7)
-        self.pushButton_8.setObjectName(u"pushButton_8")
-
-        self.gridLayout_11.addWidget(self.pushButton_8, 1, 2, 1, 1)
-
-        self.bashbuilder_generate_3 = QPushButton(self.scrollAreaWidgetContents_7)
-        self.bashbuilder_generate_3.setObjectName(u"bashbuilder_generate_3")
-
-        self.gridLayout_11.addWidget(self.bashbuilder_generate_3, 1, 3, 1, 1)
-
-        self.scrollArea_7.setWidget(self.scrollAreaWidgetContents_7)
-
-        self.gridLayout_3.addWidget(self.scrollArea_7, 0, 0, 1, 1)
-
-        self.tabWidget_8.addTab(self.tab_3, "")
         self.tab = QWidget()
         self.tab.setObjectName(u"tab")
         self.gridLayout_8 = QGridLayout(self.tab)
@@ -727,6 +409,380 @@ class Ui_LogecC3(object):
         self.gridLayout_8.addWidget(self.exploitandvuln_tableview, 0, 0, 1, 1)
 
         self.tabWidget_8.addTab(self.tab, "")
+        self.tab_2 = QWidget()
+        self.tab_2.setObjectName(u"tab_2")
+        self.gridLayout_2 = QGridLayout(self.tab_2)
+        self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.bashbuild_textoutput_2 = QTextEdit(self.tab_2)
+        self.bashbuild_textoutput_2.setObjectName(u"bashbuild_textoutput_2")
+
+        self.gridLayout_2.addWidget(self.bashbuild_textoutput_2, 0, 1, 1, 1)
+
+        self.bashbuild_toolBox_2 = QToolBox(self.tab_2)
+        self.bashbuild_toolBox_2.setObjectName(u"bashbuild_toolBox_2")
+        self.page_22 = QWidget()
+        self.page_22.setObjectName(u"page_22")
+        self.page_22.setGeometry(QRect(0, 0, 756, 645))
+        self.gridLayout_11 = QGridLayout(self.page_22)
+        self.gridLayout_11.setObjectName(u"gridLayout_11")
+        self.gridLayout_10 = QGridLayout()
+        self.gridLayout_10.setObjectName(u"gridLayout_10")
+
+        self.gridLayout_11.addLayout(self.gridLayout_10, 5, 0, 1, 2)
+
+        self.verticalSpacer_2 = QSpacerItem(20, 286, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_11.addItem(self.verticalSpacer_2, 6, 1, 1, 1)
+
+        self.line_2 = QFrame(self.page_22)
+        self.line_2.setObjectName(u"line_2")
+        self.line_2.setFrameShape(QFrame.HLine)
+        self.line_2.setFrameShadow(QFrame.Sunken)
+
+        self.gridLayout_11.addWidget(self.line_2, 2, 0, 2, 2)
+
+        self.verticalSpacer = QSpacerItem(20, 286, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_11.addItem(self.verticalSpacer, 6, 0, 1, 1)
+
+        self.gridLayout_3 = QGridLayout()
+        self.gridLayout_3.setObjectName(u"gridLayout_3")
+        self.lineEdit_2 = QLineEdit(self.page_22)
+        self.lineEdit_2.setObjectName(u"lineEdit_2")
+
+        self.gridLayout_3.addWidget(self.lineEdit_2, 4, 0, 1, 1)
+
+        self.label_10 = QLabel(self.page_22)
+        self.label_10.setObjectName(u"label_10")
+
+        self.gridLayout_3.addWidget(self.label_10, 3, 0, 1, 1)
+
+        self.lineEdit = QLineEdit(self.page_22)
+        self.lineEdit.setObjectName(u"lineEdit")
+
+        self.gridLayout_3.addWidget(self.lineEdit, 2, 0, 1, 1)
+
+        self.label_7 = QLabel(self.page_22)
+        self.label_7.setObjectName(u"label_7")
+
+        self.gridLayout_3.addWidget(self.label_7, 1, 0, 1, 1)
+
+        self.label_13 = QLabel(self.page_22)
+        self.label_13.setObjectName(u"label_13")
+        font3 = QFont()
+        self.label_13.setFont(font3)
+        self.label_13.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_3.addWidget(self.label_13, 0, 0, 1, 1)
+
+
+        self.gridLayout_11.addLayout(self.gridLayout_3, 0, 0, 1, 2)
+
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalLayout_2.setSizeConstraint(QLayout.SetDefaultConstraint)
+        self.pushButton_2 = QPushButton(self.page_22)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+
+        self.horizontalLayout_2.addWidget(self.pushButton_2)
+
+        self.pushButton = QPushButton(self.page_22)
+        self.pushButton.setObjectName(u"pushButton")
+
+        self.horizontalLayout_2.addWidget(self.pushButton)
+
+
+        self.gridLayout_11.addLayout(self.horizontalLayout_2, 7, 0, 1, 2)
+
+        self.gridLayout_5 = QGridLayout()
+        self.gridLayout_5.setObjectName(u"gridLayout_5")
+        self.label_12 = QLabel(self.page_22)
+        self.label_12.setObjectName(u"label_12")
+
+        self.gridLayout_5.addWidget(self.label_12, 3, 2, 1, 1)
+
+        self.lineEdit_6 = QLineEdit(self.page_22)
+        self.lineEdit_6.setObjectName(u"lineEdit_6")
+        self.lineEdit_6.setMaximumSize(QSize(16777215, 16777215))
+
+        self.gridLayout_5.addWidget(self.lineEdit_6, 6, 2, 1, 1)
+
+        self.label = QLabel(self.page_22)
+        self.label.setObjectName(u"label")
+
+        self.gridLayout_5.addWidget(self.label, 1, 0, 1, 1)
+
+        self.pushButton_5 = QPushButton(self.page_22)
+        self.pushButton_5.setObjectName(u"pushButton_5")
+        self.pushButton_5.setMaximumSize(QSize(75, 16777215))
+
+        self.gridLayout_5.addWidget(self.pushButton_5, 6, 1, 1, 1)
+
+        self.label_15 = QLabel(self.page_22)
+        self.label_15.setObjectName(u"label_15")
+        self.label_15.setFont(font3)
+        self.label_15.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_5.addWidget(self.label_15, 0, 0, 1, 3)
+
+        self.lineEdit_3 = QLineEdit(self.page_22)
+        self.lineEdit_3.setObjectName(u"lineEdit_3")
+
+        self.gridLayout_5.addWidget(self.lineEdit_3, 2, 0, 1, 1)
+
+        self.lineEdit_4 = QLineEdit(self.page_22)
+        self.lineEdit_4.setObjectName(u"lineEdit_4")
+
+        self.gridLayout_5.addWidget(self.lineEdit_4, 6, 0, 1, 1)
+
+        self.label_11 = QLabel(self.page_22)
+        self.label_11.setObjectName(u"label_11")
+
+        self.gridLayout_5.addWidget(self.label_11, 3, 0, 1, 1)
+
+
+        self.gridLayout_11.addLayout(self.gridLayout_5, 4, 0, 1, 2)
+
+        self.bashbuild_toolBox_2.addItem(self.page_22, u"C")
+        self.page_13 = QWidget()
+        self.page_13.setObjectName(u"page_13")
+        self.page_13.setGeometry(QRect(0, 0, 756, 645))
+        self.gridLayout_15 = QGridLayout(self.page_13)
+        self.gridLayout_15.setObjectName(u"gridLayout_15")
+        self.gridLayout_14 = QGridLayout()
+        self.gridLayout_14.setObjectName(u"gridLayout_14")
+        self.lineEdit_11 = QLineEdit(self.page_13)
+        self.lineEdit_11.setObjectName(u"lineEdit_11")
+
+        self.gridLayout_14.addWidget(self.lineEdit_11, 4, 0, 1, 1)
+
+        self.label_24 = QLabel(self.page_13)
+        self.label_24.setObjectName(u"label_24")
+
+        self.gridLayout_14.addWidget(self.label_24, 3, 0, 1, 1)
+
+        self.lineEdit_12 = QLineEdit(self.page_13)
+        self.lineEdit_12.setObjectName(u"lineEdit_12")
+
+        self.gridLayout_14.addWidget(self.lineEdit_12, 2, 0, 1, 1)
+
+        self.label_25 = QLabel(self.page_13)
+        self.label_25.setObjectName(u"label_25")
+
+        self.gridLayout_14.addWidget(self.label_25, 1, 0, 1, 1)
+
+        self.label_26 = QLabel(self.page_13)
+        self.label_26.setObjectName(u"label_26")
+        font4 = QFont()
+        font4.setUnderline(True)
+        self.label_26.setFont(font4)
+        self.label_26.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_14.addWidget(self.label_26, 0, 0, 1, 1)
+
+
+        self.gridLayout_15.addLayout(self.gridLayout_14, 0, 0, 1, 2)
+
+        self.line_3 = QFrame(self.page_13)
+        self.line_3.setObjectName(u"line_3")
+        self.line_3.setFrameShape(QFrame.HLine)
+        self.line_3.setFrameShadow(QFrame.Sunken)
+
+        self.gridLayout_15.addWidget(self.line_3, 1, 0, 1, 2)
+
+        self.gridLayout_13 = QGridLayout()
+        self.gridLayout_13.setObjectName(u"gridLayout_13")
+        self.label_16 = QLabel(self.page_13)
+        self.label_16.setObjectName(u"label_16")
+
+        self.gridLayout_13.addWidget(self.label_16, 3, 2, 1, 1)
+
+        self.lineEdit_7 = QLineEdit(self.page_13)
+        self.lineEdit_7.setObjectName(u"lineEdit_7")
+        self.lineEdit_7.setMaximumSize(QSize(16777215, 16777215))
+
+        self.gridLayout_13.addWidget(self.lineEdit_7, 6, 2, 1, 1)
+
+        self.label_17 = QLabel(self.page_13)
+        self.label_17.setObjectName(u"label_17")
+
+        self.gridLayout_13.addWidget(self.label_17, 1, 0, 1, 1)
+
+        self.pushButton_8 = QPushButton(self.page_13)
+        self.pushButton_8.setObjectName(u"pushButton_8")
+        self.pushButton_8.setMaximumSize(QSize(75, 16777215))
+
+        self.gridLayout_13.addWidget(self.pushButton_8, 6, 1, 1, 1)
+
+        self.label_20 = QLabel(self.page_13)
+        self.label_20.setObjectName(u"label_20")
+        self.label_20.setFont(font3)
+        self.label_20.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_13.addWidget(self.label_20, 0, 0, 1, 3)
+
+        self.lineEdit_8 = QLineEdit(self.page_13)
+        self.lineEdit_8.setObjectName(u"lineEdit_8")
+
+        self.gridLayout_13.addWidget(self.lineEdit_8, 2, 0, 1, 1)
+
+        self.lineEdit_9 = QLineEdit(self.page_13)
+        self.lineEdit_9.setObjectName(u"lineEdit_9")
+
+        self.gridLayout_13.addWidget(self.lineEdit_9, 6, 0, 1, 1)
+
+        self.label_23 = QLabel(self.page_13)
+        self.label_23.setObjectName(u"label_23")
+
+        self.gridLayout_13.addWidget(self.label_23, 3, 0, 1, 1)
+
+
+        self.gridLayout_15.addLayout(self.gridLayout_13, 2, 0, 1, 2)
+
+        self.verticalSpacer_3 = QSpacerItem(20, 294, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_15.addItem(self.verticalSpacer_3, 3, 0, 1, 1)
+
+        self.verticalSpacer_4 = QSpacerItem(20, 294, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_15.addItem(self.verticalSpacer_4, 3, 1, 1, 1)
+
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalLayout_3.setSizeConstraint(QLayout.SetDefaultConstraint)
+        self.pushButton_6 = QPushButton(self.page_13)
+        self.pushButton_6.setObjectName(u"pushButton_6")
+
+        self.horizontalLayout_3.addWidget(self.pushButton_6)
+
+        self.pushButton_7 = QPushButton(self.page_13)
+        self.pushButton_7.setObjectName(u"pushButton_7")
+
+        self.horizontalLayout_3.addWidget(self.pushButton_7)
+
+
+        self.gridLayout_15.addLayout(self.horizontalLayout_3, 4, 0, 1, 2)
+
+        self.bashbuild_toolBox_2.addItem(self.page_13, u"C#")
+        self.page_9 = QWidget()
+        self.page_9.setObjectName(u"page_9")
+        self.gridLayout_19 = QGridLayout(self.page_9)
+        self.gridLayout_19.setObjectName(u"gridLayout_19")
+        self.gridLayout_16 = QGridLayout()
+        self.gridLayout_16.setObjectName(u"gridLayout_16")
+        self.lineEdit_13 = QLineEdit(self.page_9)
+        self.lineEdit_13.setObjectName(u"lineEdit_13")
+
+        self.gridLayout_16.addWidget(self.lineEdit_13, 4, 0, 1, 1)
+
+        self.label_27 = QLabel(self.page_9)
+        self.label_27.setObjectName(u"label_27")
+
+        self.gridLayout_16.addWidget(self.label_27, 3, 0, 1, 1)
+
+        self.lineEdit_14 = QLineEdit(self.page_9)
+        self.lineEdit_14.setObjectName(u"lineEdit_14")
+
+        self.gridLayout_16.addWidget(self.lineEdit_14, 2, 0, 1, 1)
+
+        self.label_28 = QLabel(self.page_9)
+        self.label_28.setObjectName(u"label_28")
+
+        self.gridLayout_16.addWidget(self.label_28, 1, 0, 1, 1)
+
+        self.label_29 = QLabel(self.page_9)
+        self.label_29.setObjectName(u"label_29")
+        self.label_29.setFont(font4)
+        self.label_29.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_16.addWidget(self.label_29, 0, 0, 1, 1)
+
+
+        self.gridLayout_19.addLayout(self.gridLayout_16, 0, 0, 1, 2)
+
+        self.horizontalLayout_4 = QHBoxLayout()
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.horizontalLayout_4.setSizeConstraint(QLayout.SetDefaultConstraint)
+        self.pushButton_12 = QPushButton(self.page_9)
+        self.pushButton_12.setObjectName(u"pushButton_12")
+
+        self.horizontalLayout_4.addWidget(self.pushButton_12)
+
+        self.pushButton_9 = QPushButton(self.page_9)
+        self.pushButton_9.setObjectName(u"pushButton_9")
+
+        self.horizontalLayout_4.addWidget(self.pushButton_9)
+
+        self.pushButton_10 = QPushButton(self.page_9)
+        self.pushButton_10.setObjectName(u"pushButton_10")
+
+        self.horizontalLayout_4.addWidget(self.pushButton_10)
+
+
+        self.gridLayout_19.addLayout(self.horizontalLayout_4, 3, 0, 1, 2)
+
+        self.verticalSpacer_6 = QSpacerItem(20, 303, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_19.addItem(self.verticalSpacer_6, 2, 1, 1, 1)
+
+        self.verticalSpacer_5 = QSpacerItem(20, 303, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_19.addItem(self.verticalSpacer_5, 2, 0, 1, 1)
+
+        self.gridLayout_18 = QGridLayout()
+        self.gridLayout_18.setObjectName(u"gridLayout_18")
+        self.label_30 = QLabel(self.page_9)
+        self.label_30.setObjectName(u"label_30")
+
+        self.gridLayout_18.addWidget(self.label_30, 3, 2, 1, 1)
+
+        self.lineEdit_15 = QLineEdit(self.page_9)
+        self.lineEdit_15.setObjectName(u"lineEdit_15")
+        self.lineEdit_15.setMaximumSize(QSize(16777215, 16777215))
+
+        self.gridLayout_18.addWidget(self.lineEdit_15, 6, 2, 1, 1)
+
+        self.label_31 = QLabel(self.page_9)
+        self.label_31.setObjectName(u"label_31")
+
+        self.gridLayout_18.addWidget(self.label_31, 1, 0, 1, 1)
+
+        self.pushButton_11 = QPushButton(self.page_9)
+        self.pushButton_11.setObjectName(u"pushButton_11")
+        self.pushButton_11.setMaximumSize(QSize(75, 16777215))
+
+        self.gridLayout_18.addWidget(self.pushButton_11, 6, 1, 1, 1)
+
+        self.label_33 = QLabel(self.page_9)
+        self.label_33.setObjectName(u"label_33")
+        self.label_33.setFont(font3)
+        self.label_33.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_18.addWidget(self.label_33, 0, 0, 1, 3)
+
+        self.lineEdit_16 = QLineEdit(self.page_9)
+        self.lineEdit_16.setObjectName(u"lineEdit_16")
+
+        self.gridLayout_18.addWidget(self.lineEdit_16, 2, 0, 1, 1)
+
+        self.lineEdit_17 = QLineEdit(self.page_9)
+        self.lineEdit_17.setObjectName(u"lineEdit_17")
+
+        self.gridLayout_18.addWidget(self.lineEdit_17, 6, 0, 1, 1)
+
+        self.label_35 = QLabel(self.page_9)
+        self.label_35.setObjectName(u"label_35")
+
+        self.gridLayout_18.addWidget(self.label_35, 3, 0, 1, 1)
+
+
+        self.gridLayout_19.addLayout(self.gridLayout_18, 1, 0, 1, 2)
+
+        self.bashbuild_toolBox_2.addItem(self.page_9, u"Python")
+
+        self.gridLayout_2.addWidget(self.bashbuild_toolBox_2, 0, 0, 1, 1)
+
+        self.tabWidget_8.addTab(self.tab_2, "")
 
         self.gridLayout_17.addWidget(self.tabWidget_8, 0, 0, 1, 1)
 
@@ -768,7 +824,6 @@ class Ui_LogecC3(object):
         self.gridLayout_28.setObjectName(u"gridLayout_28")
         self.settings_edit = QTextEdit(self.tab_37)
         self.settings_edit.setObjectName(u"settings_edit")
-        font3 = QFont()
         self.settings_edit.setFont(font3)
 
         self.gridLayout_28.addWidget(self.settings_edit, 0, 0, 1, 3)
@@ -885,10 +940,10 @@ class Ui_LogecC3(object):
 
         self.label_91 = QLabel(self.tab_75)
         self.label_91.setObjectName(u"label_91")
-        font4 = QFont()
-        font4.setUnderline(True)
-        font4.setKerning(True)
-        self.label_91.setFont(font4)
+        font5 = QFont()
+        font5.setUnderline(True)
+        font5.setKerning(True)
+        self.label_91.setFont(font5)
 
         self.gridLayout_54.addWidget(self.label_91, 0, 3, 2, 1)
 
@@ -951,9 +1006,7 @@ class Ui_LogecC3(object):
 
         self.label_86 = QLabel(self.tab_75)
         self.label_86.setObjectName(u"label_86")
-        font5 = QFont()
-        font5.setUnderline(True)
-        self.label_86.setFont(font5)
+        self.label_86.setFont(font4)
 
         self.gridLayout_54.addWidget(self.label_86, 0, 0, 2, 1)
 
@@ -1413,7 +1466,7 @@ class Ui_LogecC3(object):
         self.toolBox.addItem(self.page_7, u"Wordlists")
         self.page_8 = QWidget()
         self.page_8.setObjectName(u"page_8")
-        self.page_8.setGeometry(QRect(0, 0, 1517, 678))
+        self.page_8.setGeometry(QRect(0, 0, 382, 134))
         self.gridLayout = QGridLayout(self.page_8)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout_72 = QGridLayout()
@@ -1548,13 +1601,11 @@ class Ui_LogecC3(object):
 
         self.retranslateUi(LogecC3)
 
-        self.main_tab_widget.setCurrentIndex(0)
+        self.main_tab_widget.setCurrentIndex(1)
         self.bruteforce_panel_2.setCurrentIndex(0)
         self.c2_shell_tab.setCurrentIndex(0)
         self.tabWidget_8.setCurrentIndex(1)
-        self.bashbuild_toolBox.setCurrentIndex(0)
-        self.bashbuild_toolBox_2.setCurrentIndex(0)
-        self.bashbuild_toolBox_3.setCurrentIndex(0)
+        self.bashbuild_toolBox_2.setCurrentIndex(2)
         self.tabWidget_2.setCurrentIndex(0)
         self.tabWidget_10.setCurrentIndex(0)
         self.tabWidget_16.setCurrentIndex(0)
@@ -1718,479 +1769,6 @@ class Ui_LogecC3(object):
 #endif // QT_CONFIG(shortcut)
         self.c2_shell_tab.setTabText(self.c2_shell_tab.indexOf(self.tab_59), QCoreApplication.translate("LogecC3", u"LocalShell", None))
         self.main_tab_widget.setTabText(self.main_tab_widget.indexOf(self.c2_tab), QCoreApplication.translate("LogecC3", u"C2", None))
-        self.textEdit_24.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Hey there!</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">This is a quick bash script builder, if you can click a button, you can build a script</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\""
-                        " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Each &quot;tab&quot; below this tab has a category, such as DNS, or Portscanning. Within each tab is a range of options for items related to that tab. Hit generate once you've selected the options you want, and tada a bash script customzied to what you need!</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Note, you'll enter your target IP &amp;Report name when you run the script, this allows for more flexibility that hardcoding it in </p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; m"
-                        "argin-right:0px; -qt-block-indent:0; text-indent:0px;\">DevNote, set tabname to each selected, OR have a final overview tab that shows all selected stuff (put it in a list or something)</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">This survived the tool purge for one reason, it can be used for creating payloads</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-        self.bashbuild_toolBox.setItemText(self.bashbuild_toolBox.indexOf(self.page_4), QCoreApplication.translate("LogecC3", u"Quick Guide", None))
-        self.bashbuild_dnsenum.setText(QCoreApplication.translate("LogecC3", u"DNSENUM", None))
-        self.bashbuild_toolBox.setItemText(self.bashbuild_toolBox.indexOf(self.page), QCoreApplication.translate("LogecC3", u"DNS", None))
-        self.bashbuild_nmap.setText(QCoreApplication.translate("LogecC3", u"NMAP", None))
-        self.bashbuild_toolBox.setItemText(self.bashbuild_toolBox.indexOf(self.page_3), QCoreApplication.translate("LogecC3", u"PortScan", None))
-        self.checkBox_25.setText(QCoreApplication.translate("LogecC3", u"Retrieve PASSWD file", None))
-        self.checkBox_26.setText(QCoreApplication.translate("LogecC3", u"Retrieve SHADOW file", None))
-        self.checkBox_27.setText(QCoreApplication.translate("LogecC3", u"Capture NETSTAT", None))
-        self.checkBox_28.setText(QCoreApplication.translate("LogecC3", u"Capture Bash History", None))
-        self.bashbuild_toolBox.setItemText(self.bashbuild_toolBox.indexOf(self.page_6), QCoreApplication.translate("LogecC3", u"Local", None))
-        self.bashbuild_diagnostic.setText(QCoreApplication.translate("LogecC3", u"Enable Diagnostic Data", None))
-#if QT_CONFIG(tooltip)
-        self.bashbuild_installpackages.setToolTip(QCoreApplication.translate("LogecC3", u"Includes code to install packages. use --install when running the script", None))
-#endif // QT_CONFIG(tooltip)
-        self.bashbuild_installpackages.setText(QCoreApplication.translate("LogecC3", u"Install packages", None))
-        self.bashbuild_toolBox.setItemText(self.bashbuild_toolBox.indexOf(self.page_2), QCoreApplication.translate("LogecC3", u"Other", None))
-        self.textEdit_26.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">PortScan:</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">	NMAP: On (turn green)</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">DNS:</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; "
-                        "text-indent:0px;\">	DNSENUM: Off (turn red)</p></body></html>", None))
-        self.bashbuild_toolBox.setItemText(self.bashbuild_toolBox.indexOf(self.page_5), QCoreApplication.translate("LogecC3", u"Overview", None))
-        self.bashbuild_textoutput.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">## Colors</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">RED=&quot;\\033[0;31m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">BLUE=&quot;\\033[0;34m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:"
-                        "0px;\"><span style=\" font-size:10pt;\">GREEN=&quot;\\033[0;32m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">YELLOW=&quot;\\033[0;33m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">PURPLE=&quot;\\033[0;35m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">GREY=&quot;\\033[0;37m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">NC=&quot;\\033[0m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10p"
-                        "t;\">UNDERLINE=&quot;\\033[4m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">NU=&quot;\\033[0m&quot;</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;${RED}Generated ${GREY}by ${BLUE}Logec-Suite${NC} &quot;</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;Enter a name for this"
-                        " report and hit enter: &quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">read NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;Enter Target IP/FQDN and hit enter: &quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">read IP</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px"
-                        "; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">while [ $# -gt 0 ]; do</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">  case &quot;$1&quot; in</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    --nmap-all)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      nmap_all=true</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      ;;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style"
-                        "=\" font-size:10pt;\">    --nmap-fast)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      nmap_fast=true</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      ;;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    --install)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      install=true</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      ;;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin"
-                        "-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    *)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      echo &quot;Unknown option: $1&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      exit 1</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      ;;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">  esac</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\"> "
-                        " shift</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">done</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">## Init Vars</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0p"
-                        "x;\"><span style=\" font-size:10pt;\">## Current Dir</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">CURRENT_DIR_RAW=$(pwd)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">CURRENT_DIR=&quot;${CURRENT_DIR_RAW}/&quot;</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">#echo $CURRENT_DIR</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\""
-                        " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">## Making reports dir</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">mkdir &quot;${CURRENT_DIR}Reports&quot;</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">##########</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">## Install</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:"
-                        "0; text-indent:0px;\"><span style=\" font-size:10pt;\">##########</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">if [ &quot;$install&quot; = true ]; then</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    sudo apt-get install ansi2html -y</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    sudo apt-get install nmap -y</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    sudo apt-get install dnsenum -y</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-ind"
-                        "ent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">fi</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-bl"
-                        "ock-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;${PURPLE}########## &lt;Portscan&gt; ##########${NC}\\n&quot; | tee -a Reports/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">if [ &quot;$nmap_all&quot; = true ]; then</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; te"
-                        "xt-indent:0px;\"><span style=\" font-size:10pt;\">    printf &quot;NMAP all selected... \\n&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    sudo nmap ${IP} -sV -Pn -A -p- --script=vulners --script=ssh-auth-methods --script=smb-enum-shares,smb-ls --script=nfs-showmount --script=nfs-ls  | tee -a Reports/$NAME</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">elif [ &quot;$nmap_fast&quot; = true ]; then</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    printf &quot;NMAP fast selected... \\n&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" fo"
-                        "nt-size:10pt;\">    sudo nmap ${IP} -F | tee -a Reports/$NAME</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">else</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    sudo nmap ${IP} | tee -a Reports/$NAME</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">fi</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;${PURPLE}########## &lt;/Portscan&gt; ########"
-                        "##${NC}\\n&quot; | tee -a Reports/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;${PURPLE}########## &lt;DNS&gt; ##########${NC}\\n&quot; | tee -a Reports/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">${UNDERLINE}DNS E"
-                        "num:${NU}</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">&quot; | tee -a Reports/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">dnsenum ${IP} | tee -a Reports/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;${PURPLE}########## &lt;/DNS&gt; ##########${NC}\\n&quot; | tee -a Reports"
-                        "/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;\\n${GREEN}########## &lt;End of Report&gt; ##########${NC}\\n\\n&quot; | tee -a Reports/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p></body></html>", None))
-        self.pushButton_3.setText(QCoreApplication.translate("LogecC3", u"-->> Copy to Clipboard<<--", None))
-        self.pushButton_4.setText(QCoreApplication.translate("LogecC3", u"-->> Save to File <<--", None))
-        self.bashbuilder_generate.setText(QCoreApplication.translate("LogecC3", u"-->> Generate <<--", None))
-        self.tabWidget_8.setTabText(self.tabWidget_8.indexOf(self.tab_63), QCoreApplication.translate("LogecC3", u"BashBuild", None))
-        self.textEdit_25.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Ideas:</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">make a set of functions, one for each action that is selectable. </p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-"
-                        "bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Then append the call to the functiion as appropriate</p></body></html>", None))
-        self.bashbuild_toolBox_2.setItemText(self.bashbuild_toolBox_2.indexOf(self.page_9), QCoreApplication.translate("LogecC3", u"Quick Guide", None))
-        self.bashbuild_dnsenum_2.setText(QCoreApplication.translate("LogecC3", u"DNSENUM", None))
-        self.bashbuild_toolBox_2.setItemText(self.bashbuild_toolBox_2.indexOf(self.page_10), QCoreApplication.translate("LogecC3", u"DNS", None))
-        self.bashbuild_nmap_2.setText(QCoreApplication.translate("LogecC3", u"NMAP", None))
-        self.bashbuild_toolBox_2.setItemText(self.bashbuild_toolBox_2.indexOf(self.page_11), QCoreApplication.translate("LogecC3", u"PortScan", None))
-        self.checkBox_29.setText(QCoreApplication.translate("LogecC3", u"Retrieve PASSWD file", None))
-        self.checkBox_30.setText(QCoreApplication.translate("LogecC3", u"Retrieve SHADOW file", None))
-        self.checkBox_31.setText(QCoreApplication.translate("LogecC3", u"Capture NETSTAT", None))
-        self.checkBox_32.setText(QCoreApplication.translate("LogecC3", u"Capture Bash History", None))
-        self.bashbuild_toolBox_2.setItemText(self.bashbuild_toolBox_2.indexOf(self.page_12), QCoreApplication.translate("LogecC3", u"Local", None))
-        self.bashbuild_diagnostic_2.setText(QCoreApplication.translate("LogecC3", u"Enable Diagnostic Data", None))
-#if QT_CONFIG(tooltip)
-        self.bashbuild_installpackages_2.setToolTip(QCoreApplication.translate("LogecC3", u"Includes code to install packages. use --install when running the script", None))
-#endif // QT_CONFIG(tooltip)
-        self.bashbuild_installpackages_2.setText(QCoreApplication.translate("LogecC3", u"Install packages", None))
-        self.bashbuild_toolBox_2.setItemText(self.bashbuild_toolBox_2.indexOf(self.page_13), QCoreApplication.translate("LogecC3", u"Other", None))
-        self.textEdit_27.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">PortScan:</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">	NMAP: On (turn green)</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">DNS:</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; "
-                        "text-indent:0px;\">	DNSENUM: Off (turn red)</p></body></html>", None))
-        self.bashbuild_toolBox_2.setItemText(self.bashbuild_toolBox_2.indexOf(self.page_14), QCoreApplication.translate("LogecC3", u"Overview", None))
-        self.bashbuild_textoutput_2.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">## Colors</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">RED=&quot;\\033[0;31m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">BLUE=&quot;\\033[0;34m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:"
-                        "0px;\"><span style=\" font-size:10pt;\">GREEN=&quot;\\033[0;32m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">YELLOW=&quot;\\033[0;33m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">PURPLE=&quot;\\033[0;35m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">GREY=&quot;\\033[0;37m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">NC=&quot;\\033[0m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10p"
-                        "t;\">UNDERLINE=&quot;\\033[4m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">NU=&quot;\\033[0m&quot;</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;${RED}Generated ${GREY}by ${BLUE}Logec-Suite${NC} &quot;</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;Enter a name for this"
-                        " report and hit enter: &quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">read NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;Enter Target IP/FQDN and hit enter: &quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">read IP</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px"
-                        "; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">while [ $# -gt 0 ]; do</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">  case &quot;$1&quot; in</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    --nmap-all)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      nmap_all=true</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      ;;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style"
-                        "=\" font-size:10pt;\">    --nmap-fast)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      nmap_fast=true</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      ;;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    --install)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      install=true</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      ;;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin"
-                        "-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    *)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      echo &quot;Unknown option: $1&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      exit 1</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      ;;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">  esac</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\"> "
-                        " shift</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">done</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">## Init Vars</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0p"
-                        "x;\"><span style=\" font-size:10pt;\">## Current Dir</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">CURRENT_DIR_RAW=$(pwd)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">CURRENT_DIR=&quot;${CURRENT_DIR_RAW}/&quot;</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">#echo $CURRENT_DIR</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\""
-                        " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">## Making reports dir</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">mkdir &quot;${CURRENT_DIR}Reports&quot;</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">##########</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">## Install</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:"
-                        "0; text-indent:0px;\"><span style=\" font-size:10pt;\">##########</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">if [ &quot;$install&quot; = true ]; then</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    sudo apt-get install ansi2html -y</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    sudo apt-get install nmap -y</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    sudo apt-get install dnsenum -y</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-ind"
-                        "ent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">fi</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-bl"
-                        "ock-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;${PURPLE}########## &lt;Portscan&gt; ##########${NC}\\n&quot; | tee -a Reports/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">if [ &quot;$nmap_all&quot; = true ]; then</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; te"
-                        "xt-indent:0px;\"><span style=\" font-size:10pt;\">    printf &quot;NMAP all selected... \\n&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    sudo nmap ${IP} -sV -Pn -A -p- --script=vulners --script=ssh-auth-methods --script=smb-enum-shares,smb-ls --script=nfs-showmount --script=nfs-ls  | tee -a Reports/$NAME</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">elif [ &quot;$nmap_fast&quot; = true ]; then</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    printf &quot;NMAP fast selected... \\n&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" fo"
-                        "nt-size:10pt;\">    sudo nmap ${IP} -F | tee -a Reports/$NAME</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">else</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    sudo nmap ${IP} | tee -a Reports/$NAME</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">fi</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;${PURPLE}########## &lt;/Portscan&gt; ########"
-                        "##${NC}\\n&quot; | tee -a Reports/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;${PURPLE}########## &lt;DNS&gt; ##########${NC}\\n&quot; | tee -a Reports/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">${UNDERLINE}DNS E"
-                        "num:${NU}</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">&quot; | tee -a Reports/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">dnsenum ${IP} | tee -a Reports/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;${PURPLE}########## &lt;/DNS&gt; ##########${NC}\\n&quot; | tee -a Reports"
-                        "/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;\\n${GREEN}########## &lt;End of Report&gt; ##########${NC}\\n\\n&quot; | tee -a Reports/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p></body></html>", None))
-        self.pushButton_5.setText(QCoreApplication.translate("LogecC3", u"-->> Copy to Clipboard<<--", None))
-        self.pushButton_6.setText(QCoreApplication.translate("LogecC3", u"-->> Save to File <<--", None))
-        self.bashbuilder_generate_2.setText(QCoreApplication.translate("LogecC3", u"-->> Generate <<--", None))
-        self.tabWidget_8.setTabText(self.tabWidget_8.indexOf(self.tab_2), QCoreApplication.translate("LogecC3", u"PS Build [Mockup]", None))
-        self.textEdit_28.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Ideas:</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">make a set of functions, one for each action that is selectable. </p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-"
-                        "bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Then append the call to the functiion at the end of the script</p></body></html>", None))
-        self.bashbuild_toolBox_3.setItemText(self.bashbuild_toolBox_3.indexOf(self.page_15), QCoreApplication.translate("LogecC3", u"Quick Guide", None))
-        self.bashbuild_dnsenum_3.setText(QCoreApplication.translate("LogecC3", u"DNSENUM", None))
-        self.bashbuild_toolBox_3.setItemText(self.bashbuild_toolBox_3.indexOf(self.page_16), QCoreApplication.translate("LogecC3", u"DNS", None))
-        self.bashbuild_nmap_3.setText(QCoreApplication.translate("LogecC3", u"NMAP", None))
-        self.bashbuild_toolBox_3.setItemText(self.bashbuild_toolBox_3.indexOf(self.page_17), QCoreApplication.translate("LogecC3", u"PortScan", None))
-        self.checkBox_33.setText(QCoreApplication.translate("LogecC3", u"Retrieve PASSWD file", None))
-        self.checkBox_34.setText(QCoreApplication.translate("LogecC3", u"Retrieve SHADOW file", None))
-        self.checkBox_35.setText(QCoreApplication.translate("LogecC3", u"Capture NETSTAT", None))
-        self.checkBox_36.setText(QCoreApplication.translate("LogecC3", u"Capture Bash History", None))
-        self.bashbuild_toolBox_3.setItemText(self.bashbuild_toolBox_3.indexOf(self.page_18), QCoreApplication.translate("LogecC3", u"Local", None))
-        self.bashbuild_diagnostic_3.setText(QCoreApplication.translate("LogecC3", u"Enable Diagnostic Data", None))
-#if QT_CONFIG(tooltip)
-        self.bashbuild_installpackages_3.setToolTip(QCoreApplication.translate("LogecC3", u"Includes code to install packages. use --install when running the script", None))
-#endif // QT_CONFIG(tooltip)
-        self.bashbuild_installpackages_3.setText(QCoreApplication.translate("LogecC3", u"Install packages", None))
-        self.bashbuild_toolBox_3.setItemText(self.bashbuild_toolBox_3.indexOf(self.page_19), QCoreApplication.translate("LogecC3", u"Other", None))
-        self.textEdit_30.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">PortScan:</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">	NMAP: On (turn green)</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">DNS:</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; "
-                        "text-indent:0px;\">	DNSENUM: Off (turn red)</p></body></html>", None))
-        self.bashbuild_toolBox_3.setItemText(self.bashbuild_toolBox_3.indexOf(self.page_20), QCoreApplication.translate("LogecC3", u"Overview", None))
-        self.bashbuild_textoutput_3.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">## Colors</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">RED=&quot;\\033[0;31m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">BLUE=&quot;\\033[0;34m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:"
-                        "0px;\"><span style=\" font-size:10pt;\">GREEN=&quot;\\033[0;32m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">YELLOW=&quot;\\033[0;33m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">PURPLE=&quot;\\033[0;35m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">GREY=&quot;\\033[0;37m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">NC=&quot;\\033[0m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10p"
-                        "t;\">UNDERLINE=&quot;\\033[4m&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">NU=&quot;\\033[0m&quot;</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;${RED}Generated ${GREY}by ${BLUE}Logec-Suite${NC} &quot;</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;Enter a name for this"
-                        " report and hit enter: &quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">read NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;Enter Target IP/FQDN and hit enter: &quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">read IP</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px"
-                        "; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">while [ $# -gt 0 ]; do</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">  case &quot;$1&quot; in</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    --nmap-all)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      nmap_all=true</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      ;;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style"
-                        "=\" font-size:10pt;\">    --nmap-fast)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      nmap_fast=true</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      ;;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    --install)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      install=true</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      ;;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin"
-                        "-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    *)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      echo &quot;Unknown option: $1&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      exit 1</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">      ;;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">  esac</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\"> "
-                        " shift</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">done</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">## Init Vars</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0p"
-                        "x;\"><span style=\" font-size:10pt;\">## Current Dir</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">CURRENT_DIR_RAW=$(pwd)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">CURRENT_DIR=&quot;${CURRENT_DIR_RAW}/&quot;</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">#echo $CURRENT_DIR</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\""
-                        " margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">## Making reports dir</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">mkdir &quot;${CURRENT_DIR}Reports&quot;</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">##########</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">## Install</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:"
-                        "0; text-indent:0px;\"><span style=\" font-size:10pt;\">##########</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">if [ &quot;$install&quot; = true ]; then</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    sudo apt-get install ansi2html -y</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    sudo apt-get install nmap -y</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    sudo apt-get install dnsenum -y</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-ind"
-                        "ent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">fi</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-bl"
-                        "ock-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;${PURPLE}########## &lt;Portscan&gt; ##########${NC}\\n&quot; | tee -a Reports/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">if [ &quot;$nmap_all&quot; = true ]; then</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; te"
-                        "xt-indent:0px;\"><span style=\" font-size:10pt;\">    printf &quot;NMAP all selected... \\n&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    sudo nmap ${IP} -sV -Pn -A -p- --script=vulners --script=ssh-auth-methods --script=smb-enum-shares,smb-ls --script=nfs-showmount --script=nfs-ls  | tee -a Reports/$NAME</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">elif [ &quot;$nmap_fast&quot; = true ]; then</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    printf &quot;NMAP fast selected... \\n&quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" fo"
-                        "nt-size:10pt;\">    sudo nmap ${IP} -F | tee -a Reports/$NAME</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">else</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">    sudo nmap ${IP} | tee -a Reports/$NAME</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">fi</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;${PURPLE}########## &lt;/Portscan&gt; ########"
-                        "##${NC}\\n&quot; | tee -a Reports/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;${PURPLE}########## &lt;DNS&gt; ##########${NC}\\n&quot; | tee -a Reports/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">${UNDERLINE}DNS E"
-                        "num:${NU}</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">&quot; | tee -a Reports/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">dnsenum ${IP} | tee -a Reports/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;${PURPLE}########## &lt;/DNS&gt; ##########${NC}\\n&quot; | tee -a Reports"
-                        "/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">printf &quot;\\n${GREEN}########## &lt;End of Report&gt; ##########${NC}\\n\\n&quot; | tee -a Reports/$NAME</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><br /></p></body></html>", None))
-        self.pushButton_7.setText(QCoreApplication.translate("LogecC3", u"-->> Copy to Clipboard<<--", None))
-        self.pushButton_8.setText(QCoreApplication.translate("LogecC3", u"-->> Save to File <<--", None))
-        self.bashbuilder_generate_3.setText(QCoreApplication.translate("LogecC3", u"-->> Generate <<--", None))
-        self.tabWidget_8.setTabText(self.tabWidget_8.indexOf(self.tab_3), QCoreApplication.translate("LogecC3", u"PythonBuild [Mockup]", None))
 #if QT_CONFIG(tooltip)
         self.exploitandvuln_search_button.setToolTip(QCoreApplication.translate("LogecC3", u"Run a query on the DB", None))
 #endif // QT_CONFIG(tooltip)
@@ -2198,6 +1776,66 @@ class Ui_LogecC3(object):
         self.exploitandvuln_search.setText("")
         self.exploitandvuln_search.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Enter search", None))
         self.tabWidget_8.setTabText(self.tabWidget_8.indexOf(self.tab), QCoreApplication.translate("LogecC3", u"ExploitAndVulnSearch", None))
+        self.bashbuild_textoutput_2.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" text-decoration: underline;\">Compilation Log</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">[*] Started compilation</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">[*] Compilation Successful</p></body></html>", None))
+        self.lineEdit_2.setPlaceholderText(QCoreApplication.translate("LogecC3", u"8080", None))
+        self.label_10.setText(QCoreApplication.translate("LogecC3", u"Port", None))
+        self.lineEdit.setPlaceholderText(QCoreApplication.translate("LogecC3", u"127.0.0.1", None))
+        self.label_7.setText(QCoreApplication.translate("LogecC3", u"IP", None))
+        self.label_13.setText(QCoreApplication.translate("LogecC3", u"Connection Options", None))
+        self.pushButton_2.setText(QCoreApplication.translate("LogecC3", u"Copy code to clipboard", None))
+        self.pushButton.setText(QCoreApplication.translate("LogecC3", u"Compile", None))
+        self.label_12.setText(QCoreApplication.translate("LogecC3", u"Save Name", None))
+        self.lineEdit_6.setText("")
+        self.lineEdit_6.setPlaceholderText(QCoreApplication.translate("LogecC3", u"NotAMaliciousFile", None))
+        self.label.setText(QCoreApplication.translate("LogecC3", u"Compile Flags", None))
+        self.pushButton_5.setText(QCoreApplication.translate("LogecC3", u"Browse", None))
+        self.label_15.setText(QCoreApplication.translate("LogecC3", u"Compile Options", None))
+        self.lineEdit_3.setPlaceholderText(QCoreApplication.translate("LogecC3", u"-Wall", None))
+        self.lineEdit_4.setPlaceholderText(QCoreApplication.translate("LogecC3", u"/opt/payloads", None))
+        self.label_11.setText(QCoreApplication.translate("LogecC3", u"Save Location", None))
+        self.bashbuild_toolBox_2.setItemText(self.bashbuild_toolBox_2.indexOf(self.page_22), QCoreApplication.translate("LogecC3", u"C", None))
+        self.lineEdit_11.setPlaceholderText(QCoreApplication.translate("LogecC3", u"8080", None))
+        self.label_24.setText(QCoreApplication.translate("LogecC3", u"Port", None))
+        self.lineEdit_12.setPlaceholderText(QCoreApplication.translate("LogecC3", u"127.0.0.1", None))
+        self.label_25.setText(QCoreApplication.translate("LogecC3", u"IP", None))
+        self.label_26.setText(QCoreApplication.translate("LogecC3", u"Connection Options", None))
+        self.label_16.setText(QCoreApplication.translate("LogecC3", u"Save Name", None))
+        self.lineEdit_7.setText("")
+        self.lineEdit_7.setPlaceholderText(QCoreApplication.translate("LogecC3", u"NotAMaliciousFile", None))
+        self.label_17.setText(QCoreApplication.translate("LogecC3", u"Compile Flags", None))
+        self.pushButton_8.setText(QCoreApplication.translate("LogecC3", u"Browse", None))
+        self.label_20.setText(QCoreApplication.translate("LogecC3", u"Compile Options", None))
+        self.lineEdit_8.setPlaceholderText(QCoreApplication.translate("LogecC3", u"-Wall", None))
+        self.lineEdit_9.setPlaceholderText(QCoreApplication.translate("LogecC3", u"/opt/payloads", None))
+        self.label_23.setText(QCoreApplication.translate("LogecC3", u"Save Location", None))
+        self.pushButton_6.setText(QCoreApplication.translate("LogecC3", u"Copy code to clipboard", None))
+        self.pushButton_7.setText(QCoreApplication.translate("LogecC3", u"Compile", None))
+        self.bashbuild_toolBox_2.setItemText(self.bashbuild_toolBox_2.indexOf(self.page_13), QCoreApplication.translate("LogecC3", u"C#", None))
+        self.lineEdit_13.setPlaceholderText(QCoreApplication.translate("LogecC3", u"8080", None))
+        self.label_27.setText(QCoreApplication.translate("LogecC3", u"Port", None))
+        self.lineEdit_14.setPlaceholderText(QCoreApplication.translate("LogecC3", u"127.0.0.1", None))
+        self.label_28.setText(QCoreApplication.translate("LogecC3", u"IP", None))
+        self.label_29.setText(QCoreApplication.translate("LogecC3", u"Connection Options", None))
+        self.pushButton_12.setText(QCoreApplication.translate("LogecC3", u"Copy to Clipboard", None))
+        self.pushButton_9.setText(QCoreApplication.translate("LogecC3", u"Save to File", None))
+        self.pushButton_10.setText(QCoreApplication.translate("LogecC3", u"Compile (Nuitka)", None))
+        self.label_30.setText(QCoreApplication.translate("LogecC3", u"Save Name", None))
+        self.lineEdit_15.setText("")
+        self.lineEdit_15.setPlaceholderText(QCoreApplication.translate("LogecC3", u"NotAMaliciousFile", None))
+        self.label_31.setText(QCoreApplication.translate("LogecC3", u"Compile Flags", None))
+        self.pushButton_11.setText(QCoreApplication.translate("LogecC3", u"Browse", None))
+        self.label_33.setText(QCoreApplication.translate("LogecC3", u"Compile Options", None))
+        self.lineEdit_16.setPlaceholderText(QCoreApplication.translate("LogecC3", u"-Wall", None))
+        self.lineEdit_17.setPlaceholderText(QCoreApplication.translate("LogecC3", u"/opt/payloads", None))
+        self.label_35.setText(QCoreApplication.translate("LogecC3", u"Save Location", None))
+        self.bashbuild_toolBox_2.setItemText(self.bashbuild_toolBox_2.indexOf(self.page_9), QCoreApplication.translate("LogecC3", u"Python", None))
+        self.tabWidget_8.setTabText(self.tabWidget_8.indexOf(self.tab_2), QCoreApplication.translate("LogecC3", u"Agent Builder", None))
         self.main_tab_widget.setTabText(self.main_tab_widget.indexOf(self.tab_22), QCoreApplication.translate("LogecC3", u"Payload Builder N Stuff", None))
         self.DB_Query_main.setText("")
         self.DB_Query_main.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Enter SQL Query! Type !_help for help! ", None))
