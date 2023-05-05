@@ -69,7 +69,7 @@ class MClient:
         elif command == "" or command.lower() == "help":
             help_command = "Python Agent Help Menu:\n\n" \
             "help: Shows the help data\n" \
-            "\n[System]" \
+            "\n[System]\n" \
             "run-command COMMAND: Runs a command on the system. Platform agnostic\n"
 
             return help_command
