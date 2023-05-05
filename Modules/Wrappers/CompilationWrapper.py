@@ -216,7 +216,7 @@ class NuitkaWrapper: #(QObject):
         ## Very open to vulns... needs some saftey checks, around flags & cmd injection too
         ## the outputdir arg dumps everything into a directory
         nuitka_command = f"python -m nuitka {self.codefile} -output-dir={self.savefile} " \
-                         f"--output-filename={self.savefile_name} --onefile {flags}"
+                         f"--output-filename={self.savefile_name} --onefile {flags} --remove-output"
         logging.debug(f"[CompilationWrapper(GCC: format_compile_command)] Formatted Command: {nuitka_command}")
         return nuitka_command
 
