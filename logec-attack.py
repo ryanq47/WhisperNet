@@ -835,7 +835,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 ####################
 ## Payload Builder & wrapper
 ####################
-    """ The idea here is that you cn build payloads easily, wheter that be in 
+    """The idea here is that you cn build payloads easily, wheter that be in 
 python, bash, powershell, c, C# etc. Really, this benefits me just as much as anyone else, 
 as I get to learn all these fun ways of doing things in different scripting languages
     """
