@@ -1,0 +1,47 @@
+name: Python (logec) Compile & Publish via Nuitka
+on:
+  push:
+    tags:
+      - '*'
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Nuitka
+        run: |
+          sudo apt update
+          sudo apt install -y python3-pip
+          #pip3 install nuitka
+          pip3 -r install requirements.txt
+ 
+ 
+      - name: Compile Python code with Nuitka
+        # nuitka command here
+        run: make compile 
+ 
+      - name: Create release and upload compiled code
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Ubuntu Release ${{ github.ref }}
+          body: |
+            Logec-Suite Compiled
+          draft: false
+          prerelease: false
+        ## need to figure out folder structure b4 upload
+      - name: Upload compiled code
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          # location of files
+          asset_path: ./logec-suite
+          # what to name the zip file
+          asset_name: logec-suite.zip
+          asset_content_type: application/zip
