@@ -1,4 +1,5 @@
 Alrighty... Reducing this project down to just the c2/vuln side of things. I love working on the other tools (portscan, etc) but it's a tad bit too much for me to handle/deliver a useable product at the moment with school + work :) <br>
+ 
 
 New Scope: C2 tool with easy exploitation & payload delivery.  <br>
  <br>
