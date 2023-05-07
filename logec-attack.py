@@ -59,6 +59,10 @@ from Modules.General.ScriptGen import ScriptGen
 from Modules.General.SysShell.shell import Shell
 import Modules.General.utility as utility
 from Modules.ExploitNVulns.exploitdb import LogecExploitdb
+from Modules.Wrappers.CompilationWrapper import (
+    GccWrapper,
+    NuitkaWrapper
+)
 
 from agent.friendly_client import FClient
 
@@ -102,6 +106,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.init_buttons_exploitandvuln()
         self.init_buttons_performance_benchmarks()
         self.init_buttons_settings_settings()
+        self.init_buttons_compile_toolbox()
 
         ##== Data / Tab Inits 
         ## Graphs are using lots of CPU, disabled for now.
@@ -245,6 +250,9 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.settings_reload.clicked.connect(self.edit_settings)
         self.settings_write.clicked.connect(self.write_settings)
         self.program_reload.clicked.connect(self.restart)
+
+    def init_buttons_compile_toolbox(self):
+        self.agentbuilder_toolbox_python_compile_button.clicked.connect(self.python_compile)
 
     ####################
     ## Data / Tab Inits
@@ -825,12 +833,27 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             self.exploitandvuln_tableview.setItem(0, 0, QTableWidgetItem("search yeilded no results"))
 
 ####################
-## Payload Builder
+## Payload Builder & wrapper
 ####################
     """ The idea here is that you cn build payloads easily, wheter that be in 
 python, bash, powershell, c, C# etc. Really, this benefits me just as much as anyone else, 
 as I get to learn all these fun ways of doing things in different scripting languages
     """
+    def python_compile(self):
+        self.nuitka_worker = NuitkaWrapper(
+            codefile=f"{sys_path}/agent/python/client.py",
+            savefile=self.agentbuilder_toolbox_python_compile_savedir.text(),
+            savefile_name=self.agentbuilder_toolbox_python_compile_savename.text(),
+            flags=self.agentbuilder_toolbox_python_compile_flags.text(),
+            process_timeout=self.agentbuilder_toolbox_python_compile_timeout.value(),
+        )
+        self.thread_manager.start(self.nuitka_worker.compile_framework())
+        ##not wokring :(
+        self.nuitka_worker.Update.connect(
+            ## supposed to be a short update function for the GUI compilation log
+            lambda x, text="text": self.agentbuilder_compilation_log.setText(text)
+        )
+
 
 
 ###################

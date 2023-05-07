@@ -20,9 +20,9 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
     QGraphicsView, QGridLayout, QGroupBox, QHBoxLayout,
     QHeaderView, QLCDNumber, QLabel, QLayout,
     QLineEdit, QMainWindow, QMenu, QMenuBar,
-    QPushButton, QSizePolicy, QSpacerItem, QTabWidget,
-    QTableWidget, QTableWidgetItem, QTextEdit, QToolBox,
-    QWidget)
+    QPushButton, QSizePolicy, QSpacerItem, QSpinBox,
+    QTabWidget, QTableWidget, QTableWidgetItem, QTextEdit,
+    QToolBox, QWidget)
 
 class Ui_LogecC3(object):
     def setupUi(self, LogecC3):
@@ -413,13 +413,13 @@ class Ui_LogecC3(object):
         self.tab_2.setObjectName(u"tab_2")
         self.gridLayout_2 = QGridLayout(self.tab_2)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.bashbuild_textoutput_2 = QTextEdit(self.tab_2)
-        self.bashbuild_textoutput_2.setObjectName(u"bashbuild_textoutput_2")
+        self.agentbuilder_compilation_log = QTextEdit(self.tab_2)
+        self.agentbuilder_compilation_log.setObjectName(u"agentbuilder_compilation_log")
 
-        self.gridLayout_2.addWidget(self.bashbuild_textoutput_2, 0, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.agentbuilder_compilation_log, 0, 1, 1, 1)
 
-        self.bashbuild_toolBox_2 = QToolBox(self.tab_2)
-        self.bashbuild_toolBox_2.setObjectName(u"bashbuild_toolBox_2")
+        self.agentbuilder_toolbox = QToolBox(self.tab_2)
+        self.agentbuilder_toolbox.setObjectName(u"agentbuilder_toolbox")
         self.page_22 = QWidget()
         self.page_22.setObjectName(u"page_22")
         self.page_22.setGeometry(QRect(0, 0, 756, 645))
@@ -540,10 +540,23 @@ class Ui_LogecC3(object):
 
         self.gridLayout_5.addWidget(self.label_11, 3, 0, 1, 1)
 
+        self.label_37 = QLabel(self.page_22)
+        self.label_37.setObjectName(u"label_37")
+
+        self.gridLayout_5.addWidget(self.label_37, 1, 2, 1, 1)
+
+        self.spinBox_2 = QSpinBox(self.page_22)
+        self.spinBox_2.setObjectName(u"spinBox_2")
+        self.spinBox_2.setMinimum(1)
+        self.spinBox_2.setMaximum(5000)
+        self.spinBox_2.setValue(60)
+
+        self.gridLayout_5.addWidget(self.spinBox_2, 2, 2, 1, 1)
+
 
         self.gridLayout_11.addLayout(self.gridLayout_5, 4, 0, 1, 2)
 
-        self.bashbuild_toolBox_2.addItem(self.page_22, u"C")
+        self.agentbuilder_toolbox.addItem(self.page_22, u"C")
         self.page_13 = QWidget()
         self.page_13.setObjectName(u"page_13")
         self.page_13.setGeometry(QRect(0, 0, 756, 645))
@@ -583,69 +596,16 @@ class Ui_LogecC3(object):
 
         self.gridLayout_15.addLayout(self.gridLayout_14, 0, 0, 1, 2)
 
+        self.verticalSpacer_3 = QSpacerItem(20, 294, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_15.addItem(self.verticalSpacer_3, 3, 0, 1, 1)
+
         self.line_3 = QFrame(self.page_13)
         self.line_3.setObjectName(u"line_3")
         self.line_3.setFrameShape(QFrame.HLine)
         self.line_3.setFrameShadow(QFrame.Sunken)
 
         self.gridLayout_15.addWidget(self.line_3, 1, 0, 1, 2)
-
-        self.gridLayout_13 = QGridLayout()
-        self.gridLayout_13.setObjectName(u"gridLayout_13")
-        self.label_16 = QLabel(self.page_13)
-        self.label_16.setObjectName(u"label_16")
-
-        self.gridLayout_13.addWidget(self.label_16, 3, 2, 1, 1)
-
-        self.lineEdit_7 = QLineEdit(self.page_13)
-        self.lineEdit_7.setObjectName(u"lineEdit_7")
-        self.lineEdit_7.setMaximumSize(QSize(16777215, 16777215))
-
-        self.gridLayout_13.addWidget(self.lineEdit_7, 6, 2, 1, 1)
-
-        self.label_17 = QLabel(self.page_13)
-        self.label_17.setObjectName(u"label_17")
-
-        self.gridLayout_13.addWidget(self.label_17, 1, 0, 1, 1)
-
-        self.pushButton_8 = QPushButton(self.page_13)
-        self.pushButton_8.setObjectName(u"pushButton_8")
-        self.pushButton_8.setMaximumSize(QSize(75, 16777215))
-
-        self.gridLayout_13.addWidget(self.pushButton_8, 6, 1, 1, 1)
-
-        self.label_20 = QLabel(self.page_13)
-        self.label_20.setObjectName(u"label_20")
-        self.label_20.setFont(font3)
-        self.label_20.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout_13.addWidget(self.label_20, 0, 0, 1, 3)
-
-        self.lineEdit_8 = QLineEdit(self.page_13)
-        self.lineEdit_8.setObjectName(u"lineEdit_8")
-
-        self.gridLayout_13.addWidget(self.lineEdit_8, 2, 0, 1, 1)
-
-        self.lineEdit_9 = QLineEdit(self.page_13)
-        self.lineEdit_9.setObjectName(u"lineEdit_9")
-
-        self.gridLayout_13.addWidget(self.lineEdit_9, 6, 0, 1, 1)
-
-        self.label_23 = QLabel(self.page_13)
-        self.label_23.setObjectName(u"label_23")
-
-        self.gridLayout_13.addWidget(self.label_23, 3, 0, 1, 1)
-
-
-        self.gridLayout_15.addLayout(self.gridLayout_13, 2, 0, 1, 2)
-
-        self.verticalSpacer_3 = QSpacerItem(20, 294, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.gridLayout_15.addItem(self.verticalSpacer_3, 3, 0, 1, 1)
-
-        self.verticalSpacer_4 = QSpacerItem(20, 294, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.gridLayout_15.addItem(self.verticalSpacer_4, 3, 1, 1, 1)
 
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
@@ -663,39 +623,111 @@ class Ui_LogecC3(object):
 
         self.gridLayout_15.addLayout(self.horizontalLayout_3, 4, 0, 1, 2)
 
-        self.bashbuild_toolBox_2.addItem(self.page_13, u"C#")
+        self.verticalSpacer_4 = QSpacerItem(20, 294, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_15.addItem(self.verticalSpacer_4, 3, 1, 1, 1)
+
+        self.gridLayout_13 = QGridLayout()
+        self.gridLayout_13.setObjectName(u"gridLayout_13")
+        self.label_16 = QLabel(self.page_13)
+        self.label_16.setObjectName(u"label_16")
+
+        self.gridLayout_13.addWidget(self.label_16, 3, 2, 1, 1)
+
+        self.pushButton_8 = QPushButton(self.page_13)
+        self.pushButton_8.setObjectName(u"pushButton_8")
+        self.pushButton_8.setMaximumSize(QSize(75, 16777215))
+
+        self.gridLayout_13.addWidget(self.pushButton_8, 6, 1, 1, 1)
+
+        self.label_17 = QLabel(self.page_13)
+        self.label_17.setObjectName(u"label_17")
+
+        self.gridLayout_13.addWidget(self.label_17, 1, 0, 1, 1)
+
+        self.lineEdit_8 = QLineEdit(self.page_13)
+        self.lineEdit_8.setObjectName(u"lineEdit_8")
+
+        self.gridLayout_13.addWidget(self.lineEdit_8, 2, 0, 1, 1)
+
+        self.lineEdit_7 = QLineEdit(self.page_13)
+        self.lineEdit_7.setObjectName(u"lineEdit_7")
+        self.lineEdit_7.setMaximumSize(QSize(16777215, 16777215))
+
+        self.gridLayout_13.addWidget(self.lineEdit_7, 6, 2, 1, 1)
+
+        self.label_20 = QLabel(self.page_13)
+        self.label_20.setObjectName(u"label_20")
+        self.label_20.setFont(font3)
+        self.label_20.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_13.addWidget(self.label_20, 0, 0, 1, 3)
+
+        self.label_23 = QLabel(self.page_13)
+        self.label_23.setObjectName(u"label_23")
+
+        self.gridLayout_13.addWidget(self.label_23, 3, 0, 1, 1)
+
+        self.lineEdit_9 = QLineEdit(self.page_13)
+        self.lineEdit_9.setObjectName(u"lineEdit_9")
+
+        self.gridLayout_13.addWidget(self.lineEdit_9, 6, 0, 1, 1)
+
+
+        self.gridLayout_15.addLayout(self.gridLayout_13, 2, 0, 1, 2)
+
+        self.agentbuilder_toolbox.addItem(self.page_13, u"C#")
         self.page_9 = QWidget()
         self.page_9.setObjectName(u"page_9")
+        self.page_9.setGeometry(QRect(0, 0, 756, 645))
         self.gridLayout_19 = QGridLayout(self.page_9)
         self.gridLayout_19.setObjectName(u"gridLayout_19")
         self.gridLayout_16 = QGridLayout()
         self.gridLayout_16.setObjectName(u"gridLayout_16")
-        self.lineEdit_13 = QLineEdit(self.page_9)
-        self.lineEdit_13.setObjectName(u"lineEdit_13")
+        self.agentbuilder_toolbox_python_ip = QLineEdit(self.page_9)
+        self.agentbuilder_toolbox_python_ip.setObjectName(u"agentbuilder_toolbox_python_ip")
 
-        self.gridLayout_16.addWidget(self.lineEdit_13, 4, 0, 1, 1)
+        self.gridLayout_16.addWidget(self.agentbuilder_toolbox_python_ip, 2, 0, 1, 1)
 
-        self.label_27 = QLabel(self.page_9)
-        self.label_27.setObjectName(u"label_27")
+        self.agentbuilder_toolbox_python_port = QLineEdit(self.page_9)
+        self.agentbuilder_toolbox_python_port.setObjectName(u"agentbuilder_toolbox_python_port")
 
-        self.gridLayout_16.addWidget(self.label_27, 3, 0, 1, 1)
-
-        self.lineEdit_14 = QLineEdit(self.page_9)
-        self.lineEdit_14.setObjectName(u"lineEdit_14")
-
-        self.gridLayout_16.addWidget(self.lineEdit_14, 2, 0, 1, 1)
-
-        self.label_28 = QLabel(self.page_9)
-        self.label_28.setObjectName(u"label_28")
-
-        self.gridLayout_16.addWidget(self.label_28, 1, 0, 1, 1)
+        self.gridLayout_16.addWidget(self.agentbuilder_toolbox_python_port, 4, 0, 1, 1)
 
         self.label_29 = QLabel(self.page_9)
         self.label_29.setObjectName(u"label_29")
         self.label_29.setFont(font4)
         self.label_29.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_16.addWidget(self.label_29, 0, 0, 1, 1)
+        self.gridLayout_16.addWidget(self.label_29, 0, 0, 1, 2)
+
+        self.label_28 = QLabel(self.page_9)
+        self.label_28.setObjectName(u"label_28")
+
+        self.gridLayout_16.addWidget(self.label_28, 1, 0, 1, 1)
+
+        self.label_27 = QLabel(self.page_9)
+        self.label_27.setObjectName(u"label_27")
+
+        self.gridLayout_16.addWidget(self.label_27, 3, 0, 1, 1)
+
+        self.spinBox = QSpinBox(self.page_9)
+        self.spinBox.setObjectName(u"spinBox")
+        self.spinBox.setMinimum(1)
+        self.spinBox.setMaximum(999999999)
+        self.spinBox.setValue(60)
+
+        self.gridLayout_16.addWidget(self.spinBox, 4, 1, 1, 1)
+
+        self.label_38 = QLabel(self.page_9)
+        self.label_38.setObjectName(u"label_38")
+
+        self.gridLayout_16.addWidget(self.label_38, 3, 1, 1, 1)
+
+        self.lineEdit_13 = QLineEdit(self.page_9)
+        self.lineEdit_13.setObjectName(u"lineEdit_13")
+
+        self.gridLayout_16.addWidget(self.lineEdit_13, 2, 1, 1, 1)
 
 
         self.gridLayout_19.addLayout(self.gridLayout_16, 0, 0, 1, 2)
@@ -703,20 +735,20 @@ class Ui_LogecC3(object):
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.horizontalLayout_4.setSizeConstraint(QLayout.SetDefaultConstraint)
-        self.pushButton_12 = QPushButton(self.page_9)
-        self.pushButton_12.setObjectName(u"pushButton_12")
+        self.agentbuilder_toolbox_python_copy_to_clipboard = QPushButton(self.page_9)
+        self.agentbuilder_toolbox_python_copy_to_clipboard.setObjectName(u"agentbuilder_toolbox_python_copy_to_clipboard")
 
-        self.horizontalLayout_4.addWidget(self.pushButton_12)
+        self.horizontalLayout_4.addWidget(self.agentbuilder_toolbox_python_copy_to_clipboard)
 
-        self.pushButton_9 = QPushButton(self.page_9)
-        self.pushButton_9.setObjectName(u"pushButton_9")
+        self.agentbuilder_toolbox_python_save_to_file = QPushButton(self.page_9)
+        self.agentbuilder_toolbox_python_save_to_file.setObjectName(u"agentbuilder_toolbox_python_save_to_file")
 
-        self.horizontalLayout_4.addWidget(self.pushButton_9)
+        self.horizontalLayout_4.addWidget(self.agentbuilder_toolbox_python_save_to_file)
 
-        self.pushButton_10 = QPushButton(self.page_9)
-        self.pushButton_10.setObjectName(u"pushButton_10")
+        self.agentbuilder_toolbox_python_compile_button = QPushButton(self.page_9)
+        self.agentbuilder_toolbox_python_compile_button.setObjectName(u"agentbuilder_toolbox_python_compile_button")
 
-        self.horizontalLayout_4.addWidget(self.pushButton_10)
+        self.horizontalLayout_4.addWidget(self.agentbuilder_toolbox_python_compile_button)
 
 
         self.gridLayout_19.addLayout(self.horizontalLayout_4, 3, 0, 1, 2)
@@ -731,27 +763,32 @@ class Ui_LogecC3(object):
 
         self.gridLayout_18 = QGridLayout()
         self.gridLayout_18.setObjectName(u"gridLayout_18")
-        self.label_30 = QLabel(self.page_9)
-        self.label_30.setObjectName(u"label_30")
+        self.agentbuilder_toolbox_python_compile_savedir_browse = QPushButton(self.page_9)
+        self.agentbuilder_toolbox_python_compile_savedir_browse.setObjectName(u"agentbuilder_toolbox_python_compile_savedir_browse")
+        self.agentbuilder_toolbox_python_compile_savedir_browse.setMaximumSize(QSize(75, 16777215))
 
-        self.gridLayout_18.addWidget(self.label_30, 3, 2, 1, 1)
-
-        self.lineEdit_15 = QLineEdit(self.page_9)
-        self.lineEdit_15.setObjectName(u"lineEdit_15")
-        self.lineEdit_15.setMaximumSize(QSize(16777215, 16777215))
-
-        self.gridLayout_18.addWidget(self.lineEdit_15, 6, 2, 1, 1)
+        self.gridLayout_18.addWidget(self.agentbuilder_toolbox_python_compile_savedir_browse, 7, 1, 1, 1)
 
         self.label_31 = QLabel(self.page_9)
         self.label_31.setObjectName(u"label_31")
 
-        self.gridLayout_18.addWidget(self.label_31, 1, 0, 1, 1)
+        self.gridLayout_18.addWidget(self.label_31, 2, 0, 1, 1)
 
-        self.pushButton_11 = QPushButton(self.page_9)
-        self.pushButton_11.setObjectName(u"pushButton_11")
-        self.pushButton_11.setMaximumSize(QSize(75, 16777215))
+        self.label_30 = QLabel(self.page_9)
+        self.label_30.setObjectName(u"label_30")
 
-        self.gridLayout_18.addWidget(self.pushButton_11, 6, 1, 1, 1)
+        self.gridLayout_18.addWidget(self.label_30, 4, 2, 1, 1)
+
+        self.agentbuilder_toolbox_python_compile_flags = QLineEdit(self.page_9)
+        self.agentbuilder_toolbox_python_compile_flags.setObjectName(u"agentbuilder_toolbox_python_compile_flags")
+
+        self.gridLayout_18.addWidget(self.agentbuilder_toolbox_python_compile_flags, 3, 0, 1, 1)
+
+        self.agentbuilder_toolbox_python_compile_savename = QLineEdit(self.page_9)
+        self.agentbuilder_toolbox_python_compile_savename.setObjectName(u"agentbuilder_toolbox_python_compile_savename")
+        self.agentbuilder_toolbox_python_compile_savename.setMaximumSize(QSize(16777215, 16777215))
+
+        self.gridLayout_18.addWidget(self.agentbuilder_toolbox_python_compile_savename, 7, 2, 1, 1)
 
         self.label_33 = QLabel(self.page_9)
         self.label_33.setObjectName(u"label_33")
@@ -760,27 +797,35 @@ class Ui_LogecC3(object):
 
         self.gridLayout_18.addWidget(self.label_33, 0, 0, 1, 3)
 
-        self.lineEdit_16 = QLineEdit(self.page_9)
-        self.lineEdit_16.setObjectName(u"lineEdit_16")
+        self.agentbuilder_toolbox_python_compile_savedir = QLineEdit(self.page_9)
+        self.agentbuilder_toolbox_python_compile_savedir.setObjectName(u"agentbuilder_toolbox_python_compile_savedir")
 
-        self.gridLayout_18.addWidget(self.lineEdit_16, 2, 0, 1, 1)
-
-        self.lineEdit_17 = QLineEdit(self.page_9)
-        self.lineEdit_17.setObjectName(u"lineEdit_17")
-
-        self.gridLayout_18.addWidget(self.lineEdit_17, 6, 0, 1, 1)
+        self.gridLayout_18.addWidget(self.agentbuilder_toolbox_python_compile_savedir, 7, 0, 1, 1)
 
         self.label_35 = QLabel(self.page_9)
         self.label_35.setObjectName(u"label_35")
 
-        self.gridLayout_18.addWidget(self.label_35, 3, 0, 1, 1)
+        self.gridLayout_18.addWidget(self.label_35, 4, 0, 1, 1)
+
+        self.label_36 = QLabel(self.page_9)
+        self.label_36.setObjectName(u"label_36")
+
+        self.gridLayout_18.addWidget(self.label_36, 2, 2, 1, 1)
+
+        self.agentbuilder_toolbox_python_compile_timeout = QSpinBox(self.page_9)
+        self.agentbuilder_toolbox_python_compile_timeout.setObjectName(u"agentbuilder_toolbox_python_compile_timeout")
+        self.agentbuilder_toolbox_python_compile_timeout.setMinimum(1)
+        self.agentbuilder_toolbox_python_compile_timeout.setMaximum(5000)
+        self.agentbuilder_toolbox_python_compile_timeout.setValue(120)
+
+        self.gridLayout_18.addWidget(self.agentbuilder_toolbox_python_compile_timeout, 3, 2, 1, 1)
 
 
         self.gridLayout_19.addLayout(self.gridLayout_18, 1, 0, 1, 2)
 
-        self.bashbuild_toolBox_2.addItem(self.page_9, u"Python")
+        self.agentbuilder_toolbox.addItem(self.page_9, u"Python")
 
-        self.gridLayout_2.addWidget(self.bashbuild_toolBox_2, 0, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.agentbuilder_toolbox, 0, 0, 1, 1)
 
         self.tabWidget_8.addTab(self.tab_2, "")
 
@@ -1605,7 +1650,7 @@ class Ui_LogecC3(object):
         self.bruteforce_panel_2.setCurrentIndex(0)
         self.c2_shell_tab.setCurrentIndex(0)
         self.tabWidget_8.setCurrentIndex(1)
-        self.bashbuild_toolBox_2.setCurrentIndex(2)
+        self.agentbuilder_toolbox.setCurrentIndex(2)
         self.tabWidget_2.setCurrentIndex(0)
         self.tabWidget_10.setCurrentIndex(0)
         self.tabWidget_16.setCurrentIndex(0)
@@ -1776,7 +1821,7 @@ class Ui_LogecC3(object):
         self.exploitandvuln_search.setText("")
         self.exploitandvuln_search.setPlaceholderText(QCoreApplication.translate("LogecC3", u"Enter search", None))
         self.tabWidget_8.setTabText(self.tabWidget_8.indexOf(self.tab), QCoreApplication.translate("LogecC3", u"ExploitAndVulnSearch", None))
-        self.bashbuild_textoutput_2.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.agentbuilder_compilation_log.setHtml(QCoreApplication.translate("LogecC3", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Cantarell'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
@@ -1795,46 +1840,61 @@ class Ui_LogecC3(object):
         self.lineEdit_6.setPlaceholderText(QCoreApplication.translate("LogecC3", u"NotAMaliciousFile", None))
         self.label.setText(QCoreApplication.translate("LogecC3", u"Compile Flags", None))
         self.pushButton_5.setText(QCoreApplication.translate("LogecC3", u"Browse", None))
-        self.label_15.setText(QCoreApplication.translate("LogecC3", u"Compile Options", None))
+        self.label_15.setText(QCoreApplication.translate("LogecC3", u"Compile Options (GCC)", None))
         self.lineEdit_3.setPlaceholderText(QCoreApplication.translate("LogecC3", u"-Wall", None))
         self.lineEdit_4.setPlaceholderText(QCoreApplication.translate("LogecC3", u"/opt/payloads", None))
         self.label_11.setText(QCoreApplication.translate("LogecC3", u"Save Location", None))
-        self.bashbuild_toolBox_2.setItemText(self.bashbuild_toolBox_2.indexOf(self.page_22), QCoreApplication.translate("LogecC3", u"C", None))
+#if QT_CONFIG(tooltip)
+        self.label_37.setToolTip(QCoreApplication.translate("LogecC3", u"If the process takes longer than this value, kill. (due to this being a wrapper, this helps combat rogue processes)", None))
+#endif // QT_CONFIG(tooltip)
+        self.label_37.setText(QCoreApplication.translate("LogecC3", u"Process Timeout (Seconds)", None))
+#if QT_CONFIG(tooltip)
+        self.spinBox_2.setToolTip(QCoreApplication.translate("LogecC3", u"If the process takes longer than this value, kill. (due to this being a wrapper, this helps combat rogue processes)", None))
+#endif // QT_CONFIG(tooltip)
+        self.agentbuilder_toolbox.setItemText(self.agentbuilder_toolbox.indexOf(self.page_22), QCoreApplication.translate("LogecC3", u"C", None))
         self.lineEdit_11.setPlaceholderText(QCoreApplication.translate("LogecC3", u"8080", None))
         self.label_24.setText(QCoreApplication.translate("LogecC3", u"Port", None))
         self.lineEdit_12.setPlaceholderText(QCoreApplication.translate("LogecC3", u"127.0.0.1", None))
         self.label_25.setText(QCoreApplication.translate("LogecC3", u"IP", None))
         self.label_26.setText(QCoreApplication.translate("LogecC3", u"Connection Options", None))
-        self.label_16.setText(QCoreApplication.translate("LogecC3", u"Save Name", None))
-        self.lineEdit_7.setText("")
-        self.lineEdit_7.setPlaceholderText(QCoreApplication.translate("LogecC3", u"NotAMaliciousFile", None))
-        self.label_17.setText(QCoreApplication.translate("LogecC3", u"Compile Flags", None))
-        self.pushButton_8.setText(QCoreApplication.translate("LogecC3", u"Browse", None))
-        self.label_20.setText(QCoreApplication.translate("LogecC3", u"Compile Options", None))
-        self.lineEdit_8.setPlaceholderText(QCoreApplication.translate("LogecC3", u"-Wall", None))
-        self.lineEdit_9.setPlaceholderText(QCoreApplication.translate("LogecC3", u"/opt/payloads", None))
-        self.label_23.setText(QCoreApplication.translate("LogecC3", u"Save Location", None))
         self.pushButton_6.setText(QCoreApplication.translate("LogecC3", u"Copy code to clipboard", None))
         self.pushButton_7.setText(QCoreApplication.translate("LogecC3", u"Compile", None))
-        self.bashbuild_toolBox_2.setItemText(self.bashbuild_toolBox_2.indexOf(self.page_13), QCoreApplication.translate("LogecC3", u"C#", None))
-        self.lineEdit_13.setPlaceholderText(QCoreApplication.translate("LogecC3", u"8080", None))
-        self.label_27.setText(QCoreApplication.translate("LogecC3", u"Port", None))
-        self.lineEdit_14.setPlaceholderText(QCoreApplication.translate("LogecC3", u"127.0.0.1", None))
-        self.label_28.setText(QCoreApplication.translate("LogecC3", u"IP", None))
+        self.label_16.setText(QCoreApplication.translate("LogecC3", u"Save Name", None))
+        self.pushButton_8.setText(QCoreApplication.translate("LogecC3", u"Browse", None))
+        self.label_17.setText(QCoreApplication.translate("LogecC3", u"Compile Flags", None))
+        self.lineEdit_8.setPlaceholderText(QCoreApplication.translate("LogecC3", u"-Wall", None))
+        self.lineEdit_7.setText("")
+        self.lineEdit_7.setPlaceholderText(QCoreApplication.translate("LogecC3", u"NotAMaliciousFile", None))
+        self.label_20.setText(QCoreApplication.translate("LogecC3", u"Compile Options", None))
+        self.label_23.setText(QCoreApplication.translate("LogecC3", u"Save Location", None))
+        self.lineEdit_9.setPlaceholderText(QCoreApplication.translate("LogecC3", u"/opt/payloads", None))
+        self.agentbuilder_toolbox.setItemText(self.agentbuilder_toolbox.indexOf(self.page_13), QCoreApplication.translate("LogecC3", u"C#", None))
+        self.agentbuilder_toolbox_python_ip.setPlaceholderText(QCoreApplication.translate("LogecC3", u"127.0.0.1", None))
+        self.agentbuilder_toolbox_python_port.setPlaceholderText(QCoreApplication.translate("LogecC3", u"8080", None))
         self.label_29.setText(QCoreApplication.translate("LogecC3", u"Connection Options", None))
-        self.pushButton_12.setText(QCoreApplication.translate("LogecC3", u"Copy to Clipboard", None))
-        self.pushButton_9.setText(QCoreApplication.translate("LogecC3", u"Save to File", None))
-        self.pushButton_10.setText(QCoreApplication.translate("LogecC3", u"Compile (Nuitka)", None))
-        self.label_30.setText(QCoreApplication.translate("LogecC3", u"Save Name", None))
-        self.lineEdit_15.setText("")
-        self.lineEdit_15.setPlaceholderText(QCoreApplication.translate("LogecC3", u"NotAMaliciousFile", None))
+        self.label_28.setText(QCoreApplication.translate("LogecC3", u"IP", None))
+        self.label_27.setText(QCoreApplication.translate("LogecC3", u"Port", None))
+        self.label_38.setText(QCoreApplication.translate("LogecC3", u"Initial Heartbeat interval (seconds)", None))
+        self.agentbuilder_toolbox_python_copy_to_clipboard.setText(QCoreApplication.translate("LogecC3", u"Copy to Clipboard", None))
+        self.agentbuilder_toolbox_python_save_to_file.setText(QCoreApplication.translate("LogecC3", u"Save to File", None))
+        self.agentbuilder_toolbox_python_compile_button.setText(QCoreApplication.translate("LogecC3", u"Compile (Nuitka)", None))
+        self.agentbuilder_toolbox_python_compile_savedir_browse.setText(QCoreApplication.translate("LogecC3", u"Browse", None))
         self.label_31.setText(QCoreApplication.translate("LogecC3", u"Compile Flags", None))
-        self.pushButton_11.setText(QCoreApplication.translate("LogecC3", u"Browse", None))
-        self.label_33.setText(QCoreApplication.translate("LogecC3", u"Compile Options", None))
-        self.lineEdit_16.setPlaceholderText(QCoreApplication.translate("LogecC3", u"-Wall", None))
-        self.lineEdit_17.setPlaceholderText(QCoreApplication.translate("LogecC3", u"/opt/payloads", None))
+        self.label_30.setText(QCoreApplication.translate("LogecC3", u"Save Name", None))
+        self.agentbuilder_toolbox_python_compile_flags.setPlaceholderText(QCoreApplication.translate("LogecC3", u"-Wall", None))
+        self.agentbuilder_toolbox_python_compile_savename.setText("")
+        self.agentbuilder_toolbox_python_compile_savename.setPlaceholderText(QCoreApplication.translate("LogecC3", u"NotAMaliciousFile", None))
+        self.label_33.setText(QCoreApplication.translate("LogecC3", u"Compile Options (Nuitka)", None))
+        self.agentbuilder_toolbox_python_compile_savedir.setPlaceholderText(QCoreApplication.translate("LogecC3", u"/opt/payloads", None))
         self.label_35.setText(QCoreApplication.translate("LogecC3", u"Save Location", None))
-        self.bashbuild_toolBox_2.setItemText(self.bashbuild_toolBox_2.indexOf(self.page_9), QCoreApplication.translate("LogecC3", u"Python", None))
+#if QT_CONFIG(tooltip)
+        self.label_36.setToolTip(QCoreApplication.translate("LogecC3", u"If the process takes longer than this value, kill. (due to this being a wrapper, this helps combat rogue processes)", None))
+#endif // QT_CONFIG(tooltip)
+        self.label_36.setText(QCoreApplication.translate("LogecC3", u"Process Timeout (Seconds)", None))
+#if QT_CONFIG(tooltip)
+        self.agentbuilder_toolbox_python_compile_timeout.setToolTip(QCoreApplication.translate("LogecC3", u"If the process takes longer than this value, kill. (due to this being a wrapper, this helps combat rogue processes)", None))
+#endif // QT_CONFIG(tooltip)
+        self.agentbuilder_toolbox.setItemText(self.agentbuilder_toolbox.indexOf(self.page_9), QCoreApplication.translate("LogecC3", u"Python", None))
         self.tabWidget_8.setTabText(self.tabWidget_8.indexOf(self.tab_2), QCoreApplication.translate("LogecC3", u"Agent Builder", None))
         self.main_tab_widget.setTabText(self.main_tab_widget.indexOf(self.tab_22), QCoreApplication.translate("LogecC3", u"Payload Builder N Stuff", None))
         self.DB_Query_main.setText("")

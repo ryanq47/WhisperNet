@@ -136,10 +136,12 @@ GCC = GccWrapper(codefile="/home/kali/PycharmProjects/logec-suite/agent/c/client
                  )
 GCC.compile_framework()'''
 
-class NuitkaWrapper: #(QObject):
+class NuitkaWrapper(QObject): #
     Error = Signal(str)
     Success = Signal(dict)
-    def __init__(self, codefile=None, savefile=None, savefile_name=None, flags=[""]):
+    Update = Signal(str)
+    def __init__(self, codefile=None, savefile=None, savefile_name=None, process_timeout=120, flags=[""]):
+        super().__init__()
         """
         The init function
 
@@ -157,6 +159,7 @@ class NuitkaWrapper: #(QObject):
         self.savefile = savefile
         ## name of the file to be saved (seperate on purpose)
         self.savefile_name = savefile_name
+        self.process_timeout = process_timeout
         self.flags = flags
 
 
@@ -164,6 +167,7 @@ class NuitkaWrapper: #(QObject):
         """ THis is the method to call to compile said items
         it will do error handling & handle calls to methods needed
         """
+        self.Update.emit("[CompilationWrapper(Nuitka)] Started process")
         if self.safe_to_compile():
             compilation_dict = self.compile(compile_command=self.format_compile_command())
             # if file exists
@@ -180,7 +184,7 @@ class NuitkaWrapper: #(QObject):
 
         try:
             output = subprocess.check_output(
-                compile_command, stderr=subprocess.STDOUT, shell=True, timeout=120,
+                compile_command, stderr=subprocess.STDOUT, shell=True, timeout=self.process_timeout,
                 universal_newlines=True)
         except subprocess.CalledProcessError as exc:
             logging.debug(f"[CompilationWrapper(GCC: compile)] Error when compiling: {exc.returncode, exc.output}")
@@ -250,10 +254,10 @@ class NuitkaWrapper: #(QObject):
         else:
             logging.debug(f"[CompilationWrapper(GCC: pathcheck)] '{filepath}' does not exist")
             return False
-
+'''
 NTKA = NuitkaWrapper(codefile="/home/kali/PycharmProjects/logec-suite/agent/python/client.py",
                  savefile="/home/kali/PycharmProjects/logec-suite/agent/compiled/",
                  savefile_name="python_test_compile_client",
                  #flags=["-Wall", "-Ofast"]
                  )
-NTKA.compile_framework()
+NTKA.compile_framework()'''

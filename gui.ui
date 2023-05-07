@@ -605,7 +605,7 @@ p, li { white-space: pre-wrap; }
            </attribute>
            <layout class="QGridLayout" name="gridLayout_2">
             <item row="0" column="1">
-             <widget class="QTextEdit" name="bashbuild_textoutput_2">
+             <widget class="QTextEdit" name="agentbuilder_compilation_log">
               <property name="html">
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -618,7 +618,7 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item row="0" column="0">
-             <widget class="QToolBox" name="bashbuild_toolBox_2">
+             <widget class="QToolBox" name="agentbuilder_toolbox">
               <property name="currentIndex">
                <number>2</number>
               </property>
@@ -788,7 +788,7 @@ p, li { white-space: pre-wrap; }
                      <font/>
                     </property>
                     <property name="text">
-                     <string>Compile Options</string>
+                     <string>Compile Options (GCC)</string>
                     </property>
                     <property name="alignment">
                      <set>Qt::AlignCenter</set>
@@ -813,6 +813,32 @@ p, li { white-space: pre-wrap; }
                    <widget class="QLabel" name="label_11">
                     <property name="text">
                      <string>Save Location</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="QLabel" name="label_37">
+                    <property name="toolTip">
+                     <string>If the process takes longer than this value, kill. (due to this being a wrapper, this helps combat rogue processes)</string>
+                    </property>
+                    <property name="text">
+                     <string>Process Timeout (Seconds)</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="2">
+                   <widget class="QSpinBox" name="spinBox_2">
+                    <property name="toolTip">
+                     <string>If the process takes longer than this value, kill. (due to this being a wrapper, this helps combat rogue processes)</string>
+                    </property>
+                    <property name="minimum">
+                     <number>1</number>
+                    </property>
+                    <property name="maximum">
+                     <number>5000</number>
+                    </property>
+                    <property name="value">
+                     <number>60</number>
                     </property>
                    </widget>
                   </item>
@@ -880,94 +906,6 @@ p, li { white-space: pre-wrap; }
                   </item>
                  </layout>
                 </item>
-                <item row="1" column="0" colspan="2">
-                 <widget class="Line" name="line_3">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="0" colspan="2">
-                 <layout class="QGridLayout" name="gridLayout_13">
-                  <item row="3" column="2">
-                   <widget class="QLabel" name="label_16">
-                    <property name="text">
-                     <string>Save Name</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="2">
-                   <widget class="QLineEdit" name="lineEdit_7">
-                    <property name="maximumSize">
-                     <size>
-                      <width>16777215</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="placeholderText">
-                     <string>NotAMaliciousFile</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_17">
-                    <property name="text">
-                     <string>Compile Flags</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="1">
-                   <widget class="QPushButton" name="pushButton_8">
-                    <property name="maximumSize">
-                     <size>
-                      <width>75</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string>Browse</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="0" colspan="3">
-                   <widget class="QLabel" name="label_20">
-                    <property name="font">
-                     <font/>
-                    </property>
-                    <property name="text">
-                     <string>Compile Options</string>
-                    </property>
-                    <property name="alignment">
-                     <set>Qt::AlignCenter</set>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLineEdit" name="lineEdit_8">
-                    <property name="placeholderText">
-                     <string>-Wall</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="0">
-                   <widget class="QLineEdit" name="lineEdit_9">
-                    <property name="placeholderText">
-                     <string>/opt/payloads</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="0">
-                   <widget class="QLabel" name="label_23">
-                    <property name="text">
-                     <string>Save Location</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
                 <item row="3" column="0">
                  <spacer name="verticalSpacer_3">
                   <property name="orientation">
@@ -981,18 +919,12 @@ p, li { white-space: pre-wrap; }
                   </property>
                  </spacer>
                 </item>
-                <item row="3" column="1">
-                 <spacer name="verticalSpacer_4">
+                <item row="1" column="0" colspan="2">
+                 <widget class="Line" name="line_3">
                   <property name="orientation">
-                   <enum>Qt::Vertical</enum>
+                   <enum>Qt::Horizontal</enum>
                   </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>20</width>
-                    <height>294</height>
-                   </size>
-                  </property>
-                 </spacer>
+                 </widget>
                 </item>
                 <item row="4" column="0" colspan="2">
                  <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -1015,44 +947,132 @@ p, li { white-space: pre-wrap; }
                   </item>
                  </layout>
                 </item>
+                <item row="3" column="1">
+                 <spacer name="verticalSpacer_4">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>294</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item row="2" column="0" colspan="2">
+                 <layout class="QGridLayout" name="gridLayout_13">
+                  <item row="3" column="2">
+                   <widget class="QLabel" name="label_16">
+                    <property name="text">
+                     <string>Save Name</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="1">
+                   <widget class="QPushButton" name="pushButton_8">
+                    <property name="maximumSize">
+                     <size>
+                      <width>75</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Browse</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_17">
+                    <property name="text">
+                     <string>Compile Flags</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLineEdit" name="lineEdit_8">
+                    <property name="placeholderText">
+                     <string>-Wall</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="2">
+                   <widget class="QLineEdit" name="lineEdit_7">
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="placeholderText">
+                     <string>NotAMaliciousFile</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0" colspan="3">
+                   <widget class="QLabel" name="label_20">
+                    <property name="font">
+                     <font/>
+                    </property>
+                    <property name="text">
+                     <string>Compile Options</string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="label_23">
+                    <property name="text">
+                     <string>Save Location</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="0">
+                   <widget class="QLineEdit" name="lineEdit_9">
+                    <property name="placeholderText">
+                     <string>/opt/payloads</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
                </layout>
               </widget>
               <widget class="QWidget" name="page_9">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>756</width>
+                 <height>645</height>
+                </rect>
+               </property>
                <attribute name="label">
                 <string>Python</string>
                </attribute>
                <layout class="QGridLayout" name="gridLayout_19">
                 <item row="0" column="0" colspan="2">
                  <layout class="QGridLayout" name="gridLayout_16">
-                  <item row="4" column="0">
-                   <widget class="QLineEdit" name="lineEdit_13">
-                    <property name="placeholderText">
-                     <string>8080</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="0">
-                   <widget class="QLabel" name="label_27">
-                    <property name="text">
-                     <string>Port</string>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="2" column="0">
-                   <widget class="QLineEdit" name="lineEdit_14">
+                   <widget class="QLineEdit" name="agentbuilder_toolbox_python_ip">
                     <property name="placeholderText">
                      <string>127.0.0.1</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_28">
-                    <property name="text">
-                     <string>IP</string>
+                  <item row="4" column="0">
+                   <widget class="QLineEdit" name="agentbuilder_toolbox_python_port">
+                    <property name="placeholderText">
+                     <string>8080</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="0">
+                  <item row="0" column="0" colspan="2">
                    <widget class="QLabel" name="label_29">
                     <property name="font">
                      <font>
@@ -1067,6 +1087,43 @@ p, li { white-space: pre-wrap; }
                     </property>
                    </widget>
                   </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_28">
+                    <property name="text">
+                     <string>IP</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="label_27">
+                    <property name="text">
+                     <string>Port</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="QSpinBox" name="spinBox">
+                    <property name="minimum">
+                     <number>1</number>
+                    </property>
+                    <property name="maximum">
+                     <number>999999999</number>
+                    </property>
+                    <property name="value">
+                     <number>60</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QLabel" name="label_38">
+                    <property name="text">
+                     <string>Initial Heartbeat interval (seconds)</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QLineEdit" name="lineEdit_13"/>
+                  </item>
                  </layout>
                 </item>
                 <item row="3" column="0" colspan="2">
@@ -1075,21 +1132,21 @@ p, li { white-space: pre-wrap; }
                    <enum>QLayout::SetDefaultConstraint</enum>
                   </property>
                   <item>
-                   <widget class="QPushButton" name="pushButton_12">
+                   <widget class="QPushButton" name="agentbuilder_toolbox_python_copy_to_clipboard">
                     <property name="text">
                      <string>Copy to Clipboard</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="pushButton_9">
+                   <widget class="QPushButton" name="agentbuilder_toolbox_python_save_to_file">
                     <property name="text">
                      <string>Save to File</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="pushButton_10">
+                   <widget class="QPushButton" name="agentbuilder_toolbox_python_compile_button">
                     <property name="text">
                      <string>Compile (Nuitka)</string>
                     </property>
@@ -1125,15 +1182,42 @@ p, li { white-space: pre-wrap; }
                 </item>
                 <item row="1" column="0" colspan="2">
                  <layout class="QGridLayout" name="gridLayout_18">
-                  <item row="3" column="2">
+                  <item row="7" column="1">
+                   <widget class="QPushButton" name="agentbuilder_toolbox_python_compile_savedir_browse">
+                    <property name="maximumSize">
+                     <size>
+                      <width>75</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Browse</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_31">
+                    <property name="text">
+                     <string>Compile Flags</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="2">
                    <widget class="QLabel" name="label_30">
                     <property name="text">
                      <string>Save Name</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="6" column="2">
-                   <widget class="QLineEdit" name="lineEdit_15">
+                  <item row="3" column="0">
+                   <widget class="QLineEdit" name="agentbuilder_toolbox_python_compile_flags">
+                    <property name="placeholderText">
+                     <string>-Wall</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="2">
+                   <widget class="QLineEdit" name="agentbuilder_toolbox_python_compile_savename">
                     <property name="maximumSize">
                      <size>
                       <width>16777215</width>
@@ -1148,57 +1232,56 @@ p, li { white-space: pre-wrap; }
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_31">
-                    <property name="text">
-                     <string>Compile Flags</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="1">
-                   <widget class="QPushButton" name="pushButton_11">
-                    <property name="maximumSize">
-                     <size>
-                      <width>75</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string>Browse</string>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="0" column="0" colspan="3">
                    <widget class="QLabel" name="label_33">
                     <property name="font">
                      <font/>
                     </property>
                     <property name="text">
-                     <string>Compile Options</string>
+                     <string>Compile Options (Nuitka)</string>
                     </property>
                     <property name="alignment">
                      <set>Qt::AlignCenter</set>
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="0">
-                   <widget class="QLineEdit" name="lineEdit_16">
-                    <property name="placeholderText">
-                     <string>-Wall</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="0">
-                   <widget class="QLineEdit" name="lineEdit_17">
+                  <item row="7" column="0">
+                   <widget class="QLineEdit" name="agentbuilder_toolbox_python_compile_savedir">
                     <property name="placeholderText">
                      <string>/opt/payloads</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="0">
+                  <item row="4" column="0">
                    <widget class="QLabel" name="label_35">
                     <property name="text">
                      <string>Save Location</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="2">
+                   <widget class="QLabel" name="label_36">
+                    <property name="toolTip">
+                     <string>If the process takes longer than this value, kill. (due to this being a wrapper, this helps combat rogue processes)</string>
+                    </property>
+                    <property name="text">
+                     <string>Process Timeout (Seconds)</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="2">
+                   <widget class="QSpinBox" name="agentbuilder_toolbox_python_compile_timeout">
+                    <property name="toolTip">
+                     <string>If the process takes longer than this value, kill. (due to this being a wrapper, this helps combat rogue processes)</string>
+                    </property>
+                    <property name="minimum">
+                     <number>1</number>
+                    </property>
+                    <property name="maximum">
+                     <number>5000</number>
+                    </property>
+                    <property name="value">
+                     <number>120</number>
                     </property>
                    </widget>
                   </item>

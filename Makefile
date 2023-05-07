@@ -5,8 +5,9 @@ compile:
 
 	#rm -rf Beta_Tests
 	#rm -rf logec-attack.bin
-	nuitka3 logec-attack.py --standalone --onefile --plugin-enable=pyside6 --follow-imports --nofollow-import-to=tkinter --lto=yes
-
+	nuitka3 logec-attack.py --standalone --onefile --plugin-enable=pyside6 --follow-imports --nofollow-import-to=tkinter --lto=yes --remove-output --output-filename=logec-suite
+	
+	rm -rf Gui Dev Documentation requirements.txt venv logec-attack.py gui.py gui.ui  Modules/General/ScriptGen/ Modules/General/SysShell/ Modules/General/utility.py Modules/General/savefiles/fileops.py Modules/Wrappers/CompilationWrapper.py agent/friendly_client.py
 
 gui:
 	/home/kali/PycharmProjects/logec-suite/venv/bin/pyside6-uic gui.ui > gui.py 
