@@ -37,7 +37,7 @@ jobs:
           prerelease: false
         ## need to figure out folder structure b4 upload
 
-      - name: Create release and upload compiled code
+      - name: Zip compiled code
         uses: vimtor/action-zip@v1
         with:
           files: ./logec-suite/
