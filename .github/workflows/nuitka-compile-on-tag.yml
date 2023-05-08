@@ -9,15 +9,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      #- name: Install Nuitka
-        #run: |
-          #sudo apt update
-          #sudo apt install -y python3-pip
-          #pip3 install --requirement requirements.txt
+      - name: Install Nuitka
+        run: |
+          sudo apt update
+          sudo apt install -y python3-pip
+          pip3 install --requirement requirements.txt
           
-      #- name: Compile Python code with Nuitka
-        #run: |
-          #make compile 
+      - name: Compile Python code with Nuitka
+        run: |
+          make compile 
 
  
       - name: Set environment variable for current date
