@@ -1,8 +1,7 @@
 name: Python (logec) Compile & Publish via Nuitka
-on:
-  push:
-    tags:
-      - '*'
+
+on: 
+  [workflow_dispatch]
  
 jobs:
   build:
