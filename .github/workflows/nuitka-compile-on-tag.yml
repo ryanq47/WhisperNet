@@ -1,11 +1,12 @@
 name: Python (logec) Compile & Publish via Nuitka
 
-on:
+on: 
   [workflow_dispatch]
-
+ 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
       - name: Install Nuitka
@@ -13,21 +14,27 @@ jobs:
           sudo apt update
           sudo apt install -y python3-pip
           pip3 install --requirement requirements.txt
-      - name: Get latest tag name
-        id: latest_tag
-        run: echo "::set-output name=tag::$(git describe --tags --abbrev=0)"
+          
+      #- name: Compile Python code with Nuitka
+        #run: |
+          #make compile 
+ 
+      - name: Set environment variable for current date
+        run: echo "RELEASE_NAME=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+      
       - name: Create release and upload compiled code
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.latest_tag.outputs.tag }}
-          release_name: Ubuntu Release ${{ steps.latest_tag.outputs.tag }}
+          tag_name: version-${{ github.ref }}
+          release_name: ${{ env.RELEASE_NAME }}
           body: |
             Logec-Suite Compiled
           draft: false
           prerelease: false
+        ## need to figure out folder structure b4 upload
       - name: Upload compiled code
         uses: actions/upload-release-asset@v1
         env:
