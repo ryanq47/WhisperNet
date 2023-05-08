@@ -38,7 +38,7 @@ jobs:
         ## need to figure out folder structure b4 upload
 
       - name: Create release and upload compiled code
-        uses: vimto/action-zip@1
+        uses: vimtor/action-zip@1
         with:
           files: ./logec-suite/
           dest: compiled-logec-suite.zip
