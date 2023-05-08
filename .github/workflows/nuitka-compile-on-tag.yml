@@ -15,10 +15,9 @@ jobs:
           pip3 install --requirement requirements.txt
  
  
-      - name: Compile Python code with Nuitka
-        # nuitka command here
-        run: |
-          make compile 
+      #- name: Compile Python code with Nuitka
+        #run: |
+          #make compile 
  
       - name: Create release and upload compiled code
         id: create_release
@@ -26,7 +25,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
+          tag_name: version-${{ github.ref }}
           release_name: Ubuntu Release ${{ github.ref }}
           body: |
             Logec-Suite Compiled
