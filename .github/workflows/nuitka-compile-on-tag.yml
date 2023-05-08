@@ -47,3 +47,4 @@ jobs:
           asset_path: ./logec-suite
           # what to name the zip file
           asset_name: logec-suite-ubuntu-${{ env.RELEASE_NAME }}
+          asset_content_type: application/octet-stream
