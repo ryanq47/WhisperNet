@@ -9,15 +9,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Install Nuitka
-        run: |
-          sudo apt update
-          sudo apt install -y python3-pip
-          pip3 install --requirement requirements.txt
+      #- name: Install Nuitka
+        #run: |
+          #sudo apt update
+          #sudo apt install -y python3-pip
+          #pip3 install --requirement requirements.txt
           
-      - name: Compile Python code with Nuitka
-        run: |
-          make compile 
+      #- name: Compile Python code with Nuitka
+        #run: |
+          #make compile 
 
  
       - name: Set environment variable for current date
@@ -51,7 +51,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           # location of files
           file:  compiled-logec-suite.zip
-          asset_path: ./
+          asset_path: ./logec-suite
           # what to name the zip file
           asset_name: logec-suite-ubuntu-${{ env.RELEASE_NAME }}
           asset_content_type: application/zip
