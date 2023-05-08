@@ -15,7 +15,7 @@ jobs:
           python3 --version
           sudo apt update
           sudo apt install -y python3-pip
-          python -m pip3 install -–upgrade pip
+          python -m pip install -–upgrade pip
           pip3 install --requirement requirements.txt
           
       - name: Compile Python code with Nuitka
