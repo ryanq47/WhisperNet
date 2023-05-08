@@ -43,7 +43,7 @@ jobs:
       - name: Zip compiled code
         uses: vimtor/action-zip@v1
         with:
-          files: ./logec-suite/
+          files: ./
           dest: ./compiled-logec-suite.zip
         
       - name: Upload compiled code
@@ -54,7 +54,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           # location of files
           file:  compiled-logec-suite.zip
-          asset_path: ./logec-suite
+          asset_path: ./
           # what to name the zip file
           asset_name: logec-suite-ubuntu-${{ env.RELEASE_NAME }}
           asset_content_type: application/zip
