@@ -45,7 +45,9 @@ jobs:
         with:
           files: ./
           dest: ./compiled-logec-suite.zip
-        
+      - name: Post Zip Dirs
+        run: |
+          tree
       - name: Upload compiled code
         uses: actions/upload-release-asset@v1
         env:
