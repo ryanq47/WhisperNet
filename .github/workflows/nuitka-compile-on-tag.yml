@@ -14,7 +14,10 @@ jobs:
           sudo apt install -y python3-pip
           pip3 install --requirement requirements.txt
  
- 
+      - name: Show the path to the cloned repository
+        run: |
+          echo "The cloned repository is located at: ${{ github.workspace }}
+          
       #- name: Compile Python code with Nuitka
         #run: |
           #make compile 
