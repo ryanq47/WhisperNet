@@ -19,7 +19,8 @@ jobs:
  
       - name: Compile Python code with Nuitka
         # nuitka command here
-        run: make compile 
+        run: |
+          make compile 
  
       - name: Create release and upload compiled code
         id: create_release
