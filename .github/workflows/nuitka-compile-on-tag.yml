@@ -19,14 +19,18 @@ jobs:
         #run: |
           #make compile 
  
+      - name: Get latest tag name
+        id: latest_tag
+        run: echo "::set-output name=tag_name::$(git describe --tags --abbrev=0)"
+ 
       - name: Create release and upload compiled code
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: version-${{ github.ref }}
-          release_name: Ubuntu Release ${{ github.ref }}
+          tag_name: ${{ steps.latest_tag.outputs.tag_name }}
+          release_name: V-${{ steps.latest_tag.outputs.tag_name }}
           body: |
             Logec-Suite Compiled
           draft: false
