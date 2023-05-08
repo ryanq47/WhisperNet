@@ -13,8 +13,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y python3-pip
-          #pip3 install nuitka
-          pip3 -r install requirements.txt
+          pip3 install --requirement requirements.txt
  
  
       - name: Compile Python code with Nuitka
