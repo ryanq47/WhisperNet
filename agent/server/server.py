@@ -12,6 +12,10 @@ import logging
 import argparse
 import json
 import math
+import threading
+
+
+import httpserver.httpserver as httpserver
 
 """
 Argparse settings first in order to be able to change anything
@@ -20,12 +24,13 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--ip', help="The IP to listen on (0.0.0.0 is a good default", required=True)
 parser.add_argument('--port', help="The port to listen on", required=True)
 parser.add_argument('--quiet', help="No output to console", action='store_true')
-
+parser.add_argument('--fileserverport', help="what port for the file server", default=80)
 
 args = parser.parse_args()
 ip = args.ip
 port = int(args.port)
 quiet = args.quiet
+fileserverport = args.fileserverport
 
 """
 Here's the global Debug + Logging settings. 
@@ -1031,6 +1036,12 @@ class Data:
 
 
 #if __name__ == "__main__":
+if fileserverport == port:
+    logging.critical(f"[SERVER] Fileserver ({fileserverport}) & Listenserver ({port}) port are the same. They need to be different ")
+
+fs_thread = threading.Thread(target=httpserver.fileserver_start, kwargs={'ip': "0.0.0.0",'port': fileserverport})
+fs_thread.start()
+
 Data.json_create()
 s = ServerSockHandler()
 s.start_server(ip, port)
