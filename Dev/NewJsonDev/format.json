@@ -1,0 +1,25 @@
+{
+	"general": {
+		"client_id": "",
+		"client_type": ""
+	},
+	"conn": {
+		"client_ip": "",
+		"client_port": ""
+	},
+	"msg": {
+		"msg_to": "",
+		"msg_content": "",
+		"msg_length": "",
+		"msg_hash": ""
+	},
+	"stats": {
+		"latest_checkin": "time.now",
+		"device_hostname": "hostname",
+		"device_username": "username"
+	},
+	"security": {
+		"client_hash": "test",
+		"server_hash": "test"
+	}
+}
