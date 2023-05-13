@@ -136,6 +136,6 @@ user_msg_to_be_sent = {
     }
 }
                             ##python dict -> str
-send_msg_to_friendlyclient(json.dumps(client_msg_to_be_sent))
+#send_msg_to_friendlyclient(json.dumps(client_msg_to_be_sent))
 #time.sleep(2)
-#send_msg_to_friendlyclient(json.dumps(user_msg_to_be_sent))
+send_msg_to_friendlyclient(json.dumps(user_msg_to_be_sent))

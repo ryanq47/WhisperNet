@@ -6,6 +6,7 @@ from PySide6.QtCore import Signal, QObject
 import math
 import time
 import sys
+import json
 
 sys_path = os.path.dirname(os.path.abspath(sys.argv[0]))
 
@@ -49,7 +50,13 @@ class FClient(QObject):
             logging.debug(f"Unkown Error: {e}")
 
     ##== Login String
-        self.server.send(self.str_encode(f"!_userlogin_!\\|/{self.username}\\|/{password}"))
+        #old
+        #self.server.send(self.str_encode(f"!_userlogin_!\\|/{self.username}\\|/{password}"))
+
+        #new
+        ## In english, formats & returns JSON, and sends it to server (self.send_msg handles conversion to bytes)
+        self.send_msg(msg = self.json_format(action="!_userlogin_!"), conn = self.server)
+
         auth_attempt_response = int(self.server.recv(1024).decode())
 
         logging.debug(f"Server Authentication Respones: {auth_attempt_response}]")
@@ -201,6 +208,51 @@ class FClient(QObject):
         )
 
         self.shell_output.emit(formatted_results)
+
+    ## == JSON formatter n stuff
+
+    def json_format(self, action=""):
+        '''
+        JSON formatter for sending messages to the server
+
+        Returns a json object
+
+        '''
+
+        ## Expanded our here for readability
+        user_msg_to_be_sent = {
+            "Main": {
+                "general": {
+                    "action": action,
+                    "client_id": str(self.username),
+                    "client_type": "friendly",
+                    "password": "1234"
+                },
+                "conn": {
+                    "client_ip": "127.0.0.1",
+                    "client_port": 6969
+                },
+                "msg": {
+                    "msg_to": "bob",
+                    "msg_content": "testmsg",
+                    "msg_length": 1234,
+                    "msg_hash": "hash of message (later)"
+                },
+                "stats": {
+                    "latest_checkin": "time.now",
+                    "device_hostname": "hostname",
+                    "device_username": "username"
+                },
+                "security": {
+                    "client_hash": "hash of client (later)",
+                    "server_hash": "hash of server (later)"
+                }
+            }
+        }
+
+        return json.dumps(user_msg_to_be_sent)
+
+
     ##== Send n Receive
         """     
         =======================================

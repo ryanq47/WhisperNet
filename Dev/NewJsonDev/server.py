@@ -223,7 +223,8 @@ class ServerSockHandler:
                 if self.password_eval(password):
                     try:
                         ##== sending the a-ok on successful authentication
-                        self.conn.send(str_encode("0"))
+                        #self.conn.send(str_encode("0"))
+                        self.send_msg_global(msg="0")
 
                         logging.debug(f"[Server (Logon)] Successful Logon from: {friendly_client_name}")
                         # Add friendly client to current clients list
@@ -245,7 +246,7 @@ class ServerSockHandler:
                     except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
                         logging.warning(f"Friendly Client {friendly_client_name} disconnected")
                     except Exception as e:
-                        logging.warning(f"{self.Sx-1}:{e}")                            
+                        logging.warning(f"[Error]:{e}")
                 ## On failed authentication, sending back a 1 & log
                 else:
                     self.conn.send(str_encode("1"))
@@ -302,6 +303,7 @@ class ServerSockHandler:
     These are a much condensed, ugly af implementation of WIWP
     """
     def send_msg_global(self, msg: str):
+        ## No need to add conn to args here, don't fully remember the reason
         ## lazy fix to map self.conn to conn
         conn = self.conn
         HEADER_BYTES = 10
@@ -396,20 +398,22 @@ class ServerFriendlyClientHandler:
             raw_user_input = self.recieve_msg_from_friendlyclient()
 
             ## Substitute with json decoder
-            ##msg_from_fclient = self.json_parser.convert_and_validate(json_string=raw_user_input)
-            user_input = self.parse_msg_for_server(raw_user_input)         
+            msg_from_fclient = self.json_parser.convert_and_validate(json_string=raw_user_input)
+            #user_input = self.parse_msg_for_server(raw_user_input)
 
             logging.debug(f"[client ({self.username}) -> Server] {raw_user_input}")
             try:
-                '''
+
                 user_header = msg_from_fclient["general"]["action"]
                 user_username = msg_from_fclient["general"]["client_id"]
                 user_command = msg_from_fclient["msg"]["msg_content"]
-                '''
 
+
+                '''
                 user_header = user_input[0]
                 user_username = user_input[1]
                 user_command = user_input[2]
+                '''
 
                 if user_header == "!_servercommand_!":
                     #logging.debug("[!_servercommand_!]")

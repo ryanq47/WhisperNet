@@ -522,15 +522,31 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.actionStart_Listener = QAction('Start Listener', self)
         self.actionClient_Editor = QAction('Client Editor', self)
 
+        # create server tab
+        self.menuServer = QMenu("Server", self.c2_menuBar)
+        self.actionUpload_file= QAction('Upload/Host a File [filebrowser popopen]', self)
+        self.actionManage_file= QAction('Manage files', self)
+
+
+
+
         # add actions to the menu bar
         self.menuClient.addAction(self.actionStart_Listener)
         self.menuClient.addAction(self.actionClient_Editor)
         self.c2_menuBar.addAction(self.menuClient.menuAction())
+
+        ## this top one adds it to the bar in the GUI
+        self.c2_menuBar.addAction(self.menuServer.menuAction())
+        self.menuServer.addAction(self.actionUpload_file)
+        self.menuServer.addAction(self.actionManage_file)
+
         # set menu bar
         self.main_tab_widget.widget(0).layout().setMenuBar(self.c2_menuBar)
 
         ##
         self.actionClient_Editor.triggered.connect(self.c2_editor)
+
+        self.actionUpload_file.triggered.connect(self.c2_upload_file_to_server)
     
     ## the client table part of the c2 stuff
     def c2_client_table_setup(self):
@@ -615,7 +631,16 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         self.c2_editor_popup = Ui_AgentEditor()#Ui_startup_projectbox()
         self.c2_editor_popup.setupUi(self.window)
         self.window.show()
-        
+
+
+    def c2_upload_file_to_server(self):
+        from Gui.upload_to_server_popup import Ui_server_file_upload
+        ## broken and I don't fucking know why
+        #self.c2_fts = QtWidgets.QMainWindow()
+        self.c2_fts = Ui_server_file_upload()#Ui_startup_projectbox()
+        self.c2_fts.setupUi(self.window)
+        self.window.show()
+
         ## ========================================
         ## Startup Buttons ========================
         ## ========================================
