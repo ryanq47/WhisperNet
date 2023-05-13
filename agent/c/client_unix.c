@@ -50,7 +50,7 @@ int main() {
     //server_connection.first_connection = 0;
     server_connection.client_id = client_id_generate();
     server_connection.heartbeat = 15;
-    server_connection.port = 100;
+    server_connection.port = 6060;
     server_connection.address = "127.0.0.1";
     //client id
 

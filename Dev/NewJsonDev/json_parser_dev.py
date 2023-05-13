@@ -46,7 +46,14 @@ class json_ops:
                             "type": "object",
                             "properties": {
                                 "msg_to": {"type": "string"},
-                                "msg_content": {"type": "string"},
+                                "msg_content": {
+                                    "type": "object",
+                                    "properties": {
+                                        "command": {"type": "string"},
+                                        "value": {"type": "string"}
+                                    },
+                                    "required": ["command"]
+                                },
                                 "msg_length": {"type": "integer"},
                                 "msg_hash": {"type": "string"}
                             },

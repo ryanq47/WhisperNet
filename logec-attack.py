@@ -712,12 +712,13 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             self.friendly_client.connect_to_server(connlist)
 
             # Authenticating to server with the background account
-            self.friendly_client_background_worker.connect_to_server([
+            # temporarily disabled while new JSON comm gets implemented
+            '''self.friendly_client_background_worker.connect_to_server([
                 connlist[0],
                 connlist[1],
                 f"background_worker_{connlist[2]}",
                 connlist[3]
-            ])
+            ])'''
 
             ## return not working, so getting validated authentication via the class itself
             if self.friendly_client.authenticated:

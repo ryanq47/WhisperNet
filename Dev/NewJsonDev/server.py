@@ -170,7 +170,7 @@ class ServerSockHandler:
                 if incoming_message: 
                     self.client_type = incoming_message["Main"]["general"]["client_type"]
                     self.id = incoming_message["Main"]["general"]["client_id"]
-                    self.message = incoming_message["Main"]["msg"]["msg_content"]
+                    self.message = incoming_message["Main"]["msg"]["msg_content"]["command"]
                     ## action to be performed
                     self.action = incoming_message["Main"]["general"]["action"]
 
@@ -233,7 +233,7 @@ class ServerSockHandler:
                         ## This adds the class instance to the globals list, with the name being friendly_client_name. This allows
                         ## it to be accessed in other parts of the code, and is the backbone of how all this works. 
                         ## additionally, this is where the connection is passed off to the ServerFriendlyClientHandler class
-                        self.friendly_clients[friendly_client_name] = ServerFriendlyClientHandler(self.conn, self.ADDR)
+                        self.friendly_clients[friendly_client_name] = ServerFriendlyClientHandler(self.conn, self.ADDR, self.json_parser)
                         globals()[friendly_client_name] = self.friendly_clients[friendly_client_name]
 
                         ## == Thread handler
@@ -367,7 +367,7 @@ class ServerSockHandler:
 
 class ServerFriendlyClientHandler:
 
-    def __init__(self, conn, addr):
+    def __init__(self, conn, addr, json_parser):
         ## Init variables so error messages don't error out if called b4 they are assigned :)
         self.conn = conn
         self.addr = addr
@@ -375,6 +375,7 @@ class ServerFriendlyClientHandler:
         self.port = self.addr[1]
         self.current_client_list = None
         self.authenticated = None
+        self.json_parser = json_parser
 
         self.Sx21 = f"[Friendly Client: {self.ip}:{self.port}] conn_broken_pipe: A pipe was broken f"
 
@@ -387,9 +388,12 @@ class ServerFriendlyClientHandler:
         headers are: !_clientcommand_! and !_servercommand_!
             client controls a client, and server controls a server
 
-        raw user input looks  like:
-        !_clientcommand_!\|/ryan\|/set-heartbeat 69 client_127_0_0_1_UDDSZ
-
+        Common keys user here are:
+        ["Main"]["general"]["action"]: Action sending party wants to perform
+        ["Main"]["general"]["client_id"]: client ID of SENDING party
+        ["Main"]["msg"]["msg_content"]["command"]: command of msg
+        ["Main"]["msg"]["msg_content"]["value"]: value of command (opt)
+        ["Main"]["msg"]["msg_to"]: For who/which client the msg is intended for
         """
         self.username = username
         logging.debug(f"[Server (ServerFriendlyClientHandler)]Friendly Client authenticated, user={self.username}")
@@ -404,28 +408,28 @@ class ServerFriendlyClientHandler:
             logging.debug(f"[client ({self.username}) -> Server] {raw_user_input}")
             try:
 
-                user_header = msg_from_fclient["general"]["action"]
-                user_username = msg_from_fclient["general"]["client_id"]
-                user_command = msg_from_fclient["msg"]["msg_content"]
+                user_header = msg_from_fclient["Main"]["general"]["action"]
+                user_username = msg_from_fclient["Main"]["general"]["client_id"]
 
+                user_command = msg_from_fclient["Main"]["msg"]["msg_content"]["command"]
+                user_command_value = msg_from_fclient["Main"]["msg"]["msg_content"]["value"]
 
-                '''
-                user_header = user_input[0]
-                user_username = user_input[1]
-                user_command = user_input[2]
-                '''
+                logging.debug(f"[Server (ServerFriendlyClientHandler)] user_header={user_header}, user_command={user_command}")
 
                 if user_header == "!_servercommand_!":
                     #logging.debug("[!_servercommand_!]")
                     self.server_decision_tree(user_command)
-                
-                ## format that fclient needs to send(see client_decision_tree)
-                ## !_servercommand_!\|/bob\|/action value CLIENTNAME
+
                 ##client name is always last for future compatability
                 elif user_header == "!_clientcommand_!":
                     #logging.debug("[!_clientcommand_!]")
-                    self.client_decision_tree(user_command)
-                
+                    self.client_decision_tree(user_command=user_command, user_command_value=user_command_value)
+
+            except KeyError as ke:
+                """Key errors incase json gets f*cked up in transmission - theoretically should never get to this point 
+                if properly validated with JSON checker code"""
+                logging.debug(f"[Server (ServerFriendlyClientHandler)] JSON Error: {ke}")
+
             except Exception as e:
                 err_str = f"[Server (ServerFriendlyClientHandler) - confusing error message, catches every error from the decsision trees -] Error with username or command, input={raw_user_input}: {e}"
                 logging.debug(err_str)
@@ -574,20 +578,19 @@ class ServerFriendlyClientHandler:
     
 
     """
-    def client_decision_tree(self, raw_message):
-        logging.debug(f"[Client Decision Tree]: {raw_message}")
-        message = self.parse_msg_for_client(raw_message)
+    def client_decision_tree(self, msg_to="", client_command="", client_command_value=""):
+        #logging.debug(f"[Client Decision Tree]: {raw_message}")
+        #message = self.parse_msg_for_client(raw_message)
 
         # init variables incase of fail
         client_command = ""
-        client_command_value = ""
-        client_name = ""
+        client_command_value = "" ## this one might take some thinking, i.e. spacing n stuff
+        client_name = ""  #aka who it's going to
 
         try:
-            client_command = message[0]
-            client_command_value = message[1]
-            ##== Client name is always last
-            client_name = message[-1]
+            client_command = client_command
+            client_command_value = client_command_value
+            client_name = msg_to
         except Exception as e:
             logging.debug(f"[Server (client_decision_tree)] Error in command for client: {e}")
 

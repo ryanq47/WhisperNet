@@ -55,13 +55,14 @@ class FClient(QObject):
 
         #new
         ## In english, formats & returns JSON, and sends it to server (self.send_msg handles conversion to bytes)
-        self.send_msg(msg = self.json_format(action="!_userlogin_!"), conn = self.server)
+        ## Also, the send & recv are tied togehter in this instance, hence why the recv is commented out
+        auth_attempt_response = self.send_msg(msg = self.json_format(action="!_userlogin_!"), conn= self.server)
 
-        auth_attempt_response = int(self.server.recv(1024).decode())
+        #auth_attempt_response = int(self.recieve_msg(conn=self.server))
 
         logging.debug(f"Server Authentication Respones: {auth_attempt_response}]")
 
-        if auth_attempt_response == 0:
+        if auth_attempt_response == "0":
             logging.debug("[Logec (friendly_client: Authentication)] Authentication Succeeded")
             ## will be used for GUI purposes
             self.shellbanner = f"{self.ip}:{self.port}"
@@ -107,8 +108,9 @@ class FClient(QObject):
     def gui_to_server(self, command):
         self.shellbanner = f"{self.ip}:{self.port}"
         
-        formatted_request = f"!_servercommand_!\\|/{self.username}\\|/{command}"
-        
+        #formatted_request = f"!_servercommand_!\\|/{self.username}\\|/{command}"
+        formatted_request = self.json_format(action="!_servercommand_!",
+                                             msg_content=command)
 
         if command.lower() == "clients":
             self.shellformat(self.send_msg(msg=formatted_request, conn=self.server))
@@ -180,7 +182,9 @@ class FClient(QObject):
         
     def gui_to_client(self, raw_command):
         logging.debug(f"[FriendlyClient (gui-to-client)] command: {raw_command} ")
-        formatted_request = f"!_clientcommand_!\\|/{self.username}\\|/{raw_command}"
+
+        #formatted_request = f"!_clientcommand_!\\|/{self.username}\\|/{raw_command}"
+        formatted_request = self.json_format(action="!_clientcommand_!", msg_content=raw_command, msg_to="clientIDhere")
 
         #yes I know this is blindly sending commands to the server, but it makes it easier to manage all 3 puzzle pieces
         self.shellformat(self.send_msg(msg=formatted_request, conn=self.server))
@@ -211,13 +215,22 @@ class FClient(QObject):
 
     ## == JSON formatter n stuff
 
-    def json_format(self, action=""):
+    def json_format(self, action="", msg_content="", msg_to=""):
         '''
         JSON formatter for sending messages to the server
 
         Returns a json object
 
         '''
+
+        ## Quick parse on the command - grabs the command via strip, then replaces it with "" for the value
+        try:
+            cmd = msg_content.split()[0]
+            cmd_value = msg_content.replace(cmd, "")
+        except Exception as e:
+            logging.debug(f"[Server (JSON format)] error with parsing command {msg_content}: {e}")
+            cmd = msg_content
+            cmd_value = "empty"
 
         ## Expanded our here for readability
         user_msg_to_be_sent = {
@@ -233,8 +246,11 @@ class FClient(QObject):
                     "client_port": 6969
                 },
                 "msg": {
-                    "msg_to": "bob",
-                    "msg_content": "testmsg",
+                    "msg_to": msg_to,
+                    "msg_content": {
+                        "command": cmd,
+                        "value": cmd_value
+                    },
                     "msg_length": 1234,
                     "msg_hash": "hash of message (later)"
                 },
@@ -318,6 +334,7 @@ class FClient(QObject):
         
         msg_bytes_recieved_so_far = 0
 
+        logging.debug(f"[FriendlyClient (recieve_msg)] waiting on header...")
         header_msg_length = conn.recv(HEADER_BYTES).decode() #int(bytes_decode(msg)
         #print("HEADER:" + header_msg_length)
         logging.debug(f"[FriendlyClient (recieve_msg)] HEADER: {header_msg_length}")
@@ -345,6 +362,7 @@ class FClient(QObject):
             complete_msg += self.bytes_decode(msg)
             
         #visual_bar += "] Done!"
+        logging.debug(f"[FriendlyClient (recieve_msg)] FUll MSG recieved")
         return complete_msg
         
         

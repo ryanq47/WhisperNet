@@ -1,25 +1,32 @@
 {
-	"general": {
-		"client_id": "",
-		"client_type": ""
-	},
-	"conn": {
-		"client_ip": "",
-		"client_port": ""
-	},
-	"msg": {
-		"msg_to": "",
-		"msg_content": "",
-		"msg_length": "",
-		"msg_hash": ""
-	},
-	"stats": {
-		"latest_checkin": "time.now",
-		"device_hostname": "hostname",
-		"device_username": "username"
-	},
-	"security": {
-		"client_hash": "test",
-		"server_hash": "test"
+	"Main": {
+		"general": {
+			"action": "!_servercommand_!",
+			"client_id": "bobdabuilder",
+			"client_type": "friendly",
+			"password": "1234"
+		},
+		"conn": {
+			"client_ip": "127.0.0.1",
+			"client_port": 6969
+		},
+		"msg": {
+			"msg_to": "CCEEA",
+			"msg_content": {
+				"command": "run-command-ps",
+				"value": "whoami /priv"
+				},
+			"msg_length": 1234,
+			"msg_hash": "hash of message (later)"
+		},
+		"stats": {
+			"latest_checkin": "time.now",
+			"device_hostname": "hostname",
+			"device_username": "username"
+		},
+		"security": {
+			"client_hash": "hash of client (later)",
+			"server_hash": "hash of server (later)"
+		}
 	}
 }
