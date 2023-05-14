@@ -403,6 +403,8 @@ class ServerFriendlyClientHandler:
 
             ## Substitute with json decoder
             msg_from_fclient = self.json_parser.convert_and_validate(json_string=raw_user_input)
+            if not msg_from_fclient:
+                self.send_msg_to_friendlyclient(msg="err with json validation")
             #user_input = self.parse_msg_for_server(raw_user_input)
 
             logging.debug(f"[client ({self.username}) -> Server] {raw_user_input}")
@@ -423,7 +425,7 @@ class ServerFriendlyClientHandler:
                 ##client name is always last for future compatability
                 elif user_header == "!_clientcommand_!":
                     #logging.debug("[!_clientcommand_!]")
-                    self.client_decision_tree(user_command=user_command, user_command_value=user_command_value)
+                    self.client_decision_tree(client_command=user_command, client_command_value=user_command_value)
 
             except KeyError as ke:
                 """Key errors incase json gets f*cked up in transmission - theoretically should never get to this point 

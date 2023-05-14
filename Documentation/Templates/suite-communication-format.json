@@ -14,7 +14,7 @@
 			"msg_to": "CCEEA",
 			"msg_content": {
 				"command": "run-command-ps",
-				"value": "whoami /priv"
+				"value": "to client: whoami /priv; from client: DESKTOP-BALLS//User1"
 				},
 			"msg_length": 1234,
 			"msg_hash": "hash of message (later)"
