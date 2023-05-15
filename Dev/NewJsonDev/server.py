@@ -13,6 +13,7 @@ import argparse
 import json
 import math
 import threading
+import traceback
 
 # My Modules
 import json_parser_dev as json_parser
@@ -404,7 +405,7 @@ class ServerFriendlyClientHandler:
             ## Substitute with json decoder
             msg_from_fclient = self.json_parser.convert_and_validate(json_string=raw_user_input)
             if not msg_from_fclient:
-                self.send_msg_to_friendlyclient(msg="err with json validation")
+                self.send_msg_to_friendlyclient(msg="[Server] Error with JSON validation: ")
             #user_input = self.parse_msg_for_server(raw_user_input)
 
             logging.debug(f"[client ({self.username}) -> Server] {raw_user_input}")
@@ -415,6 +416,7 @@ class ServerFriendlyClientHandler:
 
                 user_command = msg_from_fclient["Main"]["msg"]["msg_content"]["command"]
                 user_command_value = msg_from_fclient["Main"]["msg"]["msg_content"]["value"]
+                msg_to = msg_from_fclient["Main"]["msg"]["msg_to"]
 
                 logging.debug(f"[Server (ServerFriendlyClientHandler)] user_header={user_header}, user_command={user_command}")
 
@@ -425,16 +427,17 @@ class ServerFriendlyClientHandler:
                 ##client name is always last for future compatability
                 elif user_header == "!_clientcommand_!":
                     #logging.debug("[!_clientcommand_!]")
-                    self.client_decision_tree(client_command=user_command, client_command_value=user_command_value)
+                    self.client_decision_tree(client_command=user_command, client_command_value=user_command_value, msg_to=str(msg_to))
 
             except KeyError as ke:
                 """Key errors incase json gets f*cked up in transmission - theoretically should never get to this point 
                 if properly validated with JSON checker code"""
                 logging.debug(f"[Server (ServerFriendlyClientHandler)] JSON Error: {ke}")
-
+                print(traceback.format_exc())
             except Exception as e:
-                err_str = f"[Server (ServerFriendlyClientHandler) - confusing error message, catches every error from the decsision trees -] Error with username or command, input={raw_user_input}: {e}"
+                err_str = f"[Server (ServerFriendlyClientHandler) - confusing error message, fallback error from the decsision trees -] input={raw_user_input}: {e}"
                 logging.debug(err_str)
+                print(traceback.format_exc())
                 self.send_msg_to_friendlyclient(err_str)
 
 ################
@@ -584,10 +587,6 @@ class ServerFriendlyClientHandler:
         #logging.debug(f"[Client Decision Tree]: {raw_message}")
         #message = self.parse_msg_for_client(raw_message)
 
-        # init variables incase of fail
-        client_command = ""
-        client_command_value = "" ## this one might take some thinking, i.e. spacing n stuff
-        client_name = ""  #aka who it's going to
 
         try:
             client_command = client_command
@@ -598,12 +597,18 @@ class ServerFriendlyClientHandler:
 
         logging.debug(f"[client ({self.username }) -> server] command:{client_command} value:{client_command_value} name:{client_name}")
 
-        self.client = globals()[client_name]
-        if client_name in self.current_client_list:
-            pass
-        else:
+        try:
+            self.client = globals()[client_name]
+        except:
+            logging.debug(f"[Server (client_decision_tree)] client {self.client} not found")
+
+        if not client_name in self.current_client_list:
             logging.debug(f"[Server] Client {self.client} not found")
 
+
+        '''
+        This needs to be reworked with JSON stuff
+        '''
 
         if client_command == "session":
             # setting current_job variable for stat purposes
@@ -652,10 +657,10 @@ class ServerFriendlyClientHandler:
         
         ## if command unknown, wait
         else:
-            logging.debug[f"[Server -> Client ({client_name})] Command unknown, Wait"]
-            self.client.send_msg_to_maliciousclient(f"wait\\|/wait")
+            logging.debug[f"[Server -> Client (name)] Command unknown, Wait"]
+            #self.client.send_msg_to_maliciousclient(f"wait\\|/wait")
             ##listening back for response
-            results = self.client.recieve_msg_from_maliciousclient()
+            #results = self.client.recieve_msg_from_maliciousclient()
 
         self.client_stats_update(current_job=f"{client_command} {client_command_value}", client_name=client_name)
 

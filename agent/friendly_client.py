@@ -183,8 +183,28 @@ class FClient(QObject):
     def gui_to_client(self, raw_command):
         logging.debug(f"[FriendlyClient (gui-to-client)] command: {raw_command} ")
 
+        '''
+        # Client name is always last for these commands, hence we take the last value from the list, and
+        # toss it as the client. Compatability issues may arise with spaces in names (which shouldn't happen anyways)
+        # or multi word commands, which also shoudln't happen
+        
+        msg_to is needed for the server to use the ID as the global object name for the right client. The client
+        name technically is the "value" key when run through the json parser, but it's easier/cleaner to do this hack
+        on this side and keep the server as clean as possible
+        '''
+        try:
+            client = (raw_command.split())[-1]
+            print(f"RAW COMMAND: {client}")
+        except IndexError as e:
+            logging.warning(f"[FriendlyClient (gui_to_client] A client name is required to run any commands meant for"
+                            "the client. Error msg: {e}")
+        except Exception as e:
+            logging.warning(f"[FriendlyClient (gui_to_client] Unknown error occured: {e}")
+
         #formatted_request = f"!_clientcommand_!\\|/{self.username}\\|/{raw_command}"
-        formatted_request = self.json_format(action="!_clientcommand_!", msg_content=raw_command, msg_to="clientIDhere")
+        formatted_request = self.json_format(action="!_clientcommand_!", msg_content=raw_command, msg_to=client)
+
+        print(formatted_request)
 
         #yes I know this is blindly sending commands to the server, but it makes it easier to manage all 3 puzzle pieces
         self.shellformat(self.send_msg(msg=formatted_request, conn=self.server))

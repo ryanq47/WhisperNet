@@ -205,7 +205,7 @@ class MClient:
                     "client_port": self.port
                 },
                 "msg": {
-                    "msg_to": msg_to,
+                    "msg_to": "msg_to",
                     "msg_content": {
                         "command": cmd,
                         "value": cmd_value
