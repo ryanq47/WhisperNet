@@ -44,9 +44,11 @@ class MClient:
                 command_value = converted_msg_from_server["Main"]["msg"]["msg_content"]["value"]
             )
 
-            ## convert back to JSON
-            ## and send that object
-            self.send_msg(client_results, self.connected_socket)
+            ## convert results of running command back to JSON
+            json_client_results = self.json_format(cmd_value=client_results)
+
+            ## and send that stringified json object back
+            self.send_msg(json_client_results, self.connected_socket)
             # disconnect
             #time.sleep(heartbeat)
             ## simple as that
@@ -101,7 +103,11 @@ class MClient:
 
         elif "run-command" in command.lower():
             system_command = command_value #command.replace("run-command","") old way of doing it
-            return System.run_command(system_command)
+            print(f"[Client (run-command)]results: {system_command}")
+
+            ## broekn
+            #return System.run_command(system_command)
+            return "This is where a run-command result would go IF not fcking broken"
 
     @staticmethod
     def generate_client_id():
@@ -179,7 +185,7 @@ class MClient:
         encoded_result = input.encode()
         return encoded_result
 
-    def json_format(self, action="", msg_content="", msg_to="", client_id=""):
+    def json_format(self, action="", cmd="empty", cmd_value="empty", msg_to="", client_id=""):
         '''
         JSON formatter for sending messages to the server
 
@@ -187,14 +193,6 @@ class MClient:
 
         '''
 
-        ## Quick parse on the command - grabs the command via strip, then replaces it with "" for the value
-        try:
-            cmd = msg_content.split()[0]
-            cmd_value = msg_content.replace(cmd, "")
-        except Exception as e:
-            logging.debug(f"[Server (JSON format)] error with parsing command {msg_content}: {e}")
-            cmd = msg_content
-            cmd_value = "empty"
         ## Expanded our here for readability
         user_msg_to_be_sent = {
             "Main": {
