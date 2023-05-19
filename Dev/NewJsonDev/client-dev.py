@@ -9,6 +9,8 @@ import json
 
 logging.basicConfig(level=logging.DEBUG)
 logging.basicConfig(filename='client.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s', force=True)
+logging.getLogger().addHandler(logging.StreamHandler())
+
 class MClient:
 
     def __init__(self, ip="127.0.0.1", port=80):
@@ -39,7 +41,7 @@ class MClient:
             ## pass parsed msg to the decision tree
             client_results = self.decision_tree(
                 command = converted_msg_from_server["Main"]["msg"]["msg_content"]["command"],
-                value = converted_msg_from_server["Main"]["msg"]["msg_content"]["command_value"]
+                command_value = converted_msg_from_server["Main"]["msg"]["msg_content"]["value"]
             )
 
             ## convert back to JSON
@@ -78,6 +80,7 @@ class MClient:
         print(f"command from server: {command}")
         if command.lower() == "session":
             while True:
+                print("Listening for next command...")
                 session_command = self.recieve_msg(self.connected_socket)
                 if session_command.lower() == "break":
                     return "session breaking"
@@ -85,6 +88,7 @@ class MClient:
                 else:
                     session_command_results = self.decision_tree(command=session_command)
                     return session_command_results
+                print(f"session_command: {command}")
                     #self.send_msg(session_command_results)
 
         elif command == "" or command.lower() == "help":

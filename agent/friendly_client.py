@@ -194,7 +194,7 @@ class FClient(QObject):
         '''
         try:
             client = (raw_command.split())[-1]
-            print(f"RAW COMMAND: {client}")
+            #print(f"RAW COMMAND: {client}")
         except IndexError as e:
             logging.warning(f"[FriendlyClient (gui_to_client] A client name is required to run any commands meant for"
                             "the client. Error msg: {e}")

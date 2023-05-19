@@ -28,5 +28,9 @@
 			"client_hash": "hash of client (later)",
 			"server_hash": "hash of server (later)"
 		}
+	},
+
+	"AddtlMod": {
+
 	}
 }

