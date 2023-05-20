@@ -106,7 +106,12 @@ class MClient:
             print(f"[Client (run-command)]results: {system_command}")
 
             ## broekn
-            return System.run_command(system_command)
+            system_command_result = System.run_command(system_command)
+
+            if system_command_result == "":
+                return f"Command seemingly returned no results: {system_command_result}"
+            else:
+                return System.run_command(system_command)
             #return "This is where a run-command result would go IF not fcking broken"
 
     @staticmethod

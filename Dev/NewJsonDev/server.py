@@ -482,7 +482,12 @@ class ServerFriendlyClientHandler:
                 "Here's the data it returned:"                    
             funny_msg_big = ("I Hate Buzzwords;") * 2048                
             #self.send_msg_to_friendlyclient(f"{funny_msg}{funny_msg_big}")
-            self.send_msg_to_friendlyclient("test?")   
+            self.send_msg_to_friendlyclient("test?")
+
+        elif message == "disconnect":
+            self.send_msg_to_friendlyclient(self.json_format(cmd_value="[Server] Disconnecting from server"))
+            time.sleep(1)
+            self.clean_exit()
                                      
         ################
         ## Export Commands
@@ -617,7 +622,7 @@ class ServerFriendlyClientHandler:
             """
             # setting current_job variable for stat purposes
             self.client.under_control = True
-            self.send_msg_to_friendlyclient(f"Session on {self.client.fullname} opened")
+            self.send_msg_to_friendlyclient(self.json_format(cmd_value=f"Session on {self.client.fullname} opened"))
 
             ## telling client to go into a listening loop, client sends back an okay, otherwise this hangs
             ## as it's waiting for a response

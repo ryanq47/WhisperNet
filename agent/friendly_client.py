@@ -113,15 +113,26 @@ class FClient(QObject):
                                              msg_content=command)
 
         if command.lower() == "clients":
-            self.shellformat(self.send_msg(msg=formatted_request, conn=self.server))
+            self.send_msg(msg=formatted_request, conn=self.server)
+            self.shellformat(self.recieve_msg(self.server))
+
+        #self.recieve_msg(self.server)
             
         elif command.lower() == "sanity-check":
-            self.shellformat(self.send_msg(msg=formatted_request, conn=self.server))
+            self.send_msg(msg=formatted_request, conn=self.server)
+            self.shellformat(self.recieve_msg(self.server))
 
         elif command.lower() == "clear":
             self.shellformat()
+
+        ## this just listens forever causeeeee i set it up that way. fuuuuuck need to change a few things
+        elif command.lower() == "disconnect":
+            self.send_msg(msg=formatted_request, conn=self.server)
+            self.shellformat(self.recieve_msg(self.server), is_json=True)
+            exit()
             
         elif command.lower() == "export-clients":
+            pass
             logging.debug("[Friendly Client (gui_to_server)] requesting client JSON data from server")
             #self.shellformat(self.send_msg(msg="export-clients", conn=self.server))
             json_data_from_server = self.send_msg(msg=f"!_servercommand_!\\|/{self.username}\\|/export-clients", conn=self.server)
@@ -129,6 +140,7 @@ class FClient(QObject):
 
             ## upload/download from the server
         elif command.lower() == "server-upload-file":
+            pass
             try:
                 filepath = command.split()[1]
             except Exception as e:
@@ -149,7 +161,7 @@ class FClient(QObject):
             
             
         elif "server-download-file" in command.lower():
-            #pass
+            pass
             try:
                 filepath = command.split()[1]
             
@@ -208,7 +220,8 @@ class FClient(QObject):
 
         #yes I know this is blindly sending commands to the server, but it makes it easier to manage all 3 puzzle pieces
         try:
-            self.shellformat(results=self.send_msg(msg=formatted_request, conn=self.server), is_json=True)
+            self.send_msg(msg=formatted_request, conn=self.server)
+            self.shellformat(results=self.recieve_msg(self.server), is_json=True)
         except Exception as e:
             logging.debug(f"[Friendly Client (gui_to_client)] {e}")
 
@@ -261,6 +274,7 @@ class FClient(QObject):
     ## == JSON formatter n stuff
 
     def json_format(self, action="", msg_content="", msg_to=""):
+
         '''
         JSON formatter for sending messages to the server
 
@@ -269,6 +283,7 @@ class FClient(QObject):
         '''
 
         ## Quick parse on the command - grabs the command via strip, then replaces it with "" for the value
+        ## bandaid solution, but it works for now
         try:
             cmd = msg_content.split()[0]
             cmd_value = msg_content.replace(cmd, "")
@@ -365,8 +380,8 @@ class FClient(QObject):
         
         
         ## calling receive msg
-        recv_msg = self.recieve_msg(self.server)
-        return recv_msg
+        #recv_msg = self.recieve_msg(self.server)
+        #return recv_msg
     
     
     def recieve_msg(self, conn):
