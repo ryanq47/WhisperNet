@@ -207,7 +207,10 @@ class FClient(QObject):
         print(formatted_request)
 
         #yes I know this is blindly sending commands to the server, but it makes it easier to manage all 3 puzzle pieces
-        self.shellformat(self.send_msg(msg=formatted_request, conn=self.server))
+        try:
+            self.shellformat(results=self.send_msg(msg=formatted_request, conn=self.server), is_json=True)
+        except Exception as e:
+            logging.debug(f"[Friendly Client (gui_to_client)] {e}")
 
     ##== Additional GUI
         """     
@@ -226,10 +229,32 @@ class FClient(QObject):
                 "Am I a real shell?" [https://www.youtube.com/watch?v=_jkg6xcetV0]
         
         """
-    def shellformat(self, results="Empty Result Set") -> None:
-        formatted_results = (
-            f"{self.shellbanner}>\n{results}"
-        )
+    def shellformat(self, results="Empty Result Set", is_json=False) -> None:
+        """
+
+        results: The results of a command being run, to be displayed on the gui
+        is_json: Determening if the data is in json, and only showing the value of that key
+
+        Note, eventually I need to figure out how to allow custom keys as an argument, but I haven't done that yet
+
+        """
+
+        if is_json:
+            try:
+                json_msg_results = json.loads(results)
+
+                formatted_results = (
+                    f'{self.shellbanner}>\n{json_msg_results["Main"]["msg"]["msg_content"]["value"]}'
+                )
+            except KeyError as ke:
+                logging.warning(f"[Friendly Client (shellformat)] Error with JSON key to display: {ke}")
+            except Exception as e:
+                logging.warning(f"[Friendly Client (shellformat)] Unknown Error: {e}")
+
+        else:
+            formatted_results = (
+                f"{self.shellbanner}>\n{results}"
+            )
 
         self.shell_output.emit(formatted_results)
 

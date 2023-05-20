@@ -781,6 +781,10 @@ class ServerFriendlyClientHandler:
             chunks = math.ceil(int(header_msg_length)/BUFFER)
         except ValueError as ve:
             logging.debug(f"[Server (recieve_msg_from_friendlyclient: {self.username})] Error calculating chunk size: {ve}")
+            ## test exit to prevent server crash... not sure how this will work & is not the best way to handle it
+            logging.debug("[Server (recieve_msg_from_friendlyclient)] Bad disconnect, killing thread & connection")
+            #exit()
+            self.clean_exit(name=self.username)
 
         except Exception as e:
             logging.debug(f"[Server (recieve_msg_from_friendlyclient: {self.username})] Unkown Error: {e}")
@@ -876,6 +880,15 @@ class ServerFriendlyClientHandler:
         else:
             logging.debug(f"[Friendly Client (filewrite)] Directory does not exist at: {filepath}")
 
+    def clean_exit(self, name=""):
+        logging.debug(f"[Server (ServerFriendlyClientHandler: clean_exit)] clean_exit called, initiating disconnect from '{name}'")
+        try:
+            self.conn.close()
+
+        except Exception as e:
+            logging.warning("[Server (ServerFriendlyClientHandler: clean_exit)] Error closing connection")
+
+        exit()
 
 ################
 ## Malicious Client Handler

