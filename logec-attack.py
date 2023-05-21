@@ -691,15 +691,41 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         Description:
             These functions handle the server connetion to the C2 server
 
+
+        Note, I was a dumbass and only multithreaded the c2_server_interact method, instead of the whole class.
+        This leads to a few issues:
+        1) A connection attempt that takes a while will freeze the gui, so don't connect to anything that's not the server
+            (i.e. a website)
+        2) The c2 gui terminal does not update from the ASCII art until you enter a command & send it. 
         """
 
     def c2_shell_startup(self):
+        """ Shows the cool ascii art on the c2 shell on startup"""
         dir_path = sys_path + "/agent/ascii-art/"
         files = os.listdir(dir_path)
         with open(dir_path + random.choice(files), "r") as graphic:
             self.shell_text_update(graphic.read())
-        
+
+    def c2_server_interact(self):
+        """
+        The method that takes the input from the cmd line in the GUI, and passes it to the friendly client
+        to format & send to the server
+        """
+        input = self.c2_servershell_input.text()
+
+        # still the same class instance, however starting a new thread for this method
+        self.thread_manager.start(partial(self.friendly_client.gui_to_server, input))
+        ## Not getting called until the server interact is called... I think
+        self.friendly_client.shell_output.connect(self.shell_text_update)
+        self.friendly_client.authenticated_signal.connect(self.c2_connection_update)
+
+        ## clearing text
+        self.c2_servershell_input.setText("")
+
     def c2_server_connect(self):
+        """
+            Does the actual connection to the server, triggered by the connect button
+        """
         ## if connected this stops you from connecting with an already active session
         if not self.friendly_client.authenticated:
             connlist = [
@@ -711,68 +737,38 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
             self.friendly_client.connect_to_server(connlist)
 
-            # Authenticating to server with the background account
-            # temporarily disabled while new JSON comm gets implemented
-            '''self.friendly_client_background_worker.connect_to_server([
-                connlist[0],
-                connlist[1],
-                f"background_worker_{connlist[2]}",
-                connlist[3]
-            ])'''
-
-            ## return not working, so getting validated authentication via the class itself
+            # See notes at top about multithreading, but this is a hacky way to show that it's connected.
             if self.friendly_client.authenticated:
-                self.c2_status_label.setText(f"Status: Connected to {connlist[0]}:{connlist[1]}")
+                self.c2_connection_update(connected=True)
+                #self.c2_status_label.setText(f"Status: Connected to {connlist[0]}:{connlist[1]}")
 
-            if self.friendly_client_background_worker.authenticated:
-                # calling subtasks to be run
-                self.c2_client_update_timer()
-            
-           # if self.friendly_client.err_ConnRefused_0x01:
-                #self.handle_error(["ConnRefused_0x01","Low","Make sure the server is alive"])
-                #self.friendly_client.err_ConnRefused_0x01 = False
-    
+        else:
+            logging.debug("[Logec (c2_server_connect)] Client error on re-connection")
+
     def c2_server_disconnect(self):
-        self.friendly_client.client_disconnect()
+        """
+        The disconnect method, calls friendly_client.disconnect_from_server
+        """
+        self.friendly_client.disconnect_from_server()
         self.c2_status_label.setText(f"Status: Disconnected")
         
-    def c2_server_interact(self, command):
-        input = self.c2_servershell_input.text()
+    def c2_connection_update(self, connected):
+        """ Runs & updates the appropriate actions on connect/disconnect to the server"""
+        logging.debug(f"[Logec (c2_connection_update)] connected variable: {connected}")
+        if connected:
+            #updating under connection buttons
+            self.c2_status_label.setText(
+                f"Status: Connected to {self.c2_server_ip.text()}:{self.c2_server_port.text()}")
+        else:
+            self.c2_status_label.setText("Status: Disconnected")
 
-        # still the same class instance, however starting a new thread for this method
-        self.thread_manager.start(partial(self.friendly_client.gui_to_server, input))
-        self.friendly_client.shell_output.connect(self.shell_text_update)
-    
-        ## clearing text
-        self.c2_servershell_input.setText("")
-    
     def shell_text_update(self, input):
+        print("shelltextupdate")
+        """
+        Sets the text of the shell output
+        """
         #print("shell_text_update" + input) if GLOBAL_DEBUG else None
         self.c2_servershell.setText(input)
-
-    # The subsection that updates the client GUI in the background
-    def c2_client_update_timer(self):
-        logging.debug("[Logec (C2 client_update_timer)]")
-        ## A timer for updating the client view on the GUI. Goes every second
-        # call me when succesffully authenticated to the server
-        self.client_timer = QTimer()
-        self.client_timer.setInterval(3000)  ## in MS
-        self.client_timer.timeout.connect(self.c2_client_update)
-        self.client_timer.start(self.settings['C2']['Local']['ClientRefresh'])
-
-    def c2_client_update(self):
-        """ subtask, Talks to the server, gets client info"""
-        # Requesting clients (in JSON form), and sending to client_list_update
-        logging.debug("[Logec (Friendly Client] Starting Subtask: Updating malicious clients for GUI")
-
-
-        ## doesn't freeze the whole thread at the moment...
-        # thread manager code is here just incase It's needed
-        # self.thread_manager.start(partial(self.friendly_client.gui_to_server, "export-clients"))
-        self.friendly_client_background_worker.gui_to_server("export-clients")
-        self.friendly_client_background_worker.json_data.connect(self.client_list_update)
-
-        # Other subtasks go here
 
     def client_list_update(self, client_data_from_server):
         """ takes data of current clients, parses, and updates on the GUI

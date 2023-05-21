@@ -225,6 +225,7 @@ class ServerSockHandler:
                     try:
                         ##== sending the a-ok on successful authentication
                         #self.conn.send(str_encode("0"))
+
                         self.send_msg_global(msg="0")
 
                         logging.debug(f"[Server (Logon)] Successful Logon from: {friendly_client_name}")

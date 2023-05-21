@@ -14,8 +14,9 @@ logging.basicConfig(level=logging.DEBUG)
 logging.basicConfig(filename='logs/friendly_client.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s', force=True)
 
 class FClient(QObject):
+
     shell_output = Signal(str)
-    authenticated = Signal(bool)
+    authenticated_signal = Signal(bool)
     json_data = Signal(str)
 
     def __init__(self, parent=None, log_level="debug", print_logs_to_console=True):
@@ -49,29 +50,42 @@ class FClient(QObject):
         except Exception as e:
             logging.debug(f"Unkown Error: {e}")
 
-    ##== Login String
-        #old
-        #self.server.send(self.str_encode(f"!_userlogin_!\\|/{self.username}\\|/{password}"))
-
         #new
         ## In english, formats & returns JSON, and sends it to server (self.send_msg handles conversion to bytes)
-        ## Also, the send & recv are tied togehter in this instance, hence why the recv is commented out
-        auth_attempt_response = self.send_msg(msg = self.json_format(action="!_userlogin_!"), conn= self.server)
-
-        #auth_attempt_response = int(self.recieve_msg(conn=self.server))
+        self.send_msg(msg = self.json_format(action="!_userlogin_!"), conn= self.server)
+        # not moved to JSON yet, server still sends plain old 0 or 1
+        auth_attempt_response = self.recieve_msg(conn=self.server)
 
         logging.debug(f"Server Authentication Respones: {auth_attempt_response}]")
 
         if auth_attempt_response == "0":
+            #self.authenticated_signal.emit(True) # don't need here, not using threads. See c2_server_connect
             logging.debug("[Logec (friendly_client: Authentication)] Authentication Succeeded")
             ## will be used for GUI purposes
             self.shellbanner = f"{self.ip}:{self.port}"
             self.authenticated = True
-            self.shellformat()
+            self.shellformat(results="", is_json=False)
+            print("shellformat")
 
         else:
             logging.debug("[Logec (friendly_client: Authentication)] Authentication Failed")
             self.authenticated = False
+
+    def disconnect_from_server(self):
+        """
+        A method for disconnecting from the server.
+        """
+        formatted_request = self.json_format(action="!_servercommand_!",
+                                             msg_content="disconnect")
+        self.send_msg(msg=formatted_request, conn=self.server)
+        # Server sends ok on disconnect, need to catch
+        self.shellformat(self.recieve_msg(self.server), is_json=True)
+        # exits the whole program... whoooops
+        #exit()
+
+        # emiting that the connection is no longer established, so the gui knows what to change
+        self.authenticated = False
+        self.authenticated_signal.emit(False)
 
 ##########
 ##== Server Commands & Interaction
@@ -125,11 +139,8 @@ class FClient(QObject):
         elif command.lower() == "clear":
             self.shellformat()
 
-        ## this just listens forever causeeeee i set it up that way. fuuuuuck need to change a few things
         elif command.lower() == "disconnect":
-            self.send_msg(msg=formatted_request, conn=self.server)
-            self.shellformat(self.recieve_msg(self.server), is_json=True)
-            exit()
+            self.disconnect_from_server()
             
         elif command.lower() == "export-clients":
             pass
@@ -209,7 +220,7 @@ class FClient(QObject):
             #print(f"RAW COMMAND: {client}")
         except IndexError as e:
             logging.warning(f"[FriendlyClient (gui_to_client] A client name is required to run any commands meant for"
-                            "the client. Error msg: {e}")
+                            f"the client. Error msg: {e}")
         except Exception as e:
             logging.warning(f"[FriendlyClient (gui_to_client] Unknown error occured: {e}")
 
@@ -281,6 +292,7 @@ class FClient(QObject):
         Returns a json object
 
         '''
+        logging.debug(f"[Friendly Client (JSON format)] msg_content: {msg_content} ")
 
         ## Quick parse on the command - grabs the command via strip, then replaces it with "" for the value
         ## bandaid solution, but it works for now
@@ -288,7 +300,7 @@ class FClient(QObject):
             cmd = msg_content.split()[0]
             cmd_value = msg_content.replace(cmd, "")
         except Exception as e:
-            logging.debug(f"[Server (JSON format)] error with parsing command {msg_content}: {e}")
+            logging.debug(f"[Friendly Client (JSON format)] error with parsing command {msg_content}: {e}")
             cmd = msg_content
             cmd_value = "empty"
 
