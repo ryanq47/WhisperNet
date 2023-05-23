@@ -579,7 +579,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
             self.c2_gui_groupbox_client_table.setRowHeight(i, 10)
             
         ## no more border or grid
-        self.c2_gui_groupbox_client_table.setStyleSheet("QTableView { border: none; } QTableView::item { border: none; }")
+        #self.c2_gui_groupbox_client_table.setStyleSheet("QTableView { border: none; } QTableView::item { border: none; }, background-color: rgb(0, 0, 0);")
         self.c2_gui_groupbox_client_table.setShowGrid(False)
         self.c2_gui_groupbox_client_table.setGridStyle(Qt.NoPen)
         ## selects whole row
