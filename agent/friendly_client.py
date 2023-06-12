@@ -117,6 +117,9 @@ class FClient(QObject):
                 
         Final notes, gui_to_client tries to split it's command into 3 parts, as it's meant for client commands, so if you only need a one 
         liner command (i.e: sanity-check) put it here, otherwise it'll error out down there on the split
+
+
+        !!Note, the commands meant for the server are hard coded in, so you have to add them here to talk to the server, otherwise they get passed as a command for clients
         
     """
     def gui_to_server(self, command):
@@ -130,7 +133,9 @@ class FClient(QObject):
             self.send_msg(msg=formatted_request, conn=self.server)
             self.shellformat(self.recieve_msg(self.server))
 
-        #self.recieve_msg(self.server)
+        if command.lower() == "help":
+            self.send_msg(msg=formatted_request, conn=self.server)
+            self.shellformat(self.recieve_msg(self.server))
             
         elif command.lower() == "sanity-check":
             self.send_msg(msg=formatted_request, conn=self.server)
