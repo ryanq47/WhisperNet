@@ -64,7 +64,7 @@ from Modules.Wrappers.CompilationWrapper import (
     NuitkaWrapper
 )
 
-from agent.friendly_client import FClient
+from Agent.friendly_client import FClient
 
 from gui import Ui_LogecC3
 
@@ -657,7 +657,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
         #self.proc = subprocess.Popen([f"python3 {sys_path}/agent/server.py --ip {ip} --port {port}"], shell=True)
         
         ## fixed version
-        self.proc = subprocess.Popen(["python3", f"{sys_path}/agent/server.py", "--ip", ip, "--port", port, "--quiet"])
+        self.proc = subprocess.Popen(["python3", f"{sys_path}/Agent/server.py", "--ip", ip, "--port", port, "--quiet"])
         self.localserver_running = True
         self.localserver_pid = self.proc.pid
         self.c2_start_server_local.setDisabled(True)
@@ -701,7 +701,7 @@ class LogecSuite(QMainWindow, Ui_LogecC3):
 
     def c2_shell_startup(self):
         """ Shows the cool ascii art on the c2 shell on startup"""
-        dir_path = sys_path + "/agent/ascii-art/"
+        dir_path = sys_path + "/Agent/ascii-art/"
         files = os.listdir(dir_path)
         with open(dir_path + random.choice(files), "r") as graphic:
             self.shell_text_update(graphic.read())
@@ -863,7 +863,7 @@ as I get to learn all these fun ways of doing things in different scripting lang
     """
     def python_compile(self):
         self.nuitka_worker = NuitkaWrapper(
-            codefile=f"{sys_path}/agent/python/client.py",
+            codefile=f"{sys_path}/Agent/python/client.py",
             savefile=self.agentbuilder_toolbox_python_compile_savedir.text(),
             savefile_name=self.agentbuilder_toolbox_python_compile_savename.text(),
             flags=self.agentbuilder_toolbox_python_compile_flags.text(),
