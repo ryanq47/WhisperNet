@@ -54,10 +54,11 @@ class Encryptor:
             format=serialization.PublicFormat.SubjectPublicKeyInfo,
         )
 
-        print(self.private_key)
-        print(self.public_key)
+        #print(self.private_key)
+        #print(self.public_key)
 
-    def rsa_encrypt(self, data_to_encrypt="", receiver_public_key=None) -> bytes:
+    @staticmethod
+    def rsa_encrypt(data_to_encrypt="blamk_data", receiver_public_key=None) -> bytes:
         """
         data_to_encrypt (str OR bytes): The message to encrypt, will convert to bytes if passed as a string by accident
         receiver_public_key (str): The public key that will be used to encrypt the message
@@ -70,23 +71,53 @@ class Encryptor:
             "Don't worry, I got you covered. Converting data_to_encrypt to a str, then encoding to bytes.")
             data_to_encrypt = str(data_to_encrypt).encode()
 
-        ## serialize key object from receiver_public_key
-        local_pub_key = serialization.load_pem_public_key(
-            receiver_public_key
-        )
+        if receiver_public_key == None:
+            print("receiver_public_key is None, a value was probably not passed to it")
+        
+        if not type(receiver_public_key) is bytes:
+            print("receiver_public_key not in byte form, turning it into bytes")
+            receiver_public_key = receiver_public_key.encode()
+            #raise Exception(f"Object {object} is not an int.")
 
-        encrypted_text = local_pub_key.encrypt(
-            data_to_encrypt,
-            padding.OAEP(
-                mgf=padding.MGF1(algorithm=hashes.SHA256()),
-                algorithm=hashes.SHA256(),
-                label=None
+        try:
+
+            ## serialize key object from receiver_public_key
+            local_pub_key = serialization.load_pem_public_key(
+                data=receiver_public_key
             )
-        )
 
-        return encrypted_text
+            print(local_pub_key)
 
-    def rsa_decrypt(self, encrypted_data: bytes = "", private_key=None) -> str:
+            '''encrypted_text = local_pub_key.encrypt(
+                data_to_encrypt,
+                padding.OAEP(
+                    mgf=padding.MGF1(algorithm=hashes.SHA256()),
+                    algorithm=hashes.SHA256(),
+                    label=None
+                )
+            )'''
+            encrypted_text = local_pub_key.encrypt(
+                "data_to_encrypt".encode(),
+                padding.OAEP(
+                    mgf=padding.MGF1(algorithm=hashes.SHA256()),
+                    algorithm=hashes.SHA256(),
+                    label=None
+                )
+            )
+
+            ## this error is not from here: ERRMSG: 'bytes' object has no attribute 'encode'
+            #print(encrypted_text)
+            return encrypted_text
+
+        except Exception as e:
+            import sys, os
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+            print(exc_type, fname, exc_tb.tb_lineno)
+            return "placeholder encryptd msg"
+
+    @staticmethod
+    def rsa_decrypt(encrypted_data: bytes = "", private_key=None) -> str:
         """        
         encrypted_data (Bytes): The message to decrypt
 
@@ -118,9 +149,9 @@ class Encryptor:
 E = Encryptor(key_length=512)
 E.generate_keys()
 
-aaa = E.rsa_encrypt(data_to_encrypt="SuperSecretMessage", receiver_public_key=E.public_key)
+aaa = Encryptor.rsa_encrypt(data_to_encrypt="SuperSecretMessage", receiver_public_key=E.public_key)
 
-zzz = E.rsa_decrypt(encrypted_data=aaa, private_key=E.private_key)
+zzz = Encryptor.rsa_decrypt(encrypted_data=aaa, private_key=E.private_key)
 
 
 print(f"Encrypted Message: {aaa}\nDecrypted Message: {zzz}")'''
