@@ -15,6 +15,8 @@ try:
     import traceback
     import json
     import time
+    from datetime import datetime, timezone
+
     from Modules.ServerUtils import str_encode, bytes_decode
 
 except Exception as e:
@@ -74,7 +76,7 @@ class ServerMaliciousClientHandler:
             "Active": "yes"
         }
         ## Runs every checkin, howeer the method will not write data if a record of this client exists
-        Data.json_new_client(json.dumps(new_client))
+        #Data.json_new_client(json.dumps(new_client))
 
     def cleanup(self):
         self.current_job = "wait\\|/wait"

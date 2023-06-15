@@ -549,3 +549,155 @@
 2023-06-13 12:20:42 - root - DEBUG - [Server (recieve_msg_from_friendlyclient: default_user)] Error calculating chunk size: invalid literal for int() with base 10: ''
 2023-06-13 12:20:42 - root - DEBUG - [Server (recieve_msg_from_friendlyclient)] Bad disconnect, killing thread & connection
 2023-06-13 12:20:42 - root - DEBUG - [Server (ServerFriendlyClientHandler: clean_exit)] clean_exit called, initiating disconnect from 'default_user'
+2023-06-13 12:33:19 - root - DEBUG - [127.0.0.1:42440 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:42440
+2023-06-13 12:33:19 - root - DEBUG - [Server (recieve_msg_global: 1234)] WAITING ON HEADER TO BE SENT:
+2023-06-13 12:33:19 - root - DEBUG - [Server (recieve_msg_global: 1234)] HEADER: 0000000514
+2023-06-13 12:33:19 - root - DEBUG - [Server (recieve_msg_global: 1234)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-06-13 12:33:19 - root - DEBUG - [Server (send_msg_global: 1234)] SENDING HEADER: b'0000000001'
+2023-06-13 12:33:19 - root - DEBUG - [Server (send_msg_global: 1234)] SENDING CHUNK 1/1
+2023-06-13 12:33:19 - root - DEBUG - [Server (Logon)] Successful Logon from: !!~default_user
+2023-06-13 12:33:19 - root - DEBUG - [Server (ServerFriendlyClientHandler)]Friendly Client authenticated, user=default_user
+2023-06-13 12:33:22 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] HEADER: 0000000517
+2023-06-13 12:33:22 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-06-13 12:33:22 - root - DEBUG - [client (default_user) -> Server] {"Main": {"general": {"action": "!_servercommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "", "msg_content": {"command": "help", "value": ""}, "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}}
+2023-06-13 12:33:22 - root - DEBUG - [Server (ServerFriendlyClientHandler)] user_header=!_servercommand_!, user_command=help
+2023-06-13 12:33:22 - root - DEBUG - [Server (server_decision_tree)] Message from friendly client: help
+2023-06-13 12:33:22 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING HEADER: b'0000000161'
+2023-06-13 12:33:22 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING CHUNK 1/1
+2023-06-13 12:34:01 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] HEADER: 0000000517
+2023-06-13 12:34:01 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-06-13 12:34:01 - root - DEBUG - [client (default_user) -> Server] {"Main": {"general": {"action": "!_servercommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "", "msg_content": {"command": "help", "value": ""}, "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}}
+2023-06-13 12:34:01 - root - DEBUG - [Server (ServerFriendlyClientHandler)] user_header=!_servercommand_!, user_command=help
+2023-06-13 12:34:01 - root - DEBUG - [Server (server_decision_tree)] Message from friendly client: help
+2023-06-13 12:34:01 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING HEADER: b'0000000161'
+2023-06-13 12:34:01 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING CHUNK 1/1
+2023-06-13 12:35:42 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] HEADER: 0000000517
+2023-06-13 12:35:42 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-06-13 12:35:42 - root - DEBUG - [client (default_user) -> Server] {"Main": {"general": {"action": "!_servercommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "", "msg_content": {"command": "help", "value": ""}, "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}}
+2023-06-13 12:35:42 - root - DEBUG - [Server (ServerFriendlyClientHandler)] user_header=!_servercommand_!, user_command=help
+2023-06-13 12:35:42 - root - DEBUG - [Server (server_decision_tree)] Message from friendly client: help
+2023-06-13 12:35:42 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING HEADER: b'0000000161'
+2023-06-13 12:35:42 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING CHUNK 1/1
+2023-06-13 12:36:33 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] HEADER: 0000000520
+2023-06-13 12:36:33 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-06-13 12:36:33 - root - DEBUG - [client (default_user) -> Server] {"Main": {"general": {"action": "!_servercommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "", "msg_content": {"command": "clients", "value": ""}, "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}}
+2023-06-13 12:36:33 - root - DEBUG - [Server (ServerFriendlyClientHandler)] user_header=!_servercommand_!, user_command=clients
+2023-06-13 12:36:33 - root - DEBUG - [Server (server_decision_tree)] Message from friendly client: clients
+2023-06-13 12:36:33 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING HEADER: b'0000000018'
+2023-06-13 12:36:33 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING CHUNK 1/1
+2023-06-13 12:36:33 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] HEADER: 0000000527
+2023-06-13 12:36:33 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-06-13 12:36:33 - root - DEBUG - [client (default_user) -> Server] {"Main": {"general": {"action": "!_clientcommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "clients", "msg_content": {"command": "clients", "value": ""}, "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}}
+2023-06-13 12:36:33 - root - DEBUG - [Server (ServerFriendlyClientHandler)] user_header=!_clientcommand_!, user_command=clients
+2023-06-13 12:36:33 - root - DEBUG - [client (default_user) -> server] command:clients value: name:clients
+2023-06-13 12:36:33 - root - DEBUG - [Server (ServerFriendlyClientHandler) - confusing error message, fallback error from the decsision trees -] input={"Main": {"general": {"action": "!_clientcommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "clients", "msg_content": {"command": "clients", "value": ""}, "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}}: 'ServerFriendlyClientHandler' object has no attribute 'client'
+2023-06-13 12:36:33 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING HEADER: b'0000000705'
+2023-06-13 12:36:33 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING CHUNK 1/1
+2023-06-13 12:36:39 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] HEADER: 0000000520
+2023-06-13 12:36:39 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-06-13 12:36:39 - root - DEBUG - [client (default_user) -> Server] {"Main": {"general": {"action": "!_servercommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "", "msg_content": {"command": "clients", "value": ""}, "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}}
+2023-06-13 12:36:39 - root - DEBUG - [Server (ServerFriendlyClientHandler)] user_header=!_servercommand_!, user_command=clients
+2023-06-13 12:36:39 - root - DEBUG - [Server (server_decision_tree)] Message from friendly client: clients
+2023-06-13 12:36:39 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING HEADER: b'0000000018'
+2023-06-13 12:36:39 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING CHUNK 1/1
+2023-06-13 12:36:39 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] HEADER: 0000000527
+2023-06-13 12:36:39 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-06-13 12:36:39 - root - DEBUG - [client (default_user) -> Server] {"Main": {"general": {"action": "!_clientcommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "clients", "msg_content": {"command": "clients", "value": ""}, "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}}
+2023-06-13 12:36:39 - root - DEBUG - [Server (ServerFriendlyClientHandler)] user_header=!_clientcommand_!, user_command=clients
+2023-06-13 12:36:39 - root - DEBUG - [client (default_user) -> server] command:clients value: name:clients
+2023-06-13 12:36:39 - root - DEBUG - [Server (ServerFriendlyClientHandler) - confusing error message, fallback error from the decsision trees -] input={"Main": {"general": {"action": "!_clientcommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "clients", "msg_content": {"command": "clients", "value": ""}, "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}}: 'ServerFriendlyClientHandler' object has no attribute 'client'
+2023-06-13 12:36:39 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING HEADER: b'0000000705'
+2023-06-13 12:36:39 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING CHUNK 1/1
+2023-06-13 12:37:23 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] HEADER: 0000000520
+2023-06-13 12:37:23 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-06-13 12:37:23 - root - DEBUG - [client (default_user) -> Server] {"Main": {"general": {"action": "!_servercommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "", "msg_content": {"command": "clients", "value": ""}, "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}}
+2023-06-13 12:37:23 - root - DEBUG - [Server (ServerFriendlyClientHandler)] user_header=!_servercommand_!, user_command=clients
+2023-06-13 12:37:23 - root - DEBUG - [Server (server_decision_tree)] Message from friendly client: clients
+2023-06-13 12:37:23 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING HEADER: b'0000000018'
+2023-06-13 12:37:23 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING CHUNK 1/1
+2023-06-13 12:37:23 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] HEADER: 0000000527
+2023-06-13 12:37:23 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-06-13 12:37:23 - root - DEBUG - [client (default_user) -> Server] {"Main": {"general": {"action": "!_clientcommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "clients", "msg_content": {"command": "clients", "value": ""}, "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}}
+2023-06-13 12:37:23 - root - DEBUG - [Server (ServerFriendlyClientHandler)] user_header=!_clientcommand_!, user_command=clients
+2023-06-13 12:37:23 - root - DEBUG - [client (default_user) -> server] command:clients value: name:clients
+2023-06-13 12:37:23 - root - DEBUG - [Server (ServerFriendlyClientHandler) - confusing error message, fallback error from the decsision trees -] input={"Main": {"general": {"action": "!_clientcommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "clients", "msg_content": {"command": "clients", "value": ""}, "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}}: 'ServerFriendlyClientHandler' object has no attribute 'client'
+2023-06-13 12:37:23 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING HEADER: b'0000000705'
+2023-06-13 12:37:23 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING CHUNK 1/1
+2023-06-13 12:37:26 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] HEADER: 0000000523
+2023-06-13 12:37:26 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-06-13 12:37:26 - root - DEBUG - [client (default_user) -> Server] {"Main": {"general": {"action": "!_servercommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "", "msg_content": {"command": "disconnect", "value": ""}, "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}}
+2023-06-13 12:37:26 - root - DEBUG - [Server (ServerFriendlyClientHandler)] user_header=!_servercommand_!, user_command=disconnect
+2023-06-13 12:37:26 - root - DEBUG - [Server (server_decision_tree)] Message from friendly client: disconnect
+2023-06-13 12:37:26 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING HEADER: b'0000000515'
+2023-06-13 12:37:26 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING CHUNK 1/1
+2023-06-13 12:37:27 - root - DEBUG - [Server (ServerFriendlyClientHandler: clean_exit)] clean_exit called, initiating disconnect from ''
+2023-06-13 12:37:34 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-06-13 12:37:47 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-06-13 17:37:47.029115+00:00 =====
+2023-06-13 12:37:51 - root - DEBUG - [10.73.181.204:48196 -> Server] [New Instance] Accepted Connection from: 10.73.181.204:48196
+2023-06-13 12:37:51 - root - DEBUG - [Server (recieve_msg_global: None)] WAITING ON HEADER TO BE SENT:
+2023-06-13 12:37:51 - root - DEBUG - [Server (recieve_msg_global: None)] HEADER: 0000000514
+2023-06-13 12:37:51 - root - DEBUG - [Server (recieve_msg_global: None)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-06-13 12:37:51 - root - DEBUG - [Server (send_msg_global: 1234)] SENDING HEADER: b'0000000001'
+2023-06-13 12:37:51 - root - DEBUG - [Server (send_msg_global: 1234)] SENDING CHUNK 1/1
+2023-06-13 12:37:51 - root - DEBUG - [Server (Logon)] Successful Logon from: !!~default_user
+2023-06-13 12:37:51 - root - DEBUG - [Server (ServerFriendlyClientHandler)]Friendly Client authenticated, user=default_user
+2023-06-13 12:38:22 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] HEADER: 0000000520
+2023-06-13 12:38:22 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-06-13 12:38:22 - root - DEBUG - [client (default_user) -> Server] {"Main": {"general": {"action": "!_servercommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "", "msg_content": {"command": "clients", "value": ""}, "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}}
+2023-06-13 12:38:22 - root - DEBUG - [Server (ServerFriendlyClientHandler)] user_header=!_servercommand_!, user_command=clients
+2023-06-13 12:38:22 - root - DEBUG - [Server (server_decision_tree)] Message from friendly client: clients
+2023-06-13 12:38:22 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING HEADER: b'0000000018'
+2023-06-13 12:38:22 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING CHUNK 1/1
+2023-06-13 12:38:22 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] HEADER: 0000000527
+2023-06-13 12:38:22 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-06-13 12:38:22 - root - DEBUG - [client (default_user) -> Server] {"Main": {"general": {"action": "!_clientcommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "clients", "msg_content": {"command": "clients", "value": ""}, "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}}
+2023-06-13 12:38:22 - root - DEBUG - [Server (ServerFriendlyClientHandler)] user_header=!_clientcommand_!, user_command=clients
+2023-06-13 12:38:22 - root - DEBUG - [client (default_user) -> server] command:clients value: name:clients
+2023-06-13 12:38:22 - root - DEBUG - [Server (ServerFriendlyClientHandler) - confusing error message, fallback error from the decsision trees -] input={"Main": {"general": {"action": "!_clientcommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "clients", "msg_content": {"command": "clients", "value": ""}, "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}}: 'ServerFriendlyClientHandler' object has no attribute 'client'
+2023-06-13 12:38:22 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING HEADER: b'0000000705'
+2023-06-13 12:38:22 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING CHUNK 1/1
+2023-06-13 12:39:11 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-06-13 12:39:12 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-06-13 17:39:12.148639+00:00 =====
+2023-06-13 12:39:12 - root - WARNING - ERRMSG: [Errno 99] Cannot assign requested address
+
+2023-06-13 12:39:41 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-06-13 17:39:41.022726+00:00 =====
+2023-06-13 12:39:41 - root - WARNING - ERRMSG: [Errno 99] Cannot assign requested address
+
+2023-06-13 12:39:58 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-06-13 17:39:58.165731+00:00 =====
+2023-06-13 12:40:03 - root - DEBUG - [127.0.0.1:36810 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:36810
+2023-06-13 12:40:03 - root - DEBUG - [Server (recieve_msg_global: None)] WAITING ON HEADER TO BE SENT:
+2023-06-13 12:40:03 - root - DEBUG - [Server (recieve_msg_global: None)] HEADER: 0000000514
+2023-06-13 12:40:03 - root - DEBUG - [Server (recieve_msg_global: None)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-06-13 12:40:03 - root - DEBUG - [Server (send_msg_global: 1234)] SENDING HEADER: b'0000000001'
+2023-06-13 12:40:03 - root - DEBUG - [Server (send_msg_global: 1234)] SENDING CHUNK 1/1
+2023-06-13 12:40:03 - root - DEBUG - [Server (Logon)] Successful Logon from: !!~default_user
+2023-06-13 12:40:03 - root - DEBUG - [Server (ServerFriendlyClientHandler)]Friendly Client authenticated, user=default_user
+2023-06-13 12:42:29 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] HEADER: 0000000517
+2023-06-13 12:42:29 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-06-13 12:42:29 - root - DEBUG - [client (default_user) -> Server] {"Main": {"general": {"action": "!_servercommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "", "msg_content": {"command": "help", "value": ""}, "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}}
+2023-06-13 12:42:29 - root - DEBUG - [Server (ServerFriendlyClientHandler)] user_header=!_servercommand_!, user_command=help
+2023-06-13 12:42:29 - root - DEBUG - [Server (server_decision_tree)] Message from friendly client: help
+2023-06-13 12:42:29 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING HEADER: b'0000000161'
+2023-06-13 12:42:29 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING CHUNK 1/1
+2023-06-13 12:44:56 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] HEADER: 
+2023-06-13 12:44:56 - root - DEBUG - [Server (recieve_msg_from_friendlyclient: default_user)] Error calculating chunk size: invalid literal for int() with base 10: ''
+2023-06-13 12:44:56 - root - DEBUG - [Server (recieve_msg_from_friendlyclient)] Bad disconnect, killing thread & connection
+2023-06-13 12:44:56 - root - DEBUG - [Server (ServerFriendlyClientHandler: clean_exit)] clean_exit called, initiating disconnect from 'default_user'
+2023-06-15 08:37:08 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-06-15 08:37:42 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-06-15 13:37:42.296679+00:00 =====
+2023-06-15 08:38:32 - root - DEBUG - [127.0.0.1:48172 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:48172
+2023-06-15 08:38:32 - root - DEBUG - [Server (recieve_msg_global: None)] WAITING ON HEADER TO BE SENT:
+2023-06-15 08:38:32 - root - DEBUG - [Server (recieve_msg_global: None)] HEADER: 0000000522
+2023-06-15 08:38:32 - root - DEBUG - [Server (recieve_msg_global: None)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-06-15 08:39:09 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-06-15 08:39:10 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-06-15 13:39:10.973211+00:00 =====
+2023-06-15 08:39:17 - root - DEBUG - [127.0.0.1:35142 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:35142
+2023-06-15 08:39:17 - root - DEBUG - [Server (recieve_msg_global: None)] WAITING ON HEADER TO BE SENT:
+2023-06-15 08:39:17 - root - DEBUG - [Server (recieve_msg_global: None)] HEADER: 0000000522
+2023-06-15 08:39:17 - root - DEBUG - [Server (recieve_msg_global: None)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-06-15 08:40:10 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-06-15 08:40:12 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-06-15 13:40:12.234454+00:00 =====
+2023-06-15 08:40:14 - root - DEBUG - [127.0.0.1:52700 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:52700
+2023-06-15 08:40:14 - root - DEBUG - [Server (recieve_msg_global: None)] WAITING ON HEADER TO BE SENT:
+2023-06-15 08:40:14 - root - DEBUG - [Server (recieve_msg_global: None)] HEADER: 0000000522
+2023-06-15 08:40:14 - root - DEBUG - [Server (recieve_msg_global: None)] WAITING TO RECEIEVE CHUNK 1/1:

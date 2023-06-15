@@ -19,6 +19,7 @@ try:
     import traceback
     import json
     import time
+    from datetime import datetime, timezone
 
     from Modules.ServerUtils import str_encode, bytes_decode
 except Exception as e:
@@ -127,7 +128,7 @@ class ServerFriendlyClientHandler:
                 self.send_msg_to_friendlyclient(self.current_client_list)
                 
             else:
-                self.send_msg_to_friendlyclient("No Current Clients")   
+                self.send_msg_to_friendlyclient("No Current Clients")
 
         elif message == "help":
             msg = "Server Help Menu:\n\n" \
