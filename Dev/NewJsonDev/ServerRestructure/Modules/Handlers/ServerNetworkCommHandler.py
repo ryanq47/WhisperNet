@@ -124,6 +124,7 @@ def receive_msg(conn=None, private_key="") -> str:
 def _header_parse(header):
     '''
     This function parses the header, and returns values
+    might need to add some bits to the header to make the length longer for large files
 
     header: 
     XXXXXXXXX
@@ -138,14 +139,20 @@ def _header_parse(header):
         1: Public Key
         2-9: reserved
 
-    XX0000000
-    The rest are for data size (char 2 - 9)
+    XX1XXXXXX
+    Interclient communication - reserved for later
+        0: do not communicate with other clients
+        1: Send to client (next hop kinda, need to figure out how to pass IP, maybe an extra json section)
+
+    XXX0000000
+    The rest are for data size (char 3 - 9)
     '''
     print(header)
 
     encrypted = header[0]
     server_public_request = header[1]
-    data_size = header[2:9]
+    client_passthrough = header[2]
+    data_size = header[3:9]
 
     results = {
         "encrypted":encrypted,
