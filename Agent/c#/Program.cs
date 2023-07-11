@@ -8,9 +8,11 @@ using System.Net.Sockets;
 //using System.Numerics; //greyed out
 //using System.Runtime.CompilerServices;  //greyed out
 using System.Text;
+using System.Text.Json;
 //using static System.Runtime.InteropServices.JavaScript.JSType; //greyed out
 using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
+using System;
 
 namespace Client
 {
@@ -74,9 +76,18 @@ namespace Client
 
                         // Creation of message that
                         // we will send to Server
-                        //format: clientype \|/ ID \|/ Message
-                        byte[] messageSent = Encoding.ASCII.GetBytes($"!_client_!\\|/{Properties.ID}\\|/~");
-                        int byteSent = sender.Send(messageSent);
+
+
+                        //flip me to JSON -- !!
+                        //byte[] messageSent = Encoding.ASCII.GetBytes($"!_client_!\\|/{Properties.ID}\\|/~");
+                        //int byteSent = sender.Send(messageSent);
+
+                        /*
+                        generate hello JSON
+
+
+
+                        */
 
                         // Data buffer
                         byte[] messageReceived = new byte[1024];
@@ -409,8 +420,50 @@ namespace Client
     }
 
     class Message
+        //holyfuck json is much diff. watcha vid on it
+
+
         /* Handles all message functions/methods */
     {
+        static public JsonElement JsonParseFromStr(string jsonMessage)
+            /* Takes str, serializes JSON, returns JSON element. */
+        {
+            //init var so it always is something
+            //JsonElement parsedJson = "{"name": "John", "age": 30, "city": "New York"}";
+
+            try
+            {
+                // the <> just lets it know the type. this language is odd sometimes lol
+                var parsedJson = JsonSerializer.Deserialize<JsonElement>(jsonMessage);
+
+                Console.WriteLine(parsedJson);
+
+                return parsedJson;
+            }
+
+            //catchall exceptions
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                //do not inlcude in prod. will nuke client on bad json. just for testing
+                System.Environment.Exit(1);
+
+            }
+
+            //can return nothing if not caught by exception. could prolly fix later 
+            //once I can init the var with json somehow
+
+        }
+
+
+        static public string JsonBuildAndSerialize()
+        {
+            var jsonBuildTemplate = new JBT
+            {
+
+            }
+        }
+
         static public string[] Parse(string rawMessage)
             /* Parses the message received from the server, returns an Array
              * Looks like: !_client_!\|/ID\|/Message 

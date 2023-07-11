@@ -13,7 +13,7 @@ logging.getLogger().addHandler(logging.StreamHandler())
 
 class MClient:
 
-    def __init__(self, ip="127.0.0.1", port=80):
+    def __init__(self, ip="127.0.0.1", port=8080):
         self.ip = ip
         self.port = port
         self.heartbeat = 60

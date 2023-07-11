@@ -8,3 +8,18 @@
 2023-06-12 12:36:51 - root - DEBUG - No message, or ID value was recieved. response_list=['0000000514'], error=not enough values to unpack (expected 3, got 1)
 2023-06-12 12:36:51 - root - CRITICAL - Unexpected Connection from 127.0.0.1:48578. Received: ['0000000514'] 
 2023-06-12 12:36:59 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-10 21:23:49 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-11 02:23:49.008752+00:00 =====
+2023-07-10 21:23:49 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:80
+ * Running on http://192.168.44.158:80
+2023-07-10 21:23:49 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2023-07-10 21:24:03 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2023 21:24:03] "[33mGET / HTTP/1.1[0m" 404 -
+2023-07-10 21:24:03 - werkzeug - INFO - 127.0.0.1 - - [10/Jul/2023 21:24:03] "[31m[1mGET /favicon.ico HTTP/1.1[0m" 403 -
+2023-07-10 21:24:14 - werkzeug - INFO - 192.168.44.158 - - [10/Jul/2023 21:24:14] "[33mGET / HTTP/1.1[0m" 404 -
+2023-07-10 21:24:14 - werkzeug - INFO - 192.168.44.158 - - [10/Jul/2023 21:24:14] "[31m[1mGET /favicon.ico HTTP/1.1[0m" 403 -
+2023-07-10 21:24:19 - werkzeug - INFO - 192.168.44.158 - - [10/Jul/2023 21:24:19] "[33mGET / HTTP/1.1[0m" 404 -
+2023-07-10 21:24:19 - werkzeug - INFO - 192.168.44.158 - - [10/Jul/2023 21:24:19] "[31m[1mGET /favicon.ico HTTP/1.1[0m" 403 -
+2023-07-10 21:26:42 - root - DEBUG - [127.0.0.1:55255 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:55255
+2023-07-10 21:26:42 - root - DEBUG - No message, or ID value was recieved. response_list=['0000000522'], error=not enough values to unpack (expected 3, got 1)
+2023-07-10 21:26:42 - root - CRITICAL - Unexpected Connection from 127.0.0.1:55255. Received: ['0000000522'] 
