@@ -10,3 +10,9 @@
 *Debug*
 *.vs*
 *.log*
+Agent/c\#/.vs/Client/DesignTimeBuild/.dtbcache.v2
+*.v2
+*.vsidx
+*.1
+*.1
+*.prof
