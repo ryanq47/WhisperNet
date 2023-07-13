@@ -2,3 +2,11 @@
 *__pycache__*
 *logec_db*
 *.gitignore*
+*.exe*
+*.v*
+*.so*
+*.dll*
+*.cache*
+*Debug*
+*.vs*
+*.log*
