@@ -14,6 +14,11 @@ using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System;
 
+
+//coms directory
+using Client.Comms;
+
+
 namespace Client
 {
 
@@ -25,7 +30,10 @@ namespace Client
         {
                //generates relavant data
             Properties.GenerateData();
-            Console.Write($"ID: {Properties.ID}\n");
+            Console.Write("DEBUG::\n");
+            Console.Write($"\tID: {Properties.ID}\n");
+            JsonHandler.Test();
+
 
             //Commands.runPowershellCommand("whoami");
             //Prompts.requestUserCreds();
@@ -425,13 +433,14 @@ namespace Client
 
         /* Handles all message functions/methods */
     {
-        static public JsonElement JsonParseFromStr(string jsonMessage)
+        static public string JsonParseFromStr(string jsonMessage)
             /* Takes str, serializes JSON, returns JSON element. */
         {
+            return "test";
             //init var so it always is something
             //JsonElement parsedJson = "{"name": "John", "age": 30, "city": "New York"}";
 
-            try
+            /*try
             {
                 // the <> just lets it know the type. this language is odd sometimes lol
                 var parsedJson = JsonSerializer.Deserialize<JsonElement>(jsonMessage);
@@ -448,7 +457,7 @@ namespace Client
                 //do not inlcude in prod. will nuke client on bad json. just for testing
                 System.Environment.Exit(1);
 
-            }
+            }*/
 
             //can return nothing if not caught by exception. could prolly fix later 
             //once I can init the var with json somehow
@@ -458,10 +467,8 @@ namespace Client
 
         static public string JsonBuildAndSerialize()
         {
-            var jsonBuildTemplate = new JBT
-            {
 
-            }
+            return "test";
         }
 
         static public string[] Parse(string rawMessage)
