@@ -1,0 +1,159 @@
+{
+  "main": {
+    "id": "0968f0bb9020828d",
+    "type": "split",
+    "children": [
+      {
+        "id": "43ce376c04199907",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "754e158c659311a4",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "Clients/CSharp/Program File Structure.canvas",
+                "viewState": {
+                  "x": -157.15270414485173,
+                  "y": 11.11180736377736,
+                  "zoom": -1.6666666666666665
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "8e86951e5b6d0167",
+    "type": "split",
+    "children": [
+      {
+        "id": "f408d36ae537f732",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e250de59ef9ddaa7",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "0137f8886ff50d8c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "ffd7105597df21c7",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "68bb75ec4765f1f6",
+    "type": "split",
+    "children": [
+      {
+        "id": "729e84512b2cb5bc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "007164d5f70ac2f2",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Clients/CSharp/Program File Structure.canvas",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "eea30d6adf115e53",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Clients/CSharp/Program File Structure.canvas",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "3d5b3752ecc39888",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "e9269b5a6a038652",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Clients/CSharp/Program File Structure.canvas"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "754e158c659311a4",
+  "lastOpenFiles": [
+    "Clients/CSharp/High Level Operation Flow.canvas",
+    "Clients/CSharp/Program File Structure.canvas",
+    "Clients/CSharp",
+    "Clients"
+  ]
+}
