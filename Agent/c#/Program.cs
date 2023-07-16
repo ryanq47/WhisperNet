@@ -30,9 +30,13 @@ namespace Client
         {
                //generates relavant data
             Properties.GenerateData();
+
+            //debug data
             Console.Write("DEBUG::\n");
             Console.Write($"\tID: {Properties.ID}\n");
             JsonHandler.Test();
+            JsonHandler.ToJson();
+
 
 
             //Commands.runPowershellCommand("whoami");
