@@ -36,6 +36,7 @@ namespace Client
             Console.Write($"\tID: {Properties.ID}\n");
             JsonHandler.Test();
             JsonHandler.ToJson();
+            JsonHandler.FromJson();
 
 
 

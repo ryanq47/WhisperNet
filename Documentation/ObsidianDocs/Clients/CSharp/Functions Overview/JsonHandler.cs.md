@@ -1,6 +1,10 @@
 Handles all JSON serialization, and deserialization. 
 
 
+### Todo
+- [x] FromJson
+	- [x] Fairly simple, just destruct, and return that object. Ask chatgpt if stuck
+- [ ] Test/QA Args for ToJson
 
 ## Client.Comms (namespace)
 - ### JsonHandler (class)
@@ -9,7 +13,8 @@ Handles all JSON serialization, and deserialization.
 		- Returns string
 	- FromJson()
 		- Takes JSON, converts back to C# objects.
-		- Returns object
+		- Returns object.
+			- Access objects with 'objectname.general.conn'
 	- Test()
 		- A test string to make sure everything is still properly accessible. Just prints a short debug msg
 

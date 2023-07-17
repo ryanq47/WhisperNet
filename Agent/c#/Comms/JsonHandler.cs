@@ -1,13 +1,15 @@
 ﻿using System;
-
+using System.Management.Automation;
+using JsonStruct;
 using Newtonsoft.Json;
 
 using static JsonStruct.MyJsonStruct;
 
+
 namespace Client.Comms
 {
     //using internal so only the assmbly can access it. Might need to tighten down later
-    internal class JsonHandler
+    internal static class JsonHandler
     {
         //serves as a test only
         internal static void Test()
@@ -79,6 +81,34 @@ namespace Client.Comms
             Console.WriteLine(jsonString);
 
             return jsonString;
+        }
+
+        //this is kinda cool, can return this custom type
+        internal static JsonStruct.MyJsonStruct FromJson(string JsonString = "string")
+        {
+            //I think this creates a default json type/struct - need to test what it does on fail.
+            string TestJsonString = "{\"general\":{\"action\":\"default string\",\"client_id\":\"default string\",\"client_type\":\"default string\",\"password\":\"default string\"},\"conn\":{\"client_ip\":\"Client IP\",\"client_port\":\"Client Port\"},\"msg\":{\"msg_to\":\"Client IP\",\"msg_content\":\"content\",\"msg_length\":\"1234\",\"msg_hash\":\"fakehash\"},\"stats\":{\"latest_checkin\":\"tomorrow\",\"device_hostname\":\"ttest.microsoft.com\",\"device_username\":\"1234\"},\"security\":{\"client_hash\":\"hash\",\"server_hash\":\"hash\"},\"test\":\"Hello World\"}";
+
+
+            JsonStruct.MyJsonStruct mystruct = JsonConvert.DeserializeObject<JsonStruct.MyJsonStruct>(TestJsonString);
+            Console.WriteLine(mystruct.general.action);
+            return mystruct;
+
+            /*try //being funky, need to figure out how to return the JsonStruct.MyJsonStruct in the catch spot
+            {
+
+                JsonStruct.MyJsonStruct mystruct = JsonConvert.DeserializeObject<JsonStruct.MyJsonStruct>(JsonString);
+                Console.WriteLine(mystruct.general.action);
+                return mystruct;
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine($"JSON error occured{e}");
+                //nto sure how to properly return here, maybe just exit for now.
+                
+            }*/
+
         }
     }
 }
