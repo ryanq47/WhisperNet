@@ -37,7 +37,6 @@ namespace Client
             JsonHandler.Test();
             JsonHandler.ToJson();
             JsonHandler.FromJson();
-            MessageHandler.Test();
 
 
 
@@ -45,7 +44,6 @@ namespace Client
             //Prompts.requestUserCreds();
 
             // enters loop for jobs n stuff
-            Console.WriteLine("Starting Connection Cadence...");
             ConnectToServer();
         }
 
@@ -434,54 +432,12 @@ namespace Client
         }
     }
 
-    class Message
-        //holyfuck json is much diff. watcha vid on it
-
-
-        /* Handles all message functions/methods */
+    class Message //move these guys to JSON handler
     {
-        static public string JsonParseFromStr(string jsonMessage)
-            /* Takes str, serializes JSON, returns JSON element. */
-        {
-            return "test";
-            //init var so it always is something
-            //JsonElement parsedJson = "{"name": "John", "age": 30, "city": "New York"}";
-
-            /*try
-            {
-                // the <> just lets it know the type. this language is odd sometimes lol
-                var parsedJson = JsonSerializer.Deserialize<JsonElement>(jsonMessage);
-
-                Console.WriteLine(parsedJson);
-
-                return parsedJson;
-            }
-
-            //catchall exceptions
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                //do not inlcude in prod. will nuke client on bad json. just for testing
-                System.Environment.Exit(1);
-
-            }*/
-
-            //can return nothing if not caught by exception. could prolly fix later 
-            //once I can init the var with json somehow
-
-        }
-
-
-        static public string JsonBuildAndSerialize()
-        {
-
-            return "test";
-        }
-
         static public string[] Parse(string rawMessage)
-            /* Parses the message received from the server, returns an Array
-             * Looks like: !_client_!\|/ID\|/Message 
-             */
+        /* Parses the message received from the server, returns an Array
+         * Looks like: !_client_!\|/ID\|/Message 
+         */
         {
             Console.Write($"[Debug] rawMessage: {rawMessage}");
             string[] parsedMessage = rawMessage.Split("\\|/");
@@ -490,107 +446,17 @@ namespace Client
         }
 
         static public string[] CommandParse(string rawCommand)
-            /* A parser specifically for commands. (third item in parsed message)
-             * looks like this: set-heartbeat\|/15
-             Returns a parsed command (array)
-             */
+        /* A parser specifically for commands. (third item in parsed message)
+         * looks like this: set-heartbeat\|/15
+         Returns a parsed command (array)
+         */
         {
             //string[] parsedMessage = rawCommand.Split("\\|/");
             string[] parsedMessage = rawCommand.Split();
             return parsedMessage;
         }
-
-        static public void SendMessage(string msg, Socket conn)
-        /* Handles sending big messages */
-        {
-            //msg = str_encode(_msg);
-
-            //conn = server
-            // clients need to have a shared known header beforehand. Default is 10
-            const int HEADER_BYTES = 10;
-            const int BUFFER = 1024;
-
-            // get the length of the message in bytes
-            int msg_length = Encoding.UTF8.GetByteCount(msg);
-
-            // create a header for the message that includes the length of the message
-            string header = msg_length.ToString().PadLeft(HEADER_BYTES, '0');
-            byte[] headerBytes = Encoding.UTF8.GetBytes(header);
-
-            // send the header followed by the message in chunks
-            Console.WriteLine($"SENDING HEADER: {header}");
-            conn.Send(headerBytes);
-
-            for (int i = 0; i < Math.Ceiling((double)msg_length / BUFFER); i++)
-            {
-                // gets the right spot in the message in a loop
-                int startIdx = i * BUFFER;
-                int endIdx = Math.Min(startIdx + BUFFER, msg_length);
-                byte[] chunkBytes = Encoding.UTF8.GetBytes(msg.Substring(startIdx, endIdx - startIdx));
-                Console.WriteLine($"SENDING CHUNK: {msg.Substring(startIdx, endIdx - startIdx)}");
-                conn.Send(chunkBytes);
-            }
-        }
-
-
-        static public string RecvMessage(Socket conn)
-        {
-            string completeMsg = "";
-            // clients need to have a shared known header beforehand. Default is 10
-            const int HEADER_BYTES = 10;
-            const int BUFFER = 1024;
-            int headerValue = 0;
-            string headerContents = "";
-
-            int msgBytesReceivedSoFar = 0;
-
-            Console.WriteLine("WAITING ON HEADER TO BE SENT:");
-            byte[] headerBytes = new byte[HEADER_BYTES];
-            conn.Receive(headerBytes);
-            string headerMsgLength = Encoding.UTF8.GetString(headerBytes); //int(bytes_decode(msg)
-            Console.WriteLine("HEADER:" + headerMsgLength);
-
-            // getting the amount of chunks/iterations needed at 1024 bytes a message
-            int chunks = (int)Math.Ceiling((double)int.Parse(headerMsgLength) / BUFFER);
-
-            completeMsg = "";
-
-            for (int i = 0; i < chunks; i++)
-            {
-                Console.WriteLine("RECEIVING CHUNK:");
-                byte[] msgBytes = new byte[BUFFER];
-                int bytesReceived = conn.Receive(msgBytes);  // << adjustable, how many bytes you want to get per iteration
-
-                // getting the amount of bytes sent so far
-                msgBytesReceivedSoFar += bytesReceived;
-
-                string msg = Encoding.UTF8.GetString(msgBytes, 0, bytesReceived);
-                completeMsg += msg;
-
-                Console.WriteLine(msg);
-
-                Console.WriteLine($@"DEBUG:
-            Full Message Length (based on header value) {headerMsgLength}
-            Header size: {HEADER_BYTES}
-
-            Size of message received so far: {msgBytesReceivedSoFar}
-
-            Chunks: {chunks}
-
-                ");
-
-                // if completeMsg is the same length as what the header says, consider it complete.
-                if (completeMsg.Length == int.Parse(headerMsgLength))
-                {
-                    Console.WriteLine("MSG TRANSFER COMPLETE");
-                }
-            }
-
-            Console.WriteLine("VALUE OF MSG: \n" + completeMsg);
-            return completeMsg;
-        }
-
     }
+
 
     class SystemData
         /* used to retrieve system data from the target. each method returns the data */

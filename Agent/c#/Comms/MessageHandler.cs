@@ -50,6 +50,7 @@ namespace Client.Comms
 
 
             // Console.WriteLine("WAITING ON HEADER TO BE SENT:");
+            //Getting header
             conn.Receive(headerBytes);
 
             //header starts as a string so certain values can be pulled from it
@@ -113,7 +114,31 @@ namespace Client.Comms
         static public void SendMessage(string msg, Socket conn)
         {
             //takes socket, and a msg, does actions on message based on args, sends a message, returns nothing
+            const int HEADER_BYTES  = 10;
+            const int BUFFER        = 1024;
 
+            // get the length of the message in bytes
+            int msg_length = Encoding.UTF8.GetByteCount(msg);
+
+            //!! Note, will need to rework to add in the encrpytion & other bytes N stuff
+            // create a header for the message that includes the length of the message
+            string header = msg_length.ToString().PadLeft(HEADER_BYTES, '0');
+            byte[] headerBytes = Encoding.UTF8.GetBytes(header);
+
+            // send the header followed by the message in chunks
+            Console.WriteLine($"SENDING HEADER: {header}");
+            conn.Send(headerBytes);
+
+            //send rest of message
+            for (int i = 0; i < Math.Ceiling((double)msg_length / BUFFER); i++)
+            {
+                // gets the right spot in the message in a loop
+                int startIdx = i * BUFFER;
+                int endIdx = Math.Min(startIdx + BUFFER, msg_length);
+                byte[] chunkBytes = Encoding.UTF8.GetBytes(msg.Substring(startIdx, endIdx - startIdx));
+                Console.WriteLine($"SENDING CHUNK: {msg.Substring(startIdx, endIdx - startIdx)}");
+                conn.Send(chunkBytes);
+            }
         }
 
     }

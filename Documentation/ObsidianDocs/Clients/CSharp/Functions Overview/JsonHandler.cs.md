@@ -5,6 +5,7 @@ Handles all JSON serialization, and deserialization.
 - [x] FromJson
 	- [x] Fairly simple, just destruct, and return that object. Ask chatgpt if stuck
 - [ ] Test/QA Args for ToJson
+- [ ] Fix return for Fromjson, it crashes on bad json. See notes in code
 
 ## Client.Comms (namespace)
 - ### JsonHandler (class)

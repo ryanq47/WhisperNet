@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "General/Networking & Protocols/Header breakdown.md",
-                "mode": "preview",
+                "file": "Clients/CSharp/Functions Overview/Naming & general.md",
+                "mode": "source",
                 "source": false
               }
             }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "General/Networking & Protocols/Header breakdown.md",
+                "file": "Clients/CSharp/Functions Overview/Naming & general.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "General/Networking & Protocols/Header breakdown.md",
+                "file": "Clients/CSharp/Functions Overview/Naming & general.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "General/Networking & Protocols/Header breakdown.md"
+                "file": "Clients/CSharp/Functions Overview/Naming & general.md"
               }
             }
           }
@@ -148,11 +148,12 @@
   },
   "active": "754e158c659311a4",
   "lastOpenFiles": [
+    "Clients/CSharp/Functions Overview/JsonHandler.cs.md",
+    "Clients/CSharp/Functions Overview/Naming & general.md",
     "Clients/CSharp/Program File Structure.canvas",
     "General/Networking & Protocols/Header breakdown.md",
     "General/Networking & Protocols",
     "General",
-    "Clients/CSharp/Functions Overview/JsonHandler.cs.md",
     "Clients/CSharp/Functions Overview",
     "Clients/CSharp/High Level Operation Flow.canvas",
     "Clients/CSharp",
