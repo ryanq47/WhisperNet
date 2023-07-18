@@ -3,8 +3,6 @@
 		{"type":"text","text":"# Root Folder\n","id":"0c1e43d5c0104044","x":-412,"y":-110,"width":250,"height":60,"color":"2"},
 		{"type":"text","text":"# Legend\n\n### Blue: Directory\n\n\n### Green: File","id":"cc05c301307bc6a4","x":-1272,"y":-530,"width":740,"height":380},
 		{"type":"text","text":"### Comms","id":"f1c7a0e132eed32f","x":-372,"y":130,"width":170,"height":80,"color":"5"},
-		{"type":"text","text":"JsonHandler.CS","id":"c297cda7476660bf","x":-369,"y":350,"width":165,"height":60,"color":"4"},
-		{"type":"text","text":"### Program.CS\n- LinkToNotes\n- Main Program","id":"8fb0e2b17c4b21c4","x":-772,"y":130,"width":170,"height":80,"color":"4"},
 		{"type":"text","text":"AESHandler.CS\n- Funcs:\n\t- Encrypt\n\t- Decrypt\n\t- Other\n- Returns encrypted or decrypted code based on func\n- ","id":"3d6c03443a5df836","x":-32,"y":290,"width":165,"height":240,"color":"4"},
 		{"type":"text","text":"### 3ncrypt10n\n- LEET for encryption. thought it was cool","id":"1bbe4462e5811c37","x":88,"y":130,"width":170,"height":80,"color":"5"},
 		{"type":"text","text":"### Tools\n- Individual tools, do later, after fundamentals are figured out.\n","id":"67e2655adf4f95af","x":558,"y":130,"width":170,"height":160,"color":"5"},
@@ -12,7 +10,11 @@
 		{"type":"text","text":"BinExec.CS\n- runs uploaded binary on host","id":"431e84705c30867a","x":668,"y":430,"width":165,"height":100,"color":"4"},
 		{"type":"text","text":"PsExec.CS\n- runs PS command","id":"73d8bb232e235970","x":888,"y":430,"width":165,"height":100,"color":"4"},
 		{"type":"text","text":"TaskSchedule.CS\n- Schedules task","id":"c2d009c4450379e2","x":1108,"y":430,"width":165,"height":100,"color":"4"},
-		{"type":"text","text":"Note, these will be the most fun, but come last once everything else is established","id":"432ec092c859d15c","x":833,"y":150,"width":250,"height":60}
+		{"type":"text","text":"Note, these will be the most fun, but come last once everything else is established","id":"432ec092c859d15c","x":833,"y":150,"width":250,"height":60},
+		{"type":"text","text":"JsonHandler.CS","id":"c297cda7476660bf","x":-284,"y":350,"width":165,"height":60,"color":"4"},
+		{"type":"text","text":"### Program.CS\n- LinkToNotes\n- Main Program","id":"8fb0e2b17c4b21c4","x":-1072,"y":130,"width":170,"height":80,"color":"4"},
+		{"type":"text","text":"MessageHandler.CS","id":"f79d88c36a7fa0ee","x":-546,"y":350,"width":226,"height":60,"color":"4"},
+		{"type":"text","text":"CryptoHandler.CS","id":"aa2e638a16f29353","x":-758,"y":470,"width":226,"height":60,"color":"4"}
 	],
 	"edges":[
 		{"id":"75c107ca1b115973","fromNode":"0c1e43d5c0104044","fromSide":"bottom","toNode":"8fb0e2b17c4b21c4","toSide":"top"},
@@ -24,6 +26,8 @@
 		{"id":"00be2ea1b872b043","fromNode":"67e2655adf4f95af","fromSide":"bottom","toNode":"3fa8faf578203d37","toSide":"top"},
 		{"id":"f23cc97d8f5405e4","fromNode":"67e2655adf4f95af","fromSide":"bottom","toNode":"431e84705c30867a","toSide":"top"},
 		{"id":"b62350c9268e5eb3","fromNode":"67e2655adf4f95af","fromSide":"bottom","toNode":"73d8bb232e235970","toSide":"top"},
-		{"id":"5522fbe0d7d8d0c0","fromNode":"67e2655adf4f95af","fromSide":"bottom","toNode":"c2d009c4450379e2","toSide":"top"}
+		{"id":"5522fbe0d7d8d0c0","fromNode":"67e2655adf4f95af","fromSide":"bottom","toNode":"c2d009c4450379e2","toSide":"top"},
+		{"id":"ca3c486113be251a","fromNode":"f1c7a0e132eed32f","fromSide":"bottom","toNode":"f79d88c36a7fa0ee","toSide":"top"},
+		{"id":"50487a7142417717","fromNode":"aa2e638a16f29353","fromSide":"top","toNode":"f1c7a0e132eed32f","toSide":"bottom"}
 	]
 }

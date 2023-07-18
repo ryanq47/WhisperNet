@@ -11,14 +11,11 @@
             "id": "754e158c659311a4",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "Clients/CSharp/Program File Structure.canvas",
-                "viewState": {
-                  "x": -289.7422794117648,
-                  "y": 452.8602941176472,
-                  "zoom": -1.041562528575291
-                }
+                "file": "General/Networking & Protocols/Header breakdown.md",
+                "mode": "preview",
+                "source": false
               }
             }
           }
@@ -88,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Clients/CSharp/Program File Structure.canvas",
+                "file": "General/Networking & Protocols/Header breakdown.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Clients/CSharp/Program File Structure.canvas",
+                "file": "General/Networking & Protocols/Header breakdown.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -128,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Clients/CSharp/Program File Structure.canvas"
+                "file": "General/Networking & Protocols/Header breakdown.md"
               }
             }
           }
@@ -151,8 +148,11 @@
   },
   "active": "754e158c659311a4",
   "lastOpenFiles": [
-    "Clients/CSharp/Functions Overview/JsonHandler.cs.md",
     "Clients/CSharp/Program File Structure.canvas",
+    "General/Networking & Protocols/Header breakdown.md",
+    "General/Networking & Protocols",
+    "General",
+    "Clients/CSharp/Functions Overview/JsonHandler.cs.md",
     "Clients/CSharp/Functions Overview",
     "Clients/CSharp/High Level Operation Flow.canvas",
     "Clients/CSharp",
