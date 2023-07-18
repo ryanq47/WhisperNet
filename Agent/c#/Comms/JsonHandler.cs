@@ -14,7 +14,7 @@ namespace Client.Comms
         //serves as a test only
         internal static void Test()
         {
-            Console.WriteLine("\tJsonHandler.CS: Success.");
+            Console.WriteLine("\tJsonHandler.CS checking in");
         }
 
         //takes args of data to turn into json

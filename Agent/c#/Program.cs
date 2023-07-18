@@ -37,6 +37,7 @@ namespace Client
             JsonHandler.Test();
             JsonHandler.ToJson();
             JsonHandler.FromJson();
+            MessageHandler.Test();
 
 
 
@@ -44,6 +45,7 @@ namespace Client
             //Prompts.requestUserCreds();
 
             // enters loop for jobs n stuff
+            Console.WriteLine("Starting Connection Cadence...");
             ConnectToServer();
         }
 
