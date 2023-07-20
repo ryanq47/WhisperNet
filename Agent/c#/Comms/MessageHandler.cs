@@ -65,7 +65,7 @@ namespace Client.Comms
             }
 
             catch {
-                Console.WriteLine("Debug: Error at try/except on Client.Comms.NetworkingHandler: RecvMessag ");
+                Console.WriteLine($"Debug: Error at try/except on Client.Comms.NetworkingHandler: RecvMessage \n Header: {HEADER}");
 
             }
 

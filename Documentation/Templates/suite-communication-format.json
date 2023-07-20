@@ -1,38 +1,35 @@
 {
-	"Main": {
-		"general": {
-			"action": "!_servercommand_!",
-			"client_id": "bobdabuilder",
-			"client_type": "friendly",
-			"password": "1234"
-		},
-		"conn": {
-			"client_ip": "127.0.0.1",
-			"client_port": 6969
-		},
-		"msg": {
-			"msg_to": "CCEEA",
-			"msg_content": {
-				"command": "run-command-ps",
-				"value": "to client: whoami /priv; from client: DESKTOP-BALLS//User1"
-				},
-			"msg_length": 1234,
-			"msg_hash": "hash of message (later)"
-		},
-		"stats": {
-			"latest_checkin": "time.now",
-			"device_hostname": "hostname",
-			"device_username": "username"
-		},
-		"security": {
-			"client_hash": "hash of client (later)",
-			"server_hash": "hash of server (later)"
-		}
+	"general": {
+		"action": "!_servercommand_!",
+		"client_id": "bobdabuilder",
+		"client_type": "friendly",
+		"password": "1234"
 	},
-
-	"AddtlMod": {
-
+	"conn": {
+		"client_ip": "127.0.0.1",
+		"client_port": 6969
+	},
+	"msg": {
+		"msg_to": "CCEEA",
+		"msg_content": "emtpy...",
+		"msg_command": "command to run",
+		"msg_value": "Results of said command",
+		"msg_length": 1234,
+		"msg_hash": "hash of message (later)"
+	},
+	"stats": {
+		"latest_checkin": "time.now",
+		"device_hostname": "hostname",
+		"device_username": "username"
+	},
+	"security": {
+		"client_hash": "hash of client (later)",
+		"server_hash": "hash of server (later)"
 	}
-}
+},
+
+
+
 
 ## going to have to nuke the Main sectuib, is a PITA for working with JSON
+## Updated to remove the main tag, and reduce the sub tag in msg_content

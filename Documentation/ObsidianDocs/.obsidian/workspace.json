@@ -18,8 +18,33 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "e3ebf6b7015c0d4f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Left off & todo.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "87514fc849abe138",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Clients/CSharp/Functions Overview/Naming & general.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Clients/CSharp/Functions Overview/Naming & general.md",
+                "file": "Left off & todo.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Clients/CSharp/Functions Overview/Naming & general.md",
+                "file": "Left off & todo.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Clients/CSharp/Functions Overview/Naming & general.md"
+                "file": "Left off & todo.md"
               }
             }
           }
@@ -146,10 +171,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "754e158c659311a4",
+  "active": "e3ebf6b7015c0d4f",
   "lastOpenFiles": [
-    "Clients/CSharp/Functions Overview/JsonHandler.cs.md",
     "Clients/CSharp/Functions Overview/Naming & general.md",
+    "Left off & todo.md",
+    "Clients/CSharp/Functions Overview/JsonHandler.cs.md",
     "Clients/CSharp/Program File Structure.canvas",
     "General/Networking & Protocols/Header breakdown.md",
     "General/Networking & Protocols",

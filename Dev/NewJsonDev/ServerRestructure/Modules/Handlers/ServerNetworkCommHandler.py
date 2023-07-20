@@ -147,7 +147,7 @@ def _header_parse(header):
     XXX0000000
     The rest are for data size (char 3 - 9)
     '''
-    print(header)
+    #print(header)
 
     encrypted = header[0]
     server_public_request = header[1]

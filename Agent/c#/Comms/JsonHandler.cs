@@ -14,7 +14,7 @@ namespace Client.Comms
         //serves as a test only
         internal static void Test()
         {
-            Console.WriteLine("\tJsonHandler.CS checking in");
+            Console.WriteLine("\tJsonHandler.CS: Success.");
         }
 
         //takes args of data to turn into json
@@ -54,6 +54,9 @@ namespace Client.Comms
                 {
                     msg_to = "Client IP",
                     msg_content = "content",
+                    msg_command = "command",
+                    msg_value = "value",
+                    
                     msg_length = "1234",
                     msg_hash = "fakehash"
                 },
@@ -163,7 +166,13 @@ namespace JsonStruct
         {
             public string msg_to { get; set; }
 
+            //see next note, not sure what this will be used for now
             public string msg_content { get; set; }
+
+
+            //these 2 are no longer nested casue that adds complexity & pain here
+            public string msg_command { get; set; }
+            public string msg_value { get; set; }
 
             public string msg_length { get; set; }
 

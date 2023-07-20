@@ -108,6 +108,7 @@ class ServerSockHandler:
 
         ## Modules
         ## This compiles the JSON schema and returns it
+        #bypassing for now. 
         self.json_parser = json_parser.json_ops()
 
         # generating global priv & pub keys
@@ -179,7 +180,7 @@ class ServerSockHandler:
 
                 ## Getting client id from the client, and the IP address
                 self.client_remote_ip_port = f"{self.conn.getpeername()[0]}:{self.conn.getpeername()[1]}"
-                logging.debug(f"[{self.client_remote_ip_port} -> Server] [New Instance] Accepted Connection from: {self.client_remote_ip_port}")
+                logging.debug(f"\n[{self.client_remote_ip_port} -> Server] [New Instance] Accepted Connection from: {self.client_remote_ip_port}")
                         
             except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
                 logging.warning(f"[Server (connection_handler)] Client {self.client_remote_ip_port} disconnected")
@@ -191,7 +192,7 @@ class ServerSockHandler:
                 # English: Hey, I (server) wants to recieve a message. Not sure if encrypted or not, passing my private key to decrypt just in case
                 self.response = receive_msg(conn=self.conn, private_key=self.encryption.private_key)
 
-                print(self.response)
+                #print(self.response)
                 ## this whole section needs a rework
                 if self.response == "PUBKEY_REQUEST":
                     logging.debug(f"[Server (PUBKEY_REQUEST)] {self.client_remote_ip_port} requested the Public Key")
@@ -201,17 +202,20 @@ class ServerSockHandler:
 
                 else:
                     #English: Making sure whatever data sent to me is valid JSON that follows the schema I'm looking for
+                    #NOte, vailadation is disabled
                     incoming_message = self.json_parser.convert_and_validate(self.response)
 
                     ## maybe get a typecheck in here, or create one in the ServerUtils
                     if incoming_message: 
-                        self.client_type = incoming_message["Main"]["general"]["client_type"]
-                        self.id = incoming_message["Main"]["general"]["client_id"]
-                        self.message = incoming_message["Main"]["msg"]["msg_content"]["command"]
+                        self.client_type = incoming_message["general"]["client_type"]
+                        self.id = incoming_message["general"]["client_id"]
+                        self.message = incoming_message["msg"]["msg_command"]
                         ## action to be performed
-                        self.action = incoming_message["Main"]["general"]["action"]
+                        self.action = incoming_message["general"]["action"]
                         #Client Pubkey
                         #self.client_pubkey = incoming_message["Main"]["general"]["client_pubkey"]
+
+                        print(f"MSG Breakdown\n\tSelf.client_type: {self.client_type}\n\tself.id: {self.id}\n\tself.message: {self.message}\n\tself.action: {self.action}\n\n")
 
                     #English: I don't recognize this data schema/format. Killing the connection just to be safe
                     else:
@@ -225,6 +229,7 @@ class ServerSockHandler:
                 self.id = "None"
                 """
                 logging.debug(f"No message, or ID value was recieved. , error={e}")
+                print(traceback.format_exc())
                              
         ##== The decision handler based on the client_type, which can be:
             ## !_clientlogin_!: A malicious client "logging" in
@@ -236,8 +241,8 @@ class ServerSockHandler:
                 try:
                     # Try to extract the username and password from the message
                     #username, password = self.id, self.message
-                    username = self.id = incoming_message["Main"]["general"]["client_id"]
-                    password = self.id = incoming_message["Main"]["general"]["password"]
+                    username = self.id = incoming_message["general"]["client_id"]
+                    password = self.id = incoming_message["general"]["password"]
                 except ValueError as e:
                     # If there is a value error, set the username and password to None
                     logging.debug(f"Value error with login, credentials probably passed wrong: {e}")
