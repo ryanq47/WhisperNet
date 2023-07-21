@@ -11,11 +11,14 @@
             "id": "754e158c659311a4",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "Clients/CSharp/Functions Overview/Naming & general.md",
-                "mode": "source",
-                "source": false
+                "file": "Clients/CSharp/Program File Structure.canvas",
+                "viewState": {
+                  "x": 822.41832460733,
+                  "y": 474.68167539267023,
+                  "zoom": -0.47296403194414793
+                }
               }
             }
           },
@@ -43,8 +46,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -110,7 +112,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Left off & todo.md",
+                "file": "Clients/CSharp/Program File Structure.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +129,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Left off & todo.md",
+                "file": "Clients/CSharp/Program File Structure.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +152,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Left off & todo.md"
+                "file": "Clients/CSharp/Program File Structure.canvas"
               }
             }
           }
@@ -171,8 +173,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "e3ebf6b7015c0d4f",
+  "active": "754e158c659311a4",
   "lastOpenFiles": [
+    "Clients/CSharp/High Level Operation Flow.canvas",
     "Clients/CSharp/Functions Overview/Naming & general.md",
     "Left off & todo.md",
     "Clients/CSharp/Functions Overview/JsonHandler.cs.md",
@@ -181,7 +184,6 @@
     "General/Networking & Protocols",
     "General",
     "Clients/CSharp/Functions Overview",
-    "Clients/CSharp/High Level Operation Flow.canvas",
     "Clients/CSharp",
     "Clients"
   ]

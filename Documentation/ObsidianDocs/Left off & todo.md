@@ -7,3 +7,8 @@ Left off getting the client to send data over to the server. It works! I still n
 - [ ] Properly Name the Server.dev. Use [this to do it correctly](obsidian://open?vault=ObsidianDocs&file=Clients%2FCSharp%2FFunctions%20Overview%2FNaming%20%26%20general).
 	- Make sure you are using the one in the DEV folder. Need to fix lol
 - [ ] Re-organize the Program.cs file & clean it up
+	- [x] IN PROG
+	- [x] Properties moved to PropertyHandler.cs
+	- [ ] Removeal of old message
+		- [ ] NOTE! decision tree is partially broken due to this, with Message.Parse. Relevant/error lines are commented out for now
+	

@@ -8,7 +8,7 @@
 		{"type":"text","text":"### Tools\n- Individual tools, do later, after fundamentals are figured out.\n","id":"67e2655adf4f95af","x":558,"y":130,"width":170,"height":160,"color":"5"},
 		{"type":"text","text":"SAMcopy.CS\n- Gets sam file info","id":"3fa8faf578203d37","x":428,"y":430,"width":165,"height":100,"color":"4"},
 		{"type":"text","text":"BinExec.CS\n- runs uploaded binary on host","id":"431e84705c30867a","x":668,"y":430,"width":165,"height":100,"color":"4"},
-		{"type":"text","text":"PsExec.CS\n- runs PS command","id":"73d8bb232e235970","x":888,"y":430,"width":165,"height":100,"color":"4"},
+		{"type":"text","text":"PwshExec.CS\n- runs/spawns a powershell session\n- ","id":"73d8bb232e235970","x":888,"y":430,"width":165,"height":125,"color":"4"},
 		{"type":"text","text":"TaskSchedule.CS\n- Schedules task","id":"c2d009c4450379e2","x":1108,"y":430,"width":165,"height":100,"color":"4"},
 		{"type":"text","text":"Note, these will be the most fun, but come last once everything else is established","id":"432ec092c859d15c","x":833,"y":150,"width":250,"height":60},
 		{"type":"text","text":"JsonHandler.CS","id":"c297cda7476660bf","x":-284,"y":350,"width":165,"height":60,"color":"4"},
@@ -16,8 +16,9 @@
 		{"type":"text","text":"CryptoHandler.CS","id":"aa2e638a16f29353","x":-758,"y":470,"width":226,"height":60,"color":"4"},
 		{"type":"text","text":"### Program.CS\n- LinkToNotes\n- Main Program","id":"8fb0e2b17c4b21c4","x":-1860,"y":50,"width":170,"height":80,"color":"4"},
 		{"type":"text","text":"### Config","id":"9efb84609a49c5c2","x":-1160,"y":130,"width":170,"height":80,"color":"5"},
-		{"id":"caea7b1df890ad9c","x":-1460,"y":320,"width":269,"height":110,"type":"text","text":"Config.cs\n- Holds config data such as timeout, etc"},
-		{"type":"text","text":"PropertyHandler.cs\n- Creates properites, such as client ID, and other various operations","id":"3ab3439ce7be6cc3","x":-1075,"y":320,"width":269,"height":150}
+		{"type":"text","text":"Config.cs\n- Holds config data such as timeout, etc","id":"caea7b1df890ad9c","x":-1460,"y":320,"width":269,"height":110},
+		{"type":"text","text":"PropertyHandler.cs\n- Creates properites, such as client ID, and other various operations","id":"3ab3439ce7be6cc3","x":-1075,"y":320,"width":269,"height":150},
+		{"id":"4315a9cedd20e911","x":1360,"y":430,"width":250,"height":249,"color":"4","type":"text","text":"PsExec.CS\n- Uses process info in C# (see PsExec.CS code) to start ANY process/exe the user wants. Super dangerous"}
 	],
 	"edges":[
 		{"id":"75c107ca1b115973","fromNode":"0c1e43d5c0104044","fromSide":"bottom","toNode":"8fb0e2b17c4b21c4","toSide":"top"},
@@ -32,6 +33,7 @@
 		{"id":"5522fbe0d7d8d0c0","fromNode":"67e2655adf4f95af","fromSide":"bottom","toNode":"c2d009c4450379e2","toSide":"top"},
 		{"id":"ca3c486113be251a","fromNode":"f1c7a0e132eed32f","fromSide":"bottom","toNode":"f79d88c36a7fa0ee","toSide":"top"},
 		{"id":"50487a7142417717","fromNode":"aa2e638a16f29353","fromSide":"top","toNode":"f1c7a0e132eed32f","toSide":"bottom"},
-		{"id":"e4659a5fbc0e4360","fromNode":"0c1e43d5c0104044","fromSide":"bottom","toNode":"9efb84609a49c5c2","toSide":"top"}
+		{"id":"e4659a5fbc0e4360","fromNode":"0c1e43d5c0104044","fromSide":"bottom","toNode":"9efb84609a49c5c2","toSide":"top"},
+		{"id":"2149034fb27430ab","fromNode":"67e2655adf4f95af","fromSide":"bottom","toNode":"4315a9cedd20e911","toSide":"top"}
 	]
 }

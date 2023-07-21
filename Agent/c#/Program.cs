@@ -28,12 +28,12 @@ namespace Client
         // Main Method
         static void Main(string[] args)
         {
-               //generates relavant data
-            Properties.GenerateData();
+            //generates relavant data
+            Client.PropertyHandler.Properties.GenerateData();
 
             //debug data
             Console.Write("DEBUG::\n");
-            Console.Write($"\tID: {Properties.ID}\n");
+            Console.Write($"\tID: {Client.PropertyHandler.Properties.ID}\n");
             JsonHandler.Test();
             JsonHandler.ToJson();
             JsonHandler.FromJson();
@@ -193,7 +193,7 @@ namespace Client
                             //Data is sent to 'send' method (takes the message, and the socket as args)
                             MessageHandler.SendMessage(DataFromTarget, sender);
                             //mandatory sleep b4 heartbeat & loop restart
-                            Thread.Sleep(Properties.msWait);
+                            Thread.Sleep(Client.PropertyHandler.Properties.msWait);
                         }
                         //loop restarts
 
@@ -278,9 +278,9 @@ namespace Client
                 //not super clean but it works
                 try
                 {
-                    parsedCommand = Message.CommandParse(rawCommand);
-                    command = parsedCommand[0];
-                    commandValue = parsedCommand[1];
+                    //parsedCommand = Message.CommandParse(rawCommand);
+                    command = ""; //parsedCommand[0];
+                    commandValue = ""; //parsedCommand[1];
                 }
                 catch (Exception e)
                 {
@@ -314,9 +314,9 @@ namespace Client
                 //not super clean but it works
                 try
                 {
-                    parsedCommand = Message.CommandParse(rawCommand);
-                    command = parsedCommand[0];
-                    commandValue = parsedCommand[1];
+                    //parsedCommand = Message.CommandParse(rawCommand);
+                    command = "";//parsedCommand[0];
+                    commandValue = ""; //parsedCommand[1];
                 }
                 catch (Exception e)
                 {
@@ -364,57 +364,6 @@ namespace Client
         }
     }
 
-    class Properties
-        /* The initial properties for the client. Generated once on program start, call via GenerateData method
-         */
-    {
-        //Variables
-        //consider moving to a struct eventually?
-        public static string ID = "";
-        public static int msWait = 15000;
-
-
-        public static void GenerateData()
-            /* Calls all the functions, and sets the values needed for other componenets */
-        {
-            ID = Identifier();
-        }
-
-        private static string Identifier()
-            /* Generates a 6 character ID for the client */
-        {
-            // new random class
-            Random rand = new Random();
-
-            //init variables
-            int stringlen = rand.Next(6, 6);
-            int randValue;
-
-            string id = "";
-            char letter;
-
-            //generate ID
-            for (int i = 0; i < stringlen; i++)
-            {
-                // Generating a random num from 0-26
-                randValue = rand.Next(0, 26);
-
-                //annnnd converting it to text/char
-                letter = Convert.ToChar(randValue + 65);
-
-                //appending to id
-                id = id + letter;
-            }
-
-            //last but not least, setting the value. Could also be a return
-            //ID = id;
-            return id;
-
-            
-        }
-
-
-    }
 
     class ClientControls
         /*  A set of functions for controlling client data/settings */
@@ -427,34 +376,11 @@ namespace Client
             //time is in MS, so this converts to MS
             timeInSec = time * 1000;
 
-            Properties.msWait = timeInSec;
+            Client.PropertyHandler.Properties.msWait = timeInSec;
         }
     }
 
-    class Message //move these guys to JSON handler
-    {
-        static public string[] Parse(string rawMessage)
-        /* Parses the message received from the server, returns an Array
-         * Looks like: !_client_!\|/ID\|/Message 
-         */
-        {
-            Console.Write($"[Debug] rawMessage: {rawMessage}");
-            string[] parsedMessage = rawMessage.Split("\\|/");
 
-            return parsedMessage;
-        }
-
-        static public string[] CommandParse(string rawCommand)
-        /* A parser specifically for commands. (third item in parsed message)
-         * looks like this: set-heartbeat\|/15
-         Returns a parsed command (array)
-         */
-        {
-            //string[] parsedMessage = rawCommand.Split("\\|/");
-            string[] parsedMessage = rawCommand.Split();
-            return parsedMessage;
-        }
-    }
 
 
     class SystemData
