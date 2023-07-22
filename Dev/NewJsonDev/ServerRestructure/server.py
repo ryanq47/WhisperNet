@@ -19,13 +19,13 @@ try:
 
     # My Modules
     #import json_parser_dev as json_parser
-    import Modules.DataHandlers.json_parser_dev as json_parser
-    from Modules.DataHandlers.Encryption import Encryptor
+    import DataEngine.JsonParser as json_parser
+    from DataEngine.Encryption import Encryptor
 
-    from Modules.Handlers.ServerFriendlyClientHandler import ServerFriendlyClientHandler
-    from Modules.Handlers.ServerMaliciousClientHandler import ServerMaliciousClientHandler
-    from Modules.Handlers.ServerNetworkCommHandler import send_msg, receive_msg
-    from Modules.ServerUtils import str_encode, bytes_decode
+    from ClientEngine.FriendlyClientHandler import ServerFriendlyClientHandler
+    from ClientEngine.MaliciousClientHandler import ServerMaliciousClientHandler
+    from Comms.CommsHandler import send_msg, receive_msg
+    from Utils.ServerUtils import str_encode, bytes_decode
 
 except Exception as e:
     print(f"[server.py] Import Error: {e}")

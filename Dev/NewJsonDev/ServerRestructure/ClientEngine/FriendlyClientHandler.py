@@ -21,7 +21,7 @@ try:
     import time
     from datetime import datetime, timezone
 
-    from Modules.ServerUtils import str_encode, bytes_decode
+    from Utils.UtilsHandler import str_encode, bytes_decode
 except Exception as e:
     print(f"[ServerFriendlyClientHandler.py] Import Error: {e}")
     exit()
@@ -63,7 +63,7 @@ class ServerFriendlyClientHandler:
             raw_user_input = self.recieve_msg_from_friendlyclient()
 
             ## Substitute with json decoder
-            msg_from_fclient = self.json_parser.convert_and_validate(json_string=raw_user_input)
+            msg_from_fclient = True#self.json_parser.convert_and_validate(json_string=raw_user_input)
             if not msg_from_fclient:
                 self.send_msg_to_friendlyclient(msg="[Server] Error with JSON validation: ")
             #user_input = self.parse_msg_for_server(raw_user_input)
@@ -71,12 +71,20 @@ class ServerFriendlyClientHandler:
             logging.debug(f"[client ({self.username}) -> Server] {raw_user_input}")
             try:
 
-                user_header = msg_from_fclient["Main"]["general"]["action"]
+                '''user_header = msg_from_fclient["Main"]["general"]["action"]
                 user_username = msg_from_fclient["Main"]["general"]["client_id"]
 
                 user_command = msg_from_fclient["Main"]["msg"]["msg_content"]["command"]
                 user_command_value = msg_from_fclient["Main"]["msg"]["msg_content"]["value"]
-                msg_to = msg_from_fclient["Main"]["msg"]["msg_to"]
+                msg_to = msg_from_fclient["Main"]["msg"]["msg_to"]'''
+
+                ##bypassing main as it's dumb
+                user_header = msg_from_fclient["general"]["action"]
+                user_username = msg_from_fclient["general"]["client_id"]
+
+                user_command = msg_from_fclient["msg"]["msg_command"]
+                user_command_value = msg_from_fclient["msg"]["msg_value"]
+                msg_to = msg_from_fclient["msg"]["msg_to"]
 
                 logging.debug(f"[Server (ServerFriendlyClientHandler)] user_header={user_header}, user_command={user_command}")
 
@@ -320,8 +328,8 @@ class ServerFriendlyClientHandler:
 
 
                     ## Special variables for sessions only
-                    session_command = dict_session_message["Main"]["msg"]["msg_content"]["command"]
-                    session_command_value = dict_session_message["Main"]["msg"]["msg_content"]["value"]
+                    session_command = dict_session_message["msg"]["msg_command"]
+                    session_command_value = dict_session_message["msg"]["msg_value"]
 
                     ## Strip JSON of any sensitive data (makes it so the messages from Fclient can be passed
                     ## directly to the Mclient without an additional parser here. Orrrrr just don't send it in the first
@@ -517,10 +525,9 @@ class ServerFriendlyClientHandler:
                 },
                 "msg": {
                     "msg_to": "msg_to",
-                    "msg_content": {
-                        "command": cmd,
-                        "value": cmd_value
-                    },
+                    "msg_content": "",
+                    "msg_command": cmd,
+                    "msg_value": cmd_value,
                     "msg_length": 1234,
                     "msg_hash": "hash of message (later)"
                 },

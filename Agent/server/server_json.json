@@ -1,1 +1,0 @@
-{"ServerName": "Server-Name", "ServerIp": "127.0.0.1", "MaliciousClients": [{"ClientFullName": "Placeholder", "ClientIP": "127.0.0.1", "ClientPort": "6969", "ClientId": "DEFAULT", "CurrentJob": "Wait", "SleepTime": 60, "LatestCheckin": "01:23:45 UTC 01/01", "FirstCheckin": "01:23:45 UTC 01/01", "Active": "No"}], "FriendlyClients": []}

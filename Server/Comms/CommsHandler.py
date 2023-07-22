@@ -27,8 +27,8 @@ bQIDAQAB
 -----END PUBLIC KEY-----"""
 
 
-
-def send_msg(conn=None, msg="", public_key=None, encryption=True):
+## setting encryption to false by default
+def send_msg(conn=None, msg="", public_key=None, encryption=False):
     HEADER_BYTES = 10
     BUFFER = 1024
 

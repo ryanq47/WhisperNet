@@ -56,7 +56,7 @@ class FClient(QObject):
         # not moved to JSON yet, server still sends plain old 0 or 1
         auth_attempt_response = self.recieve_msg(conn=self.server)
 
-        logging.debug(f"Server Authentication Respones: {auth_attempt_response}]")
+        logging.debug(f"Server Authentication Response: {auth_attempt_response}]")
 
         if auth_attempt_response == "0":
             #self.authenticated_signal.emit(True) # don't need here, not using threads. See c2_server_connect
@@ -311,37 +311,35 @@ class FClient(QObject):
 
         ## Expanded our here for readability
         user_msg_to_be_sent = {
-            "Main": {
-                "general": {
-                    "action": action,
-                    "client_id": str(self.username),
-                    "client_type": "friendly",
-                    "password": "1234"
-                },
-                "conn": {
-                    "client_ip": "127.0.0.1",
-                    "client_port": 6969
-                },
-                "msg": {
-                    "msg_to": msg_to,
-                    "msg_content": {
-                        "command": cmd,
-                        "value": cmd_value
-                    },
-                    "msg_length": 1234,
-                    "msg_hash": "hash of message (later)"
-                },
-                "stats": {
-                    "latest_checkin": "time.now",
-                    "device_hostname": "hostname",
-                    "device_username": "username"
-                },
-                "security": {
-                    "client_hash": "hash of client (later)",
-                    "server_hash": "hash of server (later)"
-                }
+            "general": {
+                "action": action,
+                "client_id": str(self.username),
+                "client_type": "friendly",
+                "password": "1234"
+            },
+            "conn": {
+                "client_ip": "127.0.0.1",
+                "client_port": 6969
+            },
+            "msg": {
+                "msg_to": msg_to,
+                "msg_content": "empty...",
+                "msg_command" : cmd,
+                "msg_value" : cmd_value,
+                "msg_length": 1234,
+                "msg_hash": "hash of message (later)"
+            },
+            "stats": {
+                "latest_checkin": "time.now",
+                "device_hostname": "hostname",
+                "device_username": "username"
+            },
+            "security": {
+                "client_hash": "hash of client (later)",
+                "server_hash": "hash of server (later)"
             }
         }
+
 
         return json.dumps(user_msg_to_be_sent)
 

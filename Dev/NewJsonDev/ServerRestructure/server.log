@@ -834,3 +834,111 @@
 2023-07-20 01:20:34 - root - DEBUG - Header: {'encrypted': '0', 'server_public_request': '0', 'data_size': '000050'}
 2023-07-20 01:20:34 - root - DEBUG - [ServerNetworkCommHandler(recieve_msg_global)] WAITING TO RECEIEVE CHUNK 1/1:
 2023-07-20 01:20:34 - root - WARNING - Unexpected Connection from 127.0.0.1:63972. Received: {"general":{"action":"default string","client_id":"default string","client_type":"default string","password":"default string"},"conn":{"client_ip":"Client IP","client_port":"Client Port"},"msg":{"msg_to":"Client IP","msg_content":"content","msg_command":"command","msg_value":"value","msg_length":"1234","msg_hash":"fakehash"},"stats":{"latest_checkin":"tomorrow","device_hostname":"ttest.microsoft.com","device_username":"1234"},"security":{"client_hash":"hash","server_hash":"hash"},"test":"Hello World"} 
+2023-07-21 18:08:16 - root - DEBUG - 
+[127.0.0.1:55260 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:55260
+2023-07-21 22:10:45 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-21 22:10:45 - root - DEBUG - No message, or ID value was recieved. , error=[WinError 10054] An existing connection was forcibly closed by the remote host
+2023-07-21 22:10:45 - root - WARNING - Unexpected Connection from 127.0.0.1:55260. Received: {"general":{"action":"default string","client_id":"default string","client_type":"default string","password":"default string"},"conn":{"client_ip":"Client IP","client_port":"Client Port"},"msg":{"msg_to":"Client IP","msg_content":"content","msg_command":"command","msg_value":"value","msg_length":"1234","msg_hash":"fakehash"},"stats":{"latest_checkin":"tomorrow","device_hostname":"ttest.microsoft.com","device_username":"1234"},"security":{"client_hash":"hash","server_hash":"hash"},"test":"Hello World"} 
+2023-07-21 22:11:02 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-22 03:11:02.726830+00:00 =====
+2023-07-21 22:11:13 - root - DEBUG - 
+[127.0.0.1:53152 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53152
+2023-07-21 22:11:13 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-21 22:11:13 - root - DEBUG - Header: {'encrypted': '0', 'server_public_request': '0', 'data_size': '000050'}
+2023-07-21 22:11:13 - root - DEBUG - [ServerNetworkCommHandler(recieve_msg_global)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-07-21 22:11:13 - root - WARNING - Unexpected Connection from 127.0.0.1:53152. Received: {"general":{"action":"default string","client_id":"default string","client_type":"default string","password":"default string"},"conn":{"client_ip":"Client IP","client_port":"Client Port"},"msg":{"msg_to":"Client IP","msg_content":"content","msg_command":"command","msg_value":"value","msg_length":"1234","msg_hash":"fakehash"},"stats":{"latest_checkin":"tomorrow","device_hostname":"ttest.microsoft.com","device_username":"1234"},"security":{"client_hash":"hash","server_hash":"hash"},"test":"Hello World"} 
+2023-07-21 22:11:13 - root - DEBUG - 
+[127.0.0.1:53153 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53153
+2023-07-21 22:11:13 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-21 22:11:13 - root - DEBUG - Header: {'encrypted': '0', 'server_public_request': '0', 'data_size': '000050'}
+2023-07-21 22:11:13 - root - DEBUG - [ServerNetworkCommHandler(recieve_msg_global)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-07-21 22:11:13 - root - WARNING - Unexpected Connection from 127.0.0.1:53153. Received: {"general":{"action":"default string","client_id":"default string","client_type":"default string","password":"default string"},"conn":{"client_ip":"Client IP","client_port":"Client Port"},"msg":{"msg_to":"Client IP","msg_content":"content","msg_command":"command","msg_value":"value","msg_length":"1234","msg_hash":"fakehash"},"stats":{"latest_checkin":"tomorrow","device_hostname":"ttest.microsoft.com","device_username":"1234"},"security":{"client_hash":"hash","server_hash":"hash"},"test":"Hello World"} 
+2023-07-21 22:11:13 - root - DEBUG - 
+[127.0.0.1:53154 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53154
+2023-07-21 22:11:13 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-21 22:11:13 - root - DEBUG - Header: {'encrypted': '0', 'server_public_request': '0', 'data_size': '000050'}
+2023-07-21 22:11:13 - root - DEBUG - [ServerNetworkCommHandler(recieve_msg_global)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-07-21 22:11:13 - root - WARNING - Unexpected Connection from 127.0.0.1:53154. Received: {"general":{"action":"default string","client_id":"default string","client_type":"default string","password":"default string"},"conn":{"client_ip":"Client IP","client_port":"Client Port"},"msg":{"msg_to":"Client IP","msg_content":"content","msg_command":"command","msg_value":"value","msg_length":"1234","msg_hash":"fakehash"},"stats":{"latest_checkin":"tomorrow","device_hostname":"ttest.microsoft.com","device_username":"1234"},"security":{"client_hash":"hash","server_hash":"hash"},"test":"Hello World"} 
+2023-07-21 22:11:13 - root - DEBUG - 
+[127.0.0.1:53155 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53155
+2023-07-21 22:11:13 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-21 22:11:13 - root - DEBUG - Header: {'encrypted': '0', 'server_public_request': '0', 'data_size': '000050'}
+2023-07-21 22:11:13 - root - DEBUG - [ServerNetworkCommHandler(recieve_msg_global)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-07-21 22:11:13 - root - WARNING - Unexpected Connection from 127.0.0.1:53155. Received: {"general":{"action":"default string","client_id":"default string","client_type":"default string","password":"default string"},"conn":{"client_ip":"Client IP","client_port":"Client Port"},"msg":{"msg_to":"Client IP","msg_content":"content","msg_command":"command","msg_value":"value","msg_length":"1234","msg_hash":"fakehash"},"stats":{"latest_checkin":"tomorrow","device_hostname":"ttest.microsoft.com","device_username":"1234"},"security":{"client_hash":"hash","server_hash":"hash"},"test":"Hello World"} 
+2023-07-21 22:11:13 - root - DEBUG - 
+[127.0.0.1:53156 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53156
+2023-07-21 22:11:13 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-21 22:11:13 - root - DEBUG - Header: {'encrypted': '0', 'server_public_request': '0', 'data_size': '000050'}
+2023-07-21 22:11:13 - root - DEBUG - [ServerNetworkCommHandler(recieve_msg_global)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-07-21 22:11:13 - root - WARNING - Unexpected Connection from 127.0.0.1:53156. Received: {"general":{"action":"default string","client_id":"default string","client_type":"default string","password":"default string"},"conn":{"client_ip":"Client IP","client_port":"Client Port"},"msg":{"msg_to":"Client IP","msg_content":"content","msg_command":"command","msg_value":"value","msg_length":"1234","msg_hash":"fakehash"},"stats":{"latest_checkin":"tomorrow","device_hostname":"ttest.microsoft.com","device_username":"1234"},"security":{"client_hash":"hash","server_hash":"hash"},"test":"Hello World"} 
+2023-07-21 22:11:14 - root - DEBUG - 
+[127.0.0.1:53157 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53157
+2023-07-21 22:11:14 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-21 22:11:14 - root - DEBUG - Header: {'encrypted': '0', 'server_public_request': '0', 'data_size': '000050'}
+2023-07-21 22:11:14 - root - DEBUG - [ServerNetworkCommHandler(recieve_msg_global)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-07-21 22:11:14 - root - WARNING - Unexpected Connection from 127.0.0.1:53157. Received: {"general":{"action":"default string","client_id":"default string","client_type":"default string","password":"default string"},"conn":{"client_ip":"Client IP","client_port":"Client Port"},"msg":{"msg_to":"Client IP","msg_content":"content","msg_command":"command","msg_value":"value","msg_length":"1234","msg_hash":"fakehash"},"stats":{"latest_checkin":"tomorrow","device_hostname":"ttest.microsoft.com","device_username":"1234"},"security":{"client_hash":"hash","server_hash":"hash"},"test":"Hello World"} 
+2023-07-21 22:12:32 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-22 03:12:32.991747+00:00 =====
+2023-07-21 22:12:41 - root - DEBUG - 
+[127.0.0.1:53161 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53161
+2023-07-21 22:12:41 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-21 22:12:41 - root - DEBUG - Header: {'encrypted': '0', 'server_public_request': '0', 'data_size': '000050'}
+2023-07-21 22:12:41 - root - DEBUG - [ServerNetworkCommHandler(recieve_msg_global)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-07-21 22:15:10 - root - DEBUG - 
+[127.0.0.1:53164 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53164
+2023-07-21 22:15:10 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-21 22:15:10 - root - DEBUG - Header: {'encrypted': '0', 'server_public_request': '0', 'data_size': '000051'}
+2023-07-21 22:15:10 - root - DEBUG - [ServerNetworkCommHandler(recieve_msg_global)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-07-21 22:15:10 - root - DEBUG - No message, or ID value was recieved. , error='general'
+2023-07-21 22:15:11 - root - DEBUG - 
+[127.0.0.1:53165 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53165
+2023-07-21 22:15:11 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-21 22:15:11 - root - DEBUG - Header: {'encrypted': '0', 'server_public_request': '0', 'data_size': '000050'}
+2023-07-21 22:15:11 - root - DEBUG - [ServerNetworkCommHandler(recieve_msg_global)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-07-21 22:25:05 - root - DEBUG - 
+[127.0.0.1:53202 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53202
+2023-07-21 22:25:05 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-21 22:25:05 - root - DEBUG - Header: {'encrypted': '0', 'server_public_request': '0', 'data_size': '000052'}
+2023-07-21 22:25:05 - root - DEBUG - [ServerNetworkCommHandler(recieve_msg_global)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-07-21 22:25:05 - root - DEBUG - [ServerNetworkCommHandler (send_msg] SENDING HEADER: b'0000000024'
+2023-07-21 22:25:05 - root - DEBUG - [ServerNetworkCommHandler (send_msg)] SENDING CHUNK 1/1
+2023-07-21 22:25:05 - root - DEBUG - [Server (Logon)] Successful Logon from: !!~default_user
+2023-07-21 22:25:05 - root - DEBUG - [Server (ServerFriendlyClientHandler)]Friendly Client authenticated, user=default_user
+2023-07-21 22:26:05 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] HEADER: 
+2023-07-21 22:26:05 - root - DEBUG - 
+[127.0.0.1:53205 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53205
+2023-07-21 22:26:05 - root - DEBUG - [Server (recieve_msg_from_friendlyclient: default_user)] Error calculating chunk size: invalid literal for int() with base 10: ''
+2023-07-21 22:26:05 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-21 22:26:05 - root - DEBUG - [Server (recieve_msg_from_friendlyclient)] Bad disconnect, killing thread & connection
+2023-07-21 22:26:05 - root - DEBUG - Header: {'encrypted': '0', 'server_public_request': '0', 'data_size': '000052'}
+2023-07-21 22:26:05 - root - DEBUG - [Server (ServerFriendlyClientHandler: clean_exit)] clean_exit called, initiating disconnect from 'default_user'
+2023-07-21 22:26:05 - root - DEBUG - [ServerNetworkCommHandler(recieve_msg_global)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-07-21 22:26:05 - root - DEBUG - [ServerNetworkCommHandler (send_msg] SENDING HEADER: b'0000000024'
+2023-07-21 22:26:05 - root - DEBUG - [ServerNetworkCommHandler (send_msg)] SENDING CHUNK 1/1
+2023-07-21 22:26:05 - root - DEBUG - [Server (Logon)] Successful Logon from: !!~default_user
+2023-07-21 22:26:05 - root - DEBUG - [Server (ServerFriendlyClientHandler)]Friendly Client authenticated, user=default_user
+2023-07-21 22:29:26 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-22 03:29:26.758640+00:00 =====
+2023-07-21 22:29:27 - root - DEBUG - 
+[127.0.0.1:53217 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53217
+2023-07-21 22:29:27 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-21 22:29:27 - root - DEBUG - Header: {'encrypted': '0', 'server_public_request': '0', 'data_size': '000050'}
+2023-07-21 22:29:27 - root - DEBUG - [ServerNetworkCommHandler(recieve_msg_global)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-07-21 22:29:33 - root - DEBUG - 
+[127.0.0.1:53218 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53218
+2023-07-21 22:29:33 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-21 22:29:33 - root - DEBUG - Header: {'encrypted': '0', 'server_public_request': '0', 'data_size': '000052'}
+2023-07-21 22:29:33 - root - DEBUG - [ServerNetworkCommHandler(recieve_msg_global)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-07-21 22:29:33 - root - DEBUG - [ServerNetworkCommHandler (send_msg] SENDING HEADER: b'0000000001'
+2023-07-21 22:29:33 - root - DEBUG - [ServerNetworkCommHandler (send_msg)] SENDING CHUNK 1/1
+2023-07-21 22:29:33 - root - DEBUG - [Server (Logon)] Successful Logon from: !!~default_user
+2023-07-21 22:29:33 - root - DEBUG - [Server (ServerFriendlyClientHandler)]Friendly Client authenticated, user=default_user
+2023-07-21 22:29:43 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] HEADER: 0000000528
+2023-07-21 22:29:43 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-07-21 22:29:43 - root - DEBUG - [client (default_user) -> Server] {"general": {"action": "!_servercommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "", "msg_content": "empty...", "msg_command": "clients", "msg_value": "", "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}
+2023-07-21 22:29:43 - root - DEBUG - [Server (ServerFriendlyClientHandler) - confusing error message, fallback error from the decsision trees -] input={"general": {"action": "!_servercommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "", "msg_content": "empty...", "msg_command": "clients", "msg_value": "", "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}: 'bool' object is not subscriptable
+2023-07-21 22:29:43 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING HEADER: b'0000000678'
+2023-07-21 22:29:43 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING CHUNK 1/1
+2023-07-21 22:29:43 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] HEADER: 0000000535
+2023-07-21 22:29:43 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] WAITING TO RECEIEVE CHUNK 1/1:
+2023-07-21 22:29:43 - root - DEBUG - [client (default_user) -> Server] {"general": {"action": "!_clientcommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "clients", "msg_content": "empty...", "msg_command": "clients", "msg_value": "", "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}
+2023-07-21 22:29:43 - root - DEBUG - [Server (ServerFriendlyClientHandler) - confusing error message, fallback error from the decsision trees -] input={"general": {"action": "!_clientcommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "clients", "msg_content": "empty...", "msg_command": "clients", "msg_value": "", "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}: 'bool' object is not subscriptable
+2023-07-21 22:29:43 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING HEADER: b'0000000685'
+2023-07-21 22:29:43 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING CHUNK 1/1

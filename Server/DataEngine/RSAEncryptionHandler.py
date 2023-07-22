@@ -114,7 +114,7 @@ class Encryptor:
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
             print(exc_type, fname, exc_tb.tb_lineno)
-            return "placeholder encryptd msg"
+            return "placeholder encryptd msg - if you see this, an error occured"
 
     @staticmethod
     def rsa_decrypt(encrypted_data: bytes = "", private_key=None) -> str:

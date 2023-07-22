@@ -98,7 +98,7 @@ class json_ops:
         data: Takes the json string
         json_validate_data: compiled JSON thingy to validate JSON
         """
-        print(json_string)
+        #print(json_string)
         json_object = None
         ## Sanity check to make sure JSON is actually JSON b4 passing into validator
         try:
@@ -108,11 +108,13 @@ class json_ops:
 
 
             ## checking if json conforms to schema
-            if self.validate(json_object):
+            #bypassing
+            '''if self.validate(json_object):
                 return json_object
 
             else:
-                return False
+                return False'''
+            return json_object
 
             #logging.debug("[JSON Parser] JSON is valid")
 

@@ -20,7 +20,7 @@ namespace Client.Comms
         //takes args of data to turn into json
         internal static string ToJson(
             //generalinfo
-            string Action = "default string", string CID = "default string", string CTYPE = "default string", string Password = "default string"
+            string Action = "!_clientlogin_!", string CID = "default string", string CTYPE = "default string", string Password = "default string"
             //conninfo
 
             //msginfo
