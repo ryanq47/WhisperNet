@@ -46,7 +46,7 @@
               "type": "markdown",
               "state": {
                 "file": "General/Naming & general.md",
-                "mode": "preview",
+                "mode": "source",
                 "source": false
               },
               "pinned": true
@@ -55,14 +55,28 @@
           {
             "id": "5eaebba140e73343",
             "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "General/Networking & Protocols/Header breakdown.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true
+            }
+          },
+          {
+            "id": "6020658b91ce5a0a",
+            "type": "leaf",
             "state": {
               "type": "canvas",
               "state": {
                 "file": "Server/Canvas/FileStructure.canvas",
                 "viewState": {
-                  "x": -188.9007251842156,
-                  "y": 122.22988100155135,
-                  "zoom": -0.6666666666666666
+                  "x": 774.9328176578349,
+                  "y": 589.0239796045028,
+                  "zoom": -0.879933698322928
                 }
               }
             }
@@ -118,7 +132,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300.5
   },
   "right": {
     "id": "68bb75ec4765f1f6",
@@ -197,16 +211,16 @@
   },
   "active": "e3ebf6b7015c0d4f",
   "lastOpenFiles": [
-    "Server/Canvas/FileStructure.canvas",
-    "Clients/CSharp/Program File Structure.canvas",
     "General/Naming & general.md",
+    "Server/Canvas/FileStructure.canvas",
+    "General/Networking & Protocols/Header breakdown.md",
     "Left off & todo.md",
+    "Clients/CSharp/Program File Structure.canvas",
     "Server/Canvas",
     "Server/General - Server oh server.md",
     "Server",
     "Clients/CSharp/High Level Operation Flow.canvas",
     "Clients/CSharp/Functions Overview/JsonHandler.cs.md",
-    "General/Networking & Protocols/Header breakdown.md",
     "General/Networking & Protocols",
     "General",
     "Clients/CSharp/Functions Overview",

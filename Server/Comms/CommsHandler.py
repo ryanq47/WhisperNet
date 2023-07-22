@@ -6,7 +6,7 @@ try:
     import socket
     import math
 
-    from Modules.DataHandlers.Encryption import Encryptor
+    #from Modules.DataHandlers.Encryption import Encryptor
 
 
 
@@ -47,7 +47,7 @@ def send_msg(conn=None, msg="", public_key=None, encryption=False):
         msg = msg
     else:
         #msg = Encryptor.rsa_encrypt(public_key, msg)
-        msg = Encryptor.rsa_encrypt(tpk.encode(), msg)
+        msg = "test"#Encryptor.rsa_encrypt(tpk.encode(), msg)
     
 
     msg_length = len(msg)
@@ -82,21 +82,23 @@ def receive_msg(conn=None, private_key="") -> str:
     header = conn.recv(HEADER_BYTES).decode()
     ## getting the amount of chunks/iterations eneded at 1024 bytes a message
 
+    ## Offloading header processing logic
     header_dict = _header_parse(header)
-    ## temp placeholder. will be returned from _header_parse
-    msg_encrypted = header_dict["encrypted"]
-    msg_length = header_dict["data_size"]
-    server_public_request = header_dict["server_public_request"]
+
+    encryption      = header_dict["encryption"]
+    data_size       = header_dict["data_size"]
+    server_request  = header_dict["server_request"]
 
     ## PubKey Requests,move to function when more options are introduced.
     # Only returns this value, doesn't actually do anything else. Basically just telling the code taht called this that
     # someone requested a pubkey. That code needs to call a send msg back to said caller
-    if int(server_public_request) == 1:
+    if int(server_request) == 1:
+        #might be more efficient to send the pub key back, rather than returning said request?
         return "PUBKEY_REQUEST"
 
     
     ## Need a type check & error handle maybe? could be a ticking time bomb
-    chunks = math.ceil(int(msg_length) / BUFFER)
+    chunks = math.ceil(int(data_size) / BUFFER)
     complete_msg = ""  # bytes_decode(msg)[10:]
     for i in range(0, chunks):
         logging.debug(
@@ -107,12 +109,12 @@ def receive_msg(conn=None, private_key="") -> str:
         complete_msg += bytes_decode(msg)
 
         ## if complete_msg is the same length as what the headers says, consider it complete.
-        if len(complete_msg) == msg_length:
+        if len(complete_msg) == data_size:
             logging.debug(f"[ServerNetworkCommHandler (recieve_msg_global)] MSG TRANSFER COMPLETE")
 
     ## decryption here
-    if msg_encrypted == 1:
-        Encryptor.rsa_decrypt(encrypted_data=msg, private_key=private_key)
+    if encryption == 1:
+        #Encryptor.rsa_decrypt(encrypted_data=msg, private_key=private_key)
         return complete_msg
     else:
         return complete_msg
@@ -121,7 +123,7 @@ def receive_msg(conn=None, private_key="") -> str:
     #return complete_msg
 
 
-def _header_parse(header):
+def _header_parse(header) -> dict:
     '''
     This function parses the header, and returns values
     might need to add some bits to the header to make the length longer for large files
@@ -149,14 +151,16 @@ def _header_parse(header):
     '''
     #print(header)
 
-    encrypted = header[0]
-    server_public_request = header[1]
-    client_passthrough = header[2]
-    data_size = header[3:9]
+    
+    encryption          = header[0]
+    server_request      = header[1]
+    client_passthrough  = header[2]
+    data_size           = header[3:9]
+    
 
     results = {
-        "encrypted":encrypted,
-        "server_public_request":server_public_request,
+        "encryption":encryption,
+        "server_request":server_request,
         "data_size":data_size
     }
 

@@ -3,14 +3,16 @@
 		{"type":"text","text":"# Server Root Folder\n","id":"b5721b21d87a1c15","x":-287,"y":-184,"width":347,"height":50,"color":"2"},
 		{"type":"text","text":"# Legend\n\n### Blue: Directory\n\n\n### Green: File","id":"e3d097388427885c","x":-1147,"y":-604,"width":740,"height":380},
 		{"type":"text","text":"### Server.py\n- LinkToNotes\n- Main Program","id":"8f3af38b11c77304","x":-1735,"y":-24,"width":170,"height":130,"color":"4"},
-		{"id":"d5c1b3ddabe8494d","x":-777,"y":80,"width":250,"height":184,"color":"5","type":"text","text":"## DataEngine\n- Holds data related items\n- sonuds fucking badass\n"},
-		{"id":"c53ad7ebe8b21b9c","x":-1147,"y":420,"width":347,"height":160,"color":"4","type":"text","text":"## RSAEncryptionHandler.py\n- Handles RSA encryption \n- Named with the 'Encryption' so the RSA module doesn't interfere"},
-		{"id":"5fab0a975cf21054","x":-700,"y":420,"width":250,"height":160,"color":"4","type":"text","text":"## JsonHandler.py\n\n- The JSON handler/parser. \n- "},
+		{"type":"text","text":"## DataEngine\n- Holds data related items\n- sonuds fucking badass\n","id":"d5c1b3ddabe8494d","x":-777,"y":80,"width":250,"height":184,"color":"5"},
+		{"type":"text","text":"## RSAEncryptionHandler.py\n- Handles RSA encryption \n- Named with the 'Encryption' so the RSA module doesn't interfere","id":"c53ad7ebe8b21b9c","x":-1147,"y":420,"width":347,"height":160,"color":"4"},
+		{"type":"text","text":"## JsonHandler.py\n\n- The JSON handler/parser. \n- ","id":"5fab0a975cf21054","x":-700,"y":420,"width":250,"height":160,"color":"4"},
 		{"type":"text","text":"## ClientEngine\n- Holds client related items\n\n","id":"baadc99d4a1deb44","x":-20,"y":80,"width":250,"height":184,"color":"5"},
-		{"id":"5b9da988710c2a81","x":-225,"y":420,"width":330,"height":160,"color":"4","type":"text","text":"## FriendlyClientHandler.py\n\n- Stores the class for handling the FriendlyClients"},
+		{"type":"text","text":"## FriendlyClientHandler.py\n\n- Stores the class for handling the FriendlyClients","id":"5b9da988710c2a81","x":-225,"y":420,"width":330,"height":160,"color":"4"},
 		{"type":"text","text":"## MaliciousClientHandler.py\n\n- Stores the class for handling the Malcious clients","id":"b8da11b229b1b581","x":180,"y":420,"width":330,"height":160,"color":"4"},
 		{"type":"text","text":"## Utils\n- Holds utility items for the server\n\n","id":"ea37e5c879fa68fc","x":1060,"y":80,"width":250,"height":184,"color":"5"},
-		{"id":"16720b7c2c557531","x":1060,"y":440,"width":250,"height":140,"color":"4","type":"text","text":"## Utils Handler\n- Handles utility  & general functions"}
+		{"type":"text","text":"## AuthenticationHandler.py\n\n- Does authentication items\n- DevNOte, move the auth function OUT of the main server.py, to here","id":"95ecf35d4521d50a","x":-20,"y":660,"width":330,"height":160,"color":"4"},
+		{"type":"text","text":"## Utils Handler\n- Handles utility  & general functions","id":"16720b7c2c557531","x":880,"y":430,"width":250,"height":140,"color":"4"},
+		{"type":"text","text":"## KeyGen.py\n- Creates keys","id":"af71f4767fe4a8ee","x":1260,"y":440,"width":250,"height":140,"color":"4"}
 	],
 	"edges":[
 		{"id":"68edbd19f92a02c3","fromNode":"b5721b21d87a1c15","fromSide":"bottom","toNode":"8f3af38b11c77304","toSide":"top"},
@@ -21,6 +23,8 @@
 		{"id":"31ba4dd06d985283","fromNode":"d5c1b3ddabe8494d","fromSide":"bottom","toNode":"5fab0a975cf21054","toSide":"top"},
 		{"id":"d4549c2c934007ed","fromNode":"baadc99d4a1deb44","fromSide":"bottom","toNode":"5b9da988710c2a81","toSide":"top"},
 		{"id":"8ccae80ec97c3174","fromNode":"baadc99d4a1deb44","fromSide":"bottom","toNode":"b8da11b229b1b581","toSide":"top"},
-		{"id":"132b11fdb614fbb2","fromNode":"ea37e5c879fa68fc","fromSide":"bottom","toNode":"16720b7c2c557531","toSide":"top"}
+		{"id":"132b11fdb614fbb2","fromNode":"ea37e5c879fa68fc","fromSide":"bottom","toNode":"16720b7c2c557531","toSide":"top"},
+		{"id":"f04f18aba6f9959a","fromNode":"baadc99d4a1deb44","fromSide":"bottom","toNode":"95ecf35d4521d50a","toSide":"top"},
+		{"id":"d2a44e4b815e60f5","fromNode":"ea37e5c879fa68fc","fromSide":"bottom","toNode":"af71f4767fe4a8ee","toSide":"top"}
 	]
 }

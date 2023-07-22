@@ -1,13 +1,17 @@
 
-## Server
+## Server 
 
 - [ ] Make sure the server is receiving everything correctly 
 	- Note, I created some debug statements that print directly from json data on line 209 of server.py
 	- [ ] Server needs some work & Documentation before continuing on the C# comms side
 		- [x] Renaming Files
-		- [ ] Fixing now broken items due to rename
-		- [ ] Clean up, better var/function naming, and notes
-
+		- [x] Fixing now broken items due to rename
+		- [x] Clean up, better var/function naming, and notes
+		- [x] Find what you can remove from the main server.py & put in it's own file
+		- [ ] Test functionality between server & client, to make sure the variable naming & new structure does not error out anywhere. 
+			-  There are a couple so far
+			- [ ] Document new server.py function structure
+		- [ ] SSL Key generate argument
 
 ## CSharp
 
@@ -22,4 +26,4 @@ Left off getting the client to send data over to the server. It works! I still n
 	- [ ] Removeal of old message class
 		- [ ] NOTE! decision tree is partially broken due to this, with Message.Parse. Relevant/error lines are commented out for now
 	- [ ] Remove other old classes/methods & move to respective folders
-	
+- [ ] SSL 

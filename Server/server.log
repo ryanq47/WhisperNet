@@ -942,3 +942,118 @@
 2023-07-21 22:29:43 - root - DEBUG - [Server (ServerFriendlyClientHandler) - confusing error message, fallback error from the decsision trees -] input={"general": {"action": "!_clientcommand_!", "client_id": "default_user", "client_type": "friendly", "password": "1234"}, "conn": {"client_ip": "127.0.0.1", "client_port": 6969}, "msg": {"msg_to": "clients", "msg_content": "empty...", "msg_command": "clients", "msg_value": "", "msg_length": 1234, "msg_hash": "hash of message (later)"}, "stats": {"latest_checkin": "time.now", "device_hostname": "hostname", "device_username": "username"}, "security": {"client_hash": "hash of client (later)", "server_hash": "hash of server (later)"}}: 'bool' object is not subscriptable
 2023-07-21 22:29:43 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING HEADER: b'0000000685'
 2023-07-21 22:29:43 - root - DEBUG - [Server (send_msg_to_friendlyclient: default_user)] SENDING CHUNK 1/1
+2023-07-22 16:02:21 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-22 21:02:21.657007+00:00 =====
+2023-07-22 16:03:29 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-22 21:03:29.335137+00:00 =====
+2023-07-22 16:04:18 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-22 21:04:18.304168+00:00 =====
+2023-07-22 16:04:18 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 16:04:35 - root - DEBUG - 
+[127.0.0.1:63293 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:63293
+2023-07-22 16:04:35 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 16:04:35 - root - DEBUG - No message, or ID value was recieved. , error=local variable 'ssl_socket' referenced before assignment
+2023-07-22 16:04:35 - root - WARNING - Unexpected Connection from 127.0.0.1:63293. Received:  
+2023-07-22 16:04:35 - root - DEBUG - 
+[127.0.0.1:63294 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:63294
+2023-07-22 16:04:35 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 16:04:35 - root - DEBUG - No message, or ID value was recieved. , error=local variable 'ssl_socket' referenced before assignment
+2023-07-22 16:04:35 - root - WARNING - Unexpected Connection from 127.0.0.1:63294. Received:  
+2023-07-22 16:04:35 - root - DEBUG - 
+[127.0.0.1:63295 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:63295
+2023-07-22 16:04:35 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 16:04:35 - root - DEBUG - No message, or ID value was recieved. , error=local variable 'ssl_socket' referenced before assignment
+2023-07-22 16:04:35 - root - WARNING - Unexpected Connection from 127.0.0.1:63295. Received:  
+2023-07-22 16:04:35 - root - DEBUG - 
+[127.0.0.1:63296 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:63296
+2023-07-22 16:04:35 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 16:04:35 - root - DEBUG - No message, or ID value was recieved. , error=local variable 'ssl_socket' referenced before assignment
+2023-07-22 16:04:35 - root - WARNING - Unexpected Connection from 127.0.0.1:63296. Received:  
+2023-07-22 16:04:35 - root - DEBUG - 
+[127.0.0.1:63297 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:63297
+2023-07-22 16:04:35 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 16:04:35 - root - DEBUG - No message, or ID value was recieved. , error=local variable 'ssl_socket' referenced before assignment
+2023-07-22 16:04:35 - root - WARNING - Unexpected Connection from 127.0.0.1:63297. Received:  
+2023-07-22 16:04:35 - root - DEBUG - 
+[127.0.0.1:63298 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:63298
+2023-07-22 16:04:35 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 16:04:35 - root - DEBUG - No message, or ID value was recieved. , error=local variable 'ssl_socket' referenced before assignment
+2023-07-22 16:04:35 - root - WARNING - Unexpected Connection from 127.0.0.1:63298. Received:  
+2023-07-22 16:04:35 - root - DEBUG - 
+[127.0.0.1:63299 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:63299
+2023-07-22 16:04:35 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 16:04:35 - root - DEBUG - No message, or ID value was recieved. , error=local variable 'ssl_socket' referenced before assignment
+2023-07-22 16:04:35 - root - WARNING - Unexpected Connection from 127.0.0.1:63299. Received:  
+2023-07-22 16:04:35 - root - DEBUG - 
+[127.0.0.1:63300 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:63300
+2023-07-22 16:04:35 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 16:04:35 - root - DEBUG - No message, or ID value was recieved. , error=local variable 'ssl_socket' referenced before assignment
+2023-07-22 16:04:36 - root - WARNING - Unexpected Connection from 127.0.0.1:63300. Received:  
+2023-07-22 16:04:36 - root - DEBUG - 
+[127.0.0.1:63301 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:63301
+2023-07-22 16:04:36 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 16:04:36 - root - DEBUG - No message, or ID value was recieved. , error=local variable 'ssl_socket' referenced before assignment
+2023-07-22 16:04:36 - root - WARNING - Unexpected Connection from 127.0.0.1:63301. Received:  
+2023-07-22 16:04:36 - root - DEBUG - 
+[127.0.0.1:63302 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:63302
+2023-07-22 16:04:36 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 16:04:36 - root - DEBUG - No message, or ID value was recieved. , error=local variable 'ssl_socket' referenced before assignment
+2023-07-22 16:04:36 - root - WARNING - Unexpected Connection from 127.0.0.1:63302. Received:  
+2023-07-22 16:04:36 - root - DEBUG - 
+[127.0.0.1:63303 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:63303
+2023-07-22 16:04:36 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 16:04:36 - root - DEBUG - No message, or ID value was recieved. , error=local variable 'ssl_socket' referenced before assignment
+2023-07-22 16:04:36 - root - WARNING - Unexpected Connection from 127.0.0.1:63303. Received:  
+2023-07-22 16:04:36 - root - DEBUG - 
+[127.0.0.1:63304 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:63304
+2023-07-22 16:04:36 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 16:04:36 - root - DEBUG - No message, or ID value was recieved. , error=local variable 'ssl_socket' referenced before assignment
+2023-07-22 16:04:36 - root - WARNING - Unexpected Connection from 127.0.0.1:63304. Received:  
+2023-07-22 16:04:36 - root - DEBUG - 
+[127.0.0.1:63305 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:63305
+2023-07-22 16:04:36 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 16:04:36 - root - DEBUG - No message, or ID value was recieved. , error=local variable 'ssl_socket' referenced before assignment
+2023-07-22 16:04:36 - root - WARNING - Unexpected Connection from 127.0.0.1:63305. Received:  
+2023-07-22 16:04:36 - root - DEBUG - 
+[127.0.0.1:63306 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:63306
+2023-07-22 16:04:36 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 16:04:36 - root - DEBUG - No message, or ID value was recieved. , error=local variable 'ssl_socket' referenced before assignment
+2023-07-22 16:04:36 - root - WARNING - Unexpected Connection from 127.0.0.1:63306. Received:  
+2023-07-22 16:04:36 - root - DEBUG - 
+[127.0.0.1:63307 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:63307
+2023-07-22 16:04:36 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 16:04:36 - root - DEBUG - No message, or ID value was recieved. , error=local variable 'ssl_socket' referenced before assignment
+2023-07-22 16:04:36 - root - WARNING - Unexpected Connection from 127.0.0.1:63307. Received:  
+2023-07-22 16:04:36 - root - DEBUG - 
+[127.0.0.1:63308 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:63308
+2023-07-22 16:04:36 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 16:04:36 - root - DEBUG - No message, or ID value was recieved. , error=local variable 'ssl_socket' referenced before assignment
+2023-07-22 16:04:36 - root - WARNING - Unexpected Connection from 127.0.0.1:63308. Received:  
+2023-07-22 16:04:36 - root - DEBUG - 
+[127.0.0.1:63309 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:63309
+2023-07-22 16:04:36 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 16:04:36 - root - DEBUG - No message, or ID value was recieved. , error=local variable 'ssl_socket' referenced before assignment
+2023-07-22 16:04:36 - root - WARNING - Unexpected Connection from 127.0.0.1:63309. Received:  
+2023-07-22 16:04:36 - root - DEBUG - 
+[127.0.0.1:63310 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:63310
+2023-07-22 16:04:36 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 16:04:36 - root - DEBUG - No message, or ID value was recieved. , error=local variable 'ssl_socket' referenced before assignment
+2023-07-22 16:04:36 - root - WARNING - Unexpected Connection from 127.0.0.1:63310. Received:  
+2023-07-22 16:04:36 - root - DEBUG - 
+[127.0.0.1:63311 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:63311
+2023-07-22 16:04:36 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 16:04:36 - root - DEBUG - No message, or ID value was recieved. , error=local variable 'ssl_socket' referenced before assignment
+2023-07-22 16:04:36 - root - WARNING - Unexpected Connection from 127.0.0.1:63311. Received:  
+2023-07-22 16:04:36 - root - DEBUG - 
+[127.0.0.1:63312 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:63312
+2023-07-22 16:04:36 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 16:42:26 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-22 21:42:26.285500+00:00 =====
+2023-07-22 16:42:26 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 16:42:26 - root - WARNING - ERRMSG: server_ssl_handler() missing 1 required positional argument: 'non_ssl_conn'
+
+2023-07-22 16:42:26 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 16:45:29 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-22 21:45:29.075536+00:00 =====
+2023-07-22 16:45:29 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 16:45:35 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 16:45:35 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-22 16:45:35 - root - DEBUG - No message, action, type, or id recieved. , error='NoneType' object has no attribute 'recv'
+2023-07-22 16:45:35 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'client_remote_ip_port'
+
+2023-07-22 16:45:35 - root - DEBUG - Socket Close: The socket was successfully closed

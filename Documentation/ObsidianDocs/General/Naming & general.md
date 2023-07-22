@@ -31,3 +31,12 @@
         - `Client.ConfigData.Timeout = 5`
 
 
+## Clients:
+- Malicious Clients (AKA RATS:)
+	- Name: ??? HiveClient? FloodSpore? Something professionalish
+- Friendly Client (aka users)
+	- Name: ??
+
+
+
+

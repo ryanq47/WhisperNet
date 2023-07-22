@@ -17,7 +17,7 @@ try:
     import time
     from datetime import datetime, timezone
 
-    from Modules.ServerUtils import str_encode, bytes_decode
+    from Utils.UtilsHandler import str_encode, bytes_decode
 
 except Exception as e:
     print(f"[ServerMaliciousClientHandler.py] Import Error: {e}")

