@@ -47,7 +47,7 @@ namespace Client
             ConnectToServer();
         }
 
-        // Connection to Server
+        // Connection to Server - clean this fucker up
         public static void ConnectToServer()
             /* Note, need to create a class or at least methods that handle the heartbeat and other commands, this is currently set to handle
              just the init client send to the server*/ 
@@ -226,7 +226,9 @@ namespace Client
                 }
             }
         }
-        
+
+        //move to own file...
+
         static string DecisionTree(string rawCommand, Socket conn)
         {
 
@@ -364,7 +366,7 @@ namespace Client
         }
     }
 
-
+    //move to own file...
     class ClientControls
         /*  A set of functions for controlling client data/settings */
 
@@ -381,7 +383,7 @@ namespace Client
     }
 
 
-
+   //move to own file...
 
     class SystemData
         /* used to retrieve system data from the target. each method returns the data */
@@ -404,6 +406,8 @@ namespace Client
             return "user_info";
         }
     }
+
+    //move to own file...
 
     class Prompts
         /* prompts/popups via native windows API's */
@@ -430,6 +434,8 @@ namespace Client
             return "User:Pass";
         }
     }
+
+    //move to own file...
 
     class Commands
     {

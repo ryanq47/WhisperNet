@@ -68,7 +68,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -134,7 +134,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Canvas/FileStructure.canvas",
+                "file": "Left off & todo.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -151,7 +151,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Canvas/FileStructure.canvas",
+                "file": "Left off & todo.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -174,7 +174,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Canvas/FileStructure.canvas"
+                "file": "Left off & todo.md"
               }
             }
           }
@@ -195,10 +195,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5eaebba140e73343",
+  "active": "e3ebf6b7015c0d4f",
   "lastOpenFiles": [
-    "Clients/CSharp/Program File Structure.canvas",
     "Server/Canvas/FileStructure.canvas",
+    "Clients/CSharp/Program File Structure.canvas",
     "General/Naming & general.md",
     "Left off & todo.md",
     "Server/Canvas",
