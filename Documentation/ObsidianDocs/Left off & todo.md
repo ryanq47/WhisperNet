@@ -18,6 +18,8 @@
 			- [ ] Re-Learn SSL & watch some vids on it. 
 			- [ ] Error handle respective SSL errors correctly. 
 				- [ ] Fix 'no attribute' errors resulting from variables being init'd wrong, or not at all. AKA bulletproof it
+		- [ ] Imports: (slow) move to 'import file.py' instead of 'from whatever import whatever'
+			- This makes everything much more readable/followable in my opinion, & much more clean
 
 ## CSharp
 
