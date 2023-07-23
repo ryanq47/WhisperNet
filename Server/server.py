@@ -13,7 +13,7 @@ try:
     import logging
     import argparse
     #import json
-    import math
+    #import math
     import threading
     import traceback
     import ssl
@@ -22,20 +22,22 @@ try:
     # My Modules
     #import json_parser_dev as json_parser
     import DataEngine.JsonHandler as json_parser
-    from DataEngine.RSAEncryptionHandler import Encryptor
+    #from DataEngine.RSAEncryptionHandler import Encryptor ##  Not needed, switching to SSL
 
-    from ClientEngine.FriendlyClientHandler import ServerFriendlyClientHandler
-    from ClientEngine.MaliciousClientHandler import ServerMaliciousClientHandler
-    from ClientEngine.AuthenticationHandler import Authentication
-    from Comms.CommsHandler import send_msg, receive_msg
-    from Utils.UtilsHandler import str_encode, bytes_decode
-    # redundant yes, but here while I move to imports, insteead of from imports. it's cleaner/more readable IMO
+    import ClientEngine.FriendlyClientHandler
+    import ClientEngine.MaliciousClientHandler
+    import ClientEngine.AuthenticationHandler
+
+    import Comms.CommsHandler
+
     import Utils.UtilsHandler
     import Utils.KeyGen
 
 except Exception as e:
     print(f"[server.py] Import Error: {e}")
     exit()
+    #if not continue_anyways():
+        #exit()
 
 #import httpserver.httpserver as httpserver
 
@@ -197,7 +199,7 @@ class ServerSockHandler:
             try:
                 # English: Hey, I (server) wants to recieve a message. Not sure if encrypted or not, passing my private key to the decrypt function just in case
                 #response = receive_msg(conn=ssl_socket, private_key=self.encryption.private_key)
-                response = receive_msg(conn=ssl_socket)
+                response = Comms.CommsHandler.receive_msg(conn=ssl_socket)
 
                 ## Converting to json. Validation is disabled during dev.
                 response_from_client = self.json_parser.convert_and_validate(response)
@@ -333,10 +335,10 @@ class ServerSockHandler:
         friendly_client_name = f"!!~{username}"                    
         
         ## Running the authentication check, and starting the friendly client thread if successful
-        if Authentication.password_eval(password):
+        if ClientEngine.AuthenticationHandler.Authentication.password_eval(password):
             try:
                 ##== sending the a-ok on successful authentication
-                send_msg(msg="0", conn=self.conn)
+                Comms.CommsHandler.send_msg(msg="0", conn=self.conn)
 
                 logging.debug(f"[Server (Logon)] Successful Logon from: {friendly_client_name}")
                 # Add friendly client to current clients list
@@ -346,7 +348,7 @@ class ServerSockHandler:
                 ## it to be accessed in other parts of the code, and is the backbone of how all this works. 
                 ## additionally, this is where the connection & parameters are passed off to the ServerFriendlyClientHandler class.
                 
-                self.friendly_clients[friendly_client_name] = ServerFriendlyClientHandler(self.conn, self.ADDR, self.json_parser)
+                self.friendly_clients[friendly_client_name] = ClientEngine.FriendlyClientHandler.ServerFriendlyClientHandler(self.conn, self.ADDR, self.json_parser)
                 globals()[friendly_client_name] = self.friendly_clients[friendly_client_name]
 
                 ## == Thread handler
@@ -367,7 +369,7 @@ class ServerSockHandler:
         ## On failed authentication, sending back a 1 & log
         else:
             #self.conn.send(str_encode("1"))
-            send_msg(msg="1", conn=self.conn)
+            Comms.CommsHandler.send_msg(msg="1", conn=self.conn)
             logging.critical(f"[{self.client_remote_ip_port} -> Server (Logon)] Failed logon from '{username}'")  
 
     def clientloginhandler(self, ssl_conn, response_from_client):
@@ -408,7 +410,7 @@ class ServerSockHandler:
                 self.current_clients.append(client_name)
 
                 # Create a new malicious client handler instance and add it to the clients dict
-                self.clients[client_name] = ServerMaliciousClientHandler()
+                self.clients[client_name] = ClientEngine.MaliciousClientHandler.ServerMaliciousClientHandler()
                 globals()[client_name] = self.clients[client_name]
 
             # Create a new thread for this client's communication
@@ -422,7 +424,16 @@ class ServerSockHandler:
             return False
 
 
+def continue_anyways():
+    '''
+    A little function that propmts the user to continue anyway. Returns true/false. 
 
+    Here as well as in UtilsHandler, incase the import fails
+    '''
+    if input("Enter 'y' to continue execution (high chance of failure), or any other key to exit: ").lower() == "y":
+        return True
+    else:
+        return False
 
 #if __name__ == "__main__":
 if fileserverport == port:

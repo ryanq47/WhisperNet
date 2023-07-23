@@ -40,4 +40,13 @@ def file_check(filepath):
     if not os.path.isfile(filepath):
         logging.warning(f"UtilsHandler.pt (file_check) File not found: {filepath}\n")
 
+def continue_anyways():
+    '''
+    A little function that propmts the user to continue anyway. Returns true/false. 
+    '''
+    if input("Enter 'y' to continue execution (high chance of failure), or any other key to exit: ").lower() == "y":
+        return True
+    else:
+        return False
+
 
