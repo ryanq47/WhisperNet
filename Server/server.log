@@ -1057,3 +1057,198 @@
 2023-07-22 16:45:35 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'client_remote_ip_port'
 
 2023-07-22 16:45:35 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 22:28:21 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 03:28:21.120449+00:00 =====
+2023-07-22 22:28:21 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 22:31:45 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 03:31:45.814821+00:00 =====
+2023-07-22 22:31:45 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 22:31:52 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 22:31:52 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-22 22:31:52 - root - DEBUG - No message, action, type, or id recieved. , error='NoneType' object has no attribute 'recv'
+2023-07-22 22:31:52 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'client_remote_ip_port'
+
+2023-07-22 22:31:52 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 22:33:49 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 03:33:49.233743+00:00 =====
+2023-07-22 22:33:49 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 22:33:58 - root - DEBUG - [Server (connection_handler)] Unkown Error: {e}
+2023-07-22 22:33:58 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-22 22:33:58 - root - DEBUG - No message, action, type, or id recieved. , error='NoneType' object has no attribute 'recv'
+2023-07-22 22:33:58 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'client_remote_ip_port'
+
+2023-07-22 22:33:58 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 22:34:25 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 03:34:25.796776+00:00 =====
+2023-07-22 22:34:25 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 22:34:32 - root - DEBUG - [Server (connection_handler)] Unkown Error: 'ServerSockHandler' object has no attribute 'conn'
+2023-07-22 22:34:32 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-22 22:34:32 - root - DEBUG - No message, action, type, or id recieved. , error='NoneType' object has no attribute 'recv'
+2023-07-22 22:34:32 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'client_remote_ip_port'
+
+2023-07-22 22:34:32 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 22:35:38 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 03:35:38.845840+00:00 =====
+2023-07-22 22:35:38 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 22:35:42 - root - DEBUG - 
+[127.0.0.1:64205 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64205
+2023-07-22 22:35:42 - root - DEBUG - [Server (connection_handler)] Unkown Error: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-22 22:35:42 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-22 22:35:42 - root - DEBUG - No message, action, type, or id recieved. , error='NoneType' object has no attribute 'recv'
+2023-07-22 22:35:42 - root - WARNING - Unexpected Connection from 127.0.0.1:64205. Received:  
+2023-07-22 22:35:42 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'conn'
+
+2023-07-22 22:35:42 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 22:36:57 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 03:36:57.387558+00:00 =====
+2023-07-22 22:36:57 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 22:37:02 - root - DEBUG - 
+[127.0.0.1:64240 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64240
+2023-07-22 22:37:02 - root - DEBUG - [Server (connection_handler)] Unkown Error: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-22 22:37:02 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-22 22:37:02 - root - DEBUG - No message, action, type, or id recieved. , error='NoneType' object has no attribute 'recv'
+2023-07-22 22:37:02 - root - WARNING - Unexpected Connection from 127.0.0.1:64240. Received:  
+2023-07-22 22:37:02 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'conn'
+
+2023-07-22 22:37:02 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 22:39:47 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 03:39:47.643753+00:00 =====
+2023-07-22 22:39:47 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 22:39:54 - root - DEBUG - 
+[127.0.0.1:64251 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64251
+2023-07-22 22:39:54 - root - WARNING - ERRMSG: local variable 'e' referenced before assignment
+
+2023-07-22 22:39:54 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 22:40:53 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 03:40:53.555675+00:00 =====
+2023-07-22 22:40:53 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 22:40:58 - root - DEBUG - 
+[127.0.0.1:64256 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64256
+2023-07-22 22:40:58 - root - WARNING - ERRMSG: module 'ssl' has no attribute 'WRONG_VERSION_NUMBER'
+
+2023-07-22 22:40:58 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 22:43:01 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 03:43:01.501955+00:00 =====
+2023-07-22 22:43:01 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 22:43:05 - root - DEBUG - 
+[127.0.0.1:64311 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64311
+2023-07-22 22:43:05 - root - WARNING - ERRMSG: module 'ssl' has no attribute 'ssl'
+
+2023-07-22 22:43:05 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 22:43:18 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 03:43:18.658639+00:00 =====
+2023-07-22 22:43:18 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 22:43:26 - root - DEBUG - 
+[127.0.0.1:64315 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64315
+2023-07-22 22:43:26 - root - WARNING - [Server (connection_handler)] Non SSL/TLS connection detected: 127.0.0.1:64315
+Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-22 22:43:26 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-22 22:43:26 - root - DEBUG - No message, action, type, or id recieved. , error='NoneType' object has no attribute 'recv'
+2023-07-22 22:43:26 - root - WARNING - Unexpected Connection from 127.0.0.1:64315. Received:  
+2023-07-22 22:43:26 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'conn'
+
+2023-07-22 22:43:26 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 22:43:44 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 03:43:44.800974+00:00 =====
+2023-07-22 22:43:44 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 22:43:50 - root - DEBUG - 
+[127.0.0.1:64318 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64318
+2023-07-22 22:43:50 - root - WARNING - [Server (connection_handler)] Non SSL/TLS connection detected: 127.0.0.1:64318
+Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-22 22:43:50 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-22 22:43:50 - root - DEBUG - No message, action, type, or id recieved. , error='NoneType' object has no attribute 'recv'
+2023-07-22 22:43:50 - root - WARNING - Unexpected Connection from 127.0.0.1:64318. Received:  
+2023-07-22 22:43:50 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'conn'
+
+2023-07-22 22:43:50 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 22:44:11 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 03:44:11.663963+00:00 =====
+2023-07-22 22:44:11 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 22:44:20 - root - DEBUG - 
+[127.0.0.1:64365 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64365
+2023-07-22 22:44:20 - root - WARNING - [Server (connection_handler)] Non SSL/TLS connection detected: 127.0.0.1:64365
+Error Message: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:1129)
+2023-07-22 22:44:20 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-22 22:44:20 - root - DEBUG - No message, action, type, or id recieved. , error='NoneType' object has no attribute 'recv'
+2023-07-22 22:44:20 - root - WARNING - Unexpected Connection from 127.0.0.1:64365. Received:  
+2023-07-22 22:44:20 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'conn'
+
+2023-07-22 22:44:20 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 22:44:38 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 03:44:38.026480+00:00 =====
+2023-07-22 22:44:38 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 22:44:38 - root - DEBUG - 
+[127.0.0.1:64373 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64373
+2023-07-22 22:44:38 - root - WARNING - [Server (connection_handler)] Non SSL/TLS connection detected: 127.0.0.1:64373
+Error Message: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:1129)
+2023-07-22 22:44:38 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-22 22:44:38 - root - DEBUG - No message, action, type, or id recieved. , error='NoneType' object has no attribute 'recv'
+2023-07-22 22:44:38 - root - WARNING - Unexpected Connection from 127.0.0.1:64373. Received:  
+2023-07-22 22:44:38 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'conn'
+
+2023-07-22 22:44:38 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 22:45:54 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 03:45:54.837237+00:00 =====
+2023-07-22 22:45:54 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 22:46:03 - root - DEBUG - 
+[127.0.0.1:64388 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64388
+2023-07-22 22:46:03 - root - DEBUG - [Server (connection_handler)] Unkown Error: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:1129)
+2023-07-22 22:46:03 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-22 22:46:03 - root - DEBUG - No message, action, type, or id recieved. , error='NoneType' object has no attribute 'recv'
+2023-07-22 22:46:03 - root - WARNING - Unexpected Connection from 127.0.0.1:64388. Received:  
+2023-07-22 22:46:03 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'conn'
+
+2023-07-22 22:46:03 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 22:47:13 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 03:47:13.223123+00:00 =====
+2023-07-22 22:47:13 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 22:47:33 - root - DEBUG - 
+[127.0.0.1:64397 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64397
+2023-07-22 22:47:33 - root - WARNING - ERRMSG: catching classes that do not inherit from BaseException is not allowed
+
+2023-07-22 22:47:33 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 22:48:38 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 03:48:38.620302+00:00 =====
+2023-07-22 22:48:38 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 22:48:42 - root - DEBUG - 
+[127.0.0.1:64407 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64407
+2023-07-22 22:48:42 - root - WARNING - [Server (connection_handler)] SSL Cert Unkown 127.0.0.1:64407
+Error Message: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:1129)
+2023-07-22 22:48:42 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-22 22:48:42 - root - DEBUG - No message, action, type, or id recieved. , error='NoneType' object has no attribute 'recv'
+2023-07-22 22:48:42 - root - WARNING - Unexpected Connection from 127.0.0.1:64407. Received:  
+2023-07-22 22:48:42 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'conn'
+
+2023-07-22 22:48:42 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 22:51:24 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 03:51:24.924997+00:00 =====
+2023-07-22 22:51:24 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 22:51:34 - root - DEBUG - 
+[127.0.0.1:64449 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64449
+2023-07-22 22:51:34 - root - WARNING - [Server (connection_handler)] SSL Cert Unkown 127.0.0.1:64449
+Error Message: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:1129)
+2023-07-22 22:51:34 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-22 22:51:34 - root - DEBUG - No message, action, type, or id recieved. , error='NoneType' object has no attribute 'recv'
+2023-07-22 22:51:34 - root - WARNING - Unexpected Connection from 127.0.0.1:64449. Received:  
+2023-07-22 22:51:34 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'conn'
+
+2023-07-22 22:51:34 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 22:52:43 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 03:52:43.264382+00:00 =====
+2023-07-22 22:52:43 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 22:52:51 - root - DEBUG - 
+[127.0.0.1:64457 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64457
+2023-07-22 22:52:51 - root - WARNING - [Server (connection_handler)] SSL Cert Unkown 127.0.0.1:64457
+	 [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:1129)
+2023-07-22 22:52:51 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-22 22:52:51 - root - DEBUG - No message, action, type, or id recieved. , error='NoneType' object has no attribute 'recv'
+2023-07-22 22:52:51 - root - WARNING - Unexpected Connection from 127.0.0.1:64457. Received:  
+2023-07-22 22:52:51 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'conn'
+
+2023-07-22 22:52:51 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 22:54:31 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 03:54:31.534376+00:00 =====
+2023-07-22 22:54:31 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 22:54:35 - root - DEBUG - 
+[127.0.0.1:64468 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64468
+2023-07-22 22:54:35 - root - WARNING - [Server (connection_handler)] SSL Cert Unkown 127.0.0.1:64468
+	 Error Message: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:1129)
+2023-07-22 22:54:35 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-22 22:54:35 - root - DEBUG - No message, action, type, or id recieved. , error='NoneType' object has no attribute 'recv'
+2023-07-22 22:54:35 - root - WARNING - Unexpected Connection from 127.0.0.1:64468. Received:  
+2023-07-22 22:54:35 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'conn'
+
+2023-07-22 22:54:35 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-22 22:58:25 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 03:58:25.863259+00:00 =====
+2023-07-22 22:58:25 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-22 22:58:32 - root - DEBUG - 
+[127.0.0.1:64508 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64508
+2023-07-22 22:58:32 - root - WARNING - [Server (connection_handler)] SSL Cert Unkown 127.0.0.1:64508
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-22 22:58:32 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-22 22:58:32 - root - DEBUG - No message, action, type, or id recieved. , error='NoneType' object has no attribute 'recv'
+2023-07-22 22:58:32 - root - WARNING - Unexpected Connection from 127.0.0.1:64508. Received:  
+2023-07-22 22:58:32 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'conn'
+
+2023-07-22 22:58:32 - root - DEBUG - Socket Close: The socket was successfully closed

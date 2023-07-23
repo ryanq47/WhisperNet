@@ -18,6 +18,7 @@ try:
     import traceback
     import ssl
 
+
     # My Modules
     #import json_parser_dev as json_parser
     import DataEngine.JsonHandler as json_parser
@@ -179,7 +180,8 @@ class ServerSockHandler:
         ##== Parsing the message sent to the server. 
             try:
                 # English: Hey, I (server) wants to recieve a message. Not sure if encrypted or not, passing my private key to the decrypt function just in case
-                response = receive_msg(conn=ssl_socket, private_key=self.encryption.private_key)
+                #response = receive_msg(conn=ssl_socket, private_key=self.encryption.private_key)
+                response = receive_msg(conn=ssl_socket)
 
                 ## Converting to json. Validation is disabled during dev.
                 response_from_client = self.json_parser.convert_and_validate(response)
@@ -237,20 +239,32 @@ class ServerSockHandler:
 
         ## Getting client id from the client, and the IP address
             ## this var is only used for printing info, not as any 'real' data
-            self.client_remote_ip_port = f"{self.conn.getpeername()[0]}:{self.conn.getpeername()[1]}"
+            self.client_remote_ip_port = f"{non_ssl_conn.getpeername()[0]}:{non_ssl_conn.getpeername()[1]}"
             logging.debug(f"\n[{self.client_remote_ip_port} -> Server] [New Instance] Accepted Connection from: {self.client_remote_ip_port}")
 
         # Wrapping socket into SSL socket
             ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
             ssl_context.load_cert_chain(certfile='server.crt', keyfile='server.key')  # Load server's certificate and private key
+            ssl_context.verify_mode = ssl.CERT_NONE  # Do not verify the client's certificate, aka self signed
             ssl_socket = ssl_context.wrap_socket(non_ssl_conn, server_side=True)
             
             return ssl_socket
+        except ssl.SSLError as ssle:
+            '''
+             [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:1129)
+                - This error comes from browsers connecting to the server. Can't really get past unless you have your own (legit) certs
+            
+            [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+                - Old SSL or client does not support SSL
+                
+            '''
+            logging.warning(f"[Server (connection_handler)] SSL Cert Unkown {self.client_remote_ip_port}\n\t Error Message: {ssle}")
 
         except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
             logging.warning(f"[Server (connection_handler)] Client {self.client_remote_ip_port} disconnected")
         except Exception as e:
-            logging.debug("[Server (connection_handler)] Unkown Error: {e}")     
+            logging.debug(f"[Server (connection_handler)] Unkown Error: {type(e)}")
+            #return     
   
     def socket_cleanup(self):
         """A cleanup function that is run on any type of exit. it makes sure the socket is closed properly

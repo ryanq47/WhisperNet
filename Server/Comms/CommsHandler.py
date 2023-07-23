@@ -69,7 +69,7 @@ def send_msg(conn=None, msg="", public_key=None, encryption=False):
 
 
 
-def receive_msg(conn=None, private_key="") -> str:
+def receive_msg(conn=None) -> str:
     #print(len(private_key))
     ## clients need to have a shared known header beforehand. Default is 10
     HEADER_BYTES = 10
@@ -92,9 +92,9 @@ def receive_msg(conn=None, private_key="") -> str:
     ## PubKey Requests,move to function when more options are introduced.
     # Only returns this value, doesn't actually do anything else. Basically just telling the code taht called this that
     # someone requested a pubkey. That code needs to call a send msg back to said caller
-    if int(server_request) == 1:
+    '''if int(server_request) == 1:
         #might be more efficient to send the pub key back, rather than returning said request?
-        return "PUBKEY_REQUEST"
+        return "PUBKEY_REQUEST"'''
 
     
     ## Need a type check & error handle maybe? could be a ticking time bomb
@@ -113,11 +113,12 @@ def receive_msg(conn=None, private_key="") -> str:
             logging.debug(f"[ServerNetworkCommHandler (recieve_msg_global)] MSG TRANSFER COMPLETE")
 
     ## decryption here
-    if encryption == 1:
+    '''if encryption == 1:
         #Encryptor.rsa_decrypt(encrypted_data=msg, private_key=private_key)
-        return complete_msg
-    else:
-        return complete_msg
+        return complete_msg'''
+    #else:
+        
+    return complete_msg
     
 
     #return complete_msg

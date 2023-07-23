@@ -12,6 +12,11 @@
 			-  There are a couple so far
 			- [ ] Document new server.py function structure
 		- [ ] SSL Key generate argument
+			- [ ] Add in file placement/location
+		- [ ] SSL
+			- [ ] Re-Learn SSL & watch some vids on it. 
+			- [ ] Error handle respective SSL errors correctly. 
+				- [ ] Fix 'no attribute' errors resulting from variables being init'd wrong, or not at all. AKA bulletproof it
 
 ## CSharp
 
