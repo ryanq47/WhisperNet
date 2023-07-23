@@ -1,3 +1,5 @@
+import os
+import logging
 ################
 ## QOL Functions
 ################
@@ -28,3 +30,14 @@ def bytes_decode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]
             logging.debug(f"Could not decode bytes to {format}")
         except Exception as e:
             logging.warning(f"ERRMSG: {e}\n")
+
+
+def file_check(filepath):
+    '''
+    Checks for an existance of a file. if it does not exist, it prints a warning to screen
+    
+    '''
+    if not os.path.isfile(filepath):
+        logging.warning(f"UtilsHandler.pt (file_check) File not found: {filepath}\n")
+
+

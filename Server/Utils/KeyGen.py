@@ -16,6 +16,9 @@ def ssl_gen(save_file_path = None):
         ##not returning anything, just getting out of the script
         #return
 
+    key_file = f"{save_file_path}/server.key"
+    crt_file = f"{save_file_path}/server.crt"
+
 
     try:
         ## Key check to see if keys exist
@@ -35,7 +38,7 @@ def ssl_gen(save_file_path = None):
         )
 
         # Save the private key to a file (server.key)
-        with open('server.key', 'wb') as key_file:
+        with open(key_file, 'wb') as key_file:
             key_file.write(private_key_pem)
 
         # Generate a self-signed certificate
@@ -61,7 +64,7 @@ def ssl_gen(save_file_path = None):
         cert_pem = cert.public_bytes(encoding=serialization.Encoding.PEM)
 
         # Save the self-signed certificate to a file (server.crt)
-        with open('server.crt', 'wb') as cert_file:
+        with open(crt_file, 'wb') as cert_file:
             cert_file.write(cert_pem)
 
         print("KeyGen.py: SSL Keys generated successfully")

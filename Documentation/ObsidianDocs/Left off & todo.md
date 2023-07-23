@@ -11,8 +11,9 @@
 		- [ ] Test functionality between server & client, to make sure the variable naming & new structure does not error out anywhere. 
 			-  There are a couple so far
 			- [ ] Document new server.py function structure
-		- [ ] SSL Key generate argument
-			- [ ] Add in file placement/location
+		- [x] SSL Key generate argument
+			- [ ] Add in file placement/location i argument
+			- [ ] FileCheck in Utils came from this, create a dedicated function/list of critical files.
 		- [ ] SSL
 			- [ ] Re-Learn SSL & watch some vids on it. 
 			- [ ] Error handle respective SSL errors correctly. 
