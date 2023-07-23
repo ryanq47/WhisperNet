@@ -16,3 +16,6 @@ Agent/c\#/.vs/Client/DesignTimeBuild/.dtbcache.v2
 *.1
 *.1
 *.prof
+*.crt
+*.key
+*.log
