@@ -20,6 +20,7 @@ try:
     from Utils.UtilsHandler import str_encode, bytes_decode
 
     import Comms.CommsHandler
+    import Utils.QueueHandler
 
 except Exception as e:
     print(f"[ServerMaliciousClientHandler.py] Import Error: {e}")
@@ -36,6 +37,7 @@ class ServerMaliciousClientHandler:
         self.port = clientsocket.getpeername()[1]
         self.id = clientid
         self.fullname = "client_" + self.ip.replace(".","_") + f"_{self.id}"
+        self.command_queue = Utils.QueueHandler.QueueHandler()
 
     def handle_client(self, response_from_client):
         print(f"MaliciousClientHandler(handle_client) DEBUG: Message From {self.id} is: {len(response_from_client)} bytes")
@@ -44,10 +46,30 @@ class ServerMaliciousClientHandler:
         ## need to determine what comes here. The way the server is set up, every new message comes through there, is filtered, then is passed here (or wherever it shoudl go).
         ## That may skew the queue plan. 
 
+        ## parse results. Add to results queue?
+
         ##Final steps would be to send msg back to client
+        self.send_command()
+
+    def send_command(self):
+        """Sends a message on to the client. Uses the next item up in the queue. If no item is int he queue (or it errors out) The client is send a sleep command
+
+            Only triggered when a client sends a message first. 
 
 
+        """
+        ...
 
+        # get latest item in queue
+        command = self.command_queue.dequeue()
+
+        if command:
+            Comms.CommsHandler.send_msg(command, self.clientsocket)
+        
+        else:
+            pass
+            ## send a sleep object
+        
 
 
     
