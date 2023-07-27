@@ -42,14 +42,11 @@
             "id": "d672f736a08a57af",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "Visual Progress.canvas",
-                "viewState": {
-                  "x": -102.68343815513629,
-                  "y": 0.21802935010484248,
-                  "zoom": -0.5157824730186611
-                }
+                "file": "Server/Long Term gotchas.md",
+                "mode": "source",
+                "source": false
               }
             }
           },
@@ -175,7 +172,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Visual Progress.canvas",
+                "file": "Server/Long Term gotchas.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -192,7 +189,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Visual Progress.canvas",
+                "file": "Server/Long Term gotchas.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -215,7 +212,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Visual Progress.canvas"
+                "file": "Server/Long Term gotchas.md"
               }
             }
           }
@@ -238,8 +235,10 @@
   },
   "active": "d672f736a08a57af",
   "lastOpenFiles": [
-    "Server/MaliciousClientHandler Docs/ToDo.md",
+    "Server/General.md",
+    "Server/Long Term gotchas.md",
     "Visual Progress.canvas",
+    "Server/MaliciousClientHandler Docs/ToDo.md",
     "Server/MaliciousClientHandler Docs",
     "Server/Canvas/FileStructure.canvas",
     "Server/Server.py Docs/socket_cleanup() Method.md",
@@ -254,7 +253,6 @@
     "General/Networking & Protocols/Header breakdown.md",
     "General/Naming & general.md",
     "Server/Canvas",
-    "Server/General - Server oh server.md",
     "Server",
     "Clients/CSharp/High Level Operation Flow.canvas",
     "Clients/CSharp/Functions Overview/JsonHandler.cs.md",

@@ -436,12 +436,15 @@ class ServerSockHandler:
                 self.current_clients.append(client_name)
 
             # Create a new malicious client handler instance and add it to the clients dict
-            self.clients[client_name] = ClientEngine.MaliciousClientHandler.ServerMaliciousClientHandler()
+            self.clients[client_name] = ClientEngine.MaliciousClientHandler.ServerMaliciousClientHandler(
+                clientsocket=serversocket,
+                clientid=id
+            )
 
             # Create a new thread for this client's communication
             threading.Thread(
                 target=self.clients[client_name].handle_client,
-                args=(serversocket, response_from_client, id)
+                args=(response_from_client,)
             ).start()
 
             logging.debug(f"Server (clientloginhandler)] Client '{id}' accepted, new thread created")

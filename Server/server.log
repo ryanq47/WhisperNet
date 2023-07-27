@@ -8884,3 +8884,25 @@ Error Message: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate un
 [127.0.0.1:50643 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50643
 2023-07-26 19:51:57 - root - DEBUG - [C2Server] Received message of length: 509
 2023-07-26 19:51:57 - root - DEBUG - Server (clientloginhandler)] Client 'default string' accepted, new thread created
+2023-07-26 21:06:01 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-27 02:06:01.259760+00:00 =====
+2023-07-26 21:06:01 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 21:06:11 - root - DEBUG - 
+[127.0.0.1:50817 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50817
+2023-07-26 21:06:11 - root - DEBUG - [C2Server] Received message of length: 509
+2023-07-26 21:06:11 - root - DEBUG - Server (clientloginhandler)] Client 'default string' accepted, new thread created
+2023-07-26 21:08:50 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-27 02:08:50.583961+00:00 =====
+2023-07-26 21:08:50 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 21:08:54 - root - DEBUG - 
+[127.0.0.1:50830 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50830
+2023-07-26 21:08:54 - root - DEBUG - [C2Server] Received message of length: 509
+2023-07-26 21:08:54 - root - DEBUG - Server (clientloginhandler)] Client 'default string' accepted, new thread created
+2023-07-26 21:09:05 - root - DEBUG - 
+[127.0.0.1:50831 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50831
+2023-07-26 21:09:05 - root - DEBUG - [C2Server] Received message of length: 509
+2023-07-26 21:09:05 - root - DEBUG - Server (clientloginhandler)] Client 'default string' accepted, new thread created
+2023-07-26 21:10:06 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-27 02:10:06.167215+00:00 =====
+2023-07-26 21:10:06 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 21:10:21 - root - DEBUG - 
+[127.0.0.1:50835 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50835
+2023-07-26 21:10:21 - root - DEBUG - [C2Server] Received message of length: 509
+2023-07-26 21:10:21 - root - DEBUG - Server (clientloginhandler)] Client 'default string' accepted, new thread created
