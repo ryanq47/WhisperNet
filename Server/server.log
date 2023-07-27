@@ -8239,3 +8239,648 @@ Error Message: [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate un
 2023-07-23 09:46:02 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
 2023-07-23 09:46:20 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-23 16:46:20.710847+00:00 =====
 2023-07-23 09:46:20 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-24 22:59:10 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-25 03:59:10.043636+00:00 =====
+2023-07-24 23:01:14 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-25 04:01:14.329087+00:00 =====
+2023-07-24 23:01:14 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-24 23:03:38 - root - DEBUG - 
+[127.0.0.1:49229 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49229
+2023-07-24 23:03:38 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-24 23:03:38 - root - DEBUG - Header: {'encryption': 'H', 'server_request': 'e', 'data_size': 'lo, se'}
+2023-07-24 23:03:38 - root - DEBUG - No message, action, type, or id recieved. , error=invalid literal for int() with base 10: 'lo, se'
+2023-07-24 23:03:38 - root - WARNING - Unexpected Connection from 127.0.0.1:49229. Received:  
+2023-07-24 23:03:38 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'conn'
+
+2023-07-24 23:03:38 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-24 23:04:17 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-25 04:04:17.321656+00:00 =====
+2023-07-24 23:04:17 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-24 23:04:17 - root - DEBUG - 
+[127.0.0.1:49242 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49242
+2023-07-24 23:04:17 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49242
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:17 - root - DEBUG - 
+[127.0.0.1:49243 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49243
+2023-07-24 23:04:17 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49243
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:17 - root - DEBUG - 
+[127.0.0.1:49244 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49244
+2023-07-24 23:04:17 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49244
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:17 - root - DEBUG - 
+[127.0.0.1:49245 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49245
+2023-07-24 23:04:17 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49245
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:17 - root - DEBUG - 
+[127.0.0.1:49246 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49246
+2023-07-24 23:04:17 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49246
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:17 - root - DEBUG - 
+[127.0.0.1:49247 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49247
+2023-07-24 23:04:17 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49247
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:17 - root - DEBUG - 
+[127.0.0.1:49248 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49248
+2023-07-24 23:04:17 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49248
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:17 - root - DEBUG - 
+[127.0.0.1:49249 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49249
+2023-07-24 23:04:18 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49249
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:18 - root - DEBUG - 
+[127.0.0.1:49250 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49250
+2023-07-24 23:04:18 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49250
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:18 - root - DEBUG - 
+[127.0.0.1:49251 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49251
+2023-07-24 23:04:18 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49251
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:18 - root - DEBUG - 
+[127.0.0.1:49252 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49252
+2023-07-24 23:04:18 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49252
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:18 - root - DEBUG - 
+[127.0.0.1:49253 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49253
+2023-07-24 23:04:18 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49253
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:18 - root - DEBUG - 
+[127.0.0.1:49254 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49254
+2023-07-24 23:04:18 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49254
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:18 - root - DEBUG - 
+[127.0.0.1:49255 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49255
+2023-07-24 23:04:18 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49255
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:18 - root - DEBUG - 
+[127.0.0.1:49256 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49256
+2023-07-24 23:04:18 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49256
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:18 - root - DEBUG - 
+[127.0.0.1:49257 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49257
+2023-07-24 23:04:18 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49257
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:18 - root - DEBUG - 
+[127.0.0.1:49258 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49258
+2023-07-24 23:04:18 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49258
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:18 - root - DEBUG - 
+[127.0.0.1:49259 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49259
+2023-07-24 23:04:18 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49259
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:18 - root - DEBUG - 
+[127.0.0.1:49260 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49260
+2023-07-24 23:04:18 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49260
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:18 - root - DEBUG - 
+[127.0.0.1:49261 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49261
+2023-07-24 23:04:18 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49261
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:18 - root - DEBUG - 
+[127.0.0.1:49262 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49262
+2023-07-24 23:04:18 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49262
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:18 - root - DEBUG - 
+[127.0.0.1:49263 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49263
+2023-07-24 23:04:19 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49263
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:19 - root - DEBUG - 
+[127.0.0.1:49264 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49264
+2023-07-24 23:04:19 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49264
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:19 - root - DEBUG - 
+[127.0.0.1:49265 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49265
+2023-07-24 23:04:19 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49265
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:19 - root - DEBUG - 
+[127.0.0.1:49266 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49266
+2023-07-24 23:04:19 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49266
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:19 - root - DEBUG - 
+[127.0.0.1:49267 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49267
+2023-07-24 23:04:19 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49267
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:19 - root - DEBUG - 
+[127.0.0.1:49268 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49268
+2023-07-24 23:04:19 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49268
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:19 - root - DEBUG - 
+[127.0.0.1:49269 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49269
+2023-07-24 23:04:19 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49269
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:19 - root - DEBUG - 
+[127.0.0.1:49270 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49270
+2023-07-24 23:04:19 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49270
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:19 - root - DEBUG - 
+[127.0.0.1:49271 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49271
+2023-07-24 23:04:19 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49271
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:19 - root - DEBUG - 
+[127.0.0.1:49272 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49272
+2023-07-24 23:04:19 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49272
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-24 23:04:54 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-25 04:04:54.529409+00:00 =====
+2023-07-24 23:04:54 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-24 23:04:59 - root - DEBUG - 
+[127.0.0.1:49278 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49278
+2023-07-24 23:04:59 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-24 23:04:59 - root - DEBUG - Header: {'encryption': '{', 'server_request': '"', 'data_size': 'eneral'}
+2023-07-24 23:04:59 - root - DEBUG - No message, action, type, or id recieved. , error=invalid literal for int() with base 10: 'eneral'
+2023-07-24 23:04:59 - root - WARNING - Unexpected Connection from 127.0.0.1:49278. Received:  
+2023-07-24 23:04:59 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'conn'
+
+2023-07-24 23:04:59 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-24 23:07:57 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-25 04:07:57.983744+00:00 =====
+2023-07-24 23:07:57 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-24 23:08:01 - root - DEBUG - 
+[127.0.0.1:49319 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49319
+2023-07-24 23:08:01 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-24 23:08:01 - root - DEBUG - Header: {'encryption': '{', 'server_request': '"', 'data_size': 'eneral'}
+2023-07-24 23:08:01 - root - DEBUG - No message, action, type, or id recieved. , error=invalid literal for int() with base 10: 'eneral'
+2023-07-24 23:08:01 - root - WARNING - Unexpected Connection from 127.0.0.1:49319. Received:  
+2023-07-24 23:08:01 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'conn'
+
+2023-07-24 23:08:01 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-26 14:37:46 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-26 19:37:46.412269+00:00 =====
+2023-07-26 14:37:46 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 14:37:54 - root - DEBUG - 
+[127.0.0.1:49364 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49364
+2023-07-26 14:37:54 - root - DEBUG - [ServerNetworkCommHandler (recieve_msg_global)] WAITING ON HEADER TO BE SENT:
+2023-07-26 14:37:54 - root - DEBUG - Header: {'encryption': '{', 'server_request': '"', 'data_size': 'eneral'}
+2023-07-26 14:37:54 - root - DEBUG - No message, action, type, or id recieved. , error=invalid literal for int() with base 10: 'eneral'
+2023-07-26 14:37:54 - root - WARNING - Unexpected Connection from 127.0.0.1:49364. Received:  
+2023-07-26 14:37:54 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'conn'
+
+2023-07-26 14:37:54 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-26 14:38:23 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-26 19:38:23.898290+00:00 =====
+2023-07-26 14:38:23 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 14:38:24 - root - DEBUG - 
+[127.0.0.1:49371 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49371
+2023-07-26 14:38:24 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49371
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:24 - root - DEBUG - 
+[127.0.0.1:49372 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49372
+2023-07-26 14:38:24 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49372
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:24 - root - DEBUG - 
+[127.0.0.1:49373 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49373
+2023-07-26 14:38:24 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49373
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:24 - root - DEBUG - 
+[127.0.0.1:49374 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49374
+2023-07-26 14:38:24 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49374
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:24 - root - DEBUG - 
+[127.0.0.1:49375 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49375
+2023-07-26 14:38:24 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49375
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:24 - root - DEBUG - 
+[127.0.0.1:49376 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49376
+2023-07-26 14:38:24 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49376
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:24 - root - DEBUG - 
+[127.0.0.1:49377 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49377
+2023-07-26 14:38:24 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49377
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:24 - root - DEBUG - 
+[127.0.0.1:49378 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49378
+2023-07-26 14:38:24 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49378
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:24 - root - DEBUG - 
+[127.0.0.1:49379 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49379
+2023-07-26 14:38:24 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49379
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:24 - root - DEBUG - 
+[127.0.0.1:49380 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49380
+2023-07-26 14:38:24 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49380
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:24 - root - DEBUG - 
+[127.0.0.1:49381 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49381
+2023-07-26 14:38:24 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49381
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:24 - root - DEBUG - 
+[127.0.0.1:49382 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49382
+2023-07-26 14:38:24 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49382
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:24 - root - DEBUG - 
+[127.0.0.1:49383 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49383
+2023-07-26 14:38:24 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49383
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:24 - root - DEBUG - 
+[127.0.0.1:49384 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49384
+2023-07-26 14:38:24 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49384
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:24 - root - DEBUG - 
+[127.0.0.1:49385 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49385
+2023-07-26 14:38:24 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49385
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:24 - root - DEBUG - 
+[127.0.0.1:49386 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49386
+2023-07-26 14:38:24 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49386
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:24 - root - DEBUG - 
+[127.0.0.1:49387 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49387
+2023-07-26 14:38:24 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49387
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:25 - root - DEBUG - 
+[127.0.0.1:49388 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49388
+2023-07-26 14:38:25 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49388
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:25 - root - DEBUG - 
+[127.0.0.1:49389 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49389
+2023-07-26 14:38:25 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49389
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:25 - root - DEBUG - 
+[127.0.0.1:49390 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49390
+2023-07-26 14:38:25 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49390
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:25 - root - DEBUG - 
+[127.0.0.1:49391 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49391
+2023-07-26 14:38:25 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49391
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:25 - root - DEBUG - 
+[127.0.0.1:49392 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49392
+2023-07-26 14:38:25 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49392
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:25 - root - DEBUG - 
+[127.0.0.1:49393 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49393
+2023-07-26 14:38:25 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49393
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:25 - root - DEBUG - 
+[127.0.0.1:49394 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49394
+2023-07-26 14:38:25 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49394
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:25 - root - DEBUG - 
+[127.0.0.1:49395 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49395
+2023-07-26 14:38:25 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49395
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:25 - root - DEBUG - 
+[127.0.0.1:49396 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49396
+2023-07-26 14:38:25 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49396
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:25 - root - DEBUG - 
+[127.0.0.1:49397 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49397
+2023-07-26 14:38:25 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49397
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:25 - root - DEBUG - 
+[127.0.0.1:49398 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49398
+2023-07-26 14:38:25 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49398
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:25 - root - DEBUG - 
+[127.0.0.1:49399 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49399
+2023-07-26 14:38:25 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49399
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:25 - root - DEBUG - 
+[127.0.0.1:49400 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49400
+2023-07-26 14:38:25 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49400
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 14:38:25 - root - DEBUG - 
+[127.0.0.1:49401 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49401
+2023-07-26 14:38:25 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49401
+	 Error Message: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1129)
+2023-07-26 15:10:37 - root - DEBUG - 
+[127.0.0.1:49625 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49625
+2023-07-26 15:10:37 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49625
+	 Error Message: [SSL: HTTP_REQUEST] http request (_ssl.c:1129)
+2023-07-26 15:10:38 - root - DEBUG - 
+[127.0.0.1:49629 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49629
+2023-07-26 15:10:38 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49629
+	 Error Message: [SSL: HTTP_REQUEST] http request (_ssl.c:1129)
+2023-07-26 15:10:43 - root - DEBUG - 
+[127.0.0.1:49631 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49631
+2023-07-26 15:10:43 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49631
+	 Error Message: [SSL: HTTP_REQUEST] http request (_ssl.c:1129)
+2023-07-26 15:10:44 - root - DEBUG - 
+[127.0.0.1:49633 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49633
+2023-07-26 15:10:44 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49633
+	 Error Message: [SSL: HTTP_REQUEST] http request (_ssl.c:1129)
+2023-07-26 15:10:45 - root - DEBUG - 
+[127.0.0.1:49635 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49635
+2023-07-26 15:10:45 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49635
+	 Error Message: [SSL: HTTP_REQUEST] http request (_ssl.c:1129)
+2023-07-26 15:10:50 - root - DEBUG - 
+[127.0.0.1:49638 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49638
+2023-07-26 15:10:50 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49638
+	 Error Message: [SSL: HTTP_REQUEST] http request (_ssl.c:1129)
+2023-07-26 15:10:52 - root - DEBUG - 
+[192.168.44.158:49640 -> Server] [New Instance] Accepted Connection from: 192.168.44.158:49640
+2023-07-26 15:10:52 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 192.168.44.158:49640
+	 Error Message: [SSL: HTTP_REQUEST] http request (_ssl.c:1129)
+2023-07-26 15:10:54 - root - DEBUG - 
+[192.168.44.158:49641 -> Server] [New Instance] Accepted Connection from: 192.168.44.158:49641
+2023-07-26 15:10:54 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 192.168.44.158:49641
+	 Error Message: [SSL: HTTP_REQUEST] http request (_ssl.c:1129)
+2023-07-26 15:10:59 - root - DEBUG - 
+[192.168.44.158:49642 -> Server] [New Instance] Accepted Connection from: 192.168.44.158:49642
+2023-07-26 15:10:59 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 192.168.44.158:49642
+	 Error Message: [SSL: HTTP_REQUEST] http request (_ssl.c:1129)
+2023-07-26 15:11:10 - root - DEBUG - 
+[127.0.0.1:49643 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49643
+2023-07-26 15:11:10 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49643
+	 Error Message: [SSL: HTTP_REQUEST] http request (_ssl.c:1129)
+2023-07-26 15:11:11 - root - DEBUG - 
+[127.0.0.1:49644 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49644
+2023-07-26 15:11:11 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49644
+	 Error Message: [SSL: HTTP_REQUEST] http request (_ssl.c:1129)
+2023-07-26 15:11:11 - root - DEBUG - 
+[127.0.0.1:49645 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49645
+2023-07-26 15:11:11 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 127.0.0.1:49645
+	 Error Message: [SSL: HTTP_REQUEST] http request (_ssl.c:1129)
+2023-07-26 15:13:49 - root - DEBUG - 
+[192.168.44.158:49660 -> Server] [New Instance] Accepted Connection from: 192.168.44.158:49660
+2023-07-26 15:13:49 - root - WARNING - [Server (server_ssl_handler)] SSL Cert Unkown 192.168.44.158:49660
+	 Error Message: [SSL: HTTP_REQUEST] http request (_ssl.c:1129)
+2023-07-26 18:54:11 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-26 23:54:11.161728+00:00 =====
+2023-07-26 18:54:11 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 18:54:39 - root - ERROR - [C2Server] Error receiving message: [WinError 10054] An existing connection was forcibly closed by the remote host
+2023-07-26 18:54:39 - root - DEBUG - No message, action, type, or id recieved. , error=[WinError 10054] An existing connection was forcibly closed by the remote host
+2023-07-26 18:54:39 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'client_remote_ip_port'
+
+2023-07-26 18:54:39 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-26 18:55:20 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-26 23:55:20.735360+00:00 =====
+2023-07-26 18:55:20 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 18:56:14 - root - ERROR - [C2Server] Error receiving message: [WinError 10054] An existing connection was forcibly closed by the remote host
+2023-07-26 18:56:14 - root - DEBUG - No message, action, type, or id recieved. , error=[WinError 10054] An existing connection was forcibly closed by the remote host
+2023-07-26 18:56:14 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'client_remote_ip_port'
+
+2023-07-26 18:56:14 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-26 18:56:18 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-26 23:56:18.092932+00:00 =====
+2023-07-26 18:56:18 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 18:56:30 - root - ERROR - [C2Server] Error receiving message: [WinError 10054] An existing connection was forcibly closed by the remote host
+2023-07-26 18:56:30 - root - DEBUG - No message, action, type, or id recieved. , error=[WinError 10054] An existing connection was forcibly closed by the remote host
+2023-07-26 18:56:30 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'client_remote_ip_port'
+
+2023-07-26 18:56:30 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-26 18:56:50 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-26 23:56:50.484438+00:00 =====
+2023-07-26 18:56:50 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 18:58:10 - root - ERROR - [C2Server] Error receiving message: [WinError 10054] An existing connection was forcibly closed by the remote host
+2023-07-26 18:58:10 - root - DEBUG - No message, action, type, or id recieved. , error=[WinError 10054] An existing connection was forcibly closed by the remote host
+2023-07-26 18:58:10 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'client_remote_ip_port'
+
+2023-07-26 18:58:10 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-26 18:59:14 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-26 23:59:14.093549+00:00 =====
+2023-07-26 18:59:14 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 18:59:21 - root - ERROR - [C2Server] Error receiving message: [WinError 10054] An existing connection was forcibly closed by the remote host
+2023-07-26 18:59:21 - root - DEBUG - No message, action, type, or id recieved. , error=[WinError 10054] An existing connection was forcibly closed by the remote host
+2023-07-26 18:59:21 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'client_remote_ip_port'
+
+2023-07-26 18:59:21 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-26 18:59:29 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-26 23:59:29.704446+00:00 =====
+2023-07-26 18:59:29 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 18:59:42 - root - ERROR - [C2Server] Error receiving message: [WinError 10054] An existing connection was forcibly closed by the remote host
+2023-07-26 18:59:42 - root - DEBUG - No message, action, type, or id recieved. , error=[WinError 10054] An existing connection was forcibly closed by the remote host
+2023-07-26 18:59:42 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'client_remote_ip_port'
+
+2023-07-26 18:59:42 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-26 19:01:53 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-27 00:01:53.903492+00:00 =====
+2023-07-26 19:01:53 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 19:01:57 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:01:57 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'client_remote_ip_port'
+
+2023-07-26 19:01:57 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-26 19:11:37 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-27 00:11:37.720730+00:00 =====
+2023-07-26 19:11:37 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 19:11:46 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-26 19:11:50 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-27 00:11:50.314997+00:00 =====
+2023-07-26 19:11:50 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 19:11:50 - root - DEBUG - 
+[127.0.0.1:50399 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50399
+2023-07-26 19:11:50 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:11:50 - root - WARNING - Unexpected Connection from 127.0.0.1:50399. Received:  
+2023-07-26 19:11:50 - root - WARNING - ERRMSG: 'ServerSockHandler' object has no attribute 'conn'
+
+2023-07-26 19:11:50 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-26 19:14:14 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-27 00:14:14.345822+00:00 =====
+2023-07-26 19:14:14 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 19:14:14 - root - DEBUG - 
+[127.0.0.1:50475 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50475
+2023-07-26 19:14:14 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:14 - root - WARNING - Unexpected Connection from 127.0.0.1:50475. Received:  
+2023-07-26 19:14:14 - root - DEBUG - 
+[127.0.0.1:50476 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50476
+2023-07-26 19:14:14 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:14 - root - WARNING - Unexpected Connection from 127.0.0.1:50476. Received:  
+2023-07-26 19:14:14 - root - DEBUG - 
+[127.0.0.1:50477 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50477
+2023-07-26 19:14:14 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:14 - root - WARNING - Unexpected Connection from 127.0.0.1:50477. Received:  
+2023-07-26 19:14:14 - root - DEBUG - 
+[127.0.0.1:50478 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50478
+2023-07-26 19:14:14 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:14 - root - WARNING - Unexpected Connection from 127.0.0.1:50478. Received:  
+2023-07-26 19:14:14 - root - DEBUG - 
+[127.0.0.1:50479 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50479
+2023-07-26 19:14:14 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:14 - root - WARNING - Unexpected Connection from 127.0.0.1:50479. Received:  
+2023-07-26 19:14:14 - root - DEBUG - 
+[127.0.0.1:50480 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50480
+2023-07-26 19:14:15 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:15 - root - WARNING - Unexpected Connection from 127.0.0.1:50480. Received:  
+2023-07-26 19:14:15 - root - DEBUG - 
+[127.0.0.1:50481 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50481
+2023-07-26 19:14:15 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:15 - root - WARNING - Unexpected Connection from 127.0.0.1:50481. Received:  
+2023-07-26 19:14:15 - root - DEBUG - 
+[127.0.0.1:50482 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50482
+2023-07-26 19:14:15 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:15 - root - WARNING - Unexpected Connection from 127.0.0.1:50482. Received:  
+2023-07-26 19:14:15 - root - DEBUG - 
+[127.0.0.1:50483 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50483
+2023-07-26 19:14:15 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:15 - root - WARNING - Unexpected Connection from 127.0.0.1:50483. Received:  
+2023-07-26 19:14:15 - root - DEBUG - 
+[127.0.0.1:50484 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50484
+2023-07-26 19:14:15 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:15 - root - WARNING - Unexpected Connection from 127.0.0.1:50484. Received:  
+2023-07-26 19:14:15 - root - DEBUG - 
+[127.0.0.1:50485 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50485
+2023-07-26 19:14:15 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:15 - root - WARNING - Unexpected Connection from 127.0.0.1:50485. Received:  
+2023-07-26 19:14:15 - root - DEBUG - 
+[127.0.0.1:50486 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50486
+2023-07-26 19:14:15 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:15 - root - WARNING - Unexpected Connection from 127.0.0.1:50486. Received:  
+2023-07-26 19:14:15 - root - DEBUG - 
+[127.0.0.1:50487 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50487
+2023-07-26 19:14:15 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:15 - root - WARNING - Unexpected Connection from 127.0.0.1:50487. Received:  
+2023-07-26 19:14:15 - root - DEBUG - 
+[127.0.0.1:50488 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50488
+2023-07-26 19:14:15 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:15 - root - WARNING - Unexpected Connection from 127.0.0.1:50488. Received:  
+2023-07-26 19:14:15 - root - DEBUG - 
+[127.0.0.1:50489 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50489
+2023-07-26 19:14:15 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:15 - root - WARNING - Unexpected Connection from 127.0.0.1:50489. Received:  
+2023-07-26 19:14:15 - root - DEBUG - 
+[127.0.0.1:50490 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50490
+2023-07-26 19:14:15 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:15 - root - WARNING - Unexpected Connection from 127.0.0.1:50490. Received:  
+2023-07-26 19:14:15 - root - DEBUG - 
+[127.0.0.1:50491 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50491
+2023-07-26 19:14:15 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:15 - root - WARNING - Unexpected Connection from 127.0.0.1:50491. Received:  
+2023-07-26 19:14:15 - root - DEBUG - 
+[127.0.0.1:50492 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50492
+2023-07-26 19:14:15 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:15 - root - WARNING - Unexpected Connection from 127.0.0.1:50492. Received:  
+2023-07-26 19:14:15 - root - DEBUG - 
+[127.0.0.1:50493 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50493
+2023-07-26 19:14:15 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:15 - root - WARNING - Unexpected Connection from 127.0.0.1:50493. Received:  
+2023-07-26 19:14:15 - root - DEBUG - 
+[127.0.0.1:50494 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50494
+2023-07-26 19:14:17 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:17 - root - WARNING - Unexpected Connection from 127.0.0.1:50494. Received:  
+2023-07-26 19:14:17 - root - DEBUG - 
+[127.0.0.1:50495 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50495
+2023-07-26 19:14:17 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:17 - root - WARNING - Unexpected Connection from 127.0.0.1:50495. Received:  
+2023-07-26 19:14:17 - root - DEBUG - 
+[127.0.0.1:50496 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50496
+2023-07-26 19:14:17 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:17 - root - WARNING - Unexpected Connection from 127.0.0.1:50496. Received:  
+2023-07-26 19:14:17 - root - DEBUG - 
+[127.0.0.1:50497 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50497
+2023-07-26 19:14:17 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:17 - root - WARNING - Unexpected Connection from 127.0.0.1:50497. Received:  
+2023-07-26 19:14:17 - root - DEBUG - 
+[127.0.0.1:50498 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50498
+2023-07-26 19:14:17 - root - DEBUG - [C2Server] Received message of length: 507
+2023-07-26 19:14:17 - root - WARNING - Unexpected Connection from 127.0.0.1:50498. Received:  
+2023-07-26 19:14:17 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-26 19:15:34 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-27 00:15:34.454941+00:00 =====
+2023-07-26 19:15:34 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 19:17:37 - root - DEBUG - 
+[127.0.0.1:50510 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50510
+2023-07-26 19:17:37 - root - DEBUG - [C2Server] Received message of length: 462
+2023-07-26 19:17:37 - root - DEBUG - No message, action, type, or id recieved. , error='msg_command'
+2023-07-26 19:17:37 - root - WARNING - Unexpected Connection from 127.0.0.1:50510. Received:  
+2023-07-26 19:17:37 - root - DEBUG - 
+[127.0.0.1:50511 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50511
+2023-07-26 19:17:37 - root - DEBUG - [C2Server] Received message of length: 462
+2023-07-26 19:17:37 - root - DEBUG - No message, action, type, or id recieved. , error='msg_command'
+2023-07-26 19:17:37 - root - WARNING - Unexpected Connection from 127.0.0.1:50511. Received:  
+2023-07-26 19:17:37 - root - DEBUG - 
+[127.0.0.1:50512 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50512
+2023-07-26 19:17:37 - root - DEBUG - [C2Server] Received message of length: 462
+2023-07-26 19:17:37 - root - DEBUG - No message, action, type, or id recieved. , error='msg_command'
+2023-07-26 19:17:37 - root - WARNING - Unexpected Connection from 127.0.0.1:50512. Received:  
+2023-07-26 19:17:37 - root - DEBUG - 
+[127.0.0.1:50513 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50513
+2023-07-26 19:17:37 - root - DEBUG - [C2Server] Received message of length: 462
+2023-07-26 19:17:37 - root - DEBUG - No message, action, type, or id recieved. , error='msg_command'
+2023-07-26 19:17:37 - root - WARNING - Unexpected Connection from 127.0.0.1:50513. Received:  
+2023-07-26 19:17:37 - root - DEBUG - 
+[127.0.0.1:50514 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50514
+2023-07-26 19:17:37 - root - DEBUG - [C2Server] Received message of length: 462
+2023-07-26 19:17:37 - root - DEBUG - No message, action, type, or id recieved. , error='msg_command'
+2023-07-26 19:17:37 - root - WARNING - Unexpected Connection from 127.0.0.1:50514. Received:  
+2023-07-26 19:17:37 - root - DEBUG - 
+[127.0.0.1:50515 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50515
+2023-07-26 19:17:37 - root - DEBUG - [C2Server] Received message of length: 462
+2023-07-26 19:17:37 - root - DEBUG - No message, action, type, or id recieved. , error='msg_command'
+2023-07-26 19:17:37 - root - WARNING - Unexpected Connection from 127.0.0.1:50515. Received:  
+2023-07-26 19:17:37 - root - DEBUG - 
+[127.0.0.1:50516 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50516
+2023-07-26 19:17:37 - root - DEBUG - [C2Server] Received message of length: 462
+2023-07-26 19:17:37 - root - DEBUG - No message, action, type, or id recieved. , error='msg_command'
+2023-07-26 19:17:37 - root - WARNING - Unexpected Connection from 127.0.0.1:50516. Received:  
+2023-07-26 19:17:37 - root - DEBUG - 
+[127.0.0.1:50517 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50517
+2023-07-26 19:17:37 - root - DEBUG - [C2Server] Received message of length: 462
+2023-07-26 19:17:37 - root - DEBUG - No message, action, type, or id recieved. , error='msg_command'
+2023-07-26 19:17:37 - root - WARNING - Unexpected Connection from 127.0.0.1:50517. Received:  
+2023-07-26 19:17:38 - root - DEBUG - 
+[127.0.0.1:50518 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50518
+2023-07-26 19:17:38 - root - DEBUG - [C2Server] Received message of length: 462
+2023-07-26 19:17:38 - root - DEBUG - No message, action, type, or id recieved. , error='msg_command'
+2023-07-26 19:17:38 - root - WARNING - Unexpected Connection from 127.0.0.1:50518. Received:  
+2023-07-26 19:18:30 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-27 00:18:30.907602+00:00 =====
+2023-07-26 19:18:30 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 19:18:39 - root - DEBUG - 
+[127.0.0.1:50519 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50519
+2023-07-26 19:18:39 - root - DEBUG - [C2Server] Received message of length: 462
+2023-07-26 19:18:39 - root - DEBUG - No message, action, type, or id recieved. , error='msg_command'
+2023-07-26 19:18:39 - root - WARNING - Unexpected Connection from 127.0.0.1:50519. Received:  
+2023-07-26 19:19:45 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-27 00:19:45.064503+00:00 =====
+2023-07-26 19:19:45 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 19:19:53 - root - DEBUG - 
+[127.0.0.1:50529 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50529
+2023-07-26 19:19:53 - root - DEBUG - [C2Server] Received message of length: 462
+2023-07-26 19:19:53 - root - DEBUG - No message, action, type, or id recieved. , error='msg_command'
+2023-07-26 19:19:53 - root - WARNING - Unexpected Connection from 127.0.0.1:50529. Received:  
+2023-07-26 19:21:47 - root - DEBUG - 
+[127.0.0.1:50562 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50562
+2023-07-26 19:21:47 - root - DEBUG - [C2Server] Received message of length: 462
+2023-07-26 19:21:47 - root - DEBUG - No message, action, type, or id recieved. , error='msg_command'
+2023-07-26 19:21:47 - root - WARNING - Unexpected Connection from 127.0.0.1:50562. Received:  
+2023-07-26 19:22:34 - root - DEBUG - 
+[127.0.0.1:50563 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50563
+2023-07-26 19:22:34 - root - DEBUG - [C2Server] Received message of length: 504
+2023-07-26 19:22:34 - root - DEBUG - No message, action, type, or id recieved. , error='msg_command'
+2023-07-26 19:22:34 - root - WARNING - Unexpected Connection from 127.0.0.1:50563. Received:  
+2023-07-26 19:23:39 - root - DEBUG - 
+[127.0.0.1:50566 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50566
+2023-07-26 19:23:39 - root - DEBUG - [C2Server] Received message of length: 508
+2023-07-26 19:23:39 - root - WARNING - Unexpected Connection from 127.0.0.1:50566. Received:  
+2023-07-26 19:24:36 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-27 00:24:36.828247+00:00 =====
+2023-07-26 19:24:36 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 19:24:45 - root - DEBUG - 
+[127.0.0.1:50568 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50568
+2023-07-26 19:25:06 - root - DEBUG - [C2Server] Received message of length: 508
+2023-07-26 19:25:06 - root - WARNING - Unexpected Connection from 127.0.0.1:50568. Received:  
+2023-07-26 19:25:11 - root - DEBUG - 
+[127.0.0.1:50570 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50570
+2023-07-26 19:25:11 - root - DEBUG - [C2Server] Received message of length: 508
+2023-07-26 19:25:11 - root - WARNING - Unexpected Connection from 127.0.0.1:50570. Received:  
+2023-07-26 19:25:47 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-27 00:25:47.847324+00:00 =====
+2023-07-26 19:25:47 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 19:25:55 - root - DEBUG - 
+[127.0.0.1:50573 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50573
+2023-07-26 19:26:02 - root - DEBUG - [C2Server] Received message of length: 508
+2023-07-26 19:26:02 - root - WARNING - Unexpected Connection from 127.0.0.1:50573. Received:  
+2023-07-26 19:27:20 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-27 00:27:20.197923+00:00 =====
+2023-07-26 19:27:20 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 19:27:28 - root - DEBUG - 
+[127.0.0.1:50582 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50582
+2023-07-26 19:27:28 - root - DEBUG - [C2Server] Received message of length: 508
+2023-07-26 19:27:28 - root - WARNING - Unexpected Connection from 127.0.0.1:50582. Action: default string 
+2023-07-26 19:27:34 - root - DEBUG - 
+[127.0.0.1:50583 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50583
+2023-07-26 19:27:34 - root - DEBUG - [C2Server] Received message of length: 508
+2023-07-26 19:27:34 - root - WARNING - Unexpected Connection from 127.0.0.1:50583. Action: default string 
+2023-07-26 19:28:24 - root - DEBUG - Socket Close: The socket was successfully closed
+2023-07-26 19:29:05 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-27 00:29:05.582405+00:00 =====
+2023-07-26 19:29:05 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 19:29:13 - root - DEBUG - 
+[127.0.0.1:50587 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50587
+2023-07-26 19:29:13 - root - DEBUG - [C2Server] Received message of length: 509
+2023-07-26 19:29:13 - root - DEBUG - Server (clientloginhandler)] Unknown Error: 'ServerSockHandler' object has no attribute 'ssl_conn'
+2023-07-26 19:44:06 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-27 00:44:06.361957+00:00 =====
+2023-07-26 19:44:06 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 19:44:15 - root - DEBUG - 
+[127.0.0.1:50621 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50621
+2023-07-26 19:44:15 - root - DEBUG - [C2Server] Received message of length: 509
+2023-07-26 19:44:15 - root - DEBUG - Server (clientloginhandler)] Unknown Error: 'ServerSockHandler' object has no attribute 'ssl_conn'
+2023-07-26 19:45:10 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-27 00:45:10.925069+00:00 =====
+2023-07-26 19:45:10 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 19:45:19 - root - DEBUG - 
+[127.0.0.1:50624 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50624
+2023-07-26 19:45:19 - root - DEBUG - [C2Server] Received message of length: 509
+2023-07-26 19:45:19 - root - DEBUG - Server (clientloginhandler)] Unknown Error: can only concatenate str (not "NoneType") to str
+2023-07-26 19:46:26 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-27 00:46:26.820024+00:00 =====
+2023-07-26 19:46:26 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 19:46:37 - root - DEBUG - 
+[127.0.0.1:50626 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50626
+2023-07-26 19:46:37 - root - DEBUG - [C2Server] Received message of length: 509
+2023-07-26 19:47:54 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-27 00:47:54.286784+00:00 =====
+2023-07-26 19:47:54 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 19:48:04 - root - DEBUG - 
+[127.0.0.1:50629 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50629
+2023-07-26 19:48:04 - root - DEBUG - [C2Server] Received message of length: 509
+2023-07-26 19:48:04 - root - DEBUG - Server (clientloginhandler)] Client default string accepted, new thread created
+2023-07-26 19:51:48 - root - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-27 00:51:48.247005+00:00 =====
+2023-07-26 19:51:48 - root - DEBUG - [Server] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-26 19:51:57 - root - DEBUG - 
+[127.0.0.1:50643 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50643
+2023-07-26 19:51:57 - root - DEBUG - [C2Server] Received message of length: 509
+2023-07-26 19:51:57 - root - DEBUG - Server (clientloginhandler)] Client 'default string' accepted, new thread created

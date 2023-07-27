@@ -1,4 +1,11 @@
 
+
+!! Hey up here. Readme. 
+
+Move to the sendall method instead of the manual fragmenting. it will just make things easier. Don't worry about SSL right now. 
+
+Keep it simple stupid.
+
 ## Server 
 
 - [ ] Make sure the server is receiving everything correctly 
@@ -19,6 +26,7 @@
 			- [ ] Error handle respective SSL errors correctly. 
 				- [ ] Fix 'no attribute' errors resulting from variables being init'd wrong, or not at all. AKA bulletproof it
 					- Potentially fixed with 'returns' in statements in the cascade loop 
+			- [ ] Modify it a bit in the SSLHander to work with env
 		- [ ] Imports: (slow) move to 'import file.py' instead of 'from whatever import whatever'
 			- This makes everything much more readable/followable in my opinion, & much more clean
 			- [x] Server.py
