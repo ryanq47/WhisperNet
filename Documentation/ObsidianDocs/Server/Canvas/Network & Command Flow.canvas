@@ -1,0 +1,21 @@
+{
+	"nodes":[
+		{"id":"d7fb11b3bdabe591","x":-140,"y":-540,"width":200,"height":60,"type":"text","text":"## Internet"},
+		{"id":"c2a149f8ba9863f8","x":-200,"y":-260,"width":320,"height":100,"type":"text","text":"## Server\n- Parses & passes message too..."},
+		{"id":"caa63157043a82d2","x":120,"y":-40,"width":360,"height":60,"type":"text","text":"## Friendly Client Handler"},
+		{"id":"dd7d917a6ef7b50a","x":-520,"y":-40,"width":350,"height":60,"type":"text","text":"## Malicious Client Handler"},
+		{"type":"text","text":"## Malicious Client\n","id":"0b073013b53dd669","x":-460,"y":-920,"width":260,"height":60},
+		{"type":"text","text":"## Friendly Client","id":"d9338c27a69ccc67","x":60,"y":-920,"width":260,"height":60},
+		{"id":"ca07ed4db719137b","x":-280,"y":-1140,"width":445,"height":60,"type":"text","text":"### Start with a Malicious client, or a friendly client. Follow the respective color from there"}
+	],
+	"edges":[
+		{"id":"91ceaa02f5c9179d","fromNode":"0b073013b53dd669","fromSide":"bottom","toNode":"d7fb11b3bdabe591","toSide":"top","color":"1"},
+		{"id":"faf11f4a0007474d","fromNode":"d7fb11b3bdabe591","fromSide":"bottom","toNode":"c2a149f8ba9863f8","toSide":"top"},
+		{"id":"4ac4140f00646655","fromNode":"c2a149f8ba9863f8","fromSide":"bottom","toNode":"dd7d917a6ef7b50a","toSide":"top","color":"1","label":"Message From MClient"},
+		{"id":"c2e03cd8d015372a","fromNode":"c2a149f8ba9863f8","fromSide":"bottom","toNode":"caa63157043a82d2","toSide":"top","color":"4","label":"Message From FClient"},
+		{"id":"8b5a5122e6457736","fromNode":"dd7d917a6ef7b50a","fromSide":"left","toNode":"0b073013b53dd669","toSide":"left","color":"1","label":"Sends CMD..."},
+		{"id":"625c9a0fd60306db","fromNode":"d9338c27a69ccc67","fromSide":"bottom","toNode":"d7fb11b3bdabe591","toSide":"top","color":"4"},
+		{"id":"39685e20eaa4b9de","fromNode":"d7fb11b3bdabe591","fromSide":"bottom","toNode":"c2a149f8ba9863f8","toSide":"top","color":"1"},
+		{"id":"b4f550a7a97dfac7","fromNode":"caa63157043a82d2","fromSide":"right","toNode":"d9338c27a69ccc67","toSide":"right","color":"4","label":"Sends Info..."}
+	]
+}
