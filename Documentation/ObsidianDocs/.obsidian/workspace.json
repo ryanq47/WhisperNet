@@ -57,7 +57,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "General/Naming & general.md",
+                "file": "General/Naming & general/File Naming Definitions.md",
                 "mode": "source",
                 "source": false
               },
@@ -71,7 +71,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "General/Networking & Protocols/Header breakdown.md",
+                "file": "General/Networking & Protocols/Header breakdown - DEPRACATED.md",
                 "mode": "source",
                 "source": false
               },
@@ -96,17 +96,58 @@
           {
             "id": "0af081d4bf2f3eef",
             "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "Server/Visual Progress.canvas",
+                "viewState": {
+                  "x": 539.3904889484256,
+                  "y": 114.70237745976132,
+                  "zoom": -0.7356121309179435
+                }
+              },
+              "pinned": true
+            }
+          },
+          {
+            "id": "681b20529cdbfa86",
+            "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "General/Networking & Protocols/Header breakdown.md",
+                "file": "Server/Server.py Docs/clientloginhandler().md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "1f7e3dd078420a23",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "General/Naming & general/Error Handling.md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "abefa189e004dbf2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "General/Naming & general/Error Handling.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 9
       }
     ],
     "direction": "vertical"
@@ -172,7 +213,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Long Term gotchas.md",
+                "file": "General/Naming & general/Error Handling.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -189,7 +230,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Long Term gotchas.md",
+                "file": "General/Naming & general/Error Handling.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -212,7 +253,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Long Term gotchas.md"
+                "file": "General/Naming & general/Error Handling.md"
               }
             }
           }
@@ -233,25 +274,27 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d672f736a08a57af",
+  "active": "abefa189e004dbf2",
   "lastOpenFiles": [
+    "General/Naming & general/File Naming Definitions.md",
+    "Server/Visual Progress.canvas",
+    "General/Notes.md",
+    "General/Networking & Protocols/Header breakdown - DEPRACATED.md",
+    "General/Naming & general/Error Handling.md",
+    "General/Naming & general",
+    "Left off & todo.md",
+    "Server/Server.py Docs/clientloginhandler().md",
     "Server/General.md",
+    "Server/Canvas/FileStructure.canvas",
     "Server/Long Term gotchas.md",
-    "Visual Progress.canvas",
     "Server/MaliciousClientHandler Docs/ToDo.md",
     "Server/MaliciousClientHandler Docs",
-    "Server/Canvas/FileStructure.canvas",
     "Server/Server.py Docs/socket_cleanup() Method.md",
-    "Left off & todo.md",
     "Server/Server.py Docs/server_plaintext_handler Method.md",
     "Server/Server.py Docs/server_ssl_handler Method.md",
-    "General/Notes.md",
     "Server/Server.py Docs/Connection Handler Method.md",
     "Server/Server.py Docs",
-    "Untitled.md",
     "Clients/CSharp/Program File Structure.canvas",
-    "General/Networking & Protocols/Header breakdown.md",
-    "General/Naming & general.md",
     "Server/Canvas",
     "Server",
     "Clients/CSharp/High Level Operation Flow.canvas",

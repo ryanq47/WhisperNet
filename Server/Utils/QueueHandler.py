@@ -8,10 +8,10 @@ class QueueHandler():
     """ 
     def __init__(self):
         ## using a list for the queue, it's pretty flexible
-        self.queue = list()
+        self.queue = []
 
     def __str__(self):
-        print(self.queue)
+        print(str(self.queue))
 
     def enqueue(self, item_to_add=None):
         """Adds item to queue. 
@@ -45,6 +45,7 @@ class QueueHandler():
 
         try:
             ## .pop removes element from list, and returns it
+            ## this works here, but not on the MalciiousClientHandler
             item_to_dequeue = self.queue.pop(0)
             return item_to_dequeue
         
@@ -79,7 +80,7 @@ class QueueHandler():
 
 
     
-q = QueueHandler()
+'''q = QueueHandler()
 
 q.enqueue(item_to_add="Item1")
 q.enqueue(item_to_add="Item2")
@@ -88,4 +89,4 @@ q.enqueue(item_to_add="Item3")
 print(q.queue)
 
 while q.queue != []:
-    print(q.dequeue())
+    print(q.dequeue())'''

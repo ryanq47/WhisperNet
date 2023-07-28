@@ -242,7 +242,7 @@ namespace Client
             // parsing has been moved to a per-command basis. 
 
 
-            if (rawCommand == "wait" || rawCommand == "")
+            if (rawCommand == "sleep" || rawCommand == "" || rawCommand == "wait")
             {
                 Console.WriteLine($"[Debug] Waiting, Command was: {rawCommand}");
                 //in this case, return nothing. 

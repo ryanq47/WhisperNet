@@ -40,7 +40,7 @@ def send_msg(conn=None, msg="",) -> None:
         # Send the header followed by the message
         conn.sendall(header + msg)
 
-        logging.debug(f"[C2Server] Sent message of length: {msg_length}")
+        logging.debug(f"[CommsHandler.receive_msg()] Sent message of length: {msg_length}")
     except Exception as e:
         logging.error(f"[Server (CommsHandler.py)] Error sending message: {e}")
         # Handle any appropriate error response or connection closure here
@@ -64,7 +64,6 @@ def receive_msg(conn=None) -> str:
     try:
         # Receive the 4-byte header containing the message length
         header = conn.recv(4)
-        print("recv")
 
         # Unpack the header to get the message length as an unsigned integer
         msg_length = struct.unpack('I', header)[0]
@@ -87,14 +86,14 @@ def receive_msg(conn=None) -> str:
         # Convert the received data to a string
         message = bytes_decode(received_data)
 
-        logging.debug(f"[C2Server] Received message of length: {msg_length}")
+        logging.debug(f"[CommsHandler.receive_msg()] Received message of length: {msg_length}")
 
-        print(f"MSG: ========== \n\n{message}\n\n==========")
+        #print(f"MSG: ========== \n\n{message}\n\n==========")
 
         return message
 
     except Exception as e:
-        logging.error(f"[C2Server] Error receiving message: {e}")
+        logging.error(f"[CommsHandler.receive_msg()] Error receiving message: {e}")
             # Handle any appropriate error response or connection closure here
         raise e
     
@@ -154,7 +153,7 @@ def str_encode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]) 
         except UnicodeEncodeError:
             logging.debug(f"Could not encode bytes to {format}")
         except Exception as e:
-            logging.warning(f"ERRMSG: {e}\n")
+            logging.warning(f"CommsHandler (str_encode) ERRMSG: {e}\n")
 
 
 ## bytes -> str
@@ -166,4 +165,4 @@ def bytes_decode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]
         except UnicodeEncodeError:
             logging.debug(f"Could not decode bytes to {format}")
         except Exception as e:
-            logging.warning(f"ERRMSG: {e}\n")
+            logging.warning(f"CommsHandler (bytes_decode) ERRMSG: {e}\n")
