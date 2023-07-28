@@ -2,7 +2,7 @@
 
 The Malicious Client Handler is a class designed to manage individual client connections on a server. Each instance of this class is created to handle communication with a specific client that connects to the server. The purpose of this class is to facilitate communication with malicious clients and provide basic functionality to send and receive* messages from them. <del> Additionally, it updates JSON keys with information about the malicious clients, enabling GUI features like a client viewer. </del>
 
-\*: Note, ServerMaliciousClientHandler itself does not receive messages, it gets passed them from the server.
+\*: Note, ServerMaliciousClientHandler itself does not receive messages, it gets passed them from the server.[ See Here](obsidian://open?vault=ObsidianDocs&file=Server%2FCanvas%2FNetwork%20%26%20Command%20Flow.canvas)
 
 
 
