@@ -1,4 +1,6 @@
 ﻿
+using System.Net;
+
 namespace Client.PropertyHandler
 {
 
@@ -11,7 +13,6 @@ namespace Client.PropertyHandler
 
     {
         //Variables
-        //consider moving to a struct eventually?
         public static string ID = "";
         public static int msWait = 15000;
 

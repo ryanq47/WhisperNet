@@ -11,6 +11,9 @@
 - Server->ClientEngine -> FriendlyClientHandler
 - Server->ClientEngine -> MaliciousClientHandler
     - Both are handlers for clients that hold class instances instead of returning data to the calling function.
+- C#:
+	- Config->PropertyHandler:
+		- Holds property data as well as generating it.
 
 #### Sub Classes:
 
