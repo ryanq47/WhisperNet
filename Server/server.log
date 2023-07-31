@@ -109,3 +109,11 @@
 2023-07-30 23:04:36 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Command Queue: ['help']
 2023-07-30 23:04:36 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: help
 2023-07-30 23:04:36 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 4
+2023-07-30 23:07:27 - DEBUG - 
+[127.0.0.1:55850 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:55850
+2023-07-30 23:07:27 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-30 23:07:27 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-30 23:07:27 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-30 23:07:27 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Command Queue: []
+2023-07-30 23:07:27 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Queue empty. Sending sleep
+2023-07-30 23:07:27 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 5

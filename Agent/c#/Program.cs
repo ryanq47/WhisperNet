@@ -69,7 +69,8 @@ namespace Client
                     Client.Logic.Trees.decisionTree(serverMsg);
 
                     //client disconnect -  true means the socket can be reused
-                    clientSocket.Disconnect(true);
+                    //!! Socket errors here, need to figure this out
+                    clientSocket.Disconnect(false);
                     //(sends results on next checkin)
 
                     iterTrack++;
