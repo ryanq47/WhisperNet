@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Management.Automation;
 using JsonStruct;
 using Newtonsoft.Json;
@@ -111,16 +112,26 @@ namespace Client.Comms
             return jsonString;
         }
 
-        //this is kinda cool, can return this custom type
+        /// <summary>
+        /// Takes JSON String, returns JSON Object.
+        /// </summary>
         internal static JsonStruct.MyJsonStruct FromJson(string JsonString = "string")
         {
+
             //I think this creates a default json type/struct - need to test what it does on fail.
-            string TestJsonString = "{\"general\":{\"action\":\"default string\",\"client_id\":\"default string\",\"client_type\":\"default string\",\"password\":\"default string\"},\"conn\":{\"client_ip\":\"Client IP\",\"client_port\":\"Client Port\"},\"msg\":{\"msg_to\":\"Client IP\",\"msg_content\":\"content\",\"msg_cmd\":\"content\",\"msg_value\":\"content\",\"msg_length\":\"1234\",\"msg_hash\":\"fakehash\"},\"stats\":{\"latest_checkin\":\"tomorrow\",\"device_hostname\":\"ttest.microsoft.com\",\"device_username\":\"1234\"},\"security\":{\"client_hash\":\"hash\",\"server_hash\":\"hash\"},\"test\":\"Hello World\"}";
+            //string TestJsonString = "{\"general\":{\"action\":\"default string\",\"client_id\":\"default string\",\"client_type\":\"default string\",\"password\":\"default string\"},\"conn\":{\"client_ip\":\"Client IP\",\"client_port\":\"Client Port\"},\"msg\":{\"msg_to\":\"Client IP\",\"msg_content\":\"content\",\"msg_cmd\":\"content\",\"msg_value\":\"content\",\"msg_length\":\"1234\",\"msg_hash\":\"fakehash\"},\"stats\":{\"latest_checkin\":\"tomorrow\",\"device_hostname\":\"ttest.microsoft.com\",\"device_username\":\"1234\"},\"security\":{\"client_hash\":\"hash\",\"server_hash\":\"hash\"},\"test\":\"Hello World\"}";
+            Console.WriteLine(JsonString);
+
+            //THIS fixes it, takes trailing and leading [] chars
+            string TrimmedJsonString = JsonString.Trim().Trim('[', ']');
+            //Long story short, [] were being added to the Json string, and this would error out. This fixes it, but may cause issues later with certain commands if ever needed
+            //string NewJsonString = JsonString.Replace("]", "").Replace("[", "");
 
 
-            JsonStruct.MyJsonStruct mystruct = JsonConvert.DeserializeObject<JsonStruct.MyJsonStruct>(TestJsonString);
-            Console.WriteLine(mystruct.general.action);
-            return mystruct;
+            //JsonStruct.MyJsonStruct mystruct = JsonConvert.DeserializeObject<JsonStruct.MyJsonStruct>(JsonString);
+            var jsonObject = JsonConvert.DeserializeObject<JsonStruct.MyJsonStruct>(TrimmedJsonString);
+            Console.WriteLine(jsonObject.msg.msg_to);
+            return jsonObject;
 
             /*try //being funky, need to figure out how to return the JsonStruct.MyJsonStruct in the catch spot
             {

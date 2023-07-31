@@ -154,12 +154,57 @@ class json_ops:
         #return json_object
 
 
+    @staticmethod
+    def to_json(
+        ## General
+        action = "sleep", client_id = "", client_type = "", password="",
+        ## conn
+        client_ip = "", client_port = "",
+        ##msg
+        msg_to = "", msg_content = "", msg_command = "sleep", msg_value = "", msg_length ="", msg_hash =  "",
+        ## stats
+        latest_checkin = "", device_hostname = "", device_username = "",
+        ## Security: 
+        client_hash = "", server_hash = ""
 
-def json_packer():
-    """
-    Takes data & packs it into json for sending? not sure if needed yet
-    """
-    pass
+    ):
+        """
+        Takes data & packs it into json for sending.
+        """
+        json_dict = {
+            "general": {
+                "action": action,
+                "client_id": client_id,
+                "client_type": client_type,
+                "password": password
+            },
+            "conn": {
+                "client_ip": client_ip,
+                "client_port": client_port
+            },
+            "msg": {
+                "msg_to": msg_to,
+                "msg_content": msg_content,
+                "msg_command": msg_command,
+                "msg_value": msg_value,
+                "msg_length": msg_length,
+                "msg_hash": msg_hash
+            },
+            "stats": {
+                "latest_checkin": latest_checkin,
+                "device_hostname": device_hostname,
+                "device_username": device_username
+            },
+            "security": {
+                "client_hash": client_hash,
+                "server_hash": server_hash
+            }
+        },
+
+        json_str = json.dumps(json_dict)
+
+        return json_str
+
 
 '''
 ## Test Data set

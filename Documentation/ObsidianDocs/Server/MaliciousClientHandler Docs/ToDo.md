@@ -9,6 +9,8 @@
 	- Response queue maybe?
 - [x] Get the JSON part going (will need client adjustments)
 	- [ ] Switch over to live json instead of the precopied strings on the C# side.
-- [ ] Test Comms
-	- [ ] Client/Server may be waiting for eachother at the same time, not 100% sure. need to test
-	- [ ] Socket errors about re-connecting shoould be checked out too on the C# side
+- [x] Test Comms
+	- [x] Client/Server may be waiting for eachother at the same time, not 100% sure. need to test
+	- [x] Socket errors about re-connecting shoould be checked out too on the C# side
+- Messages to the Client are working correctly
+- [ ] Need to verify messages to the server are correct as well

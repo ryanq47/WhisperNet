@@ -21,6 +21,7 @@ try:
 
     import Comms.CommsHandler
     import Utils.QueueHandler
+    import DataEngine.JsonHandler
 
 except Exception as e:
     print(f"[ServerMaliciousClientHandler.py] Import Error: {e}")
@@ -87,11 +88,13 @@ class ServerMaliciousClientHandler:
 
         if command:
             logging.debug(f"[MaliciousClientHandler.handle_client(): {self.id} ] Sending: {command}")
-            Comms.CommsHandler.send_msg(msg=command, conn=self.clientsocket)
+            msg_to_send = DataEngine.JsonHandler.json_ops.to_json(msg_command=command)
+            Comms.CommsHandler.send_msg(msg=msg_to_send, conn=self.clientsocket)
         
         else:
             logging.debug(f"[MaliciousClientHandler.handle_client(): {self.id} ] Queue empty. Sending sleep")
-            Comms.CommsHandler.send_msg(msg="sleep", conn=self.clientsocket)
+            msg_to_send = DataEngine.JsonHandler.json_ops.to_json(msg_command="sleep")
+            Comms.CommsHandler.send_msg(msg=msg_to_send, conn=self.clientsocket)
 
             ## send a sleep object
         
