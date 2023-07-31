@@ -23,21 +23,21 @@ namespace Client
             // Create endpoint - aka where we are connecting to
             IPEndPoint serverEndPoint = NetOps.CreateEndpoint(ipAddr, port);
 
-            // Create socket
-            Socket clientSocket = NetOps.CreateSocket();
 
-            // Connect to server (Up Next)
             // ConnectToServer(serverEndPoint);
-            ConnectToServer(clientSocket, serverEndPoint);
+            ConnectToServer(serverEndPoint);
         }
 
-        static void ConnectToServer(Socket clientSocket, IPEndPoint serverEndPoint)
+        static void ConnectToServer(IPEndPoint serverEndPoint)
         {
             int iterTrack = 0;
             while (true)
             {
                 try
                 {
+                    //Create socket - has to be down here
+                    Socket clientSocket = NetOps.CreateSocket();
+
                     //connect to server
                     clientSocket.Connect(serverEndPoint);
 
@@ -70,7 +70,11 @@ namespace Client
 
                     //client disconnect -  true means the socket can be reused
                     //!! Socket errors here, need to figure this out
-                    clientSocket.Disconnect(false);
+                    /*
+                     * Close: Rapidly closes socket -  may lose some data
+                     * Disconenct: Tries to shutdown safetly.
+                     */
+                    clientSocket.Close();
                     //(sends results on next checkin)
 
                     iterTrack++;
