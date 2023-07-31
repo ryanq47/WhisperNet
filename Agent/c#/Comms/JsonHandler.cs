@@ -17,19 +17,44 @@ namespace Client.Comms
             Console.WriteLine("\tJsonHandler.CS: Success.");
         }
 
+        // Sorry for the param spam. Delete these to obsfucate a bit
         //takes args of data to turn into json
+        /// <summary>
+        /// This method converts items into a json string. There are a ton of inputs, as seen above. All of these are optional. 
+        /// </summary>
+        /// <param name="Action">Description of the Action parameter.</param>
+        /// <param name="CID">Description of the CID parameter.</param>
+        /// <param name="CTYPE">Description of the CTYPE parameter.</param>
+        /// <param name="Password">Description of the Password parameter.</param>
+        /// <param name="clientIP">Description of the clientIP parameter.</param>
+        /// <param name="clientPort">Description of the clientPort parameter.</param>
+        /// <param name="msgTo">Description of the msgTo parameter.</param>
+        /// <param name="msgContent">Description of the msgContent parameter.</param>
+        /// <param name="msgCommand">Description of the msgCommand parameter.</param>
+        /// <param name="msgValue">Description of the msgValue parameter.</param>
+        /// <param name="msgLength">Description of the msgLength parameter.</param>
+        /// <param name="msgHash">Description of the msgHash parameter.</param>
+        /// <param name="latestCheckin">Description of the latestCheckin parameter.</param>
+        /// <param name="deviceHostname">Description of the deviceHostname parameter.</param>
+        /// <param name="deviceUsername">Description of the deviceUsername parameter.</param>
+        /// <param name="clientHash">Description of the clientHash parameter.</param>
+        /// <param name="serverHash">Description of the serverHash parameter.</param>
+        /// <returns>A JSON string representing the provided parameters.</returns>
         internal static string ToJson(
             //generalinfo
-            string Action = "!_clientlogin_!", string CID = "default string", string CTYPE = "default string", string Password = "default string"
+            string Action = "!_clientlogin_!", string CID = "default string", string CTYPE = "default string", string Password = "default string",
             //conninfo
-
+            string clientIP = "127.0.0.1", string clientPort = "8080", //And so on, fill the rest out
             //msginfo
-
+            string msgTo = "clientIP", string msgContent = "msgContent", string msgCommand = "Command", string msgValue = "msg Value", string msgLength = "length", string msgHash = "fakehash",
             //statsinfo
-
+            string latestCheckin = "", string deviceHostname = "", string deviceUsername = "",
             //secinfo
+            string clientHash = "fakehash", string serverHash = "fakehash"
             )
         {
+
+
 
 
             JsonStruct.MyJsonStruct mystruct = new JsonStruct.MyJsonStruct
@@ -46,33 +71,33 @@ namespace Client.Comms
                 },
                 conn = new JsonStruct.MyJsonStruct.conninfo
                 {
-                    client_ip = "Client IP",
-                    client_port = "Client Port"
+                    client_ip = clientIP,
+                    client_port = clientPort
                 },
 
                 msg = new JsonStruct.MyJsonStruct.msginfo
                 {
-                    msg_to = "Client IP",
-                    msg_content = "content",
-                    msg_command = "command",
-                    msg_value = "value",
+                    msg_to = msgTo,
+                    msg_content = msgContent,
+                    msg_command = msgCommand,
+                    msg_value = msgValue,
                     
-                    msg_length = "1234",
-                    msg_hash = "fakehash"
+                    msg_length = msgLength,
+                    msg_hash = msgHash
                 },
 
                 stats = new JsonStruct.MyJsonStruct.statsinfo
                 {
-                    latest_checkin = "tomorrow",
-                    device_hostname = "ttest.microsoft.com",
-                    device_username = "1234",
+                    latest_checkin = latestCheckin,
+                    device_hostname = deviceHostname,
+                    device_username = deviceUsername,
 
                 },
 
                 security = new JsonStruct.MyJsonStruct.securityinfo
                 {
-                    client_hash = "hash",
-                    server_hash = "hash",
+                    client_hash = clientHash,
+                    server_hash = serverHash,
 
                 },
 
