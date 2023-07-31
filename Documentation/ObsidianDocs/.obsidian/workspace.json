@@ -102,8 +102,8 @@
               "state": {
                 "file": "Server/Visual Progress.canvas",
                 "viewState": {
-                  "x": 617.6503683858,
-                  "y": 58.92139956290933,
+                  "x": 681.7568653717344,
+                  "y": 49.76332856491871,
                   "zoom": 0.26438786908205647
                 }
               },
@@ -159,7 +159,7 @@
             }
           }
         ],
-        "currentTab": 10
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -225,7 +225,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Clients/CSharp/Var & Func Naming Guide.md",
+                "file": "Server/Visual Progress.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -242,7 +242,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Clients/CSharp/Var & Func Naming Guide.md",
+                "file": "Server/Visual Progress.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -265,7 +265,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Clients/CSharp/Var & Func Naming Guide.md"
+                "file": "Server/Visual Progress.canvas"
               }
             }
           }
@@ -286,10 +286,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "47a8202f520c80a3",
+  "active": "0af081d4bf2f3eef",
   "lastOpenFiles": [
-    "General/Naming & general/File Naming Definitions.md",
     "Clients/CSharp/Var & Func Naming Guide.md",
+    "General/Naming & general/File Naming Definitions.md",
     "Server/Visual Progress.canvas",
     "Server/MaliciousClientHandler Docs/MaliciousClientHandler.py.md",
     "Server/Canvas/Network & Command Flow.canvas",

@@ -79,3 +79,33 @@
 2023-07-27 23:04:09 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Command Queue: []
 2023-07-27 23:04:09 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Queue empty. Sending sleep
 2023-07-27 23:04:09 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 5
+2023-07-30 23:00:21 - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-31 04:00:21.750952+00:00 =====
+2023-07-30 23:00:21 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-30 23:00:30 - DEBUG - 
+[127.0.0.1:55801 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:55801
+2023-07-30 23:00:30 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-30 23:00:30 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-07-30 23:00:30 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-30 23:00:30 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-30 23:00:30 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Command Queue: ['help']
+2023-07-30 23:00:30 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: help
+2023-07-30 23:00:30 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 4
+2023-07-30 23:02:19 - DEBUG - 
+[127.0.0.1:55811 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:55811
+2023-07-30 23:02:19 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-30 23:02:19 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-30 23:02:19 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-30 23:02:19 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Command Queue: []
+2023-07-30 23:02:19 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Queue empty. Sending sleep
+2023-07-30 23:02:19 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 5
+2023-07-30 23:04:21 - DEBUG - ===== Startup | Reference Time (UTC) 2023-07-31 04:04:21.523676+00:00 =====
+2023-07-30 23:04:21 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-30 23:04:35 - DEBUG - 
+[127.0.0.1:55813 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:55813
+2023-07-30 23:04:36 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-30 23:04:36 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-07-30 23:04:36 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-30 23:04:36 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-30 23:04:36 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Command Queue: ['help']
+2023-07-30 23:04:36 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: help
+2023-07-30 23:04:36 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 4

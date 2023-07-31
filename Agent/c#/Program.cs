@@ -68,6 +68,8 @@ namespace Client
                     //decision tree returns json string from result of action. This could cause some issues in the future with adding dtaa to the the stirng, but is fine for now
                     Client.Logic.Trees.decisionTree(serverMsg);
 
+                    //client disconnect -  true means the socket can be reused
+                    clientSocket.Disconnect(true);
                     //(sends results on next checkin)
 
                     iterTrack++;

@@ -10,6 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Program[DEPRACATED].cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Management.Automation" Version="7.3.4" />
   </ItemGroup>
 

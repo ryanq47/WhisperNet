@@ -7,4 +7,7 @@
 	- How to return messages? (msg_value key)
 	- How to track what messages go to which friendly client that queued them?
 	- Response queue maybe?
-- [ ] Get the JSON part going (will need client adjustments)
+- [x] Get the JSON part going (will need client adjustments)
+	- [ ] Switch over to live json instead of the precopied strings on the C# side.
+- [ ] Test Comms
+	- [ ] Client/Server may be waiting for eachother at the same time, not 100% sure. need to test
