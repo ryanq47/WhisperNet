@@ -1094,3 +1094,26 @@
 2023-07-31 23:38:04 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: 
 2023-07-31 23:38:04 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
 2023-07-31 23:38:04 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-01 17:58:32 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-01 22:58:32.096852+00:00 =====
+2023-08-01 17:58:32 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-01 17:58:39 - DEBUG - 
+[127.0.0.1:54559 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:54559
+2023-08-01 17:58:40 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-08-01 17:58:40 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-01 17:58:40 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-08-01 17:58:40 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-01 17:58:40 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-08-01 17:58:40 - DEBUG - [DBHandler.add_response_mclient_row()] Error: 
+2023-08-01 17:58:40 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: 
+2023-08-01 17:58:40 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-01 17:58:40 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-01 17:58:55 - DEBUG - 
+[127.0.0.1:54560 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:54560
+2023-08-01 17:58:55 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-08-01 17:58:55 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-08-01 17:58:55 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-01 17:58:55 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-08-01 17:58:55 - DEBUG - [DBHandler.add_response_mclient_row()] Error: 
+2023-08-01 17:58:55 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: 
+2023-08-01 17:58:55 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-01 17:58:55 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831

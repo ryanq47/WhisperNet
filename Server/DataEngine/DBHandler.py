@@ -115,14 +115,15 @@ class SQLDBHandler:
         '''
         try:
         ## NExt queue num
-            self.cursor.execute(f'select next_queue_number from client_queue_tracker where client_name = "{client_name}"')
+            next_queue_number = self.get_next_queue_number(client_name)
+            '''self.cursor.execute(f'select next_queue_number from client_queue_tracker where client_name = "{client_name}"')
             ## [0] is needed, as this returns (1,)
             next_queue_number = self.cursor.fetchone()#[0]
 
             if next_queue_number == None:
                 raise TypeError
 
-            next_queue_number = next_queue_number[0]
+            next_queue_number = next_queue_number[0]'''
 
         ## Current queue num
             self.cursor.execute(f'select current_queue_number from client_queue_tracker where client_name = "{client_name}"')
@@ -171,8 +172,10 @@ class SQLDBHandler:
         return msg
 
 
-    def add_response_mclient_row(self, id=None, response="None", client_name="TestClient"):
+    def add_response_mclient_row(self, response="None", client_name="TestClient"):
         try:
+            id = self.get_next_queue_number(client_name)
+
             sql_query   = f'UPDATE {client_name} SET response = ? WHERE id = ?'
             values      = (response, id,)
             
@@ -180,10 +183,30 @@ class SQLDBHandler:
             self.dbconn.commit()
 
         except Exception as e:
-            #print(e)
+            print(e)
             logging.debug(f"[DBHandler.add_response_mclient_row()] Error: {e}")
 
+    def get_next_queue_number(self, client_name) -> int:
+        """Gets next item up in queue
 
+        Args:
+            client_name (string): The client name. This is used for the lookup
+
+        raises: 
+            Typeerror
+
+        returns:
+            AN Int, which is the next item in the queue
+        """
+        self.cursor.execute(f'select next_queue_number from client_queue_tracker where client_name = "{client_name}"')
+        ## [0] is needed, as this returns (1,)
+        next_queue_number = self.cursor.fetchone()#[0]
+
+        if next_queue_number == None:
+            raise TypeError
+
+        next_queue_number = next_queue_number[0]
+        return next_queue_number
 
 '''
 s = SQLDBHandler(db_name="DevDB.db")

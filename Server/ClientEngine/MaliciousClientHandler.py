@@ -76,6 +76,10 @@ class ServerMaliciousClientHandler:
         ## parse json results. Add to "results queue"?
         logging.debug("[MaliciousClientHandler.handle_client(): {} ] msg.msg_value: {}".format(self.id, response_from_client["msg"]["msg_value"]))
         
+        ## write to DB response_from_client["msg"]["msg_value"]
+        self.command_queue.add_response_mclient_row(response = response_from_client["msg"]["msg_value"], client_name=self.fullname)
+
+
         ## Debug queue statement, delete when ready
         #logging.debug(f"[MaliciousClientHandler.handle_client(): {self.id} ] Command Queue: {self.command_queue.queue}")
 
