@@ -102,9 +102,9 @@
               "state": {
                 "file": "Server/Visual Progress.canvas",
                 "viewState": {
-                  "x": 645.2572731420476,
-                  "y": 166.32654245972503,
-                  "zoom": -0.23561213091794353
+                  "x": 502.1370339963819,
+                  "y": -138.26954954435456,
+                  "zoom": -0.06894546425127684
                 }
               },
               "pinned": true
@@ -288,15 +288,15 @@
   },
   "active": "0af081d4bf2f3eef",
   "lastOpenFiles": [
-    "Clients/CSharp/Var & Func Naming Guide.md",
     "General/Naming & general/File Naming Definitions.md",
     "Server/Visual Progress.canvas",
+    "Clients/CSharp/Var & Func Naming Guide.md",
     "Server/MaliciousClientHandler Docs/MaliciousClientHandler.py.md",
     "Server/Canvas/Network & Command Flow.canvas",
     "Server/Canvas/FileStructure.canvas",
     "General/Notes.md",
     "General/Networking & Protocols/Header breakdown - DEPRACATED.md",
-    "Server/MaliciousClientHandler Docs/ToDo.md",
+    "Server/MaliciousClientHandler Docs/ToDo (old).md",
     "General/Naming & general/Error Handling.md",
     "General/Naming & general",
     "Left off & todo.md",

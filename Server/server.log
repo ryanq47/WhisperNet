@@ -888,3 +888,209 @@
 2023-07-31 14:21:02 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Command Queue: []
 2023-07-31 14:21:02 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Queue empty. Sending sleep
 2023-07-31 14:21:02 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 406
+2023-07-31 23:17:04 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-01 04:17:04.522800+00:00 =====
+2023-07-31 23:17:04 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-31 23:17:16 - DEBUG - 
+[127.0.0.1:56909 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56909
+2023-07-31 23:17:16 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-31 23:17:16 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-07-31 23:17:16 - DEBUG - [Server.clientloginhandler(): ABC123 ] Unknown Error: __init__() missing 1 required positional argument: 'db_name'
+2023-07-31 23:17:16 - WARNING - ERRMSG: __init__() missing 1 required positional argument: 'db_name'
+
+2023-07-31 23:17:16 - DEBUG - Socket Close: The socket was successfully closed
+2023-07-31 23:17:51 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-01 04:17:51.041774+00:00 =====
+2023-07-31 23:17:51 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-31 23:17:58 - DEBUG - 
+[127.0.0.1:56916 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56916
+2023-07-31 23:17:59 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-31 23:17:59 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-07-31 23:17:59 - DEBUG - [Server.clientloginhandler(): ABC123 ] Unknown Error: 'SQLDBHandler' object has no attribute 'enqueue'
+2023-07-31 23:17:59 - WARNING - ERRMSG: 'SQLDBHandler' object has no attribute 'enqueue'
+
+2023-07-31 23:17:59 - DEBUG - Socket Close: The socket was successfully closed
+2023-07-31 23:18:59 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-01 04:18:59.377877+00:00 =====
+2023-07-31 23:18:59 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-31 23:19:03 - DEBUG - 
+[127.0.0.1:56919 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56919
+2023-07-31 23:19:03 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-31 23:19:03 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-07-31 23:19:03 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-31 23:19:03 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-31 23:19:29 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-01 04:19:29.834917+00:00 =====
+2023-07-31 23:19:29 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-31 23:19:33 - DEBUG - 
+[127.0.0.1:56920 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56920
+2023-07-31 23:19:34 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-31 23:19:34 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-07-31 23:19:34 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-31 23:19:34 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-31 23:19:34 - DEBUG - [DBHandler.update_queue_tracker()] Error: 'NoneType' object has no attribute 'execute'
+2023-07-31 23:19:34 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-07-31 23:19:34 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-07-31 23:19:49 - DEBUG - 
+[127.0.0.1:56922 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56922
+2023-07-31 23:21:06 - ERROR - [CommsHandler.receive_msg()] Error receiving message: [WinError 10054] An existing connection was forcibly closed by the remote host
+2023-07-31 23:21:06 - DEBUG - [Server.connection_handler() ] No message, action, type, or id recieved. , error=[WinError 10054] An existing connection was forcibly closed by the remote host
+2023-07-31 23:21:06 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-31 23:21:06 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-31 23:21:06 - DEBUG - [DBHandler.update_queue_tracker()] Error: 'NoneType' object has no attribute 'execute'
+2023-07-31 23:21:06 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-07-31 23:21:06 - ERROR - [Server (CommsHandler.py)] Error sending message: [WinError 10054] An existing connection was forcibly closed by the remote host
+2023-07-31 23:21:12 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-01 04:21:12.640222+00:00 =====
+2023-07-31 23:21:12 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-31 23:21:18 - DEBUG - 
+[127.0.0.1:56928 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56928
+2023-07-31 23:21:18 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-31 23:21:18 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-07-31 23:21:18 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-07-31 23:21:18 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-31 23:21:18 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-31 23:21:18 - DEBUG - [DBHandler.update_queue_tracker()] Error: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 31332 and this is thread id 24972.
+2023-07-31 23:21:18 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-07-31 23:21:18 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-07-31 23:21:33 - DEBUG - 
+[127.0.0.1:56936 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56936
+2023-07-31 23:21:42 - ERROR - [CommsHandler.receive_msg()] Error receiving message: [WinError 10054] An existing connection was forcibly closed by the remote host
+2023-07-31 23:21:42 - DEBUG - [Server.connection_handler() ] No message, action, type, or id recieved. , error=[WinError 10054] An existing connection was forcibly closed by the remote host
+2023-07-31 23:21:42 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-31 23:21:42 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-31 23:21:42 - DEBUG - [DBHandler.update_queue_tracker()] Error: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 31332 and this is thread id 15884.
+2023-07-31 23:21:42 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-07-31 23:21:42 - ERROR - [Server (CommsHandler.py)] Error sending message: [WinError 10054] An existing connection was forcibly closed by the remote host
+2023-07-31 23:23:08 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-01 04:23:08.714372+00:00 =====
+2023-07-31 23:23:08 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-31 23:23:13 - DEBUG - 
+[127.0.0.1:56939 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56939
+2023-07-31 23:23:14 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-31 23:23:14 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-07-31 23:23:14 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-31 23:23:14 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-07-31 23:23:14 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-31 23:23:14 - DEBUG - [DBHandler.update_queue_tracker()] Error: 'NoneType' object is not subscriptable
+2023-07-31 23:23:14 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-07-31 23:23:14 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-07-31 23:26:08 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-01 04:26:08.439678+00:00 =====
+2023-07-31 23:26:08 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-31 23:26:12 - DEBUG - 
+[127.0.0.1:56941 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56941
+2023-07-31 23:26:12 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-31 23:26:12 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-07-31 23:26:12 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-31 23:26:12 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-07-31 23:26:32 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-01 04:26:32.595911+00:00 =====
+2023-07-31 23:26:32 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-31 23:26:37 - DEBUG - 
+[127.0.0.1:56944 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56944
+2023-07-31 23:26:38 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-31 23:26:38 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-07-31 23:26:38 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-31 23:26:38 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-07-31 23:26:38 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-31 23:26:38 - DEBUG - [DBHandler.update_queue_tracker()] Error: 'NoneType' object is not subscriptable
+2023-07-31 23:26:38 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-07-31 23:26:38 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-07-31 23:26:53 - DEBUG - 
+[127.0.0.1:56945 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56945
+2023-07-31 23:30:12 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-01 04:30:12.534322+00:00 =====
+2023-07-31 23:30:12 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-31 23:30:17 - DEBUG - 
+[127.0.0.1:56949 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56949
+2023-07-31 23:30:17 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-31 23:30:17 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-07-31 23:30:17 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-31 23:30:17 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-07-31 23:30:17 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-31 23:30:17 - DEBUG - [DBHandler.update_queue_tracker()] Error: 'NoneType' object is not subscriptable
+2023-07-31 23:30:17 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-07-31 23:30:17 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-07-31 23:30:58 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-01 04:30:58.165242+00:00 =====
+2023-07-31 23:30:58 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-31 23:31:08 - DEBUG - 
+[127.0.0.1:56951 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56951
+2023-07-31 23:31:08 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-31 23:31:08 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-07-31 23:31:08 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-31 23:31:08 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-07-31 23:31:08 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-31 23:31:08 - DEBUG - [DBHandler.update_queue_tracker()] Error: exceptions must derive from BaseException
+2023-07-31 23:31:08 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-07-31 23:31:08 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-07-31 23:32:34 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-01 04:32:34.651454+00:00 =====
+2023-07-31 23:32:34 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-31 23:32:47 - DEBUG - 
+[127.0.0.1:56955 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56955
+2023-07-31 23:32:47 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-31 23:32:47 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-07-31 23:32:47 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-31 23:32:47 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-07-31 23:32:47 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-31 23:32:47 - DEBUG - [DBHandler.update_queue_tracker()] Type error, Queue is empty. Sending sleep: 
+2023-07-31 23:33:34 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-01 04:33:34.020493+00:00 =====
+2023-07-31 23:33:34 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-31 23:33:40 - DEBUG - 
+[127.0.0.1:56957 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56957
+2023-07-31 23:33:41 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-31 23:33:41 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-07-31 23:33:41 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-31 23:33:41 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-07-31 23:33:41 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-31 23:33:41 - DEBUG - [DBHandler.update_queue_tracker()] Type error, Queue is empty. Sending sleep: 
+2023-07-31 23:33:41 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-07-31 23:33:41 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-07-31 23:36:40 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-01 04:36:40.463658+00:00 =====
+2023-07-31 23:36:40 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-07-31 23:36:48 - DEBUG - 
+[127.0.0.1:56960 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56960
+2023-07-31 23:36:48 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-31 23:36:48 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-07-31 23:36:48 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-31 23:36:48 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-07-31 23:36:48 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-31 23:36:48 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: 
+2023-07-31 23:36:48 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-07-31 23:36:48 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-07-31 23:37:03 - DEBUG - 
+[127.0.0.1:56961 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56961
+2023-07-31 23:37:03 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-31 23:37:03 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-31 23:37:03 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-07-31 23:37:03 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-31 23:37:03 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: 
+2023-07-31 23:37:03 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-07-31 23:37:03 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-07-31 23:37:18 - DEBUG - 
+[127.0.0.1:56962 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56962
+2023-07-31 23:37:18 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-31 23:37:18 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-31 23:37:18 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-07-31 23:37:18 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-31 23:37:18 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: 
+2023-07-31 23:37:18 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-07-31 23:37:18 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-07-31 23:37:33 - DEBUG - 
+[127.0.0.1:56970 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56970
+2023-07-31 23:37:33 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-31 23:37:33 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-31 23:37:33 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-07-31 23:37:33 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-31 23:37:33 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: 
+2023-07-31 23:37:33 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-07-31 23:37:33 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-07-31 23:37:48 - DEBUG - 
+[127.0.0.1:56975 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56975
+2023-07-31 23:37:48 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-31 23:37:48 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-31 23:37:48 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-07-31 23:37:48 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-31 23:37:48 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: 
+2023-07-31 23:37:48 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-07-31 23:37:48 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-07-31 23:38:03 - DEBUG - 
+[127.0.0.1:56977 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:56977
+2023-07-31 23:38:03 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 501
+2023-07-31 23:38:03 - DEBUG - [Server.clientloginhandler(): ABC123 ] Client 'ABC123' accepted, new thread created
+2023-07-31 23:38:03 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-07-31 23:38:03 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] msg.msg_value: content
+2023-07-31 23:38:04 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: 
+2023-07-31 23:38:04 - DEBUG - [MaliciousClientHandler.handle_client(): ABC123 ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-07-31 23:38:04 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831

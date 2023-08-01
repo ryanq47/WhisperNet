@@ -22,7 +22,6 @@ try:
     import Comms.CommsHandler
     import Utils.QueueHandler
     import DataEngine.JsonHandler
-    import DataEngine.DBHandler
 
 except Exception as e:
     print(f"[ServerMaliciousClientHandler.py] Import Error: {e}")
@@ -33,7 +32,6 @@ class ServerMaliciousClientHandler:
     This is the class that handles all the malicious clients, a new instance is spawned for 
     each client that checks in.
     """
-    ## Technically gets called in prior thread. Can get funky with DB
     def __init__(self):
         logging.debug("[MaliciousClientHandler.__init__()] This is a new class object.")
         self.clientsocket   = None
@@ -41,12 +39,12 @@ class ServerMaliciousClientHandler:
         self.port           = None
         self.id             = None
         self.fullname       = None
-        self.command_queue  = None  #Utils.QueueHandler.QueueHandler()
+        self.command_queue  = Utils.QueueHandler.QueueHandler()
 
         ## temp queue add ons
        # self.command_queue.enqueue("Test")
         #self.command_queue.enqueue("123")
-        #self.command_queue.enqueue("help")
+        self.command_queue.enqueue("help")
 
     def handle_client(self, response_from_client, clientsocket, clientid):
         """This method gets called to handle the client as it connects. It uses the existing class variables, and the new ones passed to it 
@@ -57,8 +55,6 @@ class ServerMaliciousClientHandler:
             clientsocket (_type_): the socket that the client/server is currently communicating on
             clientid (_type_): the client's id
         """
-        ## self.command_queue has to be down to be apart of this thread, and as such, interact with the DB.
-        self.command_queue  = DataEngine.DBHandler.SQLDBHandler(db_name="DevDB.db")
         self.clientsocket   = clientsocket
         self.ip             = clientsocket.getpeername()[0]
         self.port           = clientsocket.getpeername()[1]
@@ -68,8 +64,7 @@ class ServerMaliciousClientHandler:
         #print(f"MaliciousClientHandler(handle_client) DEBUG: Message From {self.id} is: {len(response_from_client)} bytes")
         #print(f"Client {self.id} will now wait...")
 
-        self.command_queue.create_mclient_table(client_name=self.fullname)
-        self.command_queue.create_mclient_queuetrack_table()
+
         ## need to determine what comes here. The way the server is set up, every new message comes through there, is filtered, then is passed here (or wherever it shoudl go).
         ## That may skew the queue plan. 
 
@@ -77,7 +72,7 @@ class ServerMaliciousClientHandler:
         logging.debug("[MaliciousClientHandler.handle_client(): {} ] msg.msg_value: {}".format(self.id, response_from_client["msg"]["msg_value"]))
         
         ## Debug queue statement, delete when ready
-        #logging.debug(f"[MaliciousClientHandler.handle_client(): {self.id} ] Command Queue: {self.command_queue.queue}")
+        logging.debug(f"[MaliciousClientHandler.handle_client(): {self.id} ] Command Queue: {self.command_queue.queue}")
 
         ##Final steps would be to send msg back to client
         self.send_command()
@@ -89,8 +84,7 @@ class ServerMaliciousClientHandler:
 
         """
         # get latest item in queue
-        #command = self.command_queue.dequeue()
-        command = self.command_queue.dequeue_mclient_row(client_name=self.fullname)
+        command = self.command_queue.dequeue()
 
         if command:
             logging.debug(f"[MaliciousClientHandler.handle_client(): {self.id} ] Sending: {command}")
