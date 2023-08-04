@@ -18,28 +18,11 @@ namespace Client.Comms
             Console.WriteLine("\tJsonHandler.CS: Success.");
         }
 
-        // Sorry for the param spam. Delete these to obsfucate a bit
         //takes args of data to turn into json
         /// <summary>
         /// This method converts items into a json string. There are a ton of inputs, as seen above. All of these are optional. 
         /// </summary>
-        /// <param name="Action">Description of the Action parameter.</param>
-        /// <param name="CID">Description of the CID parameter.</param>
-        /// <param name="CTYPE">Description of the CTYPE parameter.</param>
-        /// <param name="Password">Description of the Password parameter.</param>
-        /// <param name="clientIP">Description of the clientIP parameter.</param>
-        /// <param name="clientPort">Description of the clientPort parameter.</param>
-        /// <param name="msgTo">Description of the msgTo parameter.</param>
-        /// <param name="msgContent">Description of the msgContent parameter.</param>
-        /// <param name="msgCommand">Description of the msgCommand parameter.</param>
-        /// <param name="msgValue">Description of the msgValue parameter.</param>
-        /// <param name="msgLength">Description of the msgLength parameter.</param>
-        /// <param name="msgHash">Description of the msgHash parameter.</param>
-        /// <param name="latestCheckin">Description of the latestCheckin parameter.</param>
-        /// <param name="deviceHostname">Description of the deviceHostname parameter.</param>
-        /// <param name="deviceUsername">Description of the deviceUsername parameter.</param>
-        /// <param name="clientHash">Description of the clientHash parameter.</param>
-        /// <param name="serverHash">Description of the serverHash parameter.</param>
+
         /// <returns>A JSON string representing the provided parameters.</returns>
         internal static string ToJson(
             //generalinfo
@@ -47,16 +30,13 @@ namespace Client.Comms
             //conninfo
             string clientIP = "127.0.0.1", string clientPort = "8080", //And so on, fill the rest out
             //msginfo
-            string msgTo = "clientIP", string msgContent = "msgContent", string msgCommand = "Command", string msgValue = "msg Value", string msgLength = "length", string msgHash = "fakehash",
+            string msgTo = "clientIP", string msgContent = "msgContent", string msgCommand = "Command", string msgValue = "msgValue", string msgLength = "length", string msgHash = "fakehash",
             //statsinfo
             string latestCheckin = "", string deviceHostname = "", string deviceUsername = "",
             //secinfo
             string clientHash = "fakehash", string serverHash = "fakehash"
             )
         {
-
-
-
 
             JsonStruct.MyJsonStruct mystruct = new JsonStruct.MyJsonStruct
             {
@@ -107,7 +87,7 @@ namespace Client.Comms
 
             //convert TO json
             string jsonString = JsonConvert.SerializeObject(mystruct);
-            Console.WriteLine(jsonString);
+            //Console.WriteLine(jsonString);
 
             return jsonString;
         }
@@ -120,7 +100,7 @@ namespace Client.Comms
 
             //I think this creates a default json type/struct - need to test what it does on fail.
             //string TestJsonString = "{\"general\":{\"action\":\"default string\",\"client_id\":\"default string\",\"client_type\":\"default string\",\"password\":\"default string\"},\"conn\":{\"client_ip\":\"Client IP\",\"client_port\":\"Client Port\"},\"msg\":{\"msg_to\":\"Client IP\",\"msg_content\":\"content\",\"msg_cmd\":\"content\",\"msg_value\":\"content\",\"msg_length\":\"1234\",\"msg_hash\":\"fakehash\"},\"stats\":{\"latest_checkin\":\"tomorrow\",\"device_hostname\":\"ttest.microsoft.com\",\"device_username\":\"1234\"},\"security\":{\"client_hash\":\"hash\",\"server_hash\":\"hash\"},\"test\":\"Hello World\"}";
-            Console.WriteLine(JsonString);
+            //Console.WriteLine(JsonString);
 
             //THIS fixes it, takes trailing and leading [] chars
             string TrimmedJsonString = JsonString.Trim().Trim('[', ']');
@@ -133,20 +113,6 @@ namespace Client.Comms
             Console.WriteLine(jsonObject.msg.msg_to);
             return jsonObject;
 
-            /*try //being funky, need to figure out how to return the JsonStruct.MyJsonStruct in the catch spot
-            {
-
-                JsonStruct.MyJsonStruct mystruct = JsonConvert.DeserializeObject<JsonStruct.MyJsonStruct>(JsonString);
-                Console.WriteLine(mystruct.general.action);
-                return mystruct;
-            }
-
-            catch (Exception e)
-            {
-                Console.WriteLine($"JSON error occured{e}");
-                //nto sure how to properly return here, maybe just exit for now.
-                
-            }*/
 
         }
     }

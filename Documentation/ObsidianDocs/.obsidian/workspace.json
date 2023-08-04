@@ -111,6 +111,18 @@
             }
           },
           {
+            "id": "46d0eb7f6f0b64e5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Server/DataEngine/DBHandler.py/General.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
             "id": "681b20529cdbfa86",
             "type": "leaf",
             "state": {
@@ -159,7 +171,7 @@
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -225,7 +237,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Visual Progress.canvas",
+                "file": "Server/DataEngine/DBHandler.py/General.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -242,7 +254,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Visual Progress.canvas",
+                "file": "Server/DataEngine/DBHandler.py/General.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -265,7 +277,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Visual Progress.canvas"
+                "file": "Server/DataEngine/DBHandler.py/General.md"
               }
             }
           }
@@ -286,10 +298,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0af081d4bf2f3eef",
+  "active": "46d0eb7f6f0b64e5",
   "lastOpenFiles": [
-    "General/Naming & general/File Naming Definitions.md",
     "Server/Visual Progress.canvas",
+    "Server/DataEngine/DBHandler.py/General.md",
+    "Server/DataEngine/DBHandler.py",
+    "Server/DataEngine",
+    "General/Naming & general/File Naming Definitions.md",
     "Clients/CSharp/Var & Func Naming Guide.md",
     "Server/MaliciousClientHandler Docs/MaliciousClientHandler.py.md",
     "Server/Canvas/Network & Command Flow.canvas",
@@ -316,8 +331,6 @@
     "Clients/CSharp/Functions Overview/JsonHandler.cs.md",
     "General/Networking & Protocols",
     "General",
-    "Clients/CSharp/Functions Overview",
-    "Clients/CSharp",
-    "Clients"
+    "Clients/CSharp/Functions Overview"
   ]
 }

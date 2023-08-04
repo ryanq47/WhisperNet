@@ -68,17 +68,25 @@ class ServerMaliciousClientHandler:
         #print(f"MaliciousClientHandler(handle_client) DEBUG: Message From {self.id} is: {len(response_from_client)} bytes")
         #print(f"Client {self.id} will now wait...")
 
-        self.command_queue.create_mclient_table(client_name=self.fullname)
-        self.command_queue.create_mclient_queuetrack_table()
-        ## need to determine what comes here. The way the server is set up, every new message comes through there, is filtered, then is passed here (or wherever it shoudl go).
-        ## That may skew the queue plan. 
+        ## Some setup...
+
+        ## create client table if not exist...
+        self.command_queue.create_client_table(client_name=self.fullname)
+        ## create queue track table if not exist...
+        self.command_queue.create_client_queuetrack_table()
+        ## create a row for the client in teh queue track table
+        self.command_queue.create_client_queuetrack_row(client_name=self.fullname)
 
         ## parse json results. Add to "results queue"?
         logging.debug("[MaliciousClientHandler.handle_client(): {} ] msg.msg_value: {}".format(self.id, response_from_client["msg"]["msg_value"]))
         
-        ## write to DB response_from_client["msg"]["msg_value"]
-        self.command_queue.add_response_mclient_row(response = response_from_client["msg"]["msg_value"], client_name=self.fullname)
+        ## DEBUG
+        self.command_queue.enqueue_mclient_row(client_name=self.fullname)
 
+        ## write to DB response_from_client["msg"]["msg_value"]
+        temprep = response_from_client["msg"]["msg_value"]
+        print(f"[MaliciousClientHandler.handle_client(): ] response_from_client[msg][msg_value]: {temprep}")
+        self.command_queue.add_response_from_client(response = response_from_client["msg"]["msg_value"], client_name=self.fullname)
 
         ## Debug queue statement, delete when ready
         #logging.debug(f"[MaliciousClientHandler.handle_client(): {self.id} ] Command Queue: {self.command_queue.queue}")
@@ -94,7 +102,7 @@ class ServerMaliciousClientHandler:
         """
         # get latest item in queue
         #command = self.command_queue.dequeue()
-        command = self.command_queue.dequeue_mclient_row(client_name=self.fullname)
+        command = self.command_queue.dequeue_next_cmd(client_name=self.fullname)
 
         if command:
             logging.debug(f"[MaliciousClientHandler.handle_client(): {self.id} ] Sending: {command}")

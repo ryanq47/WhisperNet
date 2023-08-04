@@ -31,6 +31,8 @@ namespace Client
         static void ConnectToServer(IPEndPoint serverEndPoint)
         {
             int iterTrack = 0;
+            string decisionTreeResults = "";
+
             while (true)
             {
                 try
@@ -52,8 +54,9 @@ namespace Client
 
                     else
                     {
-
-                        MessageHandler.SendMessage(_msg: Client.Comms.JsonHandler.ToJson(), conn: clientSocket);
+                        //taking PREVIOUs iterations results (which should be a JSON string), and sending it back
+                        Console.WriteLine($"Results from previouys iter: {decisionTreeResults}");
+                        MessageHandler.SendMessage(_msg: decisionTreeResults, conn: clientSocket);
                     }
 
 
@@ -66,7 +69,7 @@ namespace Client
 
                     //Process Job/Decision Tree
                     //decision tree returns json string from result of action. This could cause some issues in the future with adding dtaa to the the stirng, but is fine for now
-                    Client.Logic.Trees.decisionTree(serverMsg);
+                    decisionTreeResults = Client.Logic.Trees.decisionTree(serverMsg);
 
                     //client disconnect -  true means the socket can be reused
                     //!! Socket errors here, need to figure this out

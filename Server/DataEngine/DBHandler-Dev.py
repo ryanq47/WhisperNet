@@ -3,7 +3,6 @@ import logging
 
 ## temp sleep string
 sleep_string = '''{"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}'''
-ps_whoami_string = '''{"general": {"action": "powershell", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "powershell", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}'''
 
 
 class SQLDBHandler:
@@ -13,7 +12,6 @@ class SQLDBHandler:
         self.connect_to_db(db_name)
 
 
-    ## Callables by user
     def dequeue_next_cmd(self, client_name) -> str:
         ''' This is kinda ugly
         Steps:
@@ -56,7 +54,7 @@ class SQLDBHandler:
             logging.debug(f"[DBHandler.update_queue_tracker()] Error: {e}")
             return sleep_string
         
-    def enqueue_mclient_row(self, client_name="TestClient", msg=ps_whoami_string, response="empty", requester="empty"):
+    def enqueue_mclient_row(self, client_name="TestClient", id=None, msg="empty", response="empty", requester="empty"):
         """Enqueues a command to the queue
 
         Args:
@@ -66,9 +64,6 @@ class SQLDBHandler:
             response (str, optional): the JSON response FROM the client. 
             requester (str, optional): Which Fclient requested this action.
         """
-        ##jank...
-        id = self.get_next_queue_number(client_name=client_name)
-
         try:
             # Check if the ID already exists in the table
             check_query = f'SELECT id FROM {client_name} WHERE id = ?'
@@ -101,17 +96,6 @@ class SQLDBHandler:
         except Exception as e:
             print(e)
             logging.debug(f"[DBHandler.add_response_mclient_row()] Error: {e}")
-
-
-    ## DB obs
-    def connect_to_db(self, db_name):
-        try:
-            self.dbconn = sqlite3.connect(db_name)
-            self.cursor = self.dbconn.cursor()
-            logging.debug(f"[DBHandler.connect_to_db()] Successful connection to: {db_name}")
-
-        except Exception as e:
-            logging.debug(f"[DBHandler.connect_to_db()] Error: {e}")
 
     def get_msg_from_queue_number(self, client_name, next_queue_number) -> str:
         self.cursor.execute(f'select msg from {client_name} where id = "{next_queue_number}"')
