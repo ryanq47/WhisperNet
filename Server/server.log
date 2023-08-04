@@ -2636,3 +2636,187 @@
 2023-08-04 10:17:45 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: SQLDBHandler.get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
 2023-08-04 10:17:45 - DEBUG - [MaliciousClientHandler.handle_client(): YPXWHP ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
 2023-08-04 10:17:45 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 10:20:19 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-04 10:20:19 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-04 17:20:19.925021+00:00 =====
+2023-08-04 10:20:19 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 10:20:23 - DEBUG - 
+[127.0.0.1:50905 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50905
+2023-08-04 10:20:23 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 476
+2023-08-04 10:20:23 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 10:20:23 - DEBUG - [Server.clientloginhandler(): YBHHEF ] Client 'YBHHEF' accepted, new thread created
+2023-08-04 10:20:23 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 10:20:23 - DEBUG - [MaliciousClientHandler.handle_client(): YBHHEF ] msg.msg_value: msgValue
+2023-08-04 10:20:23 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: SQLDBHandler.get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 10:20:23 - DEBUG - [MaliciousClientHandler.handle_client(): YBHHEF ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 10:20:23 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 10:20:35 - DEBUG - 
+[127.0.0.1:50906 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50906
+2023-08-04 10:20:35 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 476
+2023-08-04 10:20:35 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 10:20:35 - DEBUG - [Server.clientloginhandler(): UIEZYN ] Client 'UIEZYN' accepted, new thread created
+2023-08-04 10:20:35 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 10:20:35 - DEBUG - [MaliciousClientHandler.handle_client(): UIEZYN ] msg.msg_value: msgValue
+2023-08-04 10:20:35 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: SQLDBHandler.get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 10:20:35 - DEBUG - [MaliciousClientHandler.handle_client(): UIEZYN ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 10:20:35 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 10:20:39 - DEBUG - 
+[127.0.0.1:50907 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50907
+2023-08-04 10:20:39 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 492
+2023-08-04 10:20:39 - DEBUG - [Server.clientloginhandler(): YBHHEF ] Client 'YBHHEF' accepted, new thread created
+2023-08-04 10:20:39 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 10:20:39 - DEBUG - [MaliciousClientHandler.handle_client(): YBHHEF ] msg.msg_value: windev2306eval\user
+
+2023-08-04 10:20:39 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: SQLDBHandler.get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 10:20:39 - DEBUG - [MaliciousClientHandler.handle_client(): YBHHEF ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 10:20:39 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 10:20:50 - DEBUG - 
+[127.0.0.1:50921 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50921
+2023-08-04 10:20:50 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 492
+2023-08-04 10:20:50 - DEBUG - [Server.clientloginhandler(): UIEZYN ] Client 'UIEZYN' accepted, new thread created
+2023-08-04 10:20:50 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 10:20:50 - DEBUG - [MaliciousClientHandler.handle_client(): UIEZYN ] msg.msg_value: windev2306eval\user
+
+2023-08-04 10:20:50 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: SQLDBHandler.get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 10:20:50 - DEBUG - [MaliciousClientHandler.handle_client(): UIEZYN ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 10:20:50 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 10:20:54 - DEBUG - 
+[127.0.0.1:50922 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50922
+2023-08-04 10:20:54 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 492
+2023-08-04 10:20:54 - DEBUG - [Server.clientloginhandler(): YBHHEF ] Client 'YBHHEF' accepted, new thread created
+2023-08-04 10:20:54 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 10:20:54 - DEBUG - [MaliciousClientHandler.handle_client(): YBHHEF ] msg.msg_value: windev2306eval\user
+
+2023-08-04 10:20:54 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: SQLDBHandler.get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 10:20:54 - DEBUG - [MaliciousClientHandler.handle_client(): YBHHEF ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 10:20:54 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 10:21:06 - DEBUG - 
+[127.0.0.1:50923 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50923
+2023-08-04 10:21:06 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 492
+2023-08-04 10:21:06 - DEBUG - [Server.clientloginhandler(): UIEZYN ] Client 'UIEZYN' accepted, new thread created
+2023-08-04 10:21:06 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 10:21:06 - DEBUG - [MaliciousClientHandler.handle_client(): UIEZYN ] msg.msg_value: windev2306eval\user
+
+2023-08-04 10:21:06 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: SQLDBHandler.get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 10:21:06 - DEBUG - [MaliciousClientHandler.handle_client(): UIEZYN ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 10:21:06 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 10:21:09 - DEBUG - 
+[127.0.0.1:50929 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50929
+2023-08-04 10:21:09 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 492
+2023-08-04 10:21:09 - DEBUG - [Server.clientloginhandler(): YBHHEF ] Client 'YBHHEF' accepted, new thread created
+2023-08-04 10:21:09 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 10:21:09 - DEBUG - [MaliciousClientHandler.handle_client(): YBHHEF ] msg.msg_value: windev2306eval\user
+
+2023-08-04 10:21:09 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: SQLDBHandler.get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 10:21:09 - DEBUG - [MaliciousClientHandler.handle_client(): YBHHEF ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 10:21:09 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 10:21:21 - DEBUG - 
+[127.0.0.1:50938 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50938
+2023-08-04 10:21:21 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 492
+2023-08-04 10:21:21 - DEBUG - [Server.clientloginhandler(): UIEZYN ] Client 'UIEZYN' accepted, new thread created
+2023-08-04 10:21:21 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 10:21:21 - DEBUG - [MaliciousClientHandler.handle_client(): UIEZYN ] msg.msg_value: windev2306eval\user
+
+2023-08-04 10:21:21 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: SQLDBHandler.get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 10:21:21 - DEBUG - [MaliciousClientHandler.handle_client(): UIEZYN ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 10:21:21 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 10:21:25 - DEBUG - 
+[127.0.0.1:50941 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50941
+2023-08-04 10:21:25 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 492
+2023-08-04 10:21:25 - DEBUG - [Server.clientloginhandler(): YBHHEF ] Client 'YBHHEF' accepted, new thread created
+2023-08-04 10:21:25 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 10:21:25 - DEBUG - [MaliciousClientHandler.handle_client(): YBHHEF ] msg.msg_value: windev2306eval\user
+
+2023-08-04 10:21:25 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: SQLDBHandler.get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 10:21:25 - DEBUG - [MaliciousClientHandler.handle_client(): YBHHEF ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 10:21:25 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 10:21:36 - DEBUG - 
+[127.0.0.1:50948 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50948
+2023-08-04 10:21:36 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 492
+2023-08-04 10:21:36 - DEBUG - [Server.clientloginhandler(): UIEZYN ] Client 'UIEZYN' accepted, new thread created
+2023-08-04 10:21:36 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 10:21:36 - DEBUG - [MaliciousClientHandler.handle_client(): UIEZYN ] msg.msg_value: windev2306eval\user
+
+2023-08-04 10:21:36 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: SQLDBHandler.get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 10:21:36 - DEBUG - [MaliciousClientHandler.handle_client(): UIEZYN ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 10:21:36 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 10:21:40 - DEBUG - 
+[127.0.0.1:50949 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50949
+2023-08-04 10:21:40 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 492
+2023-08-04 10:21:40 - DEBUG - [Server.clientloginhandler(): YBHHEF ] Client 'YBHHEF' accepted, new thread created
+2023-08-04 10:21:40 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 10:21:40 - DEBUG - [MaliciousClientHandler.handle_client(): YBHHEF ] msg.msg_value: windev2306eval\user
+
+2023-08-04 10:21:40 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: SQLDBHandler.get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 10:21:40 - DEBUG - [MaliciousClientHandler.handle_client(): YBHHEF ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 10:21:40 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 10:21:51 - DEBUG - 
+[127.0.0.1:50963 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50963
+2023-08-04 10:21:51 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 492
+2023-08-04 10:21:51 - DEBUG - [Server.clientloginhandler(): UIEZYN ] Client 'UIEZYN' accepted, new thread created
+2023-08-04 10:21:51 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 10:21:51 - DEBUG - [MaliciousClientHandler.handle_client(): UIEZYN ] msg.msg_value: windev2306eval\user
+
+2023-08-04 10:21:51 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: SQLDBHandler.get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 10:21:51 - DEBUG - [MaliciousClientHandler.handle_client(): UIEZYN ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 10:21:51 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 10:21:56 - DEBUG - 
+[127.0.0.1:50966 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50966
+2023-08-04 10:21:56 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 492
+2023-08-04 10:21:56 - DEBUG - [Server.clientloginhandler(): YBHHEF ] Client 'YBHHEF' accepted, new thread created
+2023-08-04 10:21:56 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 10:21:56 - DEBUG - [MaliciousClientHandler.handle_client(): YBHHEF ] msg.msg_value: windev2306eval\user
+
+2023-08-04 10:21:56 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: SQLDBHandler.get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 10:21:56 - DEBUG - [MaliciousClientHandler.handle_client(): YBHHEF ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 10:21:56 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 10:22:06 - DEBUG - 
+[127.0.0.1:50967 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50967
+2023-08-04 10:22:06 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 492
+2023-08-04 10:22:06 - DEBUG - [Server.clientloginhandler(): UIEZYN ] Client 'UIEZYN' accepted, new thread created
+2023-08-04 10:22:06 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 10:22:06 - DEBUG - [MaliciousClientHandler.handle_client(): UIEZYN ] msg.msg_value: windev2306eval\user
+
+2023-08-04 10:22:06 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: SQLDBHandler.get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 10:22:06 - DEBUG - [MaliciousClientHandler.handle_client(): UIEZYN ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 10:22:06 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 10:22:11 - DEBUG - 
+[127.0.0.1:50968 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50968
+2023-08-04 10:22:11 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 492
+2023-08-04 10:22:11 - DEBUG - [Server.clientloginhandler(): YBHHEF ] Client 'YBHHEF' accepted, new thread created
+2023-08-04 10:22:11 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 10:22:11 - DEBUG - [MaliciousClientHandler.handle_client(): YBHHEF ] msg.msg_value: windev2306eval\user
+
+2023-08-04 10:22:11 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: SQLDBHandler.get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 10:22:11 - DEBUG - [MaliciousClientHandler.handle_client(): YBHHEF ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 10:22:11 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 10:22:22 - DEBUG - 
+[127.0.0.1:50972 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50972
+2023-08-04 10:22:22 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 492
+2023-08-04 10:22:22 - DEBUG - [Server.clientloginhandler(): UIEZYN ] Client 'UIEZYN' accepted, new thread created
+2023-08-04 10:22:22 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 10:22:22 - DEBUG - [MaliciousClientHandler.handle_client(): UIEZYN ] msg.msg_value: windev2306eval\user
+
+2023-08-04 10:22:22 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: SQLDBHandler.get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 10:22:22 - DEBUG - [MaliciousClientHandler.handle_client(): UIEZYN ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 10:22:22 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 10:22:26 - DEBUG - 
+[127.0.0.1:50973 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50973
+2023-08-04 10:22:26 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 492
+2023-08-04 10:22:26 - DEBUG - [Server.clientloginhandler(): YBHHEF ] Client 'YBHHEF' accepted, new thread created
+2023-08-04 10:22:26 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 10:22:26 - DEBUG - [MaliciousClientHandler.handle_client(): YBHHEF ] msg.msg_value: windev2306eval\user
+
+2023-08-04 10:22:26 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: SQLDBHandler.get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 10:22:26 - DEBUG - [MaliciousClientHandler.handle_client(): YBHHEF ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 10:22:26 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 10:22:37 - DEBUG - 
+[127.0.0.1:50974 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50974
+2023-08-04 10:22:37 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 492
+2023-08-04 10:22:37 - DEBUG - [Server.clientloginhandler(): UIEZYN ] Client 'UIEZYN' accepted, new thread created
+2023-08-04 10:22:37 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 10:22:37 - DEBUG - [MaliciousClientHandler.handle_client(): UIEZYN ] msg.msg_value: windev2306eval\user
+
+2023-08-04 10:22:37 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: SQLDBHandler.get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 10:22:37 - DEBUG - [MaliciousClientHandler.handle_client(): UIEZYN ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 10:22:37 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831

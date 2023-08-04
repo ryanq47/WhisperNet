@@ -25,20 +25,6 @@
             }
           },
           {
-            "id": "e3ebf6b7015c0d4f",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Left off & todo.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true
-            }
-          },
-          {
             "id": "d672f736a08a57af",
             "type": "leaf",
             "state": {
@@ -102,8 +88,8 @@
               "state": {
                 "file": "Server/Visual Progress.canvas",
                 "viewState": {
-                  "x": 502.1370339963819,
-                  "y": -138.26954954435456,
+                  "x": -789.1200161300695,
+                  "y": 289.7019179224141,
                   "zoom": -0.06894546425127684
                 }
               },
@@ -114,11 +100,14 @@
             "id": "46d0eb7f6f0b64e5",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "Server/DataEngine/DBHandler.py/General.md",
-                "mode": "source",
-                "source": false
+                "file": "Clients/CSharp/High Level Operation Flow.canvas",
+                "viewState": {
+                  "x": 91.72896071532944,
+                  "y": 429.8486958035893,
+                  "zoom": -0.8135514267109105
+                }
               }
             }
           },
@@ -152,7 +141,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Server/MaliciousClientHandler Docs/MaliciousClientHandler.py.md",
+                "file": "Server/1. ClientEngine/MaliciousClientHandler Docs/MaliciousClientHandler.py.md",
                 "mode": "source",
                 "source": false
               }
@@ -171,7 +160,7 @@
             }
           }
         ],
-        "currentTab": 7
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -237,7 +226,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/DataEngine/DBHandler.py/General.md",
+                "file": "Server/Visual Progress.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -254,7 +243,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/DataEngine/DBHandler.py/General.md",
+                "file": "Server/Visual Progress.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -277,7 +266,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/DataEngine/DBHandler.py/General.md"
+                "file": "Server/Visual Progress.canvas"
               }
             }
           }
@@ -298,39 +287,39 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "46d0eb7f6f0b64e5",
+  "active": "0af081d4bf2f3eef",
   "lastOpenFiles": [
+    "Clients/CSharp/High Level Operation Flow.canvas",
     "Server/Visual Progress.canvas",
-    "Server/DataEngine/DBHandler.py/General.md",
-    "Server/DataEngine/DBHandler.py",
-    "Server/DataEngine",
-    "General/Naming & general/File Naming Definitions.md",
-    "Clients/CSharp/Var & Func Naming Guide.md",
-    "Server/MaliciousClientHandler Docs/MaliciousClientHandler.py.md",
     "Server/Canvas/Network & Command Flow.canvas",
     "Server/Canvas/FileStructure.canvas",
+    "General/Naming & general/File Naming Definitions.md",
+    "General/Naming & general/Error Handling.md",
     "General/Notes.md",
     "General/Networking & Protocols/Header breakdown - DEPRACATED.md",
-    "Server/MaliciousClientHandler Docs/ToDo (old).md",
-    "General/Naming & general/Error Handling.md",
-    "General/Naming & general",
-    "Left off & todo.md",
-    "Server/Server.py Docs/clientloginhandler().md",
-    "Server/General.md",
+    "Clients/CSharp/Var & Func Naming Guide.md",
+    "Clients/CSharp/Program File Structure.canvas",
     "Server/Long Term gotchas.md",
-    "Server/MaliciousClientHandler Docs",
+    "Left off & todo.md",
+    "Server/General.md",
+    "Server/2.DataEngine/DBHandler.py/General.md",
+    "Server/1. ClientEngine",
+    "Server/2.DataEngine/DBHandler.py",
+    "Server/2.DataEngine",
+    "Server/1. ClientEngine/MaliciousClientHandler Docs/MaliciousClientHandler.py.md",
+    "Server/1. ClientEngine/MaliciousClientHandler Docs/ToDo (old).md",
+    "General/Naming & general",
+    "Server/Server.py Docs/clientloginhandler().md",
+    "Server/1. ClientEngine/MaliciousClientHandler Docs",
     "Server/Server.py Docs/socket_cleanup() Method.md",
     "Server/Server.py Docs/server_plaintext_handler Method.md",
     "Server/Server.py Docs/server_ssl_handler Method.md",
     "Server/Server.py Docs/Connection Handler Method.md",
     "Server/Server.py Docs",
-    "Clients/CSharp/Program File Structure.canvas",
     "Server/Canvas",
     "Server",
-    "Clients/CSharp/High Level Operation Flow.canvas",
     "Clients/CSharp/Functions Overview/JsonHandler.cs.md",
     "General/Networking & Protocols",
-    "General",
-    "Clients/CSharp/Functions Overview"
+    "General"
   ]
 }
