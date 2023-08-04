@@ -2820,3 +2820,668 @@
 2023-08-04 10:22:37 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: SQLDBHandler.get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
 2023-08-04 10:22:37 - DEBUG - [MaliciousClientHandler.handle_client(): UIEZYN ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
 2023-08-04 10:22:37 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:22:09 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-04 21:22:09.884245+00:00 =====
+2023-08-04 16:22:09 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 16:22:31 - DEBUG - 
+[127.0.0.1:64964 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64964
+2023-08-04 16:22:32 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:22:32 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 16:22:32 - DEBUG - [Server.clientloginhandler(): BXWYJW ] Client 'BXWYJW' accepted, new thread created
+2023-08-04 16:22:32 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:22:32 - DEBUG - [MaliciousClientHandler.handle_client(): BXWYJW ] msg.msg_value: EMPTY
+2023-08-04 16:22:32 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 0 in client_127_0_0_1_BXWYJW
+2023-08-04 16:22:32 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 16:22:32 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:22:32 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:22:32 - DEBUG - [MaliciousClientHandler.handle_client(): BXWYJW ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:22:32 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:22:47 - DEBUG - 
+[127.0.0.1:64968 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64968
+2023-08-04 16:22:47 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 445
+2023-08-04 16:22:47 - DEBUG - [Server.clientloginhandler(): BXWYJW ] Client 'BXWYJW' accepted, new thread created
+2023-08-04 16:22:47 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:22:47 - DEBUG - ID client_127_0_0_1_BXWYJW already exists in the client_queue_tracker table.
+2023-08-04 16:22:47 - DEBUG - [MaliciousClientHandler.handle_client(): BXWYJW ] msg.msg_value: No command recieved, Client sleeping
+2023-08-04 16:22:47 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '36' to id: 1 in client_127_0_0_1_BXWYJW
+2023-08-04 16:22:47 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 1
+Next Queue Num: 2
+2023-08-04 16:22:47 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:22:47 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:22:47 - DEBUG - [MaliciousClientHandler.handle_client(): BXWYJW ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:22:47 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:23:02 - DEBUG - 
+[127.0.0.1:64970 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64970
+2023-08-04 16:23:02 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 445
+2023-08-04 16:23:02 - DEBUG - [Server.clientloginhandler(): BXWYJW ] Client 'BXWYJW' accepted, new thread created
+2023-08-04 16:23:02 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:23:02 - DEBUG - ID client_127_0_0_1_BXWYJW already exists in the client_queue_tracker table.
+2023-08-04 16:23:02 - DEBUG - [MaliciousClientHandler.handle_client(): BXWYJW ] msg.msg_value: No command recieved, Client sleeping
+2023-08-04 16:23:02 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '36' to id: 2 in client_127_0_0_1_BXWYJW
+2023-08-04 16:23:02 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 2
+Next Queue Num: 3
+2023-08-04 16:23:02 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:23:02 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:23:02 - DEBUG - [MaliciousClientHandler.handle_client(): BXWYJW ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:23:02 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:23:17 - DEBUG - 
+[127.0.0.1:64971 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64971
+2023-08-04 16:28:00 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-04 21:28:00.262578+00:00 =====
+2023-08-04 16:28:00 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 16:28:08 - DEBUG - 
+[127.0.0.1:64988 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64988
+2023-08-04 16:28:08 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:28:08 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 16:28:08 - DEBUG - [Server.clientloginhandler(): UMMFSE ] Client 'UMMFSE' accepted, new thread created
+2023-08-04 16:28:08 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:28:08 - DEBUG - [MaliciousClientHandler.handle_client(): UMMFSE ] msg.msg_value: EMPTY
+2023-08-04 16:28:08 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 0 in client_127_0_0_1_UMMFSE
+2023-08-04 16:28:08 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 16:28:08 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:28:08 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:28:08 - DEBUG - [MaliciousClientHandler.handle_client(): UMMFSE ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:28:08 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:30:55 - DEBUG - 
+[127.0.0.1:65001 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65001
+2023-08-04 16:30:55 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:30:55 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 16:30:55 - DEBUG - [Server.clientloginhandler(): KDRHPZ ] Client 'KDRHPZ' accepted, new thread created
+2023-08-04 16:30:55 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:30:55 - DEBUG - [MaliciousClientHandler.handle_client(): KDRHPZ ] msg.msg_value: EMPTY
+2023-08-04 16:30:55 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 0 in client_127_0_0_1_KDRHPZ
+2023-08-04 16:30:55 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 16:30:55 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:30:55 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:30:55 - DEBUG - [MaliciousClientHandler.handle_client(): KDRHPZ ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:30:55 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:32:48 - DEBUG - 
+[127.0.0.1:65005 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65005
+2023-08-04 16:32:48 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:32:48 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 16:32:48 - DEBUG - [Server.clientloginhandler(): BATLEQ ] Client 'BATLEQ' accepted, new thread created
+2023-08-04 16:32:48 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:32:48 - DEBUG - [MaliciousClientHandler.handle_client(): BATLEQ ] msg.msg_value: EMPTY
+2023-08-04 16:32:48 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 0 in client_127_0_0_1_BATLEQ
+2023-08-04 16:32:48 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 16:32:48 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:32:48 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:32:48 - DEBUG - [MaliciousClientHandler.handle_client(): BATLEQ ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:32:48 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:33:24 - DEBUG - 
+[127.0.0.1:65006 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65006
+2023-08-04 16:33:24 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:33:24 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 16:33:24 - DEBUG - [Server.clientloginhandler(): PSWQMI ] Client 'PSWQMI' accepted, new thread created
+2023-08-04 16:33:24 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:33:24 - DEBUG - [MaliciousClientHandler.handle_client(): PSWQMI ] msg.msg_value: EMPTY
+2023-08-04 16:33:24 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 0 in client_127_0_0_1_PSWQMI
+2023-08-04 16:33:24 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 16:33:24 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:33:24 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:33:24 - DEBUG - [MaliciousClientHandler.handle_client(): PSWQMI ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:33:24 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:33:39 - DEBUG - 
+[127.0.0.1:65007 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65007
+2023-08-04 16:33:39 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 445
+2023-08-04 16:33:39 - DEBUG - [Server.clientloginhandler(): PSWQMI ] Client 'PSWQMI' accepted, new thread created
+2023-08-04 16:33:39 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:33:39 - DEBUG - ID client_127_0_0_1_PSWQMI already exists in the client_queue_tracker table.
+2023-08-04 16:33:39 - DEBUG - [MaliciousClientHandler.handle_client(): PSWQMI ] msg.msg_value: No command recieved, Client sleeping
+2023-08-04 16:33:39 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '36' to id: 1 in client_127_0_0_1_PSWQMI
+2023-08-04 16:33:39 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 1
+Next Queue Num: 2
+2023-08-04 16:33:39 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:33:39 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:33:39 - DEBUG - [MaliciousClientHandler.handle_client(): PSWQMI ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:33:39 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:35:42 - DEBUG - 
+[127.0.0.1:65012 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65012
+2023-08-04 16:35:42 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:35:42 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 16:35:42 - DEBUG - [Server.clientloginhandler(): YBWDFY ] Client 'YBWDFY' accepted, new thread created
+2023-08-04 16:35:42 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:35:42 - DEBUG - [MaliciousClientHandler.handle_client(): YBWDFY ] msg.msg_value: EMPTY
+2023-08-04 16:35:42 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 0 in client_127_0_0_1_YBWDFY
+2023-08-04 16:35:42 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 16:35:42 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:35:42 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:35:42 - DEBUG - [MaliciousClientHandler.handle_client(): YBWDFY ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:35:42 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:35:57 - DEBUG - 
+[127.0.0.1:65014 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65014
+2023-08-04 16:35:57 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:35:57 - DEBUG - [Server.clientloginhandler(): YBWDFY ] Client 'YBWDFY' accepted, new thread created
+2023-08-04 16:35:57 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:35:57 - DEBUG - ID client_127_0_0_1_YBWDFY already exists in the client_queue_tracker table.
+2023-08-04 16:35:57 - DEBUG - [MaliciousClientHandler.handle_client(): YBWDFY ] msg.msg_value: EMPTY
+2023-08-04 16:35:57 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 1 in client_127_0_0_1_YBWDFY
+2023-08-04 16:35:58 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 1
+Next Queue Num: 2
+2023-08-04 16:35:58 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:35:58 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:35:58 - DEBUG - [MaliciousClientHandler.handle_client(): YBWDFY ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:35:58 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:36:13 - DEBUG - 
+[127.0.0.1:65015 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65015
+2023-08-04 16:36:13 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:36:13 - DEBUG - [Server.clientloginhandler(): YBWDFY ] Client 'YBWDFY' accepted, new thread created
+2023-08-04 16:36:13 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:36:13 - DEBUG - ID client_127_0_0_1_YBWDFY already exists in the client_queue_tracker table.
+2023-08-04 16:36:13 - DEBUG - [MaliciousClientHandler.handle_client(): YBWDFY ] msg.msg_value: EMPTY
+2023-08-04 16:36:13 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 2 in client_127_0_0_1_YBWDFY
+2023-08-04 16:36:13 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 2
+Next Queue Num: 3
+2023-08-04 16:36:13 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:36:13 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:36:13 - DEBUG - [MaliciousClientHandler.handle_client(): YBWDFY ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:36:13 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:36:28 - DEBUG - 
+[127.0.0.1:65016 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65016
+2023-08-04 16:36:28 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:36:28 - DEBUG - [Server.clientloginhandler(): YBWDFY ] Client 'YBWDFY' accepted, new thread created
+2023-08-04 16:36:28 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:36:28 - DEBUG - ID client_127_0_0_1_YBWDFY already exists in the client_queue_tracker table.
+2023-08-04 16:36:28 - DEBUG - [MaliciousClientHandler.handle_client(): YBWDFY ] msg.msg_value: EMPTY
+2023-08-04 16:36:28 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 3 in client_127_0_0_1_YBWDFY
+2023-08-04 16:36:28 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 3
+Next Queue Num: 4
+2023-08-04 16:36:28 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:36:28 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:36:28 - DEBUG - [MaliciousClientHandler.handle_client(): YBWDFY ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:36:28 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:36:43 - DEBUG - 
+[127.0.0.1:65017 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65017
+2023-08-04 16:36:43 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:36:43 - DEBUG - [Server.clientloginhandler(): YBWDFY ] Client 'YBWDFY' accepted, new thread created
+2023-08-04 16:36:43 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:36:43 - DEBUG - ID client_127_0_0_1_YBWDFY already exists in the client_queue_tracker table.
+2023-08-04 16:36:43 - DEBUG - [MaliciousClientHandler.handle_client(): YBWDFY ] msg.msg_value: EMPTY
+2023-08-04 16:36:43 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 4 in client_127_0_0_1_YBWDFY
+2023-08-04 16:36:43 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 4
+Next Queue Num: 5
+2023-08-04 16:36:43 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:36:43 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:36:43 - DEBUG - [MaliciousClientHandler.handle_client(): YBWDFY ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:36:43 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:39:25 - DEBUG - 
+[127.0.0.1:65023 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65023
+2023-08-04 16:39:26 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:39:26 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 16:39:26 - DEBUG - [Server.clientloginhandler(): NKVKZM ] Client 'NKVKZM' accepted, new thread created
+2023-08-04 16:39:26 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:39:26 - DEBUG - [MaliciousClientHandler.handle_client(): NKVKZM ] msg.msg_value: EMPTY
+2023-08-04 16:39:26 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 0 in client_127_0_0_1_NKVKZM
+2023-08-04 16:39:26 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 16:39:26 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:39:26 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:39:26 - DEBUG - [MaliciousClientHandler.handle_client(): NKVKZM ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:39:26 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:39:41 - DEBUG - 
+[127.0.0.1:65026 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65026
+2023-08-04 16:39:41 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:39:41 - DEBUG - [Server.clientloginhandler(): NKVKZM ] Client 'NKVKZM' accepted, new thread created
+2023-08-04 16:39:41 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:39:41 - DEBUG - ID client_127_0_0_1_NKVKZM already exists in the client_queue_tracker table.
+2023-08-04 16:39:41 - DEBUG - [MaliciousClientHandler.handle_client(): NKVKZM ] msg.msg_value: EMPTY
+2023-08-04 16:39:41 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 1 in client_127_0_0_1_NKVKZM
+2023-08-04 16:39:41 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 1
+Next Queue Num: 2
+2023-08-04 16:39:41 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:39:41 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:39:41 - DEBUG - [MaliciousClientHandler.handle_client(): NKVKZM ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:39:41 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:39:56 - DEBUG - 
+[127.0.0.1:65027 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65027
+2023-08-04 16:39:56 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:39:56 - DEBUG - [Server.clientloginhandler(): NKVKZM ] Client 'NKVKZM' accepted, new thread created
+2023-08-04 16:39:56 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:39:56 - DEBUG - ID client_127_0_0_1_NKVKZM already exists in the client_queue_tracker table.
+2023-08-04 16:39:56 - DEBUG - [MaliciousClientHandler.handle_client(): NKVKZM ] msg.msg_value: EMPTY
+2023-08-04 16:39:56 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 2 in client_127_0_0_1_NKVKZM
+2023-08-04 16:39:56 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 2
+Next Queue Num: 3
+2023-08-04 16:39:56 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:39:56 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:39:56 - DEBUG - [MaliciousClientHandler.handle_client(): NKVKZM ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:39:56 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:40:11 - DEBUG - 
+[127.0.0.1:65028 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65028
+2023-08-04 16:40:11 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:40:11 - DEBUG - [Server.clientloginhandler(): NKVKZM ] Client 'NKVKZM' accepted, new thread created
+2023-08-04 16:40:11 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:40:11 - DEBUG - ID client_127_0_0_1_NKVKZM already exists in the client_queue_tracker table.
+2023-08-04 16:40:11 - DEBUG - [MaliciousClientHandler.handle_client(): NKVKZM ] msg.msg_value: EMPTY
+2023-08-04 16:40:11 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 3 in client_127_0_0_1_NKVKZM
+2023-08-04 16:40:11 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 3
+Next Queue Num: 4
+2023-08-04 16:40:11 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:40:11 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:40:11 - DEBUG - [MaliciousClientHandler.handle_client(): NKVKZM ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:40:11 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:40:26 - DEBUG - 
+[127.0.0.1:65031 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65031
+2023-08-04 16:40:26 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:40:26 - DEBUG - [Server.clientloginhandler(): NKVKZM ] Client 'NKVKZM' accepted, new thread created
+2023-08-04 16:40:26 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:40:26 - DEBUG - ID client_127_0_0_1_NKVKZM already exists in the client_queue_tracker table.
+2023-08-04 16:40:26 - DEBUG - [MaliciousClientHandler.handle_client(): NKVKZM ] msg.msg_value: EMPTY
+2023-08-04 16:40:26 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 4 in client_127_0_0_1_NKVKZM
+2023-08-04 16:40:26 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 4
+Next Queue Num: 5
+2023-08-04 16:40:26 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:40:26 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:40:26 - DEBUG - [MaliciousClientHandler.handle_client(): NKVKZM ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:40:26 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:40:41 - DEBUG - 
+[127.0.0.1:65034 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65034
+2023-08-04 16:40:41 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:40:41 - DEBUG - [Server.clientloginhandler(): NKVKZM ] Client 'NKVKZM' accepted, new thread created
+2023-08-04 16:40:41 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:40:41 - DEBUG - ID client_127_0_0_1_NKVKZM already exists in the client_queue_tracker table.
+2023-08-04 16:40:41 - DEBUG - [MaliciousClientHandler.handle_client(): NKVKZM ] msg.msg_value: EMPTY
+2023-08-04 16:40:41 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 5 in client_127_0_0_1_NKVKZM
+2023-08-04 16:40:41 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 5
+Next Queue Num: 6
+2023-08-04 16:40:41 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:40:41 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:40:41 - DEBUG - [MaliciousClientHandler.handle_client(): NKVKZM ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:40:41 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:40:56 - DEBUG - 
+[127.0.0.1:65035 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65035
+2023-08-04 16:40:56 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:40:56 - DEBUG - [Server.clientloginhandler(): NKVKZM ] Client 'NKVKZM' accepted, new thread created
+2023-08-04 16:40:56 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:40:56 - DEBUG - ID client_127_0_0_1_NKVKZM already exists in the client_queue_tracker table.
+2023-08-04 16:40:56 - DEBUG - [MaliciousClientHandler.handle_client(): NKVKZM ] msg.msg_value: EMPTY
+2023-08-04 16:40:56 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 6 in client_127_0_0_1_NKVKZM
+2023-08-04 16:40:56 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 6
+Next Queue Num: 7
+2023-08-04 16:40:56 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:40:56 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:40:56 - DEBUG - [MaliciousClientHandler.handle_client(): NKVKZM ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:40:56 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:41:11 - DEBUG - 
+[127.0.0.1:65036 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65036
+2023-08-04 16:41:11 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:41:11 - DEBUG - [Server.clientloginhandler(): NKVKZM ] Client 'NKVKZM' accepted, new thread created
+2023-08-04 16:41:11 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:41:11 - DEBUG - ID client_127_0_0_1_NKVKZM already exists in the client_queue_tracker table.
+2023-08-04 16:41:11 - DEBUG - [MaliciousClientHandler.handle_client(): NKVKZM ] msg.msg_value: EMPTY
+2023-08-04 16:41:11 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 7 in client_127_0_0_1_NKVKZM
+2023-08-04 16:41:12 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 7
+Next Queue Num: 8
+2023-08-04 16:41:12 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:41:12 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:41:12 - DEBUG - [MaliciousClientHandler.handle_client(): NKVKZM ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:41:12 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:41:27 - DEBUG - 
+[127.0.0.1:65037 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65037
+2023-08-04 16:41:27 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:41:27 - DEBUG - [Server.clientloginhandler(): NKVKZM ] Client 'NKVKZM' accepted, new thread created
+2023-08-04 16:41:27 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:41:27 - DEBUG - ID client_127_0_0_1_NKVKZM already exists in the client_queue_tracker table.
+2023-08-04 16:41:27 - DEBUG - [MaliciousClientHandler.handle_client(): NKVKZM ] msg.msg_value: EMPTY
+2023-08-04 16:41:27 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 8 in client_127_0_0_1_NKVKZM
+2023-08-04 16:41:27 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 8
+Next Queue Num: 9
+2023-08-04 16:41:27 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:41:27 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:41:27 - DEBUG - [MaliciousClientHandler.handle_client(): NKVKZM ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:41:27 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:44:50 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-04 21:44:50.845223+00:00 =====
+2023-08-04 16:44:50 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 16:44:53 - DEBUG - 
+[127.0.0.1:65068 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65068
+2023-08-04 16:44:53 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:44:53 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 16:44:53 - DEBUG - [Server.clientloginhandler(): PTHHQO ] Client 'PTHHQO' accepted, new thread created
+2023-08-04 16:44:53 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:44:53 - DEBUG - [MaliciousClientHandler.handle_client(): PTHHQO ] msg.msg_value: EMPTY
+2023-08-04 16:44:53 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 0 in client_127_0_0_1_PTHHQO
+2023-08-04 16:44:53 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 16:44:53 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:44:53 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:44:53 - DEBUG - [MaliciousClientHandler.handle_client(): PTHHQO ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:44:53 - ERROR - [Server (CommsHandler.py)] Error sending message: can't concat str to bytes
+2023-08-04 16:46:04 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-04 21:46:04.491317+00:00 =====
+2023-08-04 16:46:04 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 16:46:08 - DEBUG - 
+[127.0.0.1:65072 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65072
+2023-08-04 16:46:08 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:46:08 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 16:46:08 - DEBUG - [Server.clientloginhandler(): EOESPL ] Client 'EOESPL' accepted, new thread created
+2023-08-04 16:46:08 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:46:08 - DEBUG - [MaliciousClientHandler.handle_client(): EOESPL ] msg.msg_value: EMPTY
+2023-08-04 16:46:08 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 0 in client_127_0_0_1_EOESPL
+2023-08-04 16:46:08 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 16:46:08 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:46:08 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:46:08 - DEBUG - [MaliciousClientHandler.handle_client(): EOESPL ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:46:08 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:52:08 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-04 21:52:08.907466+00:00 =====
+2023-08-04 16:52:08 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 16:52:12 - DEBUG - 
+[127.0.0.1:65094 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65094
+2023-08-04 16:52:20 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:52:20 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 16:52:20 - DEBUG - [Server.clientloginhandler(): YOWZSX ] Client 'YOWZSX' accepted, new thread created
+2023-08-04 16:52:20 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:52:20 - DEBUG - [MaliciousClientHandler.handle_client(): YOWZSX ] msg.msg_value: EMPTY
+2023-08-04 16:52:20 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 0 in client_127_0_0_1_YOWZSX
+2023-08-04 16:52:20 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 16:52:20 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:52:20 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:52:20 - DEBUG - [MaliciousClientHandler.handle_client(): YOWZSX ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:52:20 - ERROR - [Server (CommsHandler.py)] Error sending message: can't concat str to bytes
+2023-08-04 16:52:51 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-04 21:52:51.161412+00:00 =====
+2023-08-04 16:52:51 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 16:52:54 - DEBUG - 
+[127.0.0.1:65097 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65097
+2023-08-04 16:52:54 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:52:54 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 16:52:54 - DEBUG - [Server.clientloginhandler(): GWOKAT ] Client 'GWOKAT' accepted, new thread created
+2023-08-04 16:52:54 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:52:54 - DEBUG - [MaliciousClientHandler.handle_client(): GWOKAT ] msg.msg_value: EMPTY
+2023-08-04 16:52:54 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 0 in client_127_0_0_1_GWOKAT
+2023-08-04 16:52:54 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 16:52:54 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:52:54 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:52:54 - DEBUG - [MaliciousClientHandler.handle_client(): GWOKAT ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:52:54 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:56:37 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-04 21:56:37.181137+00:00 =====
+2023-08-04 16:56:37 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 16:56:40 - DEBUG - 
+[127.0.0.1:65151 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65151
+2023-08-04 16:56:40 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:56:40 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 16:56:40 - DEBUG - [Server.clientloginhandler(): QIKIRR ] Client 'QIKIRR' accepted, new thread created
+2023-08-04 16:56:40 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:56:40 - DEBUG - [MaliciousClientHandler.handle_client(): QIKIRR ] msg.msg_value: EMPTY
+2023-08-04 16:56:40 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 0 in client_127_0_0_1_QIKIRR
+2023-08-04 16:56:40 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 16:56:40 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:56:40 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:56:40 - DEBUG - [MaliciousClientHandler.handle_client(): QIKIRR ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:56:40 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 831
+2023-08-04 16:56:55 - DEBUG - 
+[127.0.0.1:65153 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65153
+2023-08-04 16:57:53 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-04 21:57:53.436777+00:00 =====
+2023-08-04 16:57:53 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 16:57:56 - DEBUG - 
+[127.0.0.1:65188 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65188
+2023-08-04 16:57:57 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:57:57 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 16:57:57 - DEBUG - [Server.clientloginhandler(): CAGGJY ] Client 'CAGGJY' accepted, new thread created
+2023-08-04 16:57:57 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:57:57 - DEBUG - [MaliciousClientHandler.handle_client(): CAGGJY ] msg.msg_value: EMPTY
+2023-08-04 16:57:57 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 0 in client_127_0_0_1_CAGGJY
+2023-08-04 16:57:57 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 16:57:57 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:57:57 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:57:57 - DEBUG - [MaliciousClientHandler.handle_client(): CAGGJY ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:57:57 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 833
+2023-08-04 16:58:48 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-04 21:58:48.802196+00:00 =====
+2023-08-04 16:58:48 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 16:58:52 - DEBUG - 
+[127.0.0.1:65192 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65192
+2023-08-04 16:58:53 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 16:58:53 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 16:58:53 - DEBUG - [Server.clientloginhandler(): LWLSOG ] Client 'LWLSOG' accepted, new thread created
+2023-08-04 16:58:53 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 16:58:53 - DEBUG - [MaliciousClientHandler.handle_client(): LWLSOG ] msg.msg_value: EMPTY
+2023-08-04 16:58:53 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 0 in client_127_0_0_1_LWLSOG
+2023-08-04 16:58:53 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 16:58:53 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 16:58:53 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 16:58:53 - DEBUG - [MaliciousClientHandler.handle_client(): LWLSOG ] Sending: {"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}
+2023-08-04 16:58:53 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 829
+2023-08-04 16:59:08 - DEBUG - 
+[127.0.0.1:65193 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65193
+2023-08-04 17:05:44 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-04 22:05:44.653337+00:00 =====
+2023-08-04 17:05:44 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 17:05:48 - DEBUG - 
+[127.0.0.1:65265 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65265
+2023-08-04 17:05:49 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 17:05:49 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 17:05:49 - DEBUG - [Server.clientloginhandler(): WWUSED ] Client 'WWUSED' accepted, new thread created
+2023-08-04 17:05:49 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 17:05:49 - DEBUG - [MaliciousClientHandler.handle_client(): WWUSED ] msg.msg_value: EMPTY
+2023-08-04 17:05:49 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 0 in client_127_0_0_1_WWUSED
+2023-08-04 17:05:49 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 17:05:49 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 17:05:49 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 17:07:53 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-04 22:07:53.886750+00:00 =====
+2023-08-04 17:07:53 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 17:07:56 - DEBUG - 
+[127.0.0.1:65291 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65291
+2023-08-04 17:07:57 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 17:07:57 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 17:07:57 - DEBUG - [Server.clientloginhandler(): BWVSND ] Client 'BWVSND' accepted, new thread created
+2023-08-04 17:07:57 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 17:07:57 - DEBUG - [MaliciousClientHandler.handle_client(): BWVSND ] msg.msg_value: EMPTY
+2023-08-04 17:07:57 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 0 in client_127_0_0_1_BWVSND
+2023-08-04 17:07:57 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 17:07:57 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 17:07:57 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 17:07:57 - DEBUG - [MaliciousClientHandler.handle_client(): BWVSND ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 17:08:13 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-04 22:08:13.369613+00:00 =====
+2023-08-04 17:08:13 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 17:08:21 - DEBUG - 
+[127.0.0.1:65293 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65293
+2023-08-04 17:08:21 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 17:08:21 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 17:08:21 - DEBUG - [Server.clientloginhandler(): PTXXHP ] Client 'PTXXHP' accepted, new thread created
+2023-08-04 17:08:21 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 17:08:21 - DEBUG - [MaliciousClientHandler.handle_client(): PTXXHP ] msg.msg_value: EMPTY
+2023-08-04 17:08:21 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '5' to id: 0 in client_127_0_0_1_PTXXHP
+2023-08-04 17:08:21 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 17:08:21 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 17:08:21 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 17:08:21 - DEBUG - [MaliciousClientHandler.handle_client(): PTXXHP ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 17:08:21 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 17:08:36 - DEBUG - 
+[127.0.0.1:65295 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65295
+2023-08-04 17:08:36 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-04 17:08:36 - DEBUG - [Server.clientloginhandler(): PTXXHP ] Client 'PTXXHP' accepted, new thread created
+2023-08-04 17:08:36 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 17:08:36 - DEBUG - ID client_127_0_0_1_PTXXHP already exists in the client_queue_tracker table.
+2023-08-04 17:08:36 - DEBUG - [MaliciousClientHandler.handle_client(): PTXXHP ] msg.msg_value: sleep recieved, Client sleeping
+2023-08-04 17:08:36 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '31' to id: 1 in client_127_0_0_1_PTXXHP
+2023-08-04 17:08:36 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 1
+Next Queue Num: 2
+2023-08-04 17:08:36 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 17:08:36 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 17:08:36 - DEBUG - [MaliciousClientHandler.handle_client(): PTXXHP ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 17:08:36 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 17:08:51 - DEBUG - 
+[127.0.0.1:65296 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65296
+2023-08-04 17:08:51 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-04 17:08:51 - DEBUG - [Server.clientloginhandler(): PTXXHP ] Client 'PTXXHP' accepted, new thread created
+2023-08-04 17:08:51 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 17:08:51 - DEBUG - ID client_127_0_0_1_PTXXHP already exists in the client_queue_tracker table.
+2023-08-04 17:08:51 - DEBUG - [MaliciousClientHandler.handle_client(): PTXXHP ] msg.msg_value: sleep recieved, Client sleeping
+2023-08-04 17:08:51 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '31' to id: 2 in client_127_0_0_1_PTXXHP
+2023-08-04 17:08:51 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 2
+Next Queue Num: 3
+2023-08-04 17:08:51 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 17:08:51 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 17:08:51 - DEBUG - [MaliciousClientHandler.handle_client(): PTXXHP ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 17:08:51 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 17:11:41 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-04 22:11:41.608375+00:00 =====
+2023-08-04 17:11:41 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 17:11:45 - DEBUG - 
+[127.0.0.1:65306 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65306
+2023-08-04 17:11:45 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 17:11:45 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 17:11:45 - DEBUG - [Server.clientloginhandler(): UWVTXX ] Client 'UWVTXX' accepted, new thread created
+2023-08-04 17:11:45 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 17:11:45 - DEBUG - [MaliciousClientHandler.handle_client(): UWVTXX ] msg.msg_value: EMPTY
+2023-08-04 17:11:45 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '6' to id: 0 in client_127_0_0_1_UWVTXX
+2023-08-04 17:11:45 - DEBUG - Error binding parameter 0 - probably unsupported type.
+2023-08-04 17:11:45 - DEBUG - [DBHandler.add_response_mclient_row()] Error: Error binding parameter 0 - probably unsupported type.
+2023-08-04 17:11:45 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 17:11:45 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 17:11:45 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 17:11:45 - DEBUG - [MaliciousClientHandler.handle_client(): UWVTXX ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 17:11:45 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 17:12:00 - DEBUG - 
+[127.0.0.1:65320 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65320
+2023-08-04 17:12:00 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-04 17:12:00 - DEBUG - [Server.clientloginhandler(): UWVTXX ] Client 'UWVTXX' accepted, new thread created
+2023-08-04 17:12:00 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 17:12:00 - DEBUG - ID client_127_0_0_1_UWVTXX already exists in the client_queue_tracker table.
+2023-08-04 17:12:00 - DEBUG - [MaliciousClientHandler.handle_client(): UWVTXX ] msg.msg_value: sleep recieved, Client sleeping
+2023-08-04 17:12:00 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '6' to id: 1 in client_127_0_0_1_UWVTXX
+2023-08-04 17:12:00 - DEBUG - Error binding parameter 0 - probably unsupported type.
+2023-08-04 17:12:00 - DEBUG - [DBHandler.add_response_mclient_row()] Error: Error binding parameter 0 - probably unsupported type.
+2023-08-04 17:12:00 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 1
+Next Queue Num: 2
+2023-08-04 17:12:00 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 17:12:00 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 17:12:00 - DEBUG - [MaliciousClientHandler.handle_client(): UWVTXX ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 17:12:00 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 17:12:15 - DEBUG - 
+[127.0.0.1:65321 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65321
+2023-08-04 17:12:15 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-04 17:12:15 - DEBUG - [Server.clientloginhandler(): UWVTXX ] Client 'UWVTXX' accepted, new thread created
+2023-08-04 17:12:15 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 17:12:15 - DEBUG - ID client_127_0_0_1_UWVTXX already exists in the client_queue_tracker table.
+2023-08-04 17:12:15 - DEBUG - [MaliciousClientHandler.handle_client(): UWVTXX ] msg.msg_value: sleep recieved, Client sleeping
+2023-08-04 17:12:15 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '6' to id: 2 in client_127_0_0_1_UWVTXX
+2023-08-04 17:12:15 - DEBUG - Error binding parameter 0 - probably unsupported type.
+2023-08-04 17:12:15 - DEBUG - [DBHandler.add_response_mclient_row()] Error: Error binding parameter 0 - probably unsupported type.
+2023-08-04 17:12:15 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 2
+Next Queue Num: 3
+2023-08-04 17:12:15 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 17:12:15 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 17:12:15 - DEBUG - [MaliciousClientHandler.handle_client(): UWVTXX ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 17:12:15 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 17:12:30 - DEBUG - 
+[127.0.0.1:65322 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65322
+2023-08-04 17:13:32 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-04 22:13:32.176382+00:00 =====
+2023-08-04 17:13:32 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 17:13:43 - DEBUG - 
+[127.0.0.1:65330 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65330
+2023-08-04 17:13:43 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-04 17:13:43 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 17:13:43 - DEBUG - [Server.clientloginhandler(): UWVTXX ] Client 'UWVTXX' accepted, new thread created
+2023-08-04 17:13:43 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 17:13:43 - DEBUG - ID client_127_0_0_1_UWVTXX already exists in the client_queue_tracker table.
+2023-08-04 17:13:43 - DEBUG - [MaliciousClientHandler.handle_client(): UWVTXX ] msg.msg_value: sleep recieved, Client sleeping
+2023-08-04 17:13:43 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '478' to id: 3 in client_127_0_0_1_UWVTXX
+2023-08-04 17:13:43 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 3
+Next Queue Num: 4
+2023-08-04 17:13:43 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 17:13:43 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 17:13:43 - DEBUG - [MaliciousClientHandler.handle_client(): UWVTXX ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 17:13:43 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 17:19:57 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-04 22:19:57.603894+00:00 =====
+2023-08-04 17:19:57 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 17:19:57 - DEBUG - 
+[127.0.0.1:65363 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65363
+2023-08-04 17:19:57 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-04 17:19:57 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 17:19:57 - DEBUG - [Server.clientloginhandler(): UWVTXX ] Client 'UWVTXX' accepted, new thread created
+2023-08-04 17:21:10 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-04 22:21:10.743080+00:00 =====
+2023-08-04 17:21:10 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 17:21:15 - DEBUG - 
+[127.0.0.1:65369 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65369
+2023-08-04 17:21:15 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 17:21:15 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 17:21:15 - DEBUG - [Server.clientloginhandler(): PQTODQ ] Client 'PQTODQ' accepted, new thread created
+2023-08-04 17:21:15 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 17:21:15 - DEBUG - [MaliciousClientHandler.handle_client(): PQTODQ ] msg.msg_value: EMPTY
+2023-08-04 17:21:15 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '414' to id: 0 in client_127_0_0_1_PQTODQ
+2023-08-04 17:21:15 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 17:21:15 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 17:21:15 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 17:21:15 - DEBUG - [MaliciousClientHandler.handle_client(): PQTODQ ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 17:21:15 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 17:21:30 - DEBUG - 
+[127.0.0.1:65371 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65371
+2023-08-04 17:21:30 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-04 17:21:30 - DEBUG - [Server.clientloginhandler(): PQTODQ ] Client 'PQTODQ' accepted, new thread created
+2023-08-04 17:21:30 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 17:21:30 - DEBUG - ID client_127_0_0_1_PQTODQ already exists in the client_queue_tracker table.
+2023-08-04 17:21:30 - DEBUG - [MaliciousClientHandler.handle_client(): PQTODQ ] msg.msg_value: sleep recieved, Client sleeping
+2023-08-04 17:21:30 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '440' to id: 1 in client_127_0_0_1_PQTODQ
+2023-08-04 17:21:30 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 1
+Next Queue Num: 2
+2023-08-04 17:21:30 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 17:21:30 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 17:21:30 - DEBUG - [MaliciousClientHandler.handle_client(): PQTODQ ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 17:21:30 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 17:21:45 - DEBUG - 
+[127.0.0.1:65383 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65383
+2023-08-04 17:21:45 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-04 17:21:45 - DEBUG - [Server.clientloginhandler(): PQTODQ ] Client 'PQTODQ' accepted, new thread created
+2023-08-04 17:21:45 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 17:21:45 - DEBUG - ID client_127_0_0_1_PQTODQ already exists in the client_queue_tracker table.
+2023-08-04 17:21:45 - DEBUG - [MaliciousClientHandler.handle_client(): PQTODQ ] msg.msg_value: sleep recieved, Client sleeping
+2023-08-04 17:21:45 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '440' to id: 2 in client_127_0_0_1_PQTODQ
+2023-08-04 17:21:45 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 2
+Next Queue Num: 3
+2023-08-04 17:21:45 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 17:21:45 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 17:21:45 - DEBUG - [MaliciousClientHandler.handle_client(): PQTODQ ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 17:21:45 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 17:22:00 - DEBUG - 
+[127.0.0.1:65402 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65402
+2023-08-04 17:22:00 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-04 17:22:00 - DEBUG - [Server.clientloginhandler(): PQTODQ ] Client 'PQTODQ' accepted, new thread created
+2023-08-04 17:22:00 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 17:22:00 - DEBUG - ID client_127_0_0_1_PQTODQ already exists in the client_queue_tracker table.
+2023-08-04 17:22:00 - DEBUG - [MaliciousClientHandler.handle_client(): PQTODQ ] msg.msg_value: sleep recieved, Client sleeping
+2023-08-04 17:22:00 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '440' to id: 3 in client_127_0_0_1_PQTODQ
+2023-08-04 17:22:00 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 3
+Next Queue Num: 4
+2023-08-04 17:22:00 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 17:22:00 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 17:22:00 - DEBUG - [MaliciousClientHandler.handle_client(): PQTODQ ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 17:22:00 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 17:22:15 - DEBUG - 
+[127.0.0.1:65411 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65411
+2023-08-04 17:22:15 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-04 17:22:15 - DEBUG - [Server.clientloginhandler(): PQTODQ ] Client 'PQTODQ' accepted, new thread created
+2023-08-04 17:22:15 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 17:22:15 - DEBUG - ID client_127_0_0_1_PQTODQ already exists in the client_queue_tracker table.
+2023-08-04 17:22:15 - DEBUG - [MaliciousClientHandler.handle_client(): PQTODQ ] msg.msg_value: sleep recieved, Client sleeping
+2023-08-04 17:22:15 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '440' to id: 4 in client_127_0_0_1_PQTODQ
+2023-08-04 17:22:15 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 4
+Next Queue Num: 5
+2023-08-04 17:22:15 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 17:22:15 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 17:22:15 - DEBUG - [MaliciousClientHandler.handle_client(): PQTODQ ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 17:22:15 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 17:22:30 - DEBUG - 
+[127.0.0.1:65415 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:65415
+2023-08-04 17:22:30 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-04 17:22:30 - DEBUG - [Server.clientloginhandler(): PQTODQ ] Client 'PQTODQ' accepted, new thread created
+2023-08-04 17:22:30 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 17:22:30 - DEBUG - ID client_127_0_0_1_PQTODQ already exists in the client_queue_tracker table.
+2023-08-04 17:22:30 - DEBUG - [MaliciousClientHandler.handle_client(): PQTODQ ] msg.msg_value: sleep recieved, Client sleeping
+2023-08-04 17:22:30 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '440' to id: 5 in client_127_0_0_1_PQTODQ
+2023-08-04 17:22:30 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 5
+Next Queue Num: 6
+2023-08-04 17:22:30 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 17:22:30 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 17:22:30 - DEBUG - [MaliciousClientHandler.handle_client(): PQTODQ ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 17:22:30 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378

@@ -33,7 +33,7 @@ class SQLDBHandler:
             next_queue_number       = self.get_next_queue_number(client_name)
             current_queue_number    = self.get_current_queue_number(client_name)
 
-            print(f"[DB Handler (dequeue_client_row)] Current Queue #: {current_queue_number}\nNext Queue Num: {next_queue_number}")
+            logging.debug(f"[DB Handler (dequeue_client_row)] Current Queue #: {current_queue_number}\nNext Queue Num: {next_queue_number}")
         
             self.increment_queue_number(client_name)
             
@@ -47,12 +47,12 @@ class SQLDBHandler:
             return sleep_string
         
         except ValueError as ve:
-            #print(e)
+            #logging.debug(e)
             logging.debug(f"[DBHandler.update_queue_tracker()] Value error, the DB may have tried to access a message that didn't exist: {ve}")
             return sleep_string
 
         except Exception as e:
-            #print(e)
+            #logging.debug(e)
             logging.debug(f"[DBHandler.update_queue_tracker()] Error: {e}")
             return sleep_string
         
@@ -76,7 +76,7 @@ class SQLDBHandler:
             existing_row = self.cursor.fetchone()
             if existing_row:
                 ## maybe recurse with id + 1 until it gets it right? 
-                print(f"ID {id} already exists in the {client_name} table.")
+                logging.debug(f"ID {id} already exists in the {client_name} table.")
                 return
 
             # If the ID is unique, add to queue
@@ -93,13 +93,13 @@ class SQLDBHandler:
 
             sql_query   = f'UPDATE {client_name} SET response = ? WHERE id = ?'
             values      = (response, id,)
-            print(f"[DBHandler (add_response_to_queue_number)] Adding '{len(response)}' to id: {id} in {client_name}")
+            logging.debug(f"[DBHandler (add_response_to_queue_number)] Adding '{len(response)}' to id: {id} in {client_name}")
             
             self.cursor.execute(sql_query, values)
             self.dbconn.commit()
 
         except Exception as e:
-            print(e)
+            logging.debug(e)
             logging.debug(f"[DBHandler.add_response_mclient_row()] Error: {e}")
 
 
@@ -118,7 +118,7 @@ class SQLDBHandler:
             ## [0] is needed, as this returns (MSG,)
         msg = self.cursor.fetchone()#[0]
 
-        print(f"[DBHandler (get_msg_from_queue_number)] Getting msg from id: {next_queue_number} in {client_name}]")
+        logging.debug(f"[DBHandler (get_msg_from_queue_number)] Getting msg from id: {next_queue_number} in {client_name}]")
 
         if msg == None:
             raise TypeError
@@ -179,7 +179,7 @@ class SQLDBHandler:
             
         self.cursor.execute(update_query, values)
         self.dbconn.commit()
-        print("[DBHandler (increment_queue_number)] Inrementing both  queue number +1 ")
+        logging.debug("[DBHandler (increment_queue_number)] Inrementing both  queue number +1 ")
 
 
     ## == client_queue_tracker table == ##
@@ -217,12 +217,12 @@ class SQLDBHandler:
         existing_row = self.cursor.fetchone()
         if existing_row:
             ## maybe recurse with id + 1 until it gets it right? 
-            print(f"ID {client_name} already exists in the client_queue_tracker table.")
+            logging.debug(f"ID {client_name} already exists in the client_queue_tracker table.")
             return
 
 
         insert_query = f'INSERT INTO client_queue_tracker (current_queue_number, client_name, next_queue_number) VALUES (?, ?, ?)'
-        #print("insert into client_queue_tracker")
+        #logging.debug("insert into client_queue_tracker")
         values = (0, client_name, 1)
         self.cursor.execute(insert_query, values)
         self.dbconn.commit()

@@ -15,7 +15,7 @@ except Exception as e:
 
 
 ## setting encryption to false by default
-def send_msg(conn=None, msg="",) -> None:
+def send_msg(conn=None, msg="") -> None:
     """Sends a message on the socket connection passed to it. 
 
     Args:
@@ -26,7 +26,6 @@ def send_msg(conn=None, msg="",) -> None:
         e: _description_
     """
     try:
-        # Ensure the message is encoded as bytes
         msg = str_encode(msg)
 
         # Get the length of the message in bytes
@@ -147,13 +146,19 @@ def _header_parse(header) -> dict:
 
 ## str -> bytes
 def str_encode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]) -> bytes:
-    for format in formats:
+    '''for format in formats:
         try:
             return input.encode(format)
         except UnicodeEncodeError:
             logging.debug(f"Could not encode bytes to {format}")
         except Exception as e:
-            logging.warning(f"CommsHandler (str_encode) ERRMSG: {e}\n")
+            logging.warning(f"CommsHandler (str_encode) ERRMSG: {e}\n")'''
+    try:
+        return input.encode("utf-8")
+    except UnicodeEncodeError:
+        logging.debug(f"Could not encode bytes to {format}")
+    except Exception as e:
+        logging.warning(f"CommsHandler (str_encode) ERRMSG: {e}\n")
 
 
 ## bytes -> str

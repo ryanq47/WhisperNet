@@ -67,6 +67,8 @@ namespace Client
                     //note, the JsonStruct.MyJsonStruct is just the object that is returned. can access items viea serverMsg.Whatever
                     JsonStruct.MyJsonStruct serverMsg = Client.Comms.JsonHandler.FromJson(stringRecv);
 
+                    //Console.WriteLine($"From Main: {serverMsg.msg.msg_command}");
+
                     //Process Job/Decision Tree
                     //decision tree returns json string from result of action. This could cause some issues in the future with adding dtaa to the the stirng, but is fine for now
                     decisionTreeResults = Client.Logic.Trees.decisionTree(serverMsg);

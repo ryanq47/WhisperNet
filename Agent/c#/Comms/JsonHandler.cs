@@ -26,15 +26,15 @@ namespace Client.Comms
         /// <returns>A JSON string representing the provided parameters.</returns>
         internal static string ToJson(
             //generalinfo
-            string Action = "!_clientlogin_!", string CID = "default string", string CTYPE = "default string", string Password = "default string",
+            string Action = "!_clientlogin_!", string CID = "NULL", string CTYPE = "NULL", string Password = "NULL",
             //conninfo
             string clientIP = "127.0.0.1", string clientPort = "8080", //And so on, fill the rest out
             //msginfo
-            string msgTo = "clientIP", string msgContent = "msgContent", string msgCommand = "Command", string msgValue = "msgValue", string msgLength = "length", string msgHash = "fakehash",
+            string msgTo = "clientIP", string msgCommand = "Command", string msgValue = "EMPTY", string msgLength = "length", string msgHash = "NULL",
             //statsinfo
             string latestCheckin = "", string deviceHostname = "", string deviceUsername = "",
             //secinfo
-            string clientHash = "fakehash", string serverHash = "fakehash"
+            string clientHash = "NULL", string serverHash = "NULL"
             )
         {
 
@@ -59,7 +59,6 @@ namespace Client.Comms
                 msg = new JsonStruct.MyJsonStruct.msginfo
                 {
                     msg_to = msgTo,
-                    msg_content = msgContent,
                     msg_command = msgCommand,
                     msg_value = msgValue,
                     
@@ -87,11 +86,13 @@ namespace Client.Comms
 
             //convert TO json
             string jsonString = JsonConvert.SerializeObject(mystruct);
-            //Console.WriteLine(jsonString);
+            Console.WriteLine(jsonString);
 
             return jsonString;
         }
 
+
+        /*
         /// <summary>
         /// Takes JSON String, returns JSON Object.
         /// </summary>
@@ -103,18 +104,27 @@ namespace Client.Comms
             //Console.WriteLine(JsonString);
 
             //THIS fixes it, takes trailing and leading [] chars
-            string TrimmedJsonString = JsonString.Trim().Trim('[', ']');
+            string TrimmedJsonString = JsonString.Trim('[', ']');
+
             //Long story short, [] were being added to the Json string, and this would error out. This fixes it, but may cause issues later with certain commands if ever needed
             //string NewJsonString = JsonString.Replace("]", "").Replace("[", "");
 
 
             //JsonStruct.MyJsonStruct mystruct = JsonConvert.DeserializeObject<JsonStruct.MyJsonStruct>(JsonString);
             var jsonObject = JsonConvert.DeserializeObject<JsonStruct.MyJsonStruct>(TrimmedJsonString);
-            Console.WriteLine(jsonObject.msg.msg_to);
+            Console.WriteLine($"[JsonStruct.MyJsonStruct FromJson] jsonObject.msg.msg_command == {jsonObject.msg.msg_command}");
             return jsonObject;
 
 
+        }*/
+
+        internal static JsonStruct.MyJsonStruct FromJson(string JsonString = "string")
+        {
+            var jsonObject = JsonConvert.DeserializeObject<JsonStruct.MyJsonStruct>(JsonString);
+            Console.WriteLine($"[JsonStruct.MyJsonStruct FromJson] jsonObject.msg.msg_command == {jsonObject.msg.msg_command}");
+            return jsonObject;
         }
+
     }
 }
 
@@ -169,7 +179,7 @@ namespace JsonStruct
             public string msg_to { get; set; }
 
             //see next note, not sure what this will be used for now
-            public string msg_content { get; set; }
+            //public string msg_content { get; set; }
 
 
             //these 2 are no longer nested casue that adds complexity & pain here

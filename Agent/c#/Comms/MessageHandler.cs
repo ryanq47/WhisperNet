@@ -66,6 +66,7 @@ namespace Client.Comms
                 string message = Encoding.UTF8.GetString(receivedData);
 
                 Console.WriteLine($"[C2Server] Received message of length: {msgLength}");
+                Console.WriteLine($"MSG from receive side {message}");
                 return message;
             }
             catch (Exception ex)

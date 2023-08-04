@@ -154,6 +154,37 @@ class json_ops:
         #return json_object
 
 
+    @staticmethod 
+    def from_json(json_string="data") -> dict:
+        """Convert json STRINGS into a Python Object (aka dict)
+
+        Args:
+            json_string (str, optional): the JSON string
+
+        Returns:
+            dict: A pyhton dict
+
+        On errors:
+            Returns False
+        """
+        json_object = None
+        ## Sanity check to make sure JSON is actually JSON b4 passing into validator
+        try:
+            # Python Obj             #raw JSON
+            json_object = json.loads(json_string)
+            return json_object
+
+        except json.JSONDecodeError as e:
+            print(f"JSON data is not valid. Error message: {e}")
+            # logging.warning("[JSON Parser] JSON is not valid!")
+            ## no need to return value as this will only be seen by code. return 1 for fail
+            return False
+        except Exception as e:
+            print(f"error with JSON: {e}")
+            return False
+
+
+
     @staticmethod
     def to_json(
         ## General
@@ -199,7 +230,9 @@ class json_ops:
                 "client_hash": client_hash,
                 "server_hash": server_hash
             }
-        },
+        }
+
+        #print(json_dict)
 
         json_str = json.dumps(json_dict)
 

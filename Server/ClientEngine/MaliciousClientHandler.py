@@ -48,14 +48,16 @@ class ServerMaliciousClientHandler:
         #self.command_queue.enqueue("123")
         #self.command_queue.enqueue("help")
 
-    def handle_client(self, response_from_client, clientsocket, clientid):
+    def handle_client(self, dict_response_from_client, raw_response_from_client, clientsocket, clientid):
         """This method gets called to handle the client as it connects. It uses the existing class variables, and the new ones passed to it 
         to do various operations with the client
 
         Args:
-            response_from_client (_type_): the JSON response sent to the server, from the client
-            clientsocket (_type_): the socket that the client/server is currently communicating on
-            clientid (_type_): the client's id
+            dict_response_from_client (DICT): the JSON response sent to the server, from the client. Needs to be passed in as a DICT
+            raw_response_from_client (JSON): the JSON response sent to the server, from the client. Needs to be passed in as the raw JSON string
+
+            clientsocket (SOCKET): the socket that the client/server is currently communicating on
+            clientid (str): the client's id
         """
         ## self.command_queue has to be down to be apart of this thread, and as such, interact with the DB.
         self.command_queue  = DataEngine.DBHandler.SQLDBHandler(db_name="DevDB.db")
@@ -78,15 +80,17 @@ class ServerMaliciousClientHandler:
         self.command_queue.create_client_queuetrack_row(client_name=self.fullname)
 
         ## parse json results. Add to "results queue"?
-        logging.debug("[MaliciousClientHandler.handle_client(): {} ] msg.msg_value: {}".format(self.id, response_from_client["msg"]["msg_value"]))
+        logging.debug("[MaliciousClientHandler.handle_client(): {} ] msg.msg_value: {}".format(self.id, dict_response_from_client["msg"]["msg_value"]))
         
         ## DEBUG
         self.command_queue.enqueue_mclient_row(client_name=self.fullname)
 
         ## write to DB response_from_client["msg"]["msg_value"]
-        temprep = response_from_client["msg"]["msg_value"]
-        print(f"[MaliciousClientHandler.handle_client(): ] response_from_client[msg][msg_value]: {temprep}")
-        self.command_queue.add_response_from_client(response = response_from_client["msg"]["msg_value"], client_name=self.fullname)
+
+        #temprep = response_from_client["msg"]["msg_value"]
+        #print(f"[MaliciousClientHandler.handle_client(): ] response_from_client[msg][msg_value]: {temprep}")
+        #self.command_queue.add_response_from_client(response = response_from_client["msg"]["msg_value"], client_name=self.fullname)
+        self.command_queue.add_response_from_client(response = raw_response_from_client, client_name=self.fullname)
 
         ## Debug queue statement, delete when ready
         #logging.debug(f"[MaliciousClientHandler.handle_client(): {self.id} ] Command Queue: {self.command_queue.queue}")
@@ -102,11 +106,24 @@ class ServerMaliciousClientHandler:
         """
         # get latest item in queue
         #command = self.command_queue.dequeue()
-        command = self.command_queue.dequeue_next_cmd(client_name=self.fullname)
+
+        '''
+        Explanation here:
+            the command in queue comes in as a JSON string. I was mistakelny passing said string to teh msg_command, thinking it was just the command to run
+            That led to a weird delimited string that was fucked up. It now gets converted to a dict (see below) then the correct dict item ["msg"]["msg_command"] is passed
+        '''
+
+        json_command    = self.command_queue.dequeue_next_cmd(client_name=self.fullname)
+        command         = DataEngine.JsonHandler.json_ops.from_json(json_command)
+
+        msg_command     = command["msg"]["msg_command"]
+
 
         if command:
             logging.debug(f"[MaliciousClientHandler.handle_client(): {self.id} ] Sending: {command}")
-            msg_to_send = DataEngine.JsonHandler.json_ops.to_json(msg_command=command)
+
+            ## YOU FUCKING DIPSHIT command IS ALL JSON JESZUD FUCKING CRHSITS. IT NEEDS TO BE COMMAND.MSG.MSG_VALUE or something
+            msg_to_send = DataEngine.JsonHandler.json_ops.to_json(msg_command=msg_command)
             Comms.CommsHandler.send_msg(msg=msg_to_send, conn=self.clientsocket)
         
         else:

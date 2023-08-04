@@ -88,10 +88,24 @@
               "state": {
                 "file": "Server/Visual Progress.canvas",
                 "viewState": {
-                  "x": -789.1200161300695,
-                  "y": 289.7019179224141,
+                  "x": -1021.9868440163995,
+                  "y": 594.9462733950357,
                   "zoom": -0.06894546425127684
                 }
+              },
+              "pinned": true
+            }
+          },
+          {
+            "id": "18331f739eb8e3dc",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Clients/CSharp/Functions Overview/Client.CS.md",
+                "mode": "preview",
+                "source": false
               },
               "pinned": true
             }
@@ -287,22 +301,63 @@
       "command-palette:Open command palette": false
     }
   },
+  "floating": {
+    "id": "12558a7ec0498443",
+    "type": "floating",
+    "children": [
+      {
+        "id": "d7757a9cb95e7c57",
+        "type": "window",
+        "children": [
+          {
+            "id": "4302b67ba3f18670",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "e6770ea26c63d072",
+                "type": "leaf",
+                "state": {
+                  "type": "canvas",
+                  "state": {
+                    "file": "Clients/CSharp/High Level Operation Flow.canvas",
+                    "viewState": {
+                      "x": 358.70360110803324,
+                      "y": 318.88365650969524,
+                      "zoom": -0.7317609165270527
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": 1503,
+        "y": 170,
+        "width": 1551,
+        "height": 1223,
+        "maximize": false,
+        "zoom": 0
+      }
+    ]
+  },
   "active": "0af081d4bf2f3eef",
   "lastOpenFiles": [
     "Clients/CSharp/High Level Operation Flow.canvas",
     "Server/Visual Progress.canvas",
+    "Clients/CSharp/Program File Structure.canvas",
+    "Clients/CSharp/Functions Overview/Client.CS.md",
+    "General/Notes.md",
+    "Server/2.DataEngine/DBHandler.py/General.md",
     "Server/Canvas/Network & Command Flow.canvas",
     "Server/Canvas/FileStructure.canvas",
     "General/Naming & general/File Naming Definitions.md",
     "General/Naming & general/Error Handling.md",
-    "General/Notes.md",
     "General/Networking & Protocols/Header breakdown - DEPRACATED.md",
     "Clients/CSharp/Var & Func Naming Guide.md",
-    "Clients/CSharp/Program File Structure.canvas",
     "Server/Long Term gotchas.md",
     "Left off & todo.md",
     "Server/General.md",
-    "Server/2.DataEngine/DBHandler.py/General.md",
     "Server/1. ClientEngine",
     "Server/2.DataEngine/DBHandler.py",
     "Server/2.DataEngine",
