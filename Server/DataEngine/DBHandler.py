@@ -26,7 +26,7 @@ class SQLDBHandler:
         Errors:
             If this tries to access beyond the messages in queued message, it errors out.
 
-        Failrue handling: 
+        Failrue/Failover handling: 
             Returns a sleep string if something fails
         '''
         try:
@@ -39,7 +39,7 @@ class SQLDBHandler:
             
 
             ## SHOULD be json, nothign to actually check that though
-            client_msg = self.get_current_queue_number(client_name = client_name, next_queue_number = next_queue_number)
+            client_msg = self.get_msg_from_queue_number(client_name = client_name, next_queue_number=next_queue_number)
             return client_msg
 
         except TypeError as te:
@@ -56,7 +56,7 @@ class SQLDBHandler:
             logging.debug(f"[DBHandler.update_queue_tracker()] Error: {e}")
             return sleep_string
         
-    def enqueue_mclient_row(self, client_name="TestClient", msg=ps_whoami_string, response="empty", requester="empty"):
+    def enqueue_client_row(self, client_name="TestClient", msg=ps_whoami_string, response="empty", requester="empty"):
         """Enqueues a command to the queue
 
         Args:

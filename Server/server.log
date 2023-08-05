@@ -3485,3 +3485,560 @@ Next Queue Num: 6
 2023-08-04 17:22:30 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
 2023-08-04 17:22:30 - DEBUG - [MaliciousClientHandler.handle_client(): PQTODQ ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
 2023-08-04 17:22:30 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 22:07:42 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-05 03:07:42.395580+00:00 =====
+2023-08-04 22:07:42 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 22:07:48 - DEBUG - 
+[127.0.0.1:49560 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49560
+2023-08-04 22:07:48 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 22:07:48 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 22:07:48 - DEBUG - [Server.clientloginhandler(): WPHEJO ] Client 'WPHEJO' accepted, new thread created
+2023-08-04 22:07:48 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:07:48 - DEBUG - [MaliciouClientHandler (handle_client)] General error: type object 'json_ops' has no attribute 'from_jsone'
+2023-08-04 22:07:48 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 22:07:48 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:07:48 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 22:07:48 - DEBUG - [MaliciousClientHandler.handle_client(): WPHEJO ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:07:48 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 22:08:03 - DEBUG - 
+[127.0.0.1:49561 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49561
+2023-08-04 22:08:03 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-04 22:08:03 - DEBUG - [Server.clientloginhandler(): WPHEJO ] Client 'WPHEJO' accepted, new thread created
+2023-08-04 22:08:03 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:08:03 - DEBUG - ID client_127_0_0_1_WPHEJO already exists in the client_queue_tracker table.
+2023-08-04 22:08:03 - DEBUG - [MaliciouClientHandler (handle_client)] General error: type object 'json_ops' has no attribute 'from_jsone'
+2023-08-04 22:08:03 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 1
+Next Queue Num: 2
+2023-08-04 22:08:03 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:08:03 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 22:08:03 - DEBUG - [MaliciousClientHandler.handle_client(): WPHEJO ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:08:03 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 22:08:17 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-05 03:08:17.293788+00:00 =====
+2023-08-04 22:08:17 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 22:08:22 - DEBUG - 
+[127.0.0.1:49562 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49562
+2023-08-04 22:08:22 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 22:08:22 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 22:08:22 - DEBUG - [Server.clientloginhandler(): AHGUHQ ] Client 'AHGUHQ' accepted, new thread created
+2023-08-04 22:08:22 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:08:22 - DEBUG - [MaliciousClientHandler.handle_client(): AHGUHQ ] msg.msg_value: EMPTY
+2023-08-04 22:08:22 - DEBUG - [MaliciouClientHandler (handle_client)] General error: 'SQLDBHandler' object has no attribute 'enqueue_client_row'
+2023-08-04 22:08:22 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 22:08:22 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:08:22 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 22:08:22 - DEBUG - [MaliciousClientHandler.handle_client(): AHGUHQ ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:08:22 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 22:08:39 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-05 03:08:39.927717+00:00 =====
+2023-08-04 22:08:39 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 22:08:43 - DEBUG - 
+[127.0.0.1:49564 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49564
+2023-08-04 22:08:44 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 22:08:44 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 22:08:44 - DEBUG - [Server.clientloginhandler(): OOCVMB ] Client 'OOCVMB' accepted, new thread created
+2023-08-04 22:08:44 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:08:44 - DEBUG - [MaliciousClientHandler.handle_client(): OOCVMB ] msg.msg_value: EMPTY
+2023-08-04 22:08:44 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '414' to id: 0 in client_127_0_0_1_OOCVMB
+2023-08-04 22:08:44 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 22:08:44 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:08:44 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 22:08:44 - DEBUG - [MaliciousClientHandler.handle_client(): OOCVMB ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:08:44 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 22:08:59 - DEBUG - 
+[127.0.0.1:49567 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49567
+2023-08-04 22:09:04 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-04 22:09:04 - DEBUG - [Server.clientloginhandler(): OOCVMB ] Client 'OOCVMB' accepted, new thread created
+2023-08-04 22:09:04 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:09:04 - DEBUG - ID client_127_0_0_1_OOCVMB already exists in the client_queue_tracker table.
+2023-08-04 22:09:04 - DEBUG - [MaliciousClientHandler.handle_client(): OOCVMB ] msg.msg_value: sleep recieved, Client sleeping
+2023-08-04 22:09:04 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '440' to id: 1 in client_127_0_0_1_OOCVMB
+2023-08-04 22:09:04 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 1
+Next Queue Num: 2
+2023-08-04 22:09:04 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:09:04 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 22:09:04 - DEBUG - [MaliciousClientHandler.handle_client(): OOCVMB ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:09:04 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 22:09:19 - DEBUG - 
+[127.0.0.1:49569 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49569
+2023-08-04 22:09:19 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-04 22:09:19 - DEBUG - [Server.clientloginhandler(): OOCVMB ] Client 'OOCVMB' accepted, new thread created
+2023-08-04 22:09:19 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:09:19 - DEBUG - ID client_127_0_0_1_OOCVMB already exists in the client_queue_tracker table.
+2023-08-04 22:09:19 - DEBUG - [MaliciousClientHandler.handle_client(): OOCVMB ] msg.msg_value: sleep recieved, Client sleeping
+2023-08-04 22:09:19 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '440' to id: 2 in client_127_0_0_1_OOCVMB
+2023-08-04 22:09:19 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 2
+Next Queue Num: 3
+2023-08-04 22:09:19 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:09:19 - DEBUG - [DBHandler.update_queue_tracker()] Queue is empty. Sending sleep: get_current_queue_number() got an unexpected keyword argument 'next_queue_number'
+2023-08-04 22:09:19 - DEBUG - [MaliciousClientHandler.handle_client(): OOCVMB ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:09:19 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 22:09:38 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-05 03:09:38.317856+00:00 =====
+2023-08-04 22:09:38 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 22:09:45 - DEBUG - 
+[127.0.0.1:49573 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49573
+2023-08-04 22:09:45 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 22:09:45 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 22:09:45 - DEBUG - [Server.clientloginhandler(): WIUNND ] Client 'WIUNND' accepted, new thread created
+2023-08-04 22:09:45 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:09:45 - DEBUG - [MaliciousClientHandler.handle_client(): WIUNND ] msg.msg_value: EMPTY
+2023-08-04 22:09:45 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '414' to id: 0 in client_127_0_0_1_WIUNND
+2023-08-04 22:09:45 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 22:09:45 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:15:33 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-05 03:15:33.551589+00:00 =====
+2023-08-04 22:15:33 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 22:15:38 - DEBUG - 
+[127.0.0.1:49596 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49596
+2023-08-04 22:15:38 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 22:15:38 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 22:15:38 - DEBUG - [Server.clientloginhandler(): VFKAOA ] Client 'VFKAOA' accepted, new thread created
+2023-08-04 22:15:38 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:15:38 - DEBUG - [MaliciousClientHandler.handle_client(): VFKAOA ] msg.msg_value: EMPTY
+2023-08-04 22:15:38 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '414' to id: 0 in client_127_0_0_1_VFKAOA
+2023-08-04 22:15:38 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 22:15:38 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:15:38 - DEBUG - [MaliciousClientHandler.handle_client(): VFKAOA ] Queue empty. Sending sleep
+2023-08-04 22:15:38 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 22:15:53 - DEBUG - 
+[127.0.0.1:49597 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49597
+2023-08-04 22:17:28 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-05 03:17:28.989830+00:00 =====
+2023-08-04 22:17:28 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 22:17:40 - DEBUG - 
+[127.0.0.1:49607 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49607
+2023-08-04 22:17:40 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-04 22:17:40 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 22:17:40 - DEBUG - [Server.clientloginhandler(): VFKAOA ] Client 'VFKAOA' accepted, new thread created
+2023-08-04 22:17:40 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:17:40 - DEBUG - ID client_127_0_0_1_VFKAOA already exists in the client_queue_tracker table.
+2023-08-04 22:17:40 - DEBUG - [MaliciousClientHandler.handle_client(): VFKAOA ] msg.msg_value: sleep recieved, Client sleeping
+2023-08-04 22:17:40 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '440' to id: 1 in client_127_0_0_1_VFKAOA
+2023-08-04 22:17:40 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 1
+Next Queue Num: 2
+2023-08-04 22:17:40 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:17:40 - DEBUG - [MaliciousClientHandler.handle_client(): VFKAOA ] Queue empty. Sending sleep
+2023-08-04 22:17:40 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 22:19:39 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-05 03:19:39.204280+00:00 =====
+2023-08-04 22:19:39 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 22:19:45 - DEBUG - 
+[127.0.0.1:49614 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49614
+2023-08-04 22:19:45 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 22:19:45 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 22:19:45 - DEBUG - [Server.clientloginhandler(): UDXMGD ] Client 'UDXMGD' accepted, new thread created
+2023-08-04 22:19:45 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:19:45 - DEBUG - [MaliciousClientHandler.handle_client(): UDXMGD ] msg.msg_value: EMPTY
+2023-08-04 22:19:45 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '414' to id: 0 in client_127_0_0_1_UDXMGD
+2023-08-04 22:19:45 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 22:19:46 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:20:09 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-05 03:20:09.356754+00:00 =====
+2023-08-04 22:20:09 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 22:20:09 - DEBUG - 
+[127.0.0.1:49615 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49615
+2023-08-04 22:20:09 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 22:20:09 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 22:20:09 - DEBUG - [Server.clientloginhandler(): UDXMGD ] Client 'UDXMGD' accepted, new thread created
+2023-08-04 22:20:09 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:20:09 - DEBUG - ID client_127_0_0_1_UDXMGD already exists in the client_queue_tracker table.
+2023-08-04 22:20:09 - DEBUG - [MaliciousClientHandler.handle_client(): UDXMGD ] msg.msg_value: EMPTY
+2023-08-04 22:20:09 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '414' to id: 1 in client_127_0_0_1_UDXMGD
+2023-08-04 22:20:09 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 1
+Next Queue Num: 2
+2023-08-04 22:20:09 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:20:09 - DEBUG - [MaliciousClientHandler.handle_client(): UDXMGD ] Queue empty. Sending sleep
+2023-08-04 22:20:09 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 22:21:16 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-05 03:21:16.522787+00:00 =====
+2023-08-04 22:21:16 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 22:21:16 - DEBUG - 
+[127.0.0.1:49624 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49624
+2023-08-04 22:21:16 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-04 22:21:16 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 22:21:16 - DEBUG - [Server.clientloginhandler(): UDXMGD ] Client 'UDXMGD' accepted, new thread created
+2023-08-04 22:21:16 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:21:16 - DEBUG - ID client_127_0_0_1_UDXMGD already exists in the client_queue_tracker table.
+2023-08-04 22:21:16 - DEBUG - [MaliciouClientHandler (handle_client)] General error: 'bool' object is not subscriptable
+2023-08-04 22:21:16 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 2
+Next Queue Num: 3
+2023-08-04 22:21:16 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:21:16 - DEBUG - [MaliciousClientHandler.handle_client(): UDXMGD ] Queue empty. Sending sleep
+2023-08-04 22:21:16 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 22:21:32 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-05 03:21:32.844720+00:00 =====
+2023-08-04 22:21:32 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 22:21:33 - DEBUG - 
+[127.0.0.1:49625 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49625
+2023-08-04 22:21:33 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-04 22:21:33 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 22:21:33 - DEBUG - [Server.clientloginhandler(): UDXMGD ] Client 'UDXMGD' accepted, new thread created
+2023-08-04 22:21:33 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:21:33 - DEBUG - ID client_127_0_0_1_UDXMGD already exists in the client_queue_tracker table.
+2023-08-04 22:21:33 - DEBUG - [MaliciouClientHandler (handle_client)] General error: 'bool' object is not subscriptable
+2023-08-04 22:21:33 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 3
+Next Queue Num: 4
+2023-08-04 22:21:33 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:21:33 - DEBUG - [MaliciousClientHandler.handle_client(): UDXMGD ] Queue empty. Sending sleep
+2023-08-04 22:21:33 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 22:21:45 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-05 03:21:45.285492+00:00 =====
+2023-08-04 22:21:45 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 22:21:48 - DEBUG - 
+[127.0.0.1:49627 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49627
+2023-08-04 22:21:48 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-04 22:21:48 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 22:21:48 - DEBUG - [Server.clientloginhandler(): UDXMGD ] Client 'UDXMGD' accepted, new thread created
+2023-08-04 22:21:48 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:21:48 - DEBUG - ID client_127_0_0_1_UDXMGD already exists in the client_queue_tracker table.
+2023-08-04 22:21:48 - DEBUG - [MaliciouClientHandler (handle_client)] General error: 'bool' object is not subscriptable
+2023-08-04 22:21:48 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 4
+Next Queue Num: 5
+2023-08-04 22:21:48 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:21:48 - DEBUG - [MaliciousClientHandler.handle_client(): UDXMGD ] Queue empty. Sending sleep
+2023-08-04 22:21:48 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 22:24:10 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-05 03:24:10.897444+00:00 =====
+2023-08-04 22:24:10 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 22:24:14 - DEBUG - 
+[127.0.0.1:49643 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49643
+2023-08-04 22:24:17 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 22:24:17 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 22:24:17 - DEBUG - [Server.clientloginhandler(): VAQWIM ] Client 'VAQWIM' accepted, new thread created
+2023-08-04 22:24:17 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:24:17 - DEBUG - [MaliciousClientHandler.handle_client(): VAQWIM ] msg.msg_value: EMPTY
+2023-08-04 22:24:17 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '414' to id: 0 in client_127_0_0_1_VAQWIM
+2023-08-04 22:24:17 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 22:24:18 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:24:18 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 1 in client_127_0_0_1_VAQWIM]
+2023-08-04 22:24:18 - DEBUG - [MaliciousClientHandler.handle_client(): VAQWIM ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:24:18 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:24:56 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-05 03:24:56.994686+00:00 =====
+2023-08-04 22:24:56 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 8080)
+2023-08-04 22:25:01 - DEBUG - 
+[127.0.0.1:49648 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49648
+2023-08-04 22:25:01 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 414
+2023-08-04 22:25:01 - DEBUG - [MaliciousClientHandler.__init__()] This is a new class object.
+2023-08-04 22:25:01 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:25:01 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:25:01 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: EMPTY
+2023-08-04 22:25:01 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '414' to id: 0 in client_127_0_0_1_LPBMKE
+2023-08-04 22:25:01 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 0
+Next Queue Num: 1
+2023-08-04 22:25:01 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:25:01 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 1 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:25:01 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:25:01 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:25:16 - DEBUG - 
+[127.0.0.1:49649 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49649
+2023-08-04 22:25:16 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-04 22:25:16 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:25:16 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:25:16 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:25:16 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: desktop-fdivimf\ryan
+
+2023-08-04 22:25:16 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '434' to id: 1 in client_127_0_0_1_LPBMKE
+2023-08-04 22:25:16 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 1
+Next Queue Num: 2
+2023-08-04 22:25:16 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:25:16 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 2 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:25:16 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:25:16 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:25:32 - DEBUG - 
+[127.0.0.1:49651 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49651
+2023-08-04 22:25:32 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-04 22:25:32 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:25:32 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:25:32 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:25:32 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: desktop-fdivimf\ryan
+
+2023-08-04 22:25:32 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '434' to id: 2 in client_127_0_0_1_LPBMKE
+2023-08-04 22:25:32 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 2
+Next Queue Num: 3
+2023-08-04 22:25:32 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:25:32 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 3 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:25:32 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:25:32 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:25:47 - DEBUG - 
+[127.0.0.1:49652 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49652
+2023-08-04 22:25:47 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-04 22:25:47 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:25:47 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:25:47 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:25:47 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: desktop-fdivimf\ryan
+
+2023-08-04 22:25:47 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '434' to id: 3 in client_127_0_0_1_LPBMKE
+2023-08-04 22:25:47 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 3
+Next Queue Num: 4
+2023-08-04 22:25:47 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:25:47 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 4 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:25:47 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:25:47 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:26:02 - DEBUG - 
+[127.0.0.1:49656 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49656
+2023-08-04 22:26:02 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-04 22:26:02 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:26:02 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:26:02 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:26:02 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: desktop-fdivimf\ryan
+
+2023-08-04 22:26:02 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '434' to id: 4 in client_127_0_0_1_LPBMKE
+2023-08-04 22:26:02 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 4
+Next Queue Num: 5
+2023-08-04 22:26:02 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:26:02 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 5 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:26:02 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:26:02 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:26:17 - DEBUG - 
+[127.0.0.1:49657 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49657
+2023-08-04 22:26:17 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-04 22:26:17 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:26:17 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:26:17 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:26:17 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: desktop-fdivimf\ryan
+
+2023-08-04 22:26:17 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '434' to id: 5 in client_127_0_0_1_LPBMKE
+2023-08-04 22:26:17 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 5
+Next Queue Num: 6
+2023-08-04 22:26:18 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:26:18 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 6 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:26:18 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:26:18 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:26:33 - DEBUG - 
+[127.0.0.1:49661 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49661
+2023-08-04 22:26:33 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-04 22:26:33 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:26:33 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:26:33 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:26:33 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: desktop-fdivimf\ryan
+
+2023-08-04 22:26:33 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '434' to id: 6 in client_127_0_0_1_LPBMKE
+2023-08-04 22:26:33 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 6
+Next Queue Num: 7
+2023-08-04 22:26:33 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:26:33 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 7 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:26:33 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:26:33 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:26:48 - DEBUG - 
+[127.0.0.1:49662 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49662
+2023-08-04 22:26:48 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-04 22:26:48 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:26:48 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:26:48 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:26:48 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: desktop-fdivimf\ryan
+
+2023-08-04 22:26:48 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '434' to id: 7 in client_127_0_0_1_LPBMKE
+2023-08-04 22:26:48 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 7
+Next Queue Num: 8
+2023-08-04 22:26:48 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:26:48 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 8 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:26:48 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:26:48 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:27:03 - DEBUG - 
+[127.0.0.1:49663 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49663
+2023-08-04 22:27:03 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-04 22:27:03 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:27:03 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:27:03 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:27:03 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: desktop-fdivimf\ryan
+
+2023-08-04 22:27:03 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '434' to id: 8 in client_127_0_0_1_LPBMKE
+2023-08-04 22:27:03 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 8
+Next Queue Num: 9
+2023-08-04 22:27:03 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:27:03 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 9 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:27:03 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:27:03 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:27:19 - DEBUG - 
+[127.0.0.1:49674 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49674
+2023-08-04 22:27:19 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-04 22:27:19 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:27:19 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:27:19 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:27:19 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: desktop-fdivimf\ryan
+
+2023-08-04 22:27:24 - DEBUG - [DBHandler.enqueue_mclient_row()] Error: database is locked
+2023-08-04 22:27:24 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '434' to id: 9 in client_127_0_0_1_LPBMKE
+2023-08-04 22:27:24 - DEBUG - database is locked
+2023-08-04 22:27:24 - DEBUG - [DBHandler.add_response_mclient_row()] Error: database is locked
+2023-08-04 22:27:24 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 9
+Next Queue Num: 10
+2023-08-04 22:27:24 - DEBUG - [DBHandler.update_queue_tracker()] Error: database is locked
+2023-08-04 22:27:24 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'sleep', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:27:24 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 378
+2023-08-04 22:27:39 - DEBUG - 
+[127.0.0.1:49675 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49675
+2023-08-04 22:27:39 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-04 22:27:39 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:27:39 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:27:46 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:27:46 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: sleep recieved, Client sleeping
+2023-08-04 22:27:46 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '440' to id: 9 in client_127_0_0_1_LPBMKE
+2023-08-04 22:27:46 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 9
+Next Queue Num: 10
+2023-08-04 22:27:46 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:27:46 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 10 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:27:46 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:27:46 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:28:01 - DEBUG - 
+[127.0.0.1:49677 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49677
+2023-08-04 22:28:01 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-04 22:28:01 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:28:01 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:28:01 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:28:01 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: desktop-fdivimf\ryan
+
+2023-08-04 22:28:01 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '434' to id: 10 in client_127_0_0_1_LPBMKE
+2023-08-04 22:28:01 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 10
+Next Queue Num: 11
+2023-08-04 22:28:01 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:28:01 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 11 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:28:01 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:28:01 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:28:16 - DEBUG - 
+[127.0.0.1:49678 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49678
+2023-08-04 22:28:16 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-04 22:28:16 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:28:16 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:28:16 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:28:16 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: desktop-fdivimf\ryan
+
+2023-08-04 22:28:16 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '434' to id: 11 in client_127_0_0_1_LPBMKE
+2023-08-04 22:28:16 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 11
+Next Queue Num: 12
+2023-08-04 22:28:16 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:28:16 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 12 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:28:16 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:28:16 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:28:32 - DEBUG - 
+[127.0.0.1:49680 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49680
+2023-08-04 22:28:32 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-04 22:28:32 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:28:32 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:28:32 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:28:32 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: desktop-fdivimf\ryan
+
+2023-08-04 22:28:36 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '434' to id: 12 in client_127_0_0_1_LPBMKE
+2023-08-04 22:28:36 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 12
+Next Queue Num: 13
+2023-08-04 22:28:36 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:28:36 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 13 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:28:36 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:28:36 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:28:51 - DEBUG - 
+[127.0.0.1:49681 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49681
+2023-08-04 22:28:51 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-04 22:28:51 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:28:51 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:28:51 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:28:51 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: desktop-fdivimf\ryan
+
+2023-08-04 22:28:51 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '434' to id: 13 in client_127_0_0_1_LPBMKE
+2023-08-04 22:28:51 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 13
+Next Queue Num: 14
+2023-08-04 22:28:51 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:28:51 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 14 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:28:51 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:28:51 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:29:06 - DEBUG - 
+[127.0.0.1:49682 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49682
+2023-08-04 22:29:06 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-04 22:29:06 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:29:06 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:29:06 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:29:06 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: desktop-fdivimf\ryan
+
+2023-08-04 22:29:06 - DEBUG - ID 15 already exists in the client_127_0_0_1_LPBMKE table.
+2023-08-04 22:29:06 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '434' to id: 14 in client_127_0_0_1_LPBMKE
+2023-08-04 22:29:06 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 14
+Next Queue Num: 15
+2023-08-04 22:29:06 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:29:06 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 15 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:29:06 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'sleep', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:29:06 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:29:21 - DEBUG - 
+[127.0.0.1:49683 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49683
+2023-08-04 22:29:21 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-04 22:29:21 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:29:21 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:29:21 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:29:21 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: desktop-fdivimf\ryan
+
+2023-08-04 22:29:21 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '434' to id: 15 in client_127_0_0_1_LPBMKE
+2023-08-04 22:29:21 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 15
+Next Queue Num: 16
+2023-08-04 22:29:21 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:29:21 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 16 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:29:21 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:29:21 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:29:36 - DEBUG - 
+[127.0.0.1:49684 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49684
+2023-08-04 22:29:37 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-04 22:29:37 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:29:37 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:29:37 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:29:37 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: desktop-fdivimf\ryan
+
+2023-08-04 22:29:37 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '434' to id: 16 in client_127_0_0_1_LPBMKE
+2023-08-04 22:29:37 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 16
+Next Queue Num: 17
+2023-08-04 22:29:37 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:29:37 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 17 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:29:37 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:29:37 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:29:52 - DEBUG - 
+[127.0.0.1:49685 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49685
+2023-08-04 22:29:52 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-04 22:29:52 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:29:52 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:29:52 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:29:52 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: desktop-fdivimf\ryan
+
+2023-08-04 22:29:52 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '434' to id: 17 in client_127_0_0_1_LPBMKE
+2023-08-04 22:29:52 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 17
+Next Queue Num: 18
+2023-08-04 22:29:52 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:29:52 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 18 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:29:52 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:29:52 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:30:07 - DEBUG - 
+[127.0.0.1:49686 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49686
+2023-08-04 22:30:07 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-04 22:30:07 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:30:07 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:30:07 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:30:07 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: desktop-fdivimf\ryan
+
+2023-08-04 22:30:07 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '434' to id: 18 in client_127_0_0_1_LPBMKE
+2023-08-04 22:30:07 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 18
+Next Queue Num: 19
+2023-08-04 22:30:07 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:30:07 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 19 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:30:07 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:30:07 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:30:22 - DEBUG - 
+[127.0.0.1:49687 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49687
+2023-08-04 22:30:22 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-04 22:30:22 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:30:22 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:30:22 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:30:22 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: desktop-fdivimf\ryan
+
+2023-08-04 22:30:22 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '434' to id: 19 in client_127_0_0_1_LPBMKE
+2023-08-04 22:30:22 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 19
+Next Queue Num: 20
+2023-08-04 22:30:22 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:30:22 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 20 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:30:22 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:30:22 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383
+2023-08-04 22:30:38 - DEBUG - 
+[127.0.0.1:49688 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49688
+2023-08-04 22:30:38 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-04 22:30:38 - DEBUG - [Server.clientloginhandler(): LPBMKE ] Client 'LPBMKE' accepted, new thread created
+2023-08-04 22:30:38 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DevDB.db
+2023-08-04 22:30:38 - DEBUG - ID client_127_0_0_1_LPBMKE already exists in the client_queue_tracker table.
+2023-08-04 22:30:38 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] msg.msg_value: desktop-fdivimf\ryan
+
+2023-08-04 22:30:38 - DEBUG - [DBHandler (add_response_to_queue_number)] Adding '434' to id: 20 in client_127_0_0_1_LPBMKE
+2023-08-04 22:30:38 - DEBUG - [DB Handler (dequeue_client_row)] Current Queue #: 20
+Next Queue Num: 21
+2023-08-04 22:30:38 - DEBUG - [DBHandler (increment_queue_number)] Inrementing both  queue number +1 
+2023-08-04 22:30:38 - DEBUG - [DBHandler (get_msg_from_queue_number)] Getting msg from id: 21 in client_127_0_0_1_LPBMKE]
+2023-08-04 22:30:38 - DEBUG - [MaliciousClientHandler.handle_client(): LPBMKE ] Sending: {'general': {'action': 'powershell', 'client_id': '', 'client_type': '', 'password': ''}, 'conn': {'client_ip': '', 'client_port': ''}, 'msg': {'msg_to': '', 'msg_content': '', 'msg_command': 'powershell', 'msg_value': '', 'msg_length': '', 'msg_hash': ''}, 'stats': {'latest_checkin': '', 'device_hostname': '', 'device_username': ''}, 'security': {'client_hash': '', 'server_hash': ''}}
+2023-08-04 22:30:38 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 383

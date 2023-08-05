@@ -243,8 +243,9 @@ class ServerSockHandler:
             elif action == "!_clientlogin_!":
                 if not self.clientloginhandler(
                     serversocket = serversocket,
-                    dict_response_from_client=response_from_client,
-                    raw_response_from_client=response):
+                    raw_response_from_client=response,
+                    id = id
+                    ):
                     
                     continue
             
@@ -407,37 +408,33 @@ class ServerSockHandler:
             Comms.CommsHandler.send_msg(msg="1", conn=self.conn)
             logging.critical(f"[{self.client_remote_ip_port} -> Server (Logon)] Failed logon from '{username}'")  
 
-    def clientloginhandler(self, serversocket, dict_response_from_client, raw_response_from_client):
+    def clientloginhandler(self, serversocket=None, raw_response_from_client=None, id=None):
         '''
-        dict_response_from_client(dict): The response that has been decoded from the raw response
         raw_response_from_client(str): The raw string from the client. Needed for the MaliciousClientHandler to write to DB. Bandaid Fix
 
+        serversocket: The socket that this connection is held on.
+
+        id=The ID of the client. Note, this is different than the fullname. Ex: WJEIAZ
+        
 
         This function:
             - Sees if a client has logged in before
             - Creates an instance of MaliciousClientHandler.py
             - Puts that instance in a new thread
 
-        Note, if there is an exception, the function returns to continue on with the conn loop. might take some work
+        Note, if there is an exception, the function returns to continue on with the conn loop.
         
 
         ## Bulletproofed as of 07/26/2023
         '''
-        try:
-            id = dict_response_from_client["general"]["client_id"]
-        except KeyError as e:
-            logging.debug(f"[Server.clientloginhandler()] Invalid login message format: {e}")
-            return False
-
         if id is None:
-            logging.debug("[Server.clientloginhandler()] Client ID is None")
+            logging.debug("[Server.clientloginhandler()] Client ID is None. Returning False to continue with the next loop iteration")
             return False
 
         try:
 
             # Construct client name based on its IP and ID (IP & ID help avoid collisions in naming)
             client_name = "client_" + serversocket.getpeername()[0].replace(".", "_") + "_" + id
-
 
             '''
             Explanation: 
@@ -459,7 +456,7 @@ class ServerSockHandler:
             # Passing the response from client, the socket, and the id. 
             threading.Thread(
                 target=self.clients[client_name].handle_client,
-                args=(dict_response_from_client, raw_response_from_client, serversocket, id)
+                args=(raw_response_from_client, serversocket, id)
                 ).start()
 
             logging.debug(f"[Server.clientloginhandler(): {id} ] Client '{id}' accepted, new thread created")

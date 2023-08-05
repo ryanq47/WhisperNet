@@ -172,9 +172,24 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "0cdedbb1ea6ee4f0",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "Server/Visual Progress.canvas",
+                "viewState": {
+                  "x": -1147.4349552152687,
+                  "y": 615.925462204097,
+                  "zoom": 0.3596667367860258
+                }
+              }
+            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 12
       }
     ],
     "direction": "vertical"
@@ -341,10 +356,12 @@
       }
     ]
   },
-  "active": "0af081d4bf2f3eef",
+  "active": "0cdedbb1ea6ee4f0",
   "lastOpenFiles": [
-    "Clients/CSharp/High Level Operation Flow.canvas",
+    "Clients/Friendly Client/Auth Process.canvas",
     "Server/Visual Progress.canvas",
+    "Clients/Friendly Client",
+    "Clients/CSharp/High Level Operation Flow.canvas",
     "Clients/CSharp/Program File Structure.canvas",
     "Clients/CSharp/Functions Overview/Client.CS.md",
     "General/Notes.md",
@@ -374,7 +391,6 @@
     "Server/Canvas",
     "Server",
     "Clients/CSharp/Functions Overview/JsonHandler.cs.md",
-    "General/Networking & Protocols",
-    "General"
+    "General/Networking & Protocols"
   ]
 }

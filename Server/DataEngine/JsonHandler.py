@@ -175,12 +175,11 @@ class json_ops:
             return json_object
 
         except json.JSONDecodeError as e:
-            print(f"JSON data is not valid. Error message: {e}")
-            # logging.warning("[JSON Parser] JSON is not valid!")
-            ## no need to return value as this will only be seen by code. return 1 for fail
+            print(f"[DataEngine.JsonHandler.from_json() ] JSON data is not valid. Error message: {e}")
             return False
         except Exception as e:
-            print(f"error with JSON: {e}")
+            print(f"[DataEngine.JsonHandler.from_json()] error with JSON: {e}")
+            #print(json_string)
             return False
 
 
