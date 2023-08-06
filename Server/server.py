@@ -50,14 +50,16 @@ parser.add_argument('--port', help="The port to listen on", required=True)
 parser.add_argument('--quiet', help="No output to console", action='store_true')
 parser.add_argument('--fileserverport', help="what port for the file server", default=80)
 parser.add_argument('-c', '--generatekeys', help="ReGen Certs & Keys", action="store_true")
+parser.add_argument('--evasionprofile', help="The evasion profile", default="/EvasionProfiles/default.yaml")
 
-
+## Globals bad. I know
 args = parser.parse_args()
 ip = args.ip
 port = int(args.port)
 quiet = args.quiet
 fileserverport = args.fileserverport
 generate_keys = args.generatekeys
+evasion_profile = args.evasionprofile
 
 sys_path = os.path.dirname(os.path.realpath(__file__))
 #print(sys_path)
@@ -450,7 +452,10 @@ class ServerSockHandler:
                 self.current_clients.append(client_name)
 
                 # Create a new malicious client handler instance and add it to the clients dict
-                self.clients[client_name] = ClientEngine.MaliciousClientHandler.ServerMaliciousClientHandler()
+                # sys_path & evasion_profile are both globals. evasion_profile is from argparse, and sys_path is defined at startup
+                #print(f"SERVER.PY {sys_path} + {evasion_profile}")
+
+                self.clients[client_name] = ClientEngine.MaliciousClientHandler.ServerMaliciousClientHandler(sys_path=sys_path, evasion_profile_path=evasion_profile)
 
             # Create a new thread for this client's communication.
             # Passing the response from client, the socket, and the id. 

@@ -20,7 +20,8 @@
 	"stats": {
 		"latest_checkin": "time.now",
 		"device_hostname": "hostname",
-		"device_username": "username"
+		"device_username": "username",
+		"timestamp": "12/04/2014 18:36:20:659"
 	},
 	"security": {
 		"client_hash": "hash of client (later)",

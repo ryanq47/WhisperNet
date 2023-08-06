@@ -3,7 +3,7 @@ import logging
 
 ## temp sleep string
 sleep_string = '''{"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}'''
-ps_whoami_string = '''{"general": {"action": "powershell", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "powershell", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}'''
+ps_whoami_string = '''{"general": {"action": "powershell", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "powershell", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": "", "timestamp":"timestamp"}, "security": {"client_hash": "", "server_hash": ""}}'''
 
 
 class SQLDBHandler:
@@ -39,7 +39,7 @@ class SQLDBHandler:
             
 
             ## SHOULD be json, nothign to actually check that though
-            client_msg = self.get_msg_from_queue_number(client_name = client_name, next_queue_number=next_queue_number)
+            client_msg = self.get_command_from_queue_number(client_name = client_name, next_queue_number=next_queue_number)
             return client_msg
 
         except TypeError as te:
@@ -56,13 +56,14 @@ class SQLDBHandler:
             logging.debug(f"[DBHandler.update_queue_tracker()] Error: {e}")
             return sleep_string
         
-    def enqueue_client_row(self, client_name="TestClient", msg=ps_whoami_string, response="empty", requester="empty"):
+    def enqueue_client_row(self, client_name="TestClient", msg=ps_whoami_string, modified_command = "", response="empty", requester="empty"):
         """Enqueues a command to the queue
 
         Args:
             client_name (str, optional): The name of the client (which is used for the table)
             id (_type_, optional): The id of the message. increments by 1 upwards to track the queue
-            msg (str, optional): the JSON message going TO the client
+            msg (str, optional): the JSON message going TO the client.
+            modified_command: The command modified to be in line with the evasion profile. 
             response (str, optional): the JSON response FROM the client. 
             requester (str, optional): Which Fclient requested this action.
         """
@@ -80,7 +81,7 @@ class SQLDBHandler:
                 return
 
             # If the ID is unique, add to queue
-            insert_query = f'INSERT INTO {client_name} (id, msg, response, requester) VALUES (?, ?, ?, ?)'
+            insert_query = f'INSERT INTO {client_name} (id, command, response, requester) VALUES (?, ?, ?, ?)'
             values = (id, msg, response, requester)
             self.cursor.execute(insert_query, values)
             self.dbconn.commit()  
@@ -113,12 +114,16 @@ class SQLDBHandler:
         except Exception as e:
             logging.debug(f"[DBHandler.connect_to_db()] Error: {e}")
 
-    def get_msg_from_queue_number(self, client_name, next_queue_number) -> str:
-        self.cursor.execute(f'select msg from {client_name} where id = "{next_queue_number}"')
+    def get_command_from_queue_number(self, client_name, next_queue_number) -> str:
+        '''
+        Gets, and returns the next command in the queue based on the queue number passed to it. 
+        
+        '''
+        self.cursor.execute(f'select command from {client_name} where id = "{next_queue_number}"')
             ## [0] is needed, as this returns (MSG,)
         msg = self.cursor.fetchone()#[0]
 
-        logging.debug(f"[DBHandler (get_msg_from_queue_number)] Getting msg from id: {next_queue_number} in {client_name}]")
+        logging.debug(f"[DBHandler (get_command_from_queue_number)] Getting msg from id: {next_queue_number} in {client_name}]")
 
         if msg == None:
             raise TypeError
@@ -187,7 +192,8 @@ class SQLDBHandler:
         self.cursor.execute(f'''
         CREATE TABLE IF NOT EXISTS {client_name} (
         id INTEGER,
-        msg BLOB,
+        command BLOB,
+        modified_command BLOB,
         response BLOB,
         requester BLOB
         )

@@ -1,5 +1,7 @@
 import os
 import logging
+from datetime import datetime
+
 ################
 ## QOL Functions
 ################
@@ -50,3 +52,11 @@ def continue_anyways():
         return False
 
 
+def timestamp() -> str:
+    try:
+        time = datetime.utcnow()
+        return str(time)
+    except Exception as e:
+        logging.debug(f"[UtilsHandler.timestamp()]: Error with timestamp: {e}")
+        return "timestamperr"
+    

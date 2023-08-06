@@ -182,6 +182,15 @@ class json_ops:
             #print(json_string)
             return False
 
+    @staticmethod
+    def serialize(dict = None):
+        '''Serialzie to a JSON string from a Dict'''
+        try:
+            json_str = json.dumps(dict)
+            return json_str
+        except Exception as e:
+            print(f"[DataEngine.JsonHandler.serialize()] error with serizalining to JSON: {e}")
+            return False
 
 
     @staticmethod
@@ -193,13 +202,13 @@ class json_ops:
         ##msg
         msg_to = "", msg_content = "", msg_command = "sleep", msg_value = "", msg_length ="", msg_hash =  "",
         ## stats
-        latest_checkin = "", device_hostname = "", device_username = "",
+        latest_checkin = "", device_hostname = "", device_username = "", timestamp = "",
         ## Security: 
         client_hash = "", server_hash = ""
 
     ):
         """
-        Takes data & packs it into json for sending.
+        Takes data & packs it into json for sending. Use serialize if you already have a json string
         """
         json_dict = {
             "general": {
@@ -223,7 +232,8 @@ class json_ops:
             "stats": {
                 "latest_checkin": latest_checkin,
                 "device_hostname": device_hostname,
-                "device_username": device_username
+                "device_username": device_username,
+                "timestamp": timestamp
             },
             "security": {
                 "client_hash": client_hash,

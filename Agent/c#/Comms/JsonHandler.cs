@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Management.Automation;
 using JsonStruct;
 using Newtonsoft.Json;
@@ -32,7 +33,7 @@ namespace Client.Comms
             //msginfo
             string msgTo = "clientIP", string msgCommand = "Command", string msgValue = "EMPTY", string msgLength = "length", string msgHash = "NULL",
             //statsinfo
-            string latestCheckin = "", string deviceHostname = "", string deviceUsername = "",
+            string latestCheckin = "", string deviceHostname = "", string deviceUsername = "", string timeStamp = "",
             //secinfo
             string clientHash = "NULL", string serverHash = "NULL"
             )
@@ -71,6 +72,7 @@ namespace Client.Comms
                     latest_checkin = latestCheckin,
                     device_hostname = deviceHostname,
                     device_username = deviceUsername,
+                    timestamp = timeStamp,
 
                 },
 
@@ -200,6 +202,8 @@ namespace JsonStruct
             public string device_hostname { get; set; }
 
             public string device_username { get; set; }
+
+            public string timestamp { get; set; }
 
         }
 

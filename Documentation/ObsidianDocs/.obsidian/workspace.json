@@ -165,11 +165,14 @@
             "id": "47a8202f520c80a3",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "Clients/CSharp/Var & Func Naming Guide.md",
-                "mode": "preview",
-                "source": false
+                "file": "Server/Visual Progress.canvas",
+                "viewState": {
+                  "x": 840.0857864376269,
+                  "y": 220.1286848408402,
+                  "zoom": 0.5
+                }
               }
             }
           },
@@ -179,17 +182,17 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "Server/Visual Progress.canvas",
+                "file": "DataState.canvas",
                 "viewState": {
-                  "x": -1147.4349552152687,
-                  "y": 615.925462204097,
-                  "zoom": 0.3596667367860258
+                  "x": 192.06150005199743,
+                  "y": -387.091420061944,
+                  "zoom": -0.3333333333333333
                 }
               }
             }
           }
         ],
-        "currentTab": 12
+        "currentTab": 11
       }
     ],
     "direction": "vertical"
@@ -347,19 +350,23 @@
           }
         ],
         "direction": "vertical",
-        "x": 1503,
-        "y": 170,
-        "width": 1551,
-        "height": 1223,
+        "x": 3,
+        "y": 2,
+        "width": 1022,
+        "height": 766,
         "maximize": false,
         "zoom": 0
       }
     ]
   },
-  "active": "0cdedbb1ea6ee4f0",
+  "active": "47a8202f520c80a3",
   "lastOpenFiles": [
-    "Clients/Friendly Client/Auth Process.canvas",
+    "Clients/CSharp/Var & Func Naming Guide.md",
+    "DataState.canvas",
+    "Untitled.md",
+    "General/Naming & general/File Naming Definitions.md",
     "Server/Visual Progress.canvas",
+    "Clients/Friendly Client/Auth Process.canvas",
     "Clients/Friendly Client",
     "Clients/CSharp/High Level Operation Flow.canvas",
     "Clients/CSharp/Program File Structure.canvas",
@@ -368,10 +375,8 @@
     "Server/2.DataEngine/DBHandler.py/General.md",
     "Server/Canvas/Network & Command Flow.canvas",
     "Server/Canvas/FileStructure.canvas",
-    "General/Naming & general/File Naming Definitions.md",
     "General/Naming & general/Error Handling.md",
     "General/Networking & Protocols/Header breakdown - DEPRACATED.md",
-    "Clients/CSharp/Var & Func Naming Guide.md",
     "Server/Long Term gotchas.md",
     "Left off & todo.md",
     "Server/General.md",

