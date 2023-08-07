@@ -97,6 +97,16 @@ def receive_msg(conn=None) -> str:
         raise e
     
 
+def connect_to_server(server_conn_tuple = None) -> socket:
+        ''' Connect to server. Get a socket back
+        '''
+        ##SSL in future
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                
+        sock.connect(server_conn_tuple)
+
+        return sock
+
 # Currently not being used
 def _header_parse(header) -> dict:
     '''

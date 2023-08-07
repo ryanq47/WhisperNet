@@ -1,6 +1,7 @@
 try:
     import Logic.DecisionTree
     import Utils.AuthenticationHandler
+    import Comms.CommsHandler
 
 except Exception as e:
     print(f"[client.py] Import Error: {e}")
@@ -16,13 +17,13 @@ class Client:
     def user_loop(self):
         while True:
             ## this can be argparse as well, maybe move to a util
-            if self.server == None:
-                Utils.AuthenticationHandler.Server.get_server_to_connect_to()
+            if self.server == None: ## conencting to server
+                server_conn_tuple = Utils.AuthenticationHandler.Server.get_server_to_connect_to()
+                server_socket = Comms.CommsHandler.connect_to_server(server_conn_tuple)
 
-
-            if self.cookie == None:
+            if self.cookie == None: ## checking if cookie
                 print(f"Enter credentials for {self.server}:")
-                Utils.AuthenticationHandler.Credentials.authenticate_to_server()
+                Utils.AuthenticationHandler.Credentials.authenticate_to_server(server_socket)
 
             user_input = (f">{self.server[0]:self.server[1]}> ")     
             print(user_input)       

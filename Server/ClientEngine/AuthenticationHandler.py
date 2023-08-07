@@ -42,7 +42,9 @@ class Authentication:
         random_cookie = ''.join(random.SystemRandom().choice(char_string) for _ in range(min_length, max_length))
         return random_cookie
     
+    @staticmethod
     def validate_password(password):
+        client_profile = Utils.UtilsHandler.yaml_load(yaml_file=r"C:\Users\User\Documents\GitHub\logec-suite\Server\Config\ClientProfiles\default.yaml")
         pass
         '''
         Load password from somewhere
@@ -55,6 +57,14 @@ class Authentication:
         
         
         '''
+        server_password = client_profile["Authentication"]["Security"]["ServerPassword"]
+
+        ## need validation that the server_passwrod is actually someting
+
+        if server_password == password:
+            return True
+        else:
+            return False
 
 
 

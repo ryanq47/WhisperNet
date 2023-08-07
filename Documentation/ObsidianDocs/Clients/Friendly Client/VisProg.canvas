@@ -1,0 +1,18 @@
+{
+	"nodes":[
+		{"id":"45ce36546bc023c8","x":940,"y":-210,"width":250,"height":190,"type":"text","text":"## Client"},
+		{"id":"6993b3024e905583","x":-120,"y":-220,"width":280,"height":160,"type":"text","text":"## Server"},
+		{"id":"318e856d53366af0","x":920,"y":-420,"width":250,"height":60,"type":"text","text":"Cookie Auth"},
+		{"id":"abafed7756a152b3","x":940,"y":-640,"width":250,"height":60,"type":"text","text":"Password Auth"},
+		{"type":"text","text":"## Todo\n- Cookie auth storage\n\t- [ ] Store cookies in DB\n\t- [ ] Build logic for that\n\t\t- [ ] CookieExpireCheck\n\t\t- [ ] CookieAdd\n\t\t- [ ] CookieDelete\n\t\t- [ ] CookieCheck\n- Decision Tree\n\t- [ ] Build out","id":"1081e718439e4d6b","x":-580,"y":-320,"width":365,"height":320},
+		{"id":"46be716219b0ca86","x":1220,"y":-640,"width":340,"height":300,"type":"text","text":"## Todo\n- [x] implement Pack JSON to send to server\n- [ ] Logic for cookie vs password\n\t- [ ] self.cookie, etc\n- [ ] Send to server implementation"},
+		{"id":"38eea9390ed52ffa","x":220,"y":-1020,"width":500,"height":300,"type":"text","text":"## Global overview\nLeft off getting the authentication between client & server working. "}
+	],
+	"edges":[
+		{"id":"e57b2c6b89eb3f23","fromNode":"abafed7756a152b3","fromSide":"left","toNode":"6993b3024e905583","toSide":"top"},
+		{"id":"5cb4cdb1e49e85b0","fromNode":"318e856d53366af0","fromSide":"left","toNode":"6993b3024e905583","toSide":"top"},
+		{"id":"5e5bce9708e4610e","fromNode":"45ce36546bc023c8","fromSide":"top","toNode":"318e856d53366af0","toSide":"bottom"},
+		{"id":"be4a3b07f7e649f0","fromNode":"45ce36546bc023c8","fromSide":"top","toNode":"abafed7756a152b3","toSide":"bottom"},
+		{"id":"61dc5ca566f1ee44","fromNode":"6993b3024e905583","fromSide":"bottom","toNode":"45ce36546bc023c8","toSide":"bottom"}
+	]
+}

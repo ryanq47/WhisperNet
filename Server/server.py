@@ -236,14 +236,14 @@ class ServerSockHandler:
             if action == "!_userlogin_!":
                 ## If function returns false, continue the loop. IMO that's the easiest way to handle a failure here
                 if not self.userloginhandler(
-                    response_from_client=response_from_client,
+                    request_from_client=response_from_client,
                     serversocket = serversocket):
                     
                     continue
              
-            ## !_client_! handler
+            ## !_client_! handler -- change to AGENT
             elif action == "!_clientlogin_!":
-                if not self.clientloginhandler(
+                if not self.agentloginhandler(
                     serversocket = serversocket,
                     raw_response_from_client=response,
                     id = id
@@ -342,7 +342,7 @@ class ServerSockHandler:
         except Exception as e:
             logging.warning(f"{self.SxXX}:{e}")  
 
-    def userloginhandler(self, response_from_client, serversocket):
+    def userloginhandler(self, request_from_client, serversocket):
         '''
         This function:
             - Sees if a client has logged in before
@@ -351,66 +351,34 @@ class ServerSockHandler:
             - Puts that instance in a new thread
         
         '''
-        ## attempting to retrieve JSON values
-        username, password = None, None
-        try:
-            # Try to extract the username and password from the message
-             #username, password = self.id, self.message
-            username = response_from_client["general"]["client_id"]
-            password = response_from_client["general"]["password"]
+        ## needs to be update to full Data.JsonHanlder, etc
+        client_json_dict = json_parser.from_json(request_from_client)
+
+        auth_type   = client_json_dict["general"]["auth_type"]
+        password    = client_json_dict["general"]["password"]
+
         
-        except ValueError as e:
-                    # If there is a value error, set the username and password to None
-            logging.debug(f"[Server.userloginhandler() ] Value error with login, credentials probably passed wrong: {e}")
-            return False
-        except Exception as e:
-                    # If there is any other exception, set the username and password to None
-            logging.debug(f"[Server.userloginhandler() ] Unknown error with logon process: {e}")
-            return  False
-
-
-        ## all friendly clients are refered to with !!~ infront of their name (has to do with identifying them in the gloabls function)
-        friendly_client_name = f"!!~{username}"                    
+        if auth_type == "password":
+            ClientEngine.AuthenticationHandler.validate_password(password)
+            ClientEngine.AuthenticationHandler.generate_random_cookie()
+            #send cookie back
         
-        ## Running the authentication check, and starting the friendly client thread if successful
-        if ClientEngine.AuthenticationHandler.Authentication.password_eval(password):
-            try:
-                ##== sending the a-ok on successful authentication
-                Comms.CommsHandler.send_msg(msg="0", conn=self.conn)
-
-                logging.debug(f"[Server.userloginhandler() ]  Successful Logon from: {friendly_client_name}")
-                # Add friendly client to current clients list
-                self.friendly_current_clients.append(friendly_client_name)
-                            
-                ## This adds the class instance to the globals list, with the name being friendly_client_name. This allows
-                ## it to be accessed in other parts of the code, and is the backbone of how all this works. 
-                ## additionally, this is where the connection & parameters are passed off to the ServerFriendlyClientHandler class.
+        elif auth_type == "cookie":
+            if ClientEngine.AuthenticationHandler.validate_cookie(): ## maybe use DB to store cookies?
+                print("pass to ClientHandler...")
+                #decision_tree()
                 
-                self.friendly_clients[friendly_client_name] = ClientEngine.ClientHandler.ServerFriendlyClientHandler(self.conn, self.ADDR, self.json_parser)
-                globals()[friendly_client_name] = self.friendly_clients[friendly_client_name]
+                '''threading.Thread(
+                target=self.clients[client_name].handle_client,
+                args=(raw_response_from_client, serversocket, id)
+                ).start()'''
 
-                ## == Thread handler
-                # Create thread for the friendly client's communication
-                threading.Thread(
-                    target=self.friendly_clients[friendly_client_name].friendly_client_communication,
-                    args=(self.response, username)
-                    ).start()
-
-            except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
-                logging.warning(f"Friendly Client {friendly_client_name} disconnected")
-                return False
-            
-            except Exception as e:
-                logging.warning(f"[Friendly Client Error]:{e}")
-                return False
-                        
-        ## On failed authentication, sending back a 1 & log
         else:
-            #self.conn.send(str_encode("1"))
-            Comms.CommsHandler.send_msg(msg="1", conn=self.conn)
-            logging.critical(f"[{self.client_remote_ip_port} -> Server (Logon)] Failed logon from '{username}'")  
+            print(f"[ERROR STUFF HERE ] Bad Auth Method attemtped {auth_type}")
+            #logging.warning("[ERROR STUFF HERE ] Bad Auth Method attemtped")
 
-    def clientloginhandler(self, serversocket=None, raw_response_from_client=None, id=None):
+
+    def agentloginhandler(self, serversocket=None, raw_response_from_client=None, id=None):
         '''
         raw_response_from_client(str): The raw string from the client. Needed for the MaliciousClientHandler to write to DB. Bandaid Fix
 
@@ -430,7 +398,7 @@ class ServerSockHandler:
         ## Bulletproofed as of 07/26/2023
         '''
         if id is None:
-            logging.debug("[Server.clientloginhandler()] Client ID is None. Returning False to continue with the next loop iteration")
+            logging.debug("[Server.agentloginhandler()] Client ID is None. Returning False to continue with the next loop iteration")
             return False
 
         try:
@@ -464,14 +432,14 @@ class ServerSockHandler:
                 args=(raw_response_from_client, serversocket, id)
                 ).start()
 
-            logging.debug(f"[Server.clientloginhandler(): {id} ] Client '{id}' accepted, new thread created")
+            logging.debug(f"[Server.agentloginhandler(): {id} ] Client '{id}' accepted, new thread created")
 
         except KeyError as e:
-            logging.debug(f"[Server.clientloginhandler(): {id} ] Missing key in login message: {e}")
+            logging.debug(f"[Server.agentloginhandler(): {id} ] Missing key in login message: {e}")
             return False
 
         except Exception as e:
-            logging.debug(f"[Server.clientloginhandler(): {id} ] Unknown Error: {e}")
+            logging.debug(f"[Server.agentloginhandler(): {id} ] Unknown Error: {e}")
             raise  # Let the exception propagate, don't return False
 
         return True

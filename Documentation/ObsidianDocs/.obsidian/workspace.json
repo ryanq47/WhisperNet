@@ -199,11 +199,11 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "Clients/Friendly Client/Program File Structure 1.canvas",
+                "file": "Clients/Friendly Client/VisProg.canvas",
                 "viewState": {
-                  "x": -1196.820588235294,
-                  "y": 302.1397058823529,
-                  "zoom": -0.904909065759832
+                  "x": 731.3693285363798,
+                  "y": -488.94660410553126,
+                  "zoom": -0.3333333333333333
                 }
               }
             }
@@ -275,7 +275,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Clients/Friendly Client/Program File Structure 1.canvas",
+                "file": "Clients/Friendly Client/VisProg.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -292,7 +292,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Clients/Friendly Client/Program File Structure 1.canvas",
+                "file": "Clients/Friendly Client/VisProg.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -315,7 +315,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Clients/Friendly Client/Program File Structure 1.canvas"
+                "file": "Clients/Friendly Client/VisProg.canvas"
               }
             }
           }
@@ -338,12 +338,13 @@
   },
   "active": "0d3da263a1f61930",
   "lastOpenFiles": [
-    "Clients/Friendly Client/Auth Process.canvas",
+    "Server/Visual Progress.canvas",
+    "Clients/Friendly Client/VisProg.canvas",
     "Clients/Friendly Client/Program File Structure 1.canvas",
+    "Clients/Friendly Client/Auth Process.canvas",
     "Server/Canvas/FileStructure.canvas",
     "Clients/CSharp/Functions Overview/Client.CS.md",
     "Clients/CSharp/Program File Structure.canvas",
-    "Server/Visual Progress.canvas",
     "Clients/CSharp/Var & Func Naming Guide.md",
     "DataState.canvas",
     "Untitled.md",
