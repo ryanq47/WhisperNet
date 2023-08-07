@@ -19,12 +19,13 @@ class Client:
             if self.server == None:
                 Utils.AuthenticationHandler.Server.get_server_to_connect_to()
 
-                    # recursive call this again
 
             if self.cookie == None:
                 print(f"Enter credentials for {self.server}:")
                 Utils.AuthenticationHandler.Credentials.authenticate_to_server()
 
+            user_input = (f">{self.server[0]:self.server[1]}> ")     
+            print(user_input)       
 
         '''
         ## not doing a persistent cnonection to server, just one off's

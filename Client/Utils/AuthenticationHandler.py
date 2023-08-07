@@ -25,11 +25,13 @@ class Credentials:
         user = Credentials.get_username()
         passwd = Credentials.get_password()
 
-        ## send request to server...
+        ## send logni request to server...
 
-        ## get cookie...
+        ## get cookie... mmmm cookie monster delish
         if not cookie:
+            ## NO COOKIE?
             print("Authentication Failed")
+            Credentials.authenticate_to_server()
 
         return cookie
 
