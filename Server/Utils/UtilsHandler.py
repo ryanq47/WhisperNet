@@ -1,6 +1,7 @@
 import os
 import logging
 from datetime import datetime
+import yaml
 
 ################
 ## QOL Functions
@@ -60,3 +61,18 @@ def timestamp() -> str:
         logging.debug(f"[UtilsHandler.timestamp()]: Error with timestamp: {e}")
         return "timestamperr"
     
+def yaml_load(yaml_file = None):
+
+    '''Loads yaml. Also allows for "hot" reloads as this loads the yaml file each call
+    
+    <ignore> geenrate_random_cookie each time a new client joins. AKA edit your yaml code, 
+     and at next auth, you'll have new settings applied </ingore>
+    '''
+    try:
+        with open(yaml_file, 'r') as yaml_file:
+            yaml_dict_object = yaml.safe_load(yaml_file)
+            
+    except Exception as e:
+        print(f"[Utils.UtilsHandler.yaml_load()] Error loading YAML: {e}")
+
+    return yaml_dict_object

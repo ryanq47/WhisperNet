@@ -26,6 +26,7 @@ class Client:
 
             user_input = (f">{self.server[0]:self.server[1]}> ")     
             print(user_input)       
+            ## decision_tree(self.cookie, input)
 
         '''
         ## not doing a persistent cnonection to server, just one off's
@@ -41,6 +42,10 @@ class Client:
         
         '''
 
-
-c = Client()
-c.user_loop()
+try:
+    c = Client()
+    c.user_loop()
+except KeyboardInterrupt:
+    print("Exiting...")
+except Exception as e:
+    print(f"Unkown error: {e}")

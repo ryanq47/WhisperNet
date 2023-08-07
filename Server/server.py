@@ -24,7 +24,7 @@ try:
     import DataEngine.JsonHandler as json_parser
     #from DataEngine.RSAEncryptionHandler import Encryptor ##  Not needed, switching to SSL
 
-    import ClientEngine.FriendlyClientHandler
+    import ClientEngine.ClientHandler
     import ClientEngine.MaliciousClientHandler
     import ClientEngine.AuthenticationHandler
 
@@ -386,7 +386,7 @@ class ServerSockHandler:
                 ## it to be accessed in other parts of the code, and is the backbone of how all this works. 
                 ## additionally, this is where the connection & parameters are passed off to the ServerFriendlyClientHandler class.
                 
-                self.friendly_clients[friendly_client_name] = ClientEngine.FriendlyClientHandler.ServerFriendlyClientHandler(self.conn, self.ADDR, self.json_parser)
+                self.friendly_clients[friendly_client_name] = ClientEngine.ClientHandler.ServerFriendlyClientHandler(self.conn, self.ADDR, self.json_parser)
                 globals()[friendly_client_name] = self.friendly_clients[friendly_client_name]
 
                 ## == Thread handler

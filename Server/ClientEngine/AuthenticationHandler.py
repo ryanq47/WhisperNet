@@ -1,8 +1,10 @@
 ## Notes, everything in here must be bulletproof. lots of redundancy & try/excepts for that reason
-
+import random
+import Utils.UtilsHandler
 
 class Authentication:
     
+    ## OLD
     @staticmethod
     def password_eval(password = None, server_password = None) -> bool:
         """
@@ -27,3 +29,33 @@ class Authentication:
         except Exception as e:
             print(f"[Server (password_eval)] Error: {e}")
             return False
+        
+    @staticmethod
+    def generate_random_cookie():
+        ## temp hardcode
+        client_profile = Utils.UtilsHandler.yaml_load(yaml_file=r"C:\Users\User\Documents\GitHub\logec-suite\Server\Config\ClientProfiles\default.yaml")
+
+        char_string = client_profile["Authentication"]["Cookies"]["Characters"]
+        min_length  = client_profile["Authentication"]["Cookies"]["MinLength"]
+        max_length  = client_profile["Authentication"]["Cookies"]["MaxLength"]
+
+        random_cookie = ''.join(random.SystemRandom().choice(char_string) for _ in range(min_length, max_length))
+        return random_cookie
+    
+    def validate_password(password):
+        pass
+        '''
+        Load password from somewhere
+
+        if server_password == password:
+            return True
+
+        else:
+            return False
+        
+        
+        '''
+
+
+
+print(Authentication.generate_random_cookie())
