@@ -164,16 +164,18 @@
           {
             "id": "47a8202f520c80a3",
             "type": "leaf",
+            "pinned": true,
             "state": {
               "type": "canvas",
               "state": {
-                "file": "Server/Visual Progress.canvas",
+                "file": "Clients/Friendly Client/Program File Structure 1.canvas",
                 "viewState": {
-                  "x": 840.0857864376269,
-                  "y": 220.1286848408402,
-                  "zoom": 0.5
+                  "x": -217.705634715026,
+                  "y": 135.0676813471502,
+                  "zoom": -0.30576643394747793
                 }
-              }
+              },
+              "pinned": true
             }
           },
           {
@@ -258,7 +260,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Visual Progress.canvas",
+                "file": "Clients/Friendly Client/Program File Structure 1.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -275,7 +277,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Visual Progress.canvas",
+                "file": "Clients/Friendly Client/Program File Structure 1.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -298,7 +300,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Visual Progress.canvas"
+                "file": "Clients/Friendly Client/Program File Structure 1.canvas"
               }
             }
           }
@@ -361,20 +363,21 @@
   },
   "active": "47a8202f520c80a3",
   "lastOpenFiles": [
+    "Server/Canvas/FileStructure.canvas",
+    "Clients/CSharp/Functions Overview/Client.CS.md",
+    "Clients/Friendly Client/Program File Structure 1.canvas",
+    "Clients/CSharp/Program File Structure.canvas",
+    "Server/Visual Progress.canvas",
+    "Clients/Friendly Client/Auth Process.canvas",
     "Clients/CSharp/Var & Func Naming Guide.md",
     "DataState.canvas",
     "Untitled.md",
     "General/Naming & general/File Naming Definitions.md",
-    "Server/Visual Progress.canvas",
-    "Clients/Friendly Client/Auth Process.canvas",
     "Clients/Friendly Client",
     "Clients/CSharp/High Level Operation Flow.canvas",
-    "Clients/CSharp/Program File Structure.canvas",
-    "Clients/CSharp/Functions Overview/Client.CS.md",
     "General/Notes.md",
     "Server/2.DataEngine/DBHandler.py/General.md",
     "Server/Canvas/Network & Command Flow.canvas",
-    "Server/Canvas/FileStructure.canvas",
     "General/Naming & general/Error Handling.md",
     "General/Networking & Protocols/Header breakdown - DEPRACATED.md",
     "Server/Long Term gotchas.md",
