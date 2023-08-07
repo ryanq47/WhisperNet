@@ -192,9 +192,24 @@
                 }
               }
             }
+          },
+          {
+            "id": "0d3da263a1f61930",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "Clients/Friendly Client/Program File Structure 1.canvas",
+                "viewState": {
+                  "x": -1196.820588235294,
+                  "y": 302.1397058823529,
+                  "zoom": -0.904909065759832
+                }
+              }
+            }
           }
         ],
-        "currentTab": 11
+        "currentTab": 13
       }
     ],
     "direction": "vertical"
@@ -321,54 +336,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "floating": {
-    "id": "12558a7ec0498443",
-    "type": "floating",
-    "children": [
-      {
-        "id": "d7757a9cb95e7c57",
-        "type": "window",
-        "children": [
-          {
-            "id": "4302b67ba3f18670",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "e6770ea26c63d072",
-                "type": "leaf",
-                "state": {
-                  "type": "canvas",
-                  "state": {
-                    "file": "Clients/CSharp/High Level Operation Flow.canvas",
-                    "viewState": {
-                      "x": 358.70360110803324,
-                      "y": 318.88365650969524,
-                      "zoom": -0.7317609165270527
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        ],
-        "direction": "vertical",
-        "x": 3,
-        "y": 2,
-        "width": 1022,
-        "height": 766,
-        "maximize": false,
-        "zoom": 0
-      }
-    ]
-  },
-  "active": "47a8202f520c80a3",
+  "active": "0d3da263a1f61930",
   "lastOpenFiles": [
+    "Clients/Friendly Client/Auth Process.canvas",
+    "Clients/Friendly Client/Program File Structure 1.canvas",
     "Server/Canvas/FileStructure.canvas",
     "Clients/CSharp/Functions Overview/Client.CS.md",
-    "Clients/Friendly Client/Program File Structure 1.canvas",
     "Clients/CSharp/Program File Structure.canvas",
     "Server/Visual Progress.canvas",
-    "Clients/Friendly Client/Auth Process.canvas",
     "Clients/CSharp/Var & Func Naming Guide.md",
     "DataState.canvas",
     "Untitled.md",
