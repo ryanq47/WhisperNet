@@ -21,7 +21,11 @@ try:
 
     # My Modules
     #import json_parser_dev as json_parser
+
+    ## moving off of json_parser
     import DataEngine.JsonHandler as json_parser
+    import DataEngine.JsonHandler
+
     #from DataEngine.RSAEncryptionHandler import Encryptor ##  Not needed, switching to SSL
 
     import ClientEngine.ClientHandler
@@ -209,10 +213,10 @@ class ServerSockHandler:
         ##== Parsing the message sent to the server. 
             try:
                 # Waiting on client to send followup message
-                response = Comms.CommsHandler.receive_msg(conn=serversocket)
+                raw_response_from_client = Comms.CommsHandler.receive_msg(conn=serversocket)
 
                 ## Converting to json. Validation is disabled during dev.
-                response_from_client = self.json_parser.convert_and_validate(response)
+                response_from_client = self.json_parser.convert_and_validate(raw_response_from_client)
 
                 if response_from_client: 
                     client_type    = response_from_client["general"]["client_type"]
@@ -236,7 +240,7 @@ class ServerSockHandler:
             if action == "!_userlogin_!":
                 ## If function returns false, continue the loop. IMO that's the easiest way to handle a failure here
                 if not self.userloginhandler(
-                    request_from_client=response_from_client,
+                    request_from_client=raw_response_from_client,
                     serversocket = serversocket):
                     
                     continue
@@ -245,7 +249,7 @@ class ServerSockHandler:
             elif action == "!_clientlogin_!":
                 if not self.agentloginhandler(
                     serversocket = serversocket,
-                    raw_response_from_client=response,
+                    raw_response_from_client=raw_response_from_client,
                     id = id
                     ):
                     
@@ -352,19 +356,23 @@ class ServerSockHandler:
         
         '''
         ## needs to be update to full Data.JsonHanlder, etc
-        client_json_dict = json_parser.from_json(request_from_client)
+        client_json_dict = DataEngine.JsonHandler.json_ops.from_json(request_from_client)
 
         auth_type   = client_json_dict["general"]["auth_type"]
-        password    = client_json_dict["general"]["password"]
+        password    = client_json_dict["general"]["auth_value"]
 
         
         if auth_type == "password":
-            ClientEngine.AuthenticationHandler.validate_password(password)
-            ClientEngine.AuthenticationHandler.generate_random_cookie()
+            ClientEngine.AuthenticationHandler.Authentication.validate_password(password)
+            cookie = ClientEngine.AuthenticationHandler.Authentication.generate_random_cookie()
+            print(f"auth okay, cookie: {cookie}")
+
+            cookie_json = DataEngine.JsonHandler.json_ops.to_json_for_client(msg_value=cookie, msg_content="auth_cookie")
+            Comms.CommsHandler.send_msg(conn = serversocket, msg = cookie_json)
             #send cookie back
         
         elif auth_type == "cookie":
-            if ClientEngine.AuthenticationHandler.validate_cookie(): ## maybe use DB to store cookies?
+            if ClientEngine.AuthenticationHandler.Authentication.validate_cookie(): ## maybe use DB to store cookies?
                 print("pass to ClientHandler...")
                 #decision_tree()
                 

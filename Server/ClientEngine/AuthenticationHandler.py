@@ -33,7 +33,7 @@ class Authentication:
     @staticmethod
     def generate_random_cookie():
         ## temp hardcode
-        client_profile = Utils.UtilsHandler.yaml_load(yaml_file=r"C:\Users\User\Documents\GitHub\logec-suite\Server\Config\ClientProfiles\default.yaml")
+        client_profile = Utils.UtilsHandler.yaml_load(yaml_file=r"C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config\ClientProfiles\default.yaml")
 
         char_string = client_profile["Authentication"]["Cookies"]["Characters"]
         min_length  = client_profile["Authentication"]["Cookies"]["MinLength"]
@@ -44,8 +44,7 @@ class Authentication:
     
     @staticmethod
     def validate_password(password):
-        client_profile = Utils.UtilsHandler.yaml_load(yaml_file=r"C:\Users\User\Documents\GitHub\logec-suite\Server\Config\ClientProfiles\default.yaml")
-        pass
+        client_profile = Utils.UtilsHandler.yaml_load(yaml_file=r"C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config\ClientProfiles\default.yaml")
         '''
         Load password from somewhere
 
@@ -57,7 +56,7 @@ class Authentication:
         
         
         '''
-        server_password = client_profile["Authentication"]["Security"]["ServerPassword"]
+        server_password = client_profile["Authentication"]["Server"]["Password"]
 
         ## need validation that the server_passwrod is actually someting
 

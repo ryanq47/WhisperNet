@@ -17,6 +17,11 @@ Rationale: |
 ## == Authentication == ##
 Authentication:
   ## Authentication settings. Defaults work well, but crank it up if you want higher security
+    
+  Server:
+    ## HEY. Change this.
+    Password    : "password"
+
   Cookies:
     #Character which to create the cookies from
     Characters  : !!str "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -29,7 +34,5 @@ Authentication:
 
 ## == Security == ##
 Security:
-  ## HEY. Change this.
-  ServerPassword: "password"
   ##CIDR, which IP's can authenticate as clients
   IpAllow: !!str "0.0.0.0/0"

@@ -1,4 +1,5 @@
 try:
+    import argparse
     import Logic.DecisionTree
     import Utils.AuthenticationHandler
     import Comms.CommsHandler
@@ -6,6 +7,14 @@ try:
 except Exception as e:
     print(f"[client.py] Import Error: {e}")
     exit()
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--ip', help="The IP to connect to", required=True)
+parser.add_argument('--port', help="The port to connect to", required=True)
+
+args = parser.parse_args()
+ip = args.ip
+port = int(args.port)
 
 class Client:
     def __init__(self):
@@ -18,7 +27,7 @@ class Client:
         while True:
             ## this can be argparse as well, maybe move to a util
             if self.server == None: ## conencting to server
-                server_conn_tuple = Utils.AuthenticationHandler.Server.get_server_to_connect_to()
+                server_conn_tuple = (ip, port) #Utils.AuthenticationHandler.Server.get_server_to_connect_to()
                 server_socket = Comms.CommsHandler.connect_to_server(server_conn_tuple)
 
             if self.cookie == None: ## checking if cookie

@@ -49,3 +49,143 @@
 2023-08-07 14:38:44 - WARNING - ERRMSG: module 'DataEngine.JsonHandler' has no attribute 'from_json'
 
 2023-08-07 14:38:44 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-07 20:18:40 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-07 20:18:40 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-07 20:18:40 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 01:18:40.608218+00:00 =====
+2023-08-07 20:18:40 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-07 20:19:05 - DEBUG - 
+[127.0.0.1:60113 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:60113
+2023-08-07 20:19:10 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-07 20:19:10 - WARNING - ERRMSG: module 'DataEngine.JsonHandler' has no attribute 'from_json'
+
+2023-08-07 20:19:10 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-07 20:21:10 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-07 20:21:10 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-07 20:21:10 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 01:21:10.102759+00:00 =====
+2023-08-07 20:21:10 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-07 20:21:17 - DEBUG - 
+[127.0.0.1:60122 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:60122
+2023-08-07 20:21:21 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-07 20:21:21 - WARNING - ERRMSG: 'bool' object is not subscriptable
+
+2023-08-07 20:21:21 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-07 20:23:19 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-07 20:23:19 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-07 20:23:19 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 01:23:19.011726+00:00 =====
+2023-08-07 20:23:19 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-07 20:23:25 - DEBUG - 
+[127.0.0.1:60134 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:60134
+2023-08-07 20:23:29 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-07 20:23:29 - DEBUG - [Server.connection_handler() ] No message, action, type, or id recieved. , error=name 'response' is not defined
+2023-08-07 20:23:29 - WARNING - ERRMSG: local variable 'action' referenced before assignment
+
+2023-08-07 20:23:29 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-07 20:23:41 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-07 20:23:41 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-07 20:23:41 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 01:23:41.246000+00:00 =====
+2023-08-07 20:23:41 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-07 20:23:48 - DEBUG - 
+[127.0.0.1:60135 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:60135
+2023-08-07 20:23:51 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-07 20:23:51 - WARNING - ERRMSG: 'password'
+
+2023-08-07 20:23:51 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-07 20:27:52 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-07 20:27:52 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-07 20:27:52 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 01:27:52.942341+00:00 =====
+2023-08-07 20:27:52 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-07 20:28:01 - DEBUG - 
+[127.0.0.1:60150 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:60150
+2023-08-07 20:28:05 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-07 20:28:05 - WARNING - ERRMSG: 'password'
+
+2023-08-07 20:28:05 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-07 20:28:50 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-07 20:28:50 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-07 20:28:50 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 01:28:50.370573+00:00 =====
+2023-08-07 20:28:50 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-07 20:28:57 - DEBUG - 
+[127.0.0.1:60162 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:60162
+2023-08-07 20:29:05 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-07 20:29:05 - WARNING - ERRMSG: 'password'
+
+2023-08-07 20:29:05 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-07 20:30:05 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-07 20:30:05 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-07 20:30:05 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 01:30:05.169939+00:00 =====
+2023-08-07 20:30:05 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-07 20:30:10 - DEBUG - 
+[127.0.0.1:60164 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:60164
+2023-08-07 20:30:12 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-07 20:30:12 - WARNING - ERRMSG: 'password'
+
+2023-08-07 20:30:12 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-07 20:30:27 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-07 20:30:27 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-07 20:30:27 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 01:30:27.431737+00:00 =====
+2023-08-07 20:30:27 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-07 20:30:31 - DEBUG - 
+[127.0.0.1:60165 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:60165
+2023-08-07 20:30:36 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-07 20:30:36 - WARNING - ERRMSG: module 'ClientEngine.AuthenticationHandler' has no attribute 'validate_password'
+
+2023-08-07 20:30:36 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-07 20:31:14 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-07 20:31:14 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-07 20:31:14 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 01:31:14.731854+00:00 =====
+2023-08-07 20:31:14 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-07 20:31:18 - DEBUG - 
+[127.0.0.1:60168 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:60168
+2023-08-07 20:31:21 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-07 20:31:21 - WARNING - ERRMSG: 'Security'
+
+2023-08-07 20:31:21 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-07 20:32:32 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-07 20:32:32 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-07 20:32:32 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 01:32:32.647855+00:00 =====
+2023-08-07 20:32:32 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-07 20:32:36 - DEBUG - 
+[127.0.0.1:60169 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:60169
+2023-08-07 20:32:39 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-07 20:32:39 - WARNING - ERRMSG: 'Security'
+
+2023-08-07 20:32:39 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-07 20:34:35 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-07 20:34:35 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-07 20:34:35 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 01:34:35.778878+00:00 =====
+2023-08-07 20:34:35 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-07 20:34:39 - DEBUG - 
+[127.0.0.1:60174 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:60174
+2023-08-07 20:34:42 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-07 20:35:17 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-07 20:37:22 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-07 20:37:22 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-07 20:37:22 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 01:37:22.746250+00:00 =====
+2023-08-07 20:37:22 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-07 20:37:24 - DEBUG - 
+[127.0.0.1:60184 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:60184
+2023-08-07 20:37:28 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-07 20:45:08 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-07 20:45:08 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-07 20:45:08 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 01:45:08.365181+00:00 =====
+2023-08-07 20:45:08 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-07 20:45:10 - DEBUG - 
+[127.0.0.1:60194 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:60194
+2023-08-07 20:45:13 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-07 20:45:13 - ERROR - [Server (CommsHandler.py)] Error sending message: 'str' object has no attribute 'sendall'
+2023-08-07 20:45:13 - WARNING - ERRMSG: 'str' object has no attribute 'sendall'
+
+2023-08-07 20:45:13 - DEBUG - Socket Close: The socket was successfully closed

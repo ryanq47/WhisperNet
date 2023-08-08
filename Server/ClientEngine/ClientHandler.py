@@ -41,7 +41,7 @@ class ClientHandler:
         client_json_dict = DataEngine.JsonHandler.json_ops.from_json(request_from_client)
 
         auth_type   = client_json_dict["general"]["auth_type"]
-        password    = client_json_dict["general"]["password"]
+        password    = client_json_dict["general"]["auth_value"]
 
         
         if auth_type == "password":
