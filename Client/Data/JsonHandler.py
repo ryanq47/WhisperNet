@@ -1,5 +1,6 @@
 import json
 import re
+import logging
 
 ## should proooooly be a static method due to the compile method, have it return the validate object to self.json_compiled
 ## then pass that into the json_parser so it has the compiled data without re-compiling
@@ -26,11 +27,11 @@ class json_ops:
             return json_object
 
         except json.JSONDecodeError as e:
-            print(f"[DataEngine.JsonHandler.from_json() ] JSON data is not valid. Error message: {e}")
+            logging.debug(f"[DataEngine.JsonHandler.from_json() ] JSON data is not valid. Error message: {e}")
             return False
         except Exception as e:
-            print(f"[DataEngine.JsonHandler.from_json()] error with JSON: {e}")
-            #print(json_string)
+            logging.debug(f"[DataEngine.JsonHandler.from_json()] error with JSON: {e}")
+            #logging.debug(json_string)
             return False
 
     @staticmethod
@@ -40,18 +41,18 @@ class json_ops:
             json_str = json.dumps(dict)
             return json_str
         except Exception as e:
-            print(f"[DataEngine.JsonHandler.serialize()] error with serizalining to JSON: {e}")
+            logging.debug(f"[DataEngine.JsonHandler.serialize()] error with serizalining to JSON: {e}")
             return False
 
 
     @staticmethod
     def to_json(
         ## General
-        action = "sleep", client_id = "", client_type = "", password="",
+        action = "", client_id = "", client_type = "python client", password="",
         ## conn
         client_ip = "", client_port = "",
         ##msg
-        msg_to = "", msg_content = "", msg_command = "sleep", msg_value = "", msg_length ="", msg_hash =  "",
+        msg_to = "", msg_content = "", msg_command = "", msg_value = "", msg_length ="", msg_hash =  "",
         ## stats
         latest_checkin = "", device_hostname = "", device_username = "", timestamp = "",
         ## Security: 
@@ -92,14 +93,14 @@ class json_ops:
             }
         }
 
-        #print(json_dict)
+        #logging.debug(json_dict)
 
         json_str = json.dumps(json_dict)
 
         return json_str
 
     @staticmethod
-    def to_json_for_client(
+    def to_json_for_server(
         ## General
         action = "!_userlogin_!", client_id = "", client_type = "", auth_type = "", auth_value="",
         ## conn
@@ -146,7 +147,7 @@ class json_ops:
             }
         }
 
-        #print(json_dict)
+        #logging.debug(json_dict)
 
         json_str = json.dumps(json_dict)
 
@@ -185,4 +186,4 @@ json_data1 = {
 validated_stuff = fast_json_compile()
 json_convert_and_validate(validated_stuff, json.dumps(json_data1))'''
 
-#print(json_ops.to_json())
+#logging.debug(json_ops.to_json())

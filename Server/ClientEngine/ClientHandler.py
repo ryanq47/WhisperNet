@@ -6,7 +6,7 @@ try:
 
     import DataEngine.DBHandler
     import DataEngine.JsonHandler
-    import ClientEngine.AuthenticationHandler
+    import SecurityEngine.AuthenticationHandler
 
 except Exception as e:
     print(f"[ClientEngine.ClientHandler.py] Import Error: {e}")

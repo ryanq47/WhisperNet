@@ -189,3 +189,317 @@
 2023-08-07 20:45:13 - WARNING - ERRMSG: 'str' object has no attribute 'sendall'
 
 2023-08-07 20:45:13 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-08 09:34:37 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-08 09:34:37 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-08 09:34:37 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 16:34:37.532676+00:00 =====
+2023-08-08 09:34:37 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-08 09:34:53 - DEBUG - 
+[127.0.0.1:52835 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:52835
+2023-08-08 09:34:58 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 09:34:58 - WARNING - ERRMSG: local variable 'yaml_dict_object' referenced before assignment
+
+2023-08-08 09:34:58 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-08 09:41:29 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-08 09:41:29 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-08 09:41:29 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 16:41:29.059612+00:00 =====
+2023-08-08 09:41:29 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-08 09:41:30 - DEBUG - 
+[127.0.0.1:52881 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:52881
+2023-08-08 09:41:33 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 09:41:33 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 09:42:34 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-08 09:42:34 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-08 09:42:34 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 16:42:34.018009+00:00 =====
+2023-08-08 09:42:34 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-08 09:42:36 - DEBUG - 
+[127.0.0.1:52894 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:52894
+2023-08-08 09:42:39 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 09:42:39 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:12:49 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-08 10:12:49 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-08 10:12:49 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 17:12:49.447547+00:00 =====
+2023-08-08 10:12:49 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-08 10:12:52 - DEBUG - 
+[127.0.0.1:53047 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53047
+2023-08-08 10:12:57 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:12:57 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:16:37 - DEBUG - 
+[127.0.0.1:53065 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53065
+2023-08-08 10:16:41 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:16:41 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:17:34 - DEBUG - 
+[127.0.0.1:53068 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53068
+2023-08-08 10:17:37 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:17:37 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:19:39 - DEBUG - 
+[127.0.0.1:53070 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53070
+2023-08-08 10:19:42 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:19:42 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:20:02 - DEBUG - 
+[127.0.0.1:53072 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53072
+2023-08-08 10:20:05 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:20:05 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:20:44 - DEBUG - 
+[127.0.0.1:53077 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53077
+2023-08-08 10:20:46 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:20:46 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:22:15 - DEBUG - 
+[127.0.0.1:53081 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53081
+2023-08-08 10:22:18 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:22:18 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:22:37 - DEBUG - 
+[127.0.0.1:53084 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53084
+2023-08-08 10:22:40 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:22:40 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:23:44 - DEBUG - 
+[127.0.0.1:53085 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53085
+2023-08-08 10:23:48 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:23:48 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:24:07 - DEBUG - 
+[127.0.0.1:53086 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53086
+2023-08-08 10:24:10 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:24:10 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:24:22 - DEBUG - 
+[127.0.0.1:53087 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53087
+2023-08-08 10:24:25 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:24:25 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:26:03 - DEBUG - 
+[127.0.0.1:53093 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53093
+2023-08-08 10:26:06 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:26:06 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:26:19 - DEBUG - 
+[127.0.0.1:53094 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53094
+2023-08-08 10:26:22 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:26:22 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:26:33 - DEBUG - 
+[127.0.0.1:53095 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53095
+2023-08-08 10:26:36 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:26:36 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:30:45 - DEBUG - 
+[127.0.0.1:53115 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53115
+2023-08-08 10:30:49 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:30:49 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:31:21 - DEBUG - 
+[127.0.0.1:53116 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53116
+2023-08-08 10:31:22 - ERROR - [CommsHandler.receive_msg()] Error receiving message: unpack requires a buffer of 4 bytes
+2023-08-08 10:31:22 - DEBUG - [Server.connection_handler() ] No message, action, type, or id recieved. , error=unpack requires a buffer of 4 bytes
+2023-08-08 10:31:22 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:31:32 - DEBUG - 
+[127.0.0.1:53118 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53118
+2023-08-08 10:31:35 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:31:35 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:31:49 - DEBUG - 
+[127.0.0.1:53119 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53119
+2023-08-08 10:31:55 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:31:55 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:32:28 - DEBUG - 
+[127.0.0.1:53120 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53120
+2023-08-08 10:32:29 - ERROR - [CommsHandler.receive_msg()] Error receiving message: unpack requires a buffer of 4 bytes
+2023-08-08 10:32:29 - DEBUG - [Server.connection_handler() ] No message, action, type, or id recieved. , error=unpack requires a buffer of 4 bytes
+2023-08-08 10:32:29 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:32:44 - DEBUG - 
+[127.0.0.1:53121 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53121
+2023-08-08 10:32:45 - ERROR - [CommsHandler.receive_msg()] Error receiving message: unpack requires a buffer of 4 bytes
+2023-08-08 10:32:45 - DEBUG - [Server.connection_handler() ] No message, action, type, or id recieved. , error=unpack requires a buffer of 4 bytes
+2023-08-08 10:32:45 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:32:47 - DEBUG - 
+[127.0.0.1:53122 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53122
+2023-08-08 10:32:48 - ERROR - [CommsHandler.receive_msg()] Error receiving message: unpack requires a buffer of 4 bytes
+2023-08-08 10:32:48 - DEBUG - [Server.connection_handler() ] No message, action, type, or id recieved. , error=unpack requires a buffer of 4 bytes
+2023-08-08 10:32:48 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:32:49 - DEBUG - 
+[127.0.0.1:53123 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53123
+2023-08-08 10:32:50 - ERROR - [CommsHandler.receive_msg()] Error receiving message: unpack requires a buffer of 4 bytes
+2023-08-08 10:32:50 - DEBUG - [Server.connection_handler() ] No message, action, type, or id recieved. , error=unpack requires a buffer of 4 bytes
+2023-08-08 10:32:50 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:42:57 - DEBUG - 
+[127.0.0.1:53147 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53147
+2023-08-08 10:43:02 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:43:02 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:43:16 - DEBUG - 
+[127.0.0.1:53148 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53148
+2023-08-08 10:43:19 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:43:19 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:50:37 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-08 10:50:51 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-08 10:50:51 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-08 10:50:51 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 17:50:51.603965+00:00 =====
+2023-08-08 10:50:51 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-08 10:50:54 - DEBUG - 
+[127.0.0.1:53173 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53173
+2023-08-08 10:50:57 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:50:57 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:51:11 - DEBUG - 
+[127.0.0.1:53174 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53174
+2023-08-08 10:51:13 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:51:13 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:51:46 - DEBUG - 
+[127.0.0.1:53177 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53177
+2023-08-08 10:51:48 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:51:48 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:55:27 - DEBUG - 
+[127.0.0.1:53188 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53188
+2023-08-08 10:55:30 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:55:30 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 10:57:03 - DEBUG - 
+[127.0.0.1:53191 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53191
+2023-08-08 10:57:07 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 10:57:07 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:04:22 - DEBUG - 
+[127.0.0.1:53218 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53218
+2023-08-08 11:04:25 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:04:25 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:05:01 - DEBUG - 
+[127.0.0.1:53227 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53227
+2023-08-08 11:05:03 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:05:03 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:05:45 - DEBUG - 
+[127.0.0.1:53240 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53240
+2023-08-08 11:05:47 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 423
+2023-08-08 11:05:47 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:08:26 - DEBUG - 
+[127.0.0.1:53256 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53256
+2023-08-08 11:08:30 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:08:30 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:08:53 - DEBUG - 
+[127.0.0.1:53257 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53257
+2023-08-08 11:08:56 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:08:56 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:19:28 - DEBUG - 
+[127.0.0.1:53277 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53277
+2023-08-08 11:19:31 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:19:31 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:21:03 - DEBUG - 
+[127.0.0.1:53282 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53282
+2023-08-08 11:21:07 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:21:07 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:22:59 - DEBUG - 
+[127.0.0.1:53293 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53293
+2023-08-08 11:23:02 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:23:02 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:25:44 - DEBUG - 
+[127.0.0.1:53296 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53296
+2023-08-08 11:25:46 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:25:46 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:25:54 - DEBUG - 
+[127.0.0.1:53300 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53300
+2023-08-08 11:25:57 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:25:57 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:26:10 - DEBUG - 
+[127.0.0.1:53301 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53301
+2023-08-08 11:26:19 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 434
+2023-08-08 11:26:19 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:35:02 - DEBUG - 
+[127.0.0.1:53332 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53332
+2023-08-08 11:35:09 - ERROR - [CommsHandler.receive_msg()] Error receiving message: unpack requires a buffer of 4 bytes
+2023-08-08 11:35:09 - DEBUG - [Server.connection_handler() ] No message, action, type, or id recieved. , error=unpack requires a buffer of 4 bytes
+2023-08-08 11:35:09 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:35:28 - DEBUG - 
+[127.0.0.1:53334 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53334
+2023-08-08 11:35:30 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:35:30 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:37:25 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-08 11:37:25 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-08 11:37:25 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 18:37:25.749703+00:00 =====
+2023-08-08 11:37:25 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-08 11:37:34 - DEBUG - 
+[127.0.0.1:53341 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53341
+2023-08-08 11:37:39 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:37:39 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:38:48 - DEBUG - 
+[127.0.0.1:53343 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53343
+2023-08-08 11:38:51 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:38:51 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:40:06 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-08 11:40:06 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-08 11:40:06 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 18:40:06.288010+00:00 =====
+2023-08-08 11:40:06 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-08 11:40:11 - DEBUG - 
+[127.0.0.1:53347 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53347
+2023-08-08 11:40:14 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:40:14 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:43:06 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-08 11:43:06 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-08 11:43:06 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 18:43:06.190850+00:00 =====
+2023-08-08 11:43:06 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-08 11:43:17 - DEBUG - 
+[127.0.0.1:53360 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53360
+2023-08-08 11:43:25 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:43:25 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:47:01 - DEBUG - 
+[127.0.0.1:53370 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53370
+2023-08-08 11:47:03 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:47:03 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:50:39 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-08 11:50:39 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-08 11:50:39 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 18:50:39.562246+00:00 =====
+2023-08-08 11:50:39 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-08 11:50:44 - DEBUG - 
+[127.0.0.1:53388 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53388
+2023-08-08 11:50:48 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 423
+2023-08-08 11:50:48 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:51:44 - DEBUG - 
+[127.0.0.1:53392 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53392
+2023-08-08 11:51:48 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:51:48 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:52:03 - DEBUG - 
+[127.0.0.1:53395 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53395
+2023-08-08 11:52:06 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:52:06 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:53:37 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-08 11:53:37 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-08 11:53:37 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 18:53:37.209036+00:00 =====
+2023-08-08 11:53:37 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-08 11:53:46 - DEBUG - 
+[127.0.0.1:53404 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53404
+2023-08-08 11:53:52 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:53:52 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:55:46 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-08 11:55:46 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-08 11:55:46 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 18:55:46.046116+00:00 =====
+2023-08-08 11:55:46 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-08 11:55:59 - DEBUG - 
+[127.0.0.1:53414 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53414
+2023-08-08 11:56:02 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:56:02 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:57:24 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-08 11:57:24 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-08 11:57:24 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 18:57:24.735545+00:00 =====
+2023-08-08 11:57:24 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-08 11:57:24 - DEBUG - 
+[127.0.0.1:53419 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53419
+2023-08-08 11:57:28 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:57:28 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:57:30 - DEBUG - 
+[127.0.0.1:53420 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53420
+2023-08-08 11:57:32 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 433
+2023-08-08 11:57:32 - WARNING - ERRMSG: string indices must be integers
+
+2023-08-08 11:57:32 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-08 11:57:36 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-08 11:57:36 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-08 11:57:36 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-08 18:57:36.463120+00:00 =====
+2023-08-08 11:57:36 - DEBUG - [Server.start_server() ] Server started, and listening: ('0.0.0.0', 80)
+2023-08-08 11:57:40 - DEBUG - 
+[127.0.0.1:53422 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53422
+2023-08-08 11:57:42 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-08 11:57:42 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-08 11:57:47 - DEBUG - 
+[127.0.0.1:53423 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:53423
+2023-08-08 11:58:00 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 436
+2023-08-08 11:58:00 - WARNING - ERRMSG: string indices must be integers
+
+2023-08-08 11:58:00 - DEBUG - Socket Close: The socket was successfully closed

@@ -33,7 +33,7 @@ class Authentication:
     @staticmethod
     def generate_random_cookie():
         ## temp hardcode
-        client_profile = Utils.UtilsHandler.yaml_load(yaml_file=r"C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config\ClientProfiles\default.yaml")
+        client_profile = Utils.UtilsHandler.yaml_load(yaml_file=r"C:\Users\User\Documents\GitHub\logec-suite\Server\Config\ClientProfiles\default.yaml")
 
         char_string = client_profile["Authentication"]["Cookies"]["Characters"]
         min_length  = client_profile["Authentication"]["Cookies"]["MinLength"]
@@ -44,7 +44,7 @@ class Authentication:
     
     @staticmethod
     def validate_password(password):
-        client_profile = Utils.UtilsHandler.yaml_load(yaml_file=r"C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config\ClientProfiles\default.yaml")
+        client_profile = Utils.UtilsHandler.yaml_load(yaml_file=r"C:\Users\User\Documents\GitHub\logec-suite\Server\Config\ClientProfiles\default.yaml")
         '''
         Load password from somewhere
 
@@ -64,7 +64,34 @@ class Authentication:
             return True
         else:
             return False
+        
+    @staticmethod
+    def validate_cookie(request_cookie = None, valid_cookie = None):
+        '''
+        A comparison cookie tool. Returns True of the request cookie == valid_cookie
+
+        request_cookie: the cookie from the requester/client
+        valid_cookie: the current valid cookie for the client. Stored in a class instance
+        '''
+        ## preventing heckers from gaining access by sending a blank cookie
+        if request_cookie == None or valid_cookie == None:
+            return False
+
+        if request_cookie == valid_cookie:
+            print("Cookie accepted")
+            return True
+        
+        else:
+            print("Cookie rejected bitch")
+            return False
 
 
 
-print(Authentication.generate_random_cookie())
+class Cookie:
+    """
+    A class for making a cookie object. Holds data about valid cookies
+    """
+    def __init__(self):
+        self.valid_cookie = None
+
+#print(Authentication.generate_random_cookie())

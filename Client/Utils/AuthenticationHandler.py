@@ -2,7 +2,7 @@
 try:
     import Data.JsonHandler
     import Comms.CommsHandler
-
+    import logging
     from getpass import getpass
 
 except Exception as e:
@@ -32,22 +32,28 @@ class Credentials:
         passwd = Credentials.get_password()
 
         ##pack to json
-        auth_request_json = Data.JsonHandler.json_ops.to_json_for_client(client_id = user, auth_value=passwd, auth_type = "password")
+        auth_request_json = Data.JsonHandler.json_ops.to_json_for_server(client_id = user, auth_value=passwd, auth_type = "password", )
 
-        print(auth_request_json)
+        logging.debug(auth_request_json)
 
         ## send logni request to server...
         ## send_msg(socket = serversocket, msg = auth_request_json)
         Comms.CommsHandler.send_msg(msg=auth_request_json, conn=serversocket)
         
         ##depack...
-        print(Comms.CommsHandler.receive_msg(conn = serversocket))
+        raw_cookie_response = Comms.CommsHandler.receive_msg(conn = serversocket)
+
+        json_dict_cookie_response = Data.JsonHandler.json_ops.from_json(json_string = raw_cookie_response)
+
+        logging.debug(json_dict_cookie_response)
+
+        cookie = json_dict_cookie_response['msg']['msg_value']
 
         ## validate cookie is recueved
         ## get cookie... mmmm cookie monster delish
         if not cookie:
             ## NO COOKIE?
-            print("Authentication Failed")
+            logging.debug("Authentication Failed")
             Credentials.authenticate_to_server(serversocket)
 
         return cookie
@@ -67,5 +73,5 @@ class Server:
             return server
 
         except Exception as e:
-            print(f"Invalid input: {e}")
+            logging.warning(f"Invalid input: {e}")
             Server.get_server_to_connect_to()

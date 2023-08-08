@@ -30,7 +30,7 @@ try:
 
     import ClientEngine.ClientHandler
     import ClientEngine.MaliciousClientHandler
-    import ClientEngine.AuthenticationHandler
+    import SecurityEngine.AuthenticationHandler
 
     import Comms.CommsHandler
 
@@ -116,8 +116,8 @@ class ServerSockHandler:
         ##== Clients & lists
         self.clients = {}
         self.current_clients = []
-        self.friendly_current_clients = []
-        self.friendly_clients = {}
+        self.current_agents = []
+        self.current_clients_cookies = {}
 
         ## init per-client details. these exist so there are no unknown variable errors later
         self.client_type = ""
@@ -195,6 +195,7 @@ class ServerSockHandler:
         ## I kinda wanna name this loop, cascade sounds cool
         while True:
         ##== Initial handling of client
+            print("listening")
             
             # Cheap & dirty way to flip SSL on when ready
             SSL = False
@@ -238,8 +239,9 @@ class ServerSockHandler:
             
             ## == Decisions based on parsed messages
             if action == "!_userlogin_!":
+                print("userlogin")
                 ## If function returns false, continue the loop. IMO that's the easiest way to handle a failure here
-                if not self.userloginhandler(
+                if not self.clientloginhandler(
                     request_from_client=raw_response_from_client,
                     serversocket = serversocket):
                     
@@ -346,7 +348,7 @@ class ServerSockHandler:
         except Exception as e:
             logging.warning(f"{self.SxXX}:{e}")  
 
-    def userloginhandler(self, request_from_client, serversocket):
+    def clientloginhandler(self, request_from_client, serversocket):
         '''
         This function:
             - Sees if a client has logged in before
@@ -360,30 +362,65 @@ class ServerSockHandler:
 
         auth_type   = client_json_dict["general"]["auth_type"]
         password    = client_json_dict["general"]["auth_value"]
-
+        client_name = client_json_dict["general"]["client_id"]
         
+        ## Not doing cookies for now... maybe later.
         if auth_type == "password":
-            ClientEngine.AuthenticationHandler.Authentication.validate_password(password)
-            cookie = ClientEngine.AuthenticationHandler.Authentication.generate_random_cookie()
+            SecurityEngine.AuthenticationHandler.Authentication.validate_password(password)
+            cookie = SecurityEngine.AuthenticationHandler.Authentication.generate_random_cookie()
             print(f"auth okay, cookie: {cookie}")
 
+            ## add cookie to valid cookie class
+            ## need to store it somewhere
+            ## also think about what to name this/what to include
+
+            ## creating DICT ibject by name of client, assining a class to it
+            self.current_clients_cookies[client_name] = SecurityEngine.AuthenticationHandler.Cookie()
+            
+            ## adding cookie to this specific class
+            self.current_clients_cookies[client_name].cookie = cookie
+
+            ## debug
+            print(f"Class object {client_name} cookie: {self.current_clients_cookies[client_name].cookie}")
+
+            '''IDEA: 
+                    Security here - just checks to make sure that the client is the correct client, and not using a hijacked cookie. Maybe use hostname, and or ip/port as a metric for that
+                SecurityEngine.Security.check_client_hash()
+                SecurityEngine.Security.verify_ip() 
+
+            '''
+
+            ## if secutiry checks out...
+            ## create json to send back to client
             cookie_json = DataEngine.JsonHandler.json_ops.to_json_for_client(msg_value=cookie, msg_content="auth_cookie")
             Comms.CommsHandler.send_msg(conn = serversocket, msg = cookie_json)
-            #send cookie back
-        
+            print("cookie sent back")
+            ## from here, the client should take the cookie, hold onto it, and send a new request with the cookie in the auth_value feild of json.
+            ## it will then filter down to the 'elif auth_type == "cookie":'
+
         elif auth_type == "cookie":
-            if ClientEngine.AuthenticationHandler.Authentication.validate_cookie(): ## maybe use DB to store cookies?
+            print("cookie auth")
+            client_reqeust_cookie = client_json_dict["general"]["client_id"]["auth_value"]
+            valid_cookie = "classobject_of_client.cookie"
+
+            if SecurityEngine.AuthenticationHandler.Authentication.validate_cookie(request_cookie = client_reqeust_cookie, valid_cookie = ""): 
                 print("pass to ClientHandler...")
                 #decision_tree()
                 
+                ##security checks too
+                
+
+                ## if security checks out...
+                print("Theoretical Client Handler here")
                 '''threading.Thread(
                 target=self.clients[client_name].handle_client,
-                args=(raw_response_from_client, serversocket, id)
+                args=(request_from_client, serversocket, id)
                 ).start()'''
+        
 
         else:
             print(f"[ERROR STUFF HERE ] Bad Auth Method attemtped {auth_type}")
-            #logging.warning("[ERROR STUFF HERE ] Bad Auth Method attemtped")
+            #logging.warning("[ERROR STUFF HERE ] Bad Auth Method attemtped")'''
 
 
     def agentloginhandler(self, serversocket=None, raw_response_from_client=None, id=None):
@@ -412,7 +449,7 @@ class ServerSockHandler:
         try:
 
             # Construct client name based on its IP and ID (IP & ID help avoid collisions in naming)
-            client_name = "client_" + serversocket.getpeername()[0].replace(".", "_") + "_" + id
+            agent_name = "agent_" + serversocket.getpeername()[0].replace(".", "_") + "_" + id
 
             '''
             Explanation: 
@@ -424,19 +461,19 @@ class ServerSockHandler:
                     and start a thread with the relevant details. (i.e. the response from the client, the current socket, and the id)
 
             '''
-            if client_name not in self.current_clients:
-                self.current_clients.append(client_name)
+            if agent_name not in self.current_agents:
+                self.current_agents.append(agent_name)
 
                 # Create a new malicious client handler instance and add it to the clients dict
                 # sys_path & evasion_profile are both globals. evasion_profile is from argparse, and sys_path is defined at startup
                 #print(f"SERVER.PY {sys_path} + {evasion_profile}")
 
-                self.clients[client_name] = ClientEngine.MaliciousClientHandler.ServerMaliciousClientHandler(sys_path=sys_path, evasion_profile_path=evasion_profile)
+                self.clients[agent_name] = ClientEngine.MaliciousClientHandler.ServerMaliciousClientHandler(sys_path=sys_path, evasion_profile_path=evasion_profile)
 
             # Create a new thread for this client's communication.
             # Passing the response from client, the socket, and the id. 
             threading.Thread(
-                target=self.clients[client_name].handle_client,
+                target=self.clients[agent_name].handle_client,
                 args=(raw_response_from_client, serversocket, id)
                 ).start()
 
