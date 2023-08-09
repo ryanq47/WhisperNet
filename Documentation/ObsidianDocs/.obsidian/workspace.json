@@ -14,7 +14,7 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "Clients/CSharp/Program File Structure.canvas",
+                "file": "Agents/C Sharp Agent/Program File Structure.canvas",
                 "viewState": {
                   "x": -62.40800359526532,
                   "y": 262.24968221729,
@@ -103,7 +103,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Clients/CSharp/Functions Overview/Client.CS.md",
+                "file": "Agents/C Sharp Agent/Functions Overview/Client.CS.md",
                 "mode": "preview",
                 "source": false
               },
@@ -116,7 +116,7 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "Clients/CSharp/High Level Operation Flow.canvas",
+                "file": "Agents/C Sharp Agent/High Level Operation Flow.canvas",
                 "viewState": {
                   "x": 91.72896071532944,
                   "y": 429.8486958035893,
@@ -168,7 +168,7 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "Clients/Friendly Client/Program File Structure 1.canvas",
+                "file": "Clients/Python Client/Dev Docs/Program File Structure.canvas",
                 "viewState": {
                   "x": -217.705634715026,
                   "y": 135.0676813471502,
@@ -197,14 +197,11 @@
             "id": "0d3da263a1f61930",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "Clients/Friendly Client/Docs/Client Tree (shell).canvas",
-                "viewState": {
-                  "x": -1258.9510021932215,
-                  "y": 1189.3545573773981,
-                  "zoom": -0.8333333333333333
-                }
+                "file": "Clients/Python Client/Dev Docs/Actions & Plugin Dev Overview.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -275,7 +272,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Clients/Friendly Client/Docs/Client Tree (shell).canvas",
+                "file": "Clients/Python Client/Dev Docs/Actions & Plugin Dev Overview.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -292,7 +289,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Clients/Friendly Client/Docs/Client Tree (shell).canvas",
+                "file": "Clients/Python Client/Dev Docs/Actions & Plugin Dev Overview.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -315,7 +312,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Clients/Friendly Client/Docs/Client Tree (shell).canvas"
+                "file": "Clients/Python Client/Dev Docs/Actions & Plugin Dev Overview.md"
               }
             }
           }
@@ -338,23 +335,26 @@
   },
   "active": "0d3da263a1f61930",
   "lastOpenFiles": [
-    "Clients/Friendly Client/VisProg.canvas",
-    "Clients/Friendly Client/Docs/Client Tree (shell).canvas",
-    "Clients/Friendly Client/Docs/CLI Usage.md",
-    "Clients/Friendly Client/Docs/CLI Code Docs.md",
-    "Clients/Friendly Client/Docs",
-    "Server/Visual Progress.canvas",
-    "Clients/Friendly Client/Program File Structure 1.canvas",
-    "Clients/Friendly Client/Auth Process.canvas",
-    "Server/Canvas/FileStructure.canvas",
-    "Clients/CSharp/Functions Overview/Client.CS.md",
-    "Clients/CSharp/Program File Structure.canvas",
-    "Clients/CSharp/Var & Func Naming Guide.md",
+    "Clients/Python Client/Dev Docs/CLI Code Docs.md",
+    "Clients/Python Client/Dev Docs/Actions & Plugin Dev Overview.md",
+    "Clients/Python Client/Dev Docs/System Plugins Map.canvas",
+    "Clients/Python Client/VisProg.canvas",
+    "Clients/Python Client/1. Getting Started.md",
+    "Clients/Python Client/Dev Docs/Program File Structure.canvas",
+    "Clients/Python Client/Dev Docs/Auth Process.canvas",
     "DataState.canvas",
+    "Clients",
+    "Agents/C Sharp Agent/High Level Operation Flow.canvas",
+    "Clients/Python Client/Dev Docs/CLI Usage.md",
+    "Clients/Python Client/Dev Docs",
+    "Server/Visual Progress.canvas",
+    "Server/Canvas/FileStructure.canvas",
+    "Agents/C Sharp Agent/Functions Overview/Client.CS.md",
+    "Agents/C Sharp Agent/Program File Structure.canvas",
+    "Agents/C Sharp Agent/Var & Func Naming Guide.md",
     "Untitled.md",
     "General/Naming & general/File Naming Definitions.md",
-    "Clients/Friendly Client",
-    "Clients/CSharp/High Level Operation Flow.canvas",
+    "Clients/Python Client",
     "General/Notes.md",
     "Server/2.DataEngine/DBHandler.py/General.md",
     "Server/Canvas/Network & Command Flow.canvas",
@@ -377,7 +377,6 @@
     "Server/Server.py Docs/Connection Handler Method.md",
     "Server/Server.py Docs",
     "Server/Canvas",
-    "Server",
-    "Clients/CSharp/Functions Overview/JsonHandler.cs.md"
+    "Agents/C Sharp Agent/Functions Overview/JsonHandler.cs.md"
   ]
 }

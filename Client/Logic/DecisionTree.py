@@ -18,12 +18,12 @@ class Trees:
 
         ## no () here, it's looking for the class/object name itself, not to execute it
         dispatch = {
-            "help": Actions._display_help,
-            "exit": Actions._exit,
-            "clear": Actions._display_clear,
-            "systemshell": Actions._set_dir_system_shell,
-            "home":Actions._set_dir_home_shell,
-            "show platform data": Actions._show_platform_data,
+            "help": SystemDefaultActions._display_help,
+            "exit": SystemDefaultActions._exit,
+            "clear": SystemDefaultActions._display_clear,
+            "systemshell": SystemDefaultActions._set_dir_system_shell,
+            "home":SystemDefaultActions._set_dir_home_shell,
+            "show platform data": SystemDefaultActions._show_platform_data,
             "connect to server": Utils.AuthenticationHandler.Server.get_server_to_connect_to,
             "show": Trees.prefix_show_tree
         }
@@ -70,8 +70,8 @@ class Trees:
         '''
 
         dispatch = {
-            "help": Actions._display_help,
-            "platform data": Actions._display_help,
+            "help": SystemDefaultActions._display_help,
+            "platform data": SystemDefaultActions._display_help,
         }
 
 
@@ -88,9 +88,9 @@ class Trees:
     def system_shell_tree(cmd = None):
         dispatch = {
             "help": Plugins.native_SystemShell.SystemShellActions.SystemShellActions._display_help,
-            "home": Actions._set_dir_home_shell,
-            "exit": Actions._set_dir_home_shell,
-            "clear": Actions._display_clear
+            "home": SystemDefaultActions._set_dir_home_shell,
+            "exit": SystemDefaultActions._set_dir_home_shell,
+            "clear": SystemDefaultActions._display_clear
         }
 
 
@@ -110,7 +110,7 @@ class Trees:
 
 ## move these to their own file
 
-class Actions:
+class SystemDefaultActions:
     """
     Actions to take based on the decision trees above
 
@@ -123,6 +123,7 @@ class Actions:
         'exit'\t: Exits the program
         'clear' : Clears the screen
         'systemshell': Spawns a propmt that passes commands to the local system
+        'plugins':Shows loaded plugins [NOT IMPLEMENTED yet]
               """)
     
     def _exit():

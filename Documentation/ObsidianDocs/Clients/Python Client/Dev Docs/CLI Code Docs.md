@@ -25,9 +25,9 @@ The `Trees` class forms the core of the CLI interface. It defines the decision t
 - If a valid sub-command is detected, the corresponding action is executed.
 - If an invalid sub-command is detected, an error message is displayed.
 
-### 2. `Actions` Class
+### 2. `SystemDefaultActions` Class (UDPAT EME)
 
-The `Actions` class defines methods that correspond to different actions triggered by user commands. These methods handle specific functionalities and are linked to the `dispatch` dictionaries in the `Trees` class.
+The SystemDefaultActions class defines methods that correspond to different actions triggered by user commands. These methods handle specific functionalities and are linked to the `dispatch` dictionaries in the `Trees` class.
 
 ### 3. Command Structure
 

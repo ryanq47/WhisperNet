@@ -5,6 +5,7 @@ try:
     import Logic.DecisionTree
     import Utils.AuthenticationHandler
     import Comms.CommsHandler
+    import Plugins.PluginHandler
     import Display.DisplayHandler
     import Utils.PlatformData
 
@@ -113,6 +114,7 @@ class Client:
                     self.current_dir = dir
 
     def startup_tasks(self):
+        Plugins.PluginHandler.PluginHandler._display_loaded()
         Utils.PlatformData.Platform.gather_data()
 
 
