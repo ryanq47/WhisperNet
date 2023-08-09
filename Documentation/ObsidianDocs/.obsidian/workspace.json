@@ -201,8 +201,8 @@
               "state": {
                 "file": "Clients/Friendly Client/Docs/Client Tree (shell).canvas",
                 "viewState": {
-                  "x": -138.56473945519832,
-                  "y": 928.7079119071952,
+                  "x": -1258.9510021932215,
+                  "y": 1189.3545573773981,
                   "zoom": -0.8333333333333333
                 }
               }
@@ -336,7 +336,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "e250de59ef9ddaa7",
+  "active": "0d3da263a1f61930",
   "lastOpenFiles": [
     "Clients/Friendly Client/VisProg.canvas",
     "Clients/Friendly Client/Docs/Client Tree (shell).canvas",

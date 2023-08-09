@@ -103,10 +103,14 @@ class Client:
             elif self.current_dir == "home/systemshell":
                 results = Logic.DecisionTree.Trees.system_shell_tree(cmd = user_input)
                 
+                output  = results["output_from_action"]
+                dir     = results["dir"]
 
-                if results != None:
-                    logging.debug(f"home/systemshell: Results from tree: {results}")
-                    self.current_dir = results
+                print(output)
+                #logging.debug(f"results of command: {output}, Results of Dir: {dir}")
+
+                if dir != None:
+                    self.current_dir = dir
 
     def startup_tasks(self):
         Utils.PlatformData.Platform.gather_data()

@@ -4,7 +4,7 @@ import Comms.CommsHandler
 import Utils.PlatformData
 import Utils.AuthenticationHandler
 import Display.DisplayHandler
-import Utils.SystemShellHandler
+import Plugins.native_SystemShell.SystemShellActions
 import os
 from collections.abc import Mapping
 
@@ -87,9 +87,10 @@ class Trees:
     
     def system_shell_tree(cmd = None):
         dispatch = {
-            "help": SystemShellActions._display_help,
+            "help": Plugins.native_SystemShell.SystemShellActions.SystemShellActions._display_help,
             "home": Actions._set_dir_home_shell,
-            "exit": Actions._set_dir_home_shell
+            "exit": Actions._set_dir_home_shell,
+            "clear": Actions._display_clear
         }
 
 
@@ -104,7 +105,7 @@ class Trees:
         if action:
             return action()
         else:
-            SystemShellActions._run_command(command = cmd)
+            return Plugins.native_SystemShell.SystemShellActions.SystemShellActions._run_command(command = cmd)
             #print("Invalid 'show' command. Type 'show help' for available commands.")
 
 ## move these to their own file
@@ -120,6 +121,7 @@ class Actions:
         print("""Help Menu:\n
         'help'\t: Spawns this menu
         'exit'\t: Exits the program
+        'clear' : Clears the screen
         'systemshell': Spawns a propmt that passes commands to the local system
               """)
     
@@ -149,18 +151,6 @@ class Actions:
         '''
         return "home"
 
-class SystemShellActions:
-    '''
-    Everythign here takes teh command arg, but not every method does something with it. 
-    Rationle: easier to do this, than build in specific logic above in the system_shell_tree action() method
-    
-    '''
-    def _display_help():
-        print("Help Menu:\n\t'help'\t: Spawns this menu\n\t\'home' or 'exit': will take you to the home shell\n\t'<Any Other command>'\t: Will get passed to whatever shell you are using (powershell, bash, etc) and return the results.")
-
-
-    def _run_command(command = None):
-        Utils.SystemShellHandler.SystemShell.run_via_os(command = command)
 
 
 
