@@ -389,7 +389,6 @@ class ServerSockHandler:
                 SecurityEngine.Security.verify_ip() 
 
             '''
-
             ## if secutiry checks out...
             ## create json to send back to client
             cookie_json = DataEngine.JsonHandler.json_ops.to_json_for_client(msg_value=cookie, msg_content="auth_cookie")
