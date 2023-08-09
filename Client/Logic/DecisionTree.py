@@ -4,6 +4,7 @@ import Comms.CommsHandler
 import Utils.PlatformData
 import Utils.AuthenticationHandler
 import Display.DisplayHandler
+import Utils.SystemShellHandler
 import os
 from collections.abc import Mapping
 
@@ -20,18 +21,27 @@ class Trees:
             "help": Actions._display_help,
             "exit": Actions._exit,
             "clear": Actions._display_clear,
+            "systemshell": Actions._set_dir_system_shell,
+            "home":Actions._set_dir_home_shell,
             "show platform data": Actions._show_platform_data,
             "connect to server": Utils.AuthenticationHandler.Server.get_server_to_connect_to,
             "show": Trees.prefix_show_tree
         }
 
         ## this can fail easily if input == ""
+        '''
+        Idea for returns:
+            the current dir is returned from these, if not None << sticking with this for now. easy enoguht to switch to the other option
+
+            or return a dict of current data? i.e. current dir, command results, etc
+        
+        '''
         action = dispatch.get((user_input.lower().split())[0])
         if action == Trees.prefix_show_tree:
             action(cmd = user_input)
 
         elif action:
-            action()
+            return action()
         else:
             print("Invalid command. Type 'help' for available commands.")
 
@@ -74,6 +84,28 @@ class Trees:
 
 
         print(f"prefix, whole cmd: {cmd}")
+    
+    def system_shell_tree(cmd = None):
+        dispatch = {
+            "help": SystemShellActions._display_help,
+            "home": Actions._set_dir_home_shell,
+            "exit": Actions._set_dir_home_shell
+        }
+
+
+        action = dispatch.get(cmd)
+
+        '''
+        Due to the natuer of everything getting passed into the system shell, 
+        only certain commands (i.e. help) are called via action(). eveerything else is passed
+        directly to _run_command
+        
+        '''
+        if action:
+            return action()
+        else:
+            SystemShellActions._run_command(command = cmd)
+            #print("Invalid 'show' command. Type 'show help' for available commands.")
 
 ## move these to their own file
 
@@ -85,7 +117,11 @@ class Actions:
         _prefix_whatitdoes/command
     """
     def _display_help():
-        print("Help Menu:\n\t'help'\t: Spawns this menu\n\t'exit'\t: Exits the program")
+        print("""Help Menu:\n
+        'help'\t: Spawns this menu
+        'exit'\t: Exits the program
+        'systemshell': Spawns a propmt that passes commands to the local system
+              """)
     
     def _exit():
         exit("Exiting...")
@@ -96,8 +132,35 @@ class Actions:
     def _show_platform_data():
         Display.DisplayHandler.Display.print_platform_data()
 
+    def _set_dir_system_shell():
+        '''
+        A local TTY passthroguh. Not fully interactive at the moment
+
+        at the moment this just retuns the "home/systemshell", which changes the directory to the shell dir
+        '''
+        return "home/systemshell"
+        print('shell')
+        pass
+    def _set_dir_home_shell():
+        '''
+        A local TTY passthroguh. Not fully interactive at the moment
+
+        at the moment this just retuns the "home/systemshell", which changes the directory to the shell dir
+        '''
+        return "home"
+
+class SystemShellActions:
+    '''
+    Everythign here takes teh command arg, but not every method does something with it. 
+    Rationle: easier to do this, than build in specific logic above in the system_shell_tree action() method
+    
+    '''
+    def _display_help():
+        print("Help Menu:\n\t'help'\t: Spawns this menu\n\t\'home' or 'exit': will take you to the home shell\n\t'<Any Other command>'\t: Will get passed to whatever shell you are using (powershell, bash, etc) and return the results.")
 
 
+    def _run_command(command = None):
+        Utils.SystemShellHandler.SystemShell.run_via_os(command = command)
 
 
 

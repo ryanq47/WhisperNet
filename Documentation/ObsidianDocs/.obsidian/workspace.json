@@ -184,11 +184,11 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "Clients/Friendly Client/VisProg.canvas",
+                "file": "DataState.canvas",
                 "viewState": {
-                  "x": 771.0449620801733,
-                  "y": -391.86511375947987,
-                  "zoom": -0.6481637702838257
+                  "x": 192.06150005199743,
+                  "y": -387.091420061944,
+                  "zoom": -0.3333333333333333
                 }
               }
             }
@@ -197,16 +197,19 @@
             "id": "0d3da263a1f61930",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "Clients/Friendly Client/Docs/CLI Code Docs.md",
-                "mode": "preview",
-                "source": false
+                "file": "Clients/Friendly Client/Docs/Client Tree (shell).canvas",
+                "viewState": {
+                  "x": -138.56473945519832,
+                  "y": 928.7079119071952,
+                  "zoom": -0.8333333333333333
+                }
               }
             }
           }
         ],
-        "currentTab": 12
+        "currentTab": 13
       }
     ],
     "direction": "vertical"
@@ -272,7 +275,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Clients/Friendly Client/VisProg.canvas",
+                "file": "Clients/Friendly Client/Docs/Client Tree (shell).canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -289,7 +292,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Clients/Friendly Client/VisProg.canvas",
+                "file": "Clients/Friendly Client/Docs/Client Tree (shell).canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -312,7 +315,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Clients/Friendly Client/VisProg.canvas"
+                "file": "Clients/Friendly Client/Docs/Client Tree (shell).canvas"
               }
             }
           }
@@ -333,12 +336,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0cdedbb1ea6ee4f0",
+  "active": "e250de59ef9ddaa7",
   "lastOpenFiles": [
-    "DataState.canvas",
-    "Clients/Friendly Client/Docs/CLI Code Docs.md",
     "Clients/Friendly Client/VisProg.canvas",
+    "Clients/Friendly Client/Docs/Client Tree (shell).canvas",
     "Clients/Friendly Client/Docs/CLI Usage.md",
+    "Clients/Friendly Client/Docs/CLI Code Docs.md",
     "Clients/Friendly Client/Docs",
     "Server/Visual Progress.canvas",
     "Clients/Friendly Client/Program File Structure 1.canvas",
@@ -347,6 +350,7 @@
     "Clients/CSharp/Functions Overview/Client.CS.md",
     "Clients/CSharp/Program File Structure.canvas",
     "Clients/CSharp/Var & Func Naming Guide.md",
+    "DataState.canvas",
     "Untitled.md",
     "General/Naming & general/File Naming Definitions.md",
     "Clients/Friendly Client",

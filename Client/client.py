@@ -13,13 +13,14 @@ except Exception as e:
     exit()
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--ip', help="The IP to connect to", required=True)
-parser.add_argument('--port', help="The port to connect to", required=True)
+## nuke these 2
+parser.add_argument('--ip', help="The IP to connect to", required=False)
+parser.add_argument('--port', help="The port to connect to", required=False)
 parser.add_argument('--debug','-d', help="The port to connect to", action="store_false")
 
 args = parser.parse_args()
-ip = args.ip
-port = int(args.port)
+#ip = args.ip
+#port = int(args.port)
 debug = args.debug
 
 
@@ -82,7 +83,15 @@ class Client:
             user_input = input(f"\n{self.current_dir} >> ")
 
             if self.current_dir == "home":
-                Logic.DecisionTree.Trees.home_tree(user_input = user_input)
+                results = Logic.DecisionTree.Trees.home_tree(user_input = user_input)
+
+                if results != None:
+                    self.current_dir = results
+                '''
+                if results of command == dir
+                
+                or a dir update somehow
+                '''
                 ## decision tree local
                 ...
 
@@ -90,6 +99,14 @@ class Client:
             elif self.current_dir == "home/server":
                 print("server_decision_tree")
                 ...
+
+            elif self.current_dir == "home/systemshell":
+                results = Logic.DecisionTree.Trees.system_shell_tree(cmd = user_input)
+                
+
+                if results != None:
+                    logging.debug(f"home/systemshell: Results from tree: {results}")
+                    self.current_dir = results
 
     def startup_tasks(self):
         Utils.PlatformData.Platform.gather_data()
