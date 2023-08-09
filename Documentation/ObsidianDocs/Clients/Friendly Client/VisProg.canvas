@@ -6,14 +6,17 @@
 		{"type":"text","text":"Password Auth","id":"abafed7756a152b3","x":940,"y":-640,"width":250,"height":60},
 		{"type":"text","text":"## Todo\n- Cookie auth storage\n\t- [ ] Store cookies in DB\n\t- [ ] Build logic for that\n\t\t- [ ] CookieExpireCheck\n\t\t- [ ] CookieAdd\n\t\t- [ ] CookieDelete\n\t\t- [ ] CookieCheck\n- Decision Tree\n\t- [ ] Build out","id":"1081e718439e4d6b","x":-580,"y":-320,"width":365,"height":320},
 		{"type":"text","text":"## Todo\n- [x] implement Pack JSON to send to server\n- [x] Logic for cookie vs password\n\t- [x] self.cookie, etc\n- [ ] Send to server implementation\n\t- [ ] Self.server has some issues in client.py. Client needs to disconec after connecting, and it;s currently not.","id":"46be716219b0ca86","x":1220,"y":-640,"width":340,"height":300},
-		{"type":"text","text":"## Global overview\nSee TODOby cookie auth","id":"38eea9390ed52ffa","x":220,"y":-1020,"width":500,"height":300},
-		{"type":"text","text":"## Notes for docs\n- Cookie that gets sent back from server is the \"auth_cookie\"\n- Server sends it back in the msg_value feild, with a \"auth_cookie\" message in msg_content","id":"9c9b9378a0eec9ef","x":1095,"y":-1160,"width":705,"height":290}
+		{"type":"text","text":"## Global overview\nSee TODOby cookie auth\n\nDoing Client side CLI currently.","id":"38eea9390ed52ffa","x":220,"y":-1020,"width":500,"height":300},
+		{"type":"text","text":"## Notes for docs\n- Cookie that gets sent back from server is the \"auth_cookie\"\n- Server sends it back in the msg_value feild, with a \"auth_cookie\" message in msg_content","id":"9c9b9378a0eec9ef","x":1095,"y":-1160,"width":705,"height":290},
+		{"type":"text","text":"## user interactin","id":"227624baa6951617","x":1560,"y":0,"width":180,"height":100},
+		{"type":"text","text":"- [ ] apply server connection code\n- [ ] Build out decision trees with additional relevant commands\n- [x] Technical (not usage) documentation for the code\n\t- [ ] Needs human eyes review & updating","id":"aaeec4efb128caad","x":1740,"y":-60,"width":250,"height":300}
 	],
 	"edges":[
 		{"id":"e57b2c6b89eb3f23","fromNode":"abafed7756a152b3","fromSide":"left","toNode":"6993b3024e905583","toSide":"top"},
 		{"id":"5cb4cdb1e49e85b0","fromNode":"318e856d53366af0","fromSide":"left","toNode":"6993b3024e905583","toSide":"top"},
 		{"id":"5e5bce9708e4610e","fromNode":"45ce36546bc023c8","fromSide":"top","toNode":"318e856d53366af0","toSide":"bottom"},
 		{"id":"be4a3b07f7e649f0","fromNode":"45ce36546bc023c8","fromSide":"top","toNode":"abafed7756a152b3","toSide":"bottom"},
-		{"id":"61dc5ca566f1ee44","fromNode":"6993b3024e905583","fromSide":"bottom","toNode":"45ce36546bc023c8","toSide":"bottom"}
+		{"id":"61dc5ca566f1ee44","fromNode":"6993b3024e905583","fromSide":"bottom","toNode":"45ce36546bc023c8","toSide":"bottom"},
+		{"id":"a2e22a178a8310a1","fromNode":"45ce36546bc023c8","fromSide":"right","toNode":"227624baa6951617","toSide":"left"}
 	]
 }

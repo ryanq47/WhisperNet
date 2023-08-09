@@ -6,7 +6,6 @@ try:
     import Utils.AuthenticationHandler
     import Comms.CommsHandler
     import Display.DisplayHandler
-    import Utils.PlatformData
 
 except Exception as e:
     logging.debug(f"[client.py] Import Error: {e}")
@@ -45,25 +44,20 @@ class Client:
         self.cookie = None
         ## the server to conenct to
         self.server = None #[str, ip]
-        self.current_dir = "home"
 
     '''
     INitial prompt input
 
-    multiple trees:
+    2 trees:
         server_decision_tree
         client_decision_tree (for local commands)
 
         fake file struct?
 
-        home> (if self.current_dir == home, use local decision tree)
+        home>
 
-        home/server> (if self.current_dir == server, use server_decision_tree)
-
-        ## this one will take some extra work, as multiple clients, etc can be a pain
-        home/server/client> (no idea for this one, maybe later, or just stick with the server being the deepest you can go for now.
-                            actually, just use json, and prepack it with the client's ID for msg_to
-        )
+        home/server>
+        home/server/client>
 
         Whisper>
         Whisper/127.0.0.1:80>client_127001_abcd>
@@ -72,33 +66,31 @@ class Client:
     
     '''
 
-    def user_loop(self):
-        '''
-        The main loop. This takes the user input, and throws it at the correct decision tree
-        based on the 'current directory'
-        '''
+    '''def user_loop(self):
+        Display.DisplayHandler.Display.print_startup()
         while True:
+            ## this can be argparse as well, maybe move to a util
+            if self.server == None: ## conencting to server
+                server_conn_tuple = (ip, port) #Utils.AuthenticationHandler.Server.get_server_to_connect_to()
+                ## not the best way to show what server we're connected to, but it works
+                self.server = server_conn_tuple
+                server_socket = Comms.CommsHandler.connect_to_server(server_conn_tuple)
 
-            user_input = input(f"\n{self.current_dir} >> ")
+            ## !! Issue exist above. Client SHUOLD disconnect each command from server, like an API. one request = one answer.
+            ## howver it's not cuase self.server != None
 
-            if self.current_dir == "home":
-                Logic.DecisionTree.Trees.home_tree(user_input = user_input)
-                ## decision tree local
-                ...
 
-            ## Ideally I'd like the server name to be there, not sure how to pull that off yet
-            elif self.current_dir == "home/server":
-                print("server_decision_tree")
-                ...
+            if self.cookie == None: ## checking if cookie
+                print(f"Enter credentials for {self.server}:")
+                self.cookie = Utils.AuthenticationHandler.Credentials.authenticate_to_server(server_socket)
 
-    def startup_tasks(self):
-        Utils.PlatformData.Platform.gather_data()
+            user_input = input(f"{self.server[0]}:{self.server[1]}>> ")    
+            logging.debug(user_input)       
+            Logic.DecisionTree.Trees.user_input_tree(user_input = user_input, cookie = self.cookie, conn = server_socket)'''
 
 
 try:
-    Display.DisplayHandler.Display.print_startup()
     c = Client()
-    c.startup_tasks()
     c.user_loop()
 except KeyboardInterrupt:
     logging.debug("\nExiting...")

@@ -184,11 +184,11 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "DataState.canvas",
+                "file": "Clients/Friendly Client/VisProg.canvas",
                 "viewState": {
-                  "x": 192.06150005199743,
-                  "y": -387.091420061944,
-                  "zoom": -0.3333333333333333
+                  "x": 771.0449620801733,
+                  "y": -391.86511375947987,
+                  "zoom": -0.6481637702838257
                 }
               }
             }
@@ -197,19 +197,16 @@
             "id": "0d3da263a1f61930",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "Clients/Friendly Client/VisProg.canvas",
-                "viewState": {
-                  "x": 838.462617777444,
-                  "y": -420.9108674112081,
-                  "zoom": -0.3333333333333333
-                }
+                "file": "Clients/Friendly Client/Docs/CLI Code Docs.md",
+                "mode": "preview",
+                "source": false
               }
             }
           }
         ],
-        "currentTab": 13
+        "currentTab": 12
       }
     ],
     "direction": "vertical"
@@ -336,17 +333,20 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0d3da263a1f61930",
+  "active": "0cdedbb1ea6ee4f0",
   "lastOpenFiles": [
-    "Server/Visual Progress.canvas",
+    "DataState.canvas",
+    "Clients/Friendly Client/Docs/CLI Code Docs.md",
     "Clients/Friendly Client/VisProg.canvas",
+    "Clients/Friendly Client/Docs/CLI Usage.md",
+    "Clients/Friendly Client/Docs",
+    "Server/Visual Progress.canvas",
     "Clients/Friendly Client/Program File Structure 1.canvas",
     "Clients/Friendly Client/Auth Process.canvas",
     "Server/Canvas/FileStructure.canvas",
     "Clients/CSharp/Functions Overview/Client.CS.md",
     "Clients/CSharp/Program File Structure.canvas",
     "Clients/CSharp/Var & Func Naming Guide.md",
-    "DataState.canvas",
     "Untitled.md",
     "General/Naming & general/File Naming Definitions.md",
     "Clients/Friendly Client",
@@ -374,7 +374,6 @@
     "Server/Server.py Docs",
     "Server/Canvas",
     "Server",
-    "Clients/CSharp/Functions Overview/JsonHandler.cs.md",
-    "General/Networking & Protocols"
+    "Clients/CSharp/Functions Overview/JsonHandler.cs.md"
   ]
 }
