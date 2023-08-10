@@ -6,7 +6,7 @@ System Shell Actions
 try:
     import subprocess
     import logging
-
+    import inspect
 
 
 except Exception as e:
@@ -28,21 +28,22 @@ class SystemShellActions:
         'clear'\t: Clears the screen
         <Any Other command>'\t: Will get passed to whatever shell you are using (powershell, bash, etc) and return the results."
               """)
-        return{"output_from_action":help_menu, "dir":None}
+        return{"output_from_action":help_menu, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
 
     def _run_command(command = None):
         command_results = SystemShellHandler.run_via_subprocess(command = command)
-        return{"output_from_action":command_results, "dir":None}
+        return{"output_from_action":command_results, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
     
     def _test_plugin():
         ## Teesting plugin
-        try:
+        pass
+        '''try:
             import subprocess
             import logging
             return True
         except Exception as e:
             print(f"[<Plugins.native_SystemShell.SystemShellActions.py>] Import Error: {e}")
-            return False
+            return False'''
 
 
 

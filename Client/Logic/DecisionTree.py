@@ -6,7 +6,7 @@ import Utils.AuthenticationHandler
 import Display.DisplayHandler
 import Plugins.native_SystemShell.SystemShellActions
 import os
-from collections.abc import Mapping
+import inspect
 
 
 class Trees:
@@ -43,7 +43,7 @@ class Trees:
         elif action:
             return action()
         else:
-            print("Invalid command. Type 'help' for available commands.")
+            return {"output_from_action":"Invalid command. Type 'help' for available commands.", "dir":None}
 
         '''
         #idea, just have 'show', and have it go into it's own tree for 'show' commands.
@@ -80,12 +80,10 @@ class Trees:
         if action:
             action()
         else:
-            print("Invalid 'show' command. Type 'show help' for available commands.")
+            return {"output_from_action":"Invalid show command. Type 'help' for available commands.", "dir":None}
 
-
-        print(f"prefix, whole cmd: {cmd}")
     
-    def system_shell_tree(cmd = None):
+    def system_shell_tree(user_input = None):
         dispatch = {
             "help": Plugins.native_SystemShell.SystemShellActions.SystemShellActions._display_help,
             "home": SystemDefaultActions._set_dir_home_shell,
@@ -94,7 +92,7 @@ class Trees:
         }
 
 
-        action = dispatch.get(cmd)
+        action = dispatch.get(user_input)
 
         '''
         Due to the natuer of everything getting passed into the system shell, 
@@ -105,7 +103,9 @@ class Trees:
         if action:
             return action()
         else:
-            return Plugins.native_SystemShell.SystemShellActions.SystemShellActions._run_command(command = cmd)
+            ##returning the dict that's being passed back already
+            return Plugins.native_SystemShell.SystemShellActions.SystemShellActions._run_command(command = user_input)
+
             #print("Invalid 'show' command. Type 'show help' for available commands.")
 
 ## move these to their own file
@@ -118,19 +118,25 @@ class SystemDefaultActions:
         _prefix_whatitdoes/command
     """
     def _display_help():
-        print("""Help Menu:\n
+        result = ("""Help Menu:\n
         'help'\t: Spawns this menu
         'exit'\t: Exits the program
         'clear' : Clears the screen
         'systemshell': Spawns a propmt that passes commands to the local system
         'plugins':Shows loaded plugins [NOT IMPLEMENTED yet]
               """)
+        
+        return {"output_from_action":result, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+
     
     def _exit():
         exit("Exiting...")
+        #no need to return here
 
     def _display_clear():
         os.system("cls") if Utils.PlatformData.Platform.os == "nt" else os.system("clear")
+        return {"output_from_action": None, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+
 
     def _show_platform_data():
         Display.DisplayHandler.Display.print_platform_data()
@@ -141,16 +147,16 @@ class SystemDefaultActions:
 
         at the moment this just retuns the "home/systemshell", which changes the directory to the shell dir
         '''
-        return "home/systemshell"
-        print('shell')
-        pass
+
+        return {"output_from_action": None, "dir":"home/systemshell"}
+
     def _set_dir_home_shell():
         '''
         A local TTY passthroguh. Not fully interactive at the moment
 
         at the moment this just retuns the "home/systemshell", which changes the directory to the shell dir
         '''
-        return "home"
+        return {"output_from_action": None, "dir":"home"}
 
 
 

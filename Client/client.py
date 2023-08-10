@@ -118,12 +118,55 @@ class Client:
         Plugins.PluginHandler.PluginHandler._display_loaded()
         Utils.PlatformData.Platform.gather_data()
 
+    def dynamic_user_loop(self):
+        '''
+        Dynamically handles the plugins, the mapping to their trees,  etc.no if else trees anymore :)
+        
+        '''
+
+        plugin_tree_dict = {
+            "home": Logic.DecisionTree.Trees.home_tree,
+            "home/systemshell": Logic.DecisionTree.Trees.system_shell_tree
+
+
+        }
+
+        while True:
+
+            user_input = input(f"\n{self.current_dir} >> ")
+
+            ## Actually execute said plugintree based off of self.current_dir
+            action = plugin_tree_dict.get(self.current_dir)
+            logging.debug(f"Tree being accessed: {action}")
+            # this runs the tree (as specified in pligin_tree_dict) and passes it the command arg
+            results = action(user_input = user_input)
+
+            try:
+                output  = results["output_from_action"]
+                dir     = results["dir"]
+
+                logging.debug(f"results: {results}")
+
+                if output != None:
+                    print(output)
+
+
+                if dir != None:
+                    self.current_dir = dir
+            
+            ##incase I forget to put a  return, or a plugin is  misbehaving
+            except Exception as e:
+                logging.warning(f"Error with results of command: {e}")
+
+
+
+
 
 try:
     Display.DisplayHandler.Display.print_startup()
     c = Client()
     c.startup_tasks()
-    c.user_loop()
+    c.dynamic_user_loop()
 except KeyboardInterrupt:
     logging.debug("\nExiting...")
 except Exception as e:

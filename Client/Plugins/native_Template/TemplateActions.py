@@ -6,6 +6,8 @@ Actions. This calls the respective handler, which returns data.
 try:
     ## just have to import it, everything else is taken care of in client.py
     import logging
+    ##used for tracking errors, super useful. a traceback is included in all  the return  functions in the "dbg_code_source" key
+    import inspect
     
 
 except Exception as e:
@@ -36,7 +38,7 @@ class SystemShellActions:
         result = Plugins.native_SystemShell.SystemShellHandler.SystemShell.run_via_os(command = command)
 
         ## returns a dict, with the result of the commandm, and the directory to change to if applicable. This value is returned all the way back to client.py, where it is parsed/displayed
-        return {"output_from_action":result, "dir":None}
+        return{"output_from_action":result, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
 
 
 '''
