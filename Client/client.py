@@ -2,16 +2,16 @@
 try:
     import argparse
     import logging
+    import importlib
 
     import Logic.DecisionTree
     import Utils.AuthenticationHandler
     import Comms.CommsHandler
-    import Plugins.PluginHandler
     import Display.DisplayHandler
     import Utils.PlatformData
 
 except Exception as e:
-    logging.debug(f"[client.py] Import Error: {e}")
+    print(f"[client.py] Import Error: {e}")
     exit()
 
 parser = argparse.ArgumentParser()
@@ -115,7 +115,7 @@ class Client:
                     self.current_dir = dir
 
     def startup_tasks(self):
-        Plugins.PluginHandler.PluginHandler._display_loaded()
+        #Plugins.PluginHandler.PluginHandler._display_loaded()
         Utils.PlatformData.Platform.gather_data()
 
     def dynamic_user_loop(self):
@@ -124,12 +124,36 @@ class Client:
         
         '''
 
+        ## hardcoded paths. The goal is to have these, then some dynamically pulled in as well
         plugin_tree_dict = {
-            "home": Logic.DecisionTree.Trees.home_tree,
-            "home/systemshell": Logic.DecisionTree.Trees.system_shell_tree
-
-
+            "home": Logic.DecisionTree.Trees.home_tree
         }
+
+        '''
+        ## adding plugins from file to plugin_tree_dict
+        for i in list_of_plugins:
+            import i #<< this one will be tough
+            plugin_tree_dict["plugin.path"]
+        
+        '''
+
+        with open('plugin_list.txt', 'r') as file:
+            plugin_names = file.read().splitlines()
+
+        # Dynamically import the modules, needed to grab the corrent data from each one
+        for plugin_name in plugin_names:
+            try:
+                plugin = importlib.import_module(plugin_name)
+                #print(plugin.Info.name)
+
+                ## In english: Take the plugin "fake" in tool directory, use that as the key. The value is then the plugin.Tree.tree_input method
+                ## Note, the command must still be in home tree for now, working on a fix to have the commands added dynamically
+                plugin_tree_dict[plugin.Info.dir] = plugin.Tree.tree_input
+
+                logging.debug(f"Plugin {plugin_name} imported successfully.")
+            except ImportError:
+                print(f"Failed to import module {plugin_name}.")
+
 
         while True:
 

@@ -1,13 +1,15 @@
-import logging
-import Data.JsonHandler
-import Comms.CommsHandler
-import Utils.PlatformData
-import Utils.AuthenticationHandler
-import Display.DisplayHandler
-import Plugins.native_SystemShell.SystemShellActions
-import os
-import inspect
-
+try:
+    import logging
+    import Data.JsonHandler
+    import Comms.CommsHandler
+    import Utils.PlatformData
+    import Utils.AuthenticationHandler
+    import Display.DisplayHandler
+    #import Plugins.native_SystemShell.SystemShellActions
+    import os
+    import inspect
+except Exception as e:
+    print(f"[<Logic.DecisionTree.py>] Import Error: {e}")
 
 class Trees:
 
@@ -17,6 +19,7 @@ class Trees:
         '''
 
         ## no () here, it's looking for the class/object name itself, not to execute it
+
         dispatch = {
             "help": SystemDefaultActions._display_help,
             "exit": SystemDefaultActions._exit,
@@ -82,31 +85,6 @@ class Trees:
         else:
             return {"output_from_action":"Invalid show command. Type 'help' for available commands.", "dir":None}
 
-    
-    def system_shell_tree(user_input = None):
-        dispatch = {
-            "help": Plugins.native_SystemShell.SystemShellActions.SystemShellActions._display_help,
-            "home": SystemDefaultActions._set_dir_home_shell,
-            "exit": SystemDefaultActions._set_dir_home_shell,
-            "clear": SystemDefaultActions._display_clear
-        }
-
-
-        action = dispatch.get(user_input)
-
-        '''
-        Due to the natuer of everything getting passed into the system shell, 
-        only certain commands (i.e. help) are called via action(). eveerything else is passed
-        directly to _run_command
-        
-        '''
-        if action:
-            return action()
-        else:
-            ##returning the dict that's being passed back already
-            return Plugins.native_SystemShell.SystemShellActions.SystemShellActions._run_command(command = user_input)
-
-            #print("Invalid 'show' command. Type 'show help' for available commands.")
 
 ## move these to their own file
 
