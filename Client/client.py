@@ -76,45 +76,6 @@ class Client:
     
     '''
 
-    def user_loop(self):
-        '''
-        The main loop. This takes the user input, and throws it at the correct decision tree
-        based on the 'current directory'
-        '''
-        while True:
-
-            user_input = input(f"\n{self.current_dir} >> ")
-
-            if self.current_dir == "home":
-                results = Logic.DecisionTree.Trees.home_tree(user_input = user_input)
-
-                if results != None:
-                    self.current_dir = results
-                '''
-                if results of command == dir
-                
-                or a dir update somehow
-                '''
-                ## decision tree local
-                ...
-
-            ## Ideally I'd like the server name to be there, not sure how to pull that off yet
-            elif self.current_dir == "home/server":
-                print("server_decision_tree")
-                ...
-
-            elif self.current_dir == "home/systemshell":
-                results = Logic.DecisionTree.Trees.system_shell_tree(cmd = user_input)
-                
-                output  = results["output_from_action"]
-                dir     = results["dir"]
-
-                print(output)
-                #logging.debug(f"results of command: {output}, Results of Dir: {dir}")
-
-                if dir != None:
-                    self.current_dir = dir
-
     def startup_tasks(self):
         #Plugins.PluginHandler.PluginHandler._display_loaded()
         Utils.PlatformData.Platform.gather_data()
@@ -131,7 +92,7 @@ class Client:
             user_input = input(f"\n{self.current_dir} >> ")
 
             ## Actually execute said plugintree based off of self.current_dir
-            action = plugin_tree_dict.get(self.current_dir)
+            action = self.plugin_tree_dict.get(self.current_dir)
             logging.debug(f"Tree being accessed: {action}")
             # this runs the tree (as specified in pligin_tree_dict) and passes it the command arg
             results = action(user_input = user_input)
