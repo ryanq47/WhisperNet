@@ -28,7 +28,8 @@ class Trees:
             "home":SystemDefaultActions._set_dir_home_shell,
             "show platform data": SystemDefaultActions._show_platform_data,
             "connect to server": Utils.AuthenticationHandler.Server.get_server_to_connect_to,
-            "show": Trees.prefix_show_tree
+            "show": Trees.prefix_show_tree,
+            "cd <DIR>": SystemDefaultActions._cd_to_dir 
         }
 
         ## this can fail easily if input == ""
@@ -42,6 +43,10 @@ class Trees:
         action = dispatch.get((user_input.lower().split())[0])
         if action == Trees.prefix_show_tree:
             action(cmd = user_input)
+
+        ## hacky cd fix. Probably worth a look into a better solution for other commands that take arguments (if any)
+        elif user_input[:2] == "cd":
+            return SystemDefaultActions._cd_to_dir(cmd = user_input)
 
         elif action:
             return action()
@@ -100,8 +105,9 @@ class SystemDefaultActions:
         'help'\t: Spawns this menu
         'exit'\t: Exits the program
         'clear' : Clears the screen
+        'cd <TOOL DIR>': "cd" to the directory of the tool. Ex: 'cd home/systemshell'. !! Non valid paths cause errors dammit. run cd arg against current lsit of loaded plugins
         'systemshell': Spawns a propmt that passes commands to the local system
-        'plugins':Shows loaded plugins [NOT IMPLEMENTED yet]
+        'plugins':Shows loaded plugins [NOT IMPLEMENTED yet]. (devnote: just print the paths of all the plugins)
               """)
         
         return {"output_from_action":result, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
@@ -126,7 +132,7 @@ class SystemDefaultActions:
         at the moment this just retuns the "home/systemshell", which changes the directory to the shell dir
         '''
 
-        return {"output_from_action": None, "dir":"home/systemshell"}
+        return{"output_from_action": None, "dir":"home/systemshell"}
 
     def _set_dir_home_shell():
         '''
@@ -134,7 +140,20 @@ class SystemDefaultActions:
 
         at the moment this just retuns the "home/systemshell", which changes the directory to the shell dir
         '''
-        return {"output_from_action": None, "dir":"home"}
+        return{"output_from_action": None, "dir":"home"}
+
+    def _cd_to_dir(cmd = None):
+        '''
+        'CD's' you to where you want. Note, there is no checking that these are valid dir's, just a try/except
+        
+        '''
+        try:
+            ## Get second half of command, which SHOULD be the directory, and then strip any whitespace
+            dir = (cmd.split()[1]).strip()
+            return{"output_from_action": None, "dir":dir}
+        
+        except Exception as e:
+            return{f"output_from_action": "Could not CD to directory. Error:{e}", "dir": None}
 
 
 
