@@ -49,6 +49,7 @@ class Client:
         ## the server to conenct to
         self.server = None #[str, ip]
         self.current_dir = "home"
+        self.plugin_tree_dict = {}
 
     '''
     INitial prompt input
@@ -123,37 +124,7 @@ class Client:
         Dynamically handles the plugins, the mapping to their trees,  etc.no if else trees anymore :)
         
         '''
-
-        ## hardcoded paths. The goal is to have these, then some dynamically pulled in as well
-        plugin_tree_dict = {
-            "home": Logic.DecisionTree.Trees.home_tree
-        }
-
-        '''
-        ## adding plugins from file to plugin_tree_dict
-        for i in list_of_plugins:
-            import i #<< this one will be tough
-            plugin_tree_dict["plugin.path"]
-        
-        '''
-
-        with open('plugin_list.txt', 'r') as file:
-            plugin_names = file.read().splitlines()
-
-        # Dynamically import the modules, needed to grab the corrent data from each one
-        for plugin_name in plugin_names:
-            try:
-                plugin = importlib.import_module(plugin_name)
-                #print(plugin.Info.name)
-
-                ## In english: Take the plugin "fake" in tool directory, use that as the key. The value is then the plugin.Tree.tree_input method
-                ## Note, the command must still be in home tree for now, working on a fix to have the commands added dynamically
-                plugin_tree_dict[plugin.Info.dir] = plugin.Tree.tree_input
-
-                logging.debug(f"Plugin {plugin_name} imported successfully.")
-            except ImportError:
-                print(f"Failed to import module {plugin_name}.")
-
+        self.dynamic_plugin_load()
 
         while True:
 
@@ -174,7 +145,6 @@ class Client:
                 if output != None:
                     print(output)
 
-
                 if dir != None:
                     self.current_dir = dir
             
@@ -182,8 +152,37 @@ class Client:
             except Exception as e:
                 logging.warning(f"Error with results of command: {e}")
 
+    def dynamic_plugin_load(self):
+        '''
+        Dynamically loads plugins,and adds to the current plugin dict
+        
+        '''
 
+        print("[*] Loading plugins...")
+        ## hardcoded paths. Only the home_tree is hardcoded (for now), the rest are dynamically loaded
+        self.plugin_tree_dict = {
+            "home": Logic.DecisionTree.Trees.home_tree
+        }
 
+        ## Need to add sys_path before this
+        with open('Plugins/plugin_list.txt', 'r') as file:
+            plugin_names = file.read().splitlines()
+
+        # Dynamically import the modules, needed to grab the corrent data from each one
+        for plugin_name in plugin_names:
+            try:
+                plugin = importlib.import_module(plugin_name)
+                #print(plugin.Info.name)
+
+                ## In english: Take the plugin "fake" in tool directory, use that as the key. The value is then the plugin.Tree.tree_input method
+                ## Note, the command must still be in home tree for now, working on a fix to have the commands added dynamically
+                self.plugin_tree_dict[plugin.Info.dir] = plugin.Tree.tree_input
+
+                logging.debug(f"Plugin {plugin_name} imported successfully.")
+            except ImportError:
+                logging.warning(f"Failed to import module '{plugin_name}'.")
+            except Exception as e:
+                logging.warning(f"Failed to import module '{plugin_name}'.")
 
 
 try:

@@ -5,8 +5,6 @@ Handles plugin related things
 
 ## will come back to this
 
-
-
 import Plugins.native_SystemShell
 
 class PluginHandler:
