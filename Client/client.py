@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 try:
     import argparse
     import logging
