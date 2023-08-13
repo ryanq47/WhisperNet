@@ -199,7 +199,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Clients/Python Client/Dev Docs/Actions & Plugin Dev Overview.md",
+                "file": "Clients/Python Client/1. Getting Started.md",
                 "mode": "source",
                 "source": false
               }
@@ -272,7 +272,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Clients/Python Client/Dev Docs/Actions & Plugin Dev Overview.md",
+                "file": "Clients/Python Client/1. Getting Started.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -289,7 +289,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Clients/Python Client/Dev Docs/Actions & Plugin Dev Overview.md",
+                "file": "Clients/Python Client/1. Getting Started.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -312,7 +312,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Clients/Python Client/Dev Docs/Actions & Plugin Dev Overview.md"
+                "file": "Clients/Python Client/1. Getting Started.md"
               }
             }
           }
@@ -335,8 +335,8 @@
   },
   "active": "0d3da263a1f61930",
   "lastOpenFiles": [
-    "Clients/Python Client/Dev Docs/CLI Code Docs.md",
     "Clients/Python Client/Dev Docs/Actions & Plugin Dev Overview.md",
+    "Clients/Python Client/Dev Docs/CLI Code Docs.md",
     "Clients/Python Client/Dev Docs/System Plugins Map.canvas",
     "Clients/Python Client/VisProg.canvas",
     "Clients/Python Client/1. Getting Started.md",
