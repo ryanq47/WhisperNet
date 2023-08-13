@@ -32,7 +32,7 @@ The Client Guide provides essential information on using the WhisperNet client, 
 
 | Plugin      | Description | Path |Origin (Native/3rd party) |
 | ----------- | ----------- | ----------- | ----------- |
-| SystemShell | Title  | /home/systemshell |Native |	
+| SystemShell | A basic, semi-interactive 'passthrough' shell for system (bash, ps, etc) commands, via the subprocess module  | /home/systemshell |Native |	
 | Plugin   | DESC        | PATH | Native |
 
 
