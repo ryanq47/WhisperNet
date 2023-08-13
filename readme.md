@@ -1,6 +1,7 @@
 # WhisperNet
 
 
+\<Very much so still in Development, this will update as things are completed.>
 
 (Yet another) Command and Control (C2) Infrastructure Setup Tool
 
