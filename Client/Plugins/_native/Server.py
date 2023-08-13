@@ -3,6 +3,11 @@ Actions. This calls the respective handler, which returns data.
 
 
 '''
+
+
+from tkinter import E
+
+
 try:
     ## just have to import it, everything else is taken care of in client.py
     import logging
@@ -11,6 +16,10 @@ try:
     
     ## this is where the SystemDefaultActions live.
     import Logic.DecisionTree
+    
+    import Utils.AuthenticationHandler
+    import Data.JsonHandler
+    import Comms.CommsHandler
 
 except Exception as e:
     ##print this error, as there's a chance logging is the one that failed, or that it doesnt get loaded.
@@ -38,10 +47,12 @@ class Tree:
             "help": Actions._display_help,
             "home": Logic.DecisionTree.SystemDefaultActions._set_dir_home_shell,
             "exit": Logic.DecisionTree.SystemDefaultActions._set_dir_home_shell,
-            "clear": Logic.DecisionTree.SystemDefaultActions._display_clear
+            "clear": Logic.DecisionTree.SystemDefaultActions._display_clear,
 
             ## add yours here... no (), as we are just passing the object, not running it 
             #"mycommand":Actions._test_action
+            "connect to server": Actions._connect_to_server
+
         }
 
 
@@ -84,6 +95,7 @@ class Actions:
         return{"output_from_action":help_menu, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
     
     def _start_server():
+        pass
         ## do actions here,
 
         ## Handler.my_method()
@@ -93,12 +105,18 @@ class Actions:
     def _connect_to_server():
         ## do actions here,
 
-        ## Authentication stuff (cookies, etc)
-        ## Need to find a way to store the cookie
+        server_details = Utils.AuthenticationHandler.Server.get_server_to_connect_to()
 
-        ## Handler.my_method()
+        socket = Handler._create_socket_connection(server_details_tuple=server_details) ## Need to figure out socket
 
-        return{"output_from_action":"Connect To Server", "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+        ## Get creds from user
+        ## get cookie
+        Handler._get_cookie(
+            socket      = socket
+        )
+
+
+        return{"output_from_action":"cookie_here", "dir":None, "dbg_code_source":inspect.currentframe().f_back}
 
 
 class Handler:
@@ -110,8 +128,49 @@ class Handler:
     '''
 
     @staticmethod
-    def my_method(command = None):
-        ## Do actions here...
+    def _get_cookie(socket = None):
+        ##  Constuct json
+
+        user = Utils.AuthenticationHandler.Credentials.get_username()
+        password = Utils.AuthenticationHandler.Credentials.get_password()
+
+        json = Data.JsonHandler.json_ops.to_json_for_server(
+            action      = "!_userlogin_!", 
+            client_id   = user,
+            auth_type   = "password",
+            auth_value  = password
+        )
+
+        
+        Comms.CommsHandler.send_msg(
+            msg     = json,
+            conn    = socket
+        )
+
+        cookie = Comms.CommsHandler.receive_msg(
+            conn = socket
+        )
 
         ## return results of action
-        return "command_results"
+        return "cookie"
+    
+    def _create_socket_connection(server_details_tuple = ("127.0.0.1", 80)):
+        '''
+        Calls Comms.CommsHandler.connect_to_server to create a socket, either SSL or plaintext.
+
+        I could just call Comms.CommsHandler.connect_to_server directly in the actions class, but doing it here allows for readability.
+
+        If you are creating a plugin, please use the Comms.CommsHandler.connect_to_server, not this one
+        
+        returns a socket
+        '''
+
+        try:
+            server_sock = Comms.CommsHandler.connect_to_server(
+                server_conn_tuple=server_details_tuple
+            )
+
+        except ConnectionError as ce:
+            logging.warning(f"Connection error to: {server_details_tuple}. {ce}")
+
+        return server_sock

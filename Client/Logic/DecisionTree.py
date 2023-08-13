@@ -24,6 +24,7 @@ class Trees:
             "help": SystemDefaultActions._display_help,
             "exit": SystemDefaultActions._exit,
             "clear": SystemDefaultActions._display_clear,
+            "reload": SystemDefaultActions._hot_reload,
             "systemshell": SystemDefaultActions._set_dir_system_shell,
             "home":SystemDefaultActions._set_dir_home_shell,
             "show platform data": SystemDefaultActions._show_platform_data,
@@ -120,6 +121,16 @@ class SystemDefaultActions:
     def _display_clear():
         os.system("cls") if Utils.PlatformData.Platform.os == "nt" else os.system("clear")
         return {"output_from_action": None, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+
+    def _hot_reload():
+        ## might be a circlular import
+        '''try:
+            import client
+            SystemDefaultActions._display_clear()
+            client.load_program()
+        except Exception as e:
+            logging.warning("[!] Hot-Reload failed. Please ctrl+C and re-launch")'''
+        return {"output_from_action": "[*] Hot reload Not Implemented", "dir":None, "dbg_code_source":inspect.currentframe().f_back}
 
 
     def _show_platform_data():

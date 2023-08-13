@@ -45,8 +45,10 @@ class ClientHandler:
 
         
         if auth_type == "password":
-            ClientEngine.AuthenticationHandler.validate_password(password)
-            ClientEngine.AuthenticationHandler.generate_random_cookie()
+            SecurityEngine.AuthenticationHandler.validate_password(password)
+            SecurityEngine.AuthenticationHandler.generate_random_cookie(
+
+            )
             #send cookie back
         
         elif auth_type == "cookie":

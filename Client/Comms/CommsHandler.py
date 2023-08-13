@@ -99,6 +99,8 @@ def receive_msg(conn=None) -> str:
 
 def connect_to_server(server_conn_tuple = None) -> socket:
         ''' Connect to server. Get a socket back
+
+            Note, No error handling on this method. You will have to handle it yourself
         '''
         ##SSL in future
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

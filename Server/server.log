@@ -503,3 +503,25 @@
 2023-08-08 11:58:00 - WARNING - ERRMSG: string indices must be integers
 
 2023-08-08 11:58:00 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-13 13:46:27 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-13 13:46:27 - WARNING - UtilsHandler.pt (file_check) File not found: /home/kali/Tools/WhisperNet/Server/server.crt
+
+2023-08-13 13:46:27 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-13 17:46:27.444490+00:00 =====
+2023-08-13 13:46:27 - DEBUG - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-13 13:46:49 - DEBUG - 
+[127.0.0.1:39224 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:39224
+2023-08-13 13:46:57 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-13 13:46:57 - WARNING - ERRMSG: cannot access local variable 'yaml_dict_object' where it is not associated with a value
+
+2023-08-13 13:46:57 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-13 13:54:04 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-13 13:54:04 - WARNING - UtilsHandler.pt (file_check) File not found: /home/kali/Tools/WhisperNet/Server/server.crt
+
+2023-08-13 13:54:04 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-13 17:54:04.169365+00:00 =====
+2023-08-13 13:54:04 - DEBUG - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-13 13:54:18 - DEBUG - 
+[127.0.0.1:46594 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:46594
+2023-08-13 13:54:26 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 421
+2023-08-13 13:54:26 - WARNING - ERRMSG: cannot access local variable 'yaml_dict_object' where it is not associated with a value
+
+2023-08-13 13:54:26 - DEBUG - Socket Close: The socket was successfully closed

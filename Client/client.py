@@ -140,18 +140,24 @@ class Client:
                 self.plugin_tree_dict[plugin.Info.dir] = plugin.Tree.tree_input
 
                 logging.debug(f"Plugin {plugin_name} imported successfully.")
-            except ImportError:
+            except ImportError as ie:
                 logging.warning(f"Failed to import module '{plugin_name}'.")
+                logging.debug(f"{plugin_name} Error message: {ie}")
             except Exception as e:
                 logging.warning(f"Failed to import module '{plugin_name}'.")
+                logging.debug(f"{plugin_name} Error message: {e}")
 
 
-try:
-    Display.DisplayHandler.Display.print_startup()
-    c = Client()
-    c.startup_tasks()
-    c.dynamic_user_loop()
-except KeyboardInterrupt:
-    logging.debug("\nExiting...")
-except Exception as e:
-    logging.debug(f"Unkown error: {e}")
+def load_program():
+    try:
+        Display.DisplayHandler.Display.print_startup()
+        c = Client()
+        c.startup_tasks()
+        c.dynamic_user_loop()
+    except KeyboardInterrupt:
+        logging.debug("\nExiting...")
+    except Exception as e:
+        logging.debug(f"Unkown error: {e}")
+
+if __name__ == "__main__":
+    load_program()

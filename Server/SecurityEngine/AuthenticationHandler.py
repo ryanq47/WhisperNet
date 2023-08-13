@@ -1,6 +1,7 @@
 ## Notes, everything in here must be bulletproof. lots of redundancy & try/excepts for that reason
 import random
 import Utils.UtilsHandler
+import logging
 
 class Authentication:
     
@@ -32,19 +33,22 @@ class Authentication:
         
     @staticmethod
     def generate_random_cookie():
-        ## temp hardcode
-        client_profile = Utils.UtilsHandler.yaml_load(yaml_file=r"C:\Users\User\Documents\GitHub\logec-suite\Server\Config\ClientProfiles\default.yaml")
+        try:
+            ## temp hardcode
+            client_profile = Utils.UtilsHandler.yaml_load(yaml_file=r"Config\ClientProfiles\default.yaml")
 
-        char_string = client_profile["Authentication"]["Cookies"]["Characters"]
-        min_length  = client_profile["Authentication"]["Cookies"]["MinLength"]
-        max_length  = client_profile["Authentication"]["Cookies"]["MaxLength"]
+            char_string = client_profile["Authentication"]["Cookies"]["Characters"]
+            min_length  = client_profile["Authentication"]["Cookies"]["MinLength"]
+            max_length  = client_profile["Authentication"]["Cookies"]["MaxLength"]
 
-        random_cookie = ''.join(random.SystemRandom().choice(char_string) for _ in range(min_length, max_length))
-        return random_cookie
+            random_cookie = ''.join(random.SystemRandom().choice(char_string) for _ in range(min_length, max_length))
+            return random_cookie
+        except Exception as e:
+            logging.debug(f"[generate_random_cookie] {e}")
     
     @staticmethod
     def validate_password(password):
-        client_profile = Utils.UtilsHandler.yaml_load(yaml_file=r"C:\Users\User\Documents\GitHub\logec-suite\Server\Config\ClientProfiles\default.yaml")
+        client_profile = Utils.UtilsHandler.yaml_load(yaml_file=r"Config\ClientProfiles\default.yaml")
         '''
         Load password from somewhere
 
