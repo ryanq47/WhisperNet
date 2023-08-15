@@ -525,3 +525,43 @@
 2023-08-13 13:54:26 - WARNING - ERRMSG: cannot access local variable 'yaml_dict_object' where it is not associated with a value
 
 2023-08-13 13:54:26 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-09 21:49:33 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-09 21:49:33 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-09 21:49:33 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-10 02:49:33.213717+00:00 =====
+2023-08-09 21:49:33 - DEBUG - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-09 21:50:19 - DEBUG - 
+[127.0.0.1:51149 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51149
+2023-08-09 21:50:29 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-09 21:50:29 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-14 23:20:10 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-14 23:20:28 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-14 23:20:28 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-14 23:20:28 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-15 04:20:28.061235+00:00 =====
+2023-08-14 23:20:28 - DEBUG - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-14 23:20:30 - DEBUG - 
+[127.0.0.1:51410 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51410
+2023-08-14 23:20:33 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-14 23:20:33 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-14 23:23:57 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-14 23:23:57 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-14 23:23:57 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-15 04:23:57.454477+00:00 =====
+2023-08-14 23:23:57 - DEBUG - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-14 23:24:09 - DEBUG - 
+[127.0.0.1:51426 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51426
+2023-08-14 23:24:12 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-14 23:24:12 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-14 23:51:33 - DEBUG - 
+[127.0.0.1:51567 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51567
+2023-08-14 23:51:36 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-14 23:51:36 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-14 23:52:30 - DEBUG - 
+[127.0.0.1:51569 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51569
+2023-08-14 23:52:33 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-14 23:52:33 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-14 23:54:12 - DEBUG - 
+[127.0.0.1:51586 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51586
+2023-08-14 23:54:14 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-14 23:54:14 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420

@@ -91,6 +91,8 @@ class Client:
 
             user_input = input(f"\n{self.current_dir} >> ")
 
+            ## need a way to create/init a class instance, so some classes can be not static (i.e. server, for cookie)
+
             ## Actually execute said plugintree based off of self.current_dir
             action = self.plugin_tree_dict.get(self.current_dir)
             logging.debug(f"Tree being accessed: {action}")
@@ -131,13 +133,31 @@ class Client:
 
         # Dynamically import the modules, needed to grab the corrent data from each one
         for plugin_name in plugin_names:
-            try:
-                plugin = importlib.import_module(plugin_name)
-                #print(plugin.Info.name)
+            try:                
+                ## If a static class...
+                if plugin_name[:8] == "[static]":
+                    plugin = importlib.import_module(plugin_name[8:])
+                    #print(plugin.Info.name)
 
-                ## In english: Take the plugin "fake" in tool directory, use that as the key. The value is then the plugin.Tree.tree_input method
-                ## Note, the command must still be in home tree for now, working on a fix to have the commands added dynamically
-                self.plugin_tree_dict[plugin.Info.dir] = plugin.Tree.tree_input
+                    ## Maybe do static/nonstatic here, add like a [static] or [non-static] in the first bit of the class name?
+                    ## then create the class object, and use that
+
+                    ## In english: Take the plugin "fake" in tool directory, use that as the key. The value is then the plugin.Tree.tree_input method
+                    ## Note, the command must still be added in home tree description for now, working on a fix to have the commands added dynamically
+                    self.plugin_tree_dict[plugin.Info.dir] = plugin.Tree.tree_input
+
+                ## if not a static class...
+                else:
+                    print(plugin_name)
+
+                    plugin = importlib.import_module(plugin_name)
+                    ## create class instance
+                    plugin_instance = plugin.Tree()
+
+                    self.plugin_tree_dict[plugin.Info.dir] = plugin_instance.tree_input
+
+
+
 
                 logging.debug(f"Plugin {plugin_name} imported successfully.")
             except ImportError as ie:

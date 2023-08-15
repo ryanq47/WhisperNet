@@ -39,9 +39,11 @@ class Tree:
     
     Returns(dict[output_from_action, dir, dbg_code_source]): This is essentially passing on the 'return' from the Actions class
     '''
+    def __init__(self):
+        self.cookie = None
 
     ## Do not change the name of 'tree_input', it's used while  importing this Plugin
-    def tree_input(user_input = None):
+    def tree_input(self, user_input = None):
         dispatch = {
             ## Default commands...
             "help": Actions._display_help,
@@ -51,20 +53,27 @@ class Tree:
 
             ## add yours here... no (), as we are just passing the object, not running it 
             #"mycommand":Actions._test_action
-            "connect to server": Actions._connect_to_server
+            "connect to server": Actions._connect_to_server,
+            "show connection details": Actions._show_connection_details
+
 
         }
 
-
         action = dispatch.get(user_input)
 
-        '''
-        Due to the natuer of everything getting passed into the system shell, 
-        only certain commands (i.e. help) are called via action(). eveerything else is passed
-        directly to _run_command
-        
-        '''
-        if action:
+        ## special handling of this inpupt
+        if user_input == "connect to server":
+            try:
+                cookie = Actions._connect_to_server()["output_from_action"]
+                print(cookie)
+                self.cookie = cookie
+                return{"output_from_action":f"Cookie successfully obtained: {self.cookie}", "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+            except Exception as e:
+                return{"output_from_action":f"Error retrieveing cookie: {e}", "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+
+
+
+        elif action:
             return action()
         else:
             ## If the command doesn't exist, return this
@@ -111,12 +120,19 @@ class Actions:
 
         ## Get creds from user
         ## get cookie
-        Handler._get_cookie(
+        cookie = Handler._get_cookie(
             socket      = socket
         )
 
 
-        return{"output_from_action":"cookie_here", "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+        return{"output_from_action":cookie, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+
+    def _show_connection_details():
+        conn_details_formatted = f"Server: IP:PORT \n"
+        f"Cookie: cookie \n"\
+        f"Other?\n"
+
+        return{"output_from_action":conn_details_formatted, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
 
 
 class Handler:
@@ -147,12 +163,20 @@ class Handler:
             conn    = socket
         )
 
-        cookie = Comms.CommsHandler.receive_msg(
+        msg_from_server = Comms.CommsHandler.receive_msg(
             conn = socket
         )
 
+        ## convert from JSON to python dict
+
+        json_dict = Data.JsonHandler.json_ops.from_json(
+            json_string=msg_from_server
+        )
+
+        cookie = json_dict["msg"]["msg_value"]
+
         ## return results of action
-        return "cookie"
+        return cookie
     
     def _create_socket_connection(server_details_tuple = ("127.0.0.1", 80)):
         '''

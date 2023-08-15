@@ -1,2 +1,2 @@
-Plugins._native.SystemShell
+[static]Plugins._native.SystemShell
 Plugins._native.Server
