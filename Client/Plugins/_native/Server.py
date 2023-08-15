@@ -4,10 +4,6 @@ Actions. This calls the respective handler, which returns data.
 
 '''
 
-
-from tkinter import E
-
-
 try:
     ## just have to import it, everything else is taken care of in client.py
     import logging
@@ -20,6 +16,7 @@ try:
     import Utils.AuthenticationHandler
     import Data.JsonHandler
     import Comms.CommsHandler
+    import Logic.DecisionTree
 
 except Exception as e:
     ##print this error, as there's a chance logging is the one that failed, or that it doesnt get loaded.
@@ -32,6 +29,19 @@ class Info:
     author  = "ryanq.47"
     dir     = "home/server"
 
+class ClassData:
+    '''
+    Stores data for access by non static classes. Kind of a weird implementation
+    
+    '''
+    ## I hate that this exists. It's kind of dumb and hacky, but I don't have a better way to store data for static classes.
+    ## In a nutshell, Tree is not static, but Actions and Handler are. With the way dispatch is set up, and there being mulieple server commands, it makes it tough to 
+    ## pass the cookie via argument, so this is the best thing I can think of without re-doing it.
+
+    # on the plus side it mgiht elimanate the need for normal classes
+    cookie = None
+    socket = None
+    server_details = None
 
 class Tree:
     '''
@@ -40,7 +50,8 @@ class Tree:
     Returns(dict[output_from_action, dir, dbg_code_source]): This is essentially passing on the 'return' from the Actions class
     '''
     def __init__(self):
-        self.cookie = None
+        pass
+        #self.cookie = None
 
     ## Do not change the name of 'tree_input', it's used while  importing this Plugin
     def tree_input(self, user_input = None):
@@ -56,29 +67,36 @@ class Tree:
             "connect to server": Actions._connect_to_server,
             "show connection details": Actions._show_connection_details
 
-
         }
 
         action = dispatch.get(user_input)
+        #print(f"action: {action}")
 
         ## special handling of this inpupt
         if user_input == "connect to server":
             try:
                 cookie = Actions._connect_to_server()["output_from_action"]
-                print(cookie)
-                self.cookie = cookie
-                return{"output_from_action":f"Cookie successfully obtained: {self.cookie}", "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+                #print(cookie)
+                #self.cookie = cookie
+                ## this is SUPER hacky. 
+                ClassData.cookie = cookie
+                return{"output_from_action":f"Cookie successfully obtained: {ClassData.cookie}", "dir":None, "dbg_code_source":inspect.currentframe().f_back}
             except Exception as e:
                 return{"output_from_action":f"Error retrieveing cookie: {e}", "dir":None, "dbg_code_source":inspect.currentframe().f_back}
 
-
+        elif user_input[:2] == "cd":
+            return Logic.DecisionTree.SystemDefaultActions._cd_to_dir(cmd = user_input)
 
         elif action:
             return action()
         else:
-            ## If the command doesn't exist, return this
-            return{"output_from_action":"Invalid command. Type 'show help' for available commands.", "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+            ## Else, run command on server.
+            response = Actions._run_server_command(
+                command = user_input
+            )
 
+            ##Not, this returns out the full json return dict.
+            return{"output_from_action":response, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
 
 
 class Actions:
@@ -91,14 +109,17 @@ class Actions:
 
     def _display_help():
         help_menu = ("""Help Menu:\n
+        ## Built In ##
         'help'\t: Spawns this menu
-        'home' or 'exit'\t: Exits the program
+        'home'\t: Exits the program
         'clear'\t: Clears the screen
+        'cd <TOOL DIR>'\t: "cd" to the directory of the tool. Ex: 'cd home/systemshell'. !! Non valid paths cause errors dammit. run cd arg against current lsit of loaded plugins
+        
+        ## Plugin Specific ##
         'connect to server'\t: Connect to a server instance.
-        'start server'\t: start a local server instance
 
         ## Once connected: ## (work in progress)
-        'show agents'
+        '<server help menu here>'
 
               """)
         return{"output_from_action":help_menu, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
@@ -114,18 +135,24 @@ class Actions:
     def _connect_to_server():
         ## do actions here,
 
-        server_details = Utils.AuthenticationHandler.Server.get_server_to_connect_to()
+        try:
+            server_details = Utils.AuthenticationHandler.Server.get_server_to_connect_to()
 
-        socket = Handler._create_socket_connection(server_details_tuple=server_details) ## Need to figure out socket
+            ClassData.server_details = server_details
 
-        ## Get creds from user
-        ## get cookie
-        cookie = Handler._get_cookie(
-            socket      = socket
-        )
+            socket = Handler._create_socket_connection(server_details_tuple=server_details) ## Need to figure out socket
 
+            ## Get creds from user
+            ## get cookie
+            cookie = Handler._get_cookie(
+                socket      = socket
+            )
 
-        return{"output_from_action":cookie, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+            return{"output_from_action":cookie, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+        
+        except Exception as e:
+            return{"output_from_action":e, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+
 
     def _show_connection_details():
         conn_details_formatted = f"Server: IP:PORT \n"
@@ -133,6 +160,48 @@ class Actions:
         f"Other?\n"
 
         return{"output_from_action":conn_details_formatted, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+
+    def _run_server_command(command = None):
+        '''
+        Pass a command along to the server. This does not work for client commands, as the msg_to is hardcoded
+
+        
+        ## steps
+        ## check if server is conencted or not
+
+        Send json to server asking for agents
+
+        get that data
+
+        return parsed response
+        
+        '''
+        #print(Info.cookie)
+
+        try:
+            ## Create socket
+            socket = Handler._create_socket_connection(server_details_tuple=ClassData.server_details) ## Need to figure out socket
+
+
+            json_str_results = Handler._send_recv_command_to_server(
+                cookie      = ClassData.cookie,
+                msg_command = command,
+                msg_to      = "server",
+                socket      = socket,
+                client_id   = "client_id"
+            )
+
+            parsed_results = Data.JsonHandler.json_ops.from_json(
+                json_string=json_str_results
+            )
+
+            agents = parsed_results["msg"]["msg_value"]
+
+            return{"output_from_action":agents, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+        except Exception as e:
+            return{"output_from_action":e, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+
+
 
 
 class Handler:
@@ -145,39 +214,42 @@ class Handler:
 
     @staticmethod
     def _get_cookie(socket = None):
-        ##  Constuct json
+        try:
 
-        user = Utils.AuthenticationHandler.Credentials.get_username()
-        password = Utils.AuthenticationHandler.Credentials.get_password()
+            user = Utils.AuthenticationHandler.Credentials.get_username()
+            password = Utils.AuthenticationHandler.Credentials.get_password()
 
-        json = Data.JsonHandler.json_ops.to_json_for_server(
-            action      = "!_userlogin_!", 
-            client_id   = user,
-            auth_type   = "password",
-            auth_value  = password
-        )
+            json = Data.JsonHandler.json_ops.to_json_for_server(
+                action      = "!_userlogin_!", 
+                client_id   = user,
+                auth_type   = "password",
+                auth_value  = password
+            )
 
-        
-        Comms.CommsHandler.send_msg(
-            msg     = json,
-            conn    = socket
-        )
+            
+            Comms.CommsHandler.send_msg(
+                msg     = json,
+                conn    = socket
+            )
 
-        msg_from_server = Comms.CommsHandler.receive_msg(
-            conn = socket
-        )
+            msg_from_server = Comms.CommsHandler.receive_msg(
+                conn = socket
+            )
 
-        ## convert from JSON to python dict
+            ## convert from JSON to python dict
 
-        json_dict = Data.JsonHandler.json_ops.from_json(
-            json_string=msg_from_server
-        )
+            json_dict = Data.JsonHandler.json_ops.from_json(
+                json_string=msg_from_server
+            )
 
-        cookie = json_dict["msg"]["msg_value"]
+            cookie = json_dict["msg"]["msg_value"]
 
-        ## return results of action
-        return cookie
+            ## return results of action
+            return cookie
     
+        except Exception as e:
+            return e
+
     def _create_socket_connection(server_details_tuple = ("127.0.0.1", 80)):
         '''
         Calls Comms.CommsHandler.connect_to_server to create a socket, either SSL or plaintext.
@@ -198,3 +270,41 @@ class Handler:
             logging.warning(f"Connection error to: {server_details_tuple}. {ce}")
 
         return server_sock
+    
+    def _send_recv_command_to_server(cookie = None, client_id = None, msg_to = None, msg_command = None, socket = None) -> str:
+        '''
+        Sends & receives msg from server. Requires a cookie.
+        '''
+        ## Precheck stuff - get chatgpt to make more efficient
+        if cookie == None:
+            return("cookie is empty!")
+        if cookie == socket:
+            return("Socket is empty!")
+
+        try:
+            ## Create json
+            
+            json = Data.JsonHandler.json_ops.to_json_for_server(
+                action      = "!_userlogin_!", 
+                client_id   = client_id,
+                auth_type   = "cookie",
+                auth_value  = cookie,
+
+                ## gonna need these 2 as args
+                msg_to      = msg_to,
+                msg_command = msg_command
+            )
+
+            Comms.CommsHandler.send_msg(
+                msg     = json,
+                conn    = socket
+            )
+
+            msg_from_server = Comms.CommsHandler.receive_msg(
+                conn = socket
+            )
+
+            return msg_from_server
+            #return json
+        except Exception as e:
+            return e

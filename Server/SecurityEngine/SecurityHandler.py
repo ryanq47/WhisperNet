@@ -15,6 +15,7 @@ class ClientSecurityCheck:
 
     @staticmethod
     def validate_ip():
+
         pass
         '''
 

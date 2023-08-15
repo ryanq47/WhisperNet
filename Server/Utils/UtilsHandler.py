@@ -12,8 +12,15 @@ Desc: A custom encode/decoder for things, with a format try/except block built i
 Some clients send odd characters sometimes so this is a failsafe
 """
 
+import logging
+import inspect
+
+function_debug_symbol = "[^]"
+
 ## str -> bytes
 def str_encode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]) -> bytes:
+    logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
     for format in formats:
         try:
             return input.encode(format)
@@ -25,6 +32,8 @@ def str_encode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]) 
 
 ## bytes -> str
 def bytes_decode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]) -> str:
+    logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
     for format in formats:
         try:
             return input.decode(format)
@@ -36,6 +45,8 @@ def bytes_decode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]
 
 
 def file_check(filepath):
+    logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
     '''
     Checks for an existance of a file. if it does not exist, it prints a warning to screen
     
@@ -44,6 +55,8 @@ def file_check(filepath):
         logging.warning(f"UtilsHandler.pt (file_check) File not found: {filepath}\n")
 
 def continue_anyways():
+    logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
     '''
     A little function that propmts the user to continue anyway. Returns true/false. 
     '''
@@ -54,6 +67,8 @@ def continue_anyways():
 
 
 def timestamp() -> str:
+    logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
     try:
         time = datetime.utcnow()
         return str(time)
@@ -62,6 +77,8 @@ def timestamp() -> str:
         return "timestamperr"
     
 def yaml_load(yaml_file = None):
+    logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
 
     '''Loads yaml. Also allows for "hot" reloads as this loads the yaml file each call
     

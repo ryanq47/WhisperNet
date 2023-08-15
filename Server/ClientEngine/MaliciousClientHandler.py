@@ -13,6 +13,7 @@
 sleep_string = '''{"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}'''
 
 try:
+    import inspect
     import math
     import logging
     import traceback
@@ -35,6 +36,8 @@ except Exception as e:
     print(f"[ServerMaliciousClientHandler.py] Import Error: {e}")
     exit()
 
+function_debug_symbol = "[^]"
+
 class ServerMaliciousClientHandler:
     """
     This is the class that handles all the malicious clients, a new instance is spawned for 
@@ -44,7 +47,8 @@ class ServerMaliciousClientHandler:
     """
     ## Technically gets called in prior thread. Can get funky with DB
     def __init__(self, sys_path=None, evasion_profile_path = None):
-        logging.debug("[MaliciousClientHandler.__init__()] This is a new class object.")
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        #logging.debug("[MaliciousClientHandler.__init__()] This is a new class object.")
         self.clientsocket   = None
         self.ip             = None
         self.port           = None
@@ -62,6 +66,8 @@ class ServerMaliciousClientHandler:
         #self.command_queue.enqueue("help")
 
     def handle_client(self, raw_response_from_client, clientsocket, clientid):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         """This method gets called to handle the client as it connects. It uses the existing class variables, and the new ones passed to it 
         to do various operations with the client
 
@@ -119,6 +125,8 @@ class ServerMaliciousClientHandler:
             self.send_command()
 
     def send_command(self):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         """Sends a message on to the client. Uses the next item up in the queue. If no item is int he queue (or it errors out) The client is send a sleep command
 
             Only triggered when a client sends a message first. 

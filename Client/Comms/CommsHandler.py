@@ -43,7 +43,7 @@ def send_msg(conn=None, msg="") -> None:
     except Exception as e:
         logging.error(f"[Server (CommsHandler.py)] Error sending message: {e}")
         # Handle any appropriate error response or connection closure here
-        raise e
+        #raise e
 
 
 
@@ -94,7 +94,7 @@ def receive_msg(conn=None) -> str:
     except Exception as e:
         logging.error(f"[CommsHandler.receive_msg()] Error receiving message: {e}")
             # Handle any appropriate error response or connection closure here
-        raise e
+        #raise e
     
 
 def connect_to_server(server_conn_tuple = None) -> socket:

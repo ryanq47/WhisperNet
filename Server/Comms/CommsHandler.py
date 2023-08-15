@@ -2,6 +2,7 @@
 ## Communication Handler, this is the most up-to-date version
 ################ 
 try:            
+    import inspect
     import logging
     import socket
     import math
@@ -13,9 +14,12 @@ except Exception as e:
     print(f"[ServerNetworkCommHandler.py] Import Error: {e}")
     exit()
 
+function_debug_symbol = "[^]"
 
 ## setting encryption to false by default
 def send_msg(conn=None, msg="") -> None:
+    logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
     """Sends a message on the socket connection passed to it. 
 
     Args:
@@ -48,6 +52,8 @@ def send_msg(conn=None, msg="") -> None:
 
 
 def receive_msg(conn=None) -> str:
+    logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
     """A message handler that recieves messages. It's a wrapper around socket.recv, and allows for easier error handling
 
     Args:
@@ -99,6 +105,8 @@ def receive_msg(conn=None) -> str:
 
 # Currently not being used
 def _header_parse(header) -> dict:
+    logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
     '''
     This function parses the header, and returns values
     might need to add some bits to the header to make the length longer for large files
@@ -146,6 +154,8 @@ def _header_parse(header) -> dict:
 
 ## str -> bytes
 def str_encode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]) -> bytes:
+    logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
     '''for format in formats:
         try:
             return input.encode(format)
@@ -163,6 +173,8 @@ def str_encode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]) 
 
 ## bytes -> str
 def bytes_decode(input, formats=["utf-8", "iso-8859-1", "windows-1252", "ascii"]) -> str:
+    logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
     for format in formats:
         try:
             return input.decode(format)

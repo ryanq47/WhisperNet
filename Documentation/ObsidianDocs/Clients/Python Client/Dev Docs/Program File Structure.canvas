@@ -10,17 +10,17 @@
 		{"type":"text","text":"## Utils Handler\n- Handles utility  & general functions","id":"d82972e06788645d","x":160,"y":380,"width":295,"height":110,"color":"4"},
 		{"type":"text","text":"# Legend\n\n### Blue: Directory\n\n\n### Green: File","id":"cc05c301307bc6a4","x":-1360,"y":-700,"width":740,"height":380},
 		{"type":"text","text":"## Simple/Debug CLI Fclient\n- Meant to be simple & just work. GUI comes later once everything is hashed out properly. it takes to much time to dev the GUI + the rest of the program","id":"2f40f51b78ea025c","x":-481,"y":-460,"width":362,"height":160},
-		{"id":"6ef718a6bd9b311f","x":860,"y":125,"width":250,"height":85,"color":"5","type":"text","text":"## Plugins\nMy favorite part, plugins"},
-		{"type":"text","text":"## native_Template","id":"0873785257b6bc6c","x":1180,"y":350,"width":320,"height":140,"color":"5"},
-		{"type":"text","text":"## native_SystemShell\n- A plugin for interacting with the system shell\n- \"Dir\" home/systemshell","id":"85fb27fdc99a46bc","x":700,"y":350,"width":320,"height":140,"color":"5"},
-		{"id":"2aebb8f125195fb8","x":718,"y":580,"width":285,"height":60,"color":"4","type":"text","text":"#### SystemShellActions.py"},
-		{"type":"text","text":"#### TemplateActions.py","id":"c9faa1929d3d22de","x":1215,"y":580,"width":285,"height":60,"color":"4"},
+		{"type":"text","text":"## Plugins\nMy favorite part, plugins","id":"6ef718a6bd9b311f","x":860,"y":125,"width":250,"height":85,"color":"5"},
 		{"type":"text","text":"## Display","id":"3af5bee6d544b8c2","x":1860,"y":125,"width":250,"height":85,"color":"5"},
 		{"type":"text","text":"#### DisplayHandler.py\n- Handles the bigger print/display jobs","id":"46b652295188948e","x":1860,"y":350,"width":285,"height":140,"color":"4"},
 		{"type":"text","text":"### Data\nTakes care of anything data/transformatino related\n","id":"9efb84609a49c5c2","x":-1075,"y":145,"width":235,"height":135,"color":"5"},
 		{"type":"text","text":"DecisionTree.py\n\nHandles the decisions\n","id":"1d1334edf28f16f5","x":-1473,"y":350,"width":226,"height":140,"color":"4"},
-		{"id":"cff40b4655f9f072","x":-1082,"y":390,"width":250,"height":60,"color":"4","type":"text","text":"## JsonHandler.py"},
-		{"type":"text","text":"### Logic\nAny big logic items needed","id":"c7e9a27672d1769f","x":-1473,"y":160,"width":225,"height":120,"color":"5"}
+		{"type":"text","text":"## JsonHandler.py","id":"cff40b4655f9f072","x":-1082,"y":390,"width":250,"height":60,"color":"4"},
+		{"type":"text","text":"### Logic\nAny big logic items needed","id":"c7e9a27672d1769f","x":-1473,"y":160,"width":225,"height":120,"color":"5"},
+		{"type":"text","text":"## _native\n- Where all the native plugins are stored","id":"81fa70ea59536d0b","x":825,"y":340,"width":320,"height":140,"color":"5"},
+		{"type":"text","text":"#### Template.py","id":"c9faa1929d3d22de","x":1080,"y":720,"width":285,"height":60,"color":"4"},
+		{"type":"text","text":"#### SystemShell.py","id":"2aebb8f125195fb8","x":683,"y":690,"width":285,"height":60,"color":"4"},
+		{"type":"text","text":"#### Server.py","id":"517f1fd1472d518d","x":860,"y":840,"width":285,"height":50,"color":"4"}
 	],
 	"edges":[
 		{"id":"75c107ca1b115973","fromNode":"0c1e43d5c0104044","fromSide":"bottom","toNode":"8fb0e2b17c4b21c4","toSide":"top"},
@@ -33,14 +33,14 @@
 		{"id":"6e6d095a72c0b1ef","fromNode":"b2a9e2f7de3457af","fromSide":"bottom","toNode":"d82972e06788645d","toSide":"top"},
 		{"id":"52a1fca14b3b382a","fromNode":"b2a9e2f7de3457af","fromSide":"top","toNode":"0c1e43d5c0104044","toSide":"bottom"},
 		{"id":"c394f01d2ef26400","fromNode":"0c1e43d5c0104044","fromSide":"bottom","toNode":"6ef718a6bd9b311f","toSide":"top"},
-		{"id":"b15989df8f14d6c9","fromNode":"6ef718a6bd9b311f","fromSide":"bottom","toNode":"85fb27fdc99a46bc","toSide":"top"},
-		{"id":"a1c3fcf326f55ed0","fromNode":"6ef718a6bd9b311f","fromSide":"bottom","toNode":"0873785257b6bc6c","toSide":"top"},
-		{"id":"939e22698f56f3fd","fromNode":"85fb27fdc99a46bc","fromSide":"bottom","toNode":"2aebb8f125195fb8","toSide":"top"},
-		{"id":"9a87ac0ec79ab320","fromNode":"0873785257b6bc6c","fromSide":"bottom","toNode":"c9faa1929d3d22de","toSide":"top"},
+		{"id":"b15989df8f14d6c9","fromNode":"6ef718a6bd9b311f","fromSide":"bottom","toNode":"81fa70ea59536d0b","toSide":"top"},
 		{"id":"eeaa67112fc367e0","fromNode":"0c1e43d5c0104044","fromSide":"bottom","toNode":"3af5bee6d544b8c2","toSide":"top"},
 		{"id":"59294d9e038e551f","fromNode":"3af5bee6d544b8c2","fromSide":"bottom","toNode":"46b652295188948e","toSide":"top"},
 		{"id":"1d2e932e1d325535","fromNode":"c7e9a27672d1769f","fromSide":"bottom","toNode":"1d1334edf28f16f5","toSide":"top"},
 		{"id":"c304bac3f0fb64c9","fromNode":"c7e9a27672d1769f","fromSide":"top","toNode":"0c1e43d5c0104044","toSide":"bottom"},
-		{"id":"9bdc764d80dddda2","fromNode":"9efb84609a49c5c2","fromSide":"bottom","toNode":"cff40b4655f9f072","toSide":"top"}
+		{"id":"9bdc764d80dddda2","fromNode":"9efb84609a49c5c2","fromSide":"bottom","toNode":"cff40b4655f9f072","toSide":"top"},
+		{"id":"b919b80902e6f6a8","fromNode":"81fa70ea59536d0b","fromSide":"bottom","toNode":"2aebb8f125195fb8","toSide":"top"},
+		{"id":"febdab8d7ff9a887","fromNode":"81fa70ea59536d0b","fromSide":"bottom","toNode":"517f1fd1472d518d","toSide":"top"},
+		{"id":"f0f65aedc514e12c","fromNode":"81fa70ea59536d0b","fromSide":"bottom","toNode":"c9faa1929d3d22de","toSide":"top"}
 	]
 }

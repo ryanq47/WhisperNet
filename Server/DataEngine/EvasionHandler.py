@@ -20,8 +20,12 @@ Reutrns: Json String
 '''
 import yaml
 import random
+import inspect
+import logging
 
 import DataEngine.JsonHandler
+
+function_debug_symbol = "[^]"
 
 class EvasionProfile:
     def __init__(self, sys_path = None, evasionprofile_file_path = None):
@@ -33,6 +37,8 @@ class EvasionProfile:
         self._yaml_load()
 
     def _yaml_load(self):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         ## this is dumb. lots of room for bad errors
         print(f"{self.sys_path} + {self.evasionprofile_file_path}")
         profile_path = self.sys_path + self.evasionprofile_file_path
@@ -47,6 +53,8 @@ class EvasionProfile:
         ## takes YAML profile, and loads it.
 
     def mystify(self, json_string):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         """
         ~~~ Is a mystery... ~~~ Just kidding. Obsfucates & pads the commands going to the client so they evade detection.
 
@@ -80,6 +88,8 @@ class EvasionProfile:
         ## on failure, just return the original string?
 
     def _create_blank_value_padding(self, json_dict = None):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         """Adds random data to the blank key pairs. DOES NOT overwrite any pairs with data in them
 
         sets self.json_dict to new values
@@ -98,6 +108,8 @@ class EvasionProfile:
         
 
     def _generate_random_data(self):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         '''generates & retunrs random chars from YAML file/evasion profile'''
 
         char_set = self.profile_data['Padding']['Characters']

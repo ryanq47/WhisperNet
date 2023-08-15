@@ -199,7 +199,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Clients/Python Client/1. Getting Started.md",
+                "file": "General/Naming & general/Error Handling.md",
                 "mode": "source",
                 "source": false
               }
@@ -272,7 +272,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Clients/Python Client/1. Getting Started.md",
+                "file": "General/Naming & general/Error Handling.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -289,7 +289,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Clients/Python Client/1. Getting Started.md",
+                "file": "General/Naming & general/Error Handling.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -312,7 +312,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Clients/Python Client/1. Getting Started.md"
+                "file": "General/Naming & general/Error Handling.md"
               }
             }
           }
@@ -335,17 +335,23 @@
   },
   "active": "0d3da263a1f61930",
   "lastOpenFiles": [
-    "Clients/Python Client/Dev Docs/Actions & Plugin Dev Overview.md",
-    "Clients/Python Client/Dev Docs/CLI Code Docs.md",
-    "Clients/Python Client/Dev Docs/System Plugins Map.canvas",
-    "Clients/Python Client/VisProg.canvas",
-    "Clients/Python Client/1. Getting Started.md",
-    "Clients/Python Client/Dev Docs/Program File Structure.canvas",
+    "General/Naming & general/File Naming Definitions.md",
+    "General/Naming & general/Error Handling.md",
+    "Server/1. ClientEngine/Error Handling.md",
+    "Clients/Python Client/Dev Docs/Libraries/Overview.md",
     "Clients/Python Client/Dev Docs/Auth Process.canvas",
+    "Clients/Python Client/Dev Docs/CLI Code Docs.md",
+    "Clients/Python Client/Dev Docs/CLI Usage.md",
+    "Clients/Python Client/Dev Docs/Program File Structure.canvas",
+    "Clients/Python Client/Dev Docs/System Plugins Map.canvas",
+    "Clients/Python Client/1. Getting Started.md",
+    "Clients/Python Client/VisProg.canvas",
+    "Clients/Python Client/Dev Docs/Actions & Plugin Dev Overview.md",
+    "Clients/Python Client/Dev Docs/Libraries",
+    "Clients/Python Client/Dev Docs/Creating Plugins",
     "DataState.canvas",
     "Clients",
     "Agents/C Sharp Agent/High Level Operation Flow.canvas",
-    "Clients/Python Client/Dev Docs/CLI Usage.md",
     "Clients/Python Client/Dev Docs",
     "Server/Visual Progress.canvas",
     "Server/Canvas/FileStructure.canvas",
@@ -353,12 +359,10 @@
     "Agents/C Sharp Agent/Program File Structure.canvas",
     "Agents/C Sharp Agent/Var & Func Naming Guide.md",
     "Untitled.md",
-    "General/Naming & general/File Naming Definitions.md",
     "Clients/Python Client",
     "General/Notes.md",
     "Server/2.DataEngine/DBHandler.py/General.md",
     "Server/Canvas/Network & Command Flow.canvas",
-    "General/Naming & general/Error Handling.md",
     "General/Networking & Protocols/Header breakdown - DEPRACATED.md",
     "Server/Long Term gotchas.md",
     "Left off & todo.md",
@@ -375,8 +379,6 @@
     "Server/Server.py Docs/server_plaintext_handler Method.md",
     "Server/Server.py Docs/server_ssl_handler Method.md",
     "Server/Server.py Docs/Connection Handler Method.md",
-    "Server/Server.py Docs",
-    "Server/Canvas",
     "Agents/C Sharp Agent/Functions Overview/JsonHandler.cs.md"
   ]
 }

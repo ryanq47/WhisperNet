@@ -1,9 +1,12 @@
 import json
 import fastjsonschema
 import re
-
+import logging
+import inspect
 ## should proooooly be a static method due to the compile method, have it return the validate object to self.json_compiled
 ## then pass that into the json_parser so it has the compiled data without re-compiling
+
+function_debug_symbol = "[^]"
 
 class json_ops:
     def __init__(self):
@@ -88,6 +91,8 @@ class json_ops:
 
 
     def convert_and_validate(self, json_string="data"):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         """
         Takes JSON data, parses it, and returns a dict. The goal of this function is to identify any missing critical
         keys, (see the readme) and any empty values.
@@ -128,6 +133,8 @@ class json_ops:
             return False
 
     def validate(self, json_object):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         """
         This validates the json data to the schema defined above. Basically, if no errors occur, it
         returns true, which allows the json object to be returned in the convert_and_validate function
@@ -156,6 +163,8 @@ class json_ops:
 
     @staticmethod 
     def from_json(json_string="data") -> dict:
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         """Convert json STRINGS into a Python Object (aka dict)
 
         Args:
@@ -184,6 +193,8 @@ class json_ops:
 
     @staticmethod
     def serialize(dict = None):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         '''Serialzie to a JSON string from a Dict'''
         try:
             json_str = json.dumps(dict)
@@ -207,6 +218,8 @@ class json_ops:
         client_hash = "", server_hash = ""
 
     ):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         """
         Takes data & packs it into json for sending. Use serialize if you already have a json string
         """
@@ -262,6 +275,8 @@ class json_ops:
         client_hash = "", server_hash = ""
 
     ):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         """
         Takes data & packs it into json for sending between server & client. Use serialize if you already have a json string
         """

@@ -155,7 +155,9 @@ class SystemDefaultActions:
 
     def _cd_to_dir(cmd = None):
         '''
-        'CD's' you to where you want. Note, there is no checking that these are valid dir's, just a try/except
+        'CD's' you to where you want. Note, there is no checking that these are valid dir's, just a try/except.
+
+        cmd = the whole user message. it's parsed to strip the 'cd ' part, and returns the directory in which to change to
         
         '''
         try:

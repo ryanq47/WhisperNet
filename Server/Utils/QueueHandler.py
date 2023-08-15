@@ -1,3 +1,8 @@
+import logging 
+import inspect
+
+function_debug_symbol = "[^]"
+
 class QueueHandler():
     """Handles the queue.
 
@@ -6,6 +11,8 @@ class QueueHandler():
         Print this instance to show the current contents of the Queue, or use the .show() method
 
     """ 
+
+    
     def __init__(self):
         ## using a list for the queue, it's pretty flexible
         self.queue = []
@@ -14,6 +21,8 @@ class QueueHandler():
         print(str(self.queue))
 
     def enqueue(self, item_to_add=None):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         """Adds item to queue. 
 
         Args:
@@ -32,6 +41,8 @@ class QueueHandler():
 
 
     def dequeue(self):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         """Returns, and removes the next item in the queue.
 
         Returns:
@@ -56,6 +67,8 @@ class QueueHandler():
 
 
     def peek(self):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         """Returns the next item in he queue. Does NOT remove it from the queue
 
         Returns:
@@ -74,6 +87,8 @@ class QueueHandler():
 
 
     def show(self):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         """Prints all items in the queue. Can also be achieved by printing the class object itself
         """
         print(self.queue)

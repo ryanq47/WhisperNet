@@ -1,10 +1,11 @@
 import sqlite3
 import logging
+import inspect
 
 ## temp sleep string
 sleep_string = '''{"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}'''
 ps_whoami_string = '''{"general": {"action": "powershell", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "powershell", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": "", "timestamp":"timestamp"}, "security": {"client_hash": "", "server_hash": ""}}'''
-
+function_debug_symbol = "[^]"
 
 class SQLDBHandler:
     def __init__(self, db_name):
@@ -15,6 +16,8 @@ class SQLDBHandler:
 
     ## Callables by user
     def dequeue_next_cmd(self, client_name) -> str:
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         ''' This is kinda ugly
         Steps:
 
@@ -57,6 +60,8 @@ class SQLDBHandler:
             return sleep_string
         
     def enqueue_client_row(self, client_name="TestClient", msg=ps_whoami_string, modified_command = "", response="empty", requester="empty"):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         """Enqueues a command to the queue
 
         Args:
@@ -89,6 +94,8 @@ class SQLDBHandler:
             logging.debug(f"[DBHandler.enqueue_mclient_row()] Error: {e}")
 
     def add_response_from_client(self, response="None", client_name="TestClient"):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         try:
             id = self.get_current_queue_number(client_name)
 
@@ -106,6 +113,8 @@ class SQLDBHandler:
 
     ## DB obs
     def connect_to_db(self, db_name):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         try:
             self.dbconn = sqlite3.connect(db_name)
             self.cursor = self.dbconn.cursor()
@@ -115,6 +124,8 @@ class SQLDBHandler:
             logging.debug(f"[DBHandler.connect_to_db()] Error: {e}")
 
     def get_command_from_queue_number(self, client_name, next_queue_number) -> str:
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         '''
         Gets, and returns the next command in the queue based on the queue number passed to it. 
         
@@ -132,6 +143,8 @@ class SQLDBHandler:
         return msg
 
     def get_current_queue_number(self, client_name) -> int:
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         """Gets cuirrent item in queue
 
         Args:
@@ -154,6 +167,8 @@ class SQLDBHandler:
         return current_queue_number
 
     def get_next_queue_number(self, client_name) -> int:
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         """Gets next item up in queue
 
         Args:
@@ -176,6 +191,8 @@ class SQLDBHandler:
         return next_queue_number
 
     def increment_queue_number(self, client_name):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         current_queue_number    = self.get_current_queue_number(client_name)
         next_queue_number       = self.get_next_queue_number(client_name)
 
@@ -189,6 +206,8 @@ class SQLDBHandler:
 
     ## == client_queue_tracker table == ##
     def create_client_table(self, client_name = "TestClient"):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         self.cursor.execute(f'''
         CREATE TABLE IF NOT EXISTS {client_name} (
         id INTEGER,
@@ -201,6 +220,8 @@ class SQLDBHandler:
         self.dbconn.commit()
 
     def create_client_queuetrack_table(self):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         """Creates queue tracking tbale. this is handy for if the server crashes
         """
         self.cursor.execute(f'''
@@ -213,6 +234,8 @@ class SQLDBHandler:
         self.dbconn.commit()
 
     def create_client_queuetrack_row(self, client_name = "TestClient"):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         """Creates a row for the client (if it does not exist - working on that part)
 
         Args:

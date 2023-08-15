@@ -565,3 +565,362 @@
 [127.0.0.1:51586 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51586
 2023-08-14 23:54:14 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
 2023-08-14 23:54:14 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 09:14:53 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 09:14:53 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 09:14:53 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-15 16:14:53.224659+00:00 =====
+2023-08-15 09:14:53 - DEBUG - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 09:55:47 - DEBUG - 
+[127.0.0.1:50297 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50297
+2023-08-15 09:55:51 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-15 09:55:51 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 11:07:37 - DEBUG - 
+[127.0.0.1:50672 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50672
+2023-08-15 11:07:41 - ERROR - [CommsHandler.receive_msg()] Error receiving message: unpack requires a buffer of 4 bytes
+2023-08-15 11:07:41 - DEBUG - [Server.connection_handler() ] No message, action, type, or id recieved. , error=unpack requires a buffer of 4 bytes
+2023-08-15 11:07:41 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 11:19:29 - DEBUG - 
+[127.0.0.1:50771 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50771
+2023-08-15 11:19:33 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-15 11:19:33 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 12:28:30 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 12:28:30 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 12:28:30 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-15 19:28:30.587979+00:00 =====
+2023-08-15 12:28:30 - DEBUG - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 12:28:47 - DEBUG - 
+[127.0.0.1:51293 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51293
+2023-08-15 12:28:57 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-15 12:28:57 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 12:35:21 - DEBUG - 
+[127.0.0.1:51339 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51339
+2023-08-15 12:35:25 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 421
+2023-08-15 12:35:25 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 12:36:10 - DEBUG - 
+[127.0.0.1:51342 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51342
+2023-08-15 12:36:14 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-15 12:36:14 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 12:36:16 - DEBUG - 
+[127.0.0.1:51343 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51343
+2023-08-15 12:36:16 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 446
+2023-08-15 12:36:16 - WARNING - ERRMSG: 'NoneType' object is not subscriptable
+
+2023-08-15 12:36:16 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-15 12:38:41 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 12:38:41 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 12:38:41 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-15 19:38:41.940292+00:00 =====
+2023-08-15 12:38:41 - DEBUG - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 12:38:43 - DEBUG - 
+[127.0.0.1:51355 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51355
+2023-08-15 12:41:10 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 12:41:10 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 12:41:10 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-15 19:41:10.984173+00:00 =====
+2023-08-15 12:41:10 - DEBUG - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 12:41:43 - DEBUG - 
+[127.0.0.1:51380 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51380
+2023-08-15 12:41:46 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-15 12:41:46 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 12:42:04 - DEBUG - 
+[127.0.0.1:51383 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51383
+2023-08-15 12:42:06 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 418
+2023-08-15 12:42:06 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 410
+2023-08-15 12:42:21 - DEBUG - 
+[127.0.0.1:51385 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51385
+2023-08-15 12:42:29 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-15 12:42:29 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 12:42:31 - DEBUG - 
+[127.0.0.1:51388 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51388
+2023-08-15 12:42:31 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 452
+2023-08-15 12:42:31 - WARNING - ERRMSG: string indices must be integers
+
+2023-08-15 12:42:31 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-15 12:45:01 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 12:45:01 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 12:45:01 - DEBUG - ===== Startup | Reference Time (UTC) 2023-08-15 19:45:01.296451+00:00 =====
+2023-08-15 12:45:01 - DEBUG - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 12:45:11 - DEBUG - 
+[127.0.0.1:51408 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51408
+2023-08-15 12:45:15 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 421
+2023-08-15 12:45:15 - WARNING - <frame at 0x000002EBCB6B8F30, file 'C:\\Users\\User\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 245, code connection_handler>: Bad Logon attempt
+2023-08-15 12:45:15 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 410
+2023-08-15 12:47:18 - DEBUG - 
+[127.0.0.1:51420 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51420
+2023-08-15 12:47:18 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 438
+2023-08-15 12:47:18 - WARNING - ERRMSG: string indices must be integers
+
+2023-08-15 12:47:18 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-15 12:56:03 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 12:56:03 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 12:56:03 - INFO - ===== Startup | Reference Time (UTC) 2023-08-15 19:56:03.744591+00:00 =====
+2023-08-15 12:56:03 - INFO - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 12:56:15 - INFO - 
+[127.0.0.1:51496 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51496
+2023-08-15 12:56:18 - ERROR - [CommsHandler.receive_msg()] Error receiving message: [WinError 10054] An existing connection was forcibly closed by the remote host
+2023-08-15 12:56:18 - WARNING - [Server.connection_handler()] No message, action, type, or id recieved. , error=[WinError 10054] An existing connection was forcibly closed by the remote host
+2023-08-15 12:56:18 - WARNING - <frame at 0x000001A905C69C40, file 'C:\\Users\\User\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 527, code <module>>: local variable 'action' referenced before assignment
+ local variable 'action' referenced before assignment
+
+2023-08-15 12:56:18 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-15 12:57:03 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 12:57:03 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 12:57:03 - INFO - ===== Startup | Reference Time (UTC) 2023-08-15 19:57:03.298620+00:00 =====
+2023-08-15 12:57:03 - INFO - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 12:57:17 - INFO - 
+[127.0.0.1:51502 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51502
+2023-08-15 12:57:20 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-15 12:57:20 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 12:57:50 - INFO - 
+[127.0.0.1:51504 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51504
+2023-08-15 12:57:50 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 447
+2023-08-15 12:57:50 - WARNING - <frame at 0x0000028F2DC29C40, file 'C:\\Users\\User\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 527, code <module>>: string indices must be integers
+ string indices must be integers
+
+2023-08-15 12:57:50 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-15 13:00:31 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 13:00:31 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 13:00:31 - INFO - ===== Startup | Reference Time (UTC) 2023-08-15 20:00:31.611678+00:00 =====
+2023-08-15 13:00:31 - INFO - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 13:01:10 - INFO - 
+[127.0.0.1:51523 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51523
+2023-08-15 13:01:13 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-15 13:01:13 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 13:01:14 - INFO - 
+[127.0.0.1:51524 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51524
+2023-08-15 13:01:14 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 446
+2023-08-15 13:01:14 - WARNING - <frame at 0x00000241EA259C40, file 'C:\\Users\\User\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 530, code <module>>: string indices must be integers
+ string indices must be integers
+
+2023-08-15 13:01:14 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-15 13:04:06 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 13:04:06 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 13:04:06 - INFO - ===== Startup | Reference Time (UTC) 2023-08-15 20:04:06.730471+00:00 =====
+2023-08-15 13:04:06 - INFO - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 13:04:26 - INFO - 
+[127.0.0.1:51544 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51544
+2023-08-15 13:04:29 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-15 13:04:29 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 13:04:31 - INFO - 
+[127.0.0.1:51545 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51545
+2023-08-15 13:04:31 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 448
+2023-08-15 13:04:31 - WARNING - <frame at 0x0000021BEC499C40, file 'C:\\Users\\User\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 530, code <module>>: string indices must be integers
+ string indices must be integers
+
+2023-08-15 13:04:31 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-15 13:05:31 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 13:05:31 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 13:05:31 - INFO - ===== Startup | Reference Time (UTC) 2023-08-15 20:05:31.055957+00:00 =====
+2023-08-15 13:05:31 - INFO - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 13:05:45 - INFO - 
+[127.0.0.1:51552 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51552
+2023-08-15 13:05:48 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-15 13:05:48 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 13:05:49 - INFO - 
+[127.0.0.1:51553 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51553
+2023-08-15 13:05:49 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 448
+2023-08-15 13:05:49 - WARNING - <frame at 0x00000217AF679C40, file 'C:\\Users\\User\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 531, code <module>>: string indices must be integers
+ string indices must be integers
+
+2023-08-15 13:05:49 - DEBUG - Socket Close: The socket was successfully closed
+2023-08-15 13:06:29 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 13:06:29 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 13:06:29 - INFO - ===== Startup | Reference Time (UTC) 2023-08-15 20:06:29.067393+00:00 =====
+2023-08-15 13:06:29 - INFO - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 13:06:41 - INFO - 
+[127.0.0.1:51561 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51561
+2023-08-15 13:06:44 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-15 13:06:44 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 13:06:45 - INFO - 
+[127.0.0.1:51563 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51563
+2023-08-15 13:06:45 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 448
+2023-08-15 13:06:45 - DEBUG - <frame at 0x000001C653528150, file 'C:\\Users\\User\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 245, code connection_handler>: string indices must be integers
+2023-08-15 13:08:27 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 13:08:27 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 13:08:27 - INFO - ===== Startup | Reference Time (UTC) 2023-08-15 20:08:27.476246+00:00 =====
+2023-08-15 13:08:27 - INFO - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 13:08:41 - INFO - 
+[127.0.0.1:51572 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51572
+2023-08-15 13:08:44 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-15 13:08:44 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 13:08:45 - INFO - 
+[127.0.0.1:51574 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51574
+2023-08-15 13:08:45 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 448
+2023-08-15 13:08:45 - DEBUG - <frame at 0x000002A624CBD030, file 'C:\\Users\\User\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 246, code connection_handler>: string indices must be integers
+2023-08-15 13:10:52 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 13:10:52 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 13:10:52 - INFO - ===== Startup | Reference Time (UTC) 2023-08-15 20:10:52.523860+00:00 =====
+2023-08-15 13:10:52 - INFO - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 13:11:04 - INFO - 
+[127.0.0.1:51596 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51596
+2023-08-15 13:11:07 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-15 13:11:07 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 13:11:09 - INFO - 
+[127.0.0.1:51597 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51597
+2023-08-15 13:11:09 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 448
+2023-08-15 13:11:09 - DEBUG - <frame at 0x00000165383447B0, file 'C:\\Users\\User\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 246, code connection_handler>: string indices must be integers
+2023-08-15 13:12:42 - INFO - 
+[127.0.0.1:51613 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51613
+2023-08-15 13:12:47 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-15 13:12:47 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 13:12:51 - INFO - 
+[127.0.0.1:51615 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51615
+2023-08-15 13:12:51 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 448
+2023-08-15 13:12:51 - DEBUG - <frame at 0x00000165383447B0, file 'C:\\Users\\User\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 246, code connection_handler>: string indices must be integers
+2023-08-15 13:17:37 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 13:17:37 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 13:17:37 - INFO - ===== Startup | Reference Time (UTC) 2023-08-15 20:17:37.699785+00:00 =====
+2023-08-15 13:17:37 - INFO - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 13:17:49 - INFO - 
+[127.0.0.1:51640 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51640
+2023-08-15 13:17:53 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-15 13:17:53 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 13:17:57 - INFO - 
+[127.0.0.1:51641 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51641
+2023-08-15 13:17:57 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 448
+2023-08-15 13:17:57 - DEBUG - <frame at 0x0000018E5EA9B790, file 'C:\\Users\\User\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 246, code connection_handler>: name 'client_reqeust_cookie' is not defined
+2023-08-15 13:24:44 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 13:24:44 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 13:24:44 - DEBUG - [*] __init__
+2023-08-15 13:24:44 - INFO - ===== Startup | Reference Time (UTC) 2023-08-15 20:24:44.810919+00:00 =====
+2023-08-15 13:24:44 - DEBUG - [*] Starting Server
+2023-08-15 13:24:44 - INFO - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 13:24:44 - DEBUG - [*] Starting Connection Handler
+2023-08-15 13:24:44 - DEBUG - [*] Server Plaintext Handler
+2023-08-15 13:25:07 - INFO - 
+[127.0.0.1:51692 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51692
+2023-08-15 13:25:14 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-15 13:25:14 - DEBUG - [*] clientloginhandler
+2023-08-15 13:25:14 - DEBUG - [*] Password Authentication
+2023-08-15 13:25:14 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 13:25:14 - DEBUG - [*] Server Plaintext Handler
+2023-08-15 13:29:39 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 13:29:39 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 13:29:39 - DEBUG - [*] __init__
+2023-08-15 13:29:39 - INFO - ===== Startup | Reference Time (UTC) 2023-08-15 20:29:39.189608+00:00 =====
+2023-08-15 13:29:39 - DEBUG - [*] Starting Server
+2023-08-15 13:29:39 - INFO - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 13:29:39 - DEBUG - [*] Starting Connection Handler
+2023-08-15 13:29:39 - DEBUG - [*] Server Plaintext Handler
+2023-08-15 13:30:14 - INFO - 
+[127.0.0.1:51737 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51737
+2023-08-15 13:30:20 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 431
+2023-08-15 13:30:20 - DEBUG - [*] clientloginhandler
+2023-08-15 13:30:20 - DEBUG - [*] Password Authentication
+2023-08-15 13:30:20 - WARNING - [Server.ClientLogonhandler()]: Bad Logon attempt
+2023-08-15 13:30:20 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 410
+2023-08-15 13:30:20 - DEBUG - [*] Server Plaintext Handler
+2023-08-15 13:31:05 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 13:31:05 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 13:31:05 - DEBUG - [*] __init__
+2023-08-15 13:31:05 - INFO - ===== Startup | Reference Time (UTC) 2023-08-15 20:31:05.233481+00:00 =====
+2023-08-15 13:31:05 - DEBUG - [*] Starting Server
+2023-08-15 13:31:05 - INFO - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 13:31:05 - DEBUG - [*] Starting Connection Handler
+2023-08-15 13:31:05 - DEBUG - [*] Server Plaintext Handler
+2023-08-15 13:31:53 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 13:31:53 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 13:31:53 - DEBUG - [*] __init__
+2023-08-15 13:31:53 - INFO - ===== Startup | Reference Time (UTC) 2023-08-15 20:31:53.211672+00:00 =====
+2023-08-15 13:31:53 - DEBUG - [*] Starting Server
+2023-08-15 13:31:53 - INFO - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 13:31:53 - DEBUG - [*] connection_handler
+2023-08-15 13:31:53 - DEBUG - [*] Server Plaintext Handler
+2023-08-15 13:32:44 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 13:32:44 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 13:32:44 - DEBUG - [*] __init__
+2023-08-15 13:32:44 - INFO - ===== Startup | Reference Time (UTC) 2023-08-15 20:32:44.667435+00:00 =====
+2023-08-15 13:32:44 - DEBUG - [*] Starting Server
+2023-08-15 13:32:44 - INFO - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 13:32:44 - DEBUG - [func] connection_handler
+2023-08-15 13:32:44 - DEBUG - [*] Server Plaintext Handler
+2023-08-15 13:35:47 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 13:35:47 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 13:35:47 - DEBUG - * __init__
+2023-08-15 13:35:47 - INFO - ===== Startup | Reference Time (UTC) 2023-08-15 20:35:47.960875+00:00 =====
+2023-08-15 13:35:47 - DEBUG - * start_server
+2023-08-15 13:35:47 - INFO - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 13:35:47 - DEBUG - * connection_handler
+2023-08-15 13:35:47 - DEBUG - * server_plaintext_handler
+2023-08-15 13:36:06 - INFO - 
+[127.0.0.1:51790 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51790
+2023-08-15 13:36:09 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-15 13:36:09 - DEBUG - * clientloginhandler
+2023-08-15 13:36:09 - INFO - [*] Password Authentication
+2023-08-15 13:36:09 - INFO - [*] cookie: W5C2WJ7uISOYm16SnXf9BnNSn
+2023-08-15 13:36:09 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 13:36:09 - DEBUG - * server_plaintext_handler
+2023-08-15 13:37:05 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 13:37:05 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 13:37:05 - DEBUG - [^] __init__
+2023-08-15 13:37:05 - INFO - ===== Startup | Reference Time (UTC) 2023-08-15 20:37:05.548828+00:00 =====
+2023-08-15 13:37:05 - DEBUG - [^] start_server
+2023-08-15 13:37:05 - INFO - [Server.start_server() ] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 13:37:05 - DEBUG - [^] connection_handler
+2023-08-15 13:37:05 - DEBUG - [^] server_plaintext_handler
+2023-08-15 13:38:22 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 13:38:22 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 13:38:22 - DEBUG - [^] __init__
+2023-08-15 13:38:22 - INFO - ===== Startup | Reference Time (UTC) 2023-08-15 20:38:22.438898+00:00 =====
+2023-08-15 13:38:22 - DEBUG - [^] start_server
+2023-08-15 13:38:22 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 13:38:22 - DEBUG - [^] connection_handler
+2023-08-15 13:38:22 - DEBUG - [^] server_plaintext_handler
+2023-08-15 13:48:15 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-15 13:48:15 - DEBUG - [^] file_check
+2023-08-15 13:48:15 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\User\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-15 13:48:15 - DEBUG - [^] __init__
+2023-08-15 13:48:15 - INFO - ===== Startup | Reference Time (UTC) 2023-08-15 20:48:15.541182+00:00 =====
+2023-08-15 13:48:15 - DEBUG - [^] start_server
+2023-08-15 13:48:15 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-15 13:48:15 - DEBUG - [^] connection_handler
+2023-08-15 13:48:15 - DEBUG - [^] server_plaintext_handler
+2023-08-15 13:48:31 - INFO - 
+[127.0.0.1:51953 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51953
+2023-08-15 13:48:31 - DEBUG - [^] receive_msg
+2023-08-15 13:48:38 - DEBUG - [^] bytes_decode
+2023-08-15 13:48:38 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-15 13:48:38 - DEBUG - [^] convert_and_validate
+2023-08-15 13:48:38 - DEBUG - [^] clientloginhandler
+2023-08-15 13:48:38 - DEBUG - [^] from_json
+2023-08-15 13:48:38 - INFO - [*] Password Authentication
+2023-08-15 13:48:38 - DEBUG - [^] validate_password
+2023-08-15 13:48:38 - DEBUG - [^] yaml_load
+2023-08-15 13:48:38 - DEBUG - [^] generate_random_cookie
+2023-08-15 13:48:38 - DEBUG - [^] yaml_load
+2023-08-15 13:48:38 - INFO - [*] cookie: Bjyj2AAFdZvdmi2TXUbXP0yES
+2023-08-15 13:48:38 - DEBUG - [^] to_json_for_client
+2023-08-15 13:48:38 - DEBUG - [^] send_msg
+2023-08-15 13:48:38 - DEBUG - [^] str_encode
+2023-08-15 13:48:38 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-15 13:48:38 - DEBUG - [^] server_plaintext_handler
+2023-08-15 13:49:09 - INFO - 
+[127.0.0.1:51955 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:51955
+2023-08-15 13:49:09 - DEBUG - [^] receive_msg
+2023-08-15 13:49:09 - DEBUG - [^] bytes_decode
+2023-08-15 13:49:09 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 448
+2023-08-15 13:49:09 - DEBUG - [^] convert_and_validate
+2023-08-15 13:49:09 - DEBUG - [^] clientloginhandler
+2023-08-15 13:49:09 - DEBUG - [^] from_json
+2023-08-15 13:49:09 - INFO - [*] Cookie Authentication
+2023-08-15 13:49:09 - DEBUG - <frame at 0x00000158E25AC350, file 'C:\\Users\\User\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 255, code connection_handler>: string indices must be integers
+2023-08-15 13:49:09 - DEBUG - [^] server_plaintext_handler

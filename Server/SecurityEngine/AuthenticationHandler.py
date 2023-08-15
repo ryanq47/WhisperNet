@@ -2,12 +2,17 @@
 import random
 import Utils.UtilsHandler
 import logging
+import inspect
+
+function_debug_symbol = "[^]"
 
 class Authentication:
     
     ## OLD
     @staticmethod
     def password_eval(password = None, server_password = None) -> bool:
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         """
         The password eval function. returns true if successful. Will be encrypted when I get around to that
 
@@ -33,6 +38,8 @@ class Authentication:
         
     @staticmethod
     def generate_random_cookie():
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         try:
             ## temp hardcode
             client_profile = Utils.UtilsHandler.yaml_load(yaml_file=r"Config\ClientProfiles\default.yaml")
@@ -48,6 +55,8 @@ class Authentication:
     
     @staticmethod
     def validate_password(password):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         client_profile = Utils.UtilsHandler.yaml_load(yaml_file=r"Config\ClientProfiles\default.yaml")
         '''
         Load password from somewhere
@@ -71,6 +80,8 @@ class Authentication:
         
     @staticmethod
     def validate_cookie(request_cookie = None, valid_cookie = None):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         '''
         A comparison cookie tool. Returns True of the request cookie == valid_cookie
 
