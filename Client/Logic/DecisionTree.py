@@ -74,8 +74,7 @@ class SystemDefaultActions:
         'exit'        : Exit the program
         'clear'       : Clear the screen
         'cd <TOOL DIR>': Change directory to specified tool directory
-        'systemshell' : Spawn a prompt to pass commands to the local system
-        'plugins'     : Show loaded plugins [NOT IMPLEMENTED yet]
+        'plugins'     : Show loaded plugins
               """
         return {"output_from_action": result, "dir": None, "dbg_code_source": inspect.currentframe().f_back}
 

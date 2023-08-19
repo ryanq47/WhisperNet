@@ -54,12 +54,11 @@ class Tree:
         #self.cookie = None
 
     ## Do not change the name of 'tree_input', it's used while  importing this Plugin
-    def tree_input(self, user_input = None):
+    def tree_input(self, user_input = None, data_manager = None):
         dispatch = {
             ## Default commands...
             "help": Actions._display_help,
             "home": Logic.DecisionTree.SystemDefaultActions._set_dir_home_shell,
-            "exit": Logic.DecisionTree.SystemDefaultActions._set_dir_home_shell,
             "clear": Logic.DecisionTree.SystemDefaultActions._display_clear,
 
             ## add yours here... no (), as we are just passing the object, not running it 
@@ -113,8 +112,8 @@ class Actions:
         'help'\t: Spawns this menu
         'home'\t: Exits the program
         'clear'\t: Clears the screen
-        'cd <TOOL DIR>'\t: "cd" to the directory of the tool. Ex: 'cd home/systemshell'. !! Non valid paths cause errors dammit. run cd arg against current lsit of loaded plugins
-        
+        'cd <TOOL DIR>'\t: "cd" to the directory of the tool. Ex: 'cd home/systemshell'. 
+                     
         ## Plugin Specific ##
         'connect to server'\t: Connect to a server instance.
 
