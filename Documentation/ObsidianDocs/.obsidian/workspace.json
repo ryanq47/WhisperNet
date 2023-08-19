@@ -197,11 +197,14 @@
             "id": "0d3da263a1f61930",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "General/Naming & general/Error Handling.md",
-                "mode": "source",
-                "source": false
+                "file": "Clients/Python Client/VisProg.canvas",
+                "viewState": {
+                  "x": 1394.227272727273,
+                  "y": 7.272727272727423,
+                  "zoom": -0.22426483566921895
+                }
               }
             }
           }
@@ -272,7 +275,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "General/Naming & general/Error Handling.md",
+                "file": "Clients/Python Client/VisProg.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -289,7 +292,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "General/Naming & general/Error Handling.md",
+                "file": "Clients/Python Client/VisProg.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -312,7 +315,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "General/Naming & general/Error Handling.md"
+                "file": "Clients/Python Client/VisProg.canvas"
               }
             }
           }
@@ -335,8 +338,8 @@
   },
   "active": "0d3da263a1f61930",
   "lastOpenFiles": [
-    "General/Naming & general/File Naming Definitions.md",
     "General/Naming & general/Error Handling.md",
+    "General/Naming & general/File Naming Definitions.md",
     "Server/1. ClientEngine/Error Handling.md",
     "Clients/Python Client/Dev Docs/Libraries/Overview.md",
     "Clients/Python Client/Dev Docs/Auth Process.canvas",

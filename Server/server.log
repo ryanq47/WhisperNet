@@ -924,3 +924,32 @@
 2023-08-15 13:49:09 - INFO - [*] Cookie Authentication
 2023-08-15 13:49:09 - DEBUG - <frame at 0x00000158E25AC350, file 'C:\\Users\\User\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 255, code connection_handler>: string indices must be integers
 2023-08-15 13:49:09 - DEBUG - [^] server_plaintext_handler
+2023-08-18 21:19:20 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-18 21:19:20 - DEBUG - [^] file_check
+2023-08-18 21:19:20 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-18 21:19:20 - DEBUG - [^] __init__
+2023-08-18 21:19:20 - INFO - ===== Startup | Reference Time (UTC) 2023-08-19 02:19:20.599583+00:00 =====
+2023-08-18 21:19:20 - DEBUG - [^] start_server
+2023-08-18 21:19:20 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-18 21:19:20 - DEBUG - [^] connection_handler
+2023-08-18 21:19:20 - DEBUG - [^] server_plaintext_handler
+2023-08-18 21:20:18 - INFO - 
+[127.0.0.1:61356 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:61356
+2023-08-18 21:20:18 - DEBUG - [^] receive_msg
+2023-08-18 21:20:21 - DEBUG - [^] bytes_decode
+2023-08-18 21:20:21 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-18 21:20:21 - DEBUG - [^] convert_and_validate
+2023-08-18 21:20:21 - DEBUG - [^] clientloginhandler
+2023-08-18 21:20:21 - DEBUG - [^] from_json
+2023-08-18 21:20:21 - INFO - [*] Password Authentication
+2023-08-18 21:20:21 - DEBUG - [^] validate_password
+2023-08-18 21:20:21 - DEBUG - [^] yaml_load
+2023-08-18 21:20:21 - DEBUG - [^] generate_random_cookie
+2023-08-18 21:20:21 - DEBUG - [^] yaml_load
+2023-08-18 21:20:21 - INFO - [*] cookie: 9mcDl9RHJBoz3gLU1wFIPwNnk
+2023-08-18 21:20:21 - DEBUG - [^] to_json_for_client
+2023-08-18 21:20:21 - DEBUG - [^] send_msg
+2023-08-18 21:20:21 - DEBUG - [^] str_encode
+2023-08-18 21:20:21 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-18 21:20:21 - DEBUG - [^] server_plaintext_handler
