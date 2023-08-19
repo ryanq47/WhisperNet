@@ -85,7 +85,7 @@ class Tree:
                 return{"output_from_action":f"Error retrieveing cookie: {e}", "dir":None, "dbg_code_source":inspect.currentframe().f_back}
 
         elif user_input[:2] == "cd":
-            return Logic.DecisionTree.SystemDefaultActions._cd_to_dir(cmd = user_input)
+            return Logic.DecisionTree.SystemDefaultActions._cd_to_dir(user_input = user_input)
 
         elif action:
             return action()
