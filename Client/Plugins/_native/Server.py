@@ -31,7 +31,7 @@ class Info:
 
 class ClassData:
     '''
-    Stores data for access by non static classes. Kind of a weird implementation
+    Stores data for access by non static classes. Kind of a weird implementation. Think of this as a (jank) struct
     
     '''
     ## I hate that this exists. It's kind of dumb and hacky, but I don't have a better way to store data for static classes.
@@ -42,6 +42,7 @@ class ClassData:
     cookie = None
     socket = None
     server_details = None
+    username = None
 
 class Tree:
     '''
@@ -74,11 +75,8 @@ class Tree:
         ## special handling of this inpupt
         if user_input == "connect to server":
             try:
-                cookie = Actions._connect_to_server()["output_from_action"]
-                #print(cookie)
-                #self.cookie = cookie
-                ## this is SUPER hacky. 
-                ClassData.cookie = cookie
+                Actions._connect_to_server()["output_from_action"]
+
                 return{"output_from_action":f"Cookie successfully obtained: {ClassData.cookie}", "dir":None, "dbg_code_source":inspect.currentframe().f_back}
             except Exception as e:
                 return{"output_from_action":f"Error retrieveing cookie: {e}", "dir":None, "dbg_code_source":inspect.currentframe().f_back}
@@ -132,6 +130,14 @@ class Actions:
         return{"output_from_action":"Start Server", "dir":None, "dbg_code_source":inspect.currentframe().f_back}
     
     def _connect_to_server():
+        '''
+        Connects to server
+
+        Sets:
+            ClassData.cookie
+            ClassData.username
+
+        '''
         ## do actions here,
 
         try:
@@ -142,14 +148,24 @@ class Actions:
             socket = Handler._create_socket_connection(server_details_tuple=server_details) ## Need to figure out socket
 
             ## Get creds from user
+            username = Utils.AuthenticationHandler.Credentials.get_username()
+            password = Utils.AuthenticationHandler.Credentials.get_password()
             ## get cookie
             cookie = Handler._get_cookie(
-                socket      = socket
+                socket      = socket,
+                client_id   = username,
+                password    = password
             )
+
+            ## setting class data items
+            ClassData.cookie = cookie
+            ClassData.username = username
 
             return{"output_from_action":cookie, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
         
         except Exception as e:
+            logging.debug(f"{inspect.stack()[0][3]}: {e}")
+
             return{"output_from_action":e, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
 
 
@@ -212,20 +228,31 @@ class Handler:
     '''
 
     @staticmethod
-    def _get_cookie(socket = None):
-        try:
+    def _get_cookie(socket = None, client_id = None, password = None):
+        '''
+        Gets the cookie from the server.
 
-            user = Utils.AuthenticationHandler.Credentials.get_username()
-            password = Utils.AuthenticationHandler.Credentials.get_password()
+        Args:
+            socket: The socket connection to the server
+            user: The username
+            password: The password for the server
+
+        Populates these keys in the JSON that gets sent to the server:
+            action
+            client_id
+            auth_type
+            auth_value
+        
+        '''
+        try:
 
             json = Data.JsonHandler.json_ops.to_json_for_server(
                 action      = "!_userlogin_!", 
-                client_id   = user,
+                client_id   = client_id,
                 auth_type   = "password",
                 auth_value  = password
             )
 
-            
             Comms.CommsHandler.send_msg(
                 msg     = json,
                 conn    = socket

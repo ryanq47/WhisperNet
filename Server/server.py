@@ -324,7 +324,7 @@ class ServerSockHandler:
             return False     
   
     def server_plaintext_handler(self) -> socket:
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]} - aka listening again")
 
         """Handles plaintext communication. It accepts incoming connections, and returns a socket.
 
@@ -437,15 +437,24 @@ class ServerSockHandler:
             try:
                 print("cookie auth")
 
-                ## ERROR IN HERE SOMEWHERE FUUUUCKKKKKKKK
 
-                client_reqeust_cookie = client_json_dict["general"]["client_id"]["auth_value"]
-                valid_cookie = "classobject_of_client.cookie"
+                client_request_cookie = client_json_dict["general"]["auth_value"]
+                print("past clinet request cookie")
+                #valid_cookie = "classobject_of_client.cookie"
 
-                ## BETWEEN THE PREIVOUS AND HERE
+                ## grabbing the cookie sent to the client previously, to verify against
+                print(f"Valid cookies dict:\n{self.current_clients_cookies}")
+
+                ## This try/except exists specifically for any bad cookies to throw a proper error
+                try:
+                    valid_cookie = self.current_clients_cookies[client_name].cookie
+                except Exception as e:
+                    logging.warning(f'[!] Bad cookie for \'{client_json_dict["general"]["client_id"]}\': \'{client_json_dict["general"]["auth_value"]}\'')
+                    return False
+
 
                 print("precookie")
-                if SecurityEngine.AuthenticationHandler.Authentication.validate_cookie(request_cookie = client_reqeust_cookie, valid_cookie = ""): 
+                if SecurityEngine.AuthenticationHandler.Authentication.validate_cookie(request_cookie = client_request_cookie, valid_cookie = valid_cookie): 
                     print("pass to ClientHandler...")
                     #decision_tree()
                     

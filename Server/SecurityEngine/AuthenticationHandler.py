@@ -80,14 +80,14 @@ class Authentication:
         
     @staticmethod
     def validate_cookie(request_cookie = None, valid_cookie = None):
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-
         '''
         A comparison cookie tool. Returns True of the request cookie == valid_cookie
 
         request_cookie: the cookie from the requester/client
         valid_cookie: the current valid cookie for the client. Stored in a class instance
         '''
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         ## preventing heckers from gaining access by sending a blank cookie
         if request_cookie == None or valid_cookie == None:
             return False

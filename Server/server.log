@@ -953,3 +953,344 @@
 2023-08-18 21:20:21 - DEBUG - [^] str_encode
 2023-08-18 21:20:21 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
 2023-08-18 21:20:21 - DEBUG - [^] server_plaintext_handler
+2023-08-21 13:00:56 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-21 13:00:56 - DEBUG - [^] file_check
+2023-08-21 13:00:56 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-21 13:00:56 - DEBUG - [^] __init__
+2023-08-21 13:00:56 - INFO - ===== Startup | Reference Time (UTC) 2023-08-21 18:00:56.137044+00:00 =====
+2023-08-21 13:00:56 - DEBUG - [^] start_server
+2023-08-21 13:00:56 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-21 13:00:56 - DEBUG - [^] connection_handler
+2023-08-21 13:00:56 - DEBUG - [^] server_plaintext_handler
+2023-08-21 13:01:23 - INFO - 
+[127.0.0.1:57371 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57371
+2023-08-21 13:01:23 - DEBUG - [^] receive_msg
+2023-08-21 13:01:27 - DEBUG - [^] bytes_decode
+2023-08-21 13:01:27 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-21 13:01:27 - DEBUG - [^] convert_and_validate
+2023-08-21 13:01:27 - DEBUG - [^] clientloginhandler
+2023-08-21 13:01:27 - DEBUG - [^] from_json
+2023-08-21 13:01:27 - INFO - [*] Password Authentication
+2023-08-21 13:01:27 - DEBUG - [^] validate_password
+2023-08-21 13:01:27 - DEBUG - [^] yaml_load
+2023-08-21 13:01:27 - DEBUG - [^] generate_random_cookie
+2023-08-21 13:01:27 - DEBUG - [^] yaml_load
+2023-08-21 13:01:27 - INFO - [*] cookie: tHciAPWQI7WpMAIl5bustvNoU
+2023-08-21 13:01:27 - DEBUG - [^] to_json_for_client
+2023-08-21 13:01:27 - DEBUG - [^] send_msg
+2023-08-21 13:01:27 - DEBUG - [^] str_encode
+2023-08-21 13:01:27 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-21 13:01:27 - DEBUG - [^] server_plaintext_handler
+2023-08-21 13:01:55 - INFO - 
+[127.0.0.1:57372 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57372
+2023-08-21 13:01:55 - DEBUG - [^] receive_msg
+2023-08-21 13:01:55 - DEBUG - [^] bytes_decode
+2023-08-21 13:01:55 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 451
+2023-08-21 13:01:55 - DEBUG - [^] convert_and_validate
+2023-08-21 13:01:55 - DEBUG - [^] clientloginhandler
+2023-08-21 13:01:55 - DEBUG - [^] from_json
+2023-08-21 13:01:55 - INFO - [*] Cookie Authentication
+2023-08-21 13:01:55 - DEBUG - <frame at 0x0000013D771784D0, file 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 255, code connection_handler>: string indices must be integers
+2023-08-21 13:01:55 - DEBUG - [^] server_plaintext_handler
+2023-08-21 13:10:33 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-21 13:10:33 - DEBUG - [^] file_check
+2023-08-21 13:10:33 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-21 13:10:33 - DEBUG - [^] __init__
+2023-08-21 13:10:33 - INFO - ===== Startup | Reference Time (UTC) 2023-08-21 18:10:33.991133+00:00 =====
+2023-08-21 13:10:33 - DEBUG - [^] start_server
+2023-08-21 13:10:33 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-21 13:10:33 - DEBUG - [^] connection_handler
+2023-08-21 13:10:33 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:10:54 - INFO - 
+[127.0.0.1:57442 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57442
+2023-08-21 13:10:54 - DEBUG - [^] receive_msg
+2023-08-21 13:10:57 - DEBUG - [^] bytes_decode
+2023-08-21 13:10:57 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-21 13:10:57 - DEBUG - [^] convert_and_validate
+2023-08-21 13:10:57 - DEBUG - [^] clientloginhandler
+2023-08-21 13:10:57 - DEBUG - [^] from_json
+2023-08-21 13:10:57 - INFO - [*] Password Authentication
+2023-08-21 13:10:57 - DEBUG - [^] validate_password
+2023-08-21 13:10:57 - DEBUG - [^] yaml_load
+2023-08-21 13:10:57 - DEBUG - [^] generate_random_cookie
+2023-08-21 13:10:57 - DEBUG - [^] yaml_load
+2023-08-21 13:10:57 - INFO - [*] cookie: jljZYBkB0vPkx8KjTrHosuM3a
+2023-08-21 13:10:57 - DEBUG - [^] to_json_for_client
+2023-08-21 13:10:57 - DEBUG - [^] send_msg
+2023-08-21 13:10:57 - DEBUG - [^] str_encode
+2023-08-21 13:10:57 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-21 13:10:57 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:11:06 - INFO - 
+[127.0.0.1:57443 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57443
+2023-08-21 13:11:06 - DEBUG - [^] receive_msg
+2023-08-21 13:11:06 - DEBUG - [^] bytes_decode
+2023-08-21 13:11:06 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 451
+2023-08-21 13:11:06 - DEBUG - [^] convert_and_validate
+2023-08-21 13:11:06 - DEBUG - [^] clientloginhandler
+2023-08-21 13:11:06 - DEBUG - [^] from_json
+2023-08-21 13:11:06 - INFO - [*] Cookie Authentication
+2023-08-21 13:11:06 - DEBUG - <frame at 0x0000020138664910, file 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 255, code connection_handler>: 'client_id'
+2023-08-21 13:11:06 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:13:06 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-21 13:13:06 - DEBUG - [^] file_check
+2023-08-21 13:13:06 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-21 13:13:06 - DEBUG - [^] __init__
+2023-08-21 13:13:06 - INFO - ===== Startup | Reference Time (UTC) 2023-08-21 18:13:06.870402+00:00 =====
+2023-08-21 13:13:06 - DEBUG - [^] start_server
+2023-08-21 13:13:06 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-21 13:13:06 - DEBUG - [^] connection_handler
+2023-08-21 13:13:06 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:13:18 - INFO - 
+[127.0.0.1:57453 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57453
+2023-08-21 13:13:18 - DEBUG - [^] receive_msg
+2023-08-21 13:13:20 - DEBUG - [^] bytes_decode
+2023-08-21 13:13:20 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-21 13:13:20 - DEBUG - [^] convert_and_validate
+2023-08-21 13:13:20 - DEBUG - [^] clientloginhandler
+2023-08-21 13:13:20 - DEBUG - [^] from_json
+2023-08-21 13:13:20 - INFO - [*] Password Authentication
+2023-08-21 13:13:20 - DEBUG - [^] validate_password
+2023-08-21 13:13:20 - DEBUG - [^] yaml_load
+2023-08-21 13:13:20 - DEBUG - [^] generate_random_cookie
+2023-08-21 13:13:20 - DEBUG - [^] yaml_load
+2023-08-21 13:13:20 - INFO - [*] cookie: 0afnrd4LM2YqyNdGWN8sVALnq
+2023-08-21 13:13:20 - DEBUG - [^] to_json_for_client
+2023-08-21 13:13:20 - DEBUG - [^] send_msg
+2023-08-21 13:13:20 - DEBUG - [^] str_encode
+2023-08-21 13:13:20 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-21 13:13:20 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:13:26 - INFO - 
+[127.0.0.1:57454 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57454
+2023-08-21 13:13:26 - DEBUG - [^] receive_msg
+2023-08-21 13:13:26 - DEBUG - [^] bytes_decode
+2023-08-21 13:13:26 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 451
+2023-08-21 13:13:26 - DEBUG - [^] convert_and_validate
+2023-08-21 13:13:26 - DEBUG - [^] clientloginhandler
+2023-08-21 13:13:26 - DEBUG - [^] from_json
+2023-08-21 13:13:26 - INFO - [*] Cookie Authentication
+2023-08-21 13:13:26 - DEBUG - <frame at 0x000002510D9B7FA0, file 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 255, code connection_handler>: 'client_id'
+2023-08-21 13:13:26 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:14:57 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-21 13:14:57 - DEBUG - [^] file_check
+2023-08-21 13:14:57 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-21 13:14:57 - DEBUG - [^] __init__
+2023-08-21 13:14:57 - INFO - ===== Startup | Reference Time (UTC) 2023-08-21 18:14:57.414013+00:00 =====
+2023-08-21 13:14:57 - DEBUG - [^] start_server
+2023-08-21 13:14:57 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-21 13:14:57 - DEBUG - [^] connection_handler
+2023-08-21 13:14:57 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:15:12 - INFO - 
+[127.0.0.1:57464 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57464
+2023-08-21 13:15:12 - DEBUG - [^] receive_msg
+2023-08-21 13:15:15 - DEBUG - [^] bytes_decode
+2023-08-21 13:15:15 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-21 13:15:15 - DEBUG - [^] convert_and_validate
+2023-08-21 13:15:15 - DEBUG - [^] clientloginhandler
+2023-08-21 13:15:15 - DEBUG - [^] from_json
+2023-08-21 13:15:15 - INFO - [*] Password Authentication
+2023-08-21 13:15:15 - DEBUG - [^] validate_password
+2023-08-21 13:15:15 - DEBUG - [^] yaml_load
+2023-08-21 13:15:15 - DEBUG - [^] generate_random_cookie
+2023-08-21 13:15:15 - DEBUG - [^] yaml_load
+2023-08-21 13:15:15 - INFO - [*] cookie: cx97c5b7RSGLARVVlscp78nAS
+2023-08-21 13:15:15 - DEBUG - [^] to_json_for_client
+2023-08-21 13:15:15 - DEBUG - [^] send_msg
+2023-08-21 13:15:15 - DEBUG - [^] str_encode
+2023-08-21 13:15:15 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-21 13:15:15 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:15:19 - INFO - 
+[127.0.0.1:57465 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57465
+2023-08-21 13:15:19 - DEBUG - [^] receive_msg
+2023-08-21 13:15:19 - DEBUG - [^] bytes_decode
+2023-08-21 13:15:19 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 451
+2023-08-21 13:15:19 - DEBUG - [^] convert_and_validate
+2023-08-21 13:15:19 - DEBUG - [^] clientloginhandler
+2023-08-21 13:15:19 - DEBUG - [^] from_json
+2023-08-21 13:15:19 - INFO - [*] Cookie Authentication
+2023-08-21 13:15:19 - DEBUG - <frame at 0x0000021648F97A90, file 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 255, code connection_handler>: 'client_id'
+2023-08-21 13:15:19 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:17:29 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-21 13:17:29 - DEBUG - [^] file_check
+2023-08-21 13:17:29 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-21 13:17:29 - DEBUG - [^] __init__
+2023-08-21 13:17:29 - INFO - ===== Startup | Reference Time (UTC) 2023-08-21 18:17:29.796581+00:00 =====
+2023-08-21 13:17:29 - DEBUG - [^] start_server
+2023-08-21 13:17:29 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-21 13:17:29 - DEBUG - [^] connection_handler
+2023-08-21 13:17:29 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:17:47 - INFO - 
+[127.0.0.1:57479 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57479
+2023-08-21 13:17:47 - DEBUG - [^] receive_msg
+2023-08-21 13:17:51 - DEBUG - [^] bytes_decode
+2023-08-21 13:17:51 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-21 13:17:51 - DEBUG - [^] convert_and_validate
+2023-08-21 13:17:51 - DEBUG - [^] clientloginhandler
+2023-08-21 13:17:51 - DEBUG - [^] from_json
+2023-08-21 13:17:51 - INFO - [*] Password Authentication
+2023-08-21 13:17:51 - DEBUG - [^] validate_password
+2023-08-21 13:17:51 - DEBUG - [^] yaml_load
+2023-08-21 13:17:51 - DEBUG - [^] generate_random_cookie
+2023-08-21 13:17:51 - DEBUG - [^] yaml_load
+2023-08-21 13:17:51 - INFO - [*] cookie: QjX6UsDHmrDvtElXQYs43sQuY
+2023-08-21 13:17:51 - DEBUG - [^] to_json_for_client
+2023-08-21 13:17:51 - DEBUG - [^] send_msg
+2023-08-21 13:17:51 - DEBUG - [^] str_encode
+2023-08-21 13:17:51 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-21 13:17:51 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:17:58 - INFO - 
+[127.0.0.1:57483 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57483
+2023-08-21 13:17:58 - DEBUG - [^] receive_msg
+2023-08-21 13:17:58 - DEBUG - [^] bytes_decode
+2023-08-21 13:17:58 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 451
+2023-08-21 13:17:58 - DEBUG - [^] convert_and_validate
+2023-08-21 13:17:58 - DEBUG - [^] clientloginhandler
+2023-08-21 13:17:58 - DEBUG - [^] from_json
+2023-08-21 13:17:58 - INFO - [*] Cookie Authentication
+2023-08-21 13:17:58 - WARNING - [!] Bad cookie recieved for 'QjX6UsDHmrDvtElXQYs43sQuY'
+2023-08-21 13:17:58 - DEBUG - <frame at 0x00000223D60CC6E0, file 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 255, code connection_handler>: local variable 'valid_cookie' referenced before assignment
+2023-08-21 13:17:58 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:18:56 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-21 13:18:56 - DEBUG - [^] file_check
+2023-08-21 13:18:56 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-21 13:18:56 - DEBUG - [^] __init__
+2023-08-21 13:18:56 - INFO - ===== Startup | Reference Time (UTC) 2023-08-21 18:18:56.223348+00:00 =====
+2023-08-21 13:18:56 - DEBUG - [^] start_server
+2023-08-21 13:18:56 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-21 13:18:56 - DEBUG - [^] connection_handler
+2023-08-21 13:18:56 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:19:10 - INFO - 
+[127.0.0.1:57490 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57490
+2023-08-21 13:19:10 - DEBUG - [^] receive_msg
+2023-08-21 13:19:12 - DEBUG - [^] bytes_decode
+2023-08-21 13:19:12 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-21 13:19:12 - DEBUG - [^] convert_and_validate
+2023-08-21 13:19:12 - DEBUG - [^] clientloginhandler
+2023-08-21 13:19:12 - DEBUG - [^] from_json
+2023-08-21 13:19:12 - INFO - [*] Password Authentication
+2023-08-21 13:19:12 - DEBUG - [^] validate_password
+2023-08-21 13:19:12 - DEBUG - [^] yaml_load
+2023-08-21 13:19:12 - DEBUG - [^] generate_random_cookie
+2023-08-21 13:19:12 - DEBUG - [^] yaml_load
+2023-08-21 13:19:12 - INFO - [*] cookie: ItFgyo9RQhy7zEP4MTcz4mIXu
+2023-08-21 13:19:12 - DEBUG - [^] to_json_for_client
+2023-08-21 13:19:12 - DEBUG - [^] send_msg
+2023-08-21 13:19:12 - DEBUG - [^] str_encode
+2023-08-21 13:19:12 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-21 13:19:12 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:19:15 - INFO - 
+[127.0.0.1:57491 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57491
+2023-08-21 13:19:15 - DEBUG - [^] receive_msg
+2023-08-21 13:19:15 - DEBUG - [^] bytes_decode
+2023-08-21 13:19:15 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 451
+2023-08-21 13:19:15 - DEBUG - [^] convert_and_validate
+2023-08-21 13:19:15 - DEBUG - [^] clientloginhandler
+2023-08-21 13:19:15 - DEBUG - [^] from_json
+2023-08-21 13:19:15 - INFO - [*] Cookie Authentication
+2023-08-21 13:19:15 - WARNING - [!] Bad cookie for 'client_id': 'ItFgyo9RQhy7zEP4MTcz4mIXu'
+2023-08-21 13:19:15 - DEBUG - <frame at 0x0000020B646E1930, file 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 255, code connection_handler>: local variable 'valid_cookie' referenced before assignment
+2023-08-21 13:19:15 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:32:23 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-21 13:32:23 - DEBUG - [^] file_check
+2023-08-21 13:32:23 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-21 13:32:23 - DEBUG - [^] __init__
+2023-08-21 13:32:23 - INFO - ===== Startup | Reference Time (UTC) 2023-08-21 18:32:23.533019+00:00 =====
+2023-08-21 13:32:23 - DEBUG - [^] start_server
+2023-08-21 13:32:23 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-21 13:32:23 - DEBUG - [^] connection_handler
+2023-08-21 13:32:23 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:32:36 - INFO - 
+[127.0.0.1:57549 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57549
+2023-08-21 13:32:36 - DEBUG - [^] receive_msg
+2023-08-21 13:32:39 - ERROR - [CommsHandler.receive_msg()] Error receiving message: unpack requires a buffer of 4 bytes
+2023-08-21 13:32:39 - WARNING - [Server.connection_handler()] No message, action, type, or id recieved. , error=unpack requires a buffer of 4 bytes
+2023-08-21 13:32:39 - DEBUG - <frame at 0x0000025A9C73C040, file 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 180, code start_server>: local variable 'action' referenced before assignment
+2023-08-21 13:32:39 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:34:30 - INFO - 
+[127.0.0.1:57559 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57559
+2023-08-21 13:34:30 - DEBUG - [^] receive_msg
+2023-08-21 13:34:33 - ERROR - [CommsHandler.receive_msg()] Error receiving message: unpack requires a buffer of 4 bytes
+2023-08-21 13:34:33 - WARNING - [Server.connection_handler()] No message, action, type, or id recieved. , error=unpack requires a buffer of 4 bytes
+2023-08-21 13:34:33 - DEBUG - <frame at 0x0000025A9C73C040, file 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 180, code start_server>: local variable 'action' referenced before assignment
+2023-08-21 13:34:33 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:35:40 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-21 13:35:40 - DEBUG - [^] file_check
+2023-08-21 13:35:40 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-21 13:35:40 - DEBUG - [^] __init__
+2023-08-21 13:35:40 - INFO - ===== Startup | Reference Time (UTC) 2023-08-21 18:35:40.170431+00:00 =====
+2023-08-21 13:35:40 - DEBUG - [^] start_server
+2023-08-21 13:35:40 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-21 13:35:40 - DEBUG - [^] connection_handler
+2023-08-21 13:35:40 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:35:48 - INFO - 
+[127.0.0.1:57563 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57563
+2023-08-21 13:35:48 - DEBUG - [^] receive_msg
+2023-08-21 13:35:51 - ERROR - [CommsHandler.receive_msg()] Error receiving message: unpack requires a buffer of 4 bytes
+2023-08-21 13:35:51 - WARNING - [Server.connection_handler()] No message, action, type, or id recieved. , error=unpack requires a buffer of 4 bytes
+2023-08-21 13:35:51 - DEBUG - <frame at 0x00000216D57AC040, file 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 180, code start_server>: local variable 'action' referenced before assignment
+2023-08-21 13:35:51 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:38:35 - INFO - 
+[127.0.0.1:57571 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57571
+2023-08-21 13:38:35 - DEBUG - [^] receive_msg
+2023-08-21 13:38:38 - ERROR - [CommsHandler.receive_msg()] Error receiving message: unpack requires a buffer of 4 bytes
+2023-08-21 13:38:38 - WARNING - [Server.connection_handler()] No message, action, type, or id recieved. , error=unpack requires a buffer of 4 bytes
+2023-08-21 13:38:38 - DEBUG - <frame at 0x00000216D57AC040, file 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 180, code start_server>: local variable 'action' referenced before assignment
+2023-08-21 13:38:38 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:39:13 - INFO - 
+[127.0.0.1:57575 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57575
+2023-08-21 13:39:13 - DEBUG - [^] receive_msg
+2023-08-21 13:39:16 - ERROR - [CommsHandler.receive_msg()] Error receiving message: unpack requires a buffer of 4 bytes
+2023-08-21 13:39:16 - WARNING - [Server.connection_handler()] No message, action, type, or id recieved. , error=unpack requires a buffer of 4 bytes
+2023-08-21 13:39:16 - DEBUG - <frame at 0x00000216D57AC040, file 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 180, code start_server>: local variable 'action' referenced before assignment
+2023-08-21 13:39:16 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:40:11 - INFO - 
+[127.0.0.1:57579 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57579
+2023-08-21 13:40:11 - DEBUG - [^] receive_msg
+2023-08-21 13:40:14 - ERROR - [CommsHandler.receive_msg()] Error receiving message: unpack requires a buffer of 4 bytes
+2023-08-21 13:40:14 - WARNING - [Server.connection_handler()] No message, action, type, or id recieved. , error=unpack requires a buffer of 4 bytes
+2023-08-21 13:40:14 - DEBUG - <frame at 0x00000216D57AC040, file 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 180, code start_server>: local variable 'action' referenced before assignment
+2023-08-21 13:40:14 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:42:18 - INFO - 
+[127.0.0.1:57595 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57595
+2023-08-21 13:42:18 - DEBUG - [^] receive_msg
+2023-08-21 13:42:51 - ERROR - [CommsHandler.receive_msg()] Error receiving message: unpack requires a buffer of 4 bytes
+2023-08-21 13:42:51 - WARNING - [Server.connection_handler()] No message, action, type, or id recieved. , error=unpack requires a buffer of 4 bytes
+2023-08-21 13:42:51 - DEBUG - <frame at 0x00000216D57AC040, file 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', line 180, code start_server>: local variable 'action' referenced before assignment
+2023-08-21 13:42:51 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:43:00 - INFO - 
+[127.0.0.1:57597 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57597
+2023-08-21 13:43:00 - DEBUG - [^] receive_msg
+2023-08-21 13:43:03 - DEBUG - [^] bytes_decode
+2023-08-21 13:43:03 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-21 13:43:03 - DEBUG - [^] convert_and_validate
+2023-08-21 13:43:03 - DEBUG - [^] clientloginhandler
+2023-08-21 13:43:03 - DEBUG - [^] from_json
+2023-08-21 13:43:03 - INFO - [*] Password Authentication
+2023-08-21 13:43:03 - DEBUG - [^] validate_password
+2023-08-21 13:43:03 - DEBUG - [^] yaml_load
+2023-08-21 13:43:03 - DEBUG - [^] generate_random_cookie
+2023-08-21 13:43:03 - DEBUG - [^] yaml_load
+2023-08-21 13:43:03 - INFO - [*] cookie: 3krl1kB9EHFps61gxUBRiHDIG
+2023-08-21 13:43:03 - DEBUG - [^] to_json_for_client
+2023-08-21 13:43:03 - DEBUG - [^] send_msg
+2023-08-21 13:43:03 - DEBUG - [^] str_encode
+2023-08-21 13:43:03 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-21 13:43:03 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-21 13:43:10 - INFO - 
+[127.0.0.1:57598 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:57598
+2023-08-21 13:43:10 - DEBUG - [^] receive_msg
+2023-08-21 13:43:10 - DEBUG - [^] bytes_decode
+2023-08-21 13:43:10 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 448
+2023-08-21 13:43:10 - DEBUG - [^] convert_and_validate
+2023-08-21 13:43:10 - DEBUG - [^] clientloginhandler
+2023-08-21 13:43:10 - DEBUG - [^] from_json
+2023-08-21 13:43:10 - INFO - [*] Cookie Authentication
+2023-08-21 13:43:10 - WARNING - [!] Bad cookie for 'client_id': '3krl1kB9EHFps61gxUBRiHDIG'
+2023-08-21 13:43:10 - DEBUG - [^] server_plaintext_handler - aka listening again
