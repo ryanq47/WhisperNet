@@ -1,3 +1,0 @@
-- [ ]  Action naming scheme (SystemDefaultActions, etc)
-- [ ] How the plugins work
-	- [ ] Trees, ActionClass, and Handler Classes

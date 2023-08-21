@@ -1,6 +1,0 @@
-{
-	"nodes":[
-		{"id":"16b617f2d4f7e58b","x":-480,"y":-180,"width":420,"height":440,"type":"text","text":"## Idea\n\n Something similar to session cookies. Instead of a continual conneciton, each request is sent in through the standard channels. There could be some problems with this & live activities (such as refresh timers, live key logging, a chat system, etc. -- actually, could just poll every X seconds with this cookie, and pull that data, remember the service account idea?)\n\nClient Auths with user/pass. Server returns session cookie. This cookie is used for each request to the server. ALl SSL encrypted of course. \n\nCookie is kept for X amount of time before client needs to re-auth."}
-	],
-	"edges":[]
-}

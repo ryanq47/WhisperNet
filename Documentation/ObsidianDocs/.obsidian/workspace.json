@@ -168,7 +168,7 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "Clients/Python Client/Dev Docs/Program File Structure.canvas",
+                "file": "Clients/Python Client/Dev Docs/MindMaps/Program File Structure.canvas",
                 "viewState": {
                   "x": -217.705634715026,
                   "y": 135.0676813471502,
@@ -197,14 +197,11 @@
             "id": "0d3da263a1f61930",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "Clients/Python Client/VisProg.canvas",
-                "viewState": {
-                  "x": 1704.4705882352941,
-                  "y": 381.5149821368352,
-                  "zoom": 0.03218040574914971
-                }
+                "file": "Clients/Python Client/1. Getting Started - Basic Usage.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -275,7 +272,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Clients/Python Client/VisProg.canvas",
+                "file": "Clients/Python Client/1. Getting Started - Basic Usage.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -292,7 +289,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Clients/Python Client/VisProg.canvas",
+                "file": "Clients/Python Client/1. Getting Started - Basic Usage.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -315,7 +312,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Clients/Python Client/VisProg.canvas"
+                "file": "Clients/Python Client/1. Getting Started - Basic Usage.md"
               }
             }
           }
@@ -336,22 +333,27 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0d3da263a1f61930",
+  "active": "e250de59ef9ddaa7",
   "lastOpenFiles": [
-    "Clients/Python Client/Dev Docs/Data/Singleton.md",
+    "Clients/Python Client/Dev Docs/Other/CLI Usage.md",
+    "Clients/Python Client/Dev Docs/Other",
+    "Clients/Python Client/Dev Docs/Other/CLI Code Docs.md",
+    "Clients/Python Client/Dev Docs/MindMaps/System Plugins Map.canvas",
+    "Clients/Python Client/Dev Docs/MindMaps/Program File Structure.canvas",
+    "Clients/Python Client/Dev Docs/MindMaps",
+    "Clients/Python Client/Dev Docs/Native Plugins/Plugin template.md",
     "Clients/Python Client/Dev Docs/Auth Process.canvas",
-    "Clients/Python Client/Dev Docs/CLI Usage.md",
-    "Clients/Python Client/Dev Docs/Program File Structure.canvas",
-    "Clients/Python Client/Dev Docs/System Plugins Map.canvas",
+    "Clients/Python Client/Dev Docs/Actions & Plugin Dev Overview.md",
+    "Clients/Python Client/Dev Docs/Native Plugins/_native_Server.py.md",
+    "Clients/Python Client/Dev Docs/MindMaps/VisProg.canvas",
+    "Clients/Python Client/Dev Docs/Native Plugins",
+    "Clients/Python Client/Dev Docs/Data/Singleton.md",
     "Clients/Python Client/1. Getting Started - Basic Usage.md",
-    "Clients/Python Client/VisProg.canvas",
     "Clients/Python Client/Dev Docs/Data",
     "General/Naming & general/Error Handling.md",
     "General/Naming & general/File Naming Definitions.md",
     "Server/1. ClientEngine/Error Handling.md",
     "Clients/Python Client/Dev Docs/Libraries/Overview.md",
-    "Clients/Python Client/Dev Docs/CLI Code Docs.md",
-    "Clients/Python Client/Dev Docs/Actions & Plugin Dev Overview.md",
     "Clients/Python Client/Dev Docs/Libraries",
     "Clients/Python Client/Dev Docs/Creating Plugins",
     "DataState.canvas",
@@ -373,15 +375,10 @@
     "Left off & todo.md",
     "Server/General.md",
     "Server/1. ClientEngine",
-    "Server/2.DataEngine/DBHandler.py",
-    "Server/2.DataEngine",
     "Server/1. ClientEngine/MaliciousClientHandler Docs/MaliciousClientHandler.py.md",
     "Server/1. ClientEngine/MaliciousClientHandler Docs/ToDo (old).md",
-    "General/Naming & general",
     "Server/Server.py Docs/clientloginhandler().md",
     "Server/Server.py Docs/socket_cleanup() Method.md",
-    "Server/Server.py Docs/server_plaintext_handler Method.md",
-    "Server/Server.py Docs/server_ssl_handler Method.md",
-    "Server/Server.py Docs/Connection Handler Method.md"
+    "Server/Server.py Docs/server_plaintext_handler Method.md"
   ]
 }
