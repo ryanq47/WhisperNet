@@ -4,10 +4,6 @@ Actions. This calls the respective handler, which returns data.
 
 '''
 
-
-from tkinter import E
-
-
 try:
     ## just have to import it, everything else is taken care of in client.py
     import logging
@@ -24,6 +20,8 @@ try:
 except Exception as e:
     ##print this error, as there's a chance logging is the one that failed, or that it doesnt get loaded.
     print(f"[<PluginPath>] Import Error: {e}")
+
+function_debug_symbol = "[^]"
 
 ## == Data == ##
 ## used for imports
@@ -119,6 +117,12 @@ class Handler:
 
 
 '''
+Try Excepts & logging:
+use this:
+    logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}: {e}")
+
+
+
 
 doc notes:
 

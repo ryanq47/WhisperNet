@@ -22,6 +22,8 @@ except Exception as e:
     ##print this error, as there's a chance logging is the one that failed, or that it doesnt get loaded.
     print(f"[<PluginPath>] Import Error: {e}")
 
+function_debug_symbol = "[^]"
+
 ## == Data == ##
 ## used for imports
 class Info:
@@ -76,9 +78,10 @@ class Tree:
         if user_input == "connect to server":
             try:
                 Actions._connect_to_server()["output_from_action"]
-
                 return{"output_from_action":f"Cookie successfully obtained: {ClassData.cookie}", "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+            
             except Exception as e:
+                logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}: {e}")
                 return{"output_from_action":f"Error retrieveing cookie: {e}", "dir":None, "dbg_code_source":inspect.currentframe().f_back}
 
         elif user_input[:2] == "cd":
@@ -92,7 +95,7 @@ class Tree:
                 command = user_input
             )
 
-            ##Not, this returns out the full json return dict.
+            ##Note, this returns out the full json return dict.
             return{"output_from_action":response, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
 
 
@@ -113,7 +116,9 @@ class Actions:
         'cd <TOOL DIR>'\t: "cd" to the directory of the tool. Ex: 'cd home/systemshell'. 
                      
         ## Plugin Specific ##
-        'connect to server'\t: Connect to a server instance.
+        'connect to server'       : Connect to a server instance.
+        'show connection details' : Shows connection details
+
 
         ## Once connected: ## (work in progress)
         '<server help menu here>'
@@ -142,9 +147,7 @@ class Actions:
 
         try:
             server_details = Utils.AuthenticationHandler.Server.get_server_to_connect_to()
-
             ClassData.server_details = server_details
-
             socket = Handler._create_socket_connection(server_details_tuple=server_details) ## Need to figure out socket
 
             ## Get creds from user
@@ -158,20 +161,20 @@ class Actions:
             )
 
             ## setting class data items
-            ClassData.cookie = cookie
+            ClassData.cookie    = cookie
             ClassData.username = username
 
             return{"output_from_action":cookie, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
         
         except Exception as e:
-            logging.debug(f"{inspect.stack()[0][3]}: {e}")
+            logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}: {e}")
 
             return{"output_from_action":e, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
 
 
     def _show_connection_details():
-        conn_details_formatted = f"Server: IP:PORT \n"
-        f"Cookie: cookie \n"\
+        conn_details_formatted = f"Server: {ClassData.server_details} \n" \
+        f"Cookie: {ClassData.cookie} \n" \
         f"Other?\n"
 
         return{"output_from_action":conn_details_formatted, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
@@ -197,7 +200,6 @@ class Actions:
             ## Create socket
             socket = Handler._create_socket_connection(server_details_tuple=ClassData.server_details) ## Need to figure out socket
 
-
             json_str_results = Handler._send_recv_command_to_server(
                 cookie      = ClassData.cookie,
                 msg_command = command,
@@ -214,6 +216,7 @@ class Actions:
 
             return{"output_from_action":agents, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
         except Exception as e:
+            logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}: {e}")
             return{"output_from_action":e, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
 
 
@@ -274,6 +277,7 @@ class Handler:
             return cookie
     
         except Exception as e:
+            logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}: {e}")
             return e
 
     def _create_socket_connection(server_details_tuple = ("127.0.0.1", 80)):
@@ -333,4 +337,5 @@ class Handler:
             return msg_from_server
             #return json
         except Exception as e:
+            logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}: {e}")
             return e
