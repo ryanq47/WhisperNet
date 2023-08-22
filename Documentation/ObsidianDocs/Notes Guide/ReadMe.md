@@ -1,0 +1,1 @@
+These are some standards for note keeping so I keep it consistent

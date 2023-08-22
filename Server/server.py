@@ -394,6 +394,11 @@ class ServerSockHandler:
             try:
                 if SecurityEngine.AuthenticationHandler.Authentication.validate_password(password):
                     cookie = SecurityEngine.AuthenticationHandler.Authentication.generate_random_cookie()
+
+                    if not cookie:
+                        logging.info(f"[*] Error with generating cookie!")
+                        return False
+
                     logging.info(f"[*] cookie: {cookie}")
 
                     ## add cookie to valid cookie class

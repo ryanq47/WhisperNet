@@ -1,0 +1,34 @@
+{
+	"nodes":[
+		{"type":"text","text":"## Server","id":"b426e4d0081c68be","x":-600,"y":-380,"width":250,"height":60},
+		{"type":"text","text":"## Client","id":"e20d32a4c6917356","x":300,"y":-380,"width":250,"height":60},
+		{"type":"text","text":"#### Initial login\n- Password Auth","id":"9e64c70786df9511","x":300,"y":-200,"width":250,"height":100},
+		{"type":"text","text":"#### Response\n- Failed login","id":"11aeb1808cd46a08","x":-1180,"y":-20,"width":250,"height":100},
+		{"type":"text","text":"## Server Login handler (get name right)","id":"8ffeb413154c4e6f","x":-600,"y":-210,"width":250,"height":120},
+		{"type":"text","text":"#### Response\n- Send back cookie","id":"ff53b4a7dabe185c","x":-600,"y":120,"width":250,"height":80},
+		{"type":"text","text":"#### Stores cookie","id":"0fa2f2ff94b7f343","x":300,"y":100,"width":280,"height":120},
+		{"type":"text","text":"## Password Logon","id":"211ef9d7394c86fe","x":-600,"y":-540,"width":1150,"height":60},
+		{"type":"text","text":"## Cookie process","id":"379257f4124a8bf4","x":-600,"y":400,"width":1150,"height":60},
+		{"type":"text","text":"#### Command for server\n- Includes cookie in JSON","id":"ce9587d0e7b61fde","x":245,"y":640,"width":360,"height":120},
+		{"type":"text","text":"#### Server Auth Handler\n","id":"69c7c35c4b35797d","x":-600,"y":640,"width":250,"height":100},
+		{"type":"text","text":"## Response\n- Bad cookie\n","id":"8096bf51388491de","x":-1180,"y":840,"width":250,"height":80},
+		{"type":"text","text":"#### Run command...\n","id":"34643a1f8ec0c1e9","x":-625,"y":850,"width":300,"height":90},
+		{"type":"text","text":"## Prints results....","id":"9ae0adad06e92f0b","x":245,"y":880,"width":360,"height":60},
+		{"type":"text","text":"## !! Loop","id":"a122c816c748f904","x":-150,"y":780,"width":250,"height":60},
+		{"type":"text","text":"#### Send Results back...","id":"b50129a59c518892","x":-600,"y":1020,"width":250,"height":50}
+	],
+	"edges":[
+		{"id":"076d49d7323afc31","fromNode":"9e64c70786df9511","fromSide":"left","toNode":"8ffeb413154c4e6f","toSide":"right"},
+		{"id":"ea6fc7c67ec9c32a","fromNode":"8ffeb413154c4e6f","fromSide":"left","toNode":"11aeb1808cd46a08","toSide":"top","label":"Failed Login"},
+		{"id":"1cbb7f09cd4a16c6","fromNode":"8ffeb413154c4e6f","fromSide":"bottom","toNode":"ff53b4a7dabe185c","toSide":"top","label":"Successful login"},
+		{"id":"a0f04ca9cd727354","fromNode":"ff53b4a7dabe185c","fromSide":"right","toNode":"0fa2f2ff94b7f343","toSide":"left"},
+		{"id":"3f6bf1db23e8d5ed","fromNode":"ce9587d0e7b61fde","fromSide":"left","toNode":"69c7c35c4b35797d","toSide":"right"},
+		{"id":"9d5c9524b76d4b3b","fromNode":"69c7c35c4b35797d","fromSide":"left","toNode":"8096bf51388491de","toSide":"top","label":"Bad/Invalid Cookie"},
+		{"id":"25997d41bf67d5a6","fromNode":"69c7c35c4b35797d","fromSide":"bottom","toNode":"34643a1f8ec0c1e9","toSide":"top","label":"Successful login/auth"},
+		{"id":"c1c48b733327f665","fromNode":"b50129a59c518892","fromSide":"bottom","toNode":"9ae0adad06e92f0b","toSide":"bottom"},
+		{"id":"4b3482e00113717e","fromNode":"9ae0adad06e92f0b","fromSide":"top","toNode":"ce9587d0e7b61fde","toSide":"bottom"},
+		{"id":"88fa504092a06726","fromNode":"34643a1f8ec0c1e9","fromSide":"bottom","toNode":"b50129a59c518892","toSide":"top"},
+		{"id":"f05c409e7346a102","fromNode":"8096bf51388491de","fromSide":"bottom","toNode":"b50129a59c518892","toSide":"left"},
+		{"id":"1ea4ea5fd97e5576","fromNode":"11aeb1808cd46a08","fromSide":"bottom","toNode":"0fa2f2ff94b7f343","toSide":"bottom"}
+	]
+}

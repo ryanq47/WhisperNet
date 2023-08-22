@@ -70,7 +70,7 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "Server/Canvas/FileStructure.canvas",
+                "file": "Server/MindMaps/FileStructure.canvas",
                 "viewState": {
                   "x": 774.9328176578349,
                   "y": 589.0239796045028,
@@ -111,57 +111,6 @@
             }
           },
           {
-            "id": "46d0eb7f6f0b64e5",
-            "type": "leaf",
-            "state": {
-              "type": "canvas",
-              "state": {
-                "file": "Agents/C Sharp Agent/High Level Operation Flow.canvas",
-                "viewState": {
-                  "x": 91.72896071532944,
-                  "y": 429.8486958035893,
-                  "zoom": -0.8135514267109105
-                }
-              }
-            }
-          },
-          {
-            "id": "681b20529cdbfa86",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Server/Server.py Docs/clientloginhandler().md",
-                "mode": "preview",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "1f7e3dd078420a23",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "General/Naming & general/Error Handling.md",
-                "mode": "preview",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "abefa189e004dbf2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Server/1. ClientEngine/MaliciousClientHandler Docs/MaliciousClientHandler.py.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "47a8202f520c80a3",
             "type": "leaf",
             "pinned": true,
@@ -179,34 +128,55 @@
             }
           },
           {
-            "id": "0cdedbb1ea6ee4f0",
+            "id": "0d3da263a1f61930",
             "type": "leaf",
+            "pinned": true,
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "DataState.canvas",
-                "viewState": {
-                  "x": 192.06150005199743,
-                  "y": -387.091420061944,
-                  "zoom": -0.3333333333333333
-                }
-              }
+                "file": "Server/Modules/3. Security Engine/AuthenticationHandler.py.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true
             }
           },
           {
-            "id": "0d3da263a1f61930",
+            "id": "3d7ad95876b61bd2",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Server/Modules/3. Security Engine/AuthenticationHandler.py.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true
+            }
+          },
+          {
+            "id": "f9041a77b06a947c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Clients/Python Client/1. Getting Started - Basic Usage.md",
+                "file": "Notes Guide/Colors & comments.md",
                 "mode": "source",
                 "source": false
               }
             }
+          },
+          {
+            "id": "0ddd376fec04d500",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
           }
         ],
-        "currentTab": 13
+        "currentTab": 9
       }
     ],
     "direction": "vertical"
@@ -272,7 +242,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Clients/Python Client/1. Getting Started - Basic Usage.md",
+                "file": "Server/Modules/3. Security Engine/AuthenticationHandler.py.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -289,7 +259,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Clients/Python Client/1. Getting Started - Basic Usage.md",
+                "file": "Server/Modules/3. Security Engine/AuthenticationHandler.py.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -312,7 +282,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Clients/Python Client/1. Getting Started - Basic Usage.md"
+                "file": "Server/Modules/3. Security Engine/AuthenticationHandler.py.md"
               }
             }
           }
@@ -330,11 +300,25 @@
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "templater-obsidian:Templater": false
     }
   },
-  "active": "e250de59ef9ddaa7",
+  "active": "3d7ad95876b61bd2",
   "lastOpenFiles": [
+    "Notes Guide/Colors & comments.md",
+    "Server/Modules/3. Security Engine/AuthenticationHandler.py.md",
+    "Clients/Python Client/Dev Docs/MindMaps/Authentication Map.canvas",
+    "Server/General.md",
+    "Server/Long Term gotchas.md",
+    "Notes Guide/ReadMe.md",
+    "General/Notes.md",
+    "Notes Guide",
+    "Server/Modules/3. Security Engine",
+    "Server/Modules",
+    "Clients/Python Client/Dev Docs/Libraries/Overview.md",
+    "Clients/Python Client/Dev Docs/MindMaps/VisProg.canvas",
+    "Clients/Python Client/1. Getting Started - Basic Usage.md",
     "Clients/Python Client/Dev Docs/Other/CLI Usage.md",
     "Clients/Python Client/Dev Docs/Other",
     "Clients/Python Client/Dev Docs/Other/CLI Code Docs.md",
@@ -345,40 +329,27 @@
     "Clients/Python Client/Dev Docs/Auth Process.canvas",
     "Clients/Python Client/Dev Docs/Actions & Plugin Dev Overview.md",
     "Clients/Python Client/Dev Docs/Native Plugins/_native_Server.py.md",
-    "Clients/Python Client/Dev Docs/MindMaps/VisProg.canvas",
     "Clients/Python Client/Dev Docs/Native Plugins",
     "Clients/Python Client/Dev Docs/Data/Singleton.md",
-    "Clients/Python Client/1. Getting Started - Basic Usage.md",
     "Clients/Python Client/Dev Docs/Data",
     "General/Naming & general/Error Handling.md",
     "General/Naming & general/File Naming Definitions.md",
-    "Server/1. ClientEngine/Error Handling.md",
-    "Clients/Python Client/Dev Docs/Libraries/Overview.md",
+    "Server/Modules/1. ClientEngine/Error Handling.md",
     "Clients/Python Client/Dev Docs/Libraries",
     "Clients/Python Client/Dev Docs/Creating Plugins",
     "DataState.canvas",
     "Clients",
     "Agents/C Sharp Agent/High Level Operation Flow.canvas",
-    "Clients/Python Client/Dev Docs",
     "Server/Visual Progress.canvas",
-    "Server/Canvas/FileStructure.canvas",
+    "Server/MindMaps/FileStructure.canvas",
     "Agents/C Sharp Agent/Functions Overview/Client.CS.md",
     "Agents/C Sharp Agent/Program File Structure.canvas",
     "Agents/C Sharp Agent/Var & Func Naming Guide.md",
     "Untitled.md",
-    "Clients/Python Client",
-    "General/Notes.md",
-    "Server/2.DataEngine/DBHandler.py/General.md",
-    "Server/Canvas/Network & Command Flow.canvas",
+    "Server/Modules/2.DataEngine/DBHandler.py/General.md",
     "General/Networking & Protocols/Header breakdown - DEPRACATED.md",
-    "Server/Long Term gotchas.md",
     "Left off & todo.md",
-    "Server/General.md",
-    "Server/1. ClientEngine",
-    "Server/1. ClientEngine/MaliciousClientHandler Docs/MaliciousClientHandler.py.md",
-    "Server/1. ClientEngine/MaliciousClientHandler Docs/ToDo (old).md",
-    "Server/Server.py Docs/clientloginhandler().md",
-    "Server/Server.py Docs/socket_cleanup() Method.md",
-    "Server/Server.py Docs/server_plaintext_handler Method.md"
+    "Server/Modules/1. ClientEngine/MaliciousClientHandler Docs/MaliciousClientHandler.py.md",
+    "Server/Modules/1. ClientEngine/MaliciousClientHandler Docs/ToDo (old).md"
   ]
 }

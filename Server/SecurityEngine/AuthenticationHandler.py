@@ -8,7 +8,7 @@ function_debug_symbol = "[^]"
 
 class Authentication:
     
-    ## OLD
+    ## OLD - Not used
     @staticmethod
     def password_eval(password = None, server_password = None) -> bool:
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
@@ -52,6 +52,7 @@ class Authentication:
             return random_cookie
         except Exception as e:
             logging.debug(f"[generate_random_cookie] {e}")
+            return False
     
     @staticmethod
     def validate_password(password):
@@ -93,11 +94,11 @@ class Authentication:
             return False
 
         if request_cookie == valid_cookie:
-            print("Cookie accepted")
+            logging.debug("Cookie accepted")
             return True
         
         else:
-            print("Cookie rejected bitch")
+            logging.warning("Cookie rejected bitch -- This is odd.")
             return False
 
 
