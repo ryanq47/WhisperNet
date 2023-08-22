@@ -1,0 +1,10 @@
+- Plan
+	- MindMap
+		- Summary of code in map
+- Implement
+	- Implement code
+- Documents
+	- Document code
+	- Review 
+		- pros/cons
+		- pitfalls

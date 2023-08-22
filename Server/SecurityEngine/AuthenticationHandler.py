@@ -94,7 +94,7 @@ class Authentication:
             return False
 
         if request_cookie == valid_cookie:
-            logging.debug("Cookie accepted")
+            logging.debug("[*] Cookie accepted")
             return True
         
         else:

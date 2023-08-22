@@ -44,7 +44,7 @@ class ClassData:
     cookie = None
     socket = None
     server_details = None
-    username = None
+    client_id = None
 
 class Tree:
     '''
@@ -151,18 +151,18 @@ class Actions:
             socket = Handler._create_socket_connection(server_details_tuple=server_details) ## Need to figure out socket
 
             ## Get creds from user
-            username = Utils.AuthenticationHandler.Credentials.get_username()
+            client_id = Utils.AuthenticationHandler.Credentials.get_username()
             password = Utils.AuthenticationHandler.Credentials.get_password()
             ## get cookie
             cookie = Handler._get_cookie(
                 socket      = socket,
-                client_id   = username,
+                client_id   = client_id,
                 password    = password
             )
 
             ## setting class data items
             ClassData.cookie    = cookie
-            ClassData.username = username
+            ClassData.client_id = client_id
 
             return{"output_from_action":cookie, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
         
@@ -175,7 +175,7 @@ class Actions:
     def _show_connection_details():
         conn_details_formatted = f"Server: {ClassData.server_details} \n" \
         f"Cookie: {ClassData.cookie} \n" \
-        f"Other?\n"
+        f"Username/Client_ID: {ClassData.cookie.client_id}\n"
 
         return{"output_from_action":conn_details_formatted, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
 
@@ -205,7 +205,7 @@ class Actions:
                 msg_command = command,
                 msg_to      = "server",
                 socket      = socket,
-                client_id   = "client_id"
+                client_id   = ClassData.client_id
             )
 
             parsed_results = Data.JsonHandler.json_ops.from_json(
