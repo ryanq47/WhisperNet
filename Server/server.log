@@ -3176,3 +3176,436 @@
 2023-08-24 19:58:44 - DEBUG - [^] send_msg
 2023-08-24 19:58:44 - DEBUG - [^] str_encode
 2023-08-24 19:58:44 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 551
+2023-08-25 13:18:53 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-25 13:18:53 - DEBUG - [^] file_check
+2023-08-25 13:18:53 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-25 13:18:53 - DEBUG - [^] __init__
+2023-08-25 13:18:53 - INFO - ===== Startup | Reference Time (UTC) 2023-08-25 18:18:53.602936+00:00 =====
+2023-08-25 13:18:53 - DEBUG - [^] start_server
+2023-08-25 13:18:53 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-25 13:18:53 - DEBUG - [^] connection_handler
+2023-08-25 13:18:53 - DEBUG - [^] server_reset_data
+2023-08-25 13:18:53 - DEBUG - [^] server_set_socket
+2023-08-25 13:18:53 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-25 13:19:34 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-25 13:19:34 - DEBUG - [^] file_check
+2023-08-25 13:19:34 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-25 13:19:34 - DEBUG - [^] __init__
+2023-08-25 13:19:34 - INFO - ===== Startup | Reference Time (UTC) 2023-08-25 18:19:34.333103+00:00 =====
+2023-08-25 13:19:34 - DEBUG - [^] start_server
+2023-08-25 13:19:34 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-25 13:19:34 - DEBUG - [^] connection_handler
+2023-08-25 13:19:34 - DEBUG - [^] server_reset_data
+2023-08-25 13:19:34 - DEBUG - [^] server_set_socket
+2023-08-25 13:19:34 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-25 13:19:58 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-25 13:19:58 - DEBUG - [^] file_check
+2023-08-25 13:19:58 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-25 13:19:58 - DEBUG - [^] __init__
+2023-08-25 13:19:58 - INFO - ===== Startup | Reference Time (UTC) 2023-08-25 18:19:58.631569+00:00 =====
+2023-08-25 13:19:58 - DEBUG - [^] connect_to_db
+2023-08-25 13:19:58 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataDB
+2023-08-25 13:19:58 - DEBUG - [*] Successful DB connection to DataDB
+2023-08-25 13:19:58 - DEBUG - [^] _create_table
+2023-08-25 13:20:46 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-25 13:20:46 - DEBUG - [^] file_check
+2023-08-25 13:20:46 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-25 13:20:46 - DEBUG - [^] __init__
+2023-08-25 13:20:46 - INFO - ===== Startup | Reference Time (UTC) 2023-08-25 18:20:46.169809+00:00 =====
+2023-08-25 13:20:46 - DEBUG - [^] connect_to_db
+2023-08-25 13:20:46 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataDB
+2023-08-25 13:20:46 - DEBUG - [*] Successful DB connection to DataDB
+2023-08-25 13:20:46 - DEBUG - [^] _create_table
+2023-08-25 13:20:46 - DEBUG - [^] start_server
+2023-08-25 13:20:46 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-25 13:20:46 - DEBUG - [^] connection_handler
+2023-08-25 13:20:46 - DEBUG - [^] server_reset_data
+2023-08-25 13:20:46 - DEBUG - [^] server_set_socket
+2023-08-25 13:20:46 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-25 13:21:28 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-25 13:21:28 - DEBUG - [^] file_check
+2023-08-25 13:21:28 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-25 13:21:28 - DEBUG - [^] __init__
+2023-08-25 13:21:28 - INFO - ===== Startup | Reference Time (UTC) 2023-08-25 18:21:28.766225+00:00 =====
+2023-08-25 13:21:28 - DEBUG - [^] connect_to_db
+2023-08-25 13:21:28 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataDB
+2023-08-25 13:21:28 - DEBUG - [*] Successful DB connection to DataDB
+2023-08-25 13:21:28 - DEBUG - [^] init_db
+2023-08-25 13:21:28 - DEBUG - [^] stats_create_table
+2023-08-25 13:21:28 - DEBUG - [^] _create_table
+2023-08-25 13:21:28 - DEBUG - [^] start_server
+2023-08-25 13:21:28 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-25 13:21:28 - DEBUG - [^] connection_handler
+2023-08-25 13:21:28 - DEBUG - [^] server_reset_data
+2023-08-25 13:21:28 - DEBUG - [^] server_set_socket
+2023-08-25 13:21:28 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-25 13:24:34 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-25 13:24:34 - DEBUG - [^] file_check
+2023-08-25 13:24:34 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-25 13:24:34 - DEBUG - [^] __init__
+2023-08-25 13:24:34 - INFO - ===== Startup | Reference Time (UTC) 2023-08-25 18:24:34.511053+00:00 =====
+2023-08-25 13:24:34 - DEBUG - [^] connect_to_db
+2023-08-25 13:24:34 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataDB
+2023-08-25 13:24:34 - DEBUG - [*] Successful DB connection to DataDB
+2023-08-25 13:24:34 - DEBUG - [^] init_db
+2023-08-25 13:24:34 - DEBUG - [^] stats_create_table
+2023-08-25 13:24:34 - DEBUG - [^] _create_table
+2023-08-25 13:24:34 - DEBUG - [^] start_server
+2023-08-25 13:24:34 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-25 13:24:34 - DEBUG - [^] connection_handler
+2023-08-25 13:24:34 - DEBUG - [^] server_reset_data
+2023-08-25 13:24:34 - DEBUG - [^] server_set_socket
+2023-08-25 13:24:34 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-25 13:32:57 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-25 13:32:57 - DEBUG - [^] file_check
+2023-08-25 13:32:57 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-25 13:32:57 - DEBUG - [^] __init__
+2023-08-25 13:32:57 - INFO - ===== Startup | Reference Time (UTC) 2023-08-25 18:32:57.597171+00:00 =====
+2023-08-25 13:32:57 - DEBUG - [^] connect_to_db
+2023-08-25 13:32:57 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataDB
+2023-08-25 13:32:57 - DEBUG - [*] Successful DB connection to DataDB
+2023-08-25 13:32:57 - DEBUG - [^] init_db
+2023-08-25 13:32:57 - DEBUG - [^] stats_create_table
+2023-08-25 13:32:57 - DEBUG - [^] _create_table
+2023-08-25 13:32:57 - DEBUG - [^] stats_set_start_time
+2023-08-25 13:32:57 - DEBUG - [^] _set_start_time
+2023-08-25 13:32:57 - DEBUG - [^] timestamp
+2023-08-25 13:33:28 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-25 13:33:28 - DEBUG - [^] file_check
+2023-08-25 13:33:28 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-25 13:33:28 - DEBUG - [^] __init__
+2023-08-25 13:33:28 - INFO - ===== Startup | Reference Time (UTC) 2023-08-25 18:33:28.177029+00:00 =====
+2023-08-25 13:33:28 - DEBUG - [^] connect_to_db
+2023-08-25 13:33:28 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataDB
+2023-08-25 13:33:28 - DEBUG - [*] Successful DB connection to DataDB
+2023-08-25 13:33:28 - DEBUG - [^] init_db
+2023-08-25 13:33:28 - DEBUG - [^] stats_create_table
+2023-08-25 13:33:28 - DEBUG - [^] _create_table
+2023-08-25 13:33:28 - DEBUG - [^] stats_set_start_time
+2023-08-25 13:33:28 - DEBUG - [^] _set_start_time
+2023-08-25 13:33:28 - DEBUG - [^] timestamp
+2023-08-25 13:33:37 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-25 13:33:37 - DEBUG - [^] file_check
+2023-08-25 13:33:37 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-25 13:33:37 - DEBUG - [^] __init__
+2023-08-25 13:33:37 - INFO - ===== Startup | Reference Time (UTC) 2023-08-25 18:33:37.411943+00:00 =====
+2023-08-25 13:33:37 - DEBUG - [^] connect_to_db
+2023-08-25 13:33:37 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataDB
+2023-08-25 13:33:37 - DEBUG - [*] Successful DB connection to DataDB
+2023-08-25 13:33:37 - DEBUG - [^] init_db
+2023-08-25 13:33:37 - DEBUG - [^] stats_create_table
+2023-08-25 13:33:37 - DEBUG - [^] _create_table
+2023-08-25 13:33:37 - DEBUG - [^] stats_set_start_time
+2023-08-25 13:33:37 - DEBUG - [^] _set_start_time
+2023-08-25 13:33:37 - DEBUG - [^] timestamp
+2023-08-25 13:33:37 - DEBUG - [^] start_server
+2023-08-25 13:33:37 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-25 13:33:37 - DEBUG - [^] connection_handler
+2023-08-25 13:33:37 - DEBUG - [^] server_reset_data
+2023-08-25 13:33:37 - DEBUG - [^] server_set_socket
+2023-08-25 13:33:37 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-25 13:36:30 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-25 13:36:30 - DEBUG - [^] file_check
+2023-08-25 13:36:30 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-25 13:36:30 - DEBUG - [^] __init__
+2023-08-25 13:36:30 - INFO - ===== Startup | Reference Time (UTC) 2023-08-25 18:36:30.542109+00:00 =====
+2023-08-25 13:36:30 - DEBUG - [^] connect_to_db
+2023-08-25 13:36:30 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataDB.db
+2023-08-25 13:36:30 - DEBUG - [*] Successful DB connection to DataDB.db
+2023-08-25 13:36:30 - DEBUG - [^] init_db
+2023-08-25 13:36:30 - DEBUG - [^] stats_create_table
+2023-08-25 13:36:30 - DEBUG - [^] _create_table
+2023-08-25 13:36:30 - DEBUG - [^] stats_set_start_time
+2023-08-25 13:36:30 - DEBUG - [^] _set_start_time
+2023-08-25 13:36:30 - DEBUG - [^] timestamp
+2023-08-25 13:36:30 - DEBUG - [^] start_server
+2023-08-25 13:36:30 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-25 13:36:30 - DEBUG - [^] connection_handler
+2023-08-25 13:36:30 - DEBUG - [^] server_reset_data
+2023-08-25 13:36:30 - DEBUG - [^] server_set_socket
+2023-08-25 13:36:30 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-25 14:05:25 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-25 14:05:25 - DEBUG - [^] file_check
+2023-08-25 14:05:25 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-25 14:05:25 - DEBUG - [^] __init__
+2023-08-25 14:05:25 - INFO - ===== Startup | Reference Time (UTC) 2023-08-25 19:05:25.240145+00:00 =====
+2023-08-25 14:05:25 - DEBUG - [^] connect_to_db
+2023-08-25 14:05:25 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataDB.db
+2023-08-25 14:05:25 - DEBUG - [*] Successful DB connection to DataDB.db
+2023-08-25 14:05:25 - DEBUG - [^] init_db
+2023-08-25 14:05:25 - DEBUG - [^] stats_create_table
+2023-08-25 14:05:25 - DEBUG - [^] _create_table
+2023-08-25 14:05:25 - DEBUG - [^] stats_set_start_time
+2023-08-25 14:05:25 - DEBUG - [^] _set_start_time
+2023-08-25 14:05:25 - DEBUG - [^] timestamp
+2023-08-25 14:05:25 - DEBUG - [^] start_server
+2023-08-25 14:05:25 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-25 14:05:25 - DEBUG - [^] connection_handler
+2023-08-25 14:05:25 - DEBUG - [^] server_reset_data
+2023-08-25 14:05:25 - DEBUG - [^] server_set_socket
+2023-08-25 14:05:25 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-25 14:05:34 - INFO - [127.0.0.1:64248 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64248
+2023-08-25 14:05:34 - DEBUG - [^] server_parse_message
+2023-08-25 14:05:34 - DEBUG - [^] receive_msg
+2023-08-25 14:05:37 - DEBUG - [^] bytes_decode
+2023-08-25 14:05:37 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-25 14:05:37 - DEBUG - [^] convert_and_validate
+2023-08-25 14:05:37 - DEBUG - [^] server_action_decision
+2023-08-25 14:05:37 - DEBUG - [^] clientloginhandler
+2023-08-25 14:05:37 - DEBUG - [^] from_json
+2023-08-25 14:05:37 - INFO - [*] Password Authentication
+2023-08-25 14:05:37 - DEBUG - [^] validate_password
+2023-08-25 14:05:37 - DEBUG - [^] yaml_load
+2023-08-25 14:05:37 - DEBUG - [^] generate_random_cookie
+2023-08-25 14:05:37 - DEBUG - [^] yaml_load
+2023-08-25 14:05:37 - INFO - [*] cookie: 7ZrkqBTJrBIrOaFAXV9Ursx3P
+2023-08-25 14:05:37 - DEBUG - [^] to_json_for_client
+2023-08-25 14:05:37 - DEBUG - [^] send_msg
+2023-08-25 14:05:37 - DEBUG - [^] str_encode
+2023-08-25 14:05:37 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-25 14:05:37 - DEBUG - [^] server_reset_data
+2023-08-25 14:05:37 - DEBUG - [^] server_set_socket
+2023-08-25 14:05:37 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-25 14:06:40 - INFO - [127.0.0.1:64249 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64249
+2023-08-25 14:06:40 - DEBUG - [^] server_parse_message
+2023-08-25 14:06:40 - DEBUG - [^] receive_msg
+2023-08-25 14:06:40 - DEBUG - [^] bytes_decode
+2023-08-25 14:06:40 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 450
+2023-08-25 14:06:40 - DEBUG - [^] convert_and_validate
+2023-08-25 14:06:40 - DEBUG - [^] server_action_decision
+2023-08-25 14:06:40 - DEBUG - [^] clientloginhandler
+2023-08-25 14:06:40 - DEBUG - [^] from_json
+2023-08-25 14:06:40 - INFO - [*] Cookie Authentication
+2023-08-25 14:06:40 - DEBUG - [^] validate_cookie
+2023-08-25 14:06:40 - DEBUG - [*] Cookie accepted
+2023-08-25 14:06:40 - DEBUG - [^] server_reset_data
+2023-08-25 14:06:40 - DEBUG - [^] handle_client
+2023-08-25 14:06:40 - DEBUG - [^] server_set_socket
+2023-08-25 14:06:40 - DEBUG - [^] from_json
+2023-08-25 14:06:40 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-25 14:06:40 - DEBUG - [^] interaction_logger
+2023-08-25 14:06:40 - DEBUG - [^] from_json
+2023-08-25 14:06:40 - INFO - [>] ID: 'bob'; IP/PORT: ':'; message to: 'server'; command: 'server stats'; message/command value: ''
+2023-08-25 14:06:40 - WARNING - stats_get_stats() missing 1 required positional argument: 'self'
+2023-08-25 14:06:40 - DEBUG - [^] to_json_for_client
+2023-08-25 14:06:40 - DEBUG - [^] send_msg
+2023-08-25 14:06:40 - DEBUG - [^] str_encode
+2023-08-25 14:06:40 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 417
+2023-08-25 14:07:42 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-25 14:07:42 - DEBUG - [^] file_check
+2023-08-25 14:07:42 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-25 14:07:42 - DEBUG - [^] __init__
+2023-08-25 14:07:42 - INFO - ===== Startup | Reference Time (UTC) 2023-08-25 19:07:42.476672+00:00 =====
+2023-08-25 14:07:42 - DEBUG - [^] connect_to_db
+2023-08-25 14:07:42 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataDB.db
+2023-08-25 14:07:42 - DEBUG - [*] Successful DB connection to DataDB.db
+2023-08-25 14:07:42 - DEBUG - [^] init_db
+2023-08-25 14:07:42 - DEBUG - [^] stats_create_table
+2023-08-25 14:07:42 - DEBUG - [^] _create_table
+2023-08-25 14:07:42 - DEBUG - [^] stats_set_start_time
+2023-08-25 14:07:42 - DEBUG - [^] _set_start_time
+2023-08-25 14:07:42 - DEBUG - [^] timestamp
+2023-08-25 14:07:42 - DEBUG - [^] start_server
+2023-08-25 14:07:42 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-25 14:07:42 - DEBUG - [^] connection_handler
+2023-08-25 14:07:42 - DEBUG - [^] server_reset_data
+2023-08-25 14:07:42 - DEBUG - [^] server_set_socket
+2023-08-25 14:07:42 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-25 14:08:08 - INFO - [127.0.0.1:64258 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64258
+2023-08-25 14:08:08 - DEBUG - [^] server_parse_message
+2023-08-25 14:08:08 - DEBUG - [^] receive_msg
+2023-08-25 14:08:11 - DEBUG - [^] bytes_decode
+2023-08-25 14:08:11 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-25 14:08:11 - DEBUG - [^] convert_and_validate
+2023-08-25 14:08:11 - DEBUG - [^] server_action_decision
+2023-08-25 14:08:11 - DEBUG - [^] clientloginhandler
+2023-08-25 14:08:11 - DEBUG - [^] from_json
+2023-08-25 14:08:11 - INFO - [*] Password Authentication
+2023-08-25 14:08:11 - DEBUG - [^] validate_password
+2023-08-25 14:08:11 - DEBUG - [^] yaml_load
+2023-08-25 14:08:11 - DEBUG - [^] generate_random_cookie
+2023-08-25 14:08:11 - DEBUG - [^] yaml_load
+2023-08-25 14:08:11 - INFO - [*] cookie: yEemULNjM6RaMI0VYhSJjJiV1
+2023-08-25 14:08:11 - DEBUG - [^] to_json_for_client
+2023-08-25 14:08:11 - DEBUG - [^] send_msg
+2023-08-25 14:08:11 - DEBUG - [^] str_encode
+2023-08-25 14:08:11 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-25 14:08:11 - DEBUG - [^] server_reset_data
+2023-08-25 14:08:11 - DEBUG - [^] server_set_socket
+2023-08-25 14:08:11 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-25 14:08:15 - INFO - [127.0.0.1:64259 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64259
+2023-08-25 14:08:15 - DEBUG - [^] server_parse_message
+2023-08-25 14:08:15 - DEBUG - [^] receive_msg
+2023-08-25 14:08:15 - DEBUG - [^] bytes_decode
+2023-08-25 14:08:15 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 450
+2023-08-25 14:08:15 - DEBUG - [^] convert_and_validate
+2023-08-25 14:08:15 - DEBUG - [^] server_action_decision
+2023-08-25 14:08:15 - DEBUG - [^] clientloginhandler
+2023-08-25 14:08:15 - DEBUG - [^] from_json
+2023-08-25 14:08:15 - INFO - [*] Cookie Authentication
+2023-08-25 14:08:15 - DEBUG - [^] validate_cookie
+2023-08-25 14:08:15 - DEBUG - [*] Cookie accepted
+2023-08-25 14:08:15 - DEBUG - [^] server_reset_data
+2023-08-25 14:08:15 - DEBUG - [^] server_set_socket
+2023-08-25 14:08:15 - DEBUG - [^] handle_client
+2023-08-25 14:08:15 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-25 14:08:15 - DEBUG - [^] from_json
+2023-08-25 14:08:15 - DEBUG - [^] interaction_logger
+2023-08-25 14:08:15 - DEBUG - [^] from_json
+2023-08-25 14:08:15 - INFO - [>] ID: 'bob'; IP/PORT: ':'; message to: 'server'; command: 'server stats'; message/command value: ''
+2023-08-25 14:08:15 - WARNING - stats_get_stats() missing 1 required positional argument: 'self'
+2023-08-25 14:08:15 - DEBUG - [^] to_json_for_client
+2023-08-25 14:08:15 - DEBUG - [^] send_msg
+2023-08-25 14:08:15 - DEBUG - [^] str_encode
+2023-08-25 14:08:15 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 417
+2023-08-25 14:09:44 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-25 14:09:44 - DEBUG - [^] file_check
+2023-08-25 14:09:44 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-25 14:09:44 - DEBUG - [^] __init__
+2023-08-25 14:09:44 - INFO - ===== Startup | Reference Time (UTC) 2023-08-25 19:09:44.184243+00:00 =====
+2023-08-25 14:09:44 - DEBUG - [^] connect_to_db
+2023-08-25 14:09:44 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataDB.db
+2023-08-25 14:09:44 - DEBUG - [*] Successful DB connection to DataDB.db
+2023-08-25 14:09:44 - DEBUG - [^] init_db
+2023-08-25 14:09:44 - DEBUG - [^] stats_create_table
+2023-08-25 14:09:44 - DEBUG - [^] _create_table
+2023-08-25 14:09:44 - DEBUG - [^] stats_set_start_time
+2023-08-25 14:09:44 - DEBUG - [^] _set_start_time
+2023-08-25 14:09:44 - DEBUG - [^] timestamp
+2023-08-25 14:09:44 - DEBUG - [^] start_server
+2023-08-25 14:09:44 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-25 14:09:44 - DEBUG - [^] connection_handler
+2023-08-25 14:09:44 - DEBUG - [^] server_reset_data
+2023-08-25 14:09:44 - DEBUG - [^] server_set_socket
+2023-08-25 14:09:44 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-25 14:09:57 - INFO - [127.0.0.1:64273 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64273
+2023-08-25 14:09:57 - DEBUG - [^] server_parse_message
+2023-08-25 14:09:57 - DEBUG - [^] receive_msg
+2023-08-25 14:10:00 - DEBUG - [^] bytes_decode
+2023-08-25 14:10:00 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-25 14:10:00 - DEBUG - [^] convert_and_validate
+2023-08-25 14:10:00 - DEBUG - [^] server_action_decision
+2023-08-25 14:10:00 - DEBUG - [^] clientloginhandler
+2023-08-25 14:10:00 - DEBUG - [^] from_json
+2023-08-25 14:10:00 - INFO - [*] Password Authentication
+2023-08-25 14:10:00 - DEBUG - [^] validate_password
+2023-08-25 14:10:00 - DEBUG - [^] yaml_load
+2023-08-25 14:10:00 - DEBUG - [^] generate_random_cookie
+2023-08-25 14:10:00 - DEBUG - [^] yaml_load
+2023-08-25 14:10:00 - INFO - [*] cookie: tNPiydQPIrEtbKLof6mFwuckn
+2023-08-25 14:10:00 - DEBUG - [^] to_json_for_client
+2023-08-25 14:10:00 - DEBUG - [^] send_msg
+2023-08-25 14:10:00 - DEBUG - [^] str_encode
+2023-08-25 14:10:00 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-25 14:10:00 - DEBUG - [^] server_reset_data
+2023-08-25 14:10:00 - DEBUG - [^] server_set_socket
+2023-08-25 14:10:00 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-25 14:10:03 - INFO - [127.0.0.1:64274 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64274
+2023-08-25 14:10:03 - DEBUG - [^] server_parse_message
+2023-08-25 14:10:03 - DEBUG - [^] receive_msg
+2023-08-25 14:10:03 - DEBUG - [^] bytes_decode
+2023-08-25 14:10:03 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 450
+2023-08-25 14:10:03 - DEBUG - [^] convert_and_validate
+2023-08-25 14:10:03 - DEBUG - [^] server_action_decision
+2023-08-25 14:10:03 - DEBUG - [^] clientloginhandler
+2023-08-25 14:10:03 - DEBUG - [^] from_json
+2023-08-25 14:10:03 - INFO - [*] Cookie Authentication
+2023-08-25 14:10:03 - DEBUG - [^] validate_cookie
+2023-08-25 14:10:03 - DEBUG - [*] Cookie accepted
+2023-08-25 14:10:03 - DEBUG - [^] server_reset_data
+2023-08-25 14:10:03 - DEBUG - [^] handle_client
+2023-08-25 14:10:03 - DEBUG - [^] server_set_socket
+2023-08-25 14:10:03 - DEBUG - [^] from_json
+2023-08-25 14:10:03 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-25 14:10:03 - DEBUG - [^] interaction_logger
+2023-08-25 14:10:03 - DEBUG - [^] from_json
+2023-08-25 14:10:03 - INFO - [>] ID: 'bob'; IP/PORT: ':'; message to: 'server'; command: 'server stats'; message/command value: ''
+2023-08-25 14:10:03 - WARNING - __init__() missing 1 required positional argument: 'db_name'
+2023-08-25 14:10:03 - DEBUG - [^] to_json_for_client
+2023-08-25 14:10:03 - DEBUG - [^] send_msg
+2023-08-25 14:10:03 - DEBUG - [^] str_encode
+2023-08-25 14:10:03 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 417
+2023-08-25 14:10:27 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-25 14:10:27 - DEBUG - [^] file_check
+2023-08-25 14:10:27 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-25 14:10:27 - DEBUG - [^] __init__
+2023-08-25 14:10:27 - INFO - ===== Startup | Reference Time (UTC) 2023-08-25 19:10:27.538779+00:00 =====
+2023-08-25 14:10:27 - DEBUG - [^] connect_to_db
+2023-08-25 14:10:27 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataDB.db
+2023-08-25 14:10:27 - DEBUG - [*] Successful DB connection to DataDB.db
+2023-08-25 14:10:27 - DEBUG - [^] init_db
+2023-08-25 14:10:27 - DEBUG - [^] stats_create_table
+2023-08-25 14:10:27 - DEBUG - [^] _create_table
+2023-08-25 14:10:27 - DEBUG - [^] stats_set_start_time
+2023-08-25 14:10:27 - DEBUG - [^] _set_start_time
+2023-08-25 14:10:27 - DEBUG - [^] timestamp
+2023-08-25 14:10:27 - DEBUG - [^] start_server
+2023-08-25 14:10:27 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-25 14:10:27 - DEBUG - [^] connection_handler
+2023-08-25 14:10:27 - DEBUG - [^] server_reset_data
+2023-08-25 14:10:27 - DEBUG - [^] server_set_socket
+2023-08-25 14:10:27 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-25 14:10:35 - INFO - [127.0.0.1:64280 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64280
+2023-08-25 14:10:35 - DEBUG - [^] server_parse_message
+2023-08-25 14:10:35 - DEBUG - [^] receive_msg
+2023-08-25 14:10:38 - DEBUG - [^] bytes_decode
+2023-08-25 14:10:38 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-25 14:10:38 - DEBUG - [^] convert_and_validate
+2023-08-25 14:10:38 - DEBUG - [^] server_action_decision
+2023-08-25 14:10:38 - DEBUG - [^] clientloginhandler
+2023-08-25 14:10:38 - DEBUG - [^] from_json
+2023-08-25 14:10:38 - INFO - [*] Password Authentication
+2023-08-25 14:10:38 - DEBUG - [^] validate_password
+2023-08-25 14:10:38 - DEBUG - [^] yaml_load
+2023-08-25 14:10:38 - DEBUG - [^] generate_random_cookie
+2023-08-25 14:10:38 - DEBUG - [^] yaml_load
+2023-08-25 14:10:38 - INFO - [*] cookie: thwC0OVkJomxKdCyK9oAByMxd
+2023-08-25 14:10:38 - DEBUG - [^] to_json_for_client
+2023-08-25 14:10:38 - DEBUG - [^] send_msg
+2023-08-25 14:10:38 - DEBUG - [^] str_encode
+2023-08-25 14:10:38 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-25 14:10:38 - DEBUG - [^] server_reset_data
+2023-08-25 14:10:38 - DEBUG - [^] server_set_socket
+2023-08-25 14:10:38 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-25 14:10:40 - INFO - [127.0.0.1:64281 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:64281
+2023-08-25 14:10:40 - DEBUG - [^] server_parse_message
+2023-08-25 14:10:40 - DEBUG - [^] receive_msg
+2023-08-25 14:10:40 - DEBUG - [^] bytes_decode
+2023-08-25 14:10:40 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 450
+2023-08-25 14:10:40 - DEBUG - [^] convert_and_validate
+2023-08-25 14:10:40 - DEBUG - [^] server_action_decision
+2023-08-25 14:10:40 - DEBUG - [^] clientloginhandler
+2023-08-25 14:10:40 - DEBUG - [^] from_json
+2023-08-25 14:10:40 - INFO - [*] Cookie Authentication
+2023-08-25 14:10:40 - DEBUG - [^] validate_cookie
+2023-08-25 14:10:40 - DEBUG - [*] Cookie accepted
+2023-08-25 14:10:40 - DEBUG - [^] server_reset_data
+2023-08-25 14:10:40 - DEBUG - [^] server_set_socket
+2023-08-25 14:10:40 - DEBUG - [^] handle_client
+2023-08-25 14:10:40 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-25 14:10:40 - DEBUG - [^] from_json
+2023-08-25 14:10:40 - DEBUG - [^] interaction_logger
+2023-08-25 14:10:40 - DEBUG - [^] from_json
+2023-08-25 14:10:40 - INFO - [>] ID: 'bob'; IP/PORT: ':'; message to: 'server'; command: 'server stats'; message/command value: ''
+2023-08-25 14:10:40 - DEBUG - [^] connect_to_db
+2023-08-25 14:10:40 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataDB.db
+2023-08-25 14:10:40 - DEBUG - [*] Successful DB connection to DataDB.db
+2023-08-25 14:10:40 - DEBUG - [^] stats_get_stats
+2023-08-25 14:10:40 - DEBUG - [^] to_json_for_client
+2023-08-25 14:10:40 - DEBUG - [^] send_msg
+2023-08-25 14:10:40 - DEBUG - [^] str_encode
+2023-08-25 14:10:40 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 415

@@ -26,6 +26,7 @@ try:
     ## moving off of json_parser
     import DataEngine.JsonHandler as json_parser
     import DataEngine.JsonHandler
+    import DataEngine.DataDBHandler
 
     #from DataEngine.RSAEncryptionHandler import Encryptor ##  Not needed, switching to SSL
 
@@ -188,8 +189,6 @@ class ServerSockHandler:
         except Exception as e:
             logging.warning(f"{inspect.currentframe().f_back}: {e}\n {e}\n")
                 
-              
-        
     def connection_handler(self):
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
@@ -597,7 +596,16 @@ class ServerSockHandler:
             logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
             logging.warning("Serversocket equals None!")
 
-        
+    def server_startup_actions(self):
+        '''
+        Functions & stuff to do when the server starts up
+        '''
+        # init DataDB
+        data_db = DataEngine.DataDBHandler.DataSQLDBHandler(db_name="DataDB.db")
+        data_db.init_db()
+        data_db.stats_set_start_time()
+
+        pass
 
 def continue_anyways():
     logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
@@ -630,7 +638,9 @@ try:
         )
 
     s = ServerSockHandler()
+    s.server_startup_actions()
     s.start_server(ip, port)
+
 except KeyboardInterrupt as ke:
     print("\n[server.py] Kill Signal received, shutting down")
 except Exception as e:

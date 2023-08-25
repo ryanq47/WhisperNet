@@ -1,0 +1,31 @@
+{
+	"nodes":[
+		{"id":"28af8907aacb119f","x":-180,"y":-380,"width":250,"height":60,"type":"text","text":"## User Input"},
+		{"id":"8ab0438f04b50f56","x":-180,"y":-160,"width":250,"height":60,"type":"text","text":"## Plugin"},
+		{"id":"b51c5fd023d1d67f","x":-460,"y":90,"width":250,"height":60,"type":"text","text":"## Handlers"},
+		{"type":"text","text":"## Handlers","id":"32dc6aa57e2657ef","x":120,"y":90,"width":250,"height":60},
+		{"type":"text","text":"## Handlers","id":"f2d2c329006715f5","x":-180,"y":90,"width":250,"height":60},
+		{"id":"946c9c76e77ae633","x":-800,"y":100,"width":300,"height":520,"type":"text","text":"## Handlers Docs\n- Move to dedicated docs later\n\nHandlers return data. They handle the \"big\"/raw actions the code needs to do. (i.e. DB read/write, etc) Think of them as mini libraries/modules that the plugins call on\n\nEach method only does 1 thing, and returns that one thing. This allows the plugins to be super flexible when they need certain data, etc\n\nIf a handler is only used within a plugin & not needed elsewhere, I generally keep them inside the Plugin file. Otherwise, the handlers are stored as \\<NAME\\>Handler.py"},
+		{"id":"4ba8b3de41382725","x":-800,"y":-160,"width":300,"height":200,"type":"text","text":"## Plugins\nPlugins are more user friendly. They call Handlers, and the handlers return the actions. \n\nIMO it's much faster & easier to create plugins, hence why they exist. "},
+		{"id":"6d62fe56786dd994","x":-810,"y":-430,"width":320,"height":160,"type":"text","text":"## User input\nBased on the user input, the respective plugin decision tree will get called (Link to that documentation). "},
+		{"id":"97e8cfe79a19ea31","x":-55,"y":-620,"width":250,"height":60,"type":"text","text":"## Server"},
+		{"id":"e4a9aecd93340677","x":-380,"y":-620,"width":250,"height":60,"type":"text","text":"## ClientHandler"},
+		{"id":"34fc7a0e2919b241","x":-805,"y":-700,"width":310,"height":160,"type":"text","text":"Usually, the clienthandler is the one calling plugins. However, the server CAN and sometimes does use the \\_native plugins in its operation. (I try to avoid this if possible, as plugins are meant for the ClientHandler)"},
+		{"id":"1bd5c2f87158c752","x":-600,"y":-1060,"width":310,"height":140,"type":"text","text":"## CLI input (on client)"},
+		{"id":"0fa2a0fcd407d891","x":-255,"y":-1060,"width":275,"height":140,"type":"text","text":"## Command for server (on server, from client)"},
+		{"id":"1c17804ca0b20f16","x":-540,"y":-1520,"width":485,"height":140,"type":"text","text":"This is a general overview of how plugins, handlers, etc work. It's meant to be a high level view at it, I'll link in low level docs as they get created"}
+	],
+	"edges":[
+		{"id":"b952e82b38ceddcf","fromNode":"b51c5fd023d1d67f","fromSide":"top","toNode":"8ab0438f04b50f56","toSide":"bottom","fromEnd":"arrow"},
+		{"id":"5a1eb8c39ac9de2b","fromNode":"f2d2c329006715f5","fromSide":"top","toNode":"8ab0438f04b50f56","toSide":"bottom","fromEnd":"arrow"},
+		{"id":"bb4cf98ebb03b4f0","fromNode":"32dc6aa57e2657ef","fromSide":"top","toNode":"8ab0438f04b50f56","toSide":"bottom","fromEnd":"arrow"},
+		{"id":"91ed52c2a11c388c","fromNode":"28af8907aacb119f","fromSide":"bottom","toNode":"8ab0438f04b50f56","toSide":"top","fromEnd":"arrow"},
+		{"id":"2089b27662e06c60","fromNode":"6d62fe56786dd994","fromSide":"bottom","toNode":"4ba8b3de41382725","toSide":"top"},
+		{"id":"ecd9c8606e09a2c1","fromNode":"4ba8b3de41382725","fromSide":"bottom","toNode":"946c9c76e77ae633","toSide":"top"},
+		{"id":"84c81b2efcf2e94c","fromNode":"e4a9aecd93340677","fromSide":"bottom","toNode":"28af8907aacb119f","toSide":"top"},
+		{"id":"06257a3810830a85","fromNode":"97e8cfe79a19ea31","fromSide":"bottom","toNode":"28af8907aacb119f","toSide":"top"},
+		{"id":"832101b9bcd214ba","fromNode":"34fc7a0e2919b241","fromSide":"bottom","toNode":"6d62fe56786dd994","toSide":"top"},
+		{"id":"e0c44d8b05838226","fromNode":"1bd5c2f87158c752","fromSide":"bottom","toNode":"e4a9aecd93340677","toSide":"top"},
+		{"id":"10dcd747d2744898","fromNode":"0fa2a0fcd407d891","fromSide":"bottom","toNode":"e4a9aecd93340677","toSide":"top"}
+	]
+}

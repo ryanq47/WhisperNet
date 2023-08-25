@@ -1,0 +1,29 @@
+{
+	"nodes":[
+		{"type":"text","text":"## User Input","id":"79d8e6ecf27b6380","x":30,"y":-160,"width":250,"height":60},
+		{"type":"text","text":"## ClientHandler","id":"80544d3c9bb805ec","x":30,"y":-400,"width":250,"height":60},
+		{"type":"text","text":"## Command for server (on server, from client)","id":"6f6f2df4b0dce977","x":18,"y":-760,"width":275,"height":140},
+		{"type":"text","text":" ClientEngine.ClientPlugins._Native.Stats.Actions._return_stats","id":"74c8f684327a9981","x":-480,"y":50,"width":430,"height":50},
+		{"type":"text","text":"DataEngine.DataDBHandler.DataSQLDBHandler.stats_get_stats","id":"e0ada0fb03bada42","x":-660,"y":310,"width":470,"height":60},
+		{"type":"text","text":"## DataBase","id":"1f0ed70c71cb8b0f","x":-120,"y":780,"width":250,"height":38,"color":"5"},
+		{"type":"text","text":"## A visual map of ClientHandler","id":"fd506dbb86cede07","x":-580,"y":-920,"width":400,"height":60},
+		{"type":"text","text":"## User input\nBased on the user input, the respective plugin decision tree will get called (Link to that documentation). ","id":"38fe4f709f3e3ddc","x":-1380,"y":-220,"width":320,"height":160},
+		{"type":"text","text":"Usually, the clienthandler is the one calling plugins. However, the server CAN and sometimes does use the \\_native plugins in its operation. (I try to avoid this if possible, as plugins are meant for the ClientHandler)","id":"8d7ec21a8e9ffa08","x":-1375,"y":-490,"width":310,"height":160},
+		{"type":"text","text":"## Plugins\nPlugins are more user friendly. They call Handlers, and the handlers return the actions. \n\nIMO it's much faster & easier to create plugins, hence why they exist. ","id":"86eb6284e25825ab","x":-1370,"y":50,"width":300,"height":200},
+		{"type":"text","text":"## Handlers Docs\n- Move to dedicated docs later\n\nHandlers return data. They handle the \"big\"/raw actions the code needs to do. (i.e. DB read/write, etc) Think of them as mini libraries/modules that the plugins call on\n\nEach method only does 1 thing, and returns that one thing. This allows the plugins to be super flexible when they need certain data, etc\n\nIf a handler is only used within a plugin & not needed elsewhere, I generally keep them inside the Plugin file. Otherwise, the handlers are stored as \\<NAME\\>Handler.py","id":"f1f497c106bb563c","x":-1370,"y":310,"width":300,"height":520},
+		{"type":"text","text":"## Plugin","id":"a8ae3bd6dc468cff","x":-1000,"y":40,"width":250,"height":60},
+		{"type":"text","text":"## Handlers","id":"639ab646644e2747","x":-1020,"y":310,"width":250,"height":60},
+		{"type":"text","text":"ClientEngine.ClientPlugins._Native.Default.Actions._return_help\n\n- No handler, returns help string","id":"52746bd1f18410ac","x":95,"y":50,"width":445,"height":90}
+	],
+	"edges":[
+		{"id":"29ab90fcf0150d72","fromNode":"79d8e6ecf27b6380","fromSide":"bottom","toNode":"74c8f684327a9981","toSide":"top","fromEnd":"arrow","label":"server stats"},
+		{"id":"9899aa8d35ea7c67","fromNode":"80544d3c9bb805ec","fromSide":"bottom","toNode":"79d8e6ecf27b6380","toSide":"top"},
+		{"id":"e17492d1976f3438","fromNode":"e0ada0fb03bada42","fromSide":"top","toNode":"74c8f684327a9981","toSide":"bottom","fromEnd":"arrow"},
+		{"id":"08f7ede9ed5c220c","fromNode":"86eb6284e25825ab","fromSide":"bottom","toNode":"f1f497c106bb563c","toSide":"top"},
+		{"id":"fe613036732e2192","fromNode":"38fe4f709f3e3ddc","fromSide":"bottom","toNode":"86eb6284e25825ab","toSide":"top"},
+		{"id":"89751526164459e0","fromNode":"8d7ec21a8e9ffa08","fromSide":"bottom","toNode":"38fe4f709f3e3ddc","toSide":"top"},
+		{"id":"50c9f736d43796a7","fromNode":"6f6f2df4b0dce977","fromSide":"bottom","toNode":"80544d3c9bb805ec","toSide":"top"},
+		{"id":"b18ca764550b7182","fromNode":"e0ada0fb03bada42","fromSide":"bottom","toNode":"1f0ed70c71cb8b0f","toSide":"top","fromEnd":"arrow"},
+		{"id":"fa29cea83dc358d1","fromNode":"79d8e6ecf27b6380","fromSide":"bottom","toNode":"52746bd1f18410ac","toSide":"top","label":"server help"}
+	]
+}

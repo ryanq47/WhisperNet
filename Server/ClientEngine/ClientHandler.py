@@ -11,6 +11,8 @@ try:
     import Utils.UtilsHandler
 
     import ClientEngine.ClientPlugins._Native.Default
+    import ClientEngine.ClientPlugins._Native.Stats
+
     import logging
     import inspect
 
@@ -91,6 +93,7 @@ class ClientHandler:
                 "server help": ClientEngine.ClientPlugins._Native.Default.Actions._return_help,
                 #"exit": Logic.DecisionTree.SystemDefaultActions._set_dir_home_shell,
                 #"clear": Logic.DecisionTree.SystemDefaultActions._display_clear,
+                "server stats": ClientEngine.ClientPlugins._Native.Stats.Actions._return_stats
 
                 ## add yours here... no (), as we are just passing the object, not running it 
                 #"mycommand":Actions._test_action
@@ -136,4 +139,20 @@ To implement:
 
     Other functinos...
         
+'''
+
+'''
+OI read me
+
+Todo:
+    Database with stats/general use. Seperate from the command DB.
+        Handler/plugin for that DB.
+
+    More commands in the tree. 
+
+
+    once that is all implemented,
+    focus on the agent tree, with control of agents, etc
+
+
 '''
