@@ -376,7 +376,7 @@ class ServerSockHandler:
         ## Getting client id from the client, and the IP address
             ## this var is only used for printing info, not as any 'real' data
             self.client_remote_ip_port = f"{non_ssl_conn.getpeername()[0]}:{non_ssl_conn.getpeername()[1]}"
-            logging.info(f"\n[{self.client_remote_ip_port} -> Server] [New Instance] Accepted Connection from: {self.client_remote_ip_port}")
+            logging.info(f"[{self.client_remote_ip_port} -> Server] [New Instance] Accepted Connection from: {self.client_remote_ip_port}")
 
             return non_ssl_conn
 

@@ -110,7 +110,7 @@ class Client:
                 logging.debug(f"results: {results}")
 
                 if output != None:
-                    print(output)
+                    print(output["output_from_action"])
 
                 if dir != None:
                     self.current_dir = dir

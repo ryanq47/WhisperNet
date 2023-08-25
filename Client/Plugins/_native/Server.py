@@ -212,9 +212,9 @@ class Actions:
                 json_string=json_str_results
             )
 
-            agents = parsed_results["msg"]["msg_value"]
+            cmd_results = f'{ClassData.server_details}: {parsed_results["msg"]["msg_value"]}'
 
-            return{"output_from_action":agents, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+            return{"output_from_action":cmd_results, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
         except Exception as e:
             logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}: {e}")
             return{"output_from_action":e, "dir":None, "dbg_code_source":inspect.currentframe().f_back}

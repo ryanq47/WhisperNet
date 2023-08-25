@@ -72,9 +72,21 @@
               },
               "pinned": true
             }
+          },
+          {
+            "id": "0d613f58f4ef0d5b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "General/Naming & general/Error Handling & logging.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -140,7 +152,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Valuecheck Function.canvas",
+                "file": "General/Naming & general/Error Handling & logging.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -157,7 +169,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Valuecheck Function.canvas",
+                "file": "General/Naming & general/Error Handling & logging.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -180,7 +192,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Valuecheck Function.canvas"
+                "file": "General/Naming & general/Error Handling & logging.md"
               }
             }
           }
@@ -202,11 +214,16 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "9ef5e15f719a7735",
+  "active": "0d613f58f4ef0d5b",
   "lastOpenFiles": [
-    "Server/Modules/3. Security Engine/AuthenticationHandler.py.md",
-    "Valuecheck Function.canvas",
+    "General/Notes.md",
+    "General/Naming & general/Error Handling & logging.md",
+    "Dev Guide/Notes Guide/Colors & comments.md",
+    "Dev Guide/Notes Guide/ReadMe.md",
     "Clients/Python Client/Dev Docs/MindMaps/VisProg.canvas",
+    "Dev Guide/Procedures/New Code Steps.md",
+    "Valuecheck Function.canvas",
+    "Server/Modules/3. Security Engine/AuthenticationHandler.py.md",
     "Agents/C Sharp Agent/Program File Structure.canvas",
     "Server/Long Term gotchas.md",
     "General/Naming & general/File Naming Definitions.md",
@@ -214,14 +231,10 @@
     "Server/MindMaps/FileStructure.canvas",
     "Clients/Python Client/Dev Docs/MindMaps/Program File Structure.canvas",
     "Server/Visual Progress.canvas",
-    "Dev Guide/Notes Guide/Colors & comments.md",
-    "Dev Guide/Notes Guide/ReadMe.md",
-    "Dev Guide/Procedures/New Code Steps.md",
     "Dev Guide/Procedures",
     "Dev Guide",
     "Clients/Python Client/Dev Docs/MindMaps/Authentication Map.canvas",
     "Server/General.md",
-    "General/Notes.md",
     "Dev Guide/Notes Guide",
     "Server/Modules/3. Security Engine",
     "Server/Modules",
@@ -239,7 +252,6 @@
     "Clients/Python Client/Dev Docs/Native Plugins",
     "Clients/Python Client/Dev Docs/Data/Singleton.md",
     "Clients/Python Client/Dev Docs/Data",
-    "General/Naming & general/Error Handling.md",
     "Server/Modules/1. ClientEngine/Error Handling.md",
     "Clients/Python Client/Dev Docs/Libraries",
     "DataState.canvas",

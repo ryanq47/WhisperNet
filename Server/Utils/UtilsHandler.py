@@ -2,6 +2,7 @@ import os
 import logging
 from datetime import datetime
 import yaml
+import DataEngine.JsonHandler
 
 ################
 ## QOL Functions
@@ -93,3 +94,27 @@ def yaml_load(yaml_file = None):
         print(f"[Utils.UtilsHandler.yaml_load()] Error loading YAML: {e}")
 
     return yaml_dict_object
+
+def interaction_logger(json_string:str=None):
+    '''
+    Used as an easy way to log interactions (client or agent) in the server
+
+    json_str (str): The JSON string in which to extract data from
+    '''
+    logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+    try:
+        response_dict = DataEngine.JsonHandler.json_ops.from_json(json_string)
+
+        client_id   = response_dict["general"]["client_id"]
+        ip          = response_dict["conn"]["client_ip"]
+        port        = response_dict["conn"]["client_port"]
+        command     = response_dict["msg"]["msg_command"]
+        msg_to      = response_dict["msg"]["msg_to"]
+        msg_value   = response_dict["msg"]["msg_value"]
+
+        logging.info(f"[>] ID: '{client_id}'; IP/PORT: '{ip}:{port}'; message to: '{msg_to}'; command: '{command}'; message/command value: '{msg_value}'")
+
+
+    except Exception as e:
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}: {e}")

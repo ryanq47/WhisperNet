@@ -8,9 +8,6 @@ try:
     import DataEngine.JsonHandler
     import SecurityEngine.AuthenticationHandler
     import Comms.CommsHandler
-    import Utils.UtilsHandler
-
-    import ClientEngine.ClientPlugins._Native.Default
     import logging
     import inspect
 
@@ -45,9 +42,9 @@ class ClientHandler:
 
         ## DO THIS PART NEXT
         self.dict_request_from_client = DataEngine.JsonHandler.json_ops.from_json(json_string=self.request_from_client)
-        Utils.UtilsHandler.interaction_logger(json_string = self.request_from_client)
 
         msg_to = self.dict_request_from_client["msg"]["msg_to"]
+
         print("Handle Client called successfully")
 
         ## Tree for which to go to:
@@ -55,6 +52,8 @@ class ClientHandler:
         if msg_to == "server":
             print("msg_to_server")
             self.server_tree()
+
+
 
         ## this will need some work to get the valid agent names in
         elif msg_to == "valid_agent_name":
@@ -69,53 +68,27 @@ class ClientHandler:
 
     def server_tree(self):
 
+
+
+
         '''
         May be able to do all the actions here in a similar format to how plugins work. Map the function needed, and that function does the stuff, and returns the request
 
         Would make dev really really fast
-
-
-        Some notes,
-
-        - Solidify logging correctly
-        - Try/Except.
-        - Review & refactor, This is a rough draft for the code
-        - Document
-        Everything here works as intended at the moment, which is good.
         
         '''
-        try:
-            dispatch = {
-                ## Default commands...
-                #"test": Actions._display_help,
-                "server help": ClientEngine.ClientPlugins._Native.Default.Actions._return_help,
-                #"exit": Logic.DecisionTree.SystemDefaultActions._set_dir_home_shell,
-                #"clear": Logic.DecisionTree.SystemDefaultActions._display_clear,
 
-                ## add yours here... no (), as we are just passing the object, not running it 
-                #"mycommand":Actions._test_action
+        ## placeholder ifelse b4 plugins
 
-            }
-            msg_command = self.dict_request_from_client["msg"]["msg_command"]
+        msg_command = self.dict_request_from_client["msg"]["msg_command"]
 
-
-            action = dispatch.get(msg_command)
-
-            if action:
-                result = action()["output_from_action"]
-
-                response_json = DataEngine.JsonHandler.json_ops.to_json_for_client(msg_value=result)
-                Comms.CommsHandler.send_msg(conn = self.client_socket, msg = response_json)
-
-            else:
-                response_json = DataEngine.JsonHandler.json_ops.to_json_for_client(msg_value="server_tree - bad command")
-                Comms.CommsHandler.send_msg(conn = self.client_socket, msg = response_json)
-
-        except Exception as e:
-            logging.warning(e)
-            response_json = DataEngine.JsonHandler.json_ops.to_json_for_client(msg_value="Error. See server logs")
-            Comms.CommsHandler.send_msg(conn = self.client_socket, msg = response_json)       
-
+        if msg_command == "test":
+            response_json = DataEngine.JsonHandler.json_ops.to_json_for_client(msg_value="Server Hears you loud N Clear! Lets fuck some stuff up")
+            Comms.CommsHandler.send_msg(conn = self.client_socket, msg = response_json)
+        
+        else:
+            response_json = DataEngine.JsonHandler.json_ops.to_json_for_client(msg_value="server_tree - bad command")
+            Comms.CommsHandler.send_msg(conn = self.client_socket, msg = response_json)
 
 
     def agent_tree(self):

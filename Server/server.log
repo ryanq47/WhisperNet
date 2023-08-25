@@ -1962,3 +1962,1217 @@
 2023-08-22 13:17:25 - DEBUG - [^] handle_client
 2023-08-22 13:17:25 - DEBUG - [^] server_set_socket
 2023-08-22 13:17:25 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 15:56:02 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-24 15:56:02 - DEBUG - [^] file_check
+2023-08-24 15:56:02 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-24 15:56:02 - DEBUG - [^] __init__
+2023-08-24 15:56:02 - INFO - ===== Startup | Reference Time (UTC) 2023-08-24 20:56:02.666634+00:00 =====
+2023-08-24 15:56:02 - DEBUG - [^] start_server
+2023-08-24 15:56:02 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-24 15:56:02 - DEBUG - [^] connection_handler
+2023-08-24 15:56:02 - DEBUG - [^] server_reset_data
+2023-08-24 15:56:02 - DEBUG - [^] server_set_socket
+2023-08-24 15:56:02 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 15:56:23 - INFO - 
+[127.0.0.1:49945 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49945
+2023-08-24 15:56:23 - DEBUG - [^] server_parse_message
+2023-08-24 15:56:23 - DEBUG - [^] receive_msg
+2023-08-24 15:56:26 - DEBUG - [^] bytes_decode
+2023-08-24 15:56:26 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-24 15:56:26 - DEBUG - [^] convert_and_validate
+2023-08-24 15:56:26 - DEBUG - [^] server_action_decision
+2023-08-24 15:56:26 - DEBUG - [^] clientloginhandler
+2023-08-24 15:56:26 - DEBUG - [^] from_json
+2023-08-24 15:56:26 - INFO - [*] Password Authentication
+2023-08-24 15:56:26 - DEBUG - [^] validate_password
+2023-08-24 15:56:26 - DEBUG - [^] yaml_load
+2023-08-24 15:56:26 - DEBUG - [^] generate_random_cookie
+2023-08-24 15:56:26 - DEBUG - [^] yaml_load
+2023-08-24 15:56:26 - INFO - [*] cookie: BDbteUVw7E4jJ4E9TWEgWtQAn
+2023-08-24 15:56:26 - DEBUG - [^] to_json_for_client
+2023-08-24 15:56:26 - DEBUG - [^] send_msg
+2023-08-24 15:56:26 - DEBUG - [^] str_encode
+2023-08-24 15:56:26 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 15:56:26 - DEBUG - [^] server_reset_data
+2023-08-24 15:56:26 - DEBUG - [^] server_set_socket
+2023-08-24 15:56:26 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 15:56:32 - INFO - 
+[127.0.0.1:49946 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49946
+2023-08-24 15:56:32 - DEBUG - [^] server_parse_message
+2023-08-24 15:56:32 - DEBUG - [^] receive_msg
+2023-08-24 15:56:32 - DEBUG - [^] bytes_decode
+2023-08-24 15:56:32 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 442
+2023-08-24 15:56:32 - DEBUG - [^] convert_and_validate
+2023-08-24 15:56:32 - DEBUG - [^] server_action_decision
+2023-08-24 15:56:32 - DEBUG - [^] clientloginhandler
+2023-08-24 15:56:32 - DEBUG - [^] from_json
+2023-08-24 15:56:32 - INFO - [*] Cookie Authentication
+2023-08-24 15:56:32 - DEBUG - [^] validate_cookie
+2023-08-24 15:56:32 - DEBUG - [*] Cookie accepted
+2023-08-24 15:56:32 - DEBUG - [^] server_reset_data
+2023-08-24 15:56:32 - DEBUG - [^] handle_client
+2023-08-24 15:56:32 - DEBUG - [^] server_set_socket
+2023-08-24 15:56:32 - DEBUG - [^] to_json_for_client
+2023-08-24 15:56:32 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 15:56:32 - DEBUG - [^] send_msg
+2023-08-24 15:56:32 - DEBUG - [^] str_encode
+2023-08-24 15:56:32 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 15:56:32 - DEBUG - [^] from_json
+2023-08-24 15:56:58 - INFO - 
+[127.0.0.1:49949 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:49949
+2023-08-24 15:56:58 - DEBUG - [^] server_parse_message
+2023-08-24 15:56:58 - DEBUG - [^] receive_msg
+2023-08-24 15:56:58 - DEBUG - [^] bytes_decode
+2023-08-24 15:56:58 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 442
+2023-08-24 15:56:58 - DEBUG - [^] convert_and_validate
+2023-08-24 15:56:58 - DEBUG - [^] server_action_decision
+2023-08-24 15:56:58 - DEBUG - [^] clientloginhandler
+2023-08-24 15:56:58 - DEBUG - [^] from_json
+2023-08-24 15:56:58 - INFO - [*] Cookie Authentication
+2023-08-24 15:56:58 - DEBUG - [^] validate_cookie
+2023-08-24 15:56:58 - DEBUG - [*] Cookie accepted
+2023-08-24 15:56:58 - DEBUG - [^] server_reset_data
+2023-08-24 15:56:58 - DEBUG - [^] handle_client
+2023-08-24 15:56:58 - DEBUG - [^] server_set_socket
+2023-08-24 15:56:58 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 15:56:58 - DEBUG - [^] to_json_for_client
+2023-08-24 15:56:58 - DEBUG - [^] send_msg
+2023-08-24 15:56:58 - DEBUG - [^] str_encode
+2023-08-24 15:56:58 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 15:56:58 - DEBUG - [^] from_json
+2023-08-24 16:02:34 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-24 16:02:34 - DEBUG - [^] file_check
+2023-08-24 16:02:34 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-24 16:02:34 - DEBUG - [^] __init__
+2023-08-24 16:02:34 - INFO - ===== Startup | Reference Time (UTC) 2023-08-24 21:02:34.077116+00:00 =====
+2023-08-24 16:02:34 - DEBUG - [^] start_server
+2023-08-24 16:02:34 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-24 16:02:34 - DEBUG - [^] connection_handler
+2023-08-24 16:02:34 - DEBUG - [^] server_reset_data
+2023-08-24 16:02:34 - DEBUG - [^] server_set_socket
+2023-08-24 16:02:34 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:02:36 - INFO - 
+[127.0.0.1:50026 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50026
+2023-08-24 16:02:36 - DEBUG - [^] server_parse_message
+2023-08-24 16:02:36 - DEBUG - [^] receive_msg
+2023-08-24 16:02:36 - DEBUG - [^] bytes_decode
+2023-08-24 16:02:36 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 438
+2023-08-24 16:02:36 - DEBUG - [^] convert_and_validate
+2023-08-24 16:02:36 - DEBUG - [^] server_action_decision
+2023-08-24 16:02:36 - DEBUG - [^] clientloginhandler
+2023-08-24 16:02:36 - DEBUG - [^] from_json
+2023-08-24 16:02:36 - INFO - [*] Cookie Authentication
+2023-08-24 16:02:36 - WARNING - [!] Bad cookie for 'bob': 'BDbteUVw7E4jJ4E9TWEgWtQAn'
+2023-08-24 16:02:36 - DEBUG - [^] to_json_for_client
+2023-08-24 16:02:36 - DEBUG - [^] send_msg
+2023-08-24 16:02:36 - DEBUG - [^] str_encode
+2023-08-24 16:02:36 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 409
+2023-08-24 16:02:36 - DEBUG - [^] server_reset_data
+2023-08-24 16:02:36 - DEBUG - [^] server_set_socket
+2023-08-24 16:02:36 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:02:50 - INFO - 
+[127.0.0.1:50027 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50027
+2023-08-24 16:02:50 - DEBUG - [^] server_parse_message
+2023-08-24 16:02:50 - DEBUG - [^] receive_msg
+2023-08-24 16:02:53 - DEBUG - [^] bytes_decode
+2023-08-24 16:02:53 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-24 16:02:53 - DEBUG - [^] convert_and_validate
+2023-08-24 16:02:53 - DEBUG - [^] server_action_decision
+2023-08-24 16:02:53 - DEBUG - [^] clientloginhandler
+2023-08-24 16:02:53 - DEBUG - [^] from_json
+2023-08-24 16:02:53 - INFO - [*] Password Authentication
+2023-08-24 16:02:53 - DEBUG - [^] validate_password
+2023-08-24 16:02:53 - DEBUG - [^] yaml_load
+2023-08-24 16:02:53 - DEBUG - [^] generate_random_cookie
+2023-08-24 16:02:53 - DEBUG - [^] yaml_load
+2023-08-24 16:02:53 - INFO - [*] cookie: 7lpBg9QAMLpgYosarpMUUvQhr
+2023-08-24 16:02:53 - DEBUG - [^] to_json_for_client
+2023-08-24 16:02:53 - DEBUG - [^] send_msg
+2023-08-24 16:02:53 - DEBUG - [^] str_encode
+2023-08-24 16:02:53 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 16:02:53 - DEBUG - [^] server_reset_data
+2023-08-24 16:02:53 - DEBUG - [^] server_set_socket
+2023-08-24 16:02:53 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:02:58 - INFO - 
+[127.0.0.1:50028 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50028
+2023-08-24 16:02:58 - DEBUG - [^] server_parse_message
+2023-08-24 16:02:58 - DEBUG - [^] receive_msg
+2023-08-24 16:02:58 - DEBUG - [^] bytes_decode
+2023-08-24 16:02:58 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 442
+2023-08-24 16:02:58 - DEBUG - [^] convert_and_validate
+2023-08-24 16:02:58 - DEBUG - [^] server_action_decision
+2023-08-24 16:02:58 - DEBUG - [^] clientloginhandler
+2023-08-24 16:02:58 - DEBUG - [^] from_json
+2023-08-24 16:02:58 - INFO - [*] Cookie Authentication
+2023-08-24 16:02:58 - DEBUG - [^] validate_cookie
+2023-08-24 16:02:58 - DEBUG - [*] Cookie accepted
+2023-08-24 16:02:58 - DEBUG - [^] server_reset_data
+2023-08-24 16:02:58 - DEBUG - [^] server_set_socket
+2023-08-24 16:02:58 - DEBUG - [^] handle_client
+2023-08-24 16:02:58 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:02:58 - DEBUG - [^] from_json
+2023-08-24 16:04:42 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-24 16:04:42 - DEBUG - [^] file_check
+2023-08-24 16:04:42 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-24 16:04:42 - DEBUG - [^] __init__
+2023-08-24 16:04:42 - INFO - ===== Startup | Reference Time (UTC) 2023-08-24 21:04:42.432003+00:00 =====
+2023-08-24 16:04:42 - DEBUG - [^] start_server
+2023-08-24 16:04:42 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-24 16:04:42 - DEBUG - [^] connection_handler
+2023-08-24 16:04:42 - DEBUG - [^] server_reset_data
+2023-08-24 16:04:42 - DEBUG - [^] server_set_socket
+2023-08-24 16:04:42 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:04:50 - INFO - 
+[127.0.0.1:50033 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50033
+2023-08-24 16:04:50 - DEBUG - [^] server_parse_message
+2023-08-24 16:04:50 - DEBUG - [^] receive_msg
+2023-08-24 16:04:53 - DEBUG - [^] bytes_decode
+2023-08-24 16:04:53 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-24 16:04:53 - DEBUG - [^] convert_and_validate
+2023-08-24 16:04:53 - DEBUG - [^] server_action_decision
+2023-08-24 16:04:53 - DEBUG - [^] clientloginhandler
+2023-08-24 16:04:53 - DEBUG - [^] from_json
+2023-08-24 16:04:53 - INFO - [*] Password Authentication
+2023-08-24 16:04:53 - DEBUG - [^] validate_password
+2023-08-24 16:04:53 - DEBUG - [^] yaml_load
+2023-08-24 16:04:53 - DEBUG - [^] generate_random_cookie
+2023-08-24 16:04:53 - DEBUG - [^] yaml_load
+2023-08-24 16:04:53 - INFO - [*] cookie: 5WTBe7RijnySHyFHcp00f8vsN
+2023-08-24 16:04:53 - DEBUG - [^] to_json_for_client
+2023-08-24 16:04:53 - DEBUG - [^] send_msg
+2023-08-24 16:04:53 - DEBUG - [^] str_encode
+2023-08-24 16:04:53 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 16:04:53 - DEBUG - [^] server_reset_data
+2023-08-24 16:04:53 - DEBUG - [^] server_set_socket
+2023-08-24 16:04:53 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:04:54 - INFO - 
+[127.0.0.1:50034 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50034
+2023-08-24 16:04:54 - DEBUG - [^] server_parse_message
+2023-08-24 16:04:54 - DEBUG - [^] receive_msg
+2023-08-24 16:04:54 - DEBUG - [^] bytes_decode
+2023-08-24 16:04:54 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 442
+2023-08-24 16:04:54 - DEBUG - [^] convert_and_validate
+2023-08-24 16:04:54 - DEBUG - [^] server_action_decision
+2023-08-24 16:04:54 - DEBUG - [^] clientloginhandler
+2023-08-24 16:04:54 - DEBUG - [^] from_json
+2023-08-24 16:04:54 - INFO - [*] Cookie Authentication
+2023-08-24 16:04:54 - DEBUG - [^] validate_cookie
+2023-08-24 16:04:54 - DEBUG - [*] Cookie accepted
+2023-08-24 16:04:54 - DEBUG - [^] server_reset_data
+2023-08-24 16:04:54 - DEBUG - [^] handle_client
+2023-08-24 16:04:54 - DEBUG - [^] server_set_socket
+2023-08-24 16:04:54 - DEBUG - [^] from_json
+2023-08-24 16:04:54 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:05:30 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-24 16:05:30 - DEBUG - [^] file_check
+2023-08-24 16:05:30 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-24 16:05:30 - DEBUG - [^] __init__
+2023-08-24 16:05:30 - INFO - ===== Startup | Reference Time (UTC) 2023-08-24 21:05:30.338905+00:00 =====
+2023-08-24 16:05:30 - DEBUG - [^] start_server
+2023-08-24 16:05:30 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-24 16:05:30 - DEBUG - [^] connection_handler
+2023-08-24 16:05:30 - DEBUG - [^] server_reset_data
+2023-08-24 16:05:30 - DEBUG - [^] server_set_socket
+2023-08-24 16:05:30 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:05:32 - INFO - 
+[127.0.0.1:50041 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50041
+2023-08-24 16:05:32 - DEBUG - [^] server_parse_message
+2023-08-24 16:05:32 - DEBUG - [^] receive_msg
+2023-08-24 16:05:32 - DEBUG - [^] bytes_decode
+2023-08-24 16:05:32 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 442
+2023-08-24 16:05:32 - DEBUG - [^] convert_and_validate
+2023-08-24 16:05:32 - DEBUG - [^] server_action_decision
+2023-08-24 16:05:32 - DEBUG - [^] clientloginhandler
+2023-08-24 16:05:32 - DEBUG - [^] from_json
+2023-08-24 16:05:32 - INFO - [*] Cookie Authentication
+2023-08-24 16:05:32 - WARNING - [!] Bad cookie for 'bob': '5WTBe7RijnySHyFHcp00f8vsN'
+2023-08-24 16:05:32 - DEBUG - [^] to_json_for_client
+2023-08-24 16:05:32 - DEBUG - [^] send_msg
+2023-08-24 16:05:32 - DEBUG - [^] str_encode
+2023-08-24 16:05:32 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 409
+2023-08-24 16:05:32 - DEBUG - [^] server_reset_data
+2023-08-24 16:05:32 - DEBUG - [^] server_set_socket
+2023-08-24 16:05:32 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:05:44 - INFO - 
+[127.0.0.1:50042 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50042
+2023-08-24 16:05:44 - DEBUG - [^] server_parse_message
+2023-08-24 16:05:44 - DEBUG - [^] receive_msg
+2023-08-24 16:05:47 - DEBUG - [^] bytes_decode
+2023-08-24 16:05:47 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-24 16:05:47 - DEBUG - [^] convert_and_validate
+2023-08-24 16:05:47 - DEBUG - [^] server_action_decision
+2023-08-24 16:05:47 - DEBUG - [^] clientloginhandler
+2023-08-24 16:05:47 - DEBUG - [^] from_json
+2023-08-24 16:05:47 - INFO - [*] Password Authentication
+2023-08-24 16:05:47 - DEBUG - [^] validate_password
+2023-08-24 16:05:47 - DEBUG - [^] yaml_load
+2023-08-24 16:05:47 - DEBUG - [^] generate_random_cookie
+2023-08-24 16:05:47 - DEBUG - [^] yaml_load
+2023-08-24 16:05:47 - INFO - [*] cookie: Ekx5m5g9iWo3LoHPvdYu9JxEy
+2023-08-24 16:05:47 - DEBUG - [^] to_json_for_client
+2023-08-24 16:05:47 - DEBUG - [^] send_msg
+2023-08-24 16:05:47 - DEBUG - [^] str_encode
+2023-08-24 16:05:47 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 16:05:47 - DEBUG - [^] server_reset_data
+2023-08-24 16:05:47 - DEBUG - [^] server_set_socket
+2023-08-24 16:05:47 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:05:50 - INFO - 
+[127.0.0.1:50043 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50043
+2023-08-24 16:05:50 - DEBUG - [^] server_parse_message
+2023-08-24 16:05:50 - DEBUG - [^] receive_msg
+2023-08-24 16:05:50 - DEBUG - [^] bytes_decode
+2023-08-24 16:05:50 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 442
+2023-08-24 16:05:50 - DEBUG - [^] convert_and_validate
+2023-08-24 16:05:50 - DEBUG - [^] server_action_decision
+2023-08-24 16:05:50 - DEBUG - [^] clientloginhandler
+2023-08-24 16:05:50 - DEBUG - [^] from_json
+2023-08-24 16:05:50 - INFO - [*] Cookie Authentication
+2023-08-24 16:05:50 - DEBUG - [^] validate_cookie
+2023-08-24 16:05:50 - DEBUG - [*] Cookie accepted
+2023-08-24 16:05:50 - DEBUG - [^] server_reset_data
+2023-08-24 16:05:50 - DEBUG - [^] server_set_socket
+2023-08-24 16:05:50 - DEBUG - [^] handle_client
+2023-08-24 16:05:50 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:05:50 - DEBUG - [^] from_json
+2023-08-24 16:05:50 - DEBUG - [^] to_json_for_client
+2023-08-24 16:05:50 - DEBUG - [^] send_msg
+2023-08-24 16:05:50 - DEBUG - [^] str_encode
+2023-08-24 16:05:50 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 406
+2023-08-24 16:06:22 - INFO - 
+[127.0.0.1:50044 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50044
+2023-08-24 16:06:22 - DEBUG - [^] server_parse_message
+2023-08-24 16:06:22 - DEBUG - [^] receive_msg
+2023-08-24 16:06:22 - DEBUG - [^] bytes_decode
+2023-08-24 16:06:22 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 443
+2023-08-24 16:06:22 - DEBUG - [^] convert_and_validate
+2023-08-24 16:06:22 - DEBUG - [^] server_action_decision
+2023-08-24 16:06:22 - DEBUG - [^] clientloginhandler
+2023-08-24 16:06:22 - DEBUG - [^] from_json
+2023-08-24 16:06:22 - INFO - [*] Cookie Authentication
+2023-08-24 16:06:22 - DEBUG - [^] validate_cookie
+2023-08-24 16:06:22 - DEBUG - [*] Cookie accepted
+2023-08-24 16:06:22 - DEBUG - [^] server_reset_data
+2023-08-24 16:06:22 - DEBUG - [^] handle_client
+2023-08-24 16:06:22 - DEBUG - [^] server_set_socket
+2023-08-24 16:06:22 - DEBUG - [^] from_json
+2023-08-24 16:06:22 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:06:22 - DEBUG - [^] to_json_for_client
+2023-08-24 16:06:22 - DEBUG - [^] send_msg
+2023-08-24 16:06:22 - DEBUG - [^] str_encode
+2023-08-24 16:06:22 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 406
+2023-08-24 16:06:24 - INFO - 
+[127.0.0.1:50045 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50045
+2023-08-24 16:06:24 - DEBUG - [^] server_parse_message
+2023-08-24 16:06:24 - DEBUG - [^] receive_msg
+2023-08-24 16:06:24 - DEBUG - [^] bytes_decode
+2023-08-24 16:06:24 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 441
+2023-08-24 16:06:24 - DEBUG - [^] convert_and_validate
+2023-08-24 16:06:24 - DEBUG - [^] server_action_decision
+2023-08-24 16:06:24 - DEBUG - [^] clientloginhandler
+2023-08-24 16:06:24 - DEBUG - [^] from_json
+2023-08-24 16:06:24 - INFO - [*] Cookie Authentication
+2023-08-24 16:06:24 - DEBUG - [^] validate_cookie
+2023-08-24 16:06:24 - DEBUG - [*] Cookie accepted
+2023-08-24 16:06:24 - DEBUG - [^] server_reset_data
+2023-08-24 16:06:24 - DEBUG - [^] handle_client
+2023-08-24 16:06:24 - DEBUG - [^] server_set_socket
+2023-08-24 16:06:24 - DEBUG - [^] from_json
+2023-08-24 16:06:24 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:06:24 - DEBUG - [^] to_json_for_client
+2023-08-24 16:06:24 - DEBUG - [^] send_msg
+2023-08-24 16:06:24 - DEBUG - [^] str_encode
+2023-08-24 16:06:24 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 406
+2023-08-24 16:06:25 - INFO - 
+[127.0.0.1:50046 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50046
+2023-08-24 16:06:25 - DEBUG - [^] server_parse_message
+2023-08-24 16:06:25 - DEBUG - [^] receive_msg
+2023-08-24 16:06:25 - DEBUG - [^] bytes_decode
+2023-08-24 16:06:25 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 449
+2023-08-24 16:06:25 - DEBUG - [^] convert_and_validate
+2023-08-24 16:06:25 - DEBUG - [^] server_action_decision
+2023-08-24 16:06:25 - DEBUG - [^] clientloginhandler
+2023-08-24 16:06:25 - DEBUG - [^] from_json
+2023-08-24 16:06:25 - INFO - [*] Cookie Authentication
+2023-08-24 16:06:25 - DEBUG - [^] validate_cookie
+2023-08-24 16:06:25 - DEBUG - [*] Cookie accepted
+2023-08-24 16:06:25 - DEBUG - [^] server_reset_data
+2023-08-24 16:06:25 - DEBUG - [^] handle_client
+2023-08-24 16:06:25 - DEBUG - [^] server_set_socket
+2023-08-24 16:06:25 - DEBUG - [^] from_json
+2023-08-24 16:06:25 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:06:25 - DEBUG - [^] to_json_for_client
+2023-08-24 16:06:25 - DEBUG - [^] send_msg
+2023-08-24 16:06:25 - DEBUG - [^] str_encode
+2023-08-24 16:06:25 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 406
+2023-08-24 16:06:26 - INFO - 
+[127.0.0.1:50047 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50047
+2023-08-24 16:06:26 - DEBUG - [^] server_parse_message
+2023-08-24 16:06:26 - DEBUG - [^] receive_msg
+2023-08-24 16:06:26 - DEBUG - [^] bytes_decode
+2023-08-24 16:06:26 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 448
+2023-08-24 16:06:26 - DEBUG - [^] convert_and_validate
+2023-08-24 16:06:26 - DEBUG - [^] server_action_decision
+2023-08-24 16:06:26 - DEBUG - [^] clientloginhandler
+2023-08-24 16:06:26 - DEBUG - [^] from_json
+2023-08-24 16:06:26 - INFO - [*] Cookie Authentication
+2023-08-24 16:06:26 - DEBUG - [^] validate_cookie
+2023-08-24 16:06:26 - DEBUG - [*] Cookie accepted
+2023-08-24 16:06:26 - DEBUG - [^] server_reset_data
+2023-08-24 16:06:26 - DEBUG - [^] handle_client
+2023-08-24 16:06:26 - DEBUG - [^] server_set_socket
+2023-08-24 16:06:26 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:06:26 - DEBUG - [^] from_json
+2023-08-24 16:06:26 - DEBUG - [^] to_json_for_client
+2023-08-24 16:06:26 - DEBUG - [^] send_msg
+2023-08-24 16:06:26 - DEBUG - [^] str_encode
+2023-08-24 16:06:26 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 406
+2023-08-24 16:06:27 - INFO - 
+[127.0.0.1:50048 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50048
+2023-08-24 16:06:27 - DEBUG - [^] server_parse_message
+2023-08-24 16:06:27 - DEBUG - [^] receive_msg
+2023-08-24 16:06:27 - DEBUG - [^] bytes_decode
+2023-08-24 16:06:27 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 453
+2023-08-24 16:06:27 - DEBUG - [^] convert_and_validate
+2023-08-24 16:06:27 - DEBUG - [^] server_action_decision
+2023-08-24 16:06:27 - DEBUG - [^] clientloginhandler
+2023-08-24 16:06:27 - DEBUG - [^] from_json
+2023-08-24 16:06:27 - INFO - [*] Cookie Authentication
+2023-08-24 16:06:27 - DEBUG - [^] validate_cookie
+2023-08-24 16:06:27 - DEBUG - [*] Cookie accepted
+2023-08-24 16:06:27 - DEBUG - [^] handle_client
+2023-08-24 16:06:27 - DEBUG - [^] server_reset_data
+2023-08-24 16:06:27 - DEBUG - [^] server_set_socket
+2023-08-24 16:06:27 - DEBUG - [^] from_json
+2023-08-24 16:06:27 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:06:27 - DEBUG - [^] to_json_for_client
+2023-08-24 16:06:27 - DEBUG - [^] send_msg
+2023-08-24 16:06:27 - DEBUG - [^] str_encode
+2023-08-24 16:06:27 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 406
+2023-08-24 16:06:28 - INFO - 
+[127.0.0.1:50049 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50049
+2023-08-24 16:06:28 - DEBUG - [^] server_parse_message
+2023-08-24 16:06:28 - DEBUG - [^] receive_msg
+2023-08-24 16:06:28 - DEBUG - [^] bytes_decode
+2023-08-24 16:06:28 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 451
+2023-08-24 16:06:28 - DEBUG - [^] convert_and_validate
+2023-08-24 16:06:28 - DEBUG - [^] server_action_decision
+2023-08-24 16:06:28 - DEBUG - [^] clientloginhandler
+2023-08-24 16:06:28 - DEBUG - [^] from_json
+2023-08-24 16:06:28 - INFO - [*] Cookie Authentication
+2023-08-24 16:06:28 - DEBUG - [^] validate_cookie
+2023-08-24 16:06:28 - DEBUG - [*] Cookie accepted
+2023-08-24 16:06:28 - DEBUG - [^] server_reset_data
+2023-08-24 16:06:28 - DEBUG - [^] handle_client
+2023-08-24 16:06:28 - DEBUG - [^] server_set_socket
+2023-08-24 16:06:28 - DEBUG - [^] from_json
+2023-08-24 16:06:28 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:06:28 - DEBUG - [^] to_json_for_client
+2023-08-24 16:06:28 - DEBUG - [^] send_msg
+2023-08-24 16:06:28 - DEBUG - [^] str_encode
+2023-08-24 16:06:28 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 406
+2023-08-24 16:06:29 - INFO - 
+[127.0.0.1:50050 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50050
+2023-08-24 16:06:29 - DEBUG - [^] server_parse_message
+2023-08-24 16:06:29 - DEBUG - [^] receive_msg
+2023-08-24 16:06:29 - DEBUG - [^] bytes_decode
+2023-08-24 16:06:29 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 442
+2023-08-24 16:06:29 - DEBUG - [^] convert_and_validate
+2023-08-24 16:06:29 - DEBUG - [^] server_action_decision
+2023-08-24 16:06:29 - DEBUG - [^] clientloginhandler
+2023-08-24 16:06:29 - DEBUG - [^] from_json
+2023-08-24 16:06:29 - INFO - [*] Cookie Authentication
+2023-08-24 16:06:29 - DEBUG - [^] validate_cookie
+2023-08-24 16:06:29 - DEBUG - [*] Cookie accepted
+2023-08-24 16:06:29 - DEBUG - [^] server_reset_data
+2023-08-24 16:06:29 - DEBUG - [^] handle_client
+2023-08-24 16:06:29 - DEBUG - [^] server_set_socket
+2023-08-24 16:06:29 - DEBUG - [^] from_json
+2023-08-24 16:06:29 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:06:29 - DEBUG - [^] to_json_for_client
+2023-08-24 16:06:29 - DEBUG - [^] send_msg
+2023-08-24 16:06:29 - DEBUG - [^] str_encode
+2023-08-24 16:06:29 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 406
+2023-08-24 16:06:52 - INFO - 
+[127.0.0.1:50051 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50051
+2023-08-24 16:06:52 - DEBUG - [^] server_parse_message
+2023-08-24 16:06:52 - DEBUG - [^] receive_msg
+2023-08-24 16:06:56 - DEBUG - [^] bytes_decode
+2023-08-24 16:06:56 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-24 16:06:56 - DEBUG - [^] convert_and_validate
+2023-08-24 16:06:56 - DEBUG - [^] server_action_decision
+2023-08-24 16:06:56 - DEBUG - [^] clientloginhandler
+2023-08-24 16:06:56 - DEBUG - [^] from_json
+2023-08-24 16:06:56 - INFO - [*] Password Authentication
+2023-08-24 16:06:56 - DEBUG - [^] validate_password
+2023-08-24 16:06:56 - DEBUG - [^] yaml_load
+2023-08-24 16:06:56 - DEBUG - [^] generate_random_cookie
+2023-08-24 16:06:56 - DEBUG - [^] yaml_load
+2023-08-24 16:06:56 - INFO - [*] cookie: p5b96rAb2Y8Hqhc3jiVaK74mN
+2023-08-24 16:06:56 - DEBUG - [^] to_json_for_client
+2023-08-24 16:06:56 - DEBUG - [^] send_msg
+2023-08-24 16:06:56 - DEBUG - [^] str_encode
+2023-08-24 16:06:56 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 16:06:56 - DEBUG - [^] server_reset_data
+2023-08-24 16:06:56 - DEBUG - [^] server_set_socket
+2023-08-24 16:06:56 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:07:02 - INFO - 
+[127.0.0.1:50052 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50052
+2023-08-24 16:07:02 - DEBUG - [^] server_parse_message
+2023-08-24 16:07:02 - DEBUG - [^] receive_msg
+2023-08-24 16:07:02 - DEBUG - [^] bytes_decode
+2023-08-24 16:07:02 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 442
+2023-08-24 16:07:02 - DEBUG - [^] convert_and_validate
+2023-08-24 16:07:02 - DEBUG - [^] server_action_decision
+2023-08-24 16:07:02 - DEBUG - [^] clientloginhandler
+2023-08-24 16:07:02 - DEBUG - [^] from_json
+2023-08-24 16:07:02 - INFO - [*] Cookie Authentication
+2023-08-24 16:07:02 - DEBUG - [^] validate_cookie
+2023-08-24 16:07:02 - DEBUG - [*] Cookie accepted
+2023-08-24 16:07:02 - DEBUG - [^] server_reset_data
+2023-08-24 16:07:02 - DEBUG - [^] handle_client
+2023-08-24 16:07:02 - DEBUG - [^] server_set_socket
+2023-08-24 16:07:02 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:07:02 - DEBUG - [^] from_json
+2023-08-24 16:07:02 - DEBUG - [^] to_json_for_client
+2023-08-24 16:07:02 - DEBUG - [^] send_msg
+2023-08-24 16:07:02 - DEBUG - [^] str_encode
+2023-08-24 16:07:02 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 406
+2023-08-24 16:14:44 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-24 16:14:44 - DEBUG - [^] file_check
+2023-08-24 16:14:44 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-24 16:14:44 - DEBUG - [^] __init__
+2023-08-24 16:14:44 - INFO - ===== Startup | Reference Time (UTC) 2023-08-24 21:14:44.385965+00:00 =====
+2023-08-24 16:14:44 - DEBUG - [^] start_server
+2023-08-24 16:14:44 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-24 16:14:44 - DEBUG - [^] connection_handler
+2023-08-24 16:14:44 - DEBUG - [^] server_reset_data
+2023-08-24 16:14:44 - DEBUG - [^] server_set_socket
+2023-08-24 16:14:44 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:14:56 - INFO - 
+[127.0.0.1:50085 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50085
+2023-08-24 16:14:56 - DEBUG - [^] server_parse_message
+2023-08-24 16:14:56 - DEBUG - [^] receive_msg
+2023-08-24 16:14:59 - DEBUG - [^] bytes_decode
+2023-08-24 16:14:59 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-24 16:14:59 - DEBUG - [^] convert_and_validate
+2023-08-24 16:14:59 - DEBUG - [^] server_action_decision
+2023-08-24 16:14:59 - DEBUG - [^] clientloginhandler
+2023-08-24 16:14:59 - DEBUG - [^] from_json
+2023-08-24 16:14:59 - INFO - [*] Password Authentication
+2023-08-24 16:14:59 - DEBUG - [^] validate_password
+2023-08-24 16:14:59 - DEBUG - [^] yaml_load
+2023-08-24 16:14:59 - DEBUG - [^] generate_random_cookie
+2023-08-24 16:14:59 - DEBUG - [^] yaml_load
+2023-08-24 16:14:59 - INFO - [*] cookie: IIgZW5snO7vKEMt2dqf13Lz3R
+2023-08-24 16:14:59 - DEBUG - [^] to_json_for_client
+2023-08-24 16:14:59 - DEBUG - [^] send_msg
+2023-08-24 16:14:59 - DEBUG - [^] str_encode
+2023-08-24 16:14:59 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 16:14:59 - DEBUG - [^] server_reset_data
+2023-08-24 16:14:59 - DEBUG - [^] server_set_socket
+2023-08-24 16:14:59 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:15:07 - INFO - 
+[127.0.0.1:50087 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50087
+2023-08-24 16:15:07 - DEBUG - [^] server_parse_message
+2023-08-24 16:15:07 - DEBUG - [^] receive_msg
+2023-08-24 16:15:07 - DEBUG - [^] bytes_decode
+2023-08-24 16:15:07 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 442
+2023-08-24 16:15:07 - DEBUG - [^] convert_and_validate
+2023-08-24 16:15:07 - DEBUG - [^] server_action_decision
+2023-08-24 16:15:07 - DEBUG - [^] clientloginhandler
+2023-08-24 16:15:07 - DEBUG - [^] from_json
+2023-08-24 16:15:07 - INFO - [*] Cookie Authentication
+2023-08-24 16:15:07 - DEBUG - [^] validate_cookie
+2023-08-24 16:15:07 - DEBUG - [*] Cookie accepted
+2023-08-24 16:15:07 - DEBUG - [^] server_reset_data
+2023-08-24 16:15:07 - DEBUG - [^] handle_client
+2023-08-24 16:15:07 - DEBUG - [^] server_set_socket
+2023-08-24 16:15:07 - DEBUG - [^] from_json
+2023-08-24 16:15:07 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:15:07 - DEBUG - [^] to_json_for_client
+2023-08-24 16:15:07 - DEBUG - [^] send_msg
+2023-08-24 16:15:07 - DEBUG - [^] str_encode
+2023-08-24 16:15:07 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 449
+2023-08-24 16:15:52 - INFO - 
+[127.0.0.1:50089 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50089
+2023-08-24 16:15:52 - DEBUG - [^] server_parse_message
+2023-08-24 16:15:52 - DEBUG - [^] receive_msg
+2023-08-24 16:15:55 - DEBUG - [^] bytes_decode
+2023-08-24 16:15:55 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-24 16:15:55 - DEBUG - [^] convert_and_validate
+2023-08-24 16:15:55 - DEBUG - [^] server_action_decision
+2023-08-24 16:15:55 - DEBUG - [^] clientloginhandler
+2023-08-24 16:15:55 - DEBUG - [^] from_json
+2023-08-24 16:15:55 - INFO - [*] Password Authentication
+2023-08-24 16:15:55 - DEBUG - [^] validate_password
+2023-08-24 16:15:55 - DEBUG - [^] yaml_load
+2023-08-24 16:15:55 - DEBUG - [^] generate_random_cookie
+2023-08-24 16:15:55 - DEBUG - [^] yaml_load
+2023-08-24 16:15:55 - INFO - [*] cookie: CZeWo5VmcEcdPffZLCCYgSRl9
+2023-08-24 16:15:55 - DEBUG - [^] to_json_for_client
+2023-08-24 16:15:55 - DEBUG - [^] send_msg
+2023-08-24 16:15:55 - DEBUG - [^] str_encode
+2023-08-24 16:15:55 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 16:15:55 - DEBUG - [^] server_reset_data
+2023-08-24 16:15:55 - DEBUG - [^] server_set_socket
+2023-08-24 16:15:55 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:15:57 - INFO - 
+[127.0.0.1:50090 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50090
+2023-08-24 16:15:57 - DEBUG - [^] server_parse_message
+2023-08-24 16:15:57 - DEBUG - [^] receive_msg
+2023-08-24 16:15:57 - DEBUG - [^] bytes_decode
+2023-08-24 16:15:57 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 442
+2023-08-24 16:15:57 - DEBUG - [^] convert_and_validate
+2023-08-24 16:15:57 - DEBUG - [^] server_action_decision
+2023-08-24 16:15:57 - DEBUG - [^] clientloginhandler
+2023-08-24 16:15:57 - DEBUG - [^] from_json
+2023-08-24 16:15:57 - INFO - [*] Cookie Authentication
+2023-08-24 16:15:57 - DEBUG - [^] validate_cookie
+2023-08-24 16:15:57 - DEBUG - [*] Cookie accepted
+2023-08-24 16:15:57 - DEBUG - [^] server_reset_data
+2023-08-24 16:15:57 - DEBUG - [^] handle_client
+2023-08-24 16:15:57 - DEBUG - [^] server_set_socket
+2023-08-24 16:15:57 - DEBUG - [^] from_json
+2023-08-24 16:15:57 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:15:57 - DEBUG - [^] to_json_for_client
+2023-08-24 16:15:57 - DEBUG - [^] send_msg
+2023-08-24 16:15:57 - DEBUG - [^] str_encode
+2023-08-24 16:15:57 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 449
+2023-08-24 16:16:20 - INFO - 
+[127.0.0.1:50095 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50095
+2023-08-24 16:16:20 - DEBUG - [^] server_parse_message
+2023-08-24 16:16:20 - DEBUG - [^] receive_msg
+2023-08-24 16:16:20 - DEBUG - [^] bytes_decode
+2023-08-24 16:16:20 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 495
+2023-08-24 16:16:20 - DEBUG - [^] convert_and_validate
+2023-08-24 16:16:20 - DEBUG - [^] server_action_decision
+2023-08-24 16:16:20 - DEBUG - [^] clientloginhandler
+2023-08-24 16:16:20 - DEBUG - [^] from_json
+2023-08-24 16:16:20 - INFO - [*] Cookie Authentication
+2023-08-24 16:16:20 - DEBUG - [^] validate_cookie
+2023-08-24 16:16:20 - DEBUG - [*] Cookie accepted
+2023-08-24 16:16:20 - DEBUG - [^] server_reset_data
+2023-08-24 16:16:20 - DEBUG - [^] handle_client
+2023-08-24 16:16:20 - DEBUG - [^] server_set_socket
+2023-08-24 16:16:20 - DEBUG - [^] from_json
+2023-08-24 16:16:20 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:16:20 - DEBUG - [^] to_json_for_client
+2023-08-24 16:16:20 - DEBUG - [^] send_msg
+2023-08-24 16:16:20 - DEBUG - [^] str_encode
+2023-08-24 16:16:20 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 16:16:30 - INFO - 
+[127.0.0.1:50097 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50097
+2023-08-24 16:16:30 - DEBUG - [^] server_parse_message
+2023-08-24 16:16:30 - DEBUG - [^] receive_msg
+2023-08-24 16:16:32 - DEBUG - [^] bytes_decode
+2023-08-24 16:16:32 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 423
+2023-08-24 16:16:32 - DEBUG - [^] convert_and_validate
+2023-08-24 16:16:32 - DEBUG - [^] server_action_decision
+2023-08-24 16:16:32 - DEBUG - [^] clientloginhandler
+2023-08-24 16:16:32 - DEBUG - [^] from_json
+2023-08-24 16:16:32 - INFO - [*] Password Authentication
+2023-08-24 16:16:32 - DEBUG - [^] validate_password
+2023-08-24 16:16:32 - DEBUG - [^] yaml_load
+2023-08-24 16:16:32 - WARNING - [Server.ClientLogonhandler()]: Bad Logon attempt
+2023-08-24 16:16:32 - DEBUG - [^] to_json_for_client
+2023-08-24 16:16:32 - DEBUG - [^] send_msg
+2023-08-24 16:16:32 - DEBUG - [^] str_encode
+2023-08-24 16:16:32 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 410
+2023-08-24 16:16:32 - DEBUG - [^] server_reset_data
+2023-08-24 16:16:32 - DEBUG - [^] server_set_socket
+2023-08-24 16:16:32 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:16:35 - INFO - 
+[127.0.0.1:50098 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50098
+2023-08-24 16:16:35 - DEBUG - [^] server_parse_message
+2023-08-24 16:16:35 - DEBUG - [^] receive_msg
+2023-08-24 16:16:35 - DEBUG - [^] bytes_decode
+2023-08-24 16:16:35 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 432
+2023-08-24 16:16:35 - DEBUG - [^] convert_and_validate
+2023-08-24 16:16:35 - DEBUG - [^] server_action_decision
+2023-08-24 16:16:35 - DEBUG - [^] clientloginhandler
+2023-08-24 16:16:35 - DEBUG - [^] from_json
+2023-08-24 16:16:35 - INFO - [*] Cookie Authentication
+2023-08-24 16:16:35 - DEBUG - [^] validate_cookie
+2023-08-24 16:16:35 - WARNING - Cookie rejected bitch -- This is odd.
+2023-08-24 16:16:35 - DEBUG - [^] server_reset_data
+2023-08-24 16:16:35 - DEBUG - [^] server_set_socket
+2023-08-24 16:16:35 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:17:13 - INFO - 
+[127.0.0.1:50107 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50107
+2023-08-24 16:17:13 - DEBUG - [^] server_parse_message
+2023-08-24 16:17:13 - DEBUG - [^] receive_msg
+2023-08-24 16:17:16 - DEBUG - [^] bytes_decode
+2023-08-24 16:17:16 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-24 16:17:16 - DEBUG - [^] convert_and_validate
+2023-08-24 16:17:16 - DEBUG - [^] server_action_decision
+2023-08-24 16:17:16 - DEBUG - [^] clientloginhandler
+2023-08-24 16:17:16 - DEBUG - [^] from_json
+2023-08-24 16:17:16 - INFO - [*] Password Authentication
+2023-08-24 16:17:16 - DEBUG - [^] validate_password
+2023-08-24 16:17:16 - DEBUG - [^] yaml_load
+2023-08-24 16:17:16 - DEBUG - [^] generate_random_cookie
+2023-08-24 16:17:16 - DEBUG - [^] yaml_load
+2023-08-24 16:17:16 - INFO - [*] cookie: DT0Y2VrX3766M4mr8VlkltjGQ
+2023-08-24 16:17:16 - DEBUG - [^] to_json_for_client
+2023-08-24 16:17:16 - DEBUG - [^] send_msg
+2023-08-24 16:17:16 - DEBUG - [^] str_encode
+2023-08-24 16:17:16 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 16:17:16 - DEBUG - [^] server_reset_data
+2023-08-24 16:17:16 - DEBUG - [^] server_set_socket
+2023-08-24 16:17:16 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:17:22 - INFO - 
+[127.0.0.1:50108 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50108
+2023-08-24 16:17:22 - DEBUG - [^] server_parse_message
+2023-08-24 16:17:22 - DEBUG - [^] receive_msg
+2023-08-24 16:17:22 - DEBUG - [^] bytes_decode
+2023-08-24 16:17:22 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 442
+2023-08-24 16:17:22 - DEBUG - [^] convert_and_validate
+2023-08-24 16:17:22 - DEBUG - [^] server_action_decision
+2023-08-24 16:17:22 - DEBUG - [^] clientloginhandler
+2023-08-24 16:17:22 - DEBUG - [^] from_json
+2023-08-24 16:17:22 - INFO - [*] Cookie Authentication
+2023-08-24 16:17:22 - DEBUG - [^] validate_cookie
+2023-08-24 16:17:22 - DEBUG - [*] Cookie accepted
+2023-08-24 16:17:22 - DEBUG - [^] server_reset_data
+2023-08-24 16:17:22 - DEBUG - [^] handle_client
+2023-08-24 16:17:22 - DEBUG - [^] server_set_socket
+2023-08-24 16:17:22 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:17:22 - DEBUG - [^] from_json
+2023-08-24 16:17:22 - DEBUG - [^] to_json_for_client
+2023-08-24 16:17:22 - DEBUG - [^] send_msg
+2023-08-24 16:17:22 - DEBUG - [^] str_encode
+2023-08-24 16:17:22 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 449
+2023-08-24 16:17:30 - INFO - 
+[127.0.0.1:50109 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50109
+2023-08-24 16:17:30 - DEBUG - [^] server_parse_message
+2023-08-24 16:17:30 - DEBUG - [^] receive_msg
+2023-08-24 16:17:30 - DEBUG - [^] bytes_decode
+2023-08-24 16:17:30 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 439
+2023-08-24 16:17:30 - DEBUG - [^] convert_and_validate
+2023-08-24 16:17:30 - DEBUG - [^] server_action_decision
+2023-08-24 16:17:30 - DEBUG - [^] clientloginhandler
+2023-08-24 16:17:30 - DEBUG - [^] from_json
+2023-08-24 16:17:30 - INFO - [*] Cookie Authentication
+2023-08-24 16:17:30 - DEBUG - [^] validate_cookie
+2023-08-24 16:17:30 - DEBUG - [*] Cookie accepted
+2023-08-24 16:17:30 - DEBUG - [^] handle_client
+2023-08-24 16:17:30 - DEBUG - [^] server_reset_data
+2023-08-24 16:17:30 - DEBUG - [^] from_json
+2023-08-24 16:17:30 - DEBUG - [^] server_set_socket
+2023-08-24 16:17:30 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:17:30 - DEBUG - [^] to_json_for_client
+2023-08-24 16:17:30 - DEBUG - [^] send_msg
+2023-08-24 16:17:30 - DEBUG - [^] str_encode
+2023-08-24 16:17:30 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 16:17:32 - INFO - 
+[127.0.0.1:50110 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50110
+2023-08-24 16:17:32 - DEBUG - [^] server_parse_message
+2023-08-24 16:17:32 - DEBUG - [^] receive_msg
+2023-08-24 16:17:32 - DEBUG - [^] bytes_decode
+2023-08-24 16:17:32 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-24 16:17:32 - DEBUG - [^] convert_and_validate
+2023-08-24 16:17:32 - DEBUG - [^] server_action_decision
+2023-08-24 16:17:32 - DEBUG - [^] clientloginhandler
+2023-08-24 16:17:32 - DEBUG - [^] from_json
+2023-08-24 16:17:32 - INFO - [*] Cookie Authentication
+2023-08-24 16:17:32 - DEBUG - [^] validate_cookie
+2023-08-24 16:17:32 - DEBUG - [*] Cookie accepted
+2023-08-24 16:17:32 - DEBUG - [^] server_reset_data
+2023-08-24 16:17:32 - DEBUG - [^] handle_client
+2023-08-24 16:17:32 - DEBUG - [^] server_set_socket
+2023-08-24 16:17:32 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:17:32 - DEBUG - [^] from_json
+2023-08-24 16:17:32 - DEBUG - [^] to_json_for_client
+2023-08-24 16:17:32 - DEBUG - [^] send_msg
+2023-08-24 16:17:32 - DEBUG - [^] str_encode
+2023-08-24 16:17:32 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 16:17:33 - INFO - 
+[127.0.0.1:50111 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50111
+2023-08-24 16:17:33 - DEBUG - [^] server_parse_message
+2023-08-24 16:17:33 - DEBUG - [^] receive_msg
+2023-08-24 16:17:33 - DEBUG - [^] bytes_decode
+2023-08-24 16:17:33 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 441
+2023-08-24 16:17:33 - DEBUG - [^] convert_and_validate
+2023-08-24 16:17:33 - DEBUG - [^] server_action_decision
+2023-08-24 16:17:33 - DEBUG - [^] clientloginhandler
+2023-08-24 16:17:33 - DEBUG - [^] from_json
+2023-08-24 16:17:33 - INFO - [*] Cookie Authentication
+2023-08-24 16:17:33 - DEBUG - [^] validate_cookie
+2023-08-24 16:17:33 - DEBUG - [*] Cookie accepted
+2023-08-24 16:17:33 - DEBUG - [^] server_reset_data
+2023-08-24 16:17:33 - DEBUG - [^] handle_client
+2023-08-24 16:17:33 - DEBUG - [^] server_set_socket
+2023-08-24 16:17:33 - DEBUG - [^] from_json
+2023-08-24 16:17:33 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:17:33 - DEBUG - [^] to_json_for_client
+2023-08-24 16:17:33 - DEBUG - [^] send_msg
+2023-08-24 16:17:33 - DEBUG - [^] str_encode
+2023-08-24 16:17:33 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 16:19:49 - INFO - 
+[127.0.0.1:50116 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50116
+2023-08-24 16:19:49 - DEBUG - [^] server_parse_message
+2023-08-24 16:19:49 - DEBUG - [^] receive_msg
+2023-08-24 16:19:52 - DEBUG - [^] bytes_decode
+2023-08-24 16:19:52 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-24 16:19:52 - DEBUG - [^] convert_and_validate
+2023-08-24 16:19:52 - DEBUG - [^] server_action_decision
+2023-08-24 16:19:52 - DEBUG - [^] clientloginhandler
+2023-08-24 16:19:52 - DEBUG - [^] from_json
+2023-08-24 16:19:52 - INFO - [*] Password Authentication
+2023-08-24 16:19:52 - DEBUG - [^] validate_password
+2023-08-24 16:19:52 - DEBUG - [^] yaml_load
+2023-08-24 16:19:52 - DEBUG - [^] generate_random_cookie
+2023-08-24 16:19:52 - DEBUG - [^] yaml_load
+2023-08-24 16:19:52 - INFO - [*] cookie: 0mwswmUDYTJqMFidkUc8wjOjA
+2023-08-24 16:19:52 - DEBUG - [^] to_json_for_client
+2023-08-24 16:19:52 - DEBUG - [^] send_msg
+2023-08-24 16:19:52 - DEBUG - [^] str_encode
+2023-08-24 16:19:52 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 16:19:52 - DEBUG - [^] server_reset_data
+2023-08-24 16:19:52 - DEBUG - [^] server_set_socket
+2023-08-24 16:19:52 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:19:54 - INFO - 
+[127.0.0.1:50117 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50117
+2023-08-24 16:19:54 - DEBUG - [^] server_parse_message
+2023-08-24 16:19:54 - DEBUG - [^] receive_msg
+2023-08-24 16:19:54 - DEBUG - [^] bytes_decode
+2023-08-24 16:19:54 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 442
+2023-08-24 16:19:54 - DEBUG - [^] convert_and_validate
+2023-08-24 16:19:54 - DEBUG - [^] server_action_decision
+2023-08-24 16:19:54 - DEBUG - [^] clientloginhandler
+2023-08-24 16:19:54 - DEBUG - [^] from_json
+2023-08-24 16:19:54 - INFO - [*] Cookie Authentication
+2023-08-24 16:19:54 - DEBUG - [^] validate_cookie
+2023-08-24 16:19:54 - DEBUG - [*] Cookie accepted
+2023-08-24 16:19:54 - DEBUG - [^] server_reset_data
+2023-08-24 16:19:54 - DEBUG - [^] handle_client
+2023-08-24 16:19:54 - DEBUG - [^] server_set_socket
+2023-08-24 16:19:54 - DEBUG - [^] from_json
+2023-08-24 16:19:54 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:19:54 - DEBUG - [^] to_json_for_client
+2023-08-24 16:19:54 - DEBUG - [^] send_msg
+2023-08-24 16:19:54 - DEBUG - [^] str_encode
+2023-08-24 16:19:54 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 449
+2023-08-24 16:20:00 - INFO - 
+[127.0.0.1:50118 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50118
+2023-08-24 16:20:00 - DEBUG - [^] server_parse_message
+2023-08-24 16:20:00 - DEBUG - [^] receive_msg
+2023-08-24 16:20:00 - DEBUG - [^] bytes_decode
+2023-08-24 16:20:00 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 442
+2023-08-24 16:20:00 - DEBUG - [^] convert_and_validate
+2023-08-24 16:20:00 - DEBUG - [^] server_action_decision
+2023-08-24 16:20:00 - DEBUG - [^] clientloginhandler
+2023-08-24 16:20:00 - DEBUG - [^] from_json
+2023-08-24 16:20:00 - INFO - [*] Cookie Authentication
+2023-08-24 16:20:00 - DEBUG - [^] validate_cookie
+2023-08-24 16:20:00 - DEBUG - [*] Cookie accepted
+2023-08-24 16:20:00 - DEBUG - [^] handle_client
+2023-08-24 16:20:00 - DEBUG - [^] server_reset_data
+2023-08-24 16:20:00 - DEBUG - [^] from_json
+2023-08-24 16:20:00 - DEBUG - [^] server_set_socket
+2023-08-24 16:20:00 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:20:00 - DEBUG - [^] to_json_for_client
+2023-08-24 16:20:00 - DEBUG - [^] send_msg
+2023-08-24 16:20:00 - DEBUG - [^] str_encode
+2023-08-24 16:20:00 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 16:20:15 - INFO - 
+[127.0.0.1:50120 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50120
+2023-08-24 16:20:15 - DEBUG - [^] server_parse_message
+2023-08-24 16:20:15 - DEBUG - [^] receive_msg
+2023-08-24 16:20:18 - DEBUG - [^] bytes_decode
+2023-08-24 16:20:18 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-24 16:20:18 - DEBUG - [^] convert_and_validate
+2023-08-24 16:20:18 - DEBUG - [^] server_action_decision
+2023-08-24 16:20:18 - DEBUG - [^] clientloginhandler
+2023-08-24 16:20:18 - DEBUG - [^] from_json
+2023-08-24 16:20:18 - INFO - [*] Password Authentication
+2023-08-24 16:20:18 - DEBUG - [^] validate_password
+2023-08-24 16:20:18 - DEBUG - [^] yaml_load
+2023-08-24 16:20:18 - DEBUG - [^] generate_random_cookie
+2023-08-24 16:20:18 - DEBUG - [^] yaml_load
+2023-08-24 16:20:18 - INFO - [*] cookie: ucF9afljjeN19fOzYq0x1XOBt
+2023-08-24 16:20:18 - DEBUG - [^] to_json_for_client
+2023-08-24 16:20:18 - DEBUG - [^] send_msg
+2023-08-24 16:20:18 - DEBUG - [^] str_encode
+2023-08-24 16:20:18 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 16:20:18 - DEBUG - [^] server_reset_data
+2023-08-24 16:20:18 - DEBUG - [^] server_set_socket
+2023-08-24 16:20:18 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:20:23 - INFO - 
+[127.0.0.1:50121 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50121
+2023-08-24 16:20:23 - DEBUG - [^] server_parse_message
+2023-08-24 16:20:23 - DEBUG - [^] receive_msg
+2023-08-24 16:20:23 - DEBUG - [^] bytes_decode
+2023-08-24 16:20:23 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 442
+2023-08-24 16:20:23 - DEBUG - [^] convert_and_validate
+2023-08-24 16:20:23 - DEBUG - [^] server_action_decision
+2023-08-24 16:20:23 - DEBUG - [^] clientloginhandler
+2023-08-24 16:20:23 - DEBUG - [^] from_json
+2023-08-24 16:20:23 - INFO - [*] Cookie Authentication
+2023-08-24 16:20:23 - DEBUG - [^] validate_cookie
+2023-08-24 16:20:23 - DEBUG - [*] Cookie accepted
+2023-08-24 16:20:23 - DEBUG - [^] server_reset_data
+2023-08-24 16:20:23 - DEBUG - [^] handle_client
+2023-08-24 16:20:23 - DEBUG - [^] server_set_socket
+2023-08-24 16:20:23 - DEBUG - [^] from_json
+2023-08-24 16:20:23 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:20:23 - DEBUG - [^] to_json_for_client
+2023-08-24 16:20:23 - DEBUG - [^] send_msg
+2023-08-24 16:20:23 - DEBUG - [^] str_encode
+2023-08-24 16:20:23 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 449
+2023-08-24 16:43:23 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-24 16:43:23 - DEBUG - [^] file_check
+2023-08-24 16:43:23 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-24 16:43:23 - DEBUG - [^] __init__
+2023-08-24 16:43:23 - INFO - ===== Startup | Reference Time (UTC) 2023-08-24 21:43:23.620460+00:00 =====
+2023-08-24 16:43:23 - DEBUG - [^] start_server
+2023-08-24 16:43:23 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-24 16:43:23 - DEBUG - [^] connection_handler
+2023-08-24 16:43:23 - DEBUG - [^] server_reset_data
+2023-08-24 16:43:23 - DEBUG - [^] server_set_socket
+2023-08-24 16:43:23 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:43:34 - INFO - 
+[127.0.0.1:50286 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50286
+2023-08-24 16:43:34 - DEBUG - [^] server_parse_message
+2023-08-24 16:43:34 - DEBUG - [^] receive_msg
+2023-08-24 16:43:38 - DEBUG - [^] bytes_decode
+2023-08-24 16:43:38 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-24 16:43:38 - DEBUG - [^] convert_and_validate
+2023-08-24 16:43:38 - DEBUG - [^] server_action_decision
+2023-08-24 16:43:38 - DEBUG - [^] clientloginhandler
+2023-08-24 16:43:38 - DEBUG - [^] from_json
+2023-08-24 16:43:38 - INFO - [*] Password Authentication
+2023-08-24 16:43:38 - DEBUG - [^] validate_password
+2023-08-24 16:43:38 - DEBUG - [^] yaml_load
+2023-08-24 16:43:38 - DEBUG - [^] generate_random_cookie
+2023-08-24 16:43:38 - DEBUG - [^] yaml_load
+2023-08-24 16:43:38 - INFO - [*] cookie: kloHPeYuiwXU33tzPTMlXDK80
+2023-08-24 16:43:38 - DEBUG - [^] to_json_for_client
+2023-08-24 16:43:38 - DEBUG - [^] send_msg
+2023-08-24 16:43:38 - DEBUG - [^] str_encode
+2023-08-24 16:43:38 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 16:43:38 - DEBUG - [^] server_reset_data
+2023-08-24 16:43:38 - DEBUG - [^] server_set_socket
+2023-08-24 16:43:38 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:43:44 - INFO - 
+[127.0.0.1:50287 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50287
+2023-08-24 16:43:44 - DEBUG - [^] server_parse_message
+2023-08-24 16:43:44 - DEBUG - [^] receive_msg
+2023-08-24 16:43:44 - DEBUG - [^] bytes_decode
+2023-08-24 16:43:44 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 449
+2023-08-24 16:43:44 - DEBUG - [^] convert_and_validate
+2023-08-24 16:43:44 - DEBUG - [^] server_action_decision
+2023-08-24 16:43:44 - DEBUG - [^] clientloginhandler
+2023-08-24 16:43:44 - DEBUG - [^] from_json
+2023-08-24 16:43:44 - INFO - [*] Cookie Authentication
+2023-08-24 16:43:44 - DEBUG - [^] validate_cookie
+2023-08-24 16:43:44 - DEBUG - [*] Cookie accepted
+2023-08-24 16:43:44 - DEBUG - [^] server_reset_data
+2023-08-24 16:43:44 - DEBUG - [^] server_set_socket
+2023-08-24 16:43:44 - DEBUG - [^] handle_client
+2023-08-24 16:43:44 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 16:43:44 - DEBUG - [^] from_json
+2023-08-24 16:43:44 - DEBUG - [^] to_json_for_client
+2023-08-24 16:43:44 - DEBUG - [^] send_msg
+2023-08-24 16:43:44 - DEBUG - [^] str_encode
+2023-08-24 16:43:44 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 544
+2023-08-24 19:41:02 - INFO - 
+[127.0.0.1:50658 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50658
+2023-08-24 19:41:02 - DEBUG - [^] server_parse_message
+2023-08-24 19:41:02 - DEBUG - [^] receive_msg
+2023-08-24 19:41:02 - DEBUG - [^] bytes_decode
+2023-08-24 19:41:02 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 442
+2023-08-24 19:41:02 - DEBUG - [^] convert_and_validate
+2023-08-24 19:41:02 - DEBUG - [^] server_action_decision
+2023-08-24 19:41:02 - DEBUG - [^] clientloginhandler
+2023-08-24 19:41:02 - DEBUG - [^] from_json
+2023-08-24 19:41:02 - INFO - [*] Cookie Authentication
+2023-08-24 19:41:02 - DEBUG - [^] validate_cookie
+2023-08-24 19:41:02 - DEBUG - [*] Cookie accepted
+2023-08-24 19:41:02 - DEBUG - [^] server_reset_data
+2023-08-24 19:41:02 - DEBUG - [^] handle_client
+2023-08-24 19:41:02 - DEBUG - [^] server_set_socket
+2023-08-24 19:41:02 - DEBUG - [^] from_json
+2023-08-24 19:41:02 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 19:41:02 - DEBUG - [^] to_json_for_client
+2023-08-24 19:41:02 - DEBUG - [^] send_msg
+2023-08-24 19:41:02 - DEBUG - [^] str_encode
+2023-08-24 19:41:02 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 19:41:04 - INFO - 
+[127.0.0.1:50659 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50659
+2023-08-24 19:41:04 - DEBUG - [^] server_parse_message
+2023-08-24 19:41:04 - DEBUG - [^] receive_msg
+2023-08-24 19:41:04 - DEBUG - [^] bytes_decode
+2023-08-24 19:41:04 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 440
+2023-08-24 19:41:04 - DEBUG - [^] convert_and_validate
+2023-08-24 19:41:04 - DEBUG - [^] server_action_decision
+2023-08-24 19:41:04 - DEBUG - [^] clientloginhandler
+2023-08-24 19:41:04 - DEBUG - [^] from_json
+2023-08-24 19:41:04 - INFO - [*] Cookie Authentication
+2023-08-24 19:41:04 - DEBUG - [^] validate_cookie
+2023-08-24 19:41:04 - DEBUG - [*] Cookie accepted
+2023-08-24 19:41:04 - DEBUG - [^] server_reset_data
+2023-08-24 19:41:04 - DEBUG - [^] handle_client
+2023-08-24 19:41:04 - DEBUG - [^] server_set_socket
+2023-08-24 19:41:04 - DEBUG - [^] from_json
+2023-08-24 19:41:04 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 19:41:04 - DEBUG - [^] to_json_for_client
+2023-08-24 19:41:04 - DEBUG - [^] send_msg
+2023-08-24 19:41:04 - DEBUG - [^] str_encode
+2023-08-24 19:41:04 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 19:41:08 - INFO - 
+[127.0.0.1:50660 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50660
+2023-08-24 19:41:08 - DEBUG - [^] server_parse_message
+2023-08-24 19:41:08 - DEBUG - [^] receive_msg
+2023-08-24 19:41:08 - DEBUG - [^] bytes_decode
+2023-08-24 19:41:08 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 491
+2023-08-24 19:41:08 - DEBUG - [^] convert_and_validate
+2023-08-24 19:41:08 - DEBUG - [^] server_action_decision
+2023-08-24 19:41:08 - DEBUG - [^] clientloginhandler
+2023-08-24 19:41:08 - DEBUG - [^] from_json
+2023-08-24 19:41:08 - INFO - [*] Cookie Authentication
+2023-08-24 19:41:08 - DEBUG - [^] validate_cookie
+2023-08-24 19:41:08 - DEBUG - [*] Cookie accepted
+2023-08-24 19:41:08 - DEBUG - [^] handle_client
+2023-08-24 19:41:08 - DEBUG - [^] server_reset_data
+2023-08-24 19:41:08 - DEBUG - [^] server_set_socket
+2023-08-24 19:41:08 - DEBUG - [^] from_json
+2023-08-24 19:41:08 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 19:41:08 - DEBUG - [^] to_json_for_client
+2023-08-24 19:41:08 - DEBUG - [^] send_msg
+2023-08-24 19:41:08 - DEBUG - [^] str_encode
+2023-08-24 19:41:08 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 19:41:12 - INFO - 
+[127.0.0.1:50661 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50661
+2023-08-24 19:41:12 - DEBUG - [^] server_parse_message
+2023-08-24 19:41:12 - DEBUG - [^] receive_msg
+2023-08-24 19:41:12 - DEBUG - [^] bytes_decode
+2023-08-24 19:41:12 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 453
+2023-08-24 19:41:12 - DEBUG - [^] convert_and_validate
+2023-08-24 19:41:12 - DEBUG - [^] server_action_decision
+2023-08-24 19:41:12 - DEBUG - [^] clientloginhandler
+2023-08-24 19:41:12 - DEBUG - [^] from_json
+2023-08-24 19:41:12 - INFO - [*] Cookie Authentication
+2023-08-24 19:41:12 - DEBUG - [^] validate_cookie
+2023-08-24 19:41:12 - DEBUG - [*] Cookie accepted
+2023-08-24 19:41:12 - DEBUG - [^] handle_client
+2023-08-24 19:41:12 - DEBUG - [^] server_reset_data
+2023-08-24 19:41:12 - DEBUG - [^] server_set_socket
+2023-08-24 19:41:12 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 19:41:12 - DEBUG - [^] from_json
+2023-08-24 19:41:12 - DEBUG - [^] to_json_for_client
+2023-08-24 19:41:12 - DEBUG - [^] send_msg
+2023-08-24 19:41:12 - DEBUG - [^] str_encode
+2023-08-24 19:41:12 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 19:41:14 - INFO - 
+[127.0.0.1:50662 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50662
+2023-08-24 19:41:14 - DEBUG - [^] server_parse_message
+2023-08-24 19:41:14 - DEBUG - [^] receive_msg
+2023-08-24 19:41:14 - DEBUG - [^] bytes_decode
+2023-08-24 19:41:14 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 458
+2023-08-24 19:41:14 - DEBUG - [^] convert_and_validate
+2023-08-24 19:41:14 - DEBUG - [^] server_action_decision
+2023-08-24 19:41:14 - DEBUG - [^] clientloginhandler
+2023-08-24 19:41:14 - DEBUG - [^] from_json
+2023-08-24 19:41:14 - INFO - [*] Cookie Authentication
+2023-08-24 19:41:14 - DEBUG - [^] validate_cookie
+2023-08-24 19:41:14 - DEBUG - [*] Cookie accepted
+2023-08-24 19:41:14 - DEBUG - [^] handle_client
+2023-08-24 19:41:14 - DEBUG - [^] server_reset_data
+2023-08-24 19:41:14 - DEBUG - [^] server_set_socket
+2023-08-24 19:41:14 - DEBUG - [^] from_json
+2023-08-24 19:41:14 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 19:41:14 - DEBUG - [^] to_json_for_client
+2023-08-24 19:41:14 - DEBUG - [^] send_msg
+2023-08-24 19:41:14 - DEBUG - [^] str_encode
+2023-08-24 19:41:14 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 19:41:15 - INFO - 
+[127.0.0.1:50666 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50666
+2023-08-24 19:41:15 - DEBUG - [^] server_parse_message
+2023-08-24 19:41:15 - DEBUG - [^] receive_msg
+2023-08-24 19:41:15 - DEBUG - [^] bytes_decode
+2023-08-24 19:41:15 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 446
+2023-08-24 19:41:15 - DEBUG - [^] convert_and_validate
+2023-08-24 19:41:15 - DEBUG - [^] server_action_decision
+2023-08-24 19:41:15 - DEBUG - [^] clientloginhandler
+2023-08-24 19:41:15 - DEBUG - [^] from_json
+2023-08-24 19:41:15 - INFO - [*] Cookie Authentication
+2023-08-24 19:41:15 - DEBUG - [^] validate_cookie
+2023-08-24 19:41:15 - DEBUG - [*] Cookie accepted
+2023-08-24 19:41:15 - DEBUG - [^] server_reset_data
+2023-08-24 19:41:15 - DEBUG - [^] handle_client
+2023-08-24 19:41:15 - DEBUG - [^] server_set_socket
+2023-08-24 19:41:15 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 19:41:15 - DEBUG - [^] from_json
+2023-08-24 19:41:15 - DEBUG - [^] to_json_for_client
+2023-08-24 19:41:15 - DEBUG - [^] send_msg
+2023-08-24 19:41:15 - DEBUG - [^] str_encode
+2023-08-24 19:41:15 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 19:56:54 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-24 19:56:54 - DEBUG - [^] file_check
+2023-08-24 19:56:54 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-24 19:56:54 - DEBUG - [^] __init__
+2023-08-24 19:56:54 - INFO - ===== Startup | Reference Time (UTC) 2023-08-25 00:56:54.476198+00:00 =====
+2023-08-24 19:56:54 - DEBUG - [^] start_server
+2023-08-24 19:56:54 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-24 19:56:54 - DEBUG - [^] connection_handler
+2023-08-24 19:56:54 - DEBUG - [^] server_reset_data
+2023-08-24 19:56:54 - DEBUG - [^] server_set_socket
+2023-08-24 19:56:54 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 19:57:09 - INFO - [127.0.0.1:50762 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50762
+2023-08-24 19:57:09 - DEBUG - [^] server_parse_message
+2023-08-24 19:57:09 - DEBUG - [^] receive_msg
+2023-08-24 19:57:15 - DEBUG - [^] bytes_decode
+2023-08-24 19:57:15 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-24 19:57:15 - DEBUG - [^] convert_and_validate
+2023-08-24 19:57:15 - DEBUG - [^] server_action_decision
+2023-08-24 19:57:15 - DEBUG - [^] clientloginhandler
+2023-08-24 19:57:15 - DEBUG - [^] from_json
+2023-08-24 19:57:15 - INFO - [*] Password Authentication
+2023-08-24 19:57:15 - DEBUG - [^] validate_password
+2023-08-24 19:57:15 - DEBUG - [^] yaml_load
+2023-08-24 19:57:15 - DEBUG - [^] generate_random_cookie
+2023-08-24 19:57:15 - DEBUG - [^] yaml_load
+2023-08-24 19:57:15 - INFO - [*] cookie: 6woiM0b5tNZw1ThLQZ995uZ22
+2023-08-24 19:57:15 - DEBUG - [^] to_json_for_client
+2023-08-24 19:57:15 - DEBUG - [^] send_msg
+2023-08-24 19:57:15 - DEBUG - [^] str_encode
+2023-08-24 19:57:15 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 19:57:15 - DEBUG - [^] server_reset_data
+2023-08-24 19:57:15 - DEBUG - [^] server_set_socket
+2023-08-24 19:57:15 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 19:57:33 - INFO - [127.0.0.1:50763 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50763
+2023-08-24 19:57:33 - DEBUG - [^] server_parse_message
+2023-08-24 19:57:33 - DEBUG - [^] receive_msg
+2023-08-24 19:57:36 - DEBUG - [^] bytes_decode
+2023-08-24 19:57:36 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-24 19:57:36 - DEBUG - [^] convert_and_validate
+2023-08-24 19:57:36 - DEBUG - [^] server_action_decision
+2023-08-24 19:57:36 - DEBUG - [^] clientloginhandler
+2023-08-24 19:57:36 - DEBUG - [^] from_json
+2023-08-24 19:57:36 - INFO - [*] Password Authentication
+2023-08-24 19:57:36 - DEBUG - [^] validate_password
+2023-08-24 19:57:36 - DEBUG - [^] yaml_load
+2023-08-24 19:57:36 - DEBUG - [^] generate_random_cookie
+2023-08-24 19:57:36 - DEBUG - [^] yaml_load
+2023-08-24 19:57:36 - INFO - [*] cookie: 314pdpJ7Jlm44jCiSggUy9zDp
+2023-08-24 19:57:36 - DEBUG - [^] to_json_for_client
+2023-08-24 19:57:36 - DEBUG - [^] send_msg
+2023-08-24 19:57:36 - DEBUG - [^] str_encode
+2023-08-24 19:57:36 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 19:57:36 - DEBUG - [^] server_reset_data
+2023-08-24 19:57:36 - DEBUG - [^] server_set_socket
+2023-08-24 19:57:36 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 19:57:38 - INFO - [127.0.0.1:50764 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50764
+2023-08-24 19:57:38 - DEBUG - [^] server_parse_message
+2023-08-24 19:57:38 - DEBUG - [^] receive_msg
+2023-08-24 19:57:38 - DEBUG - [^] bytes_decode
+2023-08-24 19:57:38 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 442
+2023-08-24 19:57:38 - DEBUG - [^] convert_and_validate
+2023-08-24 19:57:38 - DEBUG - [^] server_action_decision
+2023-08-24 19:57:38 - DEBUG - [^] clientloginhandler
+2023-08-24 19:57:38 - DEBUG - [^] from_json
+2023-08-24 19:57:38 - INFO - [*] Cookie Authentication
+2023-08-24 19:57:38 - DEBUG - [^] validate_cookie
+2023-08-24 19:57:38 - DEBUG - [*] Cookie accepted
+2023-08-24 19:57:38 - DEBUG - [^] server_reset_data
+2023-08-24 19:57:38 - DEBUG - [^] handle_client
+2023-08-24 19:57:38 - DEBUG - [^] server_set_socket
+2023-08-24 19:57:38 - DEBUG - [^] from_json
+2023-08-24 19:57:38 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 19:57:38 - DEBUG - [^] interaction_logger
+2023-08-24 19:57:38 - DEBUG - [^] from_json
+2023-08-24 19:57:38 - INFO - [>] ID: bob@:; message to: server; command: test; message/command value: 
+2023-08-24 19:57:38 - DEBUG - [^] to_json_for_client
+2023-08-24 19:57:38 - DEBUG - [^] send_msg
+2023-08-24 19:57:38 - DEBUG - [^] str_encode
+2023-08-24 19:57:38 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 19:57:55 - INFO - [127.0.0.1:50765 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50765
+2023-08-24 19:57:55 - DEBUG - [^] server_parse_message
+2023-08-24 19:57:55 - DEBUG - [^] receive_msg
+2023-08-24 19:57:55 - DEBUG - [^] bytes_decode
+2023-08-24 19:57:55 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 449
+2023-08-24 19:57:55 - DEBUG - [^] convert_and_validate
+2023-08-24 19:57:55 - DEBUG - [^] server_action_decision
+2023-08-24 19:57:55 - DEBUG - [^] clientloginhandler
+2023-08-24 19:57:55 - DEBUG - [^] from_json
+2023-08-24 19:57:55 - INFO - [*] Cookie Authentication
+2023-08-24 19:57:55 - DEBUG - [^] validate_cookie
+2023-08-24 19:57:55 - DEBUG - [*] Cookie accepted
+2023-08-24 19:57:55 - DEBUG - [^] server_reset_data
+2023-08-24 19:57:55 - DEBUG - [^] handle_client
+2023-08-24 19:57:55 - DEBUG - [^] server_set_socket
+2023-08-24 19:57:55 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 19:57:55 - DEBUG - [^] from_json
+2023-08-24 19:57:55 - DEBUG - [^] interaction_logger
+2023-08-24 19:57:55 - DEBUG - [^] from_json
+2023-08-24 19:57:55 - INFO - [>] ID: bob@:; message to: server; command: server help; message/command value: 
+2023-08-24 19:57:55 - DEBUG - [^] to_json_for_client
+2023-08-24 19:57:55 - DEBUG - [^] send_msg
+2023-08-24 19:57:55 - DEBUG - [^] str_encode
+2023-08-24 19:57:55 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 551
+2023-08-24 19:58:31 - CRITICAL - [SERVER] Fileserver (80) & Listenserver (80) port are the same. They need to be different 
+2023-08-24 19:58:31 - DEBUG - [^] file_check
+2023-08-24 19:58:31 - WARNING - UtilsHandler.pt (file_check) File not found: C:\Users\Ryan\Documents\GitHub\logec-suite\Server/server.crt
+
+2023-08-24 19:58:31 - DEBUG - [^] __init__
+2023-08-24 19:58:31 - INFO - ===== Startup | Reference Time (UTC) 2023-08-25 00:58:31.576724+00:00 =====
+2023-08-24 19:58:31 - DEBUG - [^] start_server
+2023-08-24 19:58:31 - INFO - [*] Server started, and listening: ('127.0.0.1', 80)
+2023-08-24 19:58:31 - DEBUG - [^] connection_handler
+2023-08-24 19:58:31 - DEBUG - [^] server_reset_data
+2023-08-24 19:58:31 - DEBUG - [^] server_set_socket
+2023-08-24 19:58:31 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 19:58:37 - INFO - [127.0.0.1:50772 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50772
+2023-08-24 19:58:37 - DEBUG - [^] server_parse_message
+2023-08-24 19:58:37 - DEBUG - [^] receive_msg
+2023-08-24 19:58:39 - DEBUG - [^] bytes_decode
+2023-08-24 19:58:39 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 422
+2023-08-24 19:58:39 - DEBUG - [^] convert_and_validate
+2023-08-24 19:58:39 - DEBUG - [^] server_action_decision
+2023-08-24 19:58:39 - DEBUG - [^] clientloginhandler
+2023-08-24 19:58:39 - DEBUG - [^] from_json
+2023-08-24 19:58:39 - INFO - [*] Password Authentication
+2023-08-24 19:58:39 - DEBUG - [^] validate_password
+2023-08-24 19:58:39 - DEBUG - [^] yaml_load
+2023-08-24 19:58:39 - DEBUG - [^] generate_random_cookie
+2023-08-24 19:58:39 - DEBUG - [^] yaml_load
+2023-08-24 19:58:39 - INFO - [*] cookie: BDovCs879VDa9SOHphbqmjEIl
+2023-08-24 19:58:39 - DEBUG - [^] to_json_for_client
+2023-08-24 19:58:39 - DEBUG - [^] send_msg
+2023-08-24 19:58:39 - DEBUG - [^] str_encode
+2023-08-24 19:58:39 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 420
+2023-08-24 19:58:39 - DEBUG - [^] server_reset_data
+2023-08-24 19:58:39 - DEBUG - [^] server_set_socket
+2023-08-24 19:58:39 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 19:58:44 - INFO - [127.0.0.1:50774 -> Server] [New Instance] Accepted Connection from: 127.0.0.1:50774
+2023-08-24 19:58:44 - DEBUG - [^] server_parse_message
+2023-08-24 19:58:44 - DEBUG - [^] receive_msg
+2023-08-24 19:58:44 - DEBUG - [^] bytes_decode
+2023-08-24 19:58:44 - DEBUG - [CommsHandler.receive_msg()] Received message of length: 449
+2023-08-24 19:58:44 - DEBUG - [^] convert_and_validate
+2023-08-24 19:58:44 - DEBUG - [^] server_action_decision
+2023-08-24 19:58:44 - DEBUG - [^] clientloginhandler
+2023-08-24 19:58:44 - DEBUG - [^] from_json
+2023-08-24 19:58:44 - INFO - [*] Cookie Authentication
+2023-08-24 19:58:44 - DEBUG - [^] validate_cookie
+2023-08-24 19:58:44 - DEBUG - [*] Cookie accepted
+2023-08-24 19:58:44 - DEBUG - [^] server_reset_data
+2023-08-24 19:58:44 - DEBUG - [^] handle_client
+2023-08-24 19:58:44 - DEBUG - [^] server_set_socket
+2023-08-24 19:58:44 - DEBUG - [^] from_json
+2023-08-24 19:58:44 - DEBUG - [^] server_plaintext_handler - aka listening again
+2023-08-24 19:58:44 - DEBUG - [^] interaction_logger
+2023-08-24 19:58:44 - DEBUG - [^] from_json
+2023-08-24 19:58:44 - INFO - [>] ID: 'bob@:'; message to: 'server'; command: 'server help'; message/command value: ''
+2023-08-24 19:58:44 - DEBUG - [^] to_json_for_client
+2023-08-24 19:58:44 - DEBUG - [^] send_msg
+2023-08-24 19:58:44 - DEBUG - [^] str_encode
+2023-08-24 19:58:44 - DEBUG - [CommsHandler.receive_msg()] Sent message of length: 551

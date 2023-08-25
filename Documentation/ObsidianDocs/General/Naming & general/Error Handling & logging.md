@@ -23,3 +23,7 @@ Anything that could be a concern (such as a weird value, or connection) should b
 #### Logging.Critical
 
 Anything that is so bad, that it requires the program, or current thread to exit. Keep this at a minimal whenever possible
+
+
+#### Logging philosophy.
+The Server will (try to) log as much as possible, that includes client IP addresses, etc. It's up to the clients to disable sending that info on their end.
