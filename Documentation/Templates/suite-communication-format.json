@@ -49,7 +49,7 @@
 	"msg": {
 		"msg_to": "Agent ID OR server, or back to sending client",
 		"msg_content": "Details about content of message, if applicable",
-		"msg_command": "JSON to insert into client OR if msg_to==server, command to run on server",
+		"msg_command": "Command for client (json) OR if msg_to==server, command to run on server",
 		"msg_value": "Results of said command, or holds value of msg_content. Basically a beall/endall data feild",
 		"msg_length": 1234,
 		"msg_hash": "hash of message (later)"

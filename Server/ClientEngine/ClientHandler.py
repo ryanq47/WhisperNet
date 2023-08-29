@@ -122,9 +122,37 @@ class ClientHandler:
 
 
     def agent_tree(self):
+        '''
+        The decision tree for all agent related items.
+
+
+        Takes the request from the client, parses it. 
+        Then, it Enqueues the command to the respective client. 
+
+        Dev...
+            From here, this can go 2 ways:
+            1) Wait on new value in response table from client, and send that back. (good for low sleep times)
+            2) aknowledge a successful command has been queued, and send taht back. (good for long sleep times.)
+        '''
         response_json = DataEngine.JsonHandler.json_ops.to_json_for_client(msg_value="agent_tree")
         Comms.CommsHandler.send_msg(conn = self.client_socket, msg = response_json)
 
+        try:
+            ## Right now, super simple. Just queue the command for the client.
+            ## Later, will need to figure out how to view things from the client.
+
+            msg_command = self.dict_request_from_client["msg"]["msg_command"]
+
+            ## Get command from json
+            agent_id        = msg_command["msg"]["msg_to"]
+            agent_command   = msg_command["msg"]["msg_command"] # Should be json.
+
+            ## Add to DB queue
+            #plugin.enque(agent=agent_id, command=agent_command)
+        
+        except:
+            response_json = DataEngine.JsonHandler.json_ops.to_json_for_client(msg_value="failure to queue command")
+            Comms.CommsHandler.send_msg(conn = self.client_socket, msg = response_json)
 '''
 To implement:
 
