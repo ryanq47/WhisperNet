@@ -116,16 +116,57 @@
               "state": {
                 "file": "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
                 "viewState": {
-                  "x": -193.40681533244395,
-                  "y": 321.00207832613603,
-                  "zoom": -0.6666666666666666
+                  "x": -242.83450670031561,
+                  "y": 328.74947152211485,
+                  "zoom": -0.16666666666666663
                 }
               },
               "pinned": true
             }
+          },
+          {
+            "id": "a47e9b3d3a0ee6aa",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Templates/Bug Template.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true
+            }
+          },
+          {
+            "id": "dd7326756fb0829f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Bug Tracker/Bug Tracker.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "c580a692c7b7639a",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "General/Global MindMap.canvas",
+                "viewState": {
+                  "x": 41.42678106457237,
+                  "y": -195.6457790866781,
+                  "zoom": -1
+                }
+              }
+            }
           }
         ],
-        "currentTab": 7
+        "currentTab": 9
       }
     ],
     "direction": "vertical"
@@ -191,7 +232,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
+                "file": "Bug Tracker/Bug Tracker.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -208,7 +249,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
+                "file": "Bug Tracker/Bug Tracker.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -231,7 +272,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas"
+                "file": "Bug Tracker/Bug Tracker.md"
               }
             }
           }
@@ -253,32 +294,39 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "ee67147897bb4c12",
+  "active": "dd7326756fb0829f",
   "lastOpenFiles": [
+    "Server/Visual Progress.canvas",
+    "Server/Long Term gotchas.md",
+    "Clients/Python Client/Dev Docs/MindMaps/VisProg.canvas",
+    "Clients/Python Client/Dev Docs/MindMaps/Program File Structure.canvas",
+    "Clients/Python Client/Dev Docs/MindMaps/System Plugins Map.canvas",
+    "Clients/Python Client/Dev Docs/MindMaps/Plugin Abstraction Layers.canvas",
     "Clients/Python Client/Dev Docs/MindMaps/Authentication Map.canvas",
+    "Bug Tracker/Bug Tracker.md",
+    "General/Global MindMap.canvas",
     "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
+    "Templates/Bug Template.md",
+    "Bug Tracker/README.md",
+    "Bug Tracker/Bugs/CTRL C Exit.md",
+    "Bug Tracker/Bugs",
+    "Templates",
+    "Bug Tracker",
     "Client-Server Auth Map.canvas",
     "DataState.canvas",
     "Valuecheck Function.canvas",
     "Server/Modules/3. Security Engine/AuthenticationHandler.py.md",
-    "Clients/Python Client/Dev Docs/MindMaps/Plugin Abstraction Layers.canvas",
-    "Server/MindMaps/Server Client Handler Map.canvas",
-    "Server/Visual Progress.canvas",
-    "Server/Long Term gotchas.md",
     "Server/Modules/1. ClientEngine/MaliciousClientHandler Docs/MaliciousClientHandler.py (Depractated).md",
     "Server/General.md",
     "Server/Modules/1. ClientEngine/Error Handling.md",
     "Server/Modules/2.DataEngine/DBHandler.py/General.md",
     "Server/Modules/1. ClientEngine/ClientHandler Docs",
-    "Clients/Python Client/Dev Docs/MindMaps/VisProg.canvas",
-    "Server/MindMaps/FileStructure.canvas",
     "Clients/Python Client/Dev Docs/MindMaps/Plugins Abstraction Layers.md",
     "General/Naming & general/Error Handling & logging.md",
     "General/Notes.md",
     "Dev Guide/Notes Guide/Colors & comments.md",
     "Dev Guide/Notes Guide/ReadMe.md",
     "Dev Guide/Procedures/New Code Steps.md",
-    "Agents/C Sharp Agent/Program File Structure.canvas",
     "General/Naming & general/File Naming Definitions.md",
     "General/Networking & Protocols/Header breakdown - DEPRACATED.md",
     "Dev Guide/Procedures",
@@ -291,15 +339,8 @@
     "Clients/Python Client/Dev Docs/Other/CLI Usage.md",
     "Clients/Python Client/Dev Docs/Other",
     "Clients/Python Client/Dev Docs/Other/CLI Code Docs.md",
-    "Clients/Python Client/Dev Docs/MindMaps",
     "Clients/Python Client/Dev Docs/Native Plugins/Plugin template.md",
     "Clients/Python Client/Dev Docs/Actions & Plugin Dev Overview.md",
-    "Clients/Python Client/Dev Docs/Native Plugins/_native_Server.py.md",
-    "Clients/Python Client/Dev Docs/Native Plugins",
-    "Clients/Python Client/Dev Docs/Data/Singleton.md",
-    "Clients/Python Client/Dev Docs/Data",
-    "Agents/C Sharp Agent/Functions Overview/Client.CS.md",
-    "Agents/C Sharp Agent/Var & Func Naming Guide.md",
-    "Untitled.md"
+    "Clients/Python Client/Dev Docs/Native Plugins/_native_Server.py.md"
   ]
 }

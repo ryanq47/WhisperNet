@@ -60,18 +60,18 @@ class SQLDBHandler:
             return sleep_string
         
     def enqueue_client_row(self, client_name="TestClient", msg=ps_whoami_string, modified_command = "", response="empty", requester="empty"):
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-
         """Enqueues a command to the queue
 
         Args:
-            client_name (str, optional): The name of the client (which is used for the table)
+            client_name (str, optional): The name of the client (which is used for the table) ** Needs to get changed to agent
             id (_type_, optional): The id of the message. increments by 1 upwards to track the queue
             msg (str, optional): the JSON message going TO the client.
-            modified_command: The command modified to be in line with the evasion profile. 
+            modified_command: The command modified to be in line with the evasion profile.
             response (str, optional): the JSON response FROM the client. 
-            requester (str, optional): Which Fclient requested this action.
+            requester (str, optional): Which agent requested this action.
         """
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         ##jank...
         id = self.get_next_queue_number(client_name=client_name)
 

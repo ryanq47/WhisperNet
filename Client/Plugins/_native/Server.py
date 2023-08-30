@@ -67,7 +67,9 @@ class Tree:
             ## add yours here... no (), as we are just passing the object, not running it 
             #"mycommand":Actions._test_action
             "connect to server": Actions._connect_to_server,
-            "show connection details": Actions._show_connection_details
+            "show connection details": Actions._show_connection_details,
+
+            "_debug_run_server_command":Actions._debug_run_server_command
 
         }
 
@@ -119,7 +121,9 @@ class Actions:
         'connect to server'       : Connect to a server instance.
         'show connection details' : Shows connection details
 
-
+        ## Debug ##
+        _debug_run_server_command: Lets you fill in whatever you want in the JSON feilds for testing/debugging
+                     
         ## Once connected: ## (work in progress)
         '<server help menu here>'
 
@@ -218,7 +222,89 @@ class Actions:
         except Exception as e:
             logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}: {e}")
             return{"output_from_action":e, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+        
+    def _run_agent_command(command = None, agent_id = None):
+        '''
+        Pass a command to the server, for an agent. That command will get queued for running the next time the agent connects.
 
+        command (str): A string with the command to be queued for the client
+            Currently, only JSON communication is supported, so this should be a json string constructed with the 
+            Data.JsonHandler.json_ops.to_json() function
+        
+            
+            Ideas for actually reaching this code... CD into an "agent directory" (home/server/agent_1234) then just call this function
+        '''
+        #print(Info.cookie)
+
+        try:
+            ## Create socket
+            socket = Handler._create_socket_connection(server_details_tuple=ClassData.server_details)
+
+            json_str_results = Handler._send_recv_command_to_server(
+                cookie      = ClassData.cookie,
+                msg_command = command,
+                msg_to      = agent_id,
+                socket      = socket,
+                client_id   = ClassData.client_id
+            )
+
+            parsed_results = Data.JsonHandler.json_ops.from_json(
+                json_string=json_str_results
+            )
+
+            cmd_results = f'{ClassData.server_details}: {parsed_results["msg"]["msg_value"]}'
+
+            return{"output_from_action":cmd_results, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+        except Exception as e:
+            logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}: {e}")
+            return{"output_from_action":e, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+
+
+
+
+    def _debug_run_server_command():
+        '''
+        Does the same thing as run_server_command, but allows you to input custom data into the feilds.
+
+        I think I need one for the clients as well.. shoot. Figure out later
+        
+        '''
+        #print(Info.cookie)
+
+        print("Command for server, 'server help' is a good one")
+        s_msg_command = input("[FOR-SERVER] msg_command:")
+        print("This is either 'server' or an agent name")
+        s_msg_to = input("[FOR-SERVER]msg_to: ")
+        print("Must be same username/id for cookie reasons.")
+        s_client_id = input("[FOR-SERVER] your client_id/username: ")
+
+        ## NOT HERE< do this in a _debug_run_client_commadn 
+        #debug_msg = Data.JsonHandler.json_ops.to_json(
+        #    msg_command = ("[FOR-CLIENT] msg_command:")
+        #)
+
+        try:
+            ## Create socket
+            socket = Handler._create_socket_connection(server_details_tuple=ClassData.server_details) ## Need to figure out socket
+
+            json_str_results = Handler._send_recv_command_to_server(
+                cookie      = ClassData.cookie,
+                msg_command = s_msg_command,
+                msg_to      = s_msg_to,
+                socket      = socket,
+                client_id   = s_client_id,
+            )
+
+            parsed_results = Data.JsonHandler.json_ops.from_json(
+                json_string=json_str_results
+            )
+
+            cmd_results = f'{ClassData.server_details}: {parsed_results["msg"]["msg_value"]}'
+
+            return{"output_from_action":cmd_results, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+        except Exception as e:
+            logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}: {e}")
+            return{"output_from_action":e, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
 
 
 

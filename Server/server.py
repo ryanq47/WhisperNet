@@ -509,7 +509,10 @@ class ServerSockHandler:
                         client_socket=serversocket
                     )
 
-                    threading.Thread(target=self.clients[client_name].handle_client).start()
+                    client_thread = threading.Thread(target=self.clients[client_name].handle_client)
+                    ## Sets the thread to daemon mode. The hope is to let ctrl + C work
+                    client_thread.daemon = True
+                    client_thread.start()
 
             except Exception as e:
                 logging.debug(f"{inspect.currentframe().f_back}: {e}")

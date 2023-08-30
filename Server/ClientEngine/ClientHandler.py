@@ -52,14 +52,18 @@ class ClientHandler:
         msg_to = self.dict_request_from_client["msg"]["msg_to"]
         print("Handle Client called successfully")
 
+        ## Placeholder
+        valid_agent_names = ["agent_1", "agent_2"]
+
         ## Tree for which to go to:
         
         if msg_to == "server":
             print("msg_to_server")
             self.server_tree()
 
-        ## this will need some work to get the valid agent names in
-        elif msg_to == "valid_agent_name":
+        ## this will need some work to get the valid agent names in. Might be best to put in the singleton
+        elif msg_to in valid_agent_names:
+        #elif msg_to == "valid_agent_name":
             print("msg_to_agent")
             self.agent_tree()
 
@@ -70,7 +74,6 @@ class ClientHandler:
     
 
     def server_tree(self):
-
         '''
         May be able to do all the actions here in a similar format to how plugins work. Map the function needed, and that function does the stuff, and returns the request
 
@@ -86,6 +89,8 @@ class ClientHandler:
         Everything here works as intended at the moment, which is good.
         
         '''
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         try:
             dispatch = {
                 ## Default commands...
@@ -134,8 +139,10 @@ class ClientHandler:
             1) Wait on new value in response table from client, and send that back. (good for low sleep times)
             2) aknowledge a successful command has been queued, and send taht back. (good for long sleep times.)
         '''
-        response_json = DataEngine.JsonHandler.json_ops.to_json_for_client(msg_value="agent_tree")
-        Comms.CommsHandler.send_msg(conn = self.client_socket, msg = response_json)
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        #response_json = DataEngine.JsonHandler.json_ops.to_json_for_client(msg_value="agent_tree has been reached!")
+        #Comms.CommsHandler.send_msg(conn = self.client_socket, msg = response_json)
 
         try:
             ## Right now, super simple. Just queue the command for the client.
@@ -149,8 +156,16 @@ class ClientHandler:
 
             ## Add to DB queue
             #plugin.enque(agent=agent_id, command=agent_command)
+            command_db = DataEngine.DBHandler.SQLDBHandler()
+            command_db.enqueue_client_row(
+                client_name = agent_id,
+                msg         = agent_command
+            )
+            response_json = DataEngine.JsonHandler.json_ops.to_json_for_client(msg_value="Command Queued successfully")
+            Comms.CommsHandler.send_msg(conn = self.client_socket, msg = response_json)
         
-        except:
+        except Exception as e:
+            logging.warning(f"{function_debug_symbol} {inspect.stack()[0][3]} Failure to queue command: {e}")
             response_json = DataEngine.JsonHandler.json_ops.to_json_for_client(msg_value="failure to queue command")
             Comms.CommsHandler.send_msg(conn = self.client_socket, msg = response_json)
 '''

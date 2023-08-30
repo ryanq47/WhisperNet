@@ -6,13 +6,17 @@
 		{"type":"file","file":"Clients/Python Client/Dev Docs/MindMaps/Authentication Map.canvas","id":"8f029b1a26d77387","x":-225,"y":-520,"width":320,"height":100,"color":"6"},
 		{"id":"016137df2e674155","x":220,"y":-100,"width":250,"height":60,"type":"text","text":"## JSON Command"},
 		{"id":"c227ab70687c7f34","x":-500,"y":-100,"width":250,"height":60,"type":"text","text":"## Client Handler"},
-		{"id":"29f56e30380f58fa","x":-820,"y":180,"width":250,"height":60,"type":"text","text":"## For server"},
-		{"id":"e223cfa3fbbbc80e","x":-280,"y":180,"width":250,"height":60,"type":"text","text":"## For Agent"},
-		{"id":"a5abf88dd1013c95","x":-820,"y":340,"width":250,"height":60,"type":"text","text":"## Decisiion tree"},
-		{"id":"81e7c7b859f1db43","x":-820,"y":500,"width":250,"height":60,"type":"text","text":"## Plugin Results\n"},
-		{"id":"10b9150b90064d8b","x":-525,"y":760,"width":300,"height":60,"type":"text","text":"## Send back to client"},
 		{"id":"2e8376fa6e530ef2","x":220,"y":760,"width":250,"height":60,"type":"text","text":""},
-		{"id":"8fb0147d2d7f9db8","x":-280,"y":340,"width":250,"height":60,"type":"text","text":"This is more complicated.\nSee ClientHandler notes on sleep times, etc"}
+		{"id":"29f56e30380f58fa","x":-900,"y":180,"width":250,"height":60,"type":"text","text":"## For server"},
+		{"id":"a5abf88dd1013c95","x":-900,"y":340,"width":250,"height":60,"type":"text","text":"## Decisiion tree"},
+		{"id":"81e7c7b859f1db43","x":-900,"y":500,"width":250,"height":60,"type":"text","text":"## Plugin Results\n"},
+		{"id":"10b9150b90064d8b","x":-650,"y":760,"width":300,"height":60,"type":"text","text":"## Send back to client"},
+		{"id":"e223cfa3fbbbc80e","x":-350,"y":180,"width":250,"height":60,"type":"text","text":"## For Agent"},
+		{"id":"4f6bea41e5dea0ca","x":-190,"y":340,"width":250,"height":60,"type":"text","text":"## If sleep is High "},
+		{"id":"6b7177c4c4827102","x":-500,"y":340,"width":250,"height":60,"type":"text","text":"## If sleep is low"},
+		{"id":"783a139bb4d26a00","x":-500,"y":470,"width":250,"height":60,"type":"text","text":"Send back agent command results"},
+		{"type":"text","text":"Send back Confirmation of queued command","id":"041f33e5c70a3ef2","x":-190,"y":470,"width":250,"height":60},
+		{"id":"8fb0147d2d7f9db8","x":-65,"y":180,"width":250,"height":130,"type":"text","text":"This is more complicated.\nSee ClientHandler notes on sleep times, etc. Up for debate & this is probably not final"}
 	],
 	"edges":[
 		{"id":"4b8d7584a597a5d0","fromNode":"016137df2e674155","fromSide":"left","toNode":"c227ab70687c7f34","toSide":"right"},
@@ -21,6 +25,12 @@
 		{"id":"a74208ba4b99fe1b","fromNode":"29f56e30380f58fa","fromSide":"bottom","toNode":"a5abf88dd1013c95","toSide":"top"},
 		{"id":"734f8ebd79c3325f","fromNode":"a5abf88dd1013c95","fromSide":"bottom","toNode":"81e7c7b859f1db43","toSide":"top"},
 		{"id":"5de7e02a46e10893","fromNode":"81e7c7b859f1db43","fromSide":"bottom","toNode":"10b9150b90064d8b","toSide":"top"},
-		{"id":"d11419889a7519b1","fromNode":"10b9150b90064d8b","fromSide":"right","toNode":"2e8376fa6e530ef2","toSide":"left"}
+		{"id":"d11419889a7519b1","fromNode":"10b9150b90064d8b","fromSide":"right","toNode":"2e8376fa6e530ef2","toSide":"left"},
+		{"id":"0c1527f7ba4caf5a","fromNode":"e223cfa3fbbbc80e","fromSide":"bottom","toNode":"6b7177c4c4827102","toSide":"top","color":"3"},
+		{"id":"70806d28b83350cf","fromNode":"e223cfa3fbbbc80e","fromSide":"bottom","toNode":"4f6bea41e5dea0ca","toSide":"top","color":"3"},
+		{"id":"36b02d8afc75b65a","fromNode":"6b7177c4c4827102","fromSide":"bottom","toNode":"783a139bb4d26a00","toSide":"top","color":"3"},
+		{"id":"4ca8518a73ca3e7c","fromNode":"4f6bea41e5dea0ca","fromSide":"bottom","toNode":"041f33e5c70a3ef2","toSide":"top","color":"3"},
+		{"id":"fed0dba24862953a","fromNode":"783a139bb4d26a00","fromSide":"bottom","toNode":"10b9150b90064d8b","toSide":"top","color":"3"},
+		{"id":"3ad1e9d6a0fc809f","fromNode":"041f33e5c70a3ef2","fromSide":"bottom","toNode":"10b9150b90064d8b","toSide":"top","color":"3"}
 	]
 }
