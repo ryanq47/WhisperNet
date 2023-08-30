@@ -1,6 +1,6 @@
 ---
 SCOPE: All
-TASKTYPE: Implementation/Fix/Bulletproofing
+TASKTYPE: Implementation
 MODULE: ClientHandler
 ESTTIMETOIMPLEMENT: 30 min
 STATUS: In Progress

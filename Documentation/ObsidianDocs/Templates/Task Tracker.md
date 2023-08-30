@@ -5,6 +5,7 @@ MODULE: If appliacble... the moduel
 ESTTIMETOIMPLEMENT: Whatever you think it is, double it
 STATUS: In Progress
 PRIORITY: Low/med/High
+DUE: DATE
 ---
 
 

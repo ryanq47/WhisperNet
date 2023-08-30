@@ -132,7 +132,7 @@
               "type": "markdown",
               "state": {
                 "file": "1. Task Tracker/Task Tracker.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               },
               "pinned": true
@@ -153,7 +153,7 @@
             }
           }
         ],
-        "currentTab": 9
+        "currentTab": 8
       }
     ],
     "direction": "vertical"
@@ -219,7 +219,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2. Bug Tracker/Bug Tracker.md",
+                "file": "1. Task Tracker/Task Tracker.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -236,7 +236,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2. Bug Tracker/Bug Tracker.md",
+                "file": "1. Task Tracker/Task Tracker.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -259,7 +259,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "2. Bug Tracker/Bug Tracker.md"
+                "file": "1. Task Tracker/Task Tracker.md"
               }
             }
           }
@@ -281,14 +281,15 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "86ff8eeffdf9f704",
+  "active": "0e750e7f5d61a3f9",
   "lastOpenFiles": [
+    "2. Bug Tracker/Bug Tracker.md",
     "1. Task Tracker/Tasks/Agent Commands.md",
     "1. Task Tracker/Task Tracker.md",
-    "2. Bug Tracker/Bug Tracker.md",
-    "1. Task Tracker/Tasks/Socket Timeouts.md",
-    "2. Bug Tracker/Bugs/Server command error.md",
     "Templates/Task Tracker.md",
+    "1. Task Tracker/Tasks/Socket Timeouts.md",
+    "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
+    "2. Bug Tracker/Bugs/Server command error.md",
     "2. Bug Tracker/Bugs/String Indicies must be integers.md",
     "2. Bug Tracker/Bugs/CTRL C Exit.md",
     "Templates/Bug Template.md",
@@ -302,7 +303,6 @@
     "Clients/Python Client/Dev Docs/MindMaps/System Plugins Map.canvas",
     "Clients/Python Client/Dev Docs/MindMaps/Plugin Abstraction Layers.canvas",
     "Clients/Python Client/Dev Docs/MindMaps/Authentication Map.canvas",
-    "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
     "2. Bug Tracker/README.md",
     "2. Bug Tracker/Bugs",
     "Templates",
@@ -327,7 +327,6 @@
     "Dev Guide",
     "Dev Guide/Notes Guide",
     "Server/Modules/3. Security Engine",
-    "Clients/Python Client/Dev Docs/Libraries/Overview.md",
-    "Clients/Python Client/1. Getting Started - Basic Usage.md"
+    "Clients/Python Client/Dev Docs/Libraries/Overview.md"
   ]
 }
