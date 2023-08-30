@@ -271,8 +271,13 @@ class Actions:
         '''
         #print(Info.cookie)
 
+        sleep_string = '''{"general": {"action": "sleep", "client_id": "", "client_type": "", "password": ""}, "conn": {"client_ip": "", "client_port": ""}, "msg": {"msg_to": "", "msg_content": "", "msg_command": "sleep", "msg_value": "", "msg_length": "", "msg_hash": ""}, "stats": {"latest_checkin": "", "device_hostname": "", "device_username": ""}, "security": {"client_hash": "", "server_hash": ""}}'''
+
         print("Command for server, 'server help' is a good one")
         s_msg_command = input("[FOR-SERVER] msg_command:")
+        ## Hack to send sleep string as if it were a client recieving it. 
+        if s_msg_command == "sleep":
+            s_msg_command = sleep_string
         print("This is either 'server' or an agent name")
         s_msg_to = input("[FOR-SERVER]msg_to: ")
         print("Must be same username/id for cookie reasons.")

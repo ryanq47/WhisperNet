@@ -148,15 +148,19 @@ class ClientHandler:
             ## Right now, super simple. Just queue the command for the client.
             ## Later, will need to figure out how to view things from the client.
 
-            msg_command = self.dict_request_from_client["msg"]["msg_command"]
+            msg_command = self.dict_request_from_client
 
             ## Get command from json
             agent_id        = msg_command["msg"]["msg_to"]
             agent_command   = msg_command["msg"]["msg_command"] # Should be json.
 
+            #print(f"Debug agent_id: {agent_id}")
+            #print(f"Debug agent_id: {agent_command}")
+            #logging.debug("Contents of ")
+
             ## Add to DB queue
             #plugin.enque(agent=agent_id, command=agent_command)
-            command_db = DataEngine.DBHandler.SQLDBHandler()
+            command_db = DataEngine.DBHandler.SQLDBHandler(db_name="DevDB.db")
             command_db.enqueue_client_row(
                 client_name = agent_id,
                 msg         = agent_command

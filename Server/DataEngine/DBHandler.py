@@ -72,6 +72,12 @@ class SQLDBHandler:
         """
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
+        if not self.check_if_agent_table_exists():
+            logging.warning(f"[!] Agent {client_name} does not have a table. Creating one. This is not intended behavior, and may cause problems")
+            ## Do we want to create the table then? Might be a good setting.
+            ## This could also cause some issues when trying to access this table.
+            self.create_client_table(client_name = client_name)
+
         ##jank...
         id = self.get_next_queue_number(client_name=client_name)
 
@@ -167,8 +173,6 @@ class SQLDBHandler:
         return current_queue_number
 
     def get_next_queue_number(self, client_name) -> int:
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-
         """Gets next item up in queue
 
         Args:
@@ -180,6 +184,9 @@ class SQLDBHandler:
         returns:
             AN Int, which is the next item in the queue
         """
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+
         self.cursor.execute(f'select next_queue_number from client_queue_tracker where client_name = "{client_name}"')
         ## [0] is needed, as this returns (1,)
         next_queue_number = self.cursor.fetchone()#[0]
@@ -203,27 +210,46 @@ class SQLDBHandler:
         self.dbconn.commit()
         logging.debug("[DBHandler (increment_queue_number)] Inrementing both  queue number +1 ")
 
+    def check_if_agent_table_exists(self, client_name = None) -> bool:
+        '''
+        A check to check if a client table exists before trying to do any actions on it.
+        '''
+        self.cursor.execute(f"SELECT name FROM sqlite_master WHERE type='table' AND name=?", (client_name,))
+        table_exists = self.cursor.fetchone()
+
+        ## checking if there's actually a table
+        if table_exists:
+            return True
+        else:
+            return False
 
     ## == client_queue_tracker table == ##
     def create_client_table(self, client_name = "TestClient"):
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        try:
+            logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
-        self.cursor.execute(f'''
-        CREATE TABLE IF NOT EXISTS {client_name} (
-        id INTEGER,
-        command BLOB,
-        modified_command BLOB,
-        response BLOB,
-        requester BLOB
-        )
-        ''')
-        self.dbconn.commit()
+            self.cursor.execute(f'''
+            CREATE TABLE IF NOT EXISTS {client_name} (
+            id INTEGER,
+            command BLOB,
+            modified_command BLOB,
+            response BLOB,
+            requester BLOB
+            )
+            ''')
+            self.dbconn.commit()
+            logging.debug(f"[*] Table for {client_name} created")
+        except Exception as e:
+            logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}: {e}")
+
 
     def create_client_queuetrack_table(self):
+        """
+            Creates queue tracking tbale. this is handy for if the server crashes, as it stores which 
+            command is up next for the agent to run
+        """
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
-        """Creates queue tracking tbale. this is handy for if the server crashes
-        """
         self.cursor.execute(f'''
         CREATE TABLE IF NOT EXISTS client_queue_tracker (
         current_queue_number INTEGER,
