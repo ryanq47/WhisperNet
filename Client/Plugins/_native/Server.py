@@ -97,8 +97,7 @@ class Tree:
                 command = user_input
             )
 
-            ##Note, this returns out the full json return dict.
-            return{"output_from_action":response, "dir":None, "dbg_code_source":inspect.currentframe().f_back}
+            return{"output_from_action":response["output_from_action"], "dir":None, "dbg_code_source":inspect.currentframe().f_back}
 
 
 class Actions:

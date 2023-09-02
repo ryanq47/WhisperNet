@@ -151,9 +151,57 @@
               },
               "pinned": true
             }
+          },
+          {
+            "id": "8144878fc73c1905",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1. Task Tracker/Tasks/Socket Timeouts.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "b1e9c3c2aa5207c8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1. Task Tracker/Tasks/Async Switch.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "3919b6ca3af72ee2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2. Bug Tracker/Bugs/String Indicies must be integers.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "4e85e679dd6716a7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2. Bug Tracker/Bugs/CTRL C Exit.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 8
+        "currentTab": 13
       }
     ],
     "direction": "vertical"
@@ -219,7 +267,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md",
+                "file": "2. Bug Tracker/Bugs/CTRL C Exit.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -236,7 +284,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md",
+                "file": "2. Bug Tracker/Bugs/CTRL C Exit.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -259,7 +307,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md"
+                "file": "2. Bug Tracker/Bugs/CTRL C Exit.md"
               }
             }
           }
@@ -281,16 +329,17 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "0e750e7f5d61a3f9",
+  "active": "4e85e679dd6716a7",
   "lastOpenFiles": [
     "2. Bug Tracker/Bug Tracker.md",
-    "1. Task Tracker/Tasks/Agent Commands.md",
+    "2. Bug Tracker/Bugs/String Indicies must be integers.md",
     "1. Task Tracker/Task Tracker.md",
-    "Templates/Task Tracker.md",
     "1. Task Tracker/Tasks/Socket Timeouts.md",
+    "1. Task Tracker/Tasks/Async Switch.md",
+    "1. Task Tracker/Tasks/Agent Commands.md",
+    "Templates/Task Tracker.md",
     "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
     "2. Bug Tracker/Bugs/Server command error.md",
-    "2. Bug Tracker/Bugs/String Indicies must be integers.md",
     "2. Bug Tracker/Bugs/CTRL C Exit.md",
     "Templates/Bug Template.md",
     "General/Global MindMap.canvas",

@@ -26,4 +26,4 @@ Things to think about:
 ## MindMap
 
 ## Progress Notes
-- Before each handler (client, and agent), the socket is set to have a timeout of 5 seconds. This is done here because otherwise the main socket gets the timeout (pre-connection) and times out lol. Look if this timeout can be set any earlier in order to catch any odd scenarios where the code may not be reached
+- Before each handler (client, and agent), the socket is set to have a timeout of 5 seconds. This is done here because otherwise the main socket gets the timeout (pre-connection) and times out lol. Look if this timeout can be set any earlier in order to catch any odd scenarios where the timeout code may not be reached
