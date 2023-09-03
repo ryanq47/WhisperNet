@@ -19,7 +19,7 @@ try:
     import signal
     import sys
     import time
-    from flask import Flask, jsonify, request
+    from flask import Flask, jsonify, request, send_from_directory
 
 
     # My Modules
@@ -79,9 +79,12 @@ if global_debug:
 
 
 ## Add to settings later
-SPAWN_TCP_LISTENER_ENDPOINT = "urmom"
+SPAWN_TCP_LISTENER_ENDPOINT = "spawntcpendpoint"
 SERVER_BASE_ENDPOINT = "server"
 AGENT_BASE_ENDPOINT = "agent"
+
+UPLOAD_BASE_ENDPOINT = "uploads"
+UPLOAD_FOLDER = "assets/files"
 
 
 class ListenerController:
@@ -121,29 +124,53 @@ class ControlServer:
 
     @app.route("/", methods=["GET"])
     def no_subdir():
-        with open("assets/fakepage.txt") as fp:
+        with open("assets/html/fakepage-MLP.txt") as fp:
             page = fp.read()
         return page
     
     @app.route("/home", methods=["GET"])
     def home():
-        return "<html><b>hi - get fucked</b></html>"
-
-    @app.route(f"/{SPAWN_TCP_LISTENER_ENDPOINT}", methods=["GET"])
-    def spawn_listener():
-        #return "<html><b>hi - get fucked</b></html>"
-        ListenerController.spawn_listener()
-        return "spawned bitch"
+        with open("assets/html/fakepage-MLP.txt") as fp:
+            page = fp.read()
+        return page
     
+    ## for agents checking in
     @app.route(f"/{AGENT_BASE_ENDPOINT}", methods=["GET"])
     def agent_base():
         #return "<html><b>hi - get fucked</b></html>"
         return "agent_base"
     
+    # commands to control the server
     @app.route(f"/{SERVER_BASE_ENDPOINT}", methods=["GET"])
     def server_base():
         #return "<html><b>hi - get fucked</b></html>"
         return "server_base"
+    
+    ## Listener Section
+    @app.route(f"/{SERVER_BASE_ENDPOINT}/{SPAWN_TCP_LISTENER_ENDPOINT}", methods=["POST"])
+    def add_todo():
+        try:
+            # Extract JSON data from the request body
+            data = request.json
+
+            ## validate JSON
+
+            ListenerController.spawn_listener(ip = data["ip"], port = data["port"])
+
+            return jsonify({"message": "success"})
+        except Exception as e:
+            return jsonify({"error": str(e)}), 400
+        
+    ## File Section
+    @app.route(f"/{UPLOAD_BASE_ENDPOINT}/<filename>", methods=["GET"])
+    
+    def download_file(filename):
+        try:
+            return send_from_directory(UPLOAD_FOLDER, filename)
+        except Exception as e:
+            with open("assets/html/errorcodes/400err.txt") as fp:
+                page = fp.read()
+            return page
         
 
 

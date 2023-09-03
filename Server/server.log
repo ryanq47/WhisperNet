@@ -9323,3 +9323,197 @@ Next Queue Num: 15
 2023-09-02 20:20:12 - INFO - 127.0.0.1 - - [02/Sep/2023 20:20:12] "GET / HTTP/1.1" 200 -
 2023-09-02 20:20:47 - INFO - 127.0.0.1 - - [02/Sep/2023 20:20:47] "GET / HTTP/1.1" 200 -
 2023-09-02 20:21:24 - INFO - 127.0.0.1 - - [02/Sep/2023 20:21:24] "GET / HTTP/1.1" 200 -
+2023-09-02 20:24:14 - INFO - 127.0.0.1 - - [02/Sep/2023 20:24:14] "GET / HTTP/1.1" 200 -
+2023-09-02 20:24:50 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:24:50 - INFO -  * Restarting with stat
+2023-09-02 20:24:51 - WARNING -  * Debugger is active!
+2023-09-02 20:24:51 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:26:31 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:26:31 - INFO -  * Restarting with stat
+2023-09-02 20:26:31 - WARNING -  * Debugger is active!
+2023-09-02 20:26:31 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:26:33 - INFO - 127.0.0.1 - - [02/Sep/2023 20:26:33] "GET / HTTP/1.1" 200 -
+2023-09-02 20:26:33 - INFO - 127.0.0.1 - - [02/Sep/2023 20:26:33] "[33mGET /background-image.jpg HTTP/1.1[0m" 404 -
+2023-09-02 20:26:47 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:26:47 - INFO -  * Restarting with stat
+2023-09-02 20:26:48 - WARNING -  * Debugger is active!
+2023-09-02 20:26:48 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:26:48 - INFO - 127.0.0.1 - - [02/Sep/2023 20:26:48] "[33mGET /background-image.jpg HTTP/1.1[0m" 404 -
+2023-09-02 20:26:49 - INFO - 127.0.0.1 - - [02/Sep/2023 20:26:49] "GET / HTTP/1.1" 200 -
+2023-09-02 20:31:35 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:31:35 - INFO -  * Restarting with stat
+2023-09-02 20:31:35 - WARNING -  * Debugger is active!
+2023-09-02 20:31:35 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:31:55 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:31:55 - INFO -  * Restarting with stat
+2023-09-02 20:31:56 - WARNING -  * Debugger is active!
+2023-09-02 20:31:56 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:32:11 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:32:11 - INFO -  * Restarting with stat
+2023-09-02 20:32:11 - WARNING -  * Debugger is active!
+2023-09-02 20:32:11 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:32:21 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:32:21 - INFO -  * Restarting with stat
+2023-09-02 20:32:21 - WARNING -  * Debugger is active!
+2023-09-02 20:32:21 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:32:39 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:32:39 - INFO -  * Restarting with stat
+2023-09-02 20:32:39 - WARNING -  * Debugger is active!
+2023-09-02 20:32:39 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:32:42 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:32:42 - INFO -  * Restarting with stat
+2023-09-02 20:32:42 - WARNING -  * Debugger is active!
+2023-09-02 20:32:42 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:33:58 - INFO - 127.0.0.1 - - [02/Sep/2023 20:33:58] "[31m[1mPOST /urmom?ip=127.0.0.1&port=6969 HTTP/1.1[0m" 405 -
+2023-09-02 20:34:25 - INFO - 127.0.0.1 - - [02/Sep/2023 20:34:25] "[31m[1mPOST /urmom HTTP/1.1[0m" 405 -
+2023-09-02 20:35:37 - INFO - 127.0.0.1 - - [02/Sep/2023 20:35:37] "[31m[1mPOST /urmom HTTP/1.1[0m" 405 -
+2023-09-02 20:35:44 - INFO - 127.0.0.1 - - [02/Sep/2023 20:35:44] "[31m[1mPOST /urmom HTTP/1.1[0m" 405 -
+2023-09-02 20:36:01 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:36:01 - INFO -  * Restarting with stat
+2023-09-02 20:36:01 - WARNING -  * Debugger is active!
+2023-09-02 20:36:01 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:36:15 - INFO - 127.0.0.1 - - [02/Sep/2023 20:36:15] "[31m[1mPOST /urmom HTTP/1.1[0m" 400 -
+2023-09-02 20:36:31 - DEBUG - [^] __init__
+2023-09-02 20:36:31 - INFO - ===== Startup | Reference Time (UTC) 2023-09-03 01:36:31.863409+00:00 =====
+2023-09-02 20:36:31 - INFO - 127.0.0.1 - - [02/Sep/2023 20:36:31] "POST /urmom HTTP/1.1" 200 -
+2023-09-02 20:36:31 - DEBUG - [^TCP_LIST] start_server
+2023-09-02 20:36:31 - WARNING - <frame at 0x00000271A91E5B80, file 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\\lib\\threading.py', line 917, code run>: an integer is required (got type str)
+ an integer is required (got type str)
+
+2023-09-02 20:36:39 - DEBUG - [^] __init__
+2023-09-02 20:36:39 - INFO - ===== Startup | Reference Time (UTC) 2023-09-03 01:36:39.151340+00:00 =====
+2023-09-02 20:36:39 - INFO - 127.0.0.1 - - [02/Sep/2023 20:36:39] "POST /urmom HTTP/1.1" 200 -
+2023-09-02 20:36:39 - DEBUG - [^TCP_LIST] start_server
+2023-09-02 20:36:39 - INFO - [*] Server started, and listening: ('127.0.0.1', 69)
+2023-09-02 20:36:39 - DEBUG - [^TCP_LIST] connection_handler
+2023-09-02 20:36:39 - DEBUG - [^TCP_LIST] server_reset_data
+2023-09-02 20:36:39 - DEBUG - [^TCP_LIST] server_set_socket
+2023-09-02 20:36:39 - DEBUG - [^TCP_LIST] server_plaintext_handler - aka listening again
+2023-09-02 20:48:24 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:48:24 - DEBUG - [^TCP_LIST] socket_cleanup
+2023-09-02 20:48:24 - DEBUG - socket succesfully closed
+2023-09-02 20:48:24 - DEBUG - <frame at 0x00000271A76D2230, file 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\tcp_listener.py', line 221, code server_set_socket> Unkown Error: <class 'OSError'>
+2023-09-02 20:48:24 - INFO -  * Restarting with stat
+2023-09-02 20:48:24 - WARNING -  * Debugger is active!
+2023-09-02 20:48:24 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:48:37 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:48:37 - INFO -  * Restarting with stat
+2023-09-02 20:48:37 - WARNING -  * Debugger is active!
+2023-09-02 20:48:37 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:48:40 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:48:40 - INFO -  * Restarting with stat
+2023-09-02 20:48:40 - WARNING -  * Debugger is active!
+2023-09-02 20:48:40 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:48:48 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:48:48 - INFO -  * Restarting with stat
+2023-09-02 20:48:49 - WARNING -  * Debugger is active!
+2023-09-02 20:48:49 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:49:04 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:49:04 - INFO -  * Restarting with stat
+2023-09-02 20:49:04 - WARNING -  * Debugger is active!
+2023-09-02 20:49:04 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:49:25 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:49:25 - INFO -  * Restarting with stat
+2023-09-02 20:49:26 - WARNING -  * Debugger is active!
+2023-09-02 20:49:26 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:49:40 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:49:40 - INFO -  * Restarting with stat
+2023-09-02 20:50:18 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-02 20:50:18 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-02 20:50:18 - INFO -  * Restarting with stat
+2023-09-02 20:50:18 - WARNING -  * Debugger is active!
+2023-09-02 20:50:18 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:50:20 - INFO - 127.0.0.1 - - [02/Sep/2023 20:50:20] "GET /server HTTP/1.1" 200 -
+2023-09-02 20:50:30 - INFO - 127.0.0.1 - - [02/Sep/2023 20:50:30] "[31m[1mGET /server/urmom HTTP/1.1[0m" 405 -
+2023-09-02 20:50:44 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:50:44 - INFO -  * Restarting with stat
+2023-09-02 20:50:44 - WARNING -  * Debugger is active!
+2023-09-02 20:50:44 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:50:46 - INFO - 127.0.0.1 - - [02/Sep/2023 20:50:46] "[31m[1mGET /server/spawntcpendpoint HTTP/1.1[0m" 405 -
+2023-09-02 20:51:00 - DEBUG - [^] __init__
+2023-09-02 20:51:00 - INFO - ===== Startup | Reference Time (UTC) 2023-09-03 01:51:00.430994+00:00 =====
+2023-09-02 20:51:00 - INFO - 127.0.0.1 - - [02/Sep/2023 20:51:00] "POST /server/spawntcpendpoint HTTP/1.1" 200 -
+2023-09-02 20:51:00 - DEBUG - [^TCP_LIST] start_server
+2023-09-02 20:51:00 - INFO - [*] Server started, and listening: ('127.0.0.1', 69)
+2023-09-02 20:51:00 - DEBUG - [^TCP_LIST] connection_handler
+2023-09-02 20:51:00 - DEBUG - [^TCP_LIST] server_reset_data
+2023-09-02 20:51:00 - DEBUG - [^TCP_LIST] server_set_socket
+2023-09-02 20:51:00 - DEBUG - [^TCP_LIST] server_plaintext_handler - aka listening again
+2023-09-02 20:51:42 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:51:42 - DEBUG - [^TCP_LIST] socket_cleanup
+2023-09-02 20:51:42 - DEBUG - socket succesfully closed
+2023-09-02 20:51:42 - DEBUG - <frame at 0x00000242B4E24040, file 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\tcp_listener.py', line 221, code server_set_socket> Unkown Error: <class 'OSError'>
+2023-09-02 20:51:42 - INFO -  * Restarting with stat
+2023-09-02 20:51:42 - WARNING -  * Debugger is active!
+2023-09-02 20:51:42 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:54:01 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:54:01 - INFO -  * Restarting with stat
+2023-09-02 20:54:01 - WARNING -  * Debugger is active!
+2023-09-02 20:54:01 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:54:47 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:54:47 - INFO -  * Restarting with stat
+2023-09-02 20:54:47 - WARNING -  * Debugger is active!
+2023-09-02 20:54:47 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:54:55 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:54:55 - INFO -  * Restarting with stat
+2023-09-02 20:54:56 - WARNING -  * Debugger is active!
+2023-09-02 20:54:56 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:54:58 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:54:58 - INFO -  * Restarting with stat
+2023-09-02 20:54:58 - WARNING -  * Debugger is active!
+2023-09-02 20:54:58 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:55:09 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:55:09 - INFO -  * Restarting with stat
+2023-09-02 20:55:10 - WARNING -  * Debugger is active!
+2023-09-02 20:55:10 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:55:31 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:55:31 - INFO -  * Restarting with stat
+2023-09-02 20:57:17 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-02 20:57:17 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-02 20:57:17 - INFO -  * Restarting with stat
+2023-09-02 20:57:18 - WARNING -  * Debugger is active!
+2023-09-02 20:57:18 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:57:20 - INFO - 127.0.0.1 - - [02/Sep/2023 20:57:20] "[33mGET /file/ HTTP/1.1[0m" 404 -
+2023-09-02 20:57:24 - INFO - 127.0.0.1 - - [02/Sep/2023 20:57:24] "[33mGET /file/test.txt HTTP/1.1[0m" 404 -
+2023-09-02 20:57:38 - INFO - 127.0.0.1 - - [02/Sep/2023 20:57:38] "[33mGET /assets/file/test.txt HTTP/1.1[0m" 404 -
+2023-09-02 20:57:49 - INFO - 127.0.0.1 - - [02/Sep/2023 20:57:49] "GET /uploads/test.txt HTTP/1.1" 200 -
+2023-09-02 20:58:10 - INFO - 127.0.0.1 - - [02/Sep/2023 20:58:10] "GET /uploads/safe.exe HTTP/1.1" 200 -
+2023-09-02 20:58:30 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:58:30 - INFO -  * Restarting with stat
+2023-09-02 20:58:31 - WARNING -  * Debugger is active!
+2023-09-02 20:58:31 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:58:55 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:58:55 - INFO -  * Restarting with stat
+2023-09-02 20:58:55 - WARNING -  * Debugger is active!
+2023-09-02 20:58:55 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:58:59 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:58:59 - INFO -  * Restarting with stat
+2023-09-02 20:59:00 - WARNING -  * Debugger is active!
+2023-09-02 20:59:00 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:59:11 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 20:59:11 - INFO -  * Restarting with stat
+2023-09-02 20:59:12 - WARNING -  * Debugger is active!
+2023-09-02 20:59:12 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 20:59:18 - INFO - 127.0.0.1 - - [02/Sep/2023 20:59:18] "[33mGET /uploads HTTP/1.1[0m" 404 -
+2023-09-02 20:59:33 - INFO - 127.0.0.1 - - [02/Sep/2023 20:59:33] "[33mGET /uploads/file.txt HTTP/1.1[0m" 404 -
+2023-09-02 20:59:49 - INFO - 127.0.0.1 - - [02/Sep/2023 20:59:49] "[36mGET /uploads/test.txt HTTP/1.1[0m" 304 -
+2023-09-02 21:01:28 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 21:01:28 - INFO -  * Restarting with stat
+2023-09-02 21:01:28 - WARNING -  * Debugger is active!
+2023-09-02 21:01:28 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 21:01:33 - INFO - 127.0.0.1 - - [02/Sep/2023 21:01:33] "GET /uploads/asfsaf HTTP/1.1" 200 -
+2023-09-02 21:01:37 - INFO - 127.0.0.1 - - [02/Sep/2023 21:01:37] "GET / HTTP/1.1" 200 -
+2023-09-02 21:05:12 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 21:05:12 - INFO -  * Restarting with stat
+2023-09-02 21:05:12 - WARNING -  * Debugger is active!
+2023-09-02 21:05:12 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 21:05:22 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-02 21:05:22 - INFO -  * Restarting with stat
+2023-09-02 21:05:22 - WARNING -  * Debugger is active!
+2023-09-02 21:05:22 - INFO -  * Debugger PIN: 151-662-093
+2023-09-02 21:05:27 - INFO - 127.0.0.1 - - [02/Sep/2023 21:05:27] "GET / HTTP/1.1" 200 -
+2023-09-02 21:05:30 - INFO - 127.0.0.1 - - [02/Sep/2023 21:05:30] "[33mGET /asgssg HTTP/1.1[0m" 404 -
+2023-09-02 21:05:36 - INFO - 127.0.0.1 - - [02/Sep/2023 21:05:36] "GET /uploads/adfasfasdfsa HTTP/1.1" 200 -
+2023-09-02 21:05:45 - INFO - 127.0.0.1 - - [02/Sep/2023 21:05:45] "GET /uploads/adfasfasdfsa HTTP/1.1" 200 -

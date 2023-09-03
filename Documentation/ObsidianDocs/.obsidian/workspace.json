@@ -158,14 +158,14 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2. Bug Tracker/Bugs/CTRL C Exit.md",
+                "file": "1. Task Tracker/Tasks/Rest implementation.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "5909c653ef29b314",
+            "id": "a444bccd13986c15",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -305,18 +305,20 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "5909c653ef29b314",
+  "active": "a444bccd13986c15",
   "lastOpenFiles": [
-    "DEV- Server Refactor & Adjust.canvas",
+    "1. Task Tracker/Tasks/Settings for Server.md",
+    "2. Bug Tracker/Bug Tracker.md",
+    "1. Task Tracker/Tasks/Rest implementation.md",
+    "1. Task Tracker/Task Tracker.md",
+    "2. Bug Tracker/Bugs/CTRL C Exit.md",
     "Server/API & Endpoints.md",
     "1. Task Tracker/Tasks/Async Switch.md",
+    "1. Task Tracker/Tasks/Agent Commands.md",
+    "DEV- Server Refactor & Adjust.canvas",
     "Server/MindMaps/Untitled.md",
-    "1. Task Tracker/Task Tracker.md",
-    "2. Bug Tracker/Bug Tracker.md",
-    "2. Bug Tracker/Bugs/CTRL C Exit.md",
     "1. Task Tracker/Tasks/Socket Timeouts.md",
     "2. Bug Tracker/Bugs/String Indicies must be integers.md",
-    "1. Task Tracker/Tasks/Agent Commands.md",
     "Templates/Task Tracker.md",
     "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
     "2. Bug Tracker/Bugs/Server command error.md",
@@ -347,7 +349,6 @@
     "General/Notes.md",
     "Dev Guide/Notes Guide/Colors & comments.md",
     "Dev Guide/Notes Guide/ReadMe.md",
-    "Dev Guide/Procedures/New Code Steps.md",
     "Dev Guide/Procedures",
     "Dev Guide",
     "Dev Guide/Notes Guide",
