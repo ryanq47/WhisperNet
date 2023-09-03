@@ -9517,3 +9517,181 @@ Next Queue Num: 15
 2023-09-02 21:05:30 - INFO - 127.0.0.1 - - [02/Sep/2023 21:05:30] "[33mGET /asgssg HTTP/1.1[0m" 404 -
 2023-09-02 21:05:36 - INFO - 127.0.0.1 - - [02/Sep/2023 21:05:36] "GET /uploads/adfasfasdfsa HTTP/1.1" 200 -
 2023-09-02 21:05:45 - INFO - 127.0.0.1 - - [02/Sep/2023 21:05:45] "GET /uploads/adfasfasdfsa HTTP/1.1" 200 -
+2023-09-03 00:35:43 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-03 00:35:43 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-03 00:35:43 - INFO -  * Restarting with stat
+2023-09-03 00:35:44 - WARNING -  * Debugger is active!
+2023-09-03 00:35:44 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 00:35:49 - INFO - 127.0.0.1 - - [03/Sep/2023 00:35:49] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2023-09-03 00:35:49 - INFO - 127.0.0.1 - - [03/Sep/2023 00:35:49] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2023-09-03 00:35:49 - INFO - 127.0.0.1 - - [03/Sep/2023 00:35:49] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2023-09-03 00:35:50 - INFO - 127.0.0.1 - - [03/Sep/2023 00:35:50] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2023-09-03 00:35:50 - INFO - 127.0.0.1 - - [03/Sep/2023 00:35:50] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-03 00:36:22 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-03 00:36:22 - INFO -  * Restarting with stat
+2023-09-03 00:36:22 - WARNING -  * Debugger is active!
+2023-09-03 00:36:22 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 00:36:27 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-03 00:36:27 - INFO -  * Restarting with stat
+2023-09-03 00:36:28 - WARNING -  * Debugger is active!
+2023-09-03 00:36:28 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 00:36:29 - INFO - 127.0.0.1 - - [03/Sep/2023 00:36:29] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2023-09-03 00:36:30 - INFO - 127.0.0.1 - - [03/Sep/2023 00:36:30] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-09-03 00:36:30 - INFO - 127.0.0.1 - - [03/Sep/2023 00:36:30] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-09-03 00:36:30 - INFO - 127.0.0.1 - - [03/Sep/2023 00:36:30] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-03 00:36:30 - INFO - 127.0.0.1 - - [03/Sep/2023 00:36:30] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-03 00:36:33 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-03 00:36:33 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-03 00:36:33 - INFO -  * Restarting with stat
+2023-09-03 00:36:33 - WARNING -  * Debugger is active!
+2023-09-03 00:36:33 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 00:36:35 - INFO - 127.0.0.1 - - [03/Sep/2023 00:36:35] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2023-09-03 00:36:36 - INFO - 127.0.0.1 - - [03/Sep/2023 00:36:36] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-09-03 00:36:36 - INFO - 127.0.0.1 - - [03/Sep/2023 00:36:36] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-09-03 00:36:36 - INFO - 127.0.0.1 - - [03/Sep/2023 00:36:36] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-03 00:36:36 - INFO - 127.0.0.1 - - [03/Sep/2023 00:36:36] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-03 00:36:49 - INFO - 127.0.0.1 - - [03/Sep/2023 00:36:49] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2023-09-03 00:36:49 - INFO - 127.0.0.1 - - [03/Sep/2023 00:36:49] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-09-03 00:36:49 - INFO - 127.0.0.1 - - [03/Sep/2023 00:36:49] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-09-03 00:36:49 - INFO - 127.0.0.1 - - [03/Sep/2023 00:36:49] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-03 00:36:49 - INFO - 127.0.0.1 - - [03/Sep/2023 00:36:49] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-03 00:36:49 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-03 00:36:49 - INFO -  * Restarting with stat
+2023-09-03 00:36:50 - WARNING -  * Debugger is active!
+2023-09-03 00:36:50 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 00:36:52 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-03 00:36:52 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-03 00:36:52 - INFO -  * Restarting with stat
+2023-09-03 00:36:52 - WARNING -  * Debugger is active!
+2023-09-03 00:36:52 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 00:36:54 - INFO - 127.0.0.1 - - [03/Sep/2023 00:36:54] "GET / HTTP/1.1" 200 -
+2023-09-03 00:37:12 - INFO - 127.0.0.1 - - [03/Sep/2023 00:37:12] "GET /server HTTP/1.1" 200 -
+2023-09-03 00:37:26 - INFO - 127.0.0.1 - - [03/Sep/2023 00:37:26] "[33mGET /FUCKYOU HTTP/1.1[0m" 404 -
+2023-09-03 00:37:31 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-03 00:37:31 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-03 00:37:31 - INFO -  * Restarting with stat
+2023-09-03 00:37:31 - WARNING -  * Debugger is active!
+2023-09-03 00:37:31 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 00:37:33 - INFO - 127.0.0.1 - - [03/Sep/2023 00:37:33] "[33mGET /FUCKYOU HTTP/1.1[0m" 404 -
+2023-09-03 00:37:41 - INFO - 127.0.0.1 - - [03/Sep/2023 00:37:41] "[33mGET /FUCKYOU HTTP/1.1[0m" 404 -
+2023-09-03 00:37:48 - INFO - 127.0.0.1 - - [03/Sep/2023 00:37:48] "[33mGET /fuckyou HTTP/1.1[0m" 404 -
+2023-09-03 00:37:56 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-03 00:37:56 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-03 00:37:56 - INFO -  * Restarting with stat
+2023-09-03 00:37:57 - WARNING -  * Debugger is active!
+2023-09-03 00:37:57 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 00:37:59 - INFO - 127.0.0.1 - - [03/Sep/2023 00:37:59] "[33mGET /test HTTP/1.1[0m" 404 -
+2023-09-03 00:38:49 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-03 00:38:49 - INFO -  * Restarting with stat
+2023-09-03 00:38:50 - WARNING -  * Debugger is active!
+2023-09-03 00:38:57 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 00:38:58 - INFO - 127.0.0.1 - - [03/Sep/2023 00:38:58] "[33mGET /test HTTP/1.1[0m" 404 -
+2023-09-03 00:38:59 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-03 00:38:59 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-03 00:38:59 - INFO -  * Restarting with stat
+2023-09-03 00:39:00 - WARNING -  * Debugger is active!
+2023-09-03 00:39:00 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 00:39:02 - INFO - 127.0.0.1 - - [03/Sep/2023 00:39:02] "[33mGET /test HTTP/1.1[0m" 404 -
+2023-09-03 00:45:18 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-03 00:45:18 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-03 00:45:18 - INFO -  * Restarting with stat
+2023-09-03 00:45:18 - WARNING -  * Debugger is active!
+2023-09-03 00:45:18 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 00:45:21 - INFO - 127.0.0.1 - - [03/Sep/2023 00:45:21] "[33mGET /test HTTP/1.1[0m" 404 -
+2023-09-03 00:45:33 - INFO - 127.0.0.1 - - [03/Sep/2023 00:45:33] "[33mGET /home HTTP/1.1[0m" 404 -
+2023-09-03 00:46:33 - INFO - 127.0.0.1 - - [03/Sep/2023 00:46:33] "GET / HTTP/1.1" 200 -
+2023-09-03 00:47:08 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-03 00:47:08 - INFO -  * Restarting with stat
+2023-09-03 00:47:09 - WARNING -  * Debugger is active!
+2023-09-03 00:47:09 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 00:47:11 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-03 00:47:11 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-03 00:47:11 - INFO -  * Restarting with stat
+2023-09-03 00:47:11 - WARNING -  * Debugger is active!
+2023-09-03 00:47:11 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 00:47:20 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-03 00:47:20 - INFO -  * Restarting with stat
+2023-09-03 00:47:20 - WARNING -  * Debugger is active!
+2023-09-03 00:47:20 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 00:47:25 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-03 00:47:25 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-03 00:47:25 - INFO -  * Restarting with stat
+2023-09-03 00:47:25 - WARNING -  * Debugger is active!
+2023-09-03 00:47:25 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 00:47:29 - INFO - 127.0.0.1 - - [03/Sep/2023 00:47:29] "GET /test HTTP/1.1" 200 -
+2023-09-03 00:47:50 - INFO - 127.0.0.1 - - [03/Sep/2023 00:47:50] "[33mGET /test1 HTTP/1.1[0m" 404 -
+2023-09-03 00:47:54 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-03 00:47:54 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-03 00:47:54 - INFO -  * Restarting with stat
+2023-09-03 00:47:54 - WARNING -  * Debugger is active!
+2023-09-03 00:47:54 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 00:47:55 - INFO - 127.0.0.1 - - [03/Sep/2023 00:47:55] "GET /test1 HTTP/1.1" 200 -
+2023-09-03 00:48:14 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-03 00:48:14 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-03 00:48:14 - INFO -  * Restarting with stat
+2023-09-03 00:48:14 - WARNING -  * Debugger is active!
+2023-09-03 00:48:14 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 00:48:18 - INFO - 127.0.0.1 - - [03/Sep/2023 00:48:18] "GET /FUCKYOU HTTP/1.1" 200 -
+2023-09-03 00:48:36 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-03 00:48:36 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-03 00:48:36 - INFO -  * Restarting with stat
+2023-09-03 00:48:36 - WARNING -  * Debugger is active!
+2023-09-03 00:48:36 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 00:48:40 - INFO - 127.0.0.1 - - [03/Sep/2023 00:48:40] "[33mGET /mlp HTTP/1.1[0m" 404 -
+2023-09-03 00:48:43 - INFO - 127.0.0.1 - - [03/Sep/2023 00:48:43] "GET /MlP HTTP/1.1" 200 -
+2023-09-03 00:49:59 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-03 00:50:00 - INFO -  * Restarting with stat
+2023-09-03 00:50:00 - WARNING -  * Debugger is active!
+2023-09-03 00:50:00 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 00:50:11 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-03 00:50:11 - INFO -  * Restarting with stat
+2023-09-03 00:53:57 - DEBUG - Yaml Loading Error
+2023-09-03 00:57:11 - DEBUG - Yaml Loading Error
+2023-09-03 00:57:11 - DEBUG - General Error
+2023-09-03 00:58:45 - DEBUG - Yaml Loading Error
+2023-09-03 00:59:02 - DEBUG - Yaml Loading Error
+2023-09-03 00:59:21 - DEBUG - Yaml Loading Error
+2023-09-03 01:00:11 - DEBUG - Yaml Loading Error
+2023-09-03 01:00:49 - DEBUG - unsupported operand type(s) for +: '_io.TextIOWrapper' and 'str'
+2023-09-03 01:02:41 - DEBUG - unsupported operand type(s) for +: '_io.TextIOWrapper' and 'str'
+2023-09-03 01:04:08 - DEBUG - load_schema: unsupported operand type(s) for +: '_io.TextIOWrapper' and 'str'
+2023-09-03 01:06:42 - DEBUG - load_schema: unsupported operand type(s) for +: '_io.TextIOWrapper' and 'str'
+2023-09-03 01:07:34 - DEBUG - load_schema: unsupported operand type(s) for +: '_io.TextIOWrapper' and 'str'
+2023-09-03 01:08:23 - DEBUG - load_schema: unsupported operand type(s) for +: '_io.TextIOWrapper' and 'str'
+2023-09-03 01:08:56 - DEBUG - __main__.load_schema: unsupported operand type(s) for +: '_io.TextIOWrapper' and 'str'
+2023-09-03 01:10:24 - DEBUG - load_schema: unsupported operand type(s) for +: '_io.TextIOWrapper' and 'str'
+2023-09-03 01:10:51 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-03 01:10:51 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-03 01:10:51 - INFO -  * Restarting with stat
+2023-09-03 01:10:51 - WARNING -  * Debugger is active!
+2023-09-03 01:10:51 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 01:10:55 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-03 01:10:55 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-03 01:10:55 - INFO -  * Restarting with stat
+2023-09-03 01:10:56 - WARNING -  * Debugger is active!
+2023-09-03 01:10:56 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 01:10:57 - INFO - 127.0.0.1 - - [03/Sep/2023 01:10:57] "[33mGET /MlP HTTP/1.1[0m" 404 -
+2023-09-03 01:10:59 - INFO - 127.0.0.1 - - [03/Sep/2023 01:10:59] "[33mGET /test HTTP/1.1[0m" 404 -
+2023-09-03 01:11:02 - INFO - 127.0.0.1 - - [03/Sep/2023 01:11:02] "GET / HTTP/1.1" 200 -
+2023-09-03 01:11:28 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\ApiEngine\\ErrorDefinitions.py', reloading
+2023-09-03 01:11:28 - INFO -  * Restarting with stat
+2023-09-03 01:11:28 - WARNING -  * Debugger is active!
+2023-09-03 01:11:28 - INFO -  * Debugger PIN: 151-662-093
+2023-09-03 01:11:29 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\ApiEngine\\ErrorDefinitions.py', reloading
+2023-09-03 01:11:29 - INFO -  * Restarting with stat
+2023-09-03 01:11:29 - WARNING -  * Debugger is active!
+2023-09-03 01:11:29 - INFO -  * Debugger PIN: 151-662-093

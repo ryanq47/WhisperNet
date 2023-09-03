@@ -34,6 +34,10 @@ try:
     import Comms.CommsHandler
     import Utils.UtilsHandler
     import Utils.KeyGen
+    
+    ## Error modules
+    import ApiEngine.ErrorDefinitions
+    import Utils.ErrorDefinitions
 
 except Exception as e:
     print(f"[server.py] Import Error: {e}")
@@ -49,6 +53,7 @@ parser.add_argument('--quiet', help="No output to console", action='store_true')
 parser.add_argument('--fileserverport', help="what port for the file server", default=80)
 parser.add_argument('-c', '--generatekeys', help="ReGen Certs & Keys", action="store_true")
 parser.add_argument('--evasionprofile', help="The evasion profile", default="/EvasionProfiles/default.yaml")
+parser.add_argument('--apiconfigprofile', help="The API config profile", default="Config/ApiSchemas/default.yaml")
 
 ## Globals bad. I know
 args                = parser.parse_args()
@@ -58,6 +63,7 @@ quiet               = args.quiet
 fileserverport      = args.fileserverport
 generate_keys       = args.generatekeys
 evasion_profile     = args.evasionprofile
+api_config_profile  = args.apiconfigprofile
 sys_path = os.path.dirname(os.path.realpath(__file__))
 function_debug_symbol = "[^]"
 
@@ -86,6 +92,68 @@ AGENT_BASE_ENDPOINT = "agent"
 UPLOAD_BASE_ENDPOINT = "uploads"
 UPLOAD_FOLDER = "assets/files"
 
+## move to different file eventually
+import yaml
+class UrlSchema:
+    '''
+    Holds the URL schemas.
+
+    Named short for orginzation (full nane is UrlSchema)
+    '''
+    def __init__(self):
+        self.yaml_parser = None
+        self.SPAWN_TCP_LISTENER_ENDPOINT = ""
+        self.SERVER_BASE_ENDPOINT        = ""
+
+        self.AGENT_BASE_ENDPOINT         = ""
+
+        self.UPLOAD_BASE_ENDPOINT        = ""
+        self.UPLOAD_FOLDER               = ""
+
+        self.HOME_BASE                   = ""
+
+    def load(self):
+        if self.load_schema():
+            self.assign_schema()
+        else:
+            print("yamlerr")
+
+    def load_schema(self, yaml_file=api_config_profile):
+        '''
+        Opens yaml schema file
+        returns yaml handler
+        '''
+        ## YamlLoad
+        with open(yaml_file, "r") as yaml_stream:
+            try:
+                self.yaml_parser = yaml.safe_load(yaml_stream)
+                return True
+            except yaml.YAMLError as ye:
+                raise ApiEngine.ErrorDefinitions.YAML_LOAD_ERROR
+            except Exception as e:
+                raise Utils.ErrorDefinitions.GENERAL_ERROR()
+
+    def assign_schema(self):
+        '''
+        Assigns schemas to respective variables
+        '''
+        ## Server
+        self.SERVER_BASE_ENDPOINT       = self.yaml_parser["Server"]["Base"]
+        SPAWN_TCP_LISTENER_ENDPOINT     = self.yaml_parser["Server"]["SpawnTcpListener"]
+
+        ## Agent
+        self.AGENT_BASE_ENDPOINT        = self.yaml_parser["Agent"]["Base"]
+
+        ## Fileserver
+        self.UPLOAD_BASE_ENDPOINT       = self.yaml_parser["FileServer"]["Base"]
+        self.UPLOAD_FOLDER              = self.yaml_parser["FileServer"]["Uploads"]
+
+        ## Home
+        self.HOME_BASE                  = self.yaml_parser["Home"]["Base"]
+
+class YAML_LOAD_ERROR(Exception):
+    print("yaml laoding error")
+    pass
 
 class ListenerController:
     '''
@@ -121,33 +189,38 @@ class ListenerController:
 
 class ControlServer:
     app = Flask(__name__)
+    UrlSc = UrlSchema()
+    UrlSc.load()
+
+    #def startup_config():
+       #UrlSc = UrlSchema
 
     @app.route("/", methods=["GET"])
     def no_subdir():
-        with open("assets/html/fakepage-MLP.txt") as fp:
+        with open("ApiEngine/html/fakepage-MLP.txt") as fp:
             page = fp.read()
         return page
     
-    @app.route("/home", methods=["GET"])
+    @app.route(f"/{UrlSc.HOME_BASE}", methods=["GET"])
     def home():
-        with open("assets/html/fakepage-MLP.txt") as fp:
+        with open("ApiEngine/html/fakepage-MLP.txt") as fp:
             page = fp.read()
         return page
     
     ## for agents checking in
-    @app.route(f"/{AGENT_BASE_ENDPOINT}", methods=["GET"])
+    @app.route(f"/{UrlSc.AGENT_BASE_ENDPOINT}", methods=["GET"])
     def agent_base():
         #return "<html><b>hi - get fucked</b></html>"
         return "agent_base"
     
     # commands to control the server
-    @app.route(f"/{SERVER_BASE_ENDPOINT}", methods=["GET"])
+    @app.route(f"/{UrlSc.SERVER_BASE_ENDPOINT}", methods=["GET"])
     def server_base():
         #return "<html><b>hi - get fucked</b></html>"
         return "server_base"
     
     ## Listener Section
-    @app.route(f"/{SERVER_BASE_ENDPOINT}/{SPAWN_TCP_LISTENER_ENDPOINT}", methods=["POST"])
+    @app.route(f"/{UrlSc.SPAWN_TCP_LISTENER_ENDPOINT}", methods=["POST"])
     def add_todo():
         try:
             # Extract JSON data from the request body
@@ -162,7 +235,7 @@ class ControlServer:
             return jsonify({"error": str(e)}), 400
         
     ## File Section
-    @app.route(f"/{UPLOAD_BASE_ENDPOINT}/<filename>", methods=["GET"])
+    @app.route(f"/{UrlSc.UPLOAD_BASE_ENDPOINT}/", methods=["GET"])
     
     def download_file(filename):
         try:
@@ -171,7 +244,8 @@ class ControlServer:
             with open("assets/html/errorcodes/400err.txt") as fp:
                 page = fp.read()
             return page
-        
+
+
 
 
 
