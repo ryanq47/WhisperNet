@@ -1,0 +1,24 @@
+{
+	"nodes":[
+		{"id":"4cfcc4a5095c7580","x":-740,"y":-520,"width":440,"height":460,"type":"text","text":"## Things to keep in mind\n\n- Plan for multiple listeners on different ports.\n\t- That could be multiple class instances, or one instance with multiple listen threads. Ideally, I'd like multiple class instances\n- All functions must return something, to gauge their success/failure\n\t- Switch to raise functions, that allows better error handling\n- Use as much existing logic as possible. The goal is not to rewrite, but rethink the flow of items\n- Include some guard clasues, such as checking for socket values & such. If these fail, raise an error. it will work its way back up the stack\n- It might be benifical to have an entire class devoted to error handling - see latest chatgpt stuff"},
+		{"id":"a43aa28edfbe75c5","x":120,"y":-220,"width":250,"height":60,"type":"text","text":"## Entry point"},
+		{"id":"d7838a860e087233","x":35,"y":-80,"width":420,"height":80,"color":"5","type":"text","text":"## Spawn Class instance as listener"},
+		{"id":"cfd2ec5b68f9a1be","x":-280,"y":380,"width":300,"height":100,"color":"4","type":"text","text":"## Listen for connection\n- Note! This is blocking...."},
+		{"id":"089119088b06a651","x":-280,"y":560,"width":300,"height":60,"color":"4","type":"text","text":"## Accept Connection"},
+		{"id":"97e444aaedae01ce","x":-40,"y":740,"width":250,"height":60,"color":"2","type":"text","text":"## Agent Handle"},
+		{"id":"124548da2a340b47","x":-480,"y":740,"width":250,"height":60,"color":"2","type":"text","text":"## Client Handle"},
+		{"id":"97708e821e96002f","x":660,"y":-460,"width":540,"height":80,"type":"text","text":"## Each color represents a new thread"},
+		{"id":"e8f63c19b89bd7bd","x":-300,"y":180,"width":340,"height":60,"color":"4","type":"text","text":"## Instance A (127.0.0.1:80)"},
+		{"id":"e25de6588fc4d280","x":-1192,"y":24,"width":512,"height":216,"type":"text","text":"**Inherit from Exception:** It's a good practice to inherit your custom error classes from the built-in `Exception` class or one of its subclasses (e.g., `ValueError`, `TypeError`, etc.). This allows your custom errors to be treated like standard Python exceptions.\n\npythonCopy code\n\n`class SocketNotConnectedError(Exception):     pass`"},
+		{"id":"1f063dce73965636","x":120,"y":40,"width":380,"height":60,"type":"text","text":"## New thread for each listener"},
+		{"id":"453f175496374bb5","x":250,"y":-800,"width":250,"height":60,"type":"text","text":"## Control : api"}
+	],
+	"edges":[
+		{"id":"7e92f329b3ab7df3","fromNode":"d7838a860e087233","fromSide":"bottom","toNode":"e8f63c19b89bd7bd","toSide":"top"},
+		{"id":"d86b8431f2177b30","fromNode":"cfd2ec5b68f9a1be","fromSide":"bottom","toNode":"089119088b06a651","toSide":"top"},
+		{"id":"13fff663b716ff30","fromNode":"089119088b06a651","fromSide":"bottom","toNode":"124548da2a340b47","toSide":"top"},
+		{"id":"7262e4c32bed62b4","fromNode":"089119088b06a651","fromSide":"bottom","toNode":"97e444aaedae01ce","toSide":"top"},
+		{"id":"a51617c7be72dca1","fromNode":"e8f63c19b89bd7bd","fromSide":"bottom","toNode":"cfd2ec5b68f9a1be","toSide":"top"},
+		{"id":"f3d59bda7bdd9a5d","fromNode":"e25de6588fc4d280","fromSide":"top","toNode":"4cfcc4a5095c7580","toSide":"bottom"}
+	]
+}

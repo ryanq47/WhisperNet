@@ -153,43 +153,7 @@
             }
           },
           {
-            "id": "8144878fc73c1905",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1. Task Tracker/Tasks/Socket Timeouts.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "b1e9c3c2aa5207c8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1. Task Tracker/Tasks/Async Switch.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "3919b6ca3af72ee2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2. Bug Tracker/Bugs/String Indicies must be integers.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "4e85e679dd6716a7",
+            "id": "f310311c1f6d366b",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -199,9 +163,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "5909c653ef29b314",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Server/API & Endpoints.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 13
+        "currentTab": 11
       }
     ],
     "direction": "vertical"
@@ -267,7 +243,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2. Bug Tracker/Bugs/CTRL C Exit.md",
+                "file": "Server/API & Endpoints.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -284,7 +260,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2. Bug Tracker/Bugs/CTRL C Exit.md",
+                "file": "Server/API & Endpoints.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -307,7 +283,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "2. Bug Tracker/Bugs/CTRL C Exit.md"
+                "file": "Server/API & Endpoints.md"
               }
             }
           }
@@ -329,18 +305,21 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "4e85e679dd6716a7",
+  "active": "5909c653ef29b314",
   "lastOpenFiles": [
-    "2. Bug Tracker/Bug Tracker.md",
-    "2. Bug Tracker/Bugs/String Indicies must be integers.md",
-    "1. Task Tracker/Task Tracker.md",
-    "1. Task Tracker/Tasks/Socket Timeouts.md",
+    "DEV- Server Refactor & Adjust.canvas",
+    "Server/API & Endpoints.md",
     "1. Task Tracker/Tasks/Async Switch.md",
+    "Server/MindMaps/Untitled.md",
+    "1. Task Tracker/Task Tracker.md",
+    "2. Bug Tracker/Bug Tracker.md",
+    "2. Bug Tracker/Bugs/CTRL C Exit.md",
+    "1. Task Tracker/Tasks/Socket Timeouts.md",
+    "2. Bug Tracker/Bugs/String Indicies must be integers.md",
     "1. Task Tracker/Tasks/Agent Commands.md",
     "Templates/Task Tracker.md",
     "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
     "2. Bug Tracker/Bugs/Server command error.md",
-    "2. Bug Tracker/Bugs/CTRL C Exit.md",
     "Templates/Bug Template.md",
     "General/Global MindMap.canvas",
     "1. Task Tracker/Tasks",
@@ -357,7 +336,6 @@
     "Templates",
     "2. Bug Tracker",
     "Client-Server Auth Map.canvas",
-    "DataState.canvas",
     "Server/Modules/3. Security Engine/AuthenticationHandler.py.md",
     "Server/Modules/1. ClientEngine/MaliciousClientHandler Docs/MaliciousClientHandler.py (Depractated).md",
     "Server/General.md",
@@ -370,12 +348,9 @@
     "Dev Guide/Notes Guide/Colors & comments.md",
     "Dev Guide/Notes Guide/ReadMe.md",
     "Dev Guide/Procedures/New Code Steps.md",
-    "General/Naming & general/File Naming Definitions.md",
-    "General/Networking & Protocols/Header breakdown - DEPRACATED.md",
     "Dev Guide/Procedures",
     "Dev Guide",
     "Dev Guide/Notes Guide",
-    "Server/Modules/3. Security Engine",
-    "Clients/Python Client/Dev Docs/Libraries/Overview.md"
+    "Server/Modules/3. Security Engine"
   ]
 }
