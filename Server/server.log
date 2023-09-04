@@ -9695,3 +9695,69 @@ Next Queue Num: 15
 2023-09-03 01:11:29 - INFO -  * Restarting with stat
 2023-09-03 01:11:29 - WARNING -  * Debugger is active!
 2023-09-03 01:11:29 - INFO -  * Debugger PIN: 151-662-093
+2023-09-04 14:35:03 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-04 14:35:03 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-04 14:35:03 - INFO -  * Restarting with stat
+2023-09-04 14:35:03 - WARNING -  * Debugger is active!
+2023-09-04 14:35:03 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 14:35:09 - INFO - 127.0.0.1 - - [04/Sep/2023 14:35:09] "GET / HTTP/1.1" 200 -
+2023-09-04 14:35:09 - INFO - 127.0.0.1 - - [04/Sep/2023 14:35:09] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2023-09-04 14:36:03 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2023-09-04 14:36:03 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-04 14:36:03 - INFO -  * Restarting with stat
+2023-09-04 14:36:03 - WARNING -  * Debugger is active!
+2023-09-04 14:36:03 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 14:36:15 - INFO - 127.0.0.1 - - [04/Sep/2023 14:36:15] "GET / HTTP/1.1" 200 -
+2023-09-04 14:36:18 - INFO - 127.0.0.1 - - [04/Sep/2023 14:36:18] "GET /nothome HTTP/1.1" 200 -
+2023-09-04 14:36:20 - INFO - 127.0.0.1 - - [04/Sep/2023 14:36:20] "GET /notserver HTTP/1.1" 200 -
+2023-09-04 14:42:01 - DEBUG - [^] load_file
+2023-09-04 14:42:01 - DEBUG - Loading C:\Config\ApiSchemas\default.yaml
+2023-09-04 14:42:25 - DEBUG - [^] load_file
+2023-09-04 14:42:25 - DEBUG - Loading C:\Config\ApiSchemas\default.yaml
+2023-09-04 14:44:01 - DEBUG - [^] load_file
+2023-09-04 14:44:01 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=\Config\ApiSchemas\default.yaml
+2023-09-04 14:44:01 - DEBUG - Loading C:\Config\ApiSchemas\default.yaml
+2023-09-04 14:47:33 - DEBUG - [^] load_file
+2023-09-04 14:47:33 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=/Config/ApiSchemas/default.yaml
+2023-09-04 14:47:33 - DEBUG - Loading C:/Config/ApiSchemas/default.yaml
+2023-09-04 14:49:22 - DEBUG - [^] load_file
+2023-09-04 14:49:22 - DEBUG - current_path: C:/Users/Ryan/Documents/GitHub/logec-suite/Server, file_path=/Config/ApiSchemas/default.yaml
+2023-09-04 14:49:22 - DEBUG - Loading C:/Config/ApiSchemas/default.yaml
+2023-09-04 14:50:10 - DEBUG - [^] load_file
+2023-09-04 14:50:10 - DEBUG - current_path: C:/Users/Ryan/Documents/GitHub/logec-suite/Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 14:50:10 - DEBUG - Loading C:/Users/Ryan/Documents/GitHub/logec-suite/Server\Config/ApiSchemas/default.yaml
+2023-09-04 14:51:22 - DEBUG - [^] load_file
+2023-09-04 14:51:22 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 14:51:22 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 14:51:59 - DEBUG - [^] load_file
+2023-09-04 14:51:59 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=\Config/ApiSchemas/default.yaml
+2023-09-04 14:51:59 - DEBUG - Loading C:\Config/ApiSchemas/default.yaml
+2023-09-04 14:52:10 - DEBUG - [^] load_file
+2023-09-04 14:52:10 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 14:52:10 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 14:58:14 - DEBUG - [^] load_file
+2023-09-04 14:58:14 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yamlaa
+2023-09-04 14:58:14 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yamlaa
+2023-09-04 14:58:14 - DEBUG - load_file: File not found at C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yamlaa
+2023-09-04 14:58:17 - DEBUG - [^] load_file
+2023-09-04 14:58:17 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yamlaa
+2023-09-04 14:58:17 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yamlaa
+2023-09-04 14:58:17 - DEBUG - load_file: File not found at C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yamlaa
+2023-09-04 14:58:44 - DEBUG - [^] load_file
+2023-09-04 14:58:44 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yamlaa
+2023-09-04 14:58:44 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yamlaa
+2023-09-04 14:58:44 - DEBUG - load_file: File not found at C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yamlaa
+2023-09-04 14:59:04 - DEBUG - [^] load_file
+2023-09-04 14:59:04 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yamlaa
+2023-09-04 14:59:04 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yamlaa
+2023-09-04 14:59:04 - DEBUG - load_file: File not found at C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yamlaa
+2023-09-04 14:59:15 - DEBUG - [^] load_file
+2023-09-04 14:59:15 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yamlaa
+2023-09-04 14:59:15 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yamlaa
+2023-09-04 14:59:15 - DEBUG - load_file: File not found at C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yamlaa
+2023-09-04 14:59:37 - DEBUG - [^] load_file
+2023-09-04 14:59:37 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yamlaa
+2023-09-04 14:59:37 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yamlaa
+2023-09-04 14:59:37 - DEBUG - load_file: File not found at C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yamlaa

@@ -3,6 +3,7 @@ import logging
 from datetime import datetime
 import yaml
 import DataEngine.JsonHandler
+import Utils.ErrorDefinitions
 
 ################
 ## QOL Functions
@@ -118,3 +119,59 @@ def interaction_logger(json_string:str=None):
 
     except Exception as e:
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}: {e}")
+
+
+def load_file(current_path, file_path, return_path = True):
+    '''
+    Used to load files, having one function keeps this consistent
+
+    current_path = the sys_path, or path to the .py files directory where it is being called from.
+    Ex:  C:\\Users\\USER\\Documents\\GitHub\\WhisperNet\\Server>
+
+    file_path (str) = The relative path to the file 
+    Ex:  Config/ApiSchemas/default.yaml
+
+    return_path (bool): if True, the absolute path of the file will be returned.
+    If false, the contents of the file will be returned, Defaults to 'True'
+
+    returns:
+        File contents, or An absolute path based on the return_path arg
+
+    '''
+    logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+    ## Replacing \ with / -- not needed
+    #current_path = current_path.replace("\\", "/")
+    #file_path = file_path.replace("\\", "/")
+    # removeing / or \\ from file path if added to make it relative, otehrwise os.path.join thinks its an absolute path
+    file_path = file_path.lstrip('/')
+    file_path = file_path.lstrip('\\')
+
+
+    try:
+        logging.debug(f"current_path: {current_path}, file_path={file_path}")
+        # Combine the current path and file path using os.path.join
+        absolute_path = os.path.join(current_path, file_path)
+        logging.debug(f"Loading {absolute_path}")
+
+        # Check if the resulting path is within the current directory
+        #if not os.path.abspath(absolute_path).startswith(os.path.abspath(current_path)):
+            #raise ValueError("File path is outside the current directory.")
+
+        # Check if the file exists
+        if not os.path.isfile(absolute_path):
+            raise FileNotFoundError(f"File not found at {absolute_path}")
+
+        if return_path:
+            return absolute_path
+
+        else:
+            # Open and read the file
+            with open(absolute_path, 'r') as file:
+                file_contents = file.read()
+            return file_contents
+
+    except (ValueError, FileNotFoundError):
+        raise Utils.ErrorDefinitions.FILE_LOAD_ERROR
+    except Exception:
+        raise Utils.ErrorDefinitions.GENERAL_ERROR

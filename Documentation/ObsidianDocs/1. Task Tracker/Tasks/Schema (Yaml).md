@@ -10,7 +10,7 @@ DUE: DATE
 
 
 ## Quick Description
-Impleementing YAML schema for the endpoints in the server. 
+Implementing YAML schema for the endpoints in the server. 
 
 
 ## Possible Solutions/Plan
@@ -21,9 +21,10 @@ Impleementing YAML schema for the endpoints in the server.
 got it working in the server.py file
 
 need to: 
-- [ ] Move loading class to its own file (In ApiEngine)
-- [ ] Make sure the file paths are all okay
-- [ ] Document this process
+- [x] Move loading class to its own file (In ApiEngine)
+- [x] Make sure the file paths are all okay
+	- Implemented a file_load function in utilshandler
+- [x] Document this process
 
 ## Resources
 

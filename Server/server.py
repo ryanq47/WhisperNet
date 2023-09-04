@@ -34,7 +34,7 @@ try:
     import Comms.CommsHandler
     import Utils.UtilsHandler
     import Utils.KeyGen
-    
+    import ApiEngine.ConfigHandler
     ## Error modules
     import ApiEngine.ErrorDefinitions
     import Utils.ErrorDefinitions
@@ -84,76 +84,6 @@ if global_debug:
     logging.getLogger().addHandler(logging.StreamHandler())
 
 
-## Add to settings later
-SPAWN_TCP_LISTENER_ENDPOINT = "spawntcpendpoint"
-SERVER_BASE_ENDPOINT = "server"
-AGENT_BASE_ENDPOINT = "agent"
-
-UPLOAD_BASE_ENDPOINT = "uploads"
-UPLOAD_FOLDER = "assets/files"
-
-## move to different file eventually
-import yaml
-class UrlSchema:
-    '''
-    Holds the URL schemas.
-
-    Named short for orginzation (full nane is UrlSchema)
-    '''
-    def __init__(self):
-        self.yaml_parser = None
-        self.SPAWN_TCP_LISTENER_ENDPOINT = ""
-        self.SERVER_BASE_ENDPOINT        = ""
-
-        self.AGENT_BASE_ENDPOINT         = ""
-
-        self.UPLOAD_BASE_ENDPOINT        = ""
-        self.UPLOAD_FOLDER               = ""
-
-        self.HOME_BASE                   = ""
-
-    def load(self):
-        if self.load_schema():
-            self.assign_schema()
-        else:
-            print("yamlerr")
-
-    def load_schema(self, yaml_file=api_config_profile):
-        '''
-        Opens yaml schema file
-        returns yaml handler
-        '''
-        ## YamlLoad
-        with open(yaml_file, "r") as yaml_stream:
-            try:
-                self.yaml_parser = yaml.safe_load(yaml_stream)
-                return True
-            except yaml.YAMLError as ye:
-                raise ApiEngine.ErrorDefinitions.YAML_LOAD_ERROR
-            except Exception as e:
-                raise Utils.ErrorDefinitions.GENERAL_ERROR()
-
-    def assign_schema(self):
-        '''
-        Assigns schemas to respective variables
-        '''
-        ## Server
-        self.SERVER_BASE_ENDPOINT       = self.yaml_parser["Server"]["Base"]
-        SPAWN_TCP_LISTENER_ENDPOINT     = self.yaml_parser["Server"]["SpawnTcpListener"]
-
-        ## Agent
-        self.AGENT_BASE_ENDPOINT        = self.yaml_parser["Agent"]["Base"]
-
-        ## Fileserver
-        self.UPLOAD_BASE_ENDPOINT       = self.yaml_parser["FileServer"]["Base"]
-        self.UPLOAD_FOLDER              = self.yaml_parser["FileServer"]["Uploads"]
-
-        ## Home
-        self.HOME_BASE                  = self.yaml_parser["Home"]["Base"]
-
-class YAML_LOAD_ERROR(Exception):
-    print("yaml laoding error")
-    pass
 
 class ListenerController:
     '''
@@ -186,10 +116,11 @@ class ListenerController:
             logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
             logging.warning(f"(temp) Error: {e}")
 
-
+## Move to own file eventually
 class ControlServer:
     app = Flask(__name__)
-    UrlSc = UrlSchema()
+    config_file_path = Utils.UtilsHandler.load_file(current_path=sys_path, file_path=api_config_profile)
+    UrlSc = ApiEngine.ConfigHandler.UrlSchema(api_config_profile=config_file_path)
     UrlSc.load()
 
     #def startup_config():

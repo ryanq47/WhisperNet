@@ -1,0 +1,25 @@
+{
+	"nodes":[
+		{"id":"a0b8e734c167745a","type":"text","text":"## Client/Agent/Etc","x":-140,"y":-1380,"width":250,"height":60},
+		{"id":"96cb4afed5cae168","type":"text","text":"## Webserver (API)","x":-140,"y":-920,"width":250,"height":60},
+		{"id":"9f647c13afc0fd64","type":"text","text":"## /server","x":-540,"y":-560,"width":250,"height":60},
+		{"id":"fa126eec9a717900","type":"text","text":"## /home","x":-160,"y":-560,"width":250,"height":60},
+		{"id":"84112fbcc81f50a4","type":"text","text":"## /files","x":260,"y":-560,"width":250,"height":60},
+		{"id":"bfd3976366f39c4b","type":"text","text":"## Interactions","x":-415,"y":-1700,"width":250,"height":60},
+		{"id":"0cbe81857e1da1ee","type":"text","text":"## Startup/Initial Config","x":1240,"y":-1700,"width":320,"height":60},
+		{"id":"1e4cd29311df589c","type":"text","text":"## UtilsHandler.load_file","x":1800,"y":-1360,"width":360,"height":60},
+		{"id":"6a28dff2333cbe8e","type":"text","text":"## Start Webserver/Api","x":1240,"y":-1120,"width":320,"height":50},
+		{"id":"0d400bfed95cdd6a","type":"text","text":"## Load Config File","x":1240,"y":-1360,"width":320,"height":60},
+		{"id":"eedee6c9ee70186b","x":-105,"y":580,"width":250,"height":60,"type":"text","text":""},
+		{"id":"6e0f7c88b7ef6c9b","x":-255,"y":-180,"width":400,"height":400,"type":"file","file":"Server/Modules/ApiEngine/Endpoint Specifics/Home endpoint.md"}
+	],
+	"edges":[
+		{"id":"7cd910b50b4c30de","fromNode":"a0b8e734c167745a","fromSide":"bottom","toNode":"96cb4afed5cae168","toSide":"top"},
+		{"id":"decc3804f20afe63","fromNode":"96cb4afed5cae168","fromSide":"bottom","toNode":"9f647c13afc0fd64","toSide":"top"},
+		{"id":"75473e821d81704f","fromNode":"96cb4afed5cae168","fromSide":"bottom","toNode":"fa126eec9a717900","toSide":"top"},
+		{"id":"7793689f5248672a","fromNode":"96cb4afed5cae168","fromSide":"bottom","toNode":"84112fbcc81f50a4","toSide":"top"},
+		{"id":"f7dda80f22886d1b","fromNode":"0d400bfed95cdd6a","fromSide":"right","toNode":"1e4cd29311df589c","toSide":"left","fromEnd":"arrow"},
+		{"id":"186e1c14b1c1ce79","fromNode":"0d400bfed95cdd6a","fromSide":"bottom","toNode":"6a28dff2333cbe8e","toSide":"top"},
+		{"id":"8b9e6507f2f34b47","fromNode":"fa126eec9a717900","fromSide":"bottom","toNode":"6e0f7c88b7ef6c9b","toSide":"top"}
+	]
+}

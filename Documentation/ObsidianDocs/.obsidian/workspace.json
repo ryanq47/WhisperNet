@@ -41,7 +41,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Server/API & Endpoints.md",
+                "file": "Server/Modules/ApiEngine/API General Overview.md",
                 "mode": "source",
                 "source": false
               }
@@ -72,8 +72,24 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "1f40df6fb0692c7f",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "Server/Modules/ApiEngine/Process Overview.canvas",
+                "viewState": {
+                  "x": -123.16030956648854,
+                  "y": -417.86677111756603,
+                  "zoom": -0.7377235884126689
+                }
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -139,7 +155,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md",
+                "file": "Server/Modules/ApiEngine/Endpoint Specifics/Home endpoint.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -156,7 +172,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md",
+                "file": "Server/Modules/ApiEngine/Endpoint Specifics/Home endpoint.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -179,7 +195,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md"
+                "file": "Server/Modules/ApiEngine/Endpoint Specifics/Home endpoint.md"
               }
             }
           }
@@ -201,19 +217,30 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "0e750e7f5d61a3f9",
+  "active": "1f40df6fb0692c7f",
   "lastOpenFiles": [
+    "Server/Modules/ApiEngine/API General Overview.md",
+    "Server/Modules/ApiEngine/Endpoint Specifics/Home endpoint.md",
     "1. Task Tracker/Tasks/Error Handling & Docs.md",
+    "Server/Modules/ApiEngine/Process Overview.canvas",
+    "Server/Modules/ApiEngine/Endpoint Specifics",
+    "Server/Modules/ApiEngine/Process Overview.md",
+    "1. Task Tracker/Tasks/Schema (Yaml).md",
+    "2. Bug Tracker/Bug Tracker.md",
     "1. Task Tracker/Task Tracker.md",
-    "Server/API & Endpoints.md",
+    "Server/Server.py Docs/server_plaintext_handler Method.md",
+    "Server/Server.py Docs/Connection Handler Method.md",
+    "Server/Server.py Docs/clientloginhandler().md",
+    "Server/Long Term gotchas.md",
+    "Server/Visual Progress.canvas",
+    "Server/Modules/ApiEngine/Api Engine General.md",
+    "Server/Modules/ApiEngine",
     "Server/Modules/3. Security Engine/AuthenticationHandler.py.md",
     "Dev Guide/Notes Guide/Colors & comments.md",
     "Valuecheck Function.canvas",
     "Clients/Python Client/Dev Docs/MindMaps/VisProg.canvas",
     "Clients/Python Client/Dev Docs/MindMaps/Plugin Abstraction Layers.canvas",
     "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
-    "2. Bug Tracker/Bug Tracker.md",
-    "1. Task Tracker/Tasks/Schema (Yaml).md",
     "1. Task Tracker/Tasks/Untitled.md",
     "1. Task Tracker/Tasks/Rest implementation.md",
     "1. Task Tracker/Tasks/Settings for Server.md",
@@ -226,28 +253,16 @@
     "2. Bug Tracker/Bugs/String Indicies must be integers.md",
     "Templates/Task Tracker.md",
     "2. Bug Tracker/Bugs/Server command error.md",
-    "Templates/Bug Template.md",
     "General/Global MindMap.canvas",
     "1. Task Tracker/Tasks",
     "1. Task Tracker",
-    "Server/Visual Progress.canvas",
-    "Server/Long Term gotchas.md",
     "Clients/Python Client/Dev Docs/MindMaps/Program File Structure.canvas",
     "Clients/Python Client/Dev Docs/MindMaps/System Plugins Map.canvas",
-    "Clients/Python Client/Dev Docs/MindMaps/Authentication Map.canvas",
-    "2. Bug Tracker/README.md",
     "2. Bug Tracker/Bugs",
     "Templates",
     "2. Bug Tracker",
-    "Server/Modules/1. ClientEngine/MaliciousClientHandler Docs/MaliciousClientHandler.py (Depractated).md",
-    "Server/General.md",
-    "Server/Modules/1. ClientEngine/Error Handling.md",
-    "Server/Modules/2.DataEngine/DBHandler.py/General.md",
     "Server/Modules/1. ClientEngine/ClientHandler Docs",
-    "Clients/Python Client/Dev Docs/MindMaps/Plugins Abstraction Layers.md",
     "Dev Guide/Procedures",
-    "Dev Guide",
-    "Dev Guide/Notes Guide",
-    "Server/Modules/3. Security Engine"
+    "Dev Guide"
   ]
 }

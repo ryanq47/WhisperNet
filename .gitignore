@@ -28,3 +28,6 @@ Agent/c\#/bin/Release/net7.0/Client.deps.json
 Agent/c\#/.vs/Client/DesignTimeBuild/.dtbcache.v2
 Agent/c\#/.vs/Client/DesignTimeBuild/.dtbcache.v2
 Agent/c\#/.vs/Client/FileContentIndex/0a7794bc-4ec2-4a22-ac6b-753a1eaf2044.vsidx
+*.v2
+*.1
+*.1
