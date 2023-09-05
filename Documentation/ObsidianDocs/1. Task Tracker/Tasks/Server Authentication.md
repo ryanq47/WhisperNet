@@ -25,6 +25,7 @@ DB home: DataBases/users.db
 ## Left off notes
 
 Left off working on getting the DB connection coded. AuthenticationHandler will talk to the DB classes once that is complete, and then I can hook the APIup to it.
+- [ ] DB connector is coded, needs testing & error handling
 
 The methods are there for those 2, just fill them in
 
