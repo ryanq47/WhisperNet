@@ -22,6 +22,18 @@
             }
           },
           {
+            "id": "96d3c9d167d6b680",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "API Authentication.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
             "id": "c18983b767f4c685",
             "type": "leaf",
             "state": {
@@ -213,8 +225,10 @@
   },
   "active": "0e750e7f5d61a3f9",
   "lastOpenFiles": [
-    "1. Task Tracker/Tasks/Rest implementation.md",
+    "API Authentication.md",
+    "Untitled.md",
     "1. Task Tracker/Task Tracker.md",
+    "1. Task Tracker/Tasks/Rest implementation.md",
     "Server/Security Testing/URL Fuzzing & Discovery.md",
     "Pasted image 20230904190836.png",
     "Server/Security Testing/General.md",
@@ -244,7 +258,6 @@
     "1. Task Tracker/Tasks/Schema (Yaml).md",
     "1. Task Tracker/Tasks/Untitled 1.md",
     "Server/Modules/ApiEngine/Endpoint Specifics",
-    "Server/Modules/ApiEngine/Process Overview.md",
     "Server/Visual Progress.canvas",
     "Server/Modules/ApiEngine",
     "Valuecheck Function.canvas",
