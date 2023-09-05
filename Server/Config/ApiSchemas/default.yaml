@@ -29,7 +29,7 @@ Agent:
 
 FileServer:
   # Base url, ex: http://IP/files
-  Base: "files"
+  Base: "ApiEngine/files"
   # Where uploaded files are stored
   Uploads: "uploads"
 
@@ -44,5 +44,19 @@ Home:
   # Base url, ex: http://IP/home
   Base: "home"
 
+## == HTML Pages == ##
+## Each one of these are a lsit of potential HTML pages to display.
+## Each one will be randomly sellected for which will be displayed. 
+## Change it to only one item in the list for a consistent page
 
 
+## A path to potential homepages for the API server. These will be randomly selected on which to load
+HomepageList: 
+  - "ApiEngine/html/homepage-MLP.html" # I Promise I'm not a brony... Just wanted something colorful 
+  - "ApiEngine/html/homepage-Default.html"
+
+## Messages to display in a 404 not found. Note, that all 404's return a 200
+## this is to prevent (or slow...) URL scraping/discovery
+NotFoundList_404:
+  - "ApiEngine/html/errorcodes/404-default.html"
+  - "ApiEngine/html/errorcodes/404-default-alt.html"

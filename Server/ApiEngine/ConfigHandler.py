@@ -22,6 +22,10 @@ class UrlSchema:
 
         self.HOME_BASE                   = ""
 
+        self.HOMEPAGE_LIST               = ""
+
+        self.NOT_FOUND_LIST_404          = ""
+
     def load(self):
         if self.load_schema():
             self.assign_schema()
@@ -60,3 +64,9 @@ class UrlSchema:
 
         ## Home
         self.HOME_BASE                  = self.yaml_parser["Home"]["Base"]
+
+        ## Homepage HTML
+        self.HOMEPAGE_LIST              = self.yaml_parser["HomepageList"]
+
+        ## 404 Error list
+        self.NOT_FOUND_LIST_404         = self.yaml_parser["NotFoundList_404"]

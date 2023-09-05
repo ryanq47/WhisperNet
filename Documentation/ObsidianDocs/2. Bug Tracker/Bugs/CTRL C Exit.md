@@ -1,11 +1,14 @@
 ---
 SCOPE: Server
 MODULE: Server.py
-SEVERITY: Low
+SEVERITY: Done
 ESTTIMETOFIX: 1 Hour
-STATUS: Not Started
+STATUS: Done
 ---
 
+
+## Fix:
+Switched to rest API instead of custom sockets.
 ## Quick Description
 CTRL C does not exit the server, most likely due to threading. 
 

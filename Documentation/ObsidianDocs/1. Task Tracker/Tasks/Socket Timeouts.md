@@ -3,11 +3,11 @@ SCOPE: All
 TASKTYPE: Implementation
 MODULE: ClientHandler
 ESTTIMETOIMPLEMENT: 30 min
-STATUS: In Progress
+STATUS: Done
 PRIORITY: High
 ---
 
-
+## Not Applicable anymore
 ## Quick Description
 
 The sockets need a timeout. Otherwise, they have the possibility of hanging forever, which is not good for server uptime

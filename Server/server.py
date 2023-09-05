@@ -84,7 +84,6 @@ if global_debug:
     logging.getLogger().addHandler(logging.StreamHandler())
 
 
-
 class ListenerController:
     '''
     A class that takes care of the listeners, spawns them, etc.
@@ -123,31 +122,34 @@ class ControlServer:
     UrlSc = ApiEngine.ConfigHandler.UrlSchema(api_config_profile=config_file_path)
     UrlSc.load()
 
-    #def startup_config():
-       #UrlSc = UrlSchema
-
     @app.route("/", methods=["GET"])
-    def no_subdir():
-        with open("ApiEngine/html/fakepage-MLP.txt") as fp:
-            page = fp.read()
-        return page
-    
     @app.route(f"/{UrlSc.HOME_BASE}", methods=["GET"])
-    def home():
-        with open("ApiEngine/html/fakepage-MLP.txt") as fp:
-            page = fp.read()
-        return page
+    def no_subdir():
+        try:
+            # Yaml load code here
+            ## load random choice from list
+            html_file_path = random.choice(ControlServer.UrlSc.HOMEPAGE_LIST)
+
+            # open file
+            html = Utils.UtilsHandler.load_file(
+                current_path = sys_path, 
+                file_path = html_file_path, 
+                return_path = False )
+            # return HTML
+            return html
+            ## oh my god it worked on the first time
+
+        except Exception:
+            ControlServer.page_not_found()
     
     ## for agents checking in
     @app.route(f"/{UrlSc.AGENT_BASE_ENDPOINT}", methods=["GET"])
     def agent_base():
-        #return "<html><b>hi - get fucked</b></html>"
         return "agent_base"
     
     # commands to control the server
     @app.route(f"/{UrlSc.SERVER_BASE_ENDPOINT}", methods=["GET"])
     def server_base():
-        #return "<html><b>hi - get fucked</b></html>"
         return "server_base"
     
     ## Listener Section
@@ -162,26 +164,44 @@ class ControlServer:
             ListenerController.spawn_listener(ip = data["ip"], port = data["port"])
 
             return jsonify({"message": "success"})
-        except Exception as e:
-            return jsonify({"error": str(e)}), 400
-        
+        except Exception:
+            ControlServer.page_not_found()
+
     ## File Section
     @app.route(f"/{UrlSc.UPLOAD_BASE_ENDPOINT}/", methods=["GET"])
-    
     def download_file(filename):
         try:
-            return send_from_directory(UPLOAD_FOLDER, filename)
+            return send_from_directory(ControlServer.UrlSc.UPLOAD_FOLDER, filename)
         except Exception as e:
-            with open("assets/html/errorcodes/400err.txt") as fp:
-                page = fp.read()
-            return page
+            ControlServer.page_not_found()
 
+    @app.errorhandler(403)
+    @app.errorhandler(404)
+    def page_not_found(e):
+        '''
+        Handles all 40X & any try/except errors. Basically it returns a 200
+        with a "page not found"
+
+        This is done for security/scraping/URL discovery reasons
+        
+        '''
+        try:
+            err_404_path = random.choice(ControlServer.UrlSc.NOT_FOUND_LIST_404)
+
+            html = Utils.UtilsHandler.load_file(
+                current_path = sys_path, 
+                file_path = err_404_path, 
+                return_path = False )
+            return html, 200
+        ## Fallback for if something breaks
+        except:
+            return "", 200
 
 
 
 
 if __name__ == "__main__":
-    ControlServer.app.run(debug=True)
+    ControlServer.app.run(host="0.0.0.0", port=5000, debug=True)
     #while True:
         #ListenerController.spawn_listener()
         #time.sleep(100)

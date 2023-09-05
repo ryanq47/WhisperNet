@@ -22,6 +22,30 @@
             }
           },
           {
+            "id": "c18983b767f4c685",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1. Task Tracker/Tasks/Rest implementation.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "4782ceb26582c11c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1. Task Tracker/Tasks/Agent Commands.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
             "id": "86ff8eeffdf9f704",
             "type": "leaf",
             "pinned": true,
@@ -29,67 +53,37 @@
               "type": "markdown",
               "state": {
                 "file": "2. Bug Tracker/Bug Tracker.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               },
               "pinned": true
             }
           },
           {
-            "id": "f310311c1f6d366b",
+            "id": "5cd8b4845a565cde",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Server/Modules/ApiEngine/API General Overview.md",
+                "file": "Server/Modules/ApiEngine/Endpoint Specifics/Home endpoint.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "a444bccd13986c15",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1. Task Tracker/Tasks/Schema (Yaml).md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true
-            }
-          },
-          {
-            "id": "65760506e375e325",
+            "id": "49595dc1abc198ca",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1. Task Tracker/Tasks/Error Handling & Docs.md",
+                "file": "Server/Security Testing/URL Fuzzing & Discovery.md",
                 "mode": "source",
                 "source": false
-              }
-            }
-          },
-          {
-            "id": "1f40df6fb0692c7f",
-            "type": "leaf",
-            "state": {
-              "type": "canvas",
-              "state": {
-                "file": "Server/Modules/ApiEngine/Process Overview.canvas",
-                "viewState": {
-                  "x": -123.16030956648854,
-                  "y": -417.86677111756603,
-                  "zoom": -0.7377235884126689
-                }
               }
             }
           }
-        ],
-        "currentTab": 5
+        ]
       }
     ],
     "direction": "vertical"
@@ -155,7 +149,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Modules/ApiEngine/Endpoint Specifics/Home endpoint.md",
+                "file": "1. Task Tracker/Task Tracker.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -172,7 +166,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Modules/ApiEngine/Endpoint Specifics/Home endpoint.md",
+                "file": "1. Task Tracker/Task Tracker.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -195,7 +189,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Modules/ApiEngine/Endpoint Specifics/Home endpoint.md"
+                "file": "1. Task Tracker/Task Tracker.md"
               }
             }
           }
@@ -217,42 +211,46 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "1f40df6fb0692c7f",
+  "active": "0e750e7f5d61a3f9",
   "lastOpenFiles": [
-    "Server/Modules/ApiEngine/API General Overview.md",
+    "1. Task Tracker/Tasks/Rest implementation.md",
+    "1. Task Tracker/Task Tracker.md",
+    "Server/Security Testing/URL Fuzzing & Discovery.md",
+    "Pasted image 20230904190836.png",
+    "Server/Security Testing/General.md",
+    "Pasted image 20230904190547.png",
+    "Server/Modules/ApiEngine/Endpoint Specifics/404 & Others.md",
+    "Server/Security Testing",
     "Server/Modules/ApiEngine/Endpoint Specifics/Home endpoint.md",
+    "1. Task Tracker/Tasks/File Upload & Downlaod.md",
+    "1. Task Tracker/Tasks/Untitled.md",
+    "1. Task Tracker/Tasks/Socket Timeouts.md",
+    "1. Task Tracker/Tasks/Move client to Rest.md",
+    "DEV- Server Refactor & Adjust.canvas",
+    "2. Bug Tracker/Bug Tracker.md",
+    "2. Bug Tracker/Bugs/Server command error.md",
+    "1. Task Tracker/Tasks/Agent Commands.md",
+    "2. Bug Tracker/Bugs/String Indicies must be integers.md",
+    "2. Bug Tracker/Bugs/CTRL C Exit.md",
+    "1. Task Tracker/Tasks/Settings for Server.md",
     "1. Task Tracker/Tasks/Error Handling & Docs.md",
+    "Server/Modules/ApiEngine/API General Overview.md",
+    "Server/Modules/Error Handling/Error Handling Overview.md",
+    "API Docs.md",
     "Server/Modules/ApiEngine/Process Overview.canvas",
+    "Server/API & Endpoints.md",
+    "Server/Modules/Error Handling/Untitled.md",
+    "Server/Modules/Error Handling",
+    "1. Task Tracker/Tasks/Schema (Yaml).md",
+    "1. Task Tracker/Tasks/Untitled 1.md",
     "Server/Modules/ApiEngine/Endpoint Specifics",
     "Server/Modules/ApiEngine/Process Overview.md",
-    "1. Task Tracker/Tasks/Schema (Yaml).md",
-    "2. Bug Tracker/Bug Tracker.md",
-    "1. Task Tracker/Task Tracker.md",
-    "Server/Server.py Docs/server_plaintext_handler Method.md",
-    "Server/Server.py Docs/Connection Handler Method.md",
-    "Server/Server.py Docs/clientloginhandler().md",
-    "Server/Long Term gotchas.md",
     "Server/Visual Progress.canvas",
-    "Server/Modules/ApiEngine/Api Engine General.md",
     "Server/Modules/ApiEngine",
-    "Server/Modules/3. Security Engine/AuthenticationHandler.py.md",
-    "Dev Guide/Notes Guide/Colors & comments.md",
     "Valuecheck Function.canvas",
     "Clients/Python Client/Dev Docs/MindMaps/VisProg.canvas",
     "Clients/Python Client/Dev Docs/MindMaps/Plugin Abstraction Layers.canvas",
     "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
-    "1. Task Tracker/Tasks/Untitled.md",
-    "1. Task Tracker/Tasks/Rest implementation.md",
-    "1. Task Tracker/Tasks/Settings for Server.md",
-    "2. Bug Tracker/Bugs/CTRL C Exit.md",
-    "1. Task Tracker/Tasks/Async Switch.md",
-    "1. Task Tracker/Tasks/Agent Commands.md",
-    "DEV- Server Refactor & Adjust.canvas",
-    "Server/MindMaps/Untitled.md",
-    "1. Task Tracker/Tasks/Socket Timeouts.md",
-    "2. Bug Tracker/Bugs/String Indicies must be integers.md",
-    "Templates/Task Tracker.md",
-    "2. Bug Tracker/Bugs/Server command error.md",
     "General/Global MindMap.canvas",
     "1. Task Tracker/Tasks",
     "1. Task Tracker",
@@ -261,8 +259,6 @@
     "2. Bug Tracker/Bugs",
     "Templates",
     "2. Bug Tracker",
-    "Server/Modules/1. ClientEngine/ClientHandler Docs",
-    "Dev Guide/Procedures",
-    "Dev Guide"
+    "Server/Modules/1. ClientEngine/ClientHandler Docs"
   ]
 }

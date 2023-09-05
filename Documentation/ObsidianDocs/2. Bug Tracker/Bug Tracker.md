@@ -2,7 +2,7 @@
 ```dataview
 table SCOPE, MODULE, SEVERITY, ESTTIMETOFIX, STATUS
 from "2. Bug Tracker/Bugs"
-sort SEVERITY desc
+sort SEVERITY desc where STATUS != "Done"
 
 ```
 

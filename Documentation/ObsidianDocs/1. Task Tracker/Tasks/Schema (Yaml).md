@@ -3,7 +3,7 @@ SCOPE: Server
 TASKTYPE: Implementation
 MODULE: Server (restAPI)
 ESTTIMETOIMPLEMENT: 30 min
-STATUS: In Progress - LEFT OFF
+STATUS: Done
 PRIORITY: Med
 DUE: DATE
 ---
