@@ -29,9 +29,9 @@ Agent:
 
 FileServer:
   # Base url, ex: http://IP/files
-  Base: "ApiEngine/files"
+  Base: "files"
   # Where uploaded files are stored
-  Uploads: "uploads"
+  Uploads: "ApiEngine/files"
 
 Misc:
   ## This should stay the same, unless you communicate the location of the "login" to other parties. 

@@ -2124,3 +2124,527 @@
 2023-09-04 19:14:51 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-Default.html
 2023-09-04 19:14:51 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-Default.html
 2023-09-04 19:14:51 - INFO - 127.0.0.1 - - [04/Sep/2023 19:14:51] "GET / HTTP/1.1" 200 -
+2023-09-04 19:37:50 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 19:37:50 - INFO -  * Restarting with stat
+2023-09-04 19:37:51 - DEBUG - [^] load_file
+2023-09-04 19:37:51 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:37:51 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:37:51 - WARNING -  * Debugger is active!
+2023-09-04 19:37:51 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 19:37:56 - DEBUG - [^] load_file
+2023-09-04 19:37:56 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-04 19:37:56 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-04 19:37:56 - INFO - 127.0.0.1 - - [04/Sep/2023 19:37:56] "GET /files/test.txt HTTP/1.1" 200 -
+2023-09-04 19:38:00 - DEBUG - [^] load_file
+2023-09-04 19:38:00 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-04 19:38:00 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-04 19:38:00 - INFO - 127.0.0.1 - - [04/Sep/2023 19:38:00] "GET /uploads/test.txt HTTP/1.1" 200 -
+2023-09-04 19:38:04 - DEBUG - [^] load_file
+2023-09-04 19:38:04 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-04 19:38:04 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-04 19:38:04 - INFO - 127.0.0.1 - - [04/Sep/2023 19:38:04] "GET /file/test.txt HTTP/1.1" 200 -
+2023-09-04 19:38:25 - DEBUG - [^] load_file
+2023-09-04 19:38:25 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:38:25 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:38:25 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.17:5000
+2023-09-04 19:38:25 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-04 19:38:25 - INFO -  * Restarting with stat
+2023-09-04 19:38:25 - DEBUG - [^] load_file
+2023-09-04 19:38:25 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:38:25 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:38:25 - WARNING -  * Debugger is active!
+2023-09-04 19:38:25 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 19:38:29 - DEBUG - [^] load_file
+2023-09-04 19:38:29 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-04 19:38:29 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-04 19:38:29 - INFO - 127.0.0.1 - - [04/Sep/2023 19:38:29] "GET /file/test.txt HTTP/1.1" 200 -
+2023-09-04 19:38:39 - INFO - 127.0.0.1 - - [04/Sep/2023 19:38:39] "[35m[1mGET /files/test.txt HTTP/1.1[0m" 500 -
+2023-09-04 19:38:40 - INFO - 127.0.0.1 - - [04/Sep/2023 19:38:40] "GET /files/test.txt?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2023-09-04 19:38:40 - INFO - 127.0.0.1 - - [04/Sep/2023 19:38:40] "GET /files/test.txt?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2023-09-04 19:38:40 - INFO - 127.0.0.1 - - [04/Sep/2023 19:38:40] "GET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2023-09-04 19:38:40 - INFO - 127.0.0.1 - - [04/Sep/2023 19:38:40] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:38:58 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 19:38:58 - INFO -  * Restarting with stat
+2023-09-04 19:38:58 - DEBUG - [^] load_file
+2023-09-04 19:38:58 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:38:58 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:38:58 - WARNING -  * Debugger is active!
+2023-09-04 19:38:58 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 19:39:24 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 19:39:24 - INFO -  * Restarting with stat
+2023-09-04 19:39:25 - DEBUG - [^] load_file
+2023-09-04 19:39:25 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:39:25 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:39:25 - WARNING -  * Debugger is active!
+2023-09-04 19:39:25 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 19:39:29 - INFO - 127.0.0.1 - - [04/Sep/2023 19:39:29] "[35m[1mGET /files/test.txt HTTP/1.1[0m" 500 -
+2023-09-04 19:39:30 - INFO - 127.0.0.1 - - [04/Sep/2023 19:39:30] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-09-04 19:39:30 - INFO - 127.0.0.1 - - [04/Sep/2023 19:39:30] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-09-04 19:39:30 - INFO - 127.0.0.1 - - [04/Sep/2023 19:39:30] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:39:30 - INFO - 127.0.0.1 - - [04/Sep/2023 19:39:30] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:39:40 - DEBUG - [^] load_file
+2023-09-04 19:39:40 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:39:40 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:39:40 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.17:5000
+2023-09-04 19:39:40 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-04 19:39:40 - INFO -  * Restarting with stat
+2023-09-04 19:39:41 - DEBUG - [^] load_file
+2023-09-04 19:39:41 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:39:41 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:39:41 - WARNING -  * Debugger is active!
+2023-09-04 19:39:41 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 19:39:45 - INFO - 127.0.0.1 - - [04/Sep/2023 19:39:45] "[35m[1mGET /files/test.txt HTTP/1.1[0m" 500 -
+2023-09-04 19:39:45 - INFO - 127.0.0.1 - - [04/Sep/2023 19:39:45] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-09-04 19:39:45 - INFO - 127.0.0.1 - - [04/Sep/2023 19:39:45] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-09-04 19:39:45 - INFO - 127.0.0.1 - - [04/Sep/2023 19:39:45] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:39:45 - INFO - 127.0.0.1 - - [04/Sep/2023 19:39:45] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:39:57 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 19:39:57 - INFO -  * Restarting with stat
+2023-09-04 19:39:58 - DEBUG - [^] load_file
+2023-09-04 19:39:58 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:39:58 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:39:58 - WARNING -  * Debugger is active!
+2023-09-04 19:39:58 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 19:39:58 - INFO - 127.0.0.1 - - [04/Sep/2023 19:39:58] "[35m[1mGET /files/test.txt HTTP/1.1[0m" 500 -
+2023-09-04 19:39:59 - INFO - 127.0.0.1 - - [04/Sep/2023 19:39:59] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-09-04 19:39:59 - INFO - 127.0.0.1 - - [04/Sep/2023 19:39:59] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-09-04 19:39:59 - INFO - 127.0.0.1 - - [04/Sep/2023 19:39:59] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:39:59 - INFO - 127.0.0.1 - - [04/Sep/2023 19:39:59] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:40:07 - DEBUG - [^] load_file
+2023-09-04 19:40:07 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:40:07 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:40:07 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.17:5000
+2023-09-04 19:40:07 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-04 19:40:07 - INFO -  * Restarting with stat
+2023-09-04 19:40:08 - DEBUG - [^] load_file
+2023-09-04 19:40:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:40:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:40:08 - WARNING -  * Debugger is active!
+2023-09-04 19:40:08 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 19:40:10 - INFO - 127.0.0.1 - - [04/Sep/2023 19:40:10] "[35m[1mGET /files/test.txt HTTP/1.1[0m" 500 -
+2023-09-04 19:40:11 - INFO - 127.0.0.1 - - [04/Sep/2023 19:40:11] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-09-04 19:40:11 - INFO - 127.0.0.1 - - [04/Sep/2023 19:40:11] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-09-04 19:40:11 - INFO - 127.0.0.1 - - [04/Sep/2023 19:40:11] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:40:11 - INFO - 127.0.0.1 - - [04/Sep/2023 19:40:11] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:40:22 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 19:40:22 - INFO -  * Restarting with stat
+2023-09-04 19:40:24 - DEBUG - [^] load_file
+2023-09-04 19:40:24 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:40:24 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:40:24 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.17:5000
+2023-09-04 19:40:24 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-04 19:40:24 - INFO -  * Restarting with stat
+2023-09-04 19:40:24 - DEBUG - [^] load_file
+2023-09-04 19:40:24 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:40:24 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:40:24 - WARNING -  * Debugger is active!
+2023-09-04 19:40:24 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 19:40:25 - INFO - 127.0.0.1 - - [04/Sep/2023 19:40:25] "[35m[1mGET /files/test.txt HTTP/1.1[0m" 500 -
+2023-09-04 19:40:26 - INFO - 127.0.0.1 - - [04/Sep/2023 19:40:26] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-09-04 19:40:26 - INFO - 127.0.0.1 - - [04/Sep/2023 19:40:26] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-09-04 19:40:26 - INFO - 127.0.0.1 - - [04/Sep/2023 19:40:26] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:40:26 - INFO - 127.0.0.1 - - [04/Sep/2023 19:40:26] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:40:44 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 19:40:44 - INFO -  * Restarting with stat
+2023-09-04 19:40:45 - DEBUG - [^] load_file
+2023-09-04 19:40:45 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:40:45 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:40:45 - WARNING -  * Debugger is active!
+2023-09-04 19:40:45 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 19:40:48 - INFO - 127.0.0.1 - - [04/Sep/2023 19:40:48] "[35m[1mGET /files/test.txt HTTP/1.1[0m" 500 -
+2023-09-04 19:40:49 - INFO - 127.0.0.1 - - [04/Sep/2023 19:40:49] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-09-04 19:40:49 - INFO - 127.0.0.1 - - [04/Sep/2023 19:40:49] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-09-04 19:40:49 - INFO - 127.0.0.1 - - [04/Sep/2023 19:40:49] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:40:49 - INFO - 127.0.0.1 - - [04/Sep/2023 19:40:49] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:40:56 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 19:40:56 - INFO -  * Restarting with stat
+2023-09-04 19:40:57 - DEBUG - [^] load_file
+2023-09-04 19:40:57 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:40:57 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:40:57 - WARNING -  * Debugger is active!
+2023-09-04 19:40:57 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 19:40:57 - DEBUG - [^] load_file
+2023-09-04 19:40:57 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-04 19:40:57 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-04 19:40:57 - INFO - 127.0.0.1 - - [04/Sep/2023 19:40:57] "[35m[1mGET /files/test.txt HTTP/1.1[0m" 500 -
+2023-09-04 19:40:58 - INFO - 127.0.0.1 - - [04/Sep/2023 19:40:58] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-09-04 19:40:58 - INFO - 127.0.0.1 - - [04/Sep/2023 19:40:58] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-09-04 19:40:58 - INFO - 127.0.0.1 - - [04/Sep/2023 19:40:58] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:40:58 - INFO - 127.0.0.1 - - [04/Sep/2023 19:40:58] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:41:39 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 19:41:39 - INFO -  * Restarting with stat
+2023-09-04 19:41:39 - DEBUG - [^] load_file
+2023-09-04 19:41:39 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:41:39 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:41:39 - WARNING -  * Debugger is active!
+2023-09-04 19:41:39 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 19:41:41 - DEBUG - [^] load_file
+2023-09-04 19:41:41 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-04 19:41:41 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-04 19:41:41 - INFO - 127.0.0.1 - - [04/Sep/2023 19:41:41] "[35m[1mGET /files/test.txt HTTP/1.1[0m" 500 -
+2023-09-04 19:41:42 - INFO - 127.0.0.1 - - [04/Sep/2023 19:41:42] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-09-04 19:41:42 - INFO - 127.0.0.1 - - [04/Sep/2023 19:41:42] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-09-04 19:41:42 - INFO - 127.0.0.1 - - [04/Sep/2023 19:41:42] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:41:42 - INFO - 127.0.0.1 - - [04/Sep/2023 19:41:42] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:41:48 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 19:41:48 - INFO -  * Restarting with stat
+2023-09-04 19:41:48 - DEBUG - [^] load_file
+2023-09-04 19:41:48 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:41:48 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:41:48 - WARNING -  * Debugger is active!
+2023-09-04 19:41:48 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 19:41:57 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 19:41:57 - INFO -  * Restarting with stat
+2023-09-04 19:41:57 - DEBUG - [^] load_file
+2023-09-04 19:41:57 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:41:57 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:41:57 - WARNING -  * Debugger is active!
+2023-09-04 19:41:57 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 19:42:10 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 19:42:10 - INFO -  * Restarting with stat
+2023-09-04 19:42:10 - DEBUG - [^] load_file
+2023-09-04 19:42:10 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:42:10 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:42:10 - WARNING -  * Debugger is active!
+2023-09-04 19:42:10 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 19:42:12 - DEBUG - [^] load_file
+2023-09-04 19:42:12 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-04 19:42:12 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-04 19:42:12 - INFO - 127.0.0.1 - - [04/Sep/2023 19:42:12] "[35m[1mGET /files/test.txt HTTP/1.1[0m" 500 -
+2023-09-04 19:42:13 - INFO - 127.0.0.1 - - [04/Sep/2023 19:42:13] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-09-04 19:42:13 - INFO - 127.0.0.1 - - [04/Sep/2023 19:42:13] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-09-04 19:42:13 - INFO - 127.0.0.1 - - [04/Sep/2023 19:42:13] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:42:13 - INFO - 127.0.0.1 - - [04/Sep/2023 19:42:13] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:42:44 - DEBUG - [^] load_file
+2023-09-04 19:42:44 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-04 19:42:44 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-04 19:42:44 - INFO - 127.0.0.1 - - [04/Sep/2023 19:42:44] "[35m[1mGET /files/test.txt HTTP/1.1[0m" 500 -
+2023-09-04 19:42:44 - INFO - 127.0.0.1 - - [04/Sep/2023 19:42:44] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-09-04 19:42:44 - INFO - 127.0.0.1 - - [04/Sep/2023 19:42:44] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-09-04 19:42:44 - INFO - 127.0.0.1 - - [04/Sep/2023 19:42:44] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:42:44 - INFO - 127.0.0.1 - - [04/Sep/2023 19:42:44] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:43:19 - DEBUG - [^] load_file
+2023-09-04 19:43:19 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-04 19:43:19 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-04 19:43:19 - INFO - 127.0.0.1 - - [04/Sep/2023 19:43:19] "[35m[1mGET /files/test.txt HTTP/1.1[0m" 500 -
+2023-09-04 19:43:19 - INFO - 127.0.0.1 - - [04/Sep/2023 19:43:19] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2023-09-04 19:43:19 - INFO - 127.0.0.1 - - [04/Sep/2023 19:43:19] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2023-09-04 19:43:19 - INFO - 127.0.0.1 - - [04/Sep/2023 19:43:19] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:43:19 - INFO - 127.0.0.1 - - [04/Sep/2023 19:43:19] "[36mGET /files/test.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 19:43:23 - DEBUG - [^] load_file
+2023-09-04 19:43:23 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:43:23 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:43:23 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.17:5000
+2023-09-04 19:43:23 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-04 19:43:23 - INFO -  * Restarting with stat
+2023-09-04 19:43:23 - DEBUG - [^] load_file
+2023-09-04 19:43:23 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:43:23 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:43:23 - WARNING -  * Debugger is active!
+2023-09-04 19:43:23 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 19:43:24 - INFO - 127.0.0.1 - - [04/Sep/2023 19:43:24] "GET /files/test.txt HTTP/1.1" 200 -
+2023-09-04 19:43:38 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 19:43:38 - INFO -  * Restarting with stat
+2023-09-04 19:43:38 - DEBUG - [^] load_file
+2023-09-04 19:43:38 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:43:38 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:43:38 - WARNING -  * Debugger is active!
+2023-09-04 19:43:38 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 19:43:40 - INFO - 127.0.0.1 - - [04/Sep/2023 19:43:40] "[36mGET /files/test.txt HTTP/1.1[0m" 304 -
+2023-09-04 19:43:46 - DEBUG - [^] load_file
+2023-09-04 19:43:46 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-04 19:43:46 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-04 19:43:46 - INFO - 127.0.0.1 - - [04/Sep/2023 19:43:46] "GET /files/ HTTP/1.1" 200 -
+2023-09-04 19:43:48 - INFO - 127.0.0.1 - - [04/Sep/2023 19:43:48] "[36mGET /files/test.txt HTTP/1.1[0m" 304 -
+2023-09-04 19:44:06 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 19:44:06 - INFO -  * Restarting with stat
+2023-09-04 19:44:06 - DEBUG - [^] load_file
+2023-09-04 19:44:06 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 19:44:06 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 19:44:06 - WARNING -  * Debugger is active!
+2023-09-04 19:44:06 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:13:23 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 20:13:23 - INFO -  * Restarting with stat
+2023-09-04 20:13:23 - DEBUG - [^] load_file
+2023-09-04 20:13:23 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:13:23 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:13:23 - WARNING -  * Debugger is active!
+2023-09-04 20:13:23 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:13:48 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 20:13:48 - INFO -  * Restarting with stat
+2023-09-04 20:13:48 - DEBUG - [^] load_file
+2023-09-04 20:13:48 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:13:48 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:13:48 - WARNING -  * Debugger is active!
+2023-09-04 20:13:48 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:14:21 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 20:14:21 - INFO -  * Restarting with stat
+2023-09-04 20:14:21 - DEBUG - [^] load_file
+2023-09-04 20:14:21 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:14:21 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:14:21 - WARNING -  * Debugger is active!
+2023-09-04 20:14:21 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:14:40 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 20:14:40 - INFO -  * Restarting with stat
+2023-09-04 20:14:40 - DEBUG - [^] load_file
+2023-09-04 20:14:40 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:14:40 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:14:40 - WARNING -  * Debugger is active!
+2023-09-04 20:14:40 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:15:09 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 20:15:09 - INFO -  * Restarting with stat
+2023-09-04 20:15:09 - DEBUG - [^] load_file
+2023-09-04 20:15:09 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:15:09 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:15:09 - WARNING -  * Debugger is active!
+2023-09-04 20:15:09 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:15:16 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 20:15:16 - INFO -  * Restarting with stat
+2023-09-04 20:15:16 - DEBUG - [^] load_file
+2023-09-04 20:15:16 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:15:16 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:15:16 - WARNING -  * Debugger is active!
+2023-09-04 20:15:16 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:15:22 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 20:15:22 - INFO -  * Restarting with stat
+2023-09-04 20:15:22 - DEBUG - [^] load_file
+2023-09-04 20:15:22 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:15:22 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:15:22 - WARNING -  * Debugger is active!
+2023-09-04 20:15:22 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:15:24 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 20:15:25 - INFO -  * Restarting with stat
+2023-09-04 20:15:25 - DEBUG - [^] load_file
+2023-09-04 20:15:25 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:15:25 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:15:25 - WARNING -  * Debugger is active!
+2023-09-04 20:15:25 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:16:06 - DEBUG - [^] load_file
+2023-09-04 20:16:06 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-04 20:16:06 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-04 20:16:06 - INFO - 127.0.0.1 - - [04/Sep/2023 20:16:06] "[35m[1mGET /files/123.txt HTTP/1.1[0m" 500 -
+2023-09-04 20:16:07 - INFO - 127.0.0.1 - - [04/Sep/2023 20:16:07] "GET /files/123.txt?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2023-09-04 20:16:07 - INFO - 127.0.0.1 - - [04/Sep/2023 20:16:07] "GET /files/123.txt?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2023-09-04 20:16:07 - INFO - 127.0.0.1 - - [04/Sep/2023 20:16:07] "GET /files/123.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2023-09-04 20:16:07 - INFO - 127.0.0.1 - - [04/Sep/2023 20:16:07] "[36mGET /files/123.txt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2023-09-04 20:16:28 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 20:16:28 - INFO -  * Restarting with stat
+2023-09-04 20:16:28 - DEBUG - [^] load_file
+2023-09-04 20:16:28 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:16:28 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:16:28 - WARNING -  * Debugger is active!
+2023-09-04 20:16:28 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:16:30 - DEBUG - [^] load_file
+2023-09-04 20:16:30 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-04 20:16:30 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-04 20:16:30 - INFO - 127.0.0.1 - - [04/Sep/2023 20:16:30] "GET /files/123.txt HTTP/1.1" 200 -
+2023-09-04 20:16:41 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 20:16:41 - INFO -  * Restarting with stat
+2023-09-04 20:16:42 - DEBUG - [^] load_file
+2023-09-04 20:16:42 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:16:42 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:16:42 - WARNING -  * Debugger is active!
+2023-09-04 20:16:42 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:16:54 - DEBUG - [^] load_file
+2023-09-04 20:16:54 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-04 20:16:54 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-04 20:16:54 - INFO - 127.0.0.1 - - [04/Sep/2023 20:16:54] "GET /files/123.txt HTTP/1.1" 200 -
+2023-09-04 20:16:56 - DEBUG - [^] load_file
+2023-09-04 20:16:56 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-04 20:16:56 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-04 20:16:56 - INFO - 127.0.0.1 - - [04/Sep/2023 20:16:56] "GET /files/12/3.txt HTTP/1.1" 200 -
+2023-09-04 20:19:22 - INFO - 127.0.0.1 - - [04/Sep/2023 20:19:22] "[35m[1mPOST /files/newdata.csv HTTP/1.1[0m" 500 -
+2023-09-04 20:19:47 - DEBUG - [^] load_file
+2023-09-04 20:19:47 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-04 20:19:48 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-04 20:19:48 - INFO - 127.0.0.1 - - [04/Sep/2023 20:19:48] "GET /files/newdata.csv HTTP/1.1" 200 -
+2023-09-04 20:25:50 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 20:25:50 - INFO -  * Restarting with stat
+2023-09-04 20:25:51 - DEBUG - [^] load_file
+2023-09-04 20:25:51 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:25:51 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:25:51 - WARNING -  * Debugger is active!
+2023-09-04 20:25:51 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:26:09 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 20:26:09 - INFO -  * Restarting with stat
+2023-09-04 20:26:10 - DEBUG - [^] load_file
+2023-09-04 20:26:10 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:26:10 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:26:10 - WARNING -  * Debugger is active!
+2023-09-04 20:26:10 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:26:16 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 20:26:16 - INFO -  * Restarting with stat
+2023-09-04 20:26:26 - DEBUG - [^] load_file
+2023-09-04 20:26:26 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:26:26 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:26:26 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.17:5000
+2023-09-04 20:26:26 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-04 20:26:26 - INFO -  * Restarting with stat
+2023-09-04 20:26:27 - DEBUG - [^] load_file
+2023-09-04 20:26:27 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:26:27 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:26:27 - WARNING -  * Debugger is active!
+2023-09-04 20:26:27 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:26:45 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 20:26:45 - INFO -  * Restarting with stat
+2023-09-04 20:26:46 - DEBUG - [^] load_file
+2023-09-04 20:26:46 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:26:46 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:26:46 - WARNING -  * Debugger is active!
+2023-09-04 20:26:46 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:29:13 - DEBUG - [^] load_file
+2023-09-04 20:29:13 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=files/newdata.csv
+2023-09-04 20:29:13 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\files/newdata.csv
+2023-09-04 20:29:13 - DEBUG - load_file: File not found at C:\Users\Ryan\Documents\GitHub\logec-suite\Server\files/newdata.csv
+2023-09-04 20:29:13 - INFO - 127.0.0.1 - - [04/Sep/2023 20:29:13] "[35m[1mPOST /files/newdata.csv HTTP/1.1[0m" 500 -
+2023-09-04 20:30:04 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 20:30:07 - DEBUG - [^] load_file
+2023-09-04 20:30:09 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=files/newdata.csv
+2023-09-04 20:30:09 - INFO -  * Restarting with stat
+2023-09-04 20:30:09 - DEBUG - [^] load_file
+2023-09-04 20:30:09 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:30:09 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:30:09 - WARNING -  * Debugger is active!
+2023-09-04 20:30:09 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:30:11 - DEBUG - [^] load_file
+2023-09-04 20:30:11 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:30:11 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:30:11 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.17:5000
+2023-09-04 20:30:11 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-04 20:30:11 - INFO -  * Restarting with stat
+2023-09-04 20:30:12 - DEBUG - [^] load_file
+2023-09-04 20:30:12 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:30:12 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:30:12 - WARNING -  * Debugger is active!
+2023-09-04 20:30:12 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:30:13 - DEBUG - [^] load_file
+2023-09-04 20:30:13 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/files/newdata.csv
+2023-09-04 20:30:13 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/files/newdata.csv
+2023-09-04 20:30:13 - DEBUG - load_file: File not found at C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/files/newdata.csv
+2023-09-04 20:30:13 - INFO - 127.0.0.1 - - [04/Sep/2023 20:30:13] "[35m[1mPOST /files/newdata.csv HTTP/1.1[0m" 500 -
+2023-09-04 20:32:26 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 20:32:26 - INFO -  * Restarting with stat
+2023-09-04 20:32:26 - DEBUG - [^] load_file
+2023-09-04 20:32:26 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:32:26 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:32:26 - WARNING -  * Debugger is active!
+2023-09-04 20:32:26 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:32:27 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 20:32:27 - INFO -  * Restarting with stat
+2023-09-04 20:32:28 - DEBUG - [^] load_file
+2023-09-04 20:32:28 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:32:28 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:32:28 - WARNING -  * Debugger is active!
+2023-09-04 20:32:28 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:32:32 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 20:32:32 - INFO -  * Restarting with stat
+2023-09-04 20:32:32 - DEBUG - [^] load_file
+2023-09-04 20:32:32 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:32:32 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:32:32 - WARNING -  * Debugger is active!
+2023-09-04 20:32:32 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:32:42 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-04 20:32:42 - INFO -  * Restarting with stat
+2023-09-04 20:32:42 - DEBUG - [^] load_file
+2023-09-04 20:32:42 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:32:42 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:32:42 - WARNING -  * Debugger is active!
+2023-09-04 20:32:42 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:32:48 - INFO - 127.0.0.1 - - [04/Sep/2023 20:32:48] "[35m[1mPOST /files/newdata.csv HTTP/1.1[0m" 500 -
+2023-09-04 20:33:18 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\Utils\\UtilsHandler.py', reloading
+2023-09-04 20:33:18 - INFO -  * Restarting with stat
+2023-09-04 20:33:19 - DEBUG - [^] load_file
+2023-09-04 20:33:19 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:33:19 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:33:19 - WARNING -  * Debugger is active!
+2023-09-04 20:33:19 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:33:24 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\Utils\\UtilsHandler.py', reloading
+2023-09-04 20:33:24 - INFO -  * Restarting with stat
+2023-09-04 20:33:24 - DEBUG - [^] load_file
+2023-09-04 20:33:24 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:33:24 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:33:24 - WARNING -  * Debugger is active!
+2023-09-04 20:33:24 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:33:38 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\Utils\\UtilsHandler.py', reloading
+2023-09-04 20:33:38 - INFO -  * Restarting with stat
+2023-09-04 20:33:39 - DEBUG - [^] load_file
+2023-09-04 20:33:39 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:33:39 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:33:39 - WARNING -  * Debugger is active!
+2023-09-04 20:33:39 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:33:49 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\Utils\\UtilsHandler.py', reloading
+2023-09-04 20:33:49 - INFO -  * Restarting with stat
+2023-09-04 20:33:49 - DEBUG - [^] load_file
+2023-09-04 20:33:49 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:33:49 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:33:49 - WARNING -  * Debugger is active!
+2023-09-04 20:33:49 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:35:33 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\Utils\\UtilsHandler.py', reloading
+2023-09-04 20:35:33 - INFO -  * Restarting with stat
+2023-09-04 20:35:34 - DEBUG - [^] load_file
+2023-09-04 20:35:34 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:35:34 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:35:34 - WARNING -  * Debugger is active!
+2023-09-04 20:35:34 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:35:36 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\Utils\\UtilsHandler.py', reloading
+2023-09-04 20:35:36 - INFO -  * Restarting with stat
+2023-09-04 20:37:21 - DEBUG - [^] load_file
+2023-09-04 20:37:21 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:37:21 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:37:21 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.17:5000
+2023-09-04 20:37:21 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-04 20:37:21 - INFO -  * Restarting with stat
+2023-09-04 20:37:21 - DEBUG - [^] load_file
+2023-09-04 20:37:21 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-04 20:37:21 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-04 20:37:21 - WARNING -  * Debugger is active!
+2023-09-04 20:37:21 - INFO -  * Debugger PIN: 266-352-027
+2023-09-04 20:37:23 - DEBUG - [^] write_file
+2023-09-04 20:37:23 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/files/newdata.csv
+2023-09-04 20:37:23 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/files/newdata.csv
+2023-09-04 20:37:23 - INFO - 127.0.0.1 - - [04/Sep/2023 20:37:23] "[35m[1mPOST /files/newdata.csv HTTP/1.1[0m" 201 -
+2023-09-04 20:37:50 - DEBUG - [^] load_file
+2023-09-04 20:37:50 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-04 20:37:50 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-04 20:37:50 - INFO - 127.0.0.1 - - [04/Sep/2023 20:37:50] "POST /newdata.csv HTTP/1.1" 200 -
+2023-09-04 20:38:25 - DEBUG - [^] load_file
+2023-09-04 20:38:25 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-04 20:38:25 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-04 20:38:25 - INFO - 127.0.0.1 - - [04/Sep/2023 20:38:25] "POST /newdata.csv HTTP/1.1" 200 -
+2023-09-04 20:40:42 - INFO - 127.0.0.1 - - [04/Sep/2023 20:40:42] "[31m[1mPOST /files/safe.exe HTTP/1.1[0m" 400 -
+2023-09-04 20:41:27 - DEBUG - [^] write_file
+2023-09-04 20:41:27 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/files/safe.exe
+2023-09-04 20:41:27 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/files/safe.exe
+2023-09-04 20:41:27 - INFO - 127.0.0.1 - - [04/Sep/2023 20:41:27] "[35m[1mPOST /files/safe.exe HTTP/1.1[0m" 201 -
+2023-09-04 20:41:50 - DEBUG - [^] write_file
+2023-09-04 20:41:50 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/files/safe.exe
+2023-09-04 20:41:50 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/files/safe.exe
+2023-09-04 20:41:50 - INFO - 127.0.0.1 - - [04/Sep/2023 20:41:50] "[35m[1mPOST /files/safe.exe HTTP/1.1[0m" 201 -
+2023-09-04 20:43:45 - DEBUG - [^] write_file
+2023-09-04 20:43:45 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/files/safe.exe
+2023-09-04 20:43:45 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/files/safe.exe
+2023-09-04 20:43:45 - INFO - 127.0.0.1 - - [04/Sep/2023 20:43:45] "[35m[1mPOST /files/safe.exe HTTP/1.1[0m" 201 -

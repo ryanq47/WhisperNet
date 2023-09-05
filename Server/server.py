@@ -168,16 +168,37 @@ class ControlServer:
             ControlServer.page_not_found()
 
     ## File Section
-    @app.route(f"/{UrlSc.UPLOAD_BASE_ENDPOINT}/", methods=["GET"])
-    def download_file(filename):
+    # https://docs.faculty.ai/user-guide/apis/flask_apis/flask_file_upload_download.html
+    # by default, http://ip/files/FILENAME
+    @app.route(f"/{UrlSc.UPLOAD_BASE_ENDPOINT}/<path:path>", methods=["GET"])
+    def download_file(path):
         try:
-            return send_from_directory(ControlServer.UrlSc.UPLOAD_FOLDER, filename)
+            ## as attachment downloads it, instead of displaying in browser
+            return send_from_directory(ControlServer.UrlSc.UPLOAD_FOLDER, path, as_attachment=True)
         except Exception as e:
-            ControlServer.page_not_found()
+            #print(e)
+            return ControlServer.page_not_found()
+
+    @app.route(f"/{UrlSc.UPLOAD_BASE_ENDPOINT}/<filename>", methods=["POST"])
+    def post_file(filename):
+        """Upload a file."""
+
+        if "/" in filename:
+            # Return 400 BAD REQUEST
+            return "No Subdirectories allowed", 400
+        
+        Utils.UtilsHandler.write_file(
+            current_path=sys_path,
+            file_path=ControlServer.UrlSc.UPLOAD_FOLDER + "/" + filename,
+            data = request.data
+        )
+
+        # Return 201 CREATED
+        return "", 201
 
     @app.errorhandler(403)
     @app.errorhandler(404)
-    def page_not_found(e):
+    def page_not_found(e=None):
         '''
         Handles all 40X & any try/except errors. Basically it returns a 200
         with a "page not found"
