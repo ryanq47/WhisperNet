@@ -2648,3 +2648,187 @@
 2023-09-04 20:43:45 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/files/safe.exe
 2023-09-04 20:43:45 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/files/safe.exe
 2023-09-04 20:43:45 - INFO - 127.0.0.1 - - [04/Sep/2023 20:43:45] "[35m[1mPOST /files/safe.exe HTTP/1.1[0m" 201 -
+2023-09-05 02:56:29 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 02:56:29 - INFO -  * Restarting with stat
+2023-09-05 02:56:29 - DEBUG - [^] load_file
+2023-09-05 02:56:29 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 02:56:29 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 02:56:29 - WARNING -  * Debugger is active!
+2023-09-05 02:56:29 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 02:57:01 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 02:57:01 - INFO -  * Restarting with stat
+2023-09-05 02:57:01 - DEBUG - [^] load_file
+2023-09-05 02:57:01 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 02:57:01 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 02:57:01 - WARNING -  * Debugger is active!
+2023-09-05 02:57:01 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 02:58:02 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 02:58:02 - INFO -  * Restarting with stat
+2023-09-05 02:58:02 - DEBUG - [^] load_file
+2023-09-05 02:58:02 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 02:58:02 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 02:58:02 - WARNING -  * Debugger is active!
+2023-09-05 02:58:02 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 02:58:15 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 02:58:15 - INFO -  * Restarting with stat
+2023-09-05 02:58:15 - DEBUG - [^] load_file
+2023-09-05 02:58:15 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 02:58:15 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 02:58:15 - WARNING -  * Debugger is active!
+2023-09-05 02:58:15 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 02:58:28 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 02:58:28 - INFO -  * Restarting with stat
+2023-09-05 02:58:28 - DEBUG - [^] load_file
+2023-09-05 02:58:28 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 02:58:28 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 02:58:28 - WARNING -  * Debugger is active!
+2023-09-05 02:58:28 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 02:59:03 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 02:59:03 - INFO -  * Restarting with stat
+2023-09-05 02:59:03 - DEBUG - [^] load_file
+2023-09-05 02:59:03 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 02:59:03 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 02:59:03 - WARNING -  * Debugger is active!
+2023-09-05 02:59:03 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 02:59:19 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 02:59:19 - INFO -  * Restarting with stat
+2023-09-05 02:59:20 - DEBUG - [^] load_file
+2023-09-05 02:59:20 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 02:59:20 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 02:59:20 - WARNING -  * Debugger is active!
+2023-09-05 02:59:20 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 02:59:32 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 02:59:32 - INFO -  * Restarting with stat
+2023-09-05 02:59:32 - DEBUG - [^] load_file
+2023-09-05 02:59:32 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 02:59:32 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 02:59:33 - WARNING -  * Debugger is active!
+2023-09-05 02:59:33 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 02:59:35 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 02:59:35 - INFO -  * Restarting with stat
+2023-09-05 02:59:35 - DEBUG - [^] load_file
+2023-09-05 02:59:35 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 02:59:35 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 02:59:35 - WARNING -  * Debugger is active!
+2023-09-05 02:59:35 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 03:00:53 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 03:00:53 - INFO -  * Restarting with stat
+2023-09-05 03:00:54 - DEBUG - [^] load_file
+2023-09-05 03:00:54 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 03:00:54 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 03:00:54 - WARNING -  * Debugger is active!
+2023-09-05 03:00:54 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 03:01:23 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 03:01:23 - INFO -  * Restarting with stat
+2023-09-05 03:01:23 - DEBUG - [^] load_file
+2023-09-05 03:01:23 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 03:01:23 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 03:01:23 - WARNING -  * Debugger is active!
+2023-09-05 03:01:23 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 03:02:00 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\ErrorDefinitions.py', reloading
+2023-09-05 03:02:00 - INFO -  * Restarting with stat
+2023-09-05 03:02:00 - DEBUG - [^] load_file
+2023-09-05 03:02:00 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 03:02:00 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 03:02:00 - WARNING -  * Debugger is active!
+2023-09-05 03:02:00 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 03:02:20 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 03:02:20 - INFO -  * Restarting with stat
+2023-09-05 03:02:21 - DEBUG - [^] load_file
+2023-09-05 03:02:21 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 03:02:21 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 03:02:21 - WARNING -  * Debugger is active!
+2023-09-05 03:02:21 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 03:02:27 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 03:02:27 - INFO -  * Restarting with stat
+2023-09-05 03:02:28 - DEBUG - [^] load_file
+2023-09-05 03:02:28 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 03:02:28 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 03:02:28 - WARNING -  * Debugger is active!
+2023-09-05 03:02:28 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 03:02:36 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 03:02:36 - INFO -  * Restarting with stat
+2023-09-05 03:02:36 - DEBUG - [^] load_file
+2023-09-05 03:02:36 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 03:02:36 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 03:02:36 - WARNING -  * Debugger is active!
+2023-09-05 03:02:36 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 03:04:21 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 03:04:21 - INFO -  * Restarting with stat
+2023-09-05 03:04:22 - DEBUG - [^] load_file
+2023-09-05 03:04:22 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 03:04:22 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 03:04:22 - WARNING -  * Debugger is active!
+2023-09-05 03:04:22 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 03:05:08 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 03:05:08 - INFO -  * Restarting with stat
+2023-09-05 03:05:08 - DEBUG - [^] load_file
+2023-09-05 03:05:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 03:05:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 03:05:08 - WARNING -  * Debugger is active!
+2023-09-05 03:05:08 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 03:05:19 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 03:05:19 - INFO -  * Restarting with stat
+2023-09-05 03:05:20 - DEBUG - [^] load_file
+2023-09-05 03:05:20 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 03:05:20 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 03:05:20 - WARNING -  * Debugger is active!
+2023-09-05 03:05:20 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 03:05:26 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 03:05:26 - INFO -  * Restarting with stat
+2023-09-05 03:05:27 - DEBUG - [^] load_file
+2023-09-05 03:05:27 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 03:05:27 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 03:05:27 - WARNING -  * Debugger is active!
+2023-09-05 03:05:27 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 03:05:56 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 03:05:56 - INFO -  * Restarting with stat
+2023-09-05 03:05:57 - DEBUG - [^] load_file
+2023-09-05 03:05:57 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 03:05:57 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 03:05:57 - WARNING -  * Debugger is active!
+2023-09-05 03:05:57 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 03:06:17 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 03:06:17 - INFO -  * Restarting with stat
+2023-09-05 03:06:17 - DEBUG - [^] load_file
+2023-09-05 03:06:17 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 03:06:17 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 03:06:17 - WARNING -  * Debugger is active!
+2023-09-05 03:06:17 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 03:06:56 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 03:06:56 - INFO -  * Restarting with stat
+2023-09-05 03:06:56 - DEBUG - [^] load_file
+2023-09-05 03:06:56 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 03:06:56 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 03:06:56 - WARNING -  * Debugger is active!
+2023-09-05 03:06:56 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 03:07:06 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 03:07:06 - INFO -  * Restarting with stat
+2023-09-05 03:07:06 - DEBUG - [^] load_file
+2023-09-05 03:07:06 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 03:07:06 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 03:07:06 - WARNING -  * Debugger is active!
+2023-09-05 03:07:06 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 03:07:17 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 03:07:17 - INFO -  * Restarting with stat
+2023-09-05 03:07:18 - DEBUG - [^] load_file
+2023-09-05 03:07:18 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 03:07:18 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 03:07:18 - WARNING -  * Debugger is active!
+2023-09-05 03:07:18 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 03:07:53 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 03:07:53 - INFO -  * Restarting with stat
+2023-09-05 03:07:54 - DEBUG - [^] load_file
+2023-09-05 03:07:54 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 03:07:54 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 03:07:54 - WARNING -  * Debugger is active!
+2023-09-05 03:07:54 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 03:11:04 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\EncryptionHandler.py', reloading
+2023-09-05 03:11:04 - INFO -  * Restarting with stat
+2023-09-05 03:11:05 - DEBUG - [^] load_file
+2023-09-05 03:11:05 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-05 03:11:05 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-05 03:11:05 - WARNING -  * Debugger is active!
+2023-09-05 03:11:05 - INFO -  * Debugger PIN: 266-352-027
+2023-09-05 03:12:41 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\AuthenticationHandler.py', reloading
+2023-09-05 03:12:41 - INFO -  * Restarting with stat

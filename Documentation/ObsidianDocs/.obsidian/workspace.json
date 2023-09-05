@@ -94,8 +94,47 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "24299df110074203",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1. Task Tracker/Tasks/Server Authentication.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true
+            }
+          },
+          {
+            "id": "a574fc7acdff64d0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Global Struct.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "67b47b30238879f2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1. Task Tracker/Tasks/Server Authentication.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 9
       }
     ],
     "direction": "vertical"
@@ -161,7 +200,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md",
+                "file": "1. Task Tracker/Tasks/Server Authentication.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -178,7 +217,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md",
+                "file": "1. Task Tracker/Tasks/Server Authentication.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -201,7 +240,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md"
+                "file": "1. Task Tracker/Tasks/Server Authentication.md"
               }
             }
           }
@@ -223,11 +262,14 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "0e750e7f5d61a3f9",
+  "active": "67b47b30238879f2",
   "lastOpenFiles": [
+    "1. Task Tracker/Task Tracker.md",
+    "Global Struct.md",
+    "1. Task Tracker/Tasks/Server Authentication.md",
+    "1. Task Tracker/Tasks/File Upload & Downlaod.md",
     "API Authentication.md",
     "Untitled.md",
-    "1. Task Tracker/Task Tracker.md",
     "1. Task Tracker/Tasks/Rest implementation.md",
     "Server/Security Testing/URL Fuzzing & Discovery.md",
     "Pasted image 20230904190836.png",
@@ -236,7 +278,6 @@
     "Server/Modules/ApiEngine/Endpoint Specifics/404 & Others.md",
     "Server/Security Testing",
     "Server/Modules/ApiEngine/Endpoint Specifics/Home endpoint.md",
-    "1. Task Tracker/Tasks/File Upload & Downlaod.md",
     "1. Task Tracker/Tasks/Untitled.md",
     "1. Task Tracker/Tasks/Socket Timeouts.md",
     "1. Task Tracker/Tasks/Move client to Rest.md",
@@ -255,8 +296,6 @@
     "Server/API & Endpoints.md",
     "Server/Modules/Error Handling/Untitled.md",
     "Server/Modules/Error Handling",
-    "1. Task Tracker/Tasks/Schema (Yaml).md",
-    "1. Task Tracker/Tasks/Untitled 1.md",
     "Server/Modules/ApiEngine/Endpoint Specifics",
     "Server/Visual Progress.canvas",
     "Server/Modules/ApiEngine",

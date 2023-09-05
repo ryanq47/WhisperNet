@@ -1,113 +1,55 @@
-## Notes, everything in here must be bulletproof. lots of redundancy & try/excepts for that reason
 import random
 import Utils.UtilsHandler
 import logging
 import inspect
-
-function_debug_symbol = "[^]"
+import SecurityEngine.EncryptionHandler
 
 class Authentication:
+    '''
+    The authentication interface for the whole platform. Pulls from the user.db database, and can be used to authentcation
+    with whatever wild methods I come up with in the future. Flexible on purpose
     
-    ## OLD - Not used
-    @staticmethod
-    def password_eval(password = None, server_password = None) -> bool:
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-
-        """
-        The password eval function. returns true if successful. Will be encrypted when I get around to that
-
-        password (str): the password given by the client
-        """
-        try:
-            ## decrypt pass
-            _password = str(password)
-            if _password == None:
-                #move to logging eventually
-                #logging.debug("[Server (password_eval)] Password with value of 'None' passed to the password eval function")
-                print("[Server (password_eval)] Password with value of 'None' passed to the password eval function")
-        
-            ## the else covers my ass for any potential injection/rifraff with the None parameter
-            else:
-                if _password == server_password:
-                    return True
-                else:
-                    return False
-        except Exception as e:
-            print(f"[Server (password_eval)] Error: {e}")
-            return False
-        
-    @staticmethod
-    def generate_random_cookie():
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-
-        try:
-            ## temp hardcode
-            client_profile = Utils.UtilsHandler.yaml_load(yaml_file=r"Config\ClientProfiles\default.yaml")
-
-            char_string = client_profile["Authentication"]["Cookies"]["Characters"]
-            min_length  = client_profile["Authentication"]["Cookies"]["MinLength"]
-            max_length  = client_profile["Authentication"]["Cookies"]["MaxLength"]
-
-            random_cookie = ''.join(random.SystemRandom().choice(char_string) for _ in range(min_length, max_length))
-            return random_cookie
-        except Exception as e:
-            logging.debug(f"[generate_random_cookie] {e}")
-            return False
-    
-    @staticmethod
-    def validate_password(password):
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-
-        client_profile = Utils.UtilsHandler.yaml_load(yaml_file=r"Config\ClientProfiles\default.yaml")
+    '''
+    def authentication_eval():
         '''
-        Load password from somewhere
+        Checks if user is authorized for access
 
-        if server_password == password:
-            return True
+        Checks:
+            - Username
+            - Password
 
-        else:
-            return False
-        
-        
         '''
-        server_password = client_profile["Authentication"]["Server"]["Password"]
 
-        ## need validation that the server_passwrod is actually someting
+        ## Check username
 
-        if server_password == password:
-            return True
-        else:
-            return False
-        
-    @staticmethod
-    def validate_cookie(request_cookie = None, valid_cookie = None):
+        ## Check pass
+
+    def _validate_username() -> bool:
         '''
-        A comparison cookie tool. Returns True of the request cookie == valid_cookie
-
-        request_cookie: the cookie from the requester/client
-        valid_cookie: the current valid cookie for the client. Stored in a class instance
+        Validates a username
         '''
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
-        ## preventing heckers from gaining access by sending a blank cookie
-        if request_cookie == None or valid_cookie == None:
-            return False
+        ## conenct to db
+            ## see if user exists
 
-        if request_cookie == valid_cookie:
-            logging.debug("[*] Cookie accepted")
+    def _validate_password(password=None, username=None) -> bool:
+        '''
+        Validates a username
+        '''
+
+        ## connect to db
+
+        ## get username's password blob
+
+        if SecurityEngine.EncryptionHandler.Hashing.bcrypt_hash_and_compare(
+
+        ):
             return True
         
-        else:
-            logging.warning("Cookie rejected bitch -- This is odd.")
-            return False
+        return False
 
 
-
-class Cookie:
-    """
-    A class for making a cookie object. Holds data about valid cookies
-    """
-    def __init__(self):
-        self.valid_cookie = None
-
-#print(Authentication.generate_random_cookie())
+class UserManagement:
+    '''
+    The class for handling user shit. I.e. creating, deleting, modifying lol
+    '''
