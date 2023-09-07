@@ -179,12 +179,27 @@ class ControlServer:
         ## need a guard statement here to make sure user & pass actually equal something
 
         if SecurityEngine.AuthenticationHandler.Authentication.authentication_eval(
-            username="admin",
-            password="1234",
+            username=username,
+            password=password,
             path_struct=Data.path_struct
         ):
             access_token = create_access_token(identity="username")
             return {'access_token': access_token}, 200
+        else:
+            return ControlServer.page_not_found()
+
+    ## Create users
+    @app.route(f"/createuser", methods=["POST"])
+    def create_user():
+        username = request.json.get('username')
+        password = request.json.get('password')
+
+        if  SecurityEngine.AuthenticationHandler.UserManagement.create_user(
+            username=username,
+            password=password,
+            path_struct=Data.path_struct
+        ):
+            return f"user created"
         else:
             return ControlServer.page_not_found()
 
@@ -246,7 +261,6 @@ class ControlServer:
     ## any bad auth returns this
     @app.errorhandler(exceptions.NoAuthorizationError)
     @app.errorhandler(401)
-    @app.errorhandler(402)
     @app.errorhandler(403)
     @app.errorhandler(404)
     @app.errorhandler(405) # Method not allowed

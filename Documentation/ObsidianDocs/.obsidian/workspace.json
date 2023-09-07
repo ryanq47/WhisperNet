@@ -96,20 +96,6 @@
             }
           },
           {
-            "id": "24299df110074203",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1. Task Tracker/Tasks/Server Authentication.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true
-            }
-          },
-          {
             "id": "a574fc7acdff64d0",
             "type": "leaf",
             "state": {
@@ -134,19 +120,35 @@
             }
           },
           {
-            "id": "57cf3f4565bdb1c3",
+            "id": "24299df110074203",
             "type": "leaf",
+            "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Server/Modules/ApiEngine/Endpoint Specifics/login.md",
+                "file": "1. Task Tracker/Tasks/Server Authentication.md",
                 "mode": "source",
                 "source": false
-              }
+              },
+              "pinned": true
+            }
+          },
+          {
+            "id": "57cf3f4565bdb1c3",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Server/Modules/ApiEngine/Endpoint Specifics/login & User management.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true
             }
           }
         ],
-        "currentTab": 10
+        "currentTab": 9
       }
     ],
     "direction": "vertical"
@@ -212,7 +214,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Modules/ApiEngine/Endpoint Specifics/login.md",
+                "file": "1. Task Tracker/Tasks/Server Authentication.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -229,7 +231,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Modules/ApiEngine/Endpoint Specifics/login.md",
+                "file": "1. Task Tracker/Tasks/Server Authentication.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -252,7 +254,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Modules/ApiEngine/Endpoint Specifics/login.md"
+                "file": "1. Task Tracker/Tasks/Server Authentication.md"
               }
             }
           }
@@ -274,10 +276,10 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "57cf3f4565bdb1c3",
+  "active": "24299df110074203",
   "lastOpenFiles": [
+    "Server/Modules/ApiEngine/Endpoint Specifics/login & User management.md",
     "1. Task Tracker/Tasks/Server Authentication.md",
-    "Server/Modules/ApiEngine/Endpoint Specifics/login.md",
     "Data Struct.md",
     "1. Task Tracker/Task Tracker.md",
     "Server/Globals/Overview.md",

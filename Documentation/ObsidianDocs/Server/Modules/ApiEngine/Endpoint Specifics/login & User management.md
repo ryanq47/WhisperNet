@@ -21,3 +21,11 @@ The JSON format should be this:
     "password": "1234"
 }
 ```
+
+
+
+## Creating Users
+
+
+
+## Deleting users

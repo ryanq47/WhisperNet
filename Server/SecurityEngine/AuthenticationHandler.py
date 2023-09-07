@@ -110,3 +110,34 @@ class UserManagement:
     '''
     The class for handling user shit. I.e. creating, deleting, modifying lol
     '''
+    @staticmethod
+    def create_user(path_struct = None, username = None, password = None):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        try:
+            server_absolute_path = path_struct.sys_path
+            db_relative_path = "DataBases/users.db"
+            db_absolute_path = os.path.join(server_absolute_path, db_relative_path)
+
+
+            db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
+                db_path=db_absolute_path
+            )
+
+            password_blob =  SecurityEngine.EncryptionHandler.Hashing.bcrypt_hash(
+                data = password
+            )
+
+            if Utils.GuardClauses.guard_t_f_check(password_blob is None, "[*] password_blob is none, error occured during hashing"):
+                return False
+
+            if db_instance.create_user(
+                username = username,
+                password_blob = password_blob,
+            ):
+                return True
+        
+        except Exception as e:
+            logging.debug(f"Could not connect to DB: {e}")
+        
+        return False
+  

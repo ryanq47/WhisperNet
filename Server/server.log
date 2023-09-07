@@ -2592,3 +2592,388 @@
 2023-09-07 12:36:03 - DEBUG - [^] load_file
 2023-09-07 12:36:03 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
 2023-09-07 12:36:03 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:29:31 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:29:31 - DEBUG - [^] load_file
+2023-09-07 16:29:31 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:29:31 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:29:39 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:29:39 - DEBUG - [^] load_file
+2023-09-07 16:29:39 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:29:39 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:29:39 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-07 16:29:39 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-07 16:29:39 - INFO -  * Restarting with stat
+2023-09-07 16:29:40 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:29:40 - DEBUG - [^] load_file
+2023-09-07 16:29:40 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:29:40 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:29:40 - WARNING -  * Debugger is active!
+2023-09-07 16:29:40 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:29:47 - DEBUG - [^] load_file
+2023-09-07 16:29:47 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-07 16:29:47 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-07 16:29:47 - INFO - 127.0.0.1 - - [07/Sep/2023 16:29:47] "GET /createuser HTTP/1.1" 200 -
+2023-09-07 16:29:47 - DEBUG - [^] load_file
+2023-09-07 16:29:47 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-07 16:29:47 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-07 16:29:47 - INFO - 127.0.0.1 - - [07/Sep/2023 16:29:47] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-07 16:30:19 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:30:19 - DEBUG - [^] load_file
+2023-09-07 16:30:19 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:30:19 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:30:19 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-07 16:30:19 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-07 16:30:19 - INFO -  * Restarting with stat
+2023-09-07 16:30:19 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:30:20 - DEBUG - [^] load_file
+2023-09-07 16:30:20 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:30:20 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:30:20 - WARNING -  * Debugger is active!
+2023-09-07 16:30:20 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:30:23 - DEBUG - [^] load_file
+2023-09-07 16:30:23 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-07 16:30:23 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-07 16:30:23 - INFO - 127.0.0.1 - - [07/Sep/2023 16:30:23] "GET /createuser HTTP/1.1" 200 -
+2023-09-07 16:30:23 - DEBUG - [^] load_file
+2023-09-07 16:30:23 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-07 16:30:23 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-07 16:30:23 - INFO - 127.0.0.1 - - [07/Sep/2023 16:30:23] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-07 16:31:25 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\AuthenticationHandler.py', reloading
+2023-09-07 16:31:25 - INFO -  * Restarting with stat
+2023-09-07 16:31:26 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:31:26 - DEBUG - [^] load_file
+2023-09-07 16:31:26 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:31:26 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:31:26 - WARNING -  * Debugger is active!
+2023-09-07 16:31:26 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:31:30 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:31:31 - DEBUG - [^] load_file
+2023-09-07 16:31:31 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:31:31 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:31:31 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-07 16:31:31 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-07 16:31:31 - INFO -  * Restarting with stat
+2023-09-07 16:31:31 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:31:31 - DEBUG - [^] load_file
+2023-09-07 16:31:31 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:31:31 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:31:31 - WARNING -  * Debugger is active!
+2023-09-07 16:31:31 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:31:35 - DEBUG - [^] load_file
+2023-09-07 16:31:35 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-07 16:31:35 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-07 16:31:35 - INFO - 127.0.0.1 - - [07/Sep/2023 16:31:35] "GET /createuser HTTP/1.1" 200 -
+2023-09-07 16:31:35 - DEBUG - [^] load_file
+2023-09-07 16:31:35 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-07 16:31:35 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-07 16:31:35 - INFO - 127.0.0.1 - - [07/Sep/2023 16:31:35] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-07 16:31:59 - DEBUG - [^] create_user
+2023-09-07 16:31:59 - DEBUG - [^] connect_to_db
+2023-09-07 16:31:59 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:31:59 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:31:59 - DEBUG - [^] create_user
+2023-09-07 16:31:59 - INFO - 127.0.0.1 - - [07/Sep/2023 16:31:59] "POST /createuser HTTP/1.1" 200 -
+2023-09-07 16:32:22 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-07 16:32:22 - INFO -  * Restarting with stat
+2023-09-07 16:32:23 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:32:23 - DEBUG - [^] load_file
+2023-09-07 16:32:23 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:32:23 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:32:23 - WARNING -  * Debugger is active!
+2023-09-07 16:32:23 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:32:29 - DEBUG - [^] create_user
+2023-09-07 16:32:29 - DEBUG - [^] connect_to_db
+2023-09-07 16:32:29 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:32:29 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:32:29 - DEBUG - [^] create_user
+2023-09-07 16:32:29 - INFO - 127.0.0.1 - - [07/Sep/2023 16:32:29] "POST /createuser HTTP/1.1" 200 -
+2023-09-07 16:33:14 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-07 16:33:14 - INFO -  * Restarting with stat
+2023-09-07 16:33:14 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:33:14 - DEBUG - [^] load_file
+2023-09-07 16:33:14 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:33:14 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:33:14 - WARNING -  * Debugger is active!
+2023-09-07 16:33:14 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:33:22 - DEBUG - [^] authentication_eval
+2023-09-07 16:33:31 - DEBUG - [^] connect_to_db
+2023-09-07 16:33:31 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:33:31 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:33:31 - DEBUG - [^] get_username
+2023-09-07 16:33:31 - DEBUG - [^] load_file
+2023-09-07 16:33:31 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-07 16:33:31 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-07 16:33:31 - INFO - 127.0.0.1 - - [07/Sep/2023 16:33:31] "POST /login HTTP/1.1" 200 -
+2023-09-07 16:33:34 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:33:34 - DEBUG - [^] load_file
+2023-09-07 16:33:34 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:33:34 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:33:34 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-07 16:33:34 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-07 16:33:34 - INFO -  * Restarting with stat
+2023-09-07 16:33:34 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:33:34 - DEBUG - [^] load_file
+2023-09-07 16:33:34 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:33:34 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:33:34 - WARNING -  * Debugger is active!
+2023-09-07 16:33:34 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:33:36 - DEBUG - [^] authentication_eval
+2023-09-07 16:33:36 - DEBUG - [^] connect_to_db
+2023-09-07 16:33:36 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:33:36 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:33:36 - DEBUG - [^] get_username
+2023-09-07 16:33:36 - DEBUG - [^] load_file
+2023-09-07 16:33:36 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-07 16:33:36 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-07 16:33:36 - INFO - 127.0.0.1 - - [07/Sep/2023 16:33:36] "POST /login HTTP/1.1" 200 -
+2023-09-07 16:33:41 - DEBUG - [^] authentication_eval
+2023-09-07 16:33:41 - DEBUG - [^] connect_to_db
+2023-09-07 16:33:41 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:33:41 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:33:41 - DEBUG - [^] get_username
+2023-09-07 16:33:41 - DEBUG - [^] _validate_password
+2023-09-07 16:33:41 - DEBUG - [^] get_password_blob
+2023-09-07 16:33:42 - INFO - Successful Login: 'admin':'1234'
+2023-09-07 16:33:42 - INFO - 127.0.0.1 - - [07/Sep/2023 16:33:42] "POST /login HTTP/1.1" 200 -
+2023-09-07 16:34:41 - DEBUG - [^] create_user
+2023-09-07 16:34:41 - DEBUG - [^] connect_to_db
+2023-09-07 16:34:41 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:34:41 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:34:41 - DEBUG - [^] create_user
+2023-09-07 16:34:41 - INFO - 127.0.0.1 - - [07/Sep/2023 16:34:41] "POST /createuser HTTP/1.1" 200 -
+2023-09-07 16:35:32 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\DataEngine\\AuthenticationDBHandler.py', reloading
+2023-09-07 16:35:32 - INFO -  * Restarting with stat
+2023-09-07 16:35:32 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:35:33 - DEBUG - [^] load_file
+2023-09-07 16:35:33 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:35:33 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:35:33 - WARNING -  * Debugger is active!
+2023-09-07 16:35:33 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:35:41 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:35:41 - DEBUG - [^] load_file
+2023-09-07 16:35:41 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:35:41 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:35:41 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-07 16:35:41 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-07 16:35:41 - INFO -  * Restarting with stat
+2023-09-07 16:35:42 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:35:42 - DEBUG - [^] load_file
+2023-09-07 16:35:42 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:35:42 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:35:42 - WARNING -  * Debugger is active!
+2023-09-07 16:35:42 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:35:44 - DEBUG - [^] create_user
+2023-09-07 16:35:44 - DEBUG - [^] connect_to_db
+2023-09-07 16:35:44 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:35:44 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:35:44 - DEBUG - [^] create_user
+2023-09-07 16:35:44 - DEBUG - Could not connect to DB: 'sqlite3.Cursor' object has no attribute 'commit'
+2023-09-07 16:35:44 - DEBUG - [^] load_file
+2023-09-07 16:35:44 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-07 16:35:44 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-07 16:35:44 - INFO - 127.0.0.1 - - [07/Sep/2023 16:35:44] "POST /createuser HTTP/1.1" 200 -
+2023-09-07 16:36:09 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\DataEngine\\AuthenticationDBHandler.py', reloading
+2023-09-07 16:36:09 - INFO -  * Restarting with stat
+2023-09-07 16:36:10 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:36:10 - DEBUG - [^] load_file
+2023-09-07 16:36:10 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:36:10 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:36:10 - WARNING -  * Debugger is active!
+2023-09-07 16:36:10 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:36:14 - DEBUG - [^] create_user
+2023-09-07 16:36:14 - DEBUG - [^] connect_to_db
+2023-09-07 16:36:14 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:36:14 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:36:14 - DEBUG - [^] create_user
+2023-09-07 16:36:14 - INFO - 127.0.0.1 - - [07/Sep/2023 16:36:14] "POST /createuser HTTP/1.1" 200 -
+2023-09-07 16:36:26 - DEBUG - [^] create_user
+2023-09-07 16:36:26 - DEBUG - [^] connect_to_db
+2023-09-07 16:36:26 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:36:26 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:36:26 - DEBUG - [^] create_user
+2023-09-07 16:36:26 - INFO - 127.0.0.1 - - [07/Sep/2023 16:36:26] "POST /createuser HTTP/1.1" 200 -
+2023-09-07 16:37:20 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\DataEngine\\AuthenticationDBHandler.py', reloading
+2023-09-07 16:37:20 - INFO -  * Restarting with stat
+2023-09-07 16:37:20 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:37:21 - DEBUG - [^] load_file
+2023-09-07 16:37:21 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:37:21 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:37:21 - WARNING -  * Debugger is active!
+2023-09-07 16:37:21 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:37:33 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\DataEngine\\AuthenticationDBHandler.py', reloading
+2023-09-07 16:37:33 - INFO -  * Restarting with stat
+2023-09-07 16:37:34 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:37:34 - DEBUG - [^] load_file
+2023-09-07 16:37:34 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:37:34 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:37:34 - WARNING -  * Debugger is active!
+2023-09-07 16:37:34 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:37:43 - DEBUG - [^] create_user
+2023-09-07 16:37:43 - DEBUG - [^] connect_to_db
+2023-09-07 16:37:43 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:37:43 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:37:43 - DEBUG - [^] create_user
+2023-09-07 16:37:43 - INFO - 127.0.0.1 - - [07/Sep/2023 16:37:43] "POST /createuser HTTP/1.1" 200 -
+2023-09-07 16:37:47 - DEBUG - [^] create_user
+2023-09-07 16:37:47 - DEBUG - [^] connect_to_db
+2023-09-07 16:37:47 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:37:47 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:37:47 - DEBUG - [^] create_user
+2023-09-07 16:37:47 - INFO - 127.0.0.1 - - [07/Sep/2023 16:37:47] "POST /createuser HTTP/1.1" 200 -
+2023-09-07 16:39:22 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\DataEngine\\AuthenticationDBHandler.py', reloading
+2023-09-07 16:39:22 - INFO -  * Restarting with stat
+2023-09-07 16:39:23 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:39:23 - DEBUG - [^] load_file
+2023-09-07 16:39:23 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:39:23 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:39:23 - WARNING -  * Debugger is active!
+2023-09-07 16:39:23 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:40:07 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\DataEngine\\AuthenticationDBHandler.py', reloading
+2023-09-07 16:40:07 - INFO -  * Restarting with stat
+2023-09-07 16:40:07 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:40:08 - DEBUG - [^] load_file
+2023-09-07 16:40:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:40:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:40:08 - WARNING -  * Debugger is active!
+2023-09-07 16:40:08 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:40:10 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:40:10 - DEBUG - [^] load_file
+2023-09-07 16:40:10 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:40:10 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:40:10 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-07 16:40:10 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-07 16:40:10 - INFO -  * Restarting with stat
+2023-09-07 16:40:10 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:40:10 - DEBUG - [^] load_file
+2023-09-07 16:40:10 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:40:10 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:40:10 - WARNING -  * Debugger is active!
+2023-09-07 16:40:10 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:40:15 - DEBUG - [^] create_user
+2023-09-07 16:40:15 - DEBUG - [^] connect_to_db
+2023-09-07 16:40:15 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:40:15 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:40:16 - DEBUG - [^] create_user
+2023-09-07 16:40:16 - INFO - 127.0.0.1 - - [07/Sep/2023 16:40:16] "POST /createuser HTTP/1.1" 200 -
+2023-09-07 16:40:17 - DEBUG - [^] create_user
+2023-09-07 16:40:17 - DEBUG - [^] connect_to_db
+2023-09-07 16:40:17 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:40:17 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:40:18 - DEBUG - [^] create_user
+2023-09-07 16:40:18 - INFO - 127.0.0.1 - - [07/Sep/2023 16:40:18] "POST /createuser HTTP/1.1" 200 -
+2023-09-07 16:40:27 - DEBUG - [^] create_user
+2023-09-07 16:40:27 - DEBUG - [^] connect_to_db
+2023-09-07 16:40:27 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:40:27 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:40:27 - DEBUG - [^] create_user
+2023-09-07 16:40:27 - INFO - 127.0.0.1 - - [07/Sep/2023 16:40:27] "POST /createuser HTTP/1.1" 200 -
+2023-09-07 16:40:35 - DEBUG - [^] create_user
+2023-09-07 16:40:35 - DEBUG - [^] connect_to_db
+2023-09-07 16:40:35 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:40:35 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:40:35 - DEBUG - [^] create_user
+2023-09-07 16:40:35 - INFO - 127.0.0.1 - - [07/Sep/2023 16:40:35] "POST /createuser HTTP/1.1" 200 -
+2023-09-07 16:42:12 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\DataEngine\\AuthenticationDBHandler.py', reloading
+2023-09-07 16:42:12 - INFO -  * Restarting with stat
+2023-09-07 16:42:13 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:42:13 - DEBUG - [^] load_file
+2023-09-07 16:42:13 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:42:13 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:42:13 - WARNING -  * Debugger is active!
+2023-09-07 16:42:13 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:42:36 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\DataEngine\\AuthenticationDBHandler.py', reloading
+2023-09-07 16:42:36 - INFO -  * Restarting with stat
+2023-09-07 16:42:36 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:42:36 - DEBUG - [^] load_file
+2023-09-07 16:42:36 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:42:36 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:42:36 - WARNING -  * Debugger is active!
+2023-09-07 16:42:36 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:42:41 - DEBUG - [^] create_user
+2023-09-07 16:42:41 - DEBUG - [^] connect_to_db
+2023-09-07 16:42:41 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:42:41 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-07 16:42:41 - DEBUG - [^] create_user
+2023-09-07 16:42:41 - INFO - 127.0.0.1 - - [07/Sep/2023 16:42:41] "POST /createuser HTTP/1.1" 200 -
+2023-09-07 16:42:58 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\DataEngine\\AuthenticationDBHandler.py', reloading
+2023-09-07 16:42:58 - INFO -  * Restarting with stat
+2023-09-07 16:42:58 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:42:58 - DEBUG - [^] load_file
+2023-09-07 16:42:58 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:42:58 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:42:58 - WARNING -  * Debugger is active!
+2023-09-07 16:42:58 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:43:05 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\DataEngine\\AuthenticationDBHandler.py', reloading
+2023-09-07 16:43:05 - INFO -  * Restarting with stat
+2023-09-07 16:43:05 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:43:06 - DEBUG - [^] load_file
+2023-09-07 16:43:06 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:43:06 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:43:06 - WARNING -  * Debugger is active!
+2023-09-07 16:43:06 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:43:09 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\DataEngine\\AuthenticationDBHandler.py', reloading
+2023-09-07 16:43:09 - INFO -  * Restarting with stat
+2023-09-07 16:43:10 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:43:10 - DEBUG - [^] load_file
+2023-09-07 16:43:10 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:43:10 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:43:10 - WARNING -  * Debugger is active!
+2023-09-07 16:43:10 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:43:23 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\SecurityEngine\\AuthenticationHandler.py', reloading
+2023-09-07 16:43:23 - INFO -  * Restarting with stat
+2023-09-07 16:43:23 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:43:23 - DEBUG - [^] load_file
+2023-09-07 16:43:23 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:43:23 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:43:23 - WARNING -  * Debugger is active!
+2023-09-07 16:43:23 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:43:31 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\DataEngine\\AuthenticationDBHandler.py', reloading
+2023-09-07 16:43:31 - INFO -  * Restarting with stat
+2023-09-07 16:43:32 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:43:32 - DEBUG - [^] load_file
+2023-09-07 16:43:32 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:43:32 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:43:32 - WARNING -  * Debugger is active!
+2023-09-07 16:43:32 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:43:44 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\DataEngine\\AuthenticationDBHandler.py', reloading
+2023-09-07 16:43:44 - INFO -  * Restarting with stat
+2023-09-07 16:43:45 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:43:45 - DEBUG - [^] load_file
+2023-09-07 16:43:45 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:43:45 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:43:45 - WARNING -  * Debugger is active!
+2023-09-07 16:43:45 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:44:00 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\DataEngine\\AuthenticationDBHandler.py', reloading
+2023-09-07 16:44:00 - INFO -  * Restarting with stat
+2023-09-07 16:44:00 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:44:01 - DEBUG - [^] load_file
+2023-09-07 16:44:01 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:44:01 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:44:01 - WARNING -  * Debugger is active!
+2023-09-07 16:44:01 - INFO -  * Debugger PIN: 151-662-093
+2023-09-07 16:44:33 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\DataEngine\\AuthenticationDBHandler.py', reloading
+2023-09-07 16:44:33 - INFO -  * Restarting with stat
+2023-09-07 16:44:33 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-07 16:44:33 - DEBUG - [^] load_file
+2023-09-07 16:44:33 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-07 16:44:33 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-07 16:44:33 - WARNING -  * Debugger is active!
+2023-09-07 16:44:33 - INFO -  * Debugger PIN: 151-662-093

@@ -42,8 +42,11 @@ Latest issue:
 
 ToDO:
 - [ ] Implement user management functions
-	- [ ] create
+	- [x] create
+		- [ ] Needs a healthy error review
+		- [ ] Need to add JWT requiremnet decorator
 	- [ ] delete
+		- [ ] simlar as create but just change to delete
 	- [ ] modify
 - [ ] Get data from POST request (probably just json)
 	- [ ] Figure out how a success/fail response will be handled (hide it in cookies? or just straight up say fail)

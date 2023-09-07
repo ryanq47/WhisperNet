@@ -97,18 +97,25 @@ class AuthenticationSQLDBHandler:
 
         #return pass blob
 
-    def create_user(self, username = None, password_blob = None):
+    def create_user(self, username = None, password_blob = None) -> bool:
         '''
-        Creating a new user
+        Creating a new user. Returns True if successful
         '''
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-        insert_query = f'INSERT INTO users (username, password_hash) VALUES (?, ?)'
-        values = (username,password_blob)
-        self.cursor.execute(insert_query, values)
+        
+        try:
+            insert_query = f'INSERT OR IGNORE INTO users (username, password_hash) VALUES (?, ?)'
+            values = (username,password_blob)
+            self.cursor.execute(insert_query, values)
+            self.dbconn.commit()
+            return True
+        except sqlite3.IntegrityError:
+            logging.warning(f"[*] User {username} already exists!")
+        return False
 
-    def delete_user(self, username = None):
+    def delete_user(self, username = None) -> bool:
         '''
-        Deleting a new user
+        Deleting a user. Returns True if successful
         '''
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
@@ -128,9 +135,9 @@ class AuthenticationSQLDBHandler:
 
         self.cursor.execute(f'''
         CREATE TABLE IF NOT EXISTS stats (
-        username BLOB,
+        username BLOB UNIQUE,
         password_hash BLOB,
-        id BLOB
+        id BLOB UNIQUE
         )
         ''')
         self.cursor.commit()
