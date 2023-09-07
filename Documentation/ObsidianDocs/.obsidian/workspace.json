@@ -115,7 +115,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Global Struct.md",
+                "file": "Data Struct.md",
                 "mode": "source",
                 "source": false
               }
@@ -127,14 +127,14 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1. Task Tracker/Tasks/Server Authentication.md",
+                "file": "Server/Globals/Overview.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 9
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -262,11 +262,13 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "67b47b30238879f2",
+  "active": "24299df110074203",
   "lastOpenFiles": [
-    "1. Task Tracker/Task Tracker.md",
-    "Global Struct.md",
+    "Data Struct.md",
     "1. Task Tracker/Tasks/Server Authentication.md",
+    "1. Task Tracker/Task Tracker.md",
+    "Server/Globals/Overview.md",
+    "Server/Globals",
     "1. Task Tracker/Tasks/File Upload & Downlaod.md",
     "API Authentication.md",
     "Untitled.md",
@@ -294,7 +296,6 @@
     "API Docs.md",
     "Server/Modules/ApiEngine/Process Overview.canvas",
     "Server/API & Endpoints.md",
-    "Server/Modules/Error Handling/Untitled.md",
     "Server/Modules/Error Handling",
     "Server/Modules/ApiEngine/Endpoint Specifics",
     "Server/Visual Progress.canvas",
@@ -310,7 +311,6 @@
     "Clients/Python Client/Dev Docs/MindMaps/System Plugins Map.canvas",
     "2. Bug Tracker/Bugs",
     "Templates",
-    "2. Bug Tracker",
-    "Server/Modules/1. ClientEngine/ClientHandler Docs"
+    "2. Bug Tracker"
   ]
 }

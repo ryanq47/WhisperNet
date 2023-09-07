@@ -29,6 +29,24 @@ Left off working on getting the DB connection coded. AuthenticationHandler will 
 
 The methods are there for those 2, just fill them in
 
+globas is broke. find a way to fix
+- Moved to a struct/class obj that I can pass around
+
+FIXED: password is not being retrieved frmo the DB : ( 
+
+Latest issue:
+- checkpw function being weird, the real one works, butthe one in encryption is beingfunjky
+- also, document the guard clauses, and implement where possbile.
+
+ToDO:
+- [ ] Implement user management functions
+	- [ ] create
+	- [ ] delete
+	- [ ] modify
+- [ ] Get data from POST request (probably just json)
+	- [ ] Figure out how a success/fail response will be handled (hide it in cookies? or just straight up say fail)
+- [ ] Document process/modules
+
 ## Resources
 
 ## MindMap

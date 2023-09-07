@@ -35,6 +35,8 @@ try:
     import Utils.UtilsHandler
     import Utils.KeyGen
     import ApiEngine.ConfigHandler
+    import Utils.DataObjects
+
     ## Error modules
     import ApiEngine.ErrorDefinitions
     import Utils.ErrorDefinitions
@@ -83,6 +85,23 @@ logging.basicConfig(filename='server.log', filemode='a', format='%(asctime)s - %
 if global_debug:
     logging.getLogger().addHandler(logging.StreamHandler())
 
+
+class Data:
+    '''
+    Initizaling the data objects. See documentation for more info &
+    justification on why these exist
+
+    These are singletons, so only one instnace will/should ever be created
+
+    call will Data.varname
+    '''
+    ## Path Struct
+    path_struct = Utils.DataObjects.PathStruct()
+    path_struct.sys_path = sys_path
+
+
+    ## Getting all the paths in the log just in case something fails/is off
+    logging.debug(f'[*] PathStruct.sys_path: {path_struct.sys_path}')
 
 class ListenerController:
     '''
@@ -147,6 +166,19 @@ class ControlServer:
     def agent_base():
         return "agent_base"
     
+    ## login
+    @app.route(f"/{UrlSc.SERVER_LOGIN_ENDPOINT}", methods=["GET"])
+    def server_login():
+        if SecurityEngine.AuthenticationHandler.Authentication.authentication_eval(
+            username="admin",
+            password="1234",
+            path_struct=Data.path_struct
+        ):
+            return "placeholder success"
+        
+        else:
+            return "placeholder failure"
+
     # commands to control the server
     @app.route(f"/{UrlSc.SERVER_BASE_ENDPOINT}", methods=["GET"])
     def server_base():
@@ -219,9 +251,9 @@ class ControlServer:
             return "", 200
 
 
-
-
 if __name__ == "__main__":
+    ## Init data structures
+    Data()
     ControlServer.app.run(host="0.0.0.0", port=5000, debug=True)
     #while True:
         #ListenerController.spawn_listener()

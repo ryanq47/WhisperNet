@@ -17,6 +17,8 @@ class UrlSchema:
 
         self.AGENT_BASE_ENDPOINT         = ""
 
+        self.SERVER_LOGIN_ENDPOINT       = ""
+
         self.UPLOAD_BASE_ENDPOINT        = ""
         self.UPLOAD_FOLDER               = ""
 
@@ -54,6 +56,9 @@ class UrlSchema:
         ## Server
         self.SERVER_BASE_ENDPOINT       = self.yaml_parser["Server"]["Base"]
         SPAWN_TCP_LISTENER_ENDPOINT     = self.yaml_parser["Server"]["SpawnTcpListener"]
+
+        ## Client
+        self.SERVER_LOGIN_ENDPOINT      = self.yaml_parser["Misc"]["Login"]
 
         ## Agent
         self.AGENT_BASE_ENDPOINT        = self.yaml_parser["Agent"]["Base"]

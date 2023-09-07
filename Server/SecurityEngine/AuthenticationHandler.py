@@ -3,6 +3,13 @@ import Utils.UtilsHandler
 import logging
 import inspect
 import SecurityEngine.EncryptionHandler
+import DataEngine.AuthenticationDBHandler
+import os
+import Utils.ErrorDefinitions
+import bcrypt
+import Utils.GuardClauses
+
+function_debug_symbol = "[^]"
 
 class Authentication:
     '''
@@ -10,7 +17,8 @@ class Authentication:
     with whatever wild methods I come up with in the future. Flexible on purpose
     
     '''
-    def authentication_eval():
+    @staticmethod
+    def authentication_eval(username = None, password = None, path_struct = None) -> bool:
         '''
         Checks if user is authorized for access
 
@@ -18,34 +26,83 @@ class Authentication:
             - Username
             - Password
 
+            
+        Dev notes, this is not perfect. Might need some work. It just feels weird
         '''
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
-        ## Check username
+        print(f"User: {username}")
 
-        ## Check pass
+        server_absolute_path = path_struct.sys_path
+        db_relative_path = "DataBases/users.db"
+        db_absolute_path = os.path.join(server_absolute_path, db_relative_path)
 
-    def _validate_username() -> bool:
-        '''
-        Validates a username
-        '''
+        try:
+            db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
+                db_path=db_absolute_path
+            )
 
-        ## conenct to db
-            ## see if user exists
-
-    def _validate_password(password=None, username=None) -> bool:
-        '''
-        Validates a username
-        '''
-
-        ## connect to db
-
-        ## get username's password blob
-
-        if SecurityEngine.EncryptionHandler.Hashing.bcrypt_hash_and_compare(
-
-        ):
-            return True
+            if db_instance.get_username(username=username):
+                if Authentication._validate_password(db_instance=db_instance, username=username, password=password):
+                    return True
+            
+        except Exception as e:
+            # dosen't return anything, could be an issue?
+            ## This could also be show stopper
+            #raise Utils.ErrorDefinitions.GENERAL_ERROR
+            logging.debug(f"Authentication Error: {e}")
         
+        return False
+
+
+
+    @staticmethod
+    def _validate_password(db_instance=None, password=None, username=None) -> bool:
+        '''
+        Validates a username. Private Func,Should not be called from outside this class.
+
+        '''
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        try:
+            if Utils.GuardClauses.guard_t_f_check(username is None, "[*] Username argument is 'None'! Authentication will fail!"):
+                return False
+
+            pass_blob_tuple = db_instance.get_password_blob(username=username)
+            ## have to encode & extract first item from tuple
+            pass_blob = pass_blob_tuple[0].encode()
+
+            #password = password.encode()
+
+            print(f"PassBlob: {pass_blob}")
+            print(f"PassWord: {password}")
+
+
+            if pass_blob == False:
+                logging.debug(f"[*] Could not get password hash for user '{username}' from users.db")
+                return False
+
+            #pass_hash = bcrypt.hashpw(pass_blob.encode('utf-8'), bytes(pass_blob))
+
+            ## get username's password blob
+
+            '''if SecurityEngine.EncryptionHandler.Hashing.bcrypt_hash_and_compare(
+                #entered_data=password,
+                #stored_data=pass_blob
+                entered_data="1234",
+                stored_data="$2b$12$6l17I4n6BUqF3C43ldlg4u8kzCdDCLU/AJBTa44Yi.PGNon5hv3Mu".encode()
+            ):'''
+            if bcrypt.checkpw("1234".encode(), "$2b$12$6l17I4n6BUqF3C43ldlg4u8kzCdDCLU/AJBTa44Yi.PGNon5hv3Mu".encode()):
+
+                print(f"Successful Login: '{username}':'{password}'")
+                return True
+            
+            else:
+                print(f"Bad Login: '{username}':'{password}'")
+        
+        except Exception as e:
+            logging.debug(f"[*] Error: {e}")
+
         return False
 
 

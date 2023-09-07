@@ -3,6 +3,7 @@ import logging
 import inspect
 import Utils.UtilsHandler
 import DataEngine.ErrorDefinitions
+import Utils.GuardClauses
 
 function_debug_symbol = "[^]"
 
@@ -15,13 +16,13 @@ class AuthenticationSQLDBHandler:
     
     '''
 
-    def __init__(self, db_name):
+    def __init__(self, db_path):
         self.dbconn = None
         self.cursor = None
-        self.connect_to_db(db_name)
-        logging.debug(f"[*] Successful DB connection to {db_name}")
+        self.connect_to_db(db_path)
+        logging.debug(f"[*] Successful DB connection to {db_path}")
 
-    def connect_to_db(self, db_name):
+    def connect_to_db(self, db_path):
         '''
         Initiates the connection to the database
 
@@ -32,9 +33,10 @@ class AuthenticationSQLDBHandler:
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
         try:
-            self.dbconn = sqlite3.connect(db_name)
+            self.dbconn = sqlite3.connect(db_path)
             self.cursor = self.dbconn.cursor()
-            logging.debug(f"[DBHandler.connect_to_db()] Successful connection to: {db_name}")
+            logging.debug(f"[DBHandler.connect_to_db()] Successful connection to: {db_path}")
+
 
         except Exception as e:
             raise DataEngine.ErrorDefinitions.GENERAL_ERROR
@@ -45,6 +47,13 @@ class AuthenticationSQLDBHandler:
         Get a username
         
         '''
+
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        # guard clause to check if username is none.
+        if Utils.GuardClauses.guard_t_f_check(username is None, "[*] Username argument is 'None'!"):
+            return False
+
         # check if user exists
         self.cursor.execute(f"SELECT 1 FROM users WHERE username = ?", (username,))
 
@@ -65,15 +74,26 @@ class AuthenticationSQLDBHandler:
 
         Note, may need to add a check for if more than one result is returned
         '''
-        self.cursor.execute(f"SELECT password_hash FROM users WHERE username = ?", (username,))
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
-        password_hash = self.cursor.fetchone()
+        print(username)
 
-        if password_hash:
-            return password_hash
-        
-        else:
+        # guard clause to check if username is none.
+        if Utils.GuardClauses.guard_t_f_check(username is None, "[*] Username argument is 'None'! Authentication will fail!"):
             return False
+
+        try:
+            self.cursor.execute(f"SELECT password_hash FROM users WHERE username = ?", (username,))
+
+            password_hash = self.cursor.fetchone()
+
+            if password_hash:
+                return password_hash
+            
+            else:
+                return False
+        except Exception as e:
+            print(f"[*] Error: {e}")
 
         #return pass blob
 
@@ -81,6 +101,7 @@ class AuthenticationSQLDBHandler:
         '''
         Creating a new user
         '''
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
         insert_query = f'INSERT INTO users (username, password_hash) VALUES (?, ?)'
         values = (username,password_blob)
         self.cursor.execute(insert_query, values)
@@ -89,7 +110,8 @@ class AuthenticationSQLDBHandler:
         '''
         Deleting a new user
         '''
-    
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         delete_query = f'DELETE FROM users WHERE username = ?'
         values = (username)
         self.cursor.execute(delete_query, values)
@@ -102,6 +124,8 @@ class AuthenticationSQLDBHandler:
         pass: blob
         id: BLOB (not sure if needed)
         """
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         self.cursor.execute(f'''
         CREATE TABLE IF NOT EXISTS stats (
         username BLOB,

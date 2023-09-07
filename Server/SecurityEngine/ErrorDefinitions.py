@@ -23,3 +23,4 @@ class GENERAL_ERROR(Exception):
         original_error = exc_value
         logging.debug(f"{calling_function}: {original_error}") # dropping error in log
         super().__init__(f"{calling_function}: {original_error}") # printing to screen
+
