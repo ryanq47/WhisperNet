@@ -21,7 +21,7 @@ class Hashing:
         except:
             raise SecurityEngine.ErrorDefinitions.GENERAL_ERROR
         
-
+    # depracated, being weird
     def bcrypt_hash_and_compare(entered_data=None, stored_data=None) -> bool:
         '''
         compares entered_data to stored_data. 
@@ -34,10 +34,10 @@ class Hashing:
         '''
         try:
             ## Convert to bytes
-            byte_data = entered_data.encode('utf-8')
-            hashed_password = bcrypt.hashpw(byte_data, bcrypt.gensalt())
+            entered_data = entered_data.encode()
+            stored_data = stored_data.encode()
 
-            if bcrypt.checkpw(hashed_password, stored_data):
+            if bcrypt.checkpw(entered_data, stored_data):
                 return True
             
             else:

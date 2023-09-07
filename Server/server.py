@@ -20,6 +20,8 @@ try:
     import sys
     import time
     from flask import Flask, jsonify, request, send_from_directory
+    from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
+
 
 
     # My Modules
@@ -137,6 +139,8 @@ class ListenerController:
 ## Move to own file eventually
 class ControlServer:
     app = Flask(__name__)
+    app.config['JWT_SECRET_KEY'] = 'PLEASECHANGEME'  # Change this to your secret key - also move to a config file
+    jwt = JWTManager(app)
     config_file_path = Utils.UtilsHandler.load_file(current_path=sys_path, file_path=api_config_profile)
     UrlSc = ApiEngine.ConfigHandler.UrlSchema(api_config_profile=config_file_path)
     UrlSc.load()
@@ -167,25 +171,35 @@ class ControlServer:
         return "agent_base"
     
     ## login
-    @app.route(f"/{UrlSc.SERVER_LOGIN_ENDPOINT}", methods=["GET"])
+    @app.route(f"/{UrlSc.SERVER_LOGIN_ENDPOINT}", methods=["POST"])
     def server_login():
+        username = request.json.get('username')
+        password = request.json.get('password')
+
+        ## need a guard statement here to make sure user & pass actually equal something
+
         if SecurityEngine.AuthenticationHandler.Authentication.authentication_eval(
             username="admin",
             password="1234",
             path_struct=Data.path_struct
         ):
-            return "placeholder success"
-        
+            access_token = create_access_token(identity="username")
+            return {'access_token': access_token}, 200
         else:
-            return "placeholder failure"
+            return ControlServer.page_not_found()
 
     # commands to control the server
     @app.route(f"/{UrlSc.SERVER_BASE_ENDPOINT}", methods=["GET"])
+    @jwt_required()
     def server_base():
-        return "server_base"
+        try:
+            return "server_base"
+        except:
+            ControlServer.page_not_found()
     
     ## Listener Section
     @app.route(f"/{UrlSc.SPAWN_TCP_LISTENER_ENDPOINT}", methods=["POST"])
+    @jwt_required()
     def add_todo():
         try:
             # Extract JSON data from the request body
@@ -212,6 +226,7 @@ class ControlServer:
             return ControlServer.page_not_found()
 
     @app.route(f"/{UrlSc.UPLOAD_BASE_ENDPOINT}/<filename>", methods=["POST"])
+    @jwt_required()
     def post_file(filename):
         """Upload a file."""
 
@@ -228,8 +243,13 @@ class ControlServer:
         # Return 201 CREATED
         return "", 201
 
+    ## any bad auth returns this
+    @app.errorhandler(exceptions.NoAuthorizationError)
+    @app.errorhandler(401)
+    @app.errorhandler(402)
     @app.errorhandler(403)
     @app.errorhandler(404)
+    @app.errorhandler(405) # Method not allowed
     def page_not_found(e=None):
         '''
         Handles all 40X & any try/except errors. Basically it returns a 200
@@ -253,8 +273,12 @@ class ControlServer:
 
 if __name__ == "__main__":
     ## Init data structures
+
     Data()
+        
     ControlServer.app.run(host="0.0.0.0", port=5000, debug=True)
+
+        
     #while True:
         #ListenerController.spawn_listener()
         #time.sleep(100)

@@ -38,6 +38,8 @@ Latest issue:
 - checkpw function being weird, the real one works, butthe one in encryption is beingfunjky
 - also, document the guard clauses, and implement where possbile.
 
+!! Documentation for JWT process. Very important to understand the risks & potential pitfalls of using
+
 ToDO:
 - [ ] Implement user management functions
 	- [ ] create

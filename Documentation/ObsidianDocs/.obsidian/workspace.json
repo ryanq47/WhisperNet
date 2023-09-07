@@ -132,9 +132,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "57cf3f4565bdb1c3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Server/Modules/ApiEngine/Endpoint Specifics/login.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 7
+        "currentTab": 10
       }
     ],
     "direction": "vertical"
@@ -200,7 +212,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1. Task Tracker/Tasks/Server Authentication.md",
+                "file": "Server/Modules/ApiEngine/Endpoint Specifics/login.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -217,7 +229,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1. Task Tracker/Tasks/Server Authentication.md",
+                "file": "Server/Modules/ApiEngine/Endpoint Specifics/login.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -240,7 +252,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1. Task Tracker/Tasks/Server Authentication.md"
+                "file": "Server/Modules/ApiEngine/Endpoint Specifics/login.md"
               }
             }
           }
@@ -262,10 +274,11 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "24299df110074203",
+  "active": "57cf3f4565bdb1c3",
   "lastOpenFiles": [
-    "Data Struct.md",
     "1. Task Tracker/Tasks/Server Authentication.md",
+    "Server/Modules/ApiEngine/Endpoint Specifics/login.md",
+    "Data Struct.md",
     "1. Task Tracker/Task Tracker.md",
     "Server/Globals/Overview.md",
     "Server/Globals",
@@ -295,7 +308,6 @@
     "Server/Modules/Error Handling/Error Handling Overview.md",
     "API Docs.md",
     "Server/Modules/ApiEngine/Process Overview.canvas",
-    "Server/API & Endpoints.md",
     "Server/Modules/Error Handling",
     "Server/Modules/ApiEngine/Endpoint Specifics",
     "Server/Visual Progress.canvas",

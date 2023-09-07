@@ -69,10 +69,8 @@ class Authentication:
                 return False
 
             pass_blob_tuple = db_instance.get_password_blob(username=username)
-            ## have to encode & extract first item from tuple
-            pass_blob = pass_blob_tuple[0].encode()
-
-            #password = password.encode()
+            ## blob is first item in tuple
+            pass_blob = pass_blob_tuple[0]
 
             print(f"PassBlob: {pass_blob}")
             print(f"PassWord: {password}")
@@ -82,23 +80,25 @@ class Authentication:
                 logging.debug(f"[*] Could not get password hash for user '{username}' from users.db")
                 return False
 
-            #pass_hash = bcrypt.hashpw(pass_blob.encode('utf-8'), bytes(pass_blob))
-
             ## get username's password blob
-
-            '''if SecurityEngine.EncryptionHandler.Hashing.bcrypt_hash_and_compare(
+            ## [func dep, beign weird
+            '''
+            if SecurityEngine.EncryptionHandler.Hashing.bcrypt_hash_and_compare(
                 #entered_data=password,
                 #stored_data=pass_blob
-                entered_data="1234",
-                stored_data="$2b$12$6l17I4n6BUqF3C43ldlg4u8kzCdDCLU/AJBTa44Yi.PGNon5hv3Mu".encode()
-            ):'''
-            if bcrypt.checkpw("1234".encode(), "$2b$12$6l17I4n6BUqF3C43ldlg4u8kzCdDCLU/AJBTa44Yi.PGNon5hv3Mu".encode()):
+                entered_data=username,
+                stored_data=pass_blob
+            ):
+                print(f"Successful Login: '{username}':'{password}'")'''
 
-                print(f"Successful Login: '{username}':'{password}'")
+            #if bcrypt.checkpw("1234".encode(), "$2b$12$6l17I4n6BUqF3C43ldlg4u8kzCdDCLU/AJBTa44Yi.PGNon5hv3Mu".encode()):
+            
+            if bcrypt.checkpw(password.encode(), pass_blob.encode()):
+                logging.info(f"Successful Login: '{username}':'{password}'")
                 return True
             
             else:
-                print(f"Bad Login: '{username}':'{password}'")
+                logging.warning(f"Bad Login: '{username}':'{password}'")
         
         except Exception as e:
             logging.debug(f"[*] Error: {e}")
