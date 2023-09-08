@@ -45,6 +45,7 @@ ToDO:
 	- [x] create
 		- [ ] Needs a healthy error review
 		- [ ] Need to add JWT requiremnet decorator
+		- [ ] Needs a custom path in the yaml file
 	- [ ] delete
 		- [ ] simlar as create but just change to delete
 	- [ ] modify
