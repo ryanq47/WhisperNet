@@ -40,6 +40,11 @@ Misc:
   Login: "login"
   Schema: "schema"
 
+Management:
+  ## For management tasks
+  CreateUser: "createuser"
+  DeleteUser: "deleteuser"
+
 Home:
   # Base url, ex: http://IP/home
   Base: "home"

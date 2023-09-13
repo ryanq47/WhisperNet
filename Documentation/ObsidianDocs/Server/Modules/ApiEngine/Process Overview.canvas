@@ -11,7 +11,7 @@
 		{"id":"6a28dff2333cbe8e","type":"text","text":"## Start Webserver/Api","x":1240,"y":-1120,"width":320,"height":50},
 		{"id":"0d400bfed95cdd6a","type":"text","text":"## Load Config File","x":1240,"y":-1360,"width":320,"height":60},
 		{"id":"eedee6c9ee70186b","x":-105,"y":580,"width":250,"height":60,"type":"text","text":""},
-		{"id":"6e0f7c88b7ef6c9b","x":-255,"y":-180,"width":400,"height":400,"type":"file","file":"Server/Modules/ApiEngine/Endpoint Specifics/Home endpoint.md"}
+		{"id":"6e0f7c88b7ef6c9b","x":-255,"y":-180,"width":400,"height":400,"type":"file","file":"Server/Modules/ApiEngine/Endpoints/Home endpoint.md"}
 	],
 	"edges":[
 		{"id":"7cd910b50b4c30de","fromNode":"a0b8e734c167745a","fromSide":"bottom","toNode":"96cb4afed5cae168","toSide":"top"},

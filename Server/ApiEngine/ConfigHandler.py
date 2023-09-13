@@ -24,6 +24,9 @@ class UrlSchema:
 
         self.HOME_BASE                   = ""
 
+        self.CREATE_USER                 = ""
+        self.DELETE_USER                 = ""
+
         self.HOMEPAGE_LIST               = ""
 
         self.NOT_FOUND_LIST_404          = ""
@@ -69,6 +72,10 @@ class UrlSchema:
 
         ## Home
         self.HOME_BASE                  = self.yaml_parser["Home"]["Base"]
+
+        ##management
+        self.CREATE_USER                = self.yaml_parser["Management"]["CreateUser"]
+        self.DELETE_USER                = self.yaml_parser["Management"]["DeleteUser"]
 
         ## Homepage HTML
         self.HOMEPAGE_LIST              = self.yaml_parser["HomepageList"]

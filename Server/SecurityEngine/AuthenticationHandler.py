@@ -108,10 +108,17 @@ class Authentication:
 
 class UserManagement:
     '''
-    The class for handling user shit. I.e. creating, deleting, modifying lol
+    The class for handling user shit. I.e. creating, deleting, modifying
     '''
     @staticmethod
     def create_user(path_struct = None, username = None, password = None):
+        '''
+        Creates users. Is an abstraction over the AuthenticationSQLDBHandler.create_user
+
+        path_struct: The class instance containing path data
+        username: username of user to create
+        pass: pass of user to create
+        '''
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
         try:
             server_absolute_path = path_struct.sys_path
@@ -133,6 +140,34 @@ class UserManagement:
             if db_instance.create_user(
                 username = username,
                 password_blob = password_blob,
+            ):
+                return True
+        
+        except Exception as e:
+            logging.debug(f"Could not connect to DB: {e}")
+        
+        return False
+    
+    @staticmethod
+    def delete_user(path_struct = None, username = None):
+        '''
+        For deleting users. Is an abstraction over the AuthenticationSQLDBHandler.delete_user
+
+        path_struct: The class instance containing path data
+        username: The username to delete
+        '''
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        try:
+            server_absolute_path = path_struct.sys_path
+            db_relative_path = "DataBases/users.db"
+            db_absolute_path = os.path.join(server_absolute_path, db_relative_path)
+
+            db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
+                db_path=db_absolute_path
+            )
+
+            if db_instance.delete_user(
+                username = username
             ):
                 return True
         

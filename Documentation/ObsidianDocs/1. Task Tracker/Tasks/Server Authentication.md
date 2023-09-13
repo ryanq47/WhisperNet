@@ -3,7 +3,7 @@ SCOPE: Server
 TASKTYPE: Implementation
 MODULE: If appliacble... the moduel
 ESTTIMETOIMPLEMENT: Whatever you think it is, double it
-STATUS: In Progress - left off
+STATUS: Done
 PRIORITY: High
 DUE: DATE
 ---
@@ -44,14 +44,14 @@ ToDO:
 - [ ] Implement user management functions
 	- [x] create
 		- [ ] Needs a healthy error review
-		- [ ] Need to add JWT requiremnet decorator
-		- [ ] Needs a custom path in the yaml file
-	- [ ] delete
-		- [ ] simlar as create but just change to delete
-	- [ ] modify
-- [ ] Get data from POST request (probably just json)
-	- [ ] Figure out how a success/fail response will be handled (hide it in cookies? or just straight up say fail)
-- [ ] Document process/modules
+		- [x] Need to add JWT requiremnet decorator
+		- [x] Needs a custom path in the yaml file
+	- [x] delete
+		- [x] simlar as create but just change to delete
+	- [x] modify -- don't worry about it for now
+- [x] Get data from POST request (probably just json)
+	- [x] Figure out how a success/fail response will be handled (hide it in cookies? or just straight up say fail)
+- [x] Document process/modules
 
 ## Resources
 

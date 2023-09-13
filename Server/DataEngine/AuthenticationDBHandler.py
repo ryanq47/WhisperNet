@@ -12,7 +12,8 @@ class AuthenticationSQLDBHandler:
     '''
     This DB handler is for Authentication
 
-    DB is connected to on initilization of this class
+    DB is connected to on initilization of this class.
+
     
     '''
 
@@ -99,7 +100,8 @@ class AuthenticationSQLDBHandler:
 
     def create_user(self, username = None, password_blob = None) -> bool:
         '''
-        Creating a new user. Returns True if successful
+        The DB implementation of create_user. This directly accesses, and modifies the DB. Apart of the 
+        AuthenticationSQLDBHandler class
         '''
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
         
@@ -111,17 +113,28 @@ class AuthenticationSQLDBHandler:
             return True
         except sqlite3.IntegrityError:
             logging.warning(f"[*] User {username} already exists!")
+
+        except:
+            raise DataEngine.ErrorDefinitions.GENERAL_ERROR
+
         return False
 
     def delete_user(self, username = None) -> bool:
         '''
-        Deleting a user. Returns True if successful
+        The DB implementation of delete_user. This directly accesses, and modifies the DB. 
+        Apart of the AuthenticationSQLDBHandler
         '''
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
-        delete_query = f'DELETE FROM users WHERE username = ?'
-        values = (username)
-        self.cursor.execute(delete_query, values)
+        try:
+            delete_query = f'DELETE FROM users WHERE username = ?'
+            values = (username,)
+            self.cursor.execute(delete_query, values)
+            self.dbconn.commit()
+            return True
+        
+        except Exception as e:
+            raise DataEngine.ErrorDefinitions.GENERAL_ERROR
 
     def create_table(self):
         """

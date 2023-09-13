@@ -188,8 +188,10 @@ class ControlServer:
         else:
             return ControlServer.page_not_found()
 
+    ## == User Manageemnt == ##
     ## Create users
-    @app.route(f"/createuser", methods=["POST"])
+    @app.route(f"/{UrlSc.CREATE_USER}", methods=["POST"])
+    @jwt_required()
     def create_user():
         username = request.json.get('username')
         password = request.json.get('password')
@@ -199,9 +201,24 @@ class ControlServer:
             password=password,
             path_struct=Data.path_struct
         ):
-            return f"user created"
+            return f"user {username} created"
         else:
             return ControlServer.page_not_found()
+
+    ## Delete users
+    @app.route(f"/{UrlSc.DELETE_USER}", methods=["POST"])
+    @jwt_required()
+    def delete_user():
+        username = request.json.get('username')
+
+        if  SecurityEngine.AuthenticationHandler.UserManagement.delete_user(
+            username=username,
+            path_struct=Data.path_struct
+        ):
+            return f"user {username} deleted"
+        else:
+            return ControlServer.page_not_found()
+
 
     # commands to control the server
     @app.route(f"/{UrlSc.SERVER_BASE_ENDPOINT}", methods=["GET"])

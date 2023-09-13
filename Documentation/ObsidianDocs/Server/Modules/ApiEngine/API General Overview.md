@@ -13,6 +13,8 @@ Security:
 
 #### Default Endpoints
 
+See the 'Endpoints' folder for more specifics on each endpoint
+
 /server
 - All server related things, 
 	- Spawn listeners
@@ -32,6 +34,9 @@ Security:
 
 / & /home:
 - A "fake" homepage for the site. Pulled from an HTML/CSS comboed file in assets/HTML
+
+/createuser & /deleteuser:
+- Creates & deletes users. 
 
 /AnyOtherEndpoint:
 - returns a "Not Found" page (200 response code) from /assets/HTML/errorcodes
