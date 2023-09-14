@@ -22,20 +22,6 @@
             }
           },
           {
-            "id": "719d215d7c912b40",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1. Task Tracker/Tasks/Listener ReFactor & rework.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true
-            }
-          },
-          {
             "id": "5626f160c4fc425a",
             "type": "leaf",
             "state": {
@@ -67,11 +53,11 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "Server/Modules/Listeners/Listener setup.canvas",
+                "file": "Server/Modules/WSGI/WSGI & Flask setup.canvas",
                 "viewState": {
-                  "x": -582.2881899871632,
-                  "y": -4.693838254171965,
-                  "zoom": -0.5474390580749533
+                  "x": -226.99835043145248,
+                  "y": 15.874010519681946,
+                  "zoom": -0.6666666666666666
                 }
               }
             }
@@ -82,8 +68,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1. Task Tracker/Tasks/Listener ReFactor & rework.md",
-                "mode": "source",
+                "file": "Server/Modules/Utils/UtilsHandler.md",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -91,17 +77,31 @@
           {
             "id": "5cbc1f20fb9758b2",
             "type": "leaf",
+            "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
                 "file": "Server/Modules/Listeners/Local Listeners.md",
                 "mode": "source",
                 "source": false
+              },
+              "pinned": true
+            }
+          },
+          {
+            "id": "85726cf55b8c0d47",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1. Task Tracker/Tasks/Gunicorn research & frontend.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -167,7 +167,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Modules/Listeners/Local Listeners.md",
+                "file": "Server/Modules/WSGI/WSGI & Flask setup.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -184,7 +184,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Modules/Listeners/Local Listeners.md",
+                "file": "Server/Modules/WSGI/WSGI & Flask setup.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -207,7 +207,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Modules/Listeners/Local Listeners.md"
+                "file": "Server/Modules/WSGI/WSGI & Flask setup.canvas"
               }
             }
           },
@@ -239,15 +239,23 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "5cbc1f20fb9758b2",
+  "active": "fbf8ecea33ea3d18",
   "lastOpenFiles": [
+    "Server/Modules/WSGI",
+    "Server/Modules/Listeners/Listener setup.canvas",
+    "Server/Modules/WSGI/WSGI & Flask setup.canvas",
+    "Server/Modules/WSGI/WSGI.md",
+    "Server/Modules/ApiEngine/API General Overview.md",
     "Server/Modules/Listeners/Overview.md",
     "Server/Modules/Listeners/Local Listeners.md",
-    "Server/Modules/Listeners/Listener setup.canvas",
-    "1. Task Tracker/Tasks/Listener ReFactor & rework.md",
+    "1. Task Tracker/Tasks/Gunicorn research & frontend.md",
     "1. Task Tracker/Task Tracker.md",
+    "1. Task Tracker/Tasks/Gunicorn Research.md",
+    "1. Task Tracker/Tasks/Listener ReFactor & rework.md",
+    "Untitled.md",
+    "Server/Modules/Utils/UtilsHandler.md",
+    "Server/Modules/Utils",
     "Server/Modules/Listeners",
-    "Server/Modules/ApiEngine/API General Overview.md",
     "Server/Modules/ApiEngine/Endpoints/User Management.md",
     "1. Task Tracker/Tasks/Untitled 1.md",
     "1. Task Tracker/Tasks/Cleanup.md",
@@ -267,16 +275,10 @@
     "1. Task Tracker/Tasks/API Docs.md",
     "DataState.canvas",
     "Server/Modules/3. Security Engine/AuthenticationHandler.py.md",
-    "Server/Globals/Overview.md",
     "General/Images",
     "General/Images/Pasted image 20230913002046.png",
     "General/Images/Pasted image 20230913002028.png",
-    "Server/Modules/Error Handling/Error Handling Overview.md",
-    "Server/Security Testing/URL Fuzzing & Discovery.md",
-    "Data Struct.md",
     "Server/Globals",
-    "1. Task Tracker/Tasks/File Upload & Downlaod.md",
-    "1. Task Tracker/Tasks/Rest implementation.md",
     "General/Images/Pasted image 20230904190836.png",
     "General/Images/Pasted image 20230904190547.png",
     "Server/Security Testing",
@@ -287,9 +289,7 @@
     "Server/Modules/ApiEngine",
     "Clients/Python Client/Dev Docs/MindMaps/VisProg.canvas",
     "Clients/Python Client/Dev Docs/MindMaps/Plugin Abstraction Layers.canvas",
-    "General/Global MindMap.canvas",
     "1. Task Tracker/Tasks",
-    "1. Task Tracker",
-    "2. Bug Tracker/Bugs"
+    "1. Task Tracker"
   ]
 }

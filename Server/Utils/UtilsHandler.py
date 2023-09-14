@@ -233,7 +233,7 @@ def process_spawner(path=None, command=None):
     '''
     A dedicated process spawner for the project. This is mainly used for creating listener processes.
 
-    Returns the PID currently, but may be expanded to return a dict of the results. 
+    Returns a bool (true on success), but may be expanded to return a dict of the results. 
     
     path: Path of file/executable
         ex: C:\\myshell.exe
@@ -249,32 +249,30 @@ def process_spawner(path=None, command=None):
         # Run the command and capture stdout and stderr
         completed_process = subprocess.run(
             command,
-            shell=True,
+            shell=False,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             universal_newlines=True  # Use text mode for string output (Python 3.7+)
         )
 
             # Print stdout and stderr
-        print("Standard Output:")
-        print(completed_process.stdout)
-
-        print("Standard Error:")
-        print(completed_process.stderr)
+        #print(completed_process.stdout)
+        #print(completed_process.stderr)
 
         # Check the return code to see if the command was successful
         if completed_process.returncode == 0:
-            return "spawned successfully"
-            print("Command executed successfully.")
+            return True
+            #return "spawned successfully"
+            #print("Command executed successfully.")
         else:
-            return "spawned failed"
-            print(f"Command failed with return code {completed_process.returncode}")
+            return False
+            #return "spawned failed"
+            #print(f"Command failed with return code {completed_process.returncode}")
 
-    except Exception as e:
-        return str(e)
-        print(f"An error occurred: {e}")
+    except Exception:
+        raise Utils.ErrorDefinitions.PROCESS_SPAWN_ERROR
 
-def threaded_process_spawner(path=None, command=None):
+def threaded_process_spawner(path=None, command=None) -> bool:
     '''
     Spawns a process, in its own thread, and in daemon mode so it closes nicely. This exists for consistency accross the project
 
@@ -284,14 +282,19 @@ def threaded_process_spawner(path=None, command=None):
     command: Command to run
         ex: myshell.exe --ip 127.0.0.1
 
+
+    returns bool (true for success)
+
     '''
 
     try:
         process_thread = threading.Thread(target=process_spawner, args=(path, command,))
         process_thread.daemon = True
         process_thread.start()
-        print("process started")
+        logging.debug(f"[*] Process Started: {command}")
+        return True
     
     ## change me to raise
-    except Exception as e:
-        print(e)
+    except Exception:
+        raise Utils.ErrorDefinitions.PROCESS_SPAWN_ERROR
+    

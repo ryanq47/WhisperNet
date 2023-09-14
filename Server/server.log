@@ -4657,3 +4657,502 @@ TypeError: The view function for 'spawn_listener' did not return a valid respons
 2023-09-14 11:32:49 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ListenerApiEngine/html/errorcodes/404-default-alt.html
 2023-09-14 11:32:49 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ListenerApiEngine/html/errorcodes/404-default-alt.html
 2023-09-14 11:32:49 - INFO - 127.0.0.1 - - [14/Sep/2023 11:32:49] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 13:32:48 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-14 13:32:48 - DEBUG - [^] load_file
+2023-09-14 13:32:48 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 13:32:48 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-14 13:32:48 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-14 13:32:48 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-14 13:32:55 - DEBUG - [*] Process Started: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\../Listeners/FlaskAPI/ : python C:\Users\Ryan\Documents\GitHub\logec-suite\Server\../Listeners/FlaskAPI//FlaskAPI.py --port 80 --ip 0.0.0.0
+2023-09-14 13:32:55 - INFO - 127.0.0.1 - - [14/Sep/2023 13:32:55] "POST /list HTTP/1.1" 200 -
+2023-09-14 13:32:56 - DEBUG - [^] load_file
+2023-09-14 13:32:56 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 13:32:56 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-14 13:32:56 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:80
+ * Running on http://192.168.100.145:80
+2023-09-14 13:32:56 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-14 13:33:06 - DEBUG - [^] load_file
+2023-09-14 13:33:06 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-14 13:33:06 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-14 13:33:06 - INFO - 127.0.0.1 - - [14/Sep/2023 13:33:06] "GET / HTTP/1.1" 200 -
+2023-09-14 13:33:06 - DEBUG - [^] load_file
+2023-09-14 13:33:06 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:33:06 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:33:06 - INFO - 127.0.0.1 - - [14/Sep/2023 13:33:06] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 13:33:07 - DEBUG - [^] load_file
+2023-09-14 13:33:07 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-14 13:33:07 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-14 13:33:07 - INFO - 127.0.0.1 - - [14/Sep/2023 13:33:07] "GET / HTTP/1.1" 200 -
+2023-09-14 13:33:07 - DEBUG - [^] load_file
+2023-09-14 13:33:07 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:33:07 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:33:07 - INFO - 127.0.0.1 - - [14/Sep/2023 13:33:07] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 13:33:08 - DEBUG - [^] load_file
+2023-09-14 13:33:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-14 13:33:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-14 13:33:08 - INFO - 127.0.0.1 - - [14/Sep/2023 13:33:08] "GET / HTTP/1.1" 200 -
+2023-09-14 13:33:08 - DEBUG - [^] load_file
+2023-09-14 13:33:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:33:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:33:08 - INFO - 127.0.0.1 - - [14/Sep/2023 13:33:08] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 13:42:44 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-14 13:42:44 - DEBUG - [^] load_file
+2023-09-14 13:42:44 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 13:42:44 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-14 13:42:45 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-14 13:42:45 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-14 13:42:50 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '9999', '--ip', '0.0.0.0']
+2023-09-14 13:42:50 - INFO - 127.0.0.1 - - [14/Sep/2023 13:42:50] "POST /list HTTP/1.1" 200 -
+2023-09-14 13:42:51 - DEBUG - [^] load_file
+2023-09-14 13:42:51 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 13:42:51 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-14 13:42:51 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9999
+ * Running on http://192.168.100.145:9999
+2023-09-14 13:42:51 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-14 13:42:58 - DEBUG - [^] load_file
+2023-09-14 13:42:58 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-14 13:42:58 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-14 13:42:58 - INFO - 127.0.0.1 - - [14/Sep/2023 13:42:58] "GET / HTTP/1.1" 200 -
+2023-09-14 13:42:58 - DEBUG - [^] load_file
+2023-09-14 13:42:58 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:42:58 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:42:58 - INFO - 127.0.0.1 - - [14/Sep/2023 13:42:58] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 13:43:02 - DEBUG - [^] load_file
+2023-09-14 13:43:02 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:43:02 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:43:02 - INFO - 127.0.0.1 - - [14/Sep/2023 13:43:02] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 13:45:23 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-14 13:45:23 - DEBUG - [^] load_file
+2023-09-14 13:45:23 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 13:45:23 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-14 13:45:23 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-14 13:45:23 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-14 13:45:25 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '9999', '--ip', '0.0.0.0']
+2023-09-14 13:45:25 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:25] "POST /list HTTP/1.1" 200 -
+2023-09-14 13:45:26 - DEBUG - [^] load_file
+2023-09-14 13:45:26 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 13:45:26 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-14 13:45:26 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9999
+ * Running on http://192.168.100.145:9999
+2023-09-14 13:45:26 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-14 13:45:33 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '9999', '--ip', '0.0.0.0']
+2023-09-14 13:45:33 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:33] "POST /list HTTP/1.1" 200 -
+2023-09-14 13:45:33 - DEBUG - [^] load_file
+2023-09-14 13:45:33 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 13:45:33 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-14 13:45:33 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:9999
+ * Running on http://192.168.100.145:9999
+2023-09-14 13:45:33 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-14 13:45:51 - DEBUG - [^] load_file
+2023-09-14 13:45:51 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-14 13:45:51 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-14 13:45:51 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:51] "GET / HTTP/1.1" 200 -
+2023-09-14 13:45:51 - DEBUG - [^] load_file
+2023-09-14 13:45:51 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:45:51 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:45:51 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:51] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 13:45:53 - DEBUG - [^] load_file
+2023-09-14 13:45:53 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-14 13:45:53 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-14 13:45:53 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:53] "GET / HTTP/1.1" 200 -
+2023-09-14 13:45:53 - DEBUG - [^] load_file
+2023-09-14 13:45:53 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:45:53 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:45:53 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:53] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 13:45:54 - DEBUG - [^] load_file
+2023-09-14 13:45:54 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-14 13:45:54 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-14 13:45:54 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:54] "GET / HTTP/1.1" 200 -
+2023-09-14 13:45:54 - DEBUG - [^] load_file
+2023-09-14 13:45:54 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:45:54 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:45:54 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:54] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 13:45:54 - DEBUG - [^] load_file
+2023-09-14 13:45:54 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-14 13:45:54 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-14 13:45:54 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:54] "GET / HTTP/1.1" 200 -
+2023-09-14 13:45:54 - DEBUG - [^] load_file
+2023-09-14 13:45:54 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:45:54 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:45:54 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:54] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 13:45:55 - DEBUG - [^] load_file
+2023-09-14 13:45:55 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-14 13:45:55 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-14 13:45:55 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:55] "GET / HTTP/1.1" 200 -
+2023-09-14 13:45:55 - DEBUG - [^] load_file
+2023-09-14 13:45:55 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:45:55 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:45:55 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:55] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 13:45:55 - DEBUG - [^] load_file
+2023-09-14 13:45:55 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-14 13:45:55 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-14 13:45:55 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:55] "GET / HTTP/1.1" 200 -
+2023-09-14 13:45:56 - DEBUG - [^] load_file
+2023-09-14 13:45:56 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:45:56 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:45:56 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:56] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 13:45:56 - DEBUG - [^] load_file
+2023-09-14 13:45:56 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-14 13:45:56 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-14 13:45:56 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:56] "GET / HTTP/1.1" 200 -
+2023-09-14 13:45:56 - DEBUG - [^] load_file
+2023-09-14 13:45:56 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:45:56 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:45:56 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:56] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 13:45:56 - DEBUG - [^] load_file
+2023-09-14 13:45:56 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-14 13:45:56 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-14 13:45:56 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:56] "GET / HTTP/1.1" 200 -
+2023-09-14 13:45:56 - DEBUG - [^] load_file
+2023-09-14 13:45:56 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:45:56 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:45:56 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:56] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 13:45:57 - DEBUG - [^] load_file
+2023-09-14 13:45:57 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-14 13:45:57 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-14 13:45:57 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:57] "GET / HTTP/1.1" 200 -
+2023-09-14 13:45:57 - DEBUG - [^] load_file
+2023-09-14 13:45:57 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:45:57 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:45:57 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:57] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 13:45:57 - DEBUG - [^] load_file
+2023-09-14 13:45:57 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-14 13:45:57 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-14 13:45:57 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:57] "GET / HTTP/1.1" 200 -
+2023-09-14 13:45:57 - DEBUG - [^] load_file
+2023-09-14 13:45:57 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:45:57 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:45:57 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:57] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 13:45:59 - DEBUG - [^] load_file
+2023-09-14 13:45:59 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-14 13:45:59 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-14 13:45:59 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:59] "GET / HTTP/1.1" 200 -
+2023-09-14 13:45:59 - DEBUG - [^] load_file
+2023-09-14 13:45:59 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:45:59 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:45:59 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:59] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 13:45:59 - DEBUG - [^] load_file
+2023-09-14 13:45:59 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-14 13:45:59 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-14 13:45:59 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:59] "GET / HTTP/1.1" 200 -
+2023-09-14 13:45:59 - DEBUG - [^] load_file
+2023-09-14 13:45:59 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:45:59 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:45:59 - INFO - 127.0.0.1 - - [14/Sep/2023 13:45:59] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 13:46:00 - DEBUG - [^] load_file
+2023-09-14 13:46:00 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-14 13:46:00 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-14 13:46:00 - INFO - 127.0.0.1 - - [14/Sep/2023 13:46:00] "GET / HTTP/1.1" 200 -
+2023-09-14 13:46:00 - DEBUG - [^] load_file
+2023-09-14 13:46:00 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:46:00 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:46:00 - INFO - 127.0.0.1 - - [14/Sep/2023 13:46:00] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 13:48:02 - DEBUG - [^] load_file
+2023-09-14 13:48:02 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:48:02 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:48:02 - INFO - 127.0.0.1 - - [14/Sep/2023 13:48:02] "GET /list HTTP/1.1" 200 -
+2023-09-14 13:48:02 - DEBUG - [^] load_file
+2023-09-14 13:48:02 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:48:02 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 13:48:02 - INFO - 127.0.0.1 - - [14/Sep/2023 13:48:02] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 13:48:08 - DEBUG - [^] load_file
+2023-09-14 13:48:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:48:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:48:08 - INFO - 127.0.0.1 - - [14/Sep/2023 13:48:08] "GET /list HTTP/1.1" 200 -
+2023-09-14 13:48:08 - DEBUG - [^] load_file
+2023-09-14 13:48:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:48:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 13:48:08 - INFO - 127.0.0.1 - - [14/Sep/2023 13:48:08] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 14:09:29 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-14 14:09:29 - INFO - 127.0.0.1 - - [14/Sep/2023 14:09:29] "POST /list HTTP/1.1" 200 -
+2023-09-14 14:09:29 - DEBUG - [^] load_file
+2023-09-14 14:09:29 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 14:09:29 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-14 14:09:29 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.100.145:8080
+2023-09-14 14:09:29 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-14 14:09:39 - DEBUG - [^] load_file
+2023-09-14 14:09:39 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-14 14:09:39 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-14 14:09:39 - INFO - 127.0.0.1 - - [14/Sep/2023 14:09:39] "GET / HTTP/1.1" 200 -
+2023-09-14 14:09:39 - DEBUG - [^] load_file
+2023-09-14 14:09:39 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 14:09:39 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 14:09:39 - INFO - 127.0.0.1 - - [14/Sep/2023 14:09:39] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 14:09:51 - DEBUG - [^] load_file
+2023-09-14 14:09:51 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 14:09:51 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 14:09:51 - INFO - 127.0.0.1 - - [14/Sep/2023 14:09:51] "GET /command/shutdown HTTP/1.1" 200 -
+2023-09-14 14:10:02 - ERROR - Exception on /command/shutdown [POST]
+Traceback (most recent call last):
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\FlaskAPI.py", line 173, in app_shutdown
+    FlaskAPIListener.app.exit()
+AttributeError: 'Flask' object has no attribute 'exit'
+2023-09-14 14:10:02 - INFO - 127.0.0.1 - - [14/Sep/2023 14:10:02] "[35m[1mPOST /command/shutdown HTTP/1.1[0m" 500 -
+2023-09-14 14:10:07 - DEBUG - [^] load_file
+2023-09-14 14:10:07 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-14 14:10:07 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-14 14:10:07 - INFO - 127.0.0.1 - - [14/Sep/2023 14:10:07] "GET / HTTP/1.1" 200 -
+2023-09-14 14:10:07 - DEBUG - [^] load_file
+2023-09-14 14:10:07 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 14:10:07 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 14:10:07 - INFO - 127.0.0.1 - - [14/Sep/2023 14:10:07] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 14:10:08 - DEBUG - [^] load_file
+2023-09-14 14:10:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-14 14:10:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-14 14:10:08 - INFO - 127.0.0.1 - - [14/Sep/2023 14:10:08] "GET / HTTP/1.1" 200 -
+2023-09-14 14:10:08 - DEBUG - [^] load_file
+2023-09-14 14:10:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 14:10:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 14:10:08 - INFO - 127.0.0.1 - - [14/Sep/2023 14:10:08] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 14:10:08 - DEBUG - [^] load_file
+2023-09-14 14:10:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-14 14:10:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-14 14:10:08 - INFO - 127.0.0.1 - - [14/Sep/2023 14:10:08] "GET / HTTP/1.1" 200 -
+2023-09-14 14:10:08 - DEBUG - [^] load_file
+2023-09-14 14:10:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 14:10:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 14:10:08 - INFO - 127.0.0.1 - - [14/Sep/2023 14:10:08] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 14:12:39 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-14 14:12:39 - INFO - 127.0.0.1 - - [14/Sep/2023 14:12:39] "POST /list HTTP/1.1" 200 -
+2023-09-14 14:12:40 - DEBUG - [^] load_file
+2023-09-14 14:12:40 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 14:12:40 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-14 14:12:40 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.100.145:8080
+2023-09-14 14:12:40 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-14 14:12:42 - ERROR - Exception on /command/shutdown [POST]
+Traceback (most recent call last):
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\FlaskAPI.py", line 173, in app_shutdown
+    #https://stackoverflow.com/questions/15562446/how-to-stop-flask-application-without-using-ctrl-c
+AttributeError: 'Flask' object has no attribute 'exit'
+2023-09-14 14:12:42 - INFO - 127.0.0.1 - - [14/Sep/2023 14:12:42] "[35m[1mPOST /command/shutdown HTTP/1.1[0m" 500 -
+2023-09-14 14:12:48 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-14 14:12:48 - DEBUG - [^] load_file
+2023-09-14 14:12:48 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 14:12:48 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-14 14:12:48 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-14 14:12:48 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-14 14:12:50 - DEBUG - [^] load_file
+2023-09-14 14:12:50 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 14:12:50 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 14:12:50 - INFO - 127.0.0.1 - - [14/Sep/2023 14:12:50] "POST /list HTTP/1.1" 200 -
+2023-09-14 14:12:58 - DEBUG - [^] load_file
+2023-09-14 14:12:58 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 14:12:58 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 14:12:58 - INFO - 127.0.0.1 - - [14/Sep/2023 14:12:58] "POST /list HTTP/1.1" 200 -
+2023-09-14 14:13:14 - INFO - 127.0.0.1 - - [14/Sep/2023 14:13:14] "[31m[1mPOST /createuser HTTP/1.1[0m" 401 -
+2023-09-14 14:13:19 - DEBUG - [^] authentication_eval
+2023-09-14 14:13:19 - DEBUG - [^] connect_to_db
+2023-09-14 14:13:19 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-14 14:13:19 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-14 14:13:19 - DEBUG - [^] get_username
+2023-09-14 14:13:19 - DEBUG - [^] _validate_password
+2023-09-14 14:13:19 - DEBUG - [^] get_password_blob
+2023-09-14 14:13:19 - INFO - Successful Login: 'admin':'1234'
+2023-09-14 14:13:19 - INFO - 127.0.0.1 - - [14/Sep/2023 14:13:19] "POST /login HTTP/1.1" 200 -
+2023-09-14 14:13:37 - DEBUG - [^] load_file
+2023-09-14 14:13:37 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 14:13:37 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 14:13:37 - INFO - 127.0.0.1 - - [14/Sep/2023 14:13:37] "POST /list HTTP/1.1" 200 -
+2023-09-14 14:13:46 - DEBUG - [^] load_file
+2023-09-14 14:13:46 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 14:13:46 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 14:13:46 - INFO - 127.0.0.1 - - [14/Sep/2023 14:13:46] "POST /list HTTP/1.1" 200 -
+2023-09-14 14:13:57 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-14 14:13:57 - DEBUG - [^] load_file
+2023-09-14 14:13:57 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 14:13:57 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-14 14:13:57 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-14 14:13:57 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-14 14:14:02 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-14 14:14:02 - INFO - 127.0.0.1 - - [14/Sep/2023 14:14:02] "POST /list HTTP/1.1" 200 -
+2023-09-14 14:14:03 - DEBUG - [^] load_file
+2023-09-14 14:14:03 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 14:14:03 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-14 14:14:03 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.100.145:8080
+2023-09-14 14:14:03 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-14 14:14:08 - ERROR - Exception on /command/shutdown [POST]
+Traceback (most recent call last):
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\FlaskAPI.py", line 176, in app_shutdown
+    raise RuntimeError('Not running with the Werkzeug Server')
+RuntimeError: Not running with the Werkzeug Server
+2023-09-14 14:14:08 - INFO - 127.0.0.1 - - [14/Sep/2023 14:14:08] "[35m[1mPOST /command/shutdown HTTP/1.1[0m" 500 -
+2023-09-14 14:14:28 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-14 14:14:29 - DEBUG - [^] load_file
+2023-09-14 14:14:29 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 14:14:29 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-14 14:14:29 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-14 14:14:29 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-14 14:14:31 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-14 14:14:31 - INFO - 127.0.0.1 - - [14/Sep/2023 14:14:31] "POST /list HTTP/1.1" 200 -
+2023-09-14 14:14:32 - DEBUG - [^] load_file
+2023-09-14 14:14:32 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 14:14:32 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-14 14:14:32 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.100.145:8080
+2023-09-14 14:14:32 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-14 14:14:32 - INFO -  * Restarting with stat
+2023-09-14 14:14:32 - DEBUG - [^] load_file
+2023-09-14 14:14:32 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 14:14:32 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-14 14:14:32 - WARNING -  * Debugger is active!
+2023-09-14 14:14:32 - INFO -  * Debugger PIN: 151-662-093
+2023-09-14 14:14:34 - INFO - 127.0.0.1 - - [14/Sep/2023 14:14:34] "[35m[1mPOST /command/shutdown HTTP/1.1[0m" 500 -
+2023-09-14 14:14:57 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Listeners\\FlaskAPI\\FlaskAPI.py', reloading
+2023-09-14 14:14:57 - INFO -  * Restarting with stat
+2023-09-14 14:14:57 - DEBUG - [^] load_file
+2023-09-14 14:14:57 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 14:14:57 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-14 14:14:57 - WARNING -  * Debugger is active!
+2023-09-14 14:14:57 - INFO -  * Debugger PIN: 151-662-093
+2023-09-14 14:15:05 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-14 14:15:05 - DEBUG - [^] load_file
+2023-09-14 14:15:05 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 14:15:05 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-14 14:15:05 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-14 14:15:05 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-14 14:15:16 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-14 14:15:16 - INFO - 127.0.0.1 - - [14/Sep/2023 14:15:16] "POST /list HTTP/1.1" 200 -
+2023-09-14 14:15:17 - DEBUG - [^] load_file
+2023-09-14 14:15:17 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 14:15:17 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-14 14:15:17 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.100.145:8080
+2023-09-14 14:15:17 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-14 14:15:17 - INFO -  * Restarting with stat
+2023-09-14 14:15:18 - DEBUG - [^] load_file
+2023-09-14 14:15:18 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 14:15:18 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-14 14:15:18 - WARNING -  * Debugger is active!
+2023-09-14 14:15:18 - INFO -  * Debugger PIN: 151-662-093
+2023-09-14 14:15:26 - DEBUG - [^] load_file
+2023-09-14 14:15:26 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-14 14:15:26 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-14 14:15:26 - INFO - 127.0.0.1 - - [14/Sep/2023 14:15:26] "GET / HTTP/1.1" 200 -
+2023-09-14 14:15:26 - DEBUG - [^] load_file
+2023-09-14 14:15:26 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 14:15:26 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 14:15:26 - INFO - 127.0.0.1 - - [14/Sep/2023 14:15:26] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 14:15:32 - DEBUG - [^] load_file
+2023-09-14 14:15:32 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-14 14:15:32 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-14 14:15:32 - INFO - 127.0.0.1 - - [14/Sep/2023 14:15:32] "GET / HTTP/1.1" 200 -
+2023-09-14 14:15:32 - DEBUG - [^] load_file
+2023-09-14 14:15:32 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 14:15:32 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 14:15:32 - INFO - 127.0.0.1 - - [14/Sep/2023 14:15:32] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 14:15:33 - DEBUG - [^] load_file
+2023-09-14 14:15:33 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-14 14:15:33 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-14 14:15:33 - INFO - 127.0.0.1 - - [14/Sep/2023 14:15:33] "GET / HTTP/1.1" 200 -
+2023-09-14 14:15:33 - DEBUG - [^] load_file
+2023-09-14 14:15:33 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 14:15:33 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 14:15:33 - INFO - 127.0.0.1 - - [14/Sep/2023 14:15:33] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 14:15:33 - DEBUG - [^] load_file
+2023-09-14 14:15:33 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-14 14:15:33 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-14 14:15:33 - INFO - 127.0.0.1 - - [14/Sep/2023 14:15:33] "GET / HTTP/1.1" 200 -
+2023-09-14 14:15:34 - DEBUG - [^] load_file
+2023-09-14 14:15:34 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 14:15:34 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 14:15:34 - INFO - 127.0.0.1 - - [14/Sep/2023 14:15:34] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 14:15:34 - DEBUG - [^] load_file
+2023-09-14 14:15:34 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-14 14:15:34 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-14 14:15:34 - INFO - 127.0.0.1 - - [14/Sep/2023 14:15:34] "GET / HTTP/1.1" 200 -
+2023-09-14 14:15:34 - DEBUG - [^] load_file
+2023-09-14 14:15:34 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 14:15:34 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 14:15:34 - INFO - 127.0.0.1 - - [14/Sep/2023 14:15:34] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-14 14:15:49 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Listeners\\FlaskAPI\\FlaskAPI.py', reloading
+2023-09-14 14:15:49 - INFO -  * Restarting with stat
+2023-09-14 14:15:50 - DEBUG - [^] load_file
+2023-09-14 14:15:50 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 14:15:50 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-14 14:15:50 - WARNING -  * Debugger is active!
+2023-09-14 14:15:50 - INFO -  * Debugger PIN: 151-662-093
+2023-09-14 14:37:53 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-14 14:37:53 - DEBUG - [^] load_file
+2023-09-14 14:37:53 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 14:37:53 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-14 14:37:54 - INFO - Serving on http://127.0.0.1:80
+2023-09-14 14:38:05 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-14 14:38:06 - DEBUG - [^] load_file
+2023-09-14 14:38:06 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 14:38:06 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-14 14:38:06 - INFO - Serving on http://0.0.0.0:8080
+2023-09-14 14:38:08 - DEBUG - [^] load_file
+2023-09-14 14:38:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 14:38:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 14:38:17 - DEBUG - [^] load_file
+2023-09-14 14:38:17 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-14 14:38:17 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-14 14:38:17 - DEBUG - [^] load_file
+2023-09-14 14:38:17 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 14:38:17 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html

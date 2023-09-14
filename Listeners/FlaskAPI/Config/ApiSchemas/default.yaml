@@ -57,11 +57,11 @@ Home:
 
 ## A path to potential homepages for the API server. These will be randomly selected on which to load
 HomepageList: 
-  - "ListenerApiEngine/html/homepage-MLP.html" # I Promise I'm not a brony... Just wanted something colorful 
-  - "ListenerApiEngine/html/homepage-Default.html"
+  - "ApiEngine/html/homepage-MLP.html" # I Promise I'm not a brony... Just wanted something colorful 
+  - "ApiEngine/html/homepage-Default.html"
 
 ## Messages to display in a 404 not found. Note, that all 404's return a 200
 ## this is to prevent (or slow...) URL scraping/discovery
 NotFoundList_404:
-  - "ListenerApiEngine/html/errorcodes/404-default.html"
-  - "ListenerApiEngine/html/errorcodes/404-default-alt.html"
+  - "ApiEngine/html/errorcodes/404-default.html"
+  - "ApiEngine/html/errorcodes/404-default-alt.html"

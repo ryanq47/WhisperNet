@@ -234,19 +234,27 @@ class ControlServer:
     @app.route(f"/list", methods=["POST"])
     #@jwt_required()
     def spawn_listener():
-        #ip = request.json.get('ip')
-        #port = request.json.get('port')
-        ## for later, local or network
-        #type = request.json.get('type')
-        listener_path = os.path.join(sys_path, "../Listeners/FlaskAPI/")
-        command = f"python {listener_path}/FlaskAPI.py --port 80 --ip 0.0.0.0"
+        try:
+            ip = request.json.get('ip')
+            port = request.json.get('port')
+            ## for later, local or network
+            #type = request.json.get('type')
 
-        Utils.UtilsHandler.threaded_process_spawner(
-            path = listener_path,
-            command = command
-        )
+            ## !! WARNING - SHELL = TRUE -- THIS IS AN ISSUE. SWITCH TO SHELL=FALSE & ADJUST COMMAND !! ##
+            ## ^^ Fixed ^^ ##
+            listener_path = os.path.join(sys_path, "../Listeners/FlaskAPI/")
+            command = ["python",f"{listener_path}/FlaskAPI.py","--port",str(port),"--ip",ip]
 
-        return "placeholder - process started"
+            if Utils.UtilsHandler.threaded_process_spawner(
+                path = listener_path,
+                command = command
+            ):
+                return f"Success - Listener started on {ip}:{port}"
+
+        except Exception:
+            logging.debug("Error occured spawning a listener")
+
+        return ControlServer.page_not_found
 
     ## File Section
     # https://docs.faculty.ai/user-guide/apis/flask_apis/flask_file_upload_download.html
@@ -311,7 +319,10 @@ if __name__ == "__main__":
     Data()
     
     ## Debug mode on windows is broken.
-    ControlServer.app.run(host="0.0.0.0", port=5000, debug=False)
+    #ControlServer.app.run(host="0.0.0.0", port=5000, debug=False)
+
+    from waitress import serve
+    serve(ControlServer.app, host=ip, port=port)
 
         
     #while True:

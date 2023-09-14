@@ -3,7 +3,7 @@ import logging
 from datetime import datetime
 import yaml
 #import DataEngine.JsonHandler
-import ListenerUtils.ErrorDefinitions
+import Utils.ErrorDefinitions
 
 ################
 ## QOL Functions
@@ -54,7 +54,7 @@ def file_check(filepath):
     
     '''
     if not os.path.isfile(filepath):
-        logging.warning(f"ListenerUtilsHandler.pt (file_check) File not found: {filepath}\n")
+        logging.warning(f"UtilsHandler.pt (file_check) File not found: {filepath}\n")
 
 def continue_anyways():
     logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
@@ -75,7 +75,7 @@ def timestamp() -> str:
         time = datetime.utcnow()
         return str(time)
     except Exception as e:
-        logging.debug(f"[ListenerUtilsHandler.timestamp()]: Error with timestamp: {e}")
+        logging.debug(f"[UtilsHandler.timestamp()]: Error with timestamp: {e}")
         return "timestamperr"
     
 def yaml_load(yaml_file = None):
@@ -92,7 +92,7 @@ def yaml_load(yaml_file = None):
             yaml_dict_object = yaml.safe_load(yaml_file)
             
     except Exception as e:
-        print(f"[ListenerUtils.ListenerUtilsHandler.yaml_load()] Error loading YAML: {e}")
+        print(f"[Utils.UtilsHandler.yaml_load()] Error loading YAML: {e}")
 
     return yaml_dict_object
 
@@ -149,9 +149,9 @@ def load_file(current_path, file_path, return_path = True):
             return file_contents
 
     except (ValueError, FileNotFoundError):
-        raise ListenerUtils.ErrorDefinitions.FILE_LOAD_ERROR
+        raise Utils.ErrorDefinitions.FILE_LOAD_ERROR
     except Exception:
-        raise ListenerUtils.ErrorDefinitions.GENERAL_ERROR
+        raise Utils.ErrorDefinitions.GENERAL_ERROR
     
 def write_file(current_path, file_path, data):
     '''
@@ -199,6 +199,6 @@ def write_file(current_path, file_path, data):
             file.write(data)
 
     except (ValueError, FileNotFoundError):
-        raise ListenerUtils.ErrorDefinitions.FILE_LOAD_ERROR
+        raise Utils.ErrorDefinitions.FILE_LOAD_ERROR
     except Exception:
-        raise ListenerUtils.ErrorDefinitions.GENERAL_ERROR
+        raise Utils.ErrorDefinitions.GENERAL_ERROR

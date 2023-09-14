@@ -1,7 +1,7 @@
 ## move to different file eventually
 import yaml
-import ListenerApiEngine.ErrorDefinitions
-import ListenerUtils.ErrorDefinitions
+import ApiEngine.ErrorDefinitions
+import Utils.ErrorDefinitions
 
 class UrlSchema:
     '''
@@ -48,9 +48,9 @@ class UrlSchema:
                 self.yaml_parser = yaml.safe_load(yaml_stream)
                 return True
             except yaml.YAMLError as ye:
-                raise ListenerApiEngine.ErrorDefinitions.YAML_LOAD_ERROR
+                raise ApiEngine.ErrorDefinitions.YAML_LOAD_ERROR
             except Exception as e:
-                raise ListenerUtils.ErrorDefinitions.GENERAL_ERROR()
+                raise Utils.ErrorDefinitions.GENERAL_ERROR()
 
     def assign_schema(self):
         '''

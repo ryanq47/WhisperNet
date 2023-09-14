@@ -46,7 +46,16 @@ Utils -> ListenerUtils
 
 
 ## Not used yet. will be used for netcomms between server & listeners. Will require auth - most likely JWT
-/data
+/data?
+/comms?
+
+
+**/commands** works for now 
+-- All would require auth
+	It could be set up that these listeners could be cotnrol from the server OR the clietns
+-- Would be cool if I could keep the listener online, but kill the actual listening part? maybe later
+/commands/shutdown - kills the listener
+/commands/
 
 
 ```

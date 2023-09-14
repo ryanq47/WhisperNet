@@ -1,0 +1,16 @@
+{
+	"nodes":[
+		{"id":"fef17f39cd447db6","type":"text","text":"## Flask App","x":-455,"y":-280,"width":250,"height":95},
+		{"id":"dd06aeef752e14a9","x":-455,"y":40,"width":250,"height":60,"type":"text","text":"## Docker "},
+		{"id":"e22d59ce7f8158b9","type":"text","text":"##  WSGI - Waitress","x":-455,"y":-105,"width":250,"height":60},
+		{"id":"0f5fa53747056bec","x":-455,"y":280,"width":250,"height":60,"type":"text","text":"## Internet"},
+		{"id":"5f507e21296236af","x":-455,"y":160,"width":250,"height":60,"type":"text","text":"## Host Box"},
+		{"id":"51c6b290ca4602eb","x":-500,"y":-580,"width":340,"height":160,"type":"text","text":"## A visual rep of the flask & webserver stack"}
+	],
+	"edges":[
+		{"id":"08de570009204c75","fromNode":"fef17f39cd447db6","fromSide":"bottom","toNode":"e22d59ce7f8158b9","toSide":"top"},
+		{"id":"11cf96326fd860b1","fromNode":"e22d59ce7f8158b9","fromSide":"bottom","toNode":"dd06aeef752e14a9","toSide":"top"},
+		{"id":"d493a019535d16f1","fromNode":"dd06aeef752e14a9","fromSide":"bottom","toNode":"5f507e21296236af","toSide":"top"},
+		{"id":"70fcfa91fe877ef7","fromNode":"5f507e21296236af","fromSide":"bottom","toNode":"0f5fa53747056bec","toSide":"top"}
+	]
+}

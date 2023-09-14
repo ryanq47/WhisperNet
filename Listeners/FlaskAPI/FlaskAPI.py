@@ -27,14 +27,14 @@ try:
     from flask import Flask, jsonify, request, send_from_directory
     from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
 
-    import ListenerApiEngine.ConfigHandler
-    import ListenerUtils.UtilsHandler
-    #import ListenerUtils.DataObjects
+    import ApiEngine.ConfigHandler
+    import Utils.UtilsHandler
+    #import Utils.DataObjects
 
     ## Error modules
-    import ListenerApiEngine.ErrorDefinitions
-    #import ListenerUtils.ErrorDefinitions
-    import ListenerUtils.DataObjects
+    import ApiEngine.ErrorDefinitions
+    #import Utils.ErrorDefinitions
+    import Utils.DataObjects
 
 except Exception as e:
     print(f"[server.py] Import Error: {e}")
@@ -52,6 +52,7 @@ parser.add_argument('--fileserverport', help="what port for the file server", de
 parser.add_argument('-c', '--generatekeys', help="ReGen Certs & Keys", action="store_true")
 parser.add_argument('--evasionprofile', help="The evasion profile", default="/EvasionProfiles/default.yaml")
 parser.add_argument('--apiconfigprofile', help="The API config profile", default="Config/ApiSchemas/default.yaml")
+parser.add_argument('--name', help="Name of listener (used by flask)", default="FlaskAPIListener")
 
 
 ## Globals bad. I know
@@ -63,6 +64,7 @@ fileserverport      = args.fileserverport
 generate_keys       = args.generatekeys
 evasion_profile     = args.evasionprofile
 api_config_profile  = args.apiconfigprofile
+name                = args.name
 sys_path = os.path.dirname(os.path.realpath(__file__))
 function_debug_symbol = "[^]"
 
@@ -86,7 +88,7 @@ class Data:
     call will Data.varname
     '''
     ## Path Struct - don't need for now
-    #path_struct = ListenerUtils.DataObjects.PathStruct()
+    #path_struct = Utils.DataObjects.PathStruct()
     #path_struct.sys_path = sys_path
 
 
@@ -96,11 +98,11 @@ class Data:
 
 ## Move to own file eventually
 class FlaskAPIListener():
-    app = Flask(__name__)
+    app = Flask(name)
     app.config['JWT_SECRET_KEY'] = 'PLEASECHANGEME'  # Change this to your secret key - also move to a config file
     jwt = JWTManager(app)
-    config_file_path = ListenerUtils.UtilsHandler.load_file(current_path=sys_path, file_path="ListenerConfig/ApiSchemas/default.yaml")
-    UrlSc = ListenerApiEngine.ConfigHandler.UrlSchema(api_config_profile=config_file_path)
+    config_file_path = Utils.UtilsHandler.load_file(current_path=sys_path, file_path="Config/ApiSchemas/default.yaml")
+    UrlSc = ApiEngine.ConfigHandler.UrlSchema(api_config_profile=config_file_path)
     UrlSc.load()
 
     ## Default home
@@ -113,7 +115,7 @@ class FlaskAPIListener():
             html_file_path = random.choice(FlaskAPIListener.UrlSc.HOMEPAGE_LIST)
 
             # open file
-            html = ListenerUtils.UtilsHandler.load_file(
+            html = Utils.UtilsHandler.load_file(
                 current_path = sys_path, 
                 file_path = html_file_path, 
                 return_path = False )
@@ -131,7 +133,9 @@ class FlaskAPIListener():
         return "agent_base"
 
 
-    ## File Section
+    ##################
+    # File stuff     #
+    ##################
     # https://docs.faculty.ai/user-guide/apis/flask_apis/flask_file_upload_download.html
     # by default, http://ip/files/FILENAME
     @app.route(f"/{UrlSc.UPLOAD_BASE_ENDPOINT}/<path:path>", methods=["GET"])
@@ -152,7 +156,7 @@ class FlaskAPIListener():
             # Return 400 BAD REQUEST
             return "No Subdirectories allowed", 400
         
-        ListenerUtils.UtilsHandler.write_file(
+        Utils.UtilsHandler.write_file(
             current_path=sys_path,
             file_path=FlaskAPIListener.UrlSc.UPLOAD_FOLDER + "/" + filename,
             data = request.data
@@ -160,6 +164,11 @@ class FlaskAPIListener():
 
         # Return 201 CREATED
         return "", 201
+
+    ##################
+    # Commands       #
+    ##################
+
 
     ## any bad auth returns this
     @app.errorhandler(exceptions.NoAuthorizationError)
@@ -178,7 +187,7 @@ class FlaskAPIListener():
         try:
             err_404_path = random.choice(FlaskAPIListener.UrlSc.NOT_FOUND_LIST_404)
 
-            html = ListenerUtils.UtilsHandler.load_file(
+            html = Utils.UtilsHandler.load_file(
                 current_path = sys_path, 
                 file_path = err_404_path, 
                 return_path = False )
@@ -200,4 +209,7 @@ if __name__ == "__main__":
     print("==== Starting Listener =====")
     ## Init data structures
     #Data()
-    FlaskAPIListener.app.run(host=ip, port=port, debug=False)
+    #FlaskAPIListener.app.run(host=ip, port=port, debug=True)
+    ## well that was easy
+    from waitress import serve
+    serve(FlaskAPIListener.app, host=ip, port=port)
