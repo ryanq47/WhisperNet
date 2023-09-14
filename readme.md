@@ -45,6 +45,10 @@ Back to flexibility...
 - Essentially settings for all clients.
 
   
+## The vision:
+Here's what I'm shooting for:
+
+![image](https://github.com/ryanq47/WhisperNet/assets/91687869/c475a273-c88b-4ca8-8a7b-f9b2b1abde05)
 
   
 
