@@ -3514,3 +3514,19 @@
 2023-09-13 00:20:34 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
 2023-09-13 00:20:34 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
 2023-09-13 00:20:34 - INFO - 127.0.0.1 - - [13/Sep/2023 00:20:34] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-13 21:19:44 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 21:19:44 - DEBUG - [^] load_file
+2023-09-13 21:19:44 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 21:19:44 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 21:19:44 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 21:19:44 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 21:19:44 - INFO -  * Restarting with stat
+2023-09-13 21:19:45 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 21:19:45 - DEBUG - [^] load_file
+2023-09-13 21:19:45 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 21:19:45 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 21:19:45 - WARNING -  * Debugger is active!
+2023-09-13 21:19:45 - INFO -  * Debugger PIN: 266-352-027

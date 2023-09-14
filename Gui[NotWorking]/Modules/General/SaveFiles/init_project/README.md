@@ -1,1 +1,0 @@
-Please do not delete this project/folder ever! This is the base configuration used on startup, and anytime a new project is needed
