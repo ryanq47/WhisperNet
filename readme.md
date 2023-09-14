@@ -51,8 +51,7 @@ Here's what I'm shooting for:
 ![image](https://github.com/ryanq47/WhisperNet/assets/91687869/c475a273-c88b-4ca8-8a7b-f9b2b1abde05)
 
   
-
-<ChatGPT  Generated  CorpoGarbo:  WhisperNet  is  a  versatile  and  powerful  Command  and  Control  (C2)  infrastructure  setup  tool  designed  to  streamline  the  process  of  establishing  secure  communication  channels  between  servers  and  clients.  With  a  focus  on  ease  of  use  and  flexibility,  WhisperNet  simplifies  the  setup  of  your  C2  infrastructure,  allowing  you  to  focus  on  your  objectives.>
+I'll put this all into words later, but a quick TLDR: A full blown C2 enviornment, with features such as remote listeners, feature 2, and feature 3
 
   
 
