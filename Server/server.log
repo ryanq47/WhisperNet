@@ -5156,3 +5156,337 @@ RuntimeError: Not running with the Werkzeug Server
 2023-09-14 14:38:17 - DEBUG - [^] load_file
 2023-09-14 14:38:17 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
 2023-09-14 14:38:17 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 16:55:38 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-14 16:55:38 - DEBUG - [^] load_file
+2023-09-14 16:55:38 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 16:55:38 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-14 16:55:38 - INFO - Serving on http://127.0.0.1:80
+2023-09-14 16:55:48 - DEBUG - [^] load_file
+2023-09-14 16:55:48 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-Default.html
+2023-09-14 16:55:48 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-Default.html
+2023-09-14 16:55:48 - DEBUG - [^] load_file
+2023-09-14 16:55:48 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 16:55:48 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 16:55:51 - ERROR - Exception on /status [GET]
+Traceback (most recent call last):
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Ryan\Documents\GitHub\logec-suite\Server\server.py", line 299, in index
+    return render_template('index.html', json_data=dummy_json_data)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 150, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 64, in get_source
+    return self._get_source_fast(environment, template)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 98, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: index.html
+2023-09-14 16:55:51 - DEBUG - [^] load_file
+2023-09-14 16:55:51 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 16:55:51 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 16:56:19 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-14 16:56:19 - DEBUG - [^] load_file
+2023-09-14 16:56:19 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 16:56:19 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-14 16:56:20 - INFO - Serving on http://127.0.0.1:80
+2023-09-14 16:56:22 - ERROR - Exception on /status [GET]
+Traceback (most recent call last):
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Ryan\Documents\GitHub\logec-suite\Server\server.py", line 299, in index
+    return render_template('ApiEngine\html\statuspage\statuspage.html', json_data=dummy_json_data)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 150, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 64, in get_source
+    return self._get_source_fast(environment, template)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 98, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: ApiEngine\html\statuspage\statuspage.html
+2023-09-14 16:56:22 - DEBUG - [^] load_file
+2023-09-14 16:56:22 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 16:56:22 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 16:57:04 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-14 16:57:05 - DEBUG - [^] load_file
+2023-09-14 16:57:05 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 16:57:05 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-14 16:57:05 - INFO - Serving on http://127.0.0.1:80
+2023-09-14 16:57:07 - ERROR - Exception on /status [GET]
+Traceback (most recent call last):
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Ryan\Documents\GitHub\logec-suite\Server\server.py", line 301, in index
+    return render_template(path, json_data=dummy_json_data)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 150, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 64, in get_source
+    return self._get_source_fast(environment, template)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 98, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine\html\statuspage\statuspage.html
+2023-09-14 16:57:07 - DEBUG - [^] load_file
+2023-09-14 16:57:07 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 16:57:07 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 16:57:51 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-14 16:57:51 - DEBUG - [^] load_file
+2023-09-14 16:57:51 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 16:57:51 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-14 16:57:51 - INFO - Serving on http://127.0.0.1:80
+2023-09-14 16:57:54 - ERROR - Exception on /status [GET]
+Traceback (most recent call last):
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Ryan\Documents\GitHub\logec-suite\Server\server.py", line 301, in index
+    return render_template("C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\ApiEngine\\html\\statuspage\\statuspage.html", json_data=dummy_json_data)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 150, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 64, in get_source
+    return self._get_source_fast(environment, template)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 98, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine\html\statuspage\statuspage.html
+2023-09-14 16:57:54 - DEBUG - [^] load_file
+2023-09-14 16:57:54 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 16:57:54 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 16:58:43 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-14 16:58:44 - DEBUG - [^] load_file
+2023-09-14 16:58:44 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 16:58:44 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-14 16:58:44 - INFO - Serving on http://127.0.0.1:80
+2023-09-14 16:58:47 - ERROR - Exception on /status [GET]
+Traceback (most recent call last):
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Ryan\Documents\GitHub\logec-suite\Server\server.py", line 301, in index
+    return render_template("statuspage.html", json_data=dummy_json_data)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 150, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 64, in get_source
+    return self._get_source_fast(environment, template)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 98, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: statuspage.html
+2023-09-14 16:58:47 - DEBUG - [^] load_file
+2023-09-14 16:58:47 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 16:58:47 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 16:59:35 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-14 16:59:35 - DEBUG - [^] load_file
+2023-09-14 16:59:35 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 16:59:35 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-14 16:59:35 - INFO - Serving on http://127.0.0.1:80
+2023-09-14 16:59:46 - ERROR - Exception on /status [GET]
+Traceback (most recent call last):
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Ryan\Documents\GitHub\logec-suite\Server\server.py", line 301, in index
+    return render_template('statuspage.html', json_data=dummy_json_data)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 150, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 64, in get_source
+    return self._get_source_fast(environment, template)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 98, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: statuspage.html
+2023-09-14 16:59:46 - DEBUG - [^] load_file
+2023-09-14 16:59:46 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 16:59:46 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:00:16 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-14 17:00:16 - DEBUG - [^] load_file
+2023-09-14 17:00:16 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 17:00:16 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-14 17:00:16 - INFO - Serving on http://127.0.0.1:80
+2023-09-14 17:00:22 - DEBUG - [^] load_file
+2023-09-14 17:00:22 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-14 17:00:22 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-MLP.html
+2023-09-14 17:00:22 - DEBUG - [^] load_file
+2023-09-14 17:00:22 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 17:00:22 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 17:00:25 - ERROR - Exception on /status [GET]
+Traceback (most recent call last):
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 2190, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1486, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1484, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\app.py", line 1469, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Ryan\Documents\GitHub\logec-suite\Server\server.py", line 302, in index
+    return render_template('index.html', json_data=dummy_json_data)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 150, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 64, in get_source
+    return self._get_source_fast(environment, template)
+  File "C:\Users\Ryan\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\flask\templating.py", line 98, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: index.html
+2023-09-14 17:00:25 - DEBUG - [^] load_file
+2023-09-14 17:00:25 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:00:25 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:01:22 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-14 17:01:22 - DEBUG - [^] load_file
+2023-09-14 17:01:22 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 17:01:22 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-14 17:01:22 - INFO - Serving on http://127.0.0.1:80
+2023-09-14 17:01:28 - DEBUG - [^] load_file
+2023-09-14 17:01:28 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 17:01:28 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 17:01:28 - DEBUG - [^] load_file
+2023-09-14 17:01:28 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:01:28 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:01:28 - DEBUG - [^] load_file
+2023-09-14 17:01:28 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:01:28 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:01:30 - DEBUG - [^] load_file
+2023-09-14 17:01:30 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 17:01:30 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 17:01:30 - DEBUG - [^] load_file
+2023-09-14 17:01:30 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:01:30 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:01:31 - DEBUG - [^] load_file
+2023-09-14 17:01:31 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:01:31 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:01:33 - DEBUG - [^] load_file
+2023-09-14 17:01:33 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 17:01:33 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 17:54:30 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-14 17:54:30 - DEBUG - [^] load_file
+2023-09-14 17:54:30 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 17:54:30 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-14 17:54:30 - INFO - Serving on http://127.0.0.1:80
+2023-09-14 17:54:31 - DEBUG - [^] load_file
+2023-09-14 17:54:31 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:54:31 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:54:32 - DEBUG - [^] load_file
+2023-09-14 17:54:32 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 17:54:32 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 17:54:34 - DEBUG - [^] load_file
+2023-09-14 17:54:34 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:54:34 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:54:34 - DEBUG - [^] load_file
+2023-09-14 17:54:34 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:54:34 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:57:19 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-14 17:57:19 - DEBUG - [^] load_file
+2023-09-14 17:57:19 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 17:57:19 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-14 17:57:19 - INFO - Serving on http://127.0.0.1:80
+2023-09-14 17:57:25 - DEBUG - [^] load_file
+2023-09-14 17:57:25 - DEBUG - [^] load_file
+2023-09-14 17:57:25 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 17:57:25 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:57:25 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 17:57:25 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:57:25 - DEBUG - [^] load_file
+2023-09-14 17:57:25 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 17:57:25 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 17:57:28 - DEBUG - [^] load_file
+2023-09-14 17:57:28 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:57:28 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:57:29 - DEBUG - [^] load_file
+2023-09-14 17:57:29 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 17:57:29 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 17:57:48 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-14 17:57:48 - DEBUG - [^] load_file
+2023-09-14 17:57:48 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-14 17:57:48 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-14 17:57:48 - INFO - Serving on http://127.0.0.1:80
+2023-09-14 17:57:50 - DEBUG - [^] load_file
+2023-09-14 17:57:50 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 17:57:50 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 17:57:51 - DEBUG - [^] load_file
+2023-09-14 17:57:51 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:57:51 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-14 17:57:52 - DEBUG - [^] load_file
+2023-09-14 17:57:52 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-14 17:57:52 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html

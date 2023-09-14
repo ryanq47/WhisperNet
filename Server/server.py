@@ -19,7 +19,7 @@ try:
     import signal
     import sys
     import time
-    from flask import Flask, jsonify, request, send_from_directory
+    from flask import Flask, jsonify, request, send_from_directory, render_template
     from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
 
 
@@ -285,6 +285,21 @@ class ControlServer:
 
         # Return 201 CREATED
         return "", 201
+    @app.route(f"/status/listeners", methods=["POST"])
+    def status():
+        pass
+    
+    @app.route('/status')
+    def index():
+        dummy_json_data = {
+            "status": "up",
+            "message": "Website is up and running!",
+        }
+
+        #path = os.path.join(sys_path, "ApiEngine\html\statuspage\statuspage.html")
+
+        # Render the HTML template with initial JSON data
+        return render_template('index.html', json_data=dummy_json_data)
 
     ## any bad auth returns this
     @app.errorhandler(exceptions.NoAuthorizationError)

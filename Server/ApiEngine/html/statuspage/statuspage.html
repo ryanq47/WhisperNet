@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Website</title>
+</head>
+<body>
+    <h1>Website Status: <span id="status">{{ json_data.status }}</span></h1>
+    <button id="change-status">Change Status</button>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#change-status').click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '/update_status',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ "status": "down" }), // Change to "up" or "down" as needed
+                    success: function (data) {
+                        $('#status').text(data.status);
+                        if (data.status === 'up') {
+                            $('#status-text').text('Up');
+                        } else {
+                            $('#status-text').text('Down');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
