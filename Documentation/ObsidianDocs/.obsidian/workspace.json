@@ -114,21 +114,9 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "ced2d192a3b6c743",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1. Task Tracker/Tasks/Cleanup.md",
-                "mode": "source",
-                "source": false
-              }
-            }
           }
         ],
-        "currentTab": 8
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -194,7 +182,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1. Task Tracker/Tasks/Cleanup.md",
+                "file": "Server/Modules/ApiEngine/Endpoints/40X error codes.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -211,7 +199,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1. Task Tracker/Tasks/Cleanup.md",
+                "file": "Server/Modules/ApiEngine/Endpoints/40X error codes.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -234,7 +222,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1. Task Tracker/Tasks/Cleanup.md"
+                "file": "Server/Modules/ApiEngine/Endpoints/40X error codes.md"
               }
             }
           },
@@ -266,10 +254,13 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "ced2d192a3b6c743",
+  "active": "b6acd7d1ec471bf9",
   "lastOpenFiles": [
-    "Server/Modules/ApiEngine/Endpoints/40X error codes.md",
+    "General/Networking & Protocols/Header breakdown - DEPRACATED.md",
+    "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
+    "Server/Modules/2.DataEngine/DBHandler.py/General.md",
     "1. Task Tracker/Tasks/Cleanup.md",
+    "Server/Modules/ApiEngine/Endpoints/40X error codes.md",
     "1. Task Tracker/Task Tracker.md",
     "1. Task Tracker/Tasks/Server Authentication.md",
     "1. Task Tracker/Tasks/Untitled.md",
@@ -283,7 +274,6 @@
     "Valuecheck Function.canvas",
     "1. Task Tracker/Tasks/API Docs.md",
     "DataState.canvas",
-    "Server/Modules/2.DataEngine/DBHandler.py/General.md",
     "Server/Modules/3. Security Engine/AuthenticationHandler.py.md",
     "Server/Globals/Overview.md",
     "General/Images",
@@ -310,7 +300,6 @@
     "Server/Modules/ApiEngine",
     "Clients/Python Client/Dev Docs/MindMaps/VisProg.canvas",
     "Clients/Python Client/Dev Docs/MindMaps/Plugin Abstraction Layers.canvas",
-    "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
     "General/Global MindMap.canvas",
     "1. Task Tracker/Tasks",
     "1. Task Tracker",
