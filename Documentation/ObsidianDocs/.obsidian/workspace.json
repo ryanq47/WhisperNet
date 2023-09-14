@@ -22,39 +22,13 @@
             }
           },
           {
-            "id": "7f35a6b9c20d30fc",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Server/Modules/ApiEngine/Endpoints/40X error codes.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "86ff8eeffdf9f704",
+            "id": "719d215d7c912b40",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2. Bug Tracker/Bug Tracker.md",
-                "mode": "preview",
-                "source": false
-              },
-              "pinned": true
-            }
-          },
-          {
-            "id": "24299df110074203",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1. Task Tracker/Tasks/Server Authentication.md",
+                "file": "1. Task Tracker/Tasks/Listener ReFactor & rework.md",
                 "mode": "source",
                 "source": false
               },
@@ -62,61 +36,60 @@
             }
           },
           {
-            "id": "57cf3f4565bdb1c3",
+            "id": "5626f160c4fc425a",
             "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Server/Modules/ApiEngine/Endpoints/Login.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true
-            }
-          },
-          {
-            "id": "e3b0108eb99474a5",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Server/Modules/ApiEngine/Endpoints/00. template.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true
-            }
-          },
-          {
-            "id": "3daba88296e3fe69",
-            "type": "leaf",
-            "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
                 "file": "Server/Modules/ApiEngine/API General Overview.md",
                 "mode": "source",
                 "source": false
+              }
+            }
+          },
+          {
+            "id": "cfd4b5e81ceb0dec",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Server/Modules/Listeners/Overview.md",
+                "mode": "source",
+                "source": false
               },
               "pinned": true
             }
           },
           {
-            "id": "b6acd7d1ec471bf9",
+            "id": "fbf8ecea33ea3d18",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "Server/Modules/Listeners/Listener setup.canvas",
+                "viewState": {
+                  "x": -582.2881899871632,
+                  "y": -4.693838254171965,
+                  "zoom": -0.5474390580749533
+                }
+              }
+            }
+          },
+          {
+            "id": "3a8a9796b8ce7145",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Server/Modules/ApiEngine/Endpoints/40X error codes.md",
+                "file": "1. Task Tracker/Tasks/Listener ReFactor & rework.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 7
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -182,7 +155,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Modules/ApiEngine/Endpoints/40X error codes.md",
+                "file": "1. Task Tracker/Tasks/Listener ReFactor & rework.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -199,7 +172,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Modules/ApiEngine/Endpoints/40X error codes.md",
+                "file": "1. Task Tracker/Tasks/Listener ReFactor & rework.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -222,7 +195,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Modules/ApiEngine/Endpoints/40X error codes.md"
+                "file": "1. Task Tracker/Tasks/Listener ReFactor & rework.md"
               }
             }
           },
@@ -254,22 +227,28 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "b6acd7d1ec471bf9",
+  "active": "3a8a9796b8ce7145",
   "lastOpenFiles": [
+    "1. Task Tracker/Task Tracker.md",
+    "Server/Modules/Listeners/Overview.md",
+    "Server/Modules/Listeners/Listener setup.canvas",
+    "Server/Modules/Listeners",
+    "1. Task Tracker/Tasks/Listener ReFactor & rework.md",
+    "Server/Modules/ApiEngine/API General Overview.md",
+    "Server/Modules/ApiEngine/Endpoints/User Management.md",
+    "1. Task Tracker/Tasks/Untitled 1.md",
+    "1. Task Tracker/Tasks/Cleanup.md",
+    "Server/Modules/ApiEngine/Endpoints/40X error codes.md",
+    "2. Bug Tracker/Bug Tracker.md",
+    "1. Task Tracker/Tasks/Server Authentication.md",
+    "Server/Modules/ApiEngine/Endpoints/Login.md",
+    "Server/Modules/ApiEngine/Endpoints/00. template.md",
     "General/Networking & Protocols/Header breakdown - DEPRACATED.md",
     "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
     "Server/Modules/2.DataEngine/DBHandler.py/General.md",
-    "1. Task Tracker/Tasks/Cleanup.md",
-    "Server/Modules/ApiEngine/Endpoints/40X error codes.md",
-    "1. Task Tracker/Task Tracker.md",
-    "1. Task Tracker/Tasks/Server Authentication.md",
     "1. Task Tracker/Tasks/Untitled.md",
-    "Server/Modules/ApiEngine/Endpoints/Login.md",
     "DEV- Server Refactor & Adjust.canvas",
-    "Server/Modules/ApiEngine/Endpoints/00. template.md",
-    "Server/Modules/ApiEngine/API General Overview.md",
     "Server/Modules/ApiEngine/Endpoints/Home endpoint.md",
-    "Server/Modules/ApiEngine/Endpoints/User Management.md",
     "1. Task Tracker/Tasks/API Authentication.md",
     "Valuecheck Function.canvas",
     "1. Task Tracker/Tasks/API Docs.md",
@@ -280,19 +259,14 @@
     "General/Images/Pasted image 20230913002046.png",
     "General/Images/Pasted image 20230913002028.png",
     "Server/Modules/Error Handling/Error Handling Overview.md",
-    "2. Bug Tracker/Bug Tracker.md",
     "Server/Security Testing/URL Fuzzing & Discovery.md",
     "Data Struct.md",
     "Server/Globals",
     "1. Task Tracker/Tasks/File Upload & Downlaod.md",
     "1. Task Tracker/Tasks/Rest implementation.md",
     "General/Images/Pasted image 20230904190836.png",
-    "Server/Security Testing/General.md",
     "General/Images/Pasted image 20230904190547.png",
     "Server/Security Testing",
-    "1. Task Tracker/Tasks/Socket Timeouts.md",
-    "1. Task Tracker/Tasks/Move client to Rest.md",
-    "2. Bug Tracker/Bugs/Server command error.md",
     "Server/Modules/ApiEngine/Process Overview.canvas",
     "Server/Modules/Error Handling",
     "Server/Modules/ApiEngine/Endpoints",
@@ -303,8 +277,6 @@
     "General/Global MindMap.canvas",
     "1. Task Tracker/Tasks",
     "1. Task Tracker",
-    "Clients/Python Client/Dev Docs/MindMaps/Program File Structure.canvas",
-    "2. Bug Tracker/Bugs",
-    "Templates"
+    "2. Bug Tracker/Bugs"
   ]
 }

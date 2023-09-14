@@ -230,20 +230,38 @@ class ControlServer:
             ControlServer.page_not_found()
     
     ## Listener Section
-    @app.route(f"/{UrlSc.SPAWN_TCP_LISTENER_ENDPOINT}", methods=["POST"])
-    @jwt_required()
-    def add_todo():
+    #@app.route(f"/{UrlSc.SPAWN_TCP_LISTENER_ENDPOINT}", methods=["POST"])
+    @app.route(f"/list", methods=["POST"])
+    #@jwt_required()
+    def spawn_listener():
+        #ip = request.json.get('ip')
+        #port = request.json.get('port')
+        ## for later, local or network
+        #type = request.json.get('type')
+
         try:
-            # Extract JSON data from the request body
-            data = request.json
+            listener_path = os.path.join(sys_path, "../Listeners/FlaskAPI/")
+            #print(listener_path)
 
-            ## validate JSON
+            ## temp hardcode
+            #listener_path = "C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Listeners"
+            import subprocess
 
-            ListenerController.spawn_listener(ip = data["ip"], port = data["port"])
+                
+            #command = ["python", f"{listener_path}\\FlaskAPI.py", "--port", "80", "--ip", "0.0.0.0"]
+            
+            process = subprocess.Popen(f"python {listener_path}\\FlaskAPI.py --port 80 --ip 0.0.0.0", shell=True)
+            #process = subprocess.Popen(command, shell=False)
+            
+            pid = process.pid
+            print(f"PID: {pid}")
 
-            return jsonify({"message": "success"})
-        except Exception:
-            ControlServer.page_not_found()
+            #os.system(f"python {listener_path}\\FlaskAPI.py --port 80 --ip '0.0.0.0' ")
+
+            return f"Listener spawned on {ip}:{port}" #jsonify({"message": "success"})
+        except Exception as e:
+            return str(e)
+            #ControlServer.page_not_found()
 
     ## File Section
     # https://docs.faculty.ai/user-guide/apis/flask_apis/flask_file_upload_download.html

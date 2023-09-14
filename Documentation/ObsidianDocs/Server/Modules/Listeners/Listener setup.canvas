@@ -1,0 +1,25 @@
+{
+	"nodes":[
+		{"id":"77bedfad72f6e3cc","type":"text","text":"## Listener - 127.0.0.1:80\n- Flask API","x":-1040,"y":-90,"width":250,"height":160},
+		{"id":"5e25e90788487da9","type":"text","text":"## Control Server 127.0.0.1:8080\n- Flask API","x":-695,"y":-90,"width":250,"height":190},
+		{"id":"6ec3f5f193dd3aea","type":"text","text":"## DB","x":-620,"y":360,"width":99,"height":60},
+		{"id":"d82e27ad4df220ae","type":"text","text":"## Python (on same PC)","x":-695,"y":200,"width":250,"height":80},
+		{"id":"63e61c92b77a4546","type":"text","text":"## Listener - CLOUD:80","x":120,"y":10,"width":250,"height":60},
+		{"id":"77a262db4865bacf","type":"text","text":"## Control Server 127.0.0.1:8080","x":465,"y":10,"width":250,"height":60},
+		{"id":"49eaeb2c3e889ab8","type":"text","text":"## Listener - CLOUD:443","x":780,"y":10,"width":250,"height":60},
+		{"id":"c4d222c5abb1f4ab","type":"text","text":"## Network (Over internet)","x":465,"y":200,"width":250,"height":60},
+		{"id":"f567920bd77fee7b","type":"text","text":"## DB","x":541,"y":-50,"width":99,"height":60},
+		{"id":"7c67c482331a7a25","type":"text","text":"## Ideal setup - maybe v 2.0\nEach listener would be able to run standalone, on its own machine, and communicate w/ control server\n\nMuch more complicated\nChallenges:\n- Latency\n- Replication\n- security over the wire\n- SSL\n- Data transfer\n- Listener verification (make sure it's legit)","x":120,"y":-520,"width":520,"height":430},
+		{"id":"c2d98922cfc111eb","type":"text","text":"## current setup.\nGet this done properly, jump to 2.0 will be easier","x":-1040,"y":-305,"width":250,"height":140},
+		{"id":"45edf87f00d3af80","type":"text","text":"## Listener - 127.0.0.1:443\n- Flask API","x":-380,"y":-90,"width":250,"height":190}
+	],
+	"edges":[
+		{"id":"2168f1c71bff09f5","fromNode":"77bedfad72f6e3cc","fromSide":"bottom","toNode":"d82e27ad4df220ae","toSide":"left","fromEnd":"arrow"},
+		{"id":"0f3ab4ecfdc7a67b","fromNode":"5e25e90788487da9","fromSide":"bottom","toNode":"d82e27ad4df220ae","toSide":"top"},
+		{"id":"1d1969192abaa438","fromNode":"45edf87f00d3af80","fromSide":"bottom","toNode":"d82e27ad4df220ae","toSide":"right","fromEnd":"arrow"},
+		{"id":"37632913028b81b2","fromNode":"d82e27ad4df220ae","fromSide":"bottom","toNode":"6ec3f5f193dd3aea","toSide":"top"},
+		{"id":"bdcc4068cdd7ec2a","fromNode":"63e61c92b77a4546","fromSide":"bottom","toNode":"c4d222c5abb1f4ab","toSide":"left","fromEnd":"arrow","label":"json"},
+		{"id":"b1d75f3194df7078","fromNode":"77a262db4865bacf","fromSide":"bottom","toNode":"c4d222c5abb1f4ab","toSide":"top"},
+		{"id":"7e574575ef0fd4aa","fromNode":"49eaeb2c3e889ab8","fromSide":"bottom","toNode":"c4d222c5abb1f4ab","toSide":"right","fromEnd":"arrow","label":"json"}
+	]
+}

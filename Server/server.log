@@ -3530,3 +3530,669 @@
 2023-09-13 21:19:45 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
 2023-09-13 21:19:45 - WARNING -  * Debugger is active!
 2023-09-13 21:19:45 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 22:07:51 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 22:07:51 - DEBUG - [^] load_file
+2023-09-13 22:07:51 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 22:07:51 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 22:07:51 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 22:07:51 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 22:07:51 - INFO -  * Restarting with stat
+2023-09-13 22:07:51 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 22:07:51 - DEBUG - [^] load_file
+2023-09-13 22:07:51 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 22:07:51 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 22:07:51 - WARNING -  * Debugger is active!
+2023-09-13 22:07:51 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 22:52:49 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 22:52:49 - DEBUG - [^] load_file
+2023-09-13 22:52:49 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 22:52:49 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 22:52:49 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 22:52:49 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 22:52:49 - INFO -  * Restarting with stat
+2023-09-13 22:52:50 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 22:52:50 - DEBUG - [^] load_file
+2023-09-13 22:52:50 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 22:52:50 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 22:52:50 - WARNING -  * Debugger is active!
+2023-09-13 22:52:50 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 22:52:55 - DEBUG - [^] load_file
+2023-09-13 22:52:55 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-13 22:52:55 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-13 22:52:55 - INFO - 127.0.0.1 - - [13/Sep/2023 22:52:55] "GET /server/spawntcplistener HTTP/1.1" 200 -
+2023-09-13 22:52:55 - DEBUG - [^] load_file
+2023-09-13 22:52:55 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-13 22:52:55 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-13 22:52:55 - INFO - 127.0.0.1 - - [13/Sep/2023 22:52:55] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-13 22:53:34 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 22:53:34 - INFO -  * Restarting with stat
+2023-09-13 22:53:34 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 22:53:34 - DEBUG - [^] load_file
+2023-09-13 22:53:34 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 22:53:34 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 22:53:34 - WARNING -  * Debugger is active!
+2023-09-13 22:53:34 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 22:53:38 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 22:53:38 - INFO -  * Restarting with stat
+2023-09-13 22:53:39 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 22:53:39 - DEBUG - [^] load_file
+2023-09-13 22:53:39 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 22:53:39 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 22:53:39 - WARNING -  * Debugger is active!
+2023-09-13 22:53:39 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 22:53:40 - DEBUG - [^] load_file
+2023-09-13 22:53:40 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-13 22:53:40 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-13 22:53:40 - INFO - 127.0.0.1 - - [13/Sep/2023 22:53:40] "GET /server/spawntcplistener HTTP/1.1" 200 -
+2023-09-13 22:53:40 - DEBUG - [^] load_file
+2023-09-13 22:53:40 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-13 22:53:40 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-13 22:53:40 - INFO - 127.0.0.1 - - [13/Sep/2023 22:53:40] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-13 22:54:11 - DEBUG - [^] load_file
+2023-09-13 22:54:11 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-13 22:54:11 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-13 22:54:11 - INFO - 127.0.0.1 - - [13/Sep/2023 22:54:11] "POST /server/spawntcplistener HTTP/1.1" 200 -
+2023-09-13 22:54:41 - DEBUG - [^] load_file
+2023-09-13 22:54:41 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-13 22:54:41 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-13 22:54:41 - INFO - 127.0.0.1 - - [13/Sep/2023 22:54:41] "POST /server/spawntcplistener HTTP/1.1" 200 -
+2023-09-13 22:54:58 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 22:54:59 - DEBUG - [^] load_file
+2023-09-13 22:54:59 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 22:54:59 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 22:54:59 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 22:54:59 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 22:54:59 - INFO -  * Restarting with stat
+2023-09-13 22:54:59 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 22:54:59 - DEBUG - [^] load_file
+2023-09-13 22:54:59 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 22:54:59 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 22:54:59 - WARNING -  * Debugger is active!
+2023-09-13 22:54:59 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 22:55:01 - DEBUG - [^] load_file
+2023-09-13 22:55:01 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-13 22:55:01 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-13 22:55:01 - INFO - 127.0.0.1 - - [13/Sep/2023 22:55:01] "POST /server/spawntcplistener HTTP/1.1" 200 -
+2023-09-13 22:56:19 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 22:56:19 - INFO -  * Restarting with stat
+2023-09-13 22:56:20 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 22:56:20 - DEBUG - [^] load_file
+2023-09-13 22:56:20 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 22:56:20 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 22:56:20 - WARNING -  * Debugger is active!
+2023-09-13 22:56:20 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 22:56:22 - DEBUG - [^] load_file
+2023-09-13 22:56:22 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-13 22:56:22 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-13 22:56:22 - INFO - 127.0.0.1 - - [13/Sep/2023 22:56:22] "POST /server/spawntcplistener HTTP/1.1" 200 -
+2023-09-13 22:56:33 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 22:56:33 - DEBUG - [^] load_file
+2023-09-13 22:56:33 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 22:56:33 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 22:56:33 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 22:56:33 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 22:56:33 - INFO -  * Restarting with stat
+2023-09-13 22:56:34 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 22:56:34 - DEBUG - [^] load_file
+2023-09-13 22:56:34 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 22:56:34 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 22:56:34 - WARNING -  * Debugger is active!
+2023-09-13 22:56:34 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 22:56:35 - DEBUG - [^] load_file
+2023-09-13 22:56:35 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-13 22:56:35 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-13 22:56:35 - INFO - 127.0.0.1 - - [13/Sep/2023 22:56:35] "POST /server/spawntcplistener HTTP/1.1" 200 -
+2023-09-13 22:57:06 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 22:57:06 - INFO -  * Restarting with stat
+2023-09-13 22:57:07 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 22:57:07 - DEBUG - [^] load_file
+2023-09-13 22:57:07 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 22:57:07 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 22:57:07 - WARNING -  * Debugger is active!
+2023-09-13 22:57:07 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 22:57:15 - INFO - 127.0.0.1 - - [13/Sep/2023 22:57:15] "POST /list HTTP/1.1" 200 -
+2023-09-13 22:57:46 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\Listeners\\FlaskAPI\\FlaskAPI.py', reloading
+2023-09-13 22:57:46 - INFO -  * Restarting with stat
+2023-09-13 22:57:46 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 22:57:46 - DEBUG - [^] load_file
+2023-09-13 22:57:46 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 22:57:46 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 22:57:46 - WARNING -  * Debugger is active!
+2023-09-13 22:57:46 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 22:58:14 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 22:58:14 - INFO -  * Restarting with stat
+2023-09-13 22:58:15 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 22:58:15 - DEBUG - [^] load_file
+2023-09-13 22:58:15 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 22:58:15 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 22:58:15 - WARNING -  * Debugger is active!
+2023-09-13 22:58:15 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 22:58:32 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 22:58:32 - INFO -  * Restarting with stat
+2023-09-13 22:58:33 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 22:58:33 - DEBUG - [^] load_file
+2023-09-13 22:58:33 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 22:58:33 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 22:58:33 - WARNING -  * Debugger is active!
+2023-09-13 22:58:33 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 22:58:35 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 22:58:35 - INFO -  * Restarting with stat
+2023-09-13 22:58:36 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 22:58:36 - DEBUG - [^] load_file
+2023-09-13 22:58:36 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 22:58:36 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 22:58:36 - WARNING -  * Debugger is active!
+2023-09-13 22:58:36 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 22:58:52 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 22:58:52 - DEBUG - [^] load_file
+2023-09-13 22:58:52 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 22:58:52 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 22:58:52 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 22:58:52 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 22:58:52 - INFO -  * Restarting with stat
+2023-09-13 22:58:53 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 22:58:53 - DEBUG - [^] load_file
+2023-09-13 22:58:53 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 22:58:53 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 22:58:53 - WARNING -  * Debugger is active!
+2023-09-13 22:58:53 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:15:21 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:15:21 - INFO -  * Restarting with stat
+2023-09-13 23:15:21 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:15:21 - DEBUG - [^] load_file
+2023-09-13 23:15:21 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:15:21 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:15:21 - WARNING -  * Debugger is active!
+2023-09-13 23:15:21 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:16:54 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:16:54 - INFO -  * Restarting with stat
+2023-09-13 23:18:51 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:18:51 - DEBUG - [^] load_file
+2023-09-13 23:18:51 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:18:51 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:18:51 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 23:18:51 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 23:18:51 - INFO -  * Restarting with stat
+2023-09-13 23:18:52 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:18:52 - DEBUG - [^] load_file
+2023-09-13 23:18:52 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:18:52 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:18:52 - WARNING -  * Debugger is active!
+2023-09-13 23:18:52 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:18:55 - INFO - 127.0.0.1 - - [13/Sep/2023 23:18:55] "POST /list HTTP/1.1" 200 -
+2023-09-13 23:19:22 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:19:22 - INFO -  * Restarting with stat
+2023-09-13 23:19:22 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:19:22 - DEBUG - [^] load_file
+2023-09-13 23:19:22 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:19:22 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:19:22 - WARNING -  * Debugger is active!
+2023-09-13 23:19:22 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:19:24 - INFO - 127.0.0.1 - - [13/Sep/2023 23:19:24] "POST /list HTTP/1.1" 200 -
+2023-09-13 23:19:43 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:19:43 - INFO -  * Restarting with stat
+2023-09-13 23:19:43 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:19:43 - DEBUG - [^] load_file
+2023-09-13 23:19:43 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:19:43 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:19:43 - WARNING -  * Debugger is active!
+2023-09-13 23:19:43 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:19:46 - INFO - 127.0.0.1 - - [13/Sep/2023 23:19:46] "POST /list HTTP/1.1" 200 -
+2023-09-13 23:21:03 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:21:03 - INFO -  * Restarting with stat
+2023-09-13 23:21:31 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:21:31 - DEBUG - [^] load_file
+2023-09-13 23:21:31 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:21:31 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:21:31 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 23:21:31 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 23:21:31 - INFO -  * Restarting with stat
+2023-09-13 23:21:32 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:21:32 - DEBUG - [^] load_file
+2023-09-13 23:21:32 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:21:32 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:21:32 - WARNING -  * Debugger is active!
+2023-09-13 23:21:32 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:21:35 - INFO - 127.0.0.1 - - [13/Sep/2023 23:21:35] "POST /list HTTP/1.1" 200 -
+2023-09-13 23:21:56 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:22:06 - INFO -  * Restarting with stat
+2023-09-13 23:22:08 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:22:08 - DEBUG - [^] load_file
+2023-09-13 23:22:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:22:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:22:08 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 23:22:08 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 23:22:08 - INFO -  * Restarting with stat
+2023-09-13 23:22:09 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:22:09 - DEBUG - [^] load_file
+2023-09-13 23:22:09 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:22:09 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:22:09 - WARNING -  * Debugger is active!
+2023-09-13 23:22:09 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:22:11 - INFO - 127.0.0.1 - - [13/Sep/2023 23:22:11] "POST /list HTTP/1.1" 200 -
+2023-09-13 23:22:23 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:22:23 - INFO -  * Restarting with stat
+2023-09-13 23:22:23 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:22:23 - DEBUG - [^] load_file
+2023-09-13 23:22:23 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:22:24 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:22:24 - WARNING -  * Debugger is active!
+2023-09-13 23:22:24 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:22:27 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:22:27 - INFO -  * Restarting with stat
+2023-09-13 23:22:28 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:22:28 - DEBUG - [^] load_file
+2023-09-13 23:22:28 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:22:28 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:22:28 - WARNING -  * Debugger is active!
+2023-09-13 23:22:28 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:22:31 - INFO - 127.0.0.1 - - [13/Sep/2023 23:22:31] "POST /list HTTP/1.1" 200 -
+2023-09-13 23:22:56 - INFO - 127.0.0.1 - - [13/Sep/2023 23:22:56] "POST /list HTTP/1.1" 200 -
+2023-09-13 23:23:07 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:23:07 - INFO -  * Restarting with stat
+2023-09-13 23:23:08 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:23:08 - DEBUG - [^] load_file
+2023-09-13 23:23:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:23:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:23:08 - WARNING -  * Debugger is active!
+2023-09-13 23:23:08 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:23:10 - DEBUG - [^] load_file
+2023-09-13 23:23:10 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:23:10 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:23:10 - WARNING -  * Debugger is active!
+2023-09-13 23:23:10 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:23:19 - DEBUG - [^] load_file
+2023-09-13 23:23:19 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ListenerApiEngine/html/homepage-MLP.html
+2023-09-13 23:23:19 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ListenerApiEngine/html/homepage-MLP.html
+2023-09-13 23:23:19 - INFO - 127.0.0.1 - - [13/Sep/2023 23:23:19] "GET / HTTP/1.1" 200 -
+2023-09-13 23:23:20 - DEBUG - [^] load_file
+2023-09-13 23:23:20 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-13 23:23:20 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-13 23:23:20 - INFO - 127.0.0.1 - - [13/Sep/2023 23:23:20] "GET /favicon.ico HTTP/1.1" 200 -
+2023-09-13 23:24:04 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Listeners\\FlaskAPI\\FlaskAPI.py', reloading
+2023-09-13 23:24:04 - INFO - 127.0.0.1 - - [13/Sep/2023 23:24:04] "POST /list HTTP/1.1" 200 -
+2023-09-13 23:24:12 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:24:12 - DEBUG - [^] load_file
+2023-09-13 23:24:12 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:24:12 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:24:12 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 23:24:12 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 23:24:12 - INFO -  * Restarting with stat
+2023-09-13 23:24:12 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:24:12 - DEBUG - [^] load_file
+2023-09-13 23:24:12 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:24:12 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:24:12 - WARNING -  * Debugger is active!
+2023-09-13 23:24:12 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:24:15 - DEBUG - [^] load_file
+2023-09-13 23:24:15 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:24:15 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:24:15 - WARNING -  * Debugger is active!
+2023-09-13 23:24:15 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:24:26 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:24:26 - DEBUG - [^] load_file
+2023-09-13 23:24:26 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:24:26 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:24:26 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 23:24:26 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 23:24:26 - INFO -  * Restarting with stat
+2023-09-13 23:24:27 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:24:27 - DEBUG - [^] load_file
+2023-09-13 23:24:27 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:24:27 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:24:27 - WARNING -  * Debugger is active!
+2023-09-13 23:24:27 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:24:30 - DEBUG - [^] load_file
+2023-09-13 23:24:30 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:24:30 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:24:30 - WARNING -  * Debugger is active!
+2023-09-13 23:24:30 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:24:49 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Listeners\\FlaskAPI\\FlaskAPI.py', reloading
+2023-09-13 23:24:49 - INFO - 127.0.0.1 - - [13/Sep/2023 23:24:49] "POST /list HTTP/1.1" 200 -
+2023-09-13 23:24:51 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:24:51 - DEBUG - [^] load_file
+2023-09-13 23:24:51 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:24:51 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:24:51 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 23:24:51 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 23:24:51 - INFO -  * Restarting with stat
+2023-09-13 23:24:52 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:24:52 - DEBUG - [^] load_file
+2023-09-13 23:24:52 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:24:52 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:24:52 - WARNING -  * Debugger is active!
+2023-09-13 23:24:52 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:24:56 - DEBUG - [^] load_file
+2023-09-13 23:24:56 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:24:56 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:24:56 - WARNING -  * Debugger is active!
+2023-09-13 23:24:56 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:25:26 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:25:26 - DEBUG - [^] load_file
+2023-09-13 23:25:26 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:25:26 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:25:26 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 23:25:26 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 23:25:26 - INFO -  * Restarting with stat
+2023-09-13 23:25:26 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:25:26 - DEBUG - [^] load_file
+2023-09-13 23:25:26 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:25:26 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:25:26 - WARNING -  * Debugger is active!
+2023-09-13 23:25:26 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:25:29 - DEBUG - [^] load_file
+2023-09-13 23:25:29 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:25:29 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:25:29 - WARNING -  * Debugger is active!
+2023-09-13 23:25:29 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:29:01 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:29:01 - INFO -  * Restarting with stat
+2023-09-13 23:29:02 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:29:02 - DEBUG - [^] load_file
+2023-09-13 23:29:02 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:29:02 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:29:02 - WARNING -  * Debugger is active!
+2023-09-13 23:29:02 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:29:11 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:29:11 - INFO -  * Restarting with stat
+2023-09-13 23:29:11 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:29:11 - DEBUG - [^] load_file
+2023-09-13 23:29:11 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:29:11 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:29:11 - WARNING -  * Debugger is active!
+2023-09-13 23:29:11 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:29:14 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:29:14 - INFO -  * Restarting with stat
+2023-09-13 23:29:14 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:29:14 - DEBUG - [^] load_file
+2023-09-13 23:29:14 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:29:14 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:29:14 - WARNING -  * Debugger is active!
+2023-09-13 23:29:14 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:29:17 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:29:17 - INFO -  * Restarting with stat
+2023-09-13 23:29:18 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:29:18 - DEBUG - [^] load_file
+2023-09-13 23:29:18 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:29:18 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:29:18 - WARNING -  * Debugger is active!
+2023-09-13 23:29:18 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:29:19 - DEBUG - [^] load_file
+2023-09-13 23:29:19 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ListenerApiEngine/html/errorcodes/404-default.html
+2023-09-13 23:29:19 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ListenerApiEngine/html/errorcodes/404-default.html
+2023-09-13 23:29:19 - INFO - 127.0.0.1 - - [13/Sep/2023 23:29:19] "POST /list HTTP/1.1" 200 -
+2023-09-13 23:29:36 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:29:36 - DEBUG - [^] load_file
+2023-09-13 23:29:36 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:29:36 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:29:36 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 23:29:36 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 23:29:36 - INFO -  * Restarting with stat
+2023-09-13 23:29:37 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:29:37 - DEBUG - [^] load_file
+2023-09-13 23:29:37 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:29:37 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:29:37 - WARNING -  * Debugger is active!
+2023-09-13 23:29:37 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:29:40 - INFO - 127.0.0.1 - - [13/Sep/2023 23:29:40] "POST /list HTTP/1.1" 200 -
+2023-09-13 23:29:41 - DEBUG - [^] load_file
+2023-09-13 23:29:41 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:29:41 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:29:41 - WARNING -  * Debugger is active!
+2023-09-13 23:29:41 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:31:13 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:31:13 - DEBUG - [^] load_file
+2023-09-13 23:31:13 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:31:13 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:31:13 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 23:31:13 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 23:31:13 - INFO -  * Restarting with stat
+2023-09-13 23:31:13 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:31:13 - DEBUG - [^] load_file
+2023-09-13 23:31:13 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:31:13 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:31:13 - WARNING -  * Debugger is active!
+2023-09-13 23:31:13 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:31:20 - INFO - 127.0.0.1 - - [13/Sep/2023 23:31:20] "POST /list HTTP/1.1" 200 -
+2023-09-13 23:31:20 - DEBUG - [^] load_file
+2023-09-13 23:31:20 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:31:20 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:31:20 - WARNING -  * Debugger is active!
+2023-09-13 23:31:20 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:32:06 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:32:06 - INFO -  * Restarting with stat
+2023-09-13 23:32:06 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:32:07 - DEBUG - [^] load_file
+2023-09-13 23:32:07 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:32:07 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:32:07 - WARNING -  * Debugger is active!
+2023-09-13 23:32:07 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:32:33 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:32:33 - DEBUG - [^] load_file
+2023-09-13 23:32:33 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:32:33 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:32:33 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 23:32:33 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 23:32:33 - INFO -  * Restarting with stat
+2023-09-13 23:32:34 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:32:34 - DEBUG - [^] load_file
+2023-09-13 23:32:34 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:32:34 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:32:34 - WARNING -  * Debugger is active!
+2023-09-13 23:32:34 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:32:37 - INFO - 127.0.0.1 - - [13/Sep/2023 23:32:37] "POST /list HTTP/1.1" 200 -
+2023-09-13 23:32:37 - DEBUG - [^] load_file
+2023-09-13 23:32:37 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:32:37 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:32:37 - WARNING -  * Debugger is active!
+2023-09-13 23:32:37 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:33:29 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:33:29 - DEBUG - [^] load_file
+2023-09-13 23:33:29 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:33:29 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:33:29 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 23:33:29 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 23:33:29 - INFO -  * Restarting with stat
+2023-09-13 23:33:30 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:33:30 - DEBUG - [^] load_file
+2023-09-13 23:33:30 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:33:30 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:33:30 - WARNING -  * Debugger is active!
+2023-09-13 23:33:30 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:33:32 - INFO - 127.0.0.1 - - [13/Sep/2023 23:33:32] "POST /list HTTP/1.1" 200 -
+2023-09-13 23:33:33 - DEBUG - [^] load_file
+2023-09-13 23:33:33 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:33:33 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:33:33 - WARNING -  * Debugger is active!
+2023-09-13 23:33:33 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:36:30 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:36:30 - INFO -  * Restarting with stat
+2023-09-13 23:36:31 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:36:31 - DEBUG - [^] load_file
+2023-09-13 23:36:31 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:36:31 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:36:31 - WARNING -  * Debugger is active!
+2023-09-13 23:36:31 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:36:33 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:36:34 - INFO -  * Restarting with stat
+2023-09-13 23:36:34 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:36:34 - DEBUG - [^] load_file
+2023-09-13 23:36:34 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:36:34 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:36:34 - WARNING -  * Debugger is active!
+2023-09-13 23:36:34 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:36:42 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:36:42 - DEBUG - [^] load_file
+2023-09-13 23:36:42 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:36:42 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:36:42 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 23:36:42 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 23:36:42 - INFO -  * Restarting with stat
+2023-09-13 23:36:42 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:36:42 - DEBUG - [^] load_file
+2023-09-13 23:36:42 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:36:42 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:36:42 - WARNING -  * Debugger is active!
+2023-09-13 23:36:42 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:36:45 - INFO - 127.0.0.1 - - [13/Sep/2023 23:36:45] "POST /list HTTP/1.1" 200 -
+2023-09-13 23:36:46 - DEBUG - [^] load_file
+2023-09-13 23:36:46 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:36:46 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:36:46 - WARNING -  * Debugger is active!
+2023-09-13 23:36:46 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:37:46 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:37:46 - INFO -  * Restarting with stat
+2023-09-13 23:37:47 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:37:47 - DEBUG - [^] load_file
+2023-09-13 23:37:47 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:37:47 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:37:47 - WARNING -  * Debugger is active!
+2023-09-13 23:37:47 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:37:53 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:37:53 - DEBUG - [^] load_file
+2023-09-13 23:37:53 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:37:53 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:37:53 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 23:37:53 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 23:37:53 - INFO -  * Restarting with stat
+2023-09-13 23:37:54 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:37:54 - DEBUG - [^] load_file
+2023-09-13 23:37:54 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:37:54 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:37:54 - WARNING -  * Debugger is active!
+2023-09-13 23:37:54 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:37:55 - INFO - 127.0.0.1 - - [13/Sep/2023 23:37:55] "POST /list HTTP/1.1" 200 -
+2023-09-13 23:37:55 - DEBUG - [^] load_file
+2023-09-13 23:37:55 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:37:55 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:37:55 - WARNING -  * Debugger is active!
+2023-09-13 23:37:55 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:38:15 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:38:15 - INFO -  * Restarting with stat
+2023-09-13 23:38:16 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:38:16 - DEBUG - [^] load_file
+2023-09-13 23:38:16 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:38:16 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:38:16 - WARNING -  * Debugger is active!
+2023-09-13 23:38:16 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:38:16 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:38:17 - INFO -  * Restarting with stat
+2023-09-13 23:38:17 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:38:17 - DEBUG - [^] load_file
+2023-09-13 23:38:17 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:38:17 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:38:17 - WARNING -  * Debugger is active!
+2023-09-13 23:38:17 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:38:21 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:38:21 - INFO -  * Restarting with stat
+2023-09-13 23:38:21 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:38:21 - DEBUG - [^] load_file
+2023-09-13 23:38:21 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:38:21 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:38:22 - WARNING -  * Debugger is active!
+2023-09-13 23:38:22 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:38:25 - DEBUG - [^] load_file
+2023-09-13 23:38:25 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:38:25 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:38:25 - WARNING -  * Debugger is active!
+2023-09-13 23:38:25 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:38:57 - INFO -  * Detected change in 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\server.py', reloading
+2023-09-13 23:38:57 - INFO -  * Restarting with stat
+2023-09-13 23:38:59 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:38:59 - DEBUG - [^] load_file
+2023-09-13 23:38:59 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:38:59 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:38:59 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 23:38:59 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 23:38:59 - INFO -  * Restarting with stat
+2023-09-13 23:39:00 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:39:00 - DEBUG - [^] load_file
+2023-09-13 23:39:00 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:39:00 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:39:00 - WARNING -  * Debugger is active!
+2023-09-13 23:39:00 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:39:28 - INFO - 127.0.0.1 - - [13/Sep/2023 23:39:28] "POST /list HTTP/1.1" 200 -
+2023-09-13 23:39:29 - DEBUG - [^] load_file
+2023-09-13 23:39:29 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:39:29 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:39:29 - WARNING -  * Debugger is active!
+2023-09-13 23:39:29 - INFO -  * Debugger PIN: 266-352-027
+2023-09-13 23:41:36 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:41:36 - DEBUG - [^] load_file
+2023-09-13 23:41:36 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:41:36 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:41:36 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.145:5000
+2023-09-13 23:41:36 - INFO - [33mPress CTRL+C to quit[0m
+2023-09-13 23:41:36 - INFO -  * Restarting with stat
+2023-09-13 23:41:36 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-13 23:41:36 - DEBUG - [^] load_file
+2023-09-13 23:41:36 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-13 23:41:36 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-13 23:41:36 - WARNING -  * Debugger is active!
+2023-09-13 23:41:36 - INFO -  * Debugger PIN: 151-662-093
+2023-09-13 23:41:39 - INFO - 127.0.0.1 - - [13/Sep/2023 23:41:39] "POST /list HTTP/1.1" 200 -
+2023-09-13 23:41:39 - DEBUG - [^] load_file
+2023-09-13 23:41:39 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:41:39 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ListenerConfig/ApiSchemas/default.yaml
+2023-09-13 23:41:39 - WARNING -  * Debugger is active!
+2023-09-13 23:41:39 - INFO -  * Debugger PIN: 151-662-093

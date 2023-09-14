@@ -1,0 +1,48 @@
+## !!pascal case!!
+Guide: |     
+    Quick Guidelines for YAML
+
+    !!str: A string value (the default if no type is specified).
+    !!bool: A boolean value (true or false).
+    !!int: An integer value.
+    !!float: A floating-point value.
+    !!null: A null value (equivalent to None in Python).
+    !!timestamp: A date/time value.
+    !!binary: A binary data value.
+
+## == EndPoints == ##
+## Mappings of all the endpoints for the rest server. Define whatever you'd like, and the URL will match the endpoint
+## Ex: Server.Base will go to http://IP/server
+## Ex: Misc.Login: http://IP/login
+## Ex: Server.SpawnTcplistener: http://IP/server/spawntcplistener"
+## Ex: If you change Misc.Login (http://IP/login) to "hacker/portal", you can access it at http://IP/hacker/portal
+
+## These are CASE SENSITIVE!
+
+Server:
+  # Base url, ex: http://IP/server
+  Base: "notserver"
+  SpawnTcpListener: "notserver/spawntcplistener"
+
+Agent:
+  Base: "notagent"
+
+FileServer:
+  # Base url, ex: http://IP/files
+  Base: "notfiles"
+  # Where uploaded files are stored
+  Uploads: "notuploads"
+
+Misc:
+  ## This should stay the same, unless you communicate the location of the "login" to other parties. 
+  ## Otherwise, the Schema may not be accessible
+  ## I'm not stopping you from changing it (do what you want lol), just warning
+  Login: "notlogin"
+  Schema: "notschema"
+
+Home:
+  # Base url, ex: http://IP/home
+  Base: "nothome"
+
+
+

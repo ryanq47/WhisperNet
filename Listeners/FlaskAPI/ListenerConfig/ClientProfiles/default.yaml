@@ -1,0 +1,38 @@
+## SPACES! not tabs
+## Also, pascal case
+Guide: |     
+    Quick Guidelines for YAML
+
+    !!str: A string value (the default if no type is specified).
+    !!bool: A boolean value (true or false).
+    !!int: An integer value.
+    !!float: A floating-point value.
+    !!null: A null value (equivalent to None in Python).
+    !!timestamp: A date/time value.
+    !!binary: A binary data value.
+
+Rationale: |
+  These are all settings for the client config. 
+
+## == Authentication == ##
+Authentication:
+  ## Authentication settings. Defaults work well, but crank it up if you want higher security
+    
+  Server:
+    ## HEY. Change this.
+    Password    : "password"
+
+  Cookies:
+    #Character which to create the cookies from
+    Characters  : !!str "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    ## Minimum length of cookie
+    MinLength   : !!int 25
+    ## Max length of cookie
+    MaxLength   : !!int 50
+    ## Cookie TTL. Client must re-auth once this expires, in seconds
+    TTL         : !!int 900
+
+## == Security == ##
+Security:
+  ##CIDR, which IP's can authenticate as clients
+  IpAllow: !!str "0.0.0.0/0"
