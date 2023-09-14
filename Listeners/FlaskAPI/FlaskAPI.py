@@ -192,12 +192,12 @@ def start_listener(port=80, ip="0.0.0.0"):
     ## Init data structures
     Data()
     #FlaskAPIListener.app.run(host=ip, port=port, debug=True)
-    FlaskAPIListener.app.run(host="0.0.0.0", port=80, debug=True)
+    FlaskAPIListener.app.run(host="0.0.0.0", port=80, debug=False)
 
 
 
 if __name__ == "__main__":
     print("==== Starting Listener =====")
     ## Init data structures
-    Data()
-    FlaskAPIListener.app.run(host=ip, port=port, debug=True)
+    #Data()
+    FlaskAPIListener.app.run(host=ip, port=port, debug=False)

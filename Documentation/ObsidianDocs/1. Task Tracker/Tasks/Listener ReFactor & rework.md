@@ -27,6 +27,15 @@ Notes, I'm jumping directly to network comms (via flask)
 Current isues;
 
 line 242 of server.py, getting a winsock error when spawning listener. The idea here is to spawn a listener via os/subprocess, and then collect it's PID. All comms will be done over http/flask. It works fine alone.
+- Fix: Turn off debug mode on windows. That was stupid lol
+
+
+Okay subprocess thread thing works, needs some review & cleanup:
+- [ ] Errors switched to 'raise'
+- [ ] Return PID's and other info if needed.
+- [ ] Some way to track each listener (listener dict?, DB might be great, but is a lot more work)
+
+
 
 Once completed, next steps are to:
 - Map out endpoints for communication between server & listener

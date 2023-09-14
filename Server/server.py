@@ -1,6 +1,6 @@
 #!/bin/python3
 try:
-    import subprocess as sp
+    import subprocess
     import socket
     import threading
     #import time
@@ -238,30 +238,15 @@ class ControlServer:
         #port = request.json.get('port')
         ## for later, local or network
         #type = request.json.get('type')
+        listener_path = os.path.join(sys_path, "../Listeners/FlaskAPI/")
+        command = f"python {listener_path}/FlaskAPI.py --port 80 --ip 0.0.0.0"
 
-        try:
-            listener_path = os.path.join(sys_path, "../Listeners/FlaskAPI/")
-            #print(listener_path)
+        Utils.UtilsHandler.threaded_process_spawner(
+            path = listener_path,
+            command = command
+        )
 
-            ## temp hardcode
-            #listener_path = "C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Listeners"
-            import subprocess
-
-                
-            #command = ["python", f"{listener_path}\\FlaskAPI.py", "--port", "80", "--ip", "0.0.0.0"]
-            
-            process = subprocess.Popen(f"python {listener_path}\\FlaskAPI.py --port 80 --ip 0.0.0.0", shell=True)
-            #process = subprocess.Popen(command, shell=False)
-            
-            pid = process.pid
-            print(f"PID: {pid}")
-
-            #os.system(f"python {listener_path}\\FlaskAPI.py --port 80 --ip '0.0.0.0' ")
-
-            return f"Listener spawned on {ip}:{port}" #jsonify({"message": "success"})
-        except Exception as e:
-            return str(e)
-            #ControlServer.page_not_found()
+        return "placeholder - process started"
 
     ## File Section
     # https://docs.faculty.ai/user-guide/apis/flask_apis/flask_file_upload_download.html
@@ -324,8 +309,9 @@ if __name__ == "__main__":
     ## Init data structures
 
     Data()
-        
-    ControlServer.app.run(host="0.0.0.0", port=5000, debug=True)
+    
+    ## Debug mode on windows is broken.
+    ControlServer.app.run(host="0.0.0.0", port=5000, debug=False)
 
         
     #while True:

@@ -87,9 +87,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "5cbc1f20fb9758b2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Server/Modules/Listeners/Local Listeners.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -155,7 +167,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1. Task Tracker/Tasks/Listener ReFactor & rework.md",
+                "file": "Server/Modules/Listeners/Local Listeners.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -172,7 +184,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1. Task Tracker/Tasks/Listener ReFactor & rework.md",
+                "file": "Server/Modules/Listeners/Local Listeners.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -195,7 +207,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1. Task Tracker/Tasks/Listener ReFactor & rework.md"
+                "file": "Server/Modules/Listeners/Local Listeners.md"
               }
             }
           },
@@ -227,13 +239,14 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "3a8a9796b8ce7145",
+  "active": "5cbc1f20fb9758b2",
   "lastOpenFiles": [
-    "1. Task Tracker/Task Tracker.md",
     "Server/Modules/Listeners/Overview.md",
+    "Server/Modules/Listeners/Local Listeners.md",
     "Server/Modules/Listeners/Listener setup.canvas",
-    "Server/Modules/Listeners",
     "1. Task Tracker/Tasks/Listener ReFactor & rework.md",
+    "1. Task Tracker/Task Tracker.md",
+    "Server/Modules/Listeners",
     "Server/Modules/ApiEngine/API General Overview.md",
     "Server/Modules/ApiEngine/Endpoints/User Management.md",
     "1. Task Tracker/Tasks/Untitled 1.md",
