@@ -26,6 +26,7 @@ try:
     import time
     from flask import Flask, jsonify, request, send_from_directory
     from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
+    import DataEngine.StatTrack
 
     import ApiEngine.ConfigHandler
     import Utils.UtilsHandler
@@ -91,6 +92,12 @@ class Data:
     #path_struct = Utils.DataObjects.PathStruct()
     #path_struct.sys_path = sys_path
 
+    stats = DataEngine.StatTrack.StatTrack()
+    stats.set_time()
+    stats.set_ext_ip()
+    stats.set_listener_name(name="FlaskAPI-01")
+
+
 
     ## Getting all the paths in the log just in case something fails/is off
     #logging.debug(f'[*] PathStruct.sys_path: {path_struct.sys_path}')
@@ -124,7 +131,7 @@ class FlaskAPIListener():
             ## oh my god it worked on the first time
 
         except Exception as e:
-            return str(e)
+            #return str(e)
             FlaskAPIListener.page_not_found()
     
     ## for agents checking in
@@ -170,6 +177,18 @@ class FlaskAPIListener():
     ##################
 
 
+    ##################
+    # Stats          #
+    ##################
+    @app.route(f"/stats", methods=["GET"])
+    #@jwt_required()
+    def stats():
+        return jsonify(
+            ext_ip = Data.stats.ext_ip,
+            start_time = Data.stats.start_time,
+            listener_name = Data.stats.listener_name
+        )
+
     ## any bad auth returns this
     @app.errorhandler(exceptions.NoAuthorizationError)
     @app.errorhandler(401)
@@ -208,7 +227,7 @@ def start_listener(port=80, ip="0.0.0.0"):
 if __name__ == "__main__":
     print("==== Starting Listener =====")
     ## Init data structures
-    #Data()
+    Data()
     #FlaskAPIListener.app.run(host=ip, port=port, debug=True)
     ## well that was easy
     from waitress import serve

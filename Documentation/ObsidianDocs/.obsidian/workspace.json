@@ -50,6 +50,7 @@
           {
             "id": "fbf8ecea33ea3d18",
             "type": "leaf",
+            "pinned": true,
             "state": {
               "type": "canvas",
               "state": {
@@ -59,19 +60,8 @@
                   "y": 15.874010519681946,
                   "zoom": -0.6666666666666666
                 }
-              }
-            }
-          },
-          {
-            "id": "3a8a9796b8ce7145",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Server/Modules/Utils/UtilsHandler.md",
-                "mode": "preview",
-                "source": false
-              }
+              },
+              "pinned": true
             }
           },
           {
@@ -89,19 +79,33 @@
             }
           },
           {
-            "id": "85726cf55b8c0d47",
+            "id": "f460008beaa85500",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Docker.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true
+            }
+          },
+          {
+            "id": "5523a138eb8ab212",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1. Task Tracker/Tasks/Gunicorn research & frontend.md",
+                "file": "Status page.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -167,7 +171,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Modules/WSGI/WSGI & Flask setup.canvas",
+                "file": "Status page.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -184,7 +188,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Modules/WSGI/WSGI & Flask setup.canvas",
+                "file": "Status page.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -207,7 +211,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Modules/WSGI/WSGI & Flask setup.canvas"
+                "file": "Status page.md"
               }
             }
           },
@@ -239,25 +243,29 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "fbf8ecea33ea3d18",
+  "active": "5523a138eb8ab212",
   "lastOpenFiles": [
-    "Server/Modules/WSGI",
-    "Server/Modules/Listeners/Listener setup.canvas",
+    "1. Task Tracker/Tasks/Untitled 1.md",
+    "Status page.md",
     "Server/Modules/WSGI/WSGI & Flask setup.canvas",
-    "Server/Modules/WSGI/WSGI.md",
-    "Server/Modules/ApiEngine/API General Overview.md",
-    "Server/Modules/Listeners/Overview.md",
+    "Server/Modules/Utils/UtilsHandler.md",
     "Server/Modules/Listeners/Local Listeners.md",
     "1. Task Tracker/Tasks/Gunicorn research & frontend.md",
+    "Docker.md",
+    "1. Task Tracker/Tasks/Untitled.md",
+    "Untitled 1.md",
     "1. Task Tracker/Task Tracker.md",
+    "Server/Modules/Listeners/Overview.md",
+    "Server/Modules/WSGI",
+    "Server/Modules/Listeners/Listener setup.canvas",
+    "Server/Modules/WSGI/WSGI.md",
+    "Server/Modules/ApiEngine/API General Overview.md",
     "1. Task Tracker/Tasks/Gunicorn Research.md",
     "1. Task Tracker/Tasks/Listener ReFactor & rework.md",
     "Untitled.md",
-    "Server/Modules/Utils/UtilsHandler.md",
     "Server/Modules/Utils",
     "Server/Modules/Listeners",
     "Server/Modules/ApiEngine/Endpoints/User Management.md",
-    "1. Task Tracker/Tasks/Untitled 1.md",
     "1. Task Tracker/Tasks/Cleanup.md",
     "Server/Modules/ApiEngine/Endpoints/40X error codes.md",
     "2. Bug Tracker/Bug Tracker.md",
@@ -267,14 +275,11 @@
     "General/Networking & Protocols/Header breakdown - DEPRACATED.md",
     "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
     "Server/Modules/2.DataEngine/DBHandler.py/General.md",
-    "1. Task Tracker/Tasks/Untitled.md",
     "DEV- Server Refactor & Adjust.canvas",
     "Server/Modules/ApiEngine/Endpoints/Home endpoint.md",
     "1. Task Tracker/Tasks/API Authentication.md",
     "Valuecheck Function.canvas",
-    "1. Task Tracker/Tasks/API Docs.md",
     "DataState.canvas",
-    "Server/Modules/3. Security Engine/AuthenticationHandler.py.md",
     "General/Images",
     "General/Images/Pasted image 20230913002046.png",
     "General/Images/Pasted image 20230913002028.png",
@@ -289,7 +294,6 @@
     "Server/Modules/ApiEngine",
     "Clients/Python Client/Dev Docs/MindMaps/VisProg.canvas",
     "Clients/Python Client/Dev Docs/MindMaps/Plugin Abstraction Layers.canvas",
-    "1. Task Tracker/Tasks",
-    "1. Task Tracker"
+    "1. Task Tracker/Tasks"
   ]
 }

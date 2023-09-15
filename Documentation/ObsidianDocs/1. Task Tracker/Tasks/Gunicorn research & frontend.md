@@ -3,7 +3,7 @@ SCOPE: Whole Project
 TASKTYPE: Implementation
 MODULE: Flask
 ESTTIMETOIMPLEMENT: 2 Hours
-STATUS: In Progress
+STATUS: Done
 PRIORITY: Low/med/High
 DUE: DATE
 ---
