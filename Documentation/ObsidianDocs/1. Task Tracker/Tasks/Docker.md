@@ -1,6 +1,6 @@
 ---
-SCOPE: Server/Client/Agent/Whole Project
-TASKTYPE: Implementation/Docmentation/Review/Refactor
+SCOPE: Server
+TASKTYPE: Implementation
 MODULE: Listener
 ESTTIMETOIMPLEMENT: Whatever you think it is, double it
 STATUS: In Progress

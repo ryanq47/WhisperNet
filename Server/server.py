@@ -232,7 +232,7 @@ class ControlServer:
     ## Listener Section
     #@app.route(f"/{UrlSc.SPAWN_TCP_LISTENER_ENDPOINT}", methods=["POST"])
     @app.route(f"/list", methods=["POST"])
-    #@jwt_required()
+    @jwt_required()
     def spawn_listener():
         try:
             ip = request.json.get('ip')

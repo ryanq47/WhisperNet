@@ -27,85 +27,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Server/Modules/ApiEngine/API General Overview.md",
+                "file": "Status page.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "cfd4b5e81ceb0dec",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Server/Modules/Listeners/Overview.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true
-            }
-          },
-          {
-            "id": "fbf8ecea33ea3d18",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "canvas",
-              "state": {
-                "file": "Server/Modules/WSGI/WSGI & Flask setup.canvas",
-                "viewState": {
-                  "x": -226.99835043145248,
-                  "y": 15.874010519681946,
-                  "zoom": -0.6666666666666666
-                }
-              },
-              "pinned": true
-            }
-          },
-          {
-            "id": "5cbc1f20fb9758b2",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Server/Modules/Listeners/Local Listeners.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true
-            }
-          },
-          {
-            "id": "f460008beaa85500",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Docker.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true
-            }
-          },
-          {
-            "id": "5523a138eb8ab212",
+            "id": "96777e8e674b1d58",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Status page.md",
+                "file": "Code Test Tool.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -171,7 +112,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Status page.md",
+                "file": "Code Test Tool.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -188,7 +129,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Status page.md",
+                "file": "Code Test Tool.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -211,7 +152,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Status page.md"
+                "file": "Code Test Tool.md"
               }
             }
           },
@@ -243,41 +184,41 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "5523a138eb8ab212",
+  "active": "96777e8e674b1d58",
   "lastOpenFiles": [
-    "1. Task Tracker/Tasks/Untitled 1.md",
+    "Untitled 1.md",
+    "Code Test Tool.md",
+    "1. Task Tracker/Task Tracker.md",
     "Status page.md",
+    "1. Task Tracker/Tasks/Docker.md",
+    "Server/Modules/ApiEngine/API General Overview.md",
+    "Server/Modules/Listeners/Overview.md",
+    "Server/Modules/ApiEngine/Endpoints/Listener Management.md",
+    "Server/Modules/ApiEngine/Endpoints/Login.md",
+    "Server/Modules/ApiEngine/Endpoints/User Management.md",
+    "Server/Modules/ApiEngine/Endpoints/Home endpoint.md",
+    "1. Task Tracker/Tasks/API Docs.md",
+    "1. Task Tracker/Tasks/Agent Commands.md",
+    "1. Task Tracker/Tasks/Async Switch.md",
+    "1. Task Tracker/Tasks/Error Response in cookies.md",
+    "1. Task Tracker/Tasks/Request logging.md",
+    "Untitled 2.md",
+    "1. Task Tracker/Tasks/Untitled.md",
+    "1. Task Tracker/Tasks/Untitled 2.md",
+    "1. Task Tracker/Tasks/Untitled 1.md",
+    "Server/Modules/Listeners/Local Listeners.md",
+    "Server/Modules/Listeners/Listener setup.canvas",
     "Server/Modules/WSGI/WSGI & Flask setup.canvas",
     "Server/Modules/Utils/UtilsHandler.md",
-    "Server/Modules/Listeners/Local Listeners.md",
     "1. Task Tracker/Tasks/Gunicorn research & frontend.md",
-    "Docker.md",
-    "1. Task Tracker/Tasks/Untitled.md",
-    "Untitled 1.md",
-    "1. Task Tracker/Task Tracker.md",
-    "Server/Modules/Listeners/Overview.md",
     "Server/Modules/WSGI",
-    "Server/Modules/Listeners/Listener setup.canvas",
     "Server/Modules/WSGI/WSGI.md",
-    "Server/Modules/ApiEngine/API General Overview.md",
     "1. Task Tracker/Tasks/Gunicorn Research.md",
     "1. Task Tracker/Tasks/Listener ReFactor & rework.md",
-    "Untitled.md",
     "Server/Modules/Utils",
     "Server/Modules/Listeners",
-    "Server/Modules/ApiEngine/Endpoints/User Management.md",
-    "1. Task Tracker/Tasks/Cleanup.md",
-    "Server/Modules/ApiEngine/Endpoints/40X error codes.md",
-    "2. Bug Tracker/Bug Tracker.md",
-    "1. Task Tracker/Tasks/Server Authentication.md",
-    "Server/Modules/ApiEngine/Endpoints/Login.md",
-    "Server/Modules/ApiEngine/Endpoints/00. template.md",
-    "General/Networking & Protocols/Header breakdown - DEPRACATED.md",
     "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
-    "Server/Modules/2.DataEngine/DBHandler.py/General.md",
     "DEV- Server Refactor & Adjust.canvas",
-    "Server/Modules/ApiEngine/Endpoints/Home endpoint.md",
-    "1. Task Tracker/Tasks/API Authentication.md",
     "Valuecheck Function.canvas",
     "DataState.canvas",
     "General/Images",

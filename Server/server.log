@@ -5490,3 +5490,755 @@ jinja2.exceptions.TemplateNotFound: index.html
 2023-09-14 17:57:52 - DEBUG - [^] load_file
 2023-09-14 17:57:52 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
 2023-09-14 17:57:52 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 20:49:31 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-17 20:49:31 - DEBUG - [^] load_file
+2023-09-17 20:49:31 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 20:49:31 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-17 20:49:31 - INFO - Serving on http://127.0.0.1:5000
+2023-09-17 20:51:03 - DEBUG - [^] load_file
+2023-09-17 20:51:12 - DEBUG - [^] load_file
+2023-09-17 20:51:13 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 20:51:13 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 20:51:13 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-MLP.html
+2023-09-17 20:51:13 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-MLP.html
+2023-09-17 20:51:13 - DEBUG - [^] load_file
+2023-09-17 20:51:13 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 20:51:13 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 20:51:17 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-17 20:51:17 - DEBUG - [^] load_file
+2023-09-17 20:51:17 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 20:51:17 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-17 20:51:17 - INFO - Serving on http://127.0.0.1:5000
+2023-09-17 20:51:19 - DEBUG - [^] load_file
+2023-09-17 20:51:19 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 20:51:19 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-MLP.html
+2023-09-17 20:51:19 - DEBUG - [^] load_file
+2023-09-17 20:51:19 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 20:51:19 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 20:51:22 - DEBUG - [^] load_file
+2023-09-17 20:51:22 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 20:51:22 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-MLP.html
+2023-09-17 20:51:22 - DEBUG - [^] load_file
+2023-09-17 20:51:22 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 20:51:22 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 20:52:04 - DEBUG - [^] load_file
+2023-09-17 20:52:04 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 20:52:04 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-Default.html
+2023-09-17 20:52:04 - DEBUG - [^] authentication_eval
+2023-09-17 20:52:04 - DEBUG - [^] connect_to_db
+2023-09-17 20:52:04 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 20:52:04 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 20:52:04 - DEBUG - [^] get_username
+2023-09-17 20:52:04 - WARNING - [*] Username argument is 'None'!
+2023-09-17 20:52:04 - DEBUG - [^] load_file
+2023-09-17 20:52:04 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 20:52:04 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 20:53:01 - DEBUG - [^] load_file
+2023-09-17 20:53:01 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 20:53:01 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-MLP.html
+2023-09-17 20:53:01 - DEBUG - [^] authentication_eval
+2023-09-17 20:53:01 - DEBUG - [^] connect_to_db
+2023-09-17 20:53:01 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 20:53:01 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 20:53:01 - DEBUG - [^] get_username
+2023-09-17 20:53:01 - WARNING - [*] Username argument is 'None'!
+2023-09-17 20:53:01 - DEBUG - [^] load_file
+2023-09-17 20:53:01 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 20:53:01 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:03:03 - DEBUG - [^] load_file
+2023-09-17 21:03:39 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:03:39 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:03:48 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-17 21:03:48 - DEBUG - [^] load_file
+2023-09-17 21:03:48 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:03:48 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-17 21:03:48 - INFO - Serving on http://127.0.0.1:5000
+2023-09-17 21:03:51 - DEBUG - [^] load_file
+2023-09-17 21:03:51 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:03:51 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-Default.html
+2023-09-17 21:03:51 - DEBUG - [^] authentication_eval
+2023-09-17 21:03:51 - DEBUG - [^] connect_to_db
+2023-09-17 21:03:51 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:03:51 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:03:51 - DEBUG - [^] get_username
+2023-09-17 21:03:51 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:03:51 - DEBUG - [^] load_file
+2023-09-17 21:03:51 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:03:51 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:03:51 - DEBUG - [^] authentication_eval
+2023-09-17 21:03:51 - DEBUG - [^] connect_to_db
+2023-09-17 21:03:51 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:03:51 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:03:51 - DEBUG - [^] get_username
+2023-09-17 21:03:51 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:03:51 - DEBUG - [^] load_file
+2023-09-17 21:03:51 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:03:51 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:05:57 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-17 21:05:57 - DEBUG - [^] load_file
+2023-09-17 21:05:57 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:05:57 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-17 21:05:57 - INFO - Serving on http://127.0.0.1:5000
+2023-09-17 21:05:59 - DEBUG - [^] load_file
+2023-09-17 21:05:59 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:05:59 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-Default.html
+2023-09-17 21:05:59 - DEBUG - [^] authentication_eval
+2023-09-17 21:05:59 - DEBUG - [^] connect_to_db
+2023-09-17 21:05:59 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:05:59 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:05:59 - DEBUG - [^] get_username
+2023-09-17 21:05:59 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:05:59 - DEBUG - [^] load_file
+2023-09-17 21:05:59 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:05:59 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:05:59 - DEBUG - [^] authentication_eval
+2023-09-17 21:05:59 - DEBUG - [^] connect_to_db
+2023-09-17 21:05:59 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:05:59 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:05:59 - DEBUG - [^] get_username
+2023-09-17 21:05:59 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:05:59 - DEBUG - [^] load_file
+2023-09-17 21:05:59 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:05:59 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:06:25 - DEBUG - [^] load_file
+2023-09-17 21:06:25 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:06:25 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-Default.html
+2023-09-17 21:06:25 - DEBUG - [^] authentication_eval
+2023-09-17 21:06:25 - DEBUG - [^] connect_to_db
+2023-09-17 21:06:25 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:06:25 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:06:25 - DEBUG - [^] get_username
+2023-09-17 21:06:25 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:06:25 - DEBUG - [^] load_file
+2023-09-17 21:06:25 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:06:25 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:06:25 - DEBUG - [^] authentication_eval
+2023-09-17 21:06:25 - DEBUG - [^] connect_to_db
+2023-09-17 21:06:25 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:06:25 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:06:25 - DEBUG - [^] get_username
+2023-09-17 21:06:25 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:06:25 - DEBUG - [^] load_file
+2023-09-17 21:06:25 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:06:25 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:08:04 - DEBUG - [^] load_file
+2023-09-17 21:08:10 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:08:10 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:08:13 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-17 21:08:13 - DEBUG - [^] load_file
+2023-09-17 21:08:13 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:08:13 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-17 21:08:13 - INFO - Serving on http://127.0.0.1:5000
+2023-09-17 21:08:16 - DEBUG - [^] load_file
+2023-09-17 21:08:16 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:08:16 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-Default.html
+2023-09-17 21:08:16 - DEBUG - [^] authentication_eval
+2023-09-17 21:08:16 - DEBUG - [^] connect_to_db
+2023-09-17 21:08:16 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:08:16 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:08:17 - DEBUG - [^] get_username
+2023-09-17 21:08:17 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:08:17 - DEBUG - [^] load_file
+2023-09-17 21:08:17 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:08:17 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:08:17 - DEBUG - [^] authentication_eval
+2023-09-17 21:08:17 - DEBUG - [^] connect_to_db
+2023-09-17 21:08:17 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:08:17 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:08:17 - DEBUG - [^] get_username
+2023-09-17 21:08:17 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:08:17 - DEBUG - [^] load_file
+2023-09-17 21:08:17 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:08:17 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:08:36 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-17 21:08:36 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:08:37 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:08:37 - DEBUG - [^] load_file
+2023-09-17 21:08:37 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:08:37 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:08:37 - INFO - Serving on http://0.0.0.0:8080
+2023-09-17 21:08:41 - DEBUG - [^] load_file
+2023-09-17 21:08:41 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:08:41 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:08:41 - DEBUG - [^] authentication_eval
+2023-09-17 21:08:41 - DEBUG - [^] connect_to_db
+2023-09-17 21:08:41 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:08:41 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:08:41 - DEBUG - [^] get_username
+2023-09-17 21:08:41 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:08:41 - DEBUG - [^] load_file
+2023-09-17 21:08:41 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:08:41 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:08:41 - DEBUG - [^] authentication_eval
+2023-09-17 21:08:41 - DEBUG - [^] connect_to_db
+2023-09-17 21:08:41 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:08:41 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:08:41 - DEBUG - [^] get_username
+2023-09-17 21:08:41 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:08:41 - DEBUG - [^] load_file
+2023-09-17 21:08:41 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:08:41 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:08:42 - DEBUG - [^] load_file
+2023-09-17 21:08:42 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:08:42 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:09:25 - DEBUG - [^] load_file
+2023-09-17 21:09:25 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:09:25 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:09:25 - DEBUG - [^] load_file
+2023-09-17 21:09:25 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:09:25 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:10:43 - DEBUG - [^] load_file
+2023-09-17 21:10:43 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:10:43 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-Default.html
+2023-09-17 21:10:43 - DEBUG - [^] authentication_eval
+2023-09-17 21:10:43 - DEBUG - [^] connect_to_db
+2023-09-17 21:10:43 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:10:43 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:10:43 - DEBUG - [^] get_username
+2023-09-17 21:10:43 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:10:43 - DEBUG - [^] load_file
+2023-09-17 21:10:43 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:10:43 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:10:43 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-17 21:10:43 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:10:44 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:10:44 - DEBUG - [^] load_file
+2023-09-17 21:10:44 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:10:44 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:10:44 - INFO - Serving on http://0.0.0.0:8080
+2023-09-17 21:10:44 - DEBUG - [^] load_file
+2023-09-17 21:10:44 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:10:44 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-17 21:10:58 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-17 21:10:58 - DEBUG - [^] load_file
+2023-09-17 21:10:58 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:10:58 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-17 21:10:58 - INFO - Serving on http://127.0.0.1:5000
+2023-09-17 21:11:00 - DEBUG - [^] load_file
+2023-09-17 21:11:00 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:11:00 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:11:00 - DEBUG - [^] authentication_eval
+2023-09-17 21:11:00 - DEBUG - [^] connect_to_db
+2023-09-17 21:11:00 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:11:00 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:11:00 - DEBUG - [^] get_username
+2023-09-17 21:11:00 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:11:00 - DEBUG - [^] load_file
+2023-09-17 21:11:00 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:11:00 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:11:00 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-17 21:11:00 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:11:01 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:11:01 - DEBUG - [^] load_file
+2023-09-17 21:11:01 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:11:01 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:11:01 - INFO - Serving on http://0.0.0.0:8080
+2023-09-17 21:11:01 - DEBUG - [^] load_file
+2023-09-17 21:11:01 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:11:01 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:11:05 - DEBUG - [^] load_file
+2023-09-17 21:11:05 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:11:05 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:11:05 - DEBUG - [^] load_file
+2023-09-17 21:11:05 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:11:05 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:13:00 - DEBUG - [^] load_file
+2023-09-17 21:13:00 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:13:00 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-Default.html
+2023-09-17 21:13:00 - DEBUG - [^] authentication_eval
+2023-09-17 21:13:00 - DEBUG - [^] connect_to_db
+2023-09-17 21:13:00 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:13:00 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:13:00 - DEBUG - [^] get_username
+2023-09-17 21:13:00 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:13:00 - DEBUG - [^] load_file
+2023-09-17 21:13:00 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:13:00 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:13:07 - DEBUG - [^] load_file
+2023-09-17 21:13:07 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:13:07 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-Default.html
+2023-09-17 21:13:07 - DEBUG - [^] authentication_eval
+2023-09-17 21:13:07 - DEBUG - [^] connect_to_db
+2023-09-17 21:13:07 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:13:07 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:13:07 - DEBUG - [^] get_username
+2023-09-17 21:13:07 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:13:07 - DEBUG - [^] load_file
+2023-09-17 21:13:07 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:13:07 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:13:07 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-17 21:13:08 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:13:08 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:13:08 - DEBUG - [^] load_file
+2023-09-17 21:13:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:13:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:13:08 - INFO - Serving on http://0.0.0.0:8080
+2023-09-17 21:13:08 - DEBUG - [^] load_file
+2023-09-17 21:13:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:13:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-17 21:13:08 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '9090', '--ip', '0.0.0.0']
+2023-09-17 21:13:09 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:13:09 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:13:09 - DEBUG - [^] load_file
+2023-09-17 21:13:09 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:13:09 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:13:09 - INFO - Serving on http://0.0.0.0:9090
+2023-09-17 21:13:09 - DEBUG - [^] load_file
+2023-09-17 21:13:09 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:13:09 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:13:09 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '7070', '--ip', '0.0.0.0']
+2023-09-17 21:13:10 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:13:10 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:13:10 - DEBUG - [^] load_file
+2023-09-17 21:13:10 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:13:10 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:13:10 - INFO - Serving on http://0.0.0.0:7070
+2023-09-17 21:13:10 - DEBUG - [^] load_file
+2023-09-17 21:13:10 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:13:10 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-17 21:13:33 - DEBUG - [^] load_file
+2023-09-17 21:13:33 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:13:33 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-Default.html
+2023-09-17 21:13:33 - DEBUG - [^] authentication_eval
+2023-09-17 21:13:33 - DEBUG - [^] connect_to_db
+2023-09-17 21:13:33 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:13:33 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:13:33 - DEBUG - [^] get_username
+2023-09-17 21:13:33 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:13:33 - DEBUG - [^] load_file
+2023-09-17 21:13:33 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:13:33 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:13:33 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-17 21:13:33 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:13:33 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:13:33 - DEBUG - [^] load_file
+2023-09-17 21:13:33 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:13:33 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:13:33 - INFO - Serving on http://0.0.0.0:8080
+2023-09-17 21:13:34 - DEBUG - [^] load_file
+2023-09-17 21:13:34 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:13:34 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:13:34 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '9090', '--ip', '0.0.0.0']
+2023-09-17 21:13:34 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:13:34 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:13:34 - DEBUG - [^] load_file
+2023-09-17 21:13:34 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:13:34 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:13:34 - INFO - Serving on http://0.0.0.0:9090
+2023-09-17 21:13:35 - DEBUG - [^] load_file
+2023-09-17 21:13:35 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:13:35 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-17 21:13:35 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '7070', '--ip', '0.0.0.0']
+2023-09-17 21:13:35 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:13:35 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:13:35 - DEBUG - [^] load_file
+2023-09-17 21:13:35 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:13:35 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:13:36 - INFO - Serving on http://0.0.0.0:7070
+2023-09-17 21:13:36 - DEBUG - [^] load_file
+2023-09-17 21:13:36 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:13:36 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:14:07 - DEBUG - [^] load_file
+2023-09-17 21:14:07 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:14:07 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-Default.html
+2023-09-17 21:14:07 - DEBUG - [^] authentication_eval
+2023-09-17 21:14:07 - DEBUG - [^] connect_to_db
+2023-09-17 21:14:07 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:14:07 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:14:07 - DEBUG - [^] get_username
+2023-09-17 21:14:07 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:14:07 - DEBUG - [^] load_file
+2023-09-17 21:14:07 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:14:07 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:14:07 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-17 21:14:08 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:14:08 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:14:08 - DEBUG - [^] load_file
+2023-09-17 21:14:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:14:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:14:08 - INFO - Serving on http://0.0.0.0:8080
+2023-09-17 21:14:08 - DEBUG - [^] load_file
+2023-09-17 21:14:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:14:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-17 21:14:08 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '9090', '--ip', '0.0.0.0']
+2023-09-17 21:14:09 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:14:09 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:14:09 - DEBUG - [^] load_file
+2023-09-17 21:14:09 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:14:09 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:14:09 - INFO - Serving on http://0.0.0.0:9090
+2023-09-17 21:14:09 - DEBUG - [^] load_file
+2023-09-17 21:14:09 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:14:09 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:14:09 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '7070', '--ip', '0.0.0.0']
+2023-09-17 21:14:10 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:14:10 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:14:10 - DEBUG - [^] load_file
+2023-09-17 21:14:10 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:14:10 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:14:10 - INFO - Serving on http://0.0.0.0:7070
+2023-09-17 21:14:10 - DEBUG - [^] load_file
+2023-09-17 21:14:10 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:14:10 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:14:29 - DEBUG - [^] load_file
+2023-09-17 21:14:29 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:14:29 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:14:29 - DEBUG - [^] load_file
+2023-09-17 21:14:29 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:14:29 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:14:33 - DEBUG - [^] load_file
+2023-09-17 21:14:33 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:14:33 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-17 21:14:33 - DEBUG - [^] load_file
+2023-09-17 21:14:33 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:14:33 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:14:38 - DEBUG - [^] load_file
+2023-09-17 21:14:38 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:14:38 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-17 21:14:38 - DEBUG - [^] load_file
+2023-09-17 21:14:38 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:14:38 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:14:41 - DEBUG - [^] load_file
+2023-09-17 21:14:41 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:14:41 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-17 21:14:41 - DEBUG - [^] load_file
+2023-09-17 21:14:41 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:14:41 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:14:42 - DEBUG - [^] load_file
+2023-09-17 21:14:42 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:14:42 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:14:42 - DEBUG - [^] load_file
+2023-09-17 21:14:42 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:14:42 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:14:45 - DEBUG - [^] load_file
+2023-09-17 21:14:45 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:14:45 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:14:45 - DEBUG - [^] load_file
+2023-09-17 21:14:45 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:14:45 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:15:19 - DEBUG - [^] load_file
+2023-09-17 21:15:19 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:15:19 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-Default.html
+2023-09-17 21:15:19 - DEBUG - [^] authentication_eval
+2023-09-17 21:15:19 - DEBUG - [^] connect_to_db
+2023-09-17 21:15:19 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:15:19 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:15:19 - DEBUG - [^] get_username
+2023-09-17 21:15:19 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:15:19 - DEBUG - [^] load_file
+2023-09-17 21:15:19 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:15:19 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:15:19 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-17 21:15:19 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:15:20 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:15:20 - DEBUG - [^] load_file
+2023-09-17 21:15:20 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:15:20 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:15:20 - INFO - Serving on http://0.0.0.0:8080
+2023-09-17 21:15:20 - DEBUG - [^] load_file
+2023-09-17 21:15:20 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:15:20 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-17 21:15:20 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '9090', '--ip', '0.0.0.0']
+2023-09-17 21:15:20 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:15:21 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:15:21 - DEBUG - [^] load_file
+2023-09-17 21:15:21 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:15:21 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:15:21 - INFO - Serving on http://0.0.0.0:9090
+2023-09-17 21:15:21 - DEBUG - [^] load_file
+2023-09-17 21:15:21 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:15:21 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:15:21 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '7070', '--ip', '0.0.0.0']
+2023-09-17 21:15:21 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:15:21 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:15:22 - DEBUG - [^] load_file
+2023-09-17 21:15:22 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:15:22 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:15:22 - INFO - Serving on http://0.0.0.0:7070
+2023-09-17 21:15:22 - DEBUG - [^] load_file
+2023-09-17 21:15:22 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:15:22 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-17 21:15:42 - DEBUG - [^] load_file
+2023-09-17 21:15:42 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:15:42 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:15:42 - DEBUG - [^] authentication_eval
+2023-09-17 21:15:42 - DEBUG - [^] connect_to_db
+2023-09-17 21:15:42 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:15:42 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:15:42 - DEBUG - [^] get_username
+2023-09-17 21:15:42 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:15:42 - DEBUG - [^] load_file
+2023-09-17 21:15:42 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:15:42 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:15:42 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-17 21:15:42 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:15:42 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:15:43 - DEBUG - [^] load_file
+2023-09-17 21:15:43 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:15:43 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:15:43 - INFO - Serving on http://0.0.0.0:8080
+2023-09-17 21:15:43 - DEBUG - [^] load_file
+2023-09-17 21:15:43 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:15:43 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-17 21:15:43 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '9090', '--ip', '0.0.0.0']
+2023-09-17 21:15:43 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:15:43 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:15:44 - DEBUG - [^] load_file
+2023-09-17 21:15:44 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:15:44 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:15:44 - INFO - Serving on http://0.0.0.0:9090
+2023-09-17 21:15:44 - DEBUG - [^] load_file
+2023-09-17 21:15:44 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:15:44 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-Default.html
+2023-09-17 21:15:44 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '7070', '--ip', '0.0.0.0']
+2023-09-17 21:15:44 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:15:44 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:15:45 - DEBUG - [^] load_file
+2023-09-17 21:15:45 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:15:45 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:15:45 - INFO - Serving on http://0.0.0.0:7070
+2023-09-17 21:15:45 - DEBUG - [^] load_file
+2023-09-17 21:15:45 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:15:45 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:16:36 - DEBUG - [^] load_file
+2023-09-17 21:16:36 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:16:36 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:16:36 - DEBUG - [^] load_file
+2023-09-17 21:16:36 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:16:36 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:17:07 - DEBUG - [^] load_file
+2023-09-17 21:17:07 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:17:07 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:17:07 - DEBUG - [^] authentication_eval
+2023-09-17 21:17:07 - DEBUG - [^] connect_to_db
+2023-09-17 21:17:07 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:17:07 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:17:07 - DEBUG - [^] get_username
+2023-09-17 21:17:07 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:17:07 - DEBUG - [^] load_file
+2023-09-17 21:17:07 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:17:07 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:17:07 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-17 21:17:07 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:17:08 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:17:08 - DEBUG - [^] load_file
+2023-09-17 21:17:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:17:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:17:08 - INFO - Serving on http://0.0.0.0:8080
+2023-09-17 21:17:08 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '9090', '--ip', '0.0.0.0']
+2023-09-17 21:17:08 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:17:09 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:17:09 - DEBUG - [^] load_file
+2023-09-17 21:17:09 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:17:09 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:17:09 - INFO - Serving on http://0.0.0.0:9090
+2023-09-17 21:17:09 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '7070', '--ip', '0.0.0.0']
+2023-09-17 21:17:09 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:17:10 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:17:10 - DEBUG - [^] load_file
+2023-09-17 21:17:10 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:17:10 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:17:10 - INFO - Serving on http://0.0.0.0:7070
+2023-09-17 21:17:59 - DEBUG - [^] load_file
+2023-09-17 21:17:59 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:17:59 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-Default.html
+2023-09-17 21:17:59 - DEBUG - [^] authentication_eval
+2023-09-17 21:17:59 - DEBUG - [^] connect_to_db
+2023-09-17 21:17:59 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:17:59 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:17:59 - DEBUG - [^] get_username
+2023-09-17 21:17:59 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:17:59 - DEBUG - [^] load_file
+2023-09-17 21:17:59 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:17:59 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:17:59 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-17 21:18:00 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:18:00 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:18:00 - DEBUG - [^] load_file
+2023-09-17 21:18:00 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:18:00 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:18:00 - INFO - Serving on http://0.0.0.0:8080
+2023-09-17 21:18:00 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '9090', '--ip', '0.0.0.0']
+2023-09-17 21:18:01 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:18:01 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:18:01 - DEBUG - [^] load_file
+2023-09-17 21:18:01 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:18:01 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:18:01 - INFO - Serving on http://0.0.0.0:9090
+2023-09-17 21:18:01 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '7070', '--ip', '0.0.0.0']
+2023-09-17 21:18:02 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:18:02 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:18:02 - DEBUG - [^] load_file
+2023-09-17 21:18:02 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:18:02 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:18:02 - INFO - Serving on http://0.0.0.0:7070
+2023-09-17 21:18:07 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-17 21:18:08 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:18:08 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:18:08 - DEBUG - [^] load_file
+2023-09-17 21:18:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:18:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:18:08 - INFO - Serving on http://0.0.0.0:8080
+2023-09-17 21:18:21 - DEBUG - [^] load_file
+2023-09-17 21:18:21 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:18:21 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:18:21 - DEBUG - [^] load_file
+2023-09-17 21:18:21 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:18:21 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:20:25 - DEBUG - [^] load_file
+2023-09-17 21:20:25 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:20:25 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-Default.html
+2023-09-17 21:20:25 - DEBUG - [^] authentication_eval
+2023-09-17 21:20:25 - DEBUG - [^] connect_to_db
+2023-09-17 21:20:25 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:20:25 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:20:25 - DEBUG - [^] get_username
+2023-09-17 21:20:25 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:20:25 - DEBUG - [^] load_file
+2023-09-17 21:20:25 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:20:25 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:20:25 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-17 21:20:25 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:20:25 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:20:26 - DEBUG - [^] load_file
+2023-09-17 21:20:26 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:20:26 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:20:26 - INFO - Serving on http://0.0.0.0:8080
+2023-09-17 21:21:05 - DEBUG - [^] load_file
+2023-09-17 21:21:05 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:21:05 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-Default.html
+2023-09-17 21:21:05 - DEBUG - [^] authentication_eval
+2023-09-17 21:21:05 - DEBUG - [^] connect_to_db
+2023-09-17 21:21:05 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:21:05 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:21:05 - DEBUG - [^] get_username
+2023-09-17 21:21:05 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:21:05 - DEBUG - [^] load_file
+2023-09-17 21:21:05 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:21:05 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:21:05 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-17 21:21:05 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:21:06 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:21:06 - DEBUG - [^] load_file
+2023-09-17 21:21:06 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:21:06 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:21:06 - INFO - Serving on http://0.0.0.0:8080
+2023-09-17 21:21:06 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '9090', '--ip', '0.0.0.0']
+2023-09-17 21:21:06 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:21:07 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:21:07 - DEBUG - [^] load_file
+2023-09-17 21:21:07 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:21:07 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:21:07 - INFO - Serving on http://0.0.0.0:9090
+2023-09-17 21:21:07 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '7070', '--ip', '0.0.0.0']
+2023-09-17 21:21:07 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:21:08 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:21:08 - DEBUG - [^] load_file
+2023-09-17 21:21:08 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:21:08 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:21:08 - INFO - Serving on http://0.0.0.0:7070
+2023-09-17 21:21:56 - DEBUG - [^] load_file
+2023-09-17 21:21:56 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-MLP.html
+2023-09-17 21:21:56 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-MLP.html
+2023-09-17 21:21:56 - DEBUG - [^] authentication_eval
+2023-09-17 21:21:56 - DEBUG - [^] connect_to_db
+2023-09-17 21:21:56 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:21:56 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:21:56 - DEBUG - [^] get_username
+2023-09-17 21:21:56 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:21:56 - DEBUG - [^] load_file
+2023-09-17 21:21:56 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:21:56 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:21:56 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-17 21:21:57 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:21:57 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:21:57 - DEBUG - [^] load_file
+2023-09-17 21:21:57 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:21:57 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:21:57 - INFO - Serving on http://0.0.0.0:8080
+2023-09-17 21:21:57 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '9090', '--ip', '0.0.0.0']
+2023-09-17 21:21:58 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:21:58 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:21:58 - DEBUG - [^] load_file
+2023-09-17 21:21:58 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:21:58 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:21:58 - INFO - Serving on http://0.0.0.0:9090
+2023-09-17 21:21:58 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '7070', '--ip', '0.0.0.0']
+2023-09-17 21:21:59 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:21:59 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:21:59 - DEBUG - [^] load_file
+2023-09-17 21:21:59 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:21:59 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:21:59 - INFO - Serving on http://0.0.0.0:7070
+2023-09-17 21:22:43 - DEBUG - [^] load_file
+2023-09-17 21:22:43 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:22:43 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-Default.html
+2023-09-17 21:22:43 - DEBUG - [^] authentication_eval
+2023-09-17 21:22:43 - DEBUG - [^] connect_to_db
+2023-09-17 21:22:43 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:22:43 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:22:43 - DEBUG - [^] get_username
+2023-09-17 21:22:43 - WARNING - [*] Username argument is 'None'!
+2023-09-17 21:22:43 - DEBUG - [^] load_file
+2023-09-17 21:22:43 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:22:43 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:22:43 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '8080', '--ip', '0.0.0.0']
+2023-09-17 21:22:44 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:22:44 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:22:44 - DEBUG - [^] load_file
+2023-09-17 21:22:44 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:22:44 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:22:44 - INFO - Serving on http://0.0.0.0:8080
+2023-09-17 21:22:44 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '9090', '--ip', '0.0.0.0']
+2023-09-17 21:22:45 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:22:45 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:22:45 - DEBUG - [^] load_file
+2023-09-17 21:22:45 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:22:45 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:22:45 - INFO - Serving on http://0.0.0.0:9090
+2023-09-17 21:22:45 - DEBUG - [*] Process Started: ['python', 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\../Listeners/FlaskAPI//FlaskAPI.py', '--port', '7070', '--ip', '0.0.0.0']
+2023-09-17 21:22:46 - DEBUG - Starting new HTTPS connection (1): api.ipify.org:443
+2023-09-17 21:22:46 - DEBUG - https://api.ipify.org:443 "GET / HTTP/1.1" 200 13
+2023-09-17 21:22:46 - DEBUG - [^] load_file
+2023-09-17 21:22:46 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:22:46 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Listeners\FlaskAPI\Config/ApiSchemas/default.yaml
+2023-09-17 21:22:46 - INFO - Serving on http://0.0.0.0:7070
+2023-09-17 21:26:39 - DEBUG - [^] load_file
+2023-09-17 21:26:46 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:26:46 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-Default.html
+2023-09-17 21:26:46 - DEBUG - [^] authentication_eval
+2023-09-17 21:26:46 - DEBUG - [^] connect_to_db
+2023-09-17 21:26:46 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:26:46 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:26:46 - DEBUG - [^] get_username
+2023-09-17 21:26:46 - DEBUG - [^] _validate_password
+2023-09-17 21:26:46 - DEBUG - [^] get_password_blob
+2023-09-17 21:26:47 - INFO - Successful Login: 'admin':'1234'
+2023-09-17 21:26:49 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-09-17 21:26:49 - DEBUG - [^] load_file
+2023-09-17 21:26:49 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=Config/ApiSchemas/default.yaml
+2023-09-17 21:26:49 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\Config/ApiSchemas/default.yaml
+2023-09-17 21:26:50 - INFO - Serving on http://127.0.0.1:5000
+2023-09-17 21:26:53 - DEBUG - [^] load_file
+2023-09-17 21:26:53 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/homepage-Default.html
+2023-09-17 21:26:53 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/homepage-Default.html
+2023-09-17 21:26:53 - DEBUG - [^] authentication_eval
+2023-09-17 21:26:53 - DEBUG - [^] connect_to_db
+2023-09-17 21:26:53 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:26:53 - DEBUG - [*] Successful DB connection to C:\Users\Ryan\Documents\GitHub\logec-suite\Server\DataBases/users.db
+2023-09-17 21:26:53 - DEBUG - [^] get_username
+2023-09-17 21:26:53 - DEBUG - [^] _validate_password
+2023-09-17 21:26:53 - DEBUG - [^] get_password_blob
+2023-09-17 21:26:54 - INFO - Successful Login: 'admin':'1234'
+2023-09-17 21:26:54 - DEBUG - [^] load_file
+2023-09-17 21:26:54 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:26:54 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:26:54 - DEBUG - [^] load_file
+2023-09-17 21:26:54 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:26:54 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:26:54 - DEBUG - [^] load_file
+2023-09-17 21:26:54 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:26:54 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default.html
+2023-09-17 21:33:41 - DEBUG - [^] load_file
+2023-09-17 21:33:41 - DEBUG - current_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server, file_path=ApiEngine/html/errorcodes/404-default-alt.html
+2023-09-17 21:33:41 - DEBUG - Loading C:\Users\Ryan\Documents\GitHub\logec-suite\Server\ApiEngine/html/errorcodes/404-default-alt.html
