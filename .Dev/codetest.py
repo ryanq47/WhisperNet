@@ -165,7 +165,7 @@ class CodeTest:
             THis function builds a docker container for the listener, and deploys it
         '''
         try:
-            dockerfile_path = os.path.join(sys_path, "../Listeners/Dockerfile")
+            dockerfile_path = os.path.join(sys_path, "../Listeners/FlaskAPI/Dockerfile")
 
             self.server_process = subprocess.Popen([
                 "docker", "build", dockerfile_path
