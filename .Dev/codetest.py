@@ -17,12 +17,13 @@ class CodeTest:
         self.authorization_header = None
         self.color = "green"
         self.fail_color = "red"
+        self.arrow_color = "blue"  # Add a new color for the arrow
 
     def spawn_control_server_thread(self):
         '''
         Spawns server, in a thread in daemon mode
         '''
-        print(colored(f"Spawning server thread: {self.c_ip}:{self.c_port}", self.color))
+        print(colored(f"{self.arrow('Spawning server thread')}: {self.c_ip}:{self.c_port}", self.arrow_color))
 
         t = threading.Thread(
             target = self._spawn_control_server,
@@ -34,7 +35,7 @@ class CodeTest:
         '''
         Implementation of spawning the server
         '''
-        print(colored(f"Spawning server at: {self.c_ip}:{self.c_port}", self.color))
+        print(colored(f"{self.arrow('Spawning server at')}: {self.c_ip}:{self.c_port}", self.arrow_color))
         server_path = os.path.join(sys_path, "../Server/server.py")
 
         try:
@@ -46,7 +47,7 @@ class CodeTest:
         '''
         Logs into the control server. Sets the self.authorization_header
         '''
-        print("-> logging into the control server...")
+        print(colored(f"{self.arrow('Logging into the control server')}...", self.arrow_color))
         try:
             endpoint = f"http://{self.c_ip}:{self.c_port}/login"
 
@@ -74,14 +75,14 @@ class CodeTest:
         '''
         Checks if server is up. Returns True if up, false if not
         '''
-        print("-> Checking if the control server is up...")
+        print(colored(f"{self.arrow('Checking if the control server is up')}...", self.arrow_color))
         try:
             r = requests.get(
                 url = f"http://{self.c_ip}:{self.c_port}/"
             )
 
             if self.oops_check(request=r):
-                print("[*] Server is up")
+                print(colored("[*] Server is up", "green"))
                 print("Response Len:", len(r.text))
                 return True
 
@@ -94,7 +95,7 @@ class CodeTest:
             for i in port_list:
                 endpoint = f"http://{self.c_ip}:{self.c_port}/list"
 
-                print(f"-> Attempting to spawn local listener on {i}...")
+                print(colored(f"{self.arrow('Attempting to spawn local listener on')} {i}...", self.arrow_color))
 
                 ip = "0.0.0.0"
                 port = str(i)
@@ -149,6 +150,9 @@ class CodeTest:
             return False
         else:
             return True
+
+    def arrow(self, text):
+        return f"-> {text}"
 
 if __name__ == "__main__":
     test = CodeTest(
