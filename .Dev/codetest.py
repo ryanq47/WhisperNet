@@ -168,7 +168,7 @@ class CodeTest:
             dockerfile_path = os.path.join(sys_path, "../Listeners/FlaskAPI/")
 
             self.server_process = subprocess.Popen([
-                "docker", "build", dockerfile_path
+                "sudo", "docker", "build", dockerfile_path
             ])
         except Exception as e:
             print(colored(f"[!] Error : {e}", self.fail_color))
