@@ -19,7 +19,7 @@ try:
     import signal
     import sys
     import time
-    from flask import Flask, jsonify, request, send_from_directory, render_template
+    from flask import Flask, jsonify, request, send_from_directory, render_template, Response
     from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
 
 
@@ -254,7 +254,7 @@ class ControlServer:
         except Exception:
             logging.debug("Error occured spawning a listener")
 
-        return ControlServer.page_not_found
+        return ControlServer.page_not_found(e)
 
     ## File Section
     # https://docs.faculty.ai/user-guide/apis/flask_apis/flask_file_upload_download.html
@@ -322,7 +322,11 @@ class ControlServer:
                 current_path = sys_path, 
                 file_path = err_404_path, 
                 return_path = False )
-            return html, 200
+            
+            resp = Response(html)
+            resp.set_cookie = ("err",e)
+
+            return resp, 200
         ## Fallback for if something breaks
         except:
             return "", 200

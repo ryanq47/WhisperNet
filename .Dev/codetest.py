@@ -153,6 +153,8 @@ class CodeTest:
                     self.local_listener_upcheck(ip="127.0.0.1", port=port)
                 else:
                     print(colored(f"POST request failed with status code {r.status_code}", self.fail_color))
+                    print(colored(f"Error: {r.cookies.get('err')}", self.fail_color))
+
         except Exception as e:
             print(colored(f"[!] Error : {e}", self.fail_color))
 
