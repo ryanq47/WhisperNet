@@ -17,7 +17,7 @@ class CodeTest:
         self.authorization_header = None
         self.color = "green"
         self.fail_color = "red"
-        self.arrow_color = "blue"  # Add a new color for the arrow
+        self.arrow_color = "cyan"  # Change arrow color to cyan
 
     def spawn_control_server_thread(self):
         '''
