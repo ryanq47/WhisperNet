@@ -180,16 +180,21 @@ class CodeTest:
 
             print(colored(f"{self.arrow('Building docker containers, this may take a minute...')}", self.arrow_color))
 
+            '''
             dockerfile_path = os.path.join(sys_path, "../Listeners/FlaskAPI/")
             self.server_process = subprocess.Popen([
-                "sudo", "docker", "build", "-t", "flaskapilistener:v1", dockerfile_path
+                "sudo", "docker", "build", "-q", "-t", "flaskapilistener:v1", dockerfile_path
             ])
 
             #self.server_process = subprocess.Popen([
             #    "sudo", "docker", "run", "-d", "-p", "8888:8888", "flaskapilistener:v1"
             #])
             os.system("sudo docker run -d -p 8888:8888 flaskapilistener:v1 > /dev/null")
-            os.system("sudo docker container ls")
+            os.system("sudo docker container ls")'''
+
+            ## theres a better way to do this. ChatGPT docker in python
+
+
         except Exception as e:
             print(colored(f"[!] Error : {e}", self.fail_color))
 
