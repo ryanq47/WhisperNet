@@ -201,7 +201,7 @@ class CodeTest:
 if __name__ == "__main__":
     test = CodeTest(
         c_port=5000,
-        c_ip="127.0.0.1"
+        c_ip="0.0.0.0"
     )
 
     test.startup()
