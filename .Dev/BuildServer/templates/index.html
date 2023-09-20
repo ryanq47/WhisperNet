@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Run Command</title>
+</head>
+<body>
+    <h1>Run a Command -- NOT SECURE. DO NOT EXPOSE TO INTERNET</h1>
+    <p>Build command: "/bin/bash /home/cicd-box/WhisperNetBuild/BuildScript.sh"</p>
+    <form method="post">
+        <label for="command">Enter a command:</label>
+        <input type="text" id="command" name="command" required>
+        <button type="submit">Run Command</button>
+    </form>
+    {% if output %}
+    <h2>Command Output:</h2>
+    <pre>{{ output }}</pre>
+    {% endif %}
+</body>
+</html>
