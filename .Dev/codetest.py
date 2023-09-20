@@ -5,9 +5,7 @@ import os
 from colorama import init
 from termcolor import colored
 
-
 sys_path = os.path.dirname(os.path.realpath(__file__))
-
 
 class CodeTest:
     '''
@@ -18,6 +16,7 @@ class CodeTest:
         self.c_ip = c_ip
         self.authorization_header = None
         self.color = "green"
+        self.fail_color = "red"
 
     def spawn_control_server_thread(self):
         '''
@@ -33,12 +32,15 @@ class CodeTest:
 
     def _spawn_control_server(self):
         '''
-        Implementation of spawnign the server
+        Implementation of spawning the server
         '''
-        print(f"Spawning server at: {self.c_ip}:{self.c_port}")
+        print(colored(f"Spawning server at: {self.c_ip}:{self.c_port}", self.color))
         server_path = os.path.join(sys_path, "../Server/server.py")
 
-        os.system(f"python3 {server_path} --ip {self.c_ip} --port {self.c_port}")
+        try:
+            os.system(f"python3 {server_path} --ip {self.c_ip} --port {self.c_port}")
+        except Exception as e:
+            print(colored(f"[!] Error : {e}", self.fail_color))
 
     def control_server_login(self):
         '''
@@ -59,22 +61,20 @@ class CodeTest:
             )
 
             if self.oops_check(request=r):
-                print("[*] Server login successful")
+                print(colored("[*] Server login successful", self.color))
                 print("Response Len:",  len(r.text))
             else:
-                print(f"request failed with status code {r.status_code} \n {r.text}")
+                print(colored(f"request failed with status code {r.status_code} \n {r.text}", self.fail_color))
 
         except Exception as e:
-            print(f"[!] Error : {e}")
+            print(colored(f"[!] Error : {e}", self.fail_color))
 
-## Server Upcheck
+    ## Server Upcheck
     def control_server_upcheck(self) -> bool:
         '''
         Checks if server is up. Returns True if up, false if not
-        
         '''
         print("-> Checking if the control server is up...")
-
         try:
             r = requests.get(
                 url = f"http://{self.c_ip}:{self.c_port}/"
@@ -86,7 +86,7 @@ class CodeTest:
                 return True
 
         except Exception as e:
-            print(f"[!] Error : {e}")
+            print(colored(f"[!] Error : {e}", self.fail_color))
             return False
 
     def control_server_spawn_local_listener(self, port_list = []):
@@ -116,12 +116,11 @@ class CodeTest:
 
                 if self.oops_check(request=r):
                     print("[*] Local Listener spawned successfully")
-                    #print("Response Len:",  len(r.text))
                     self.local_listener_upcheck(ip = "127.0.0.1", port = port)
                 else:
-                    print(f"POST request failed with status code {r.status_code}")  
+                    print(colored(f"POST request failed with status code {r.status_code}", self.fail_color))
         except Exception as e:
-            print(f"[!] Error : {e}")
+            print(colored(f"[!] Error : {e}", self.fail_color))
 
     def local_listener_upcheck(self, ip = None, port = None):
         '''
@@ -138,23 +137,18 @@ class CodeTest:
             )
 
             if self.oops_check(request=r):
-                print(f"[*] Listener is up @ {ip}:{port}")
-                #print("Response Len:", len(r.text))
+                print(colored(f"[*] Listener is up @ {ip}:{port}", self.color))
         except Exception as e:
-            print(f"[!] Error : {e}")
-
+            print(colored(f"[!] Error : {e}", self.fail_color))
 
     def oops_check(self, request):
         '''
         Checks if error message is hit. Returns false if error is hit, true if error is not hit
-        
         '''
         if "Oops, Something Went Wrong" in request.text:
             return False
-        
         else:
             return True
-
 
 if __name__ == "__main__":
     test = CodeTest(
@@ -166,7 +160,7 @@ if __name__ == "__main__":
     time.sleep(2) ## allows server to get a chance to start. very hacky
 
     while not test.control_server_upcheck():
-            print(colored(f"Waiting for server to come online...", 'blue'))
+        print(colored(f"Waiting for server to come online...", 'blue'))
 
     test.control_server_login()
     test.control_server_spawn_local_listener(port_list=["8080","9090","7070"])
