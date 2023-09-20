@@ -257,7 +257,7 @@ class ControlServer:
             ):
                 return f"Success - Listener started on {ip}:{port}"
 
-        except Exception:
+        except Exception as e:
             logging.debug("Error occured spawning a listener")
 
         return ControlServer.page_not_found(e)
