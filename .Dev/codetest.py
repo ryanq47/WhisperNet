@@ -68,7 +68,11 @@ class CodeTest:
             print(f"[!] Error : {e}")
 
 ## Server Upcheck
-    def control_server_upcheck(self):
+    def control_server_upcheck(self) -> bool:
+        '''
+        Checks if server is up. Returns True if up, false if not
+        
+        '''
         print("-> Checking if the control server is up...")
 
         try:
@@ -79,8 +83,11 @@ class CodeTest:
             if self.oops_check(request=r):
                 print("[*] Server is up")
                 print("Response Len:", len(r.text))
+                return True
+
         except Exception as e:
             print(f"[!] Error : {e}")
+            return False
 
     def control_server_spawn_local_listener(self, port_list = []):
         try:
@@ -138,6 +145,10 @@ class CodeTest:
 
 
     def oops_check(self, request):
+        '''
+        Checks if error message is hit. Returns false if error is hit, true if error is not hit
+        
+        '''
         if "Oops, Something Went Wrong" in request.text:
             return False
         
@@ -152,6 +163,10 @@ if __name__ == "__main__":
         )
     
     test.spawn_control_server_thread()
-    test.control_server_upcheck()
+    time.sleep(2) ## allows server to get a chance to start. very hacky
+
+    while not test.control_server_upcheck():
+            print(colored(f"Waiting for server to come online...", 'blue'))
+
     test.control_server_login()
     test.control_server_spawn_local_listener(port_list=["8080","9090","7070"])
