@@ -170,7 +170,7 @@ class CodeTest:
             print(colored(f"{self.arrow('Building docker containers, this may take a minute...')}", self.arrow_color))
 
             self.server_process = subprocess.Popen([
-                "sudo", "docker", "build", "-t", "FlaskAPIListener:v1", dockerfile_path
+                "sudo", "docker", "build", "-t", "flaskapilistener:v1", dockerfile_path
             ])
         except Exception as e:
             print(colored(f"[!] Error : {e}", self.fail_color))
@@ -187,7 +187,7 @@ class CodeTest:
             print(colored(f"{self.arrow('Building docker containers, this may take a minute...')}", self.arrow_color))
 
             self.server_process = subprocess.Popen([
-                "sudo", "docker", "run", "-d", "-p", "8888:8888", "FlaskAPIListener:v1"
+                "sudo", "docker", "run", "-d", "-p", "8888:8888", "flaskapilistener:v1"
             ])
         except Exception as e:
             print(colored(f"[!] Error : {e}", self.fail_color))
