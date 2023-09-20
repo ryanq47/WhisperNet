@@ -3,7 +3,7 @@ RUN apt-get update -qq &&\
     apt-get install python3 -y -qq
  
 RUN apt-get install python3-pip -y -qq
-RUN python3 -m pip install Flask flask-jwt-extended requests pyyaml waitress
+RUN python3 -m pip install Flask flask-jwt-extended requests pyyaml waitress --quiet
  
 RUN mkdir /listener
 COPY . /listener
