@@ -40,7 +40,8 @@ class CodeTest:
         t = threading.Thread(
             target = self._spawn_control_server,
         )
-        t.setDaemon(True)
+        #t.setDaemon(True)
+        t.daemon = True
         t.start()
 
     def _spawn_control_server(self):
