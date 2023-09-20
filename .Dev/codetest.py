@@ -165,7 +165,7 @@ class CodeTest:
             THis function builds a docker container for the listener, and deploys it
         '''
         try:
-            dockerfile_path = os.path.join(sys_path, "../Listener/Dockerfile")
+            dockerfile_path = os.path.join(sys_path, "../Listeners/Dockerfile")
 
             self.server_process = subprocess.Popen([
                 "docker", "build", f". {dockerfile_path}"
