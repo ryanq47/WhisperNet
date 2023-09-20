@@ -251,5 +251,6 @@ if __name__ == "__main__":
     test.control_server_login()
     test.control_server_spawn_local_listener(port_list=["8080", "9090", "7070"])
     test.docker_spawn_listener()
+    test.docker_start_listener()
 
     input("Hit any key to exit & shutdown the server....")
