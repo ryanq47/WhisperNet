@@ -16,7 +16,7 @@ class CodeTest:
         self.c_ip = c_ip
         self.authorization_header = None
         self.color = "green"
-        self.fail_color = "orange" # red doesn't blend well with some backgrounsd
+        self.fail_color = "yellow" # red doesn't blend well with some backgrounsd
         self.arrow_color = "cyan"  # Change arrow color to cyan
 
     def startup(self):
