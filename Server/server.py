@@ -259,8 +259,7 @@ class ControlServer:
 
         except Exception as e:
             logging.debug("Error occured spawning a listener")
-
-        return ControlServer.page_not_found(e)
+            return ControlServer.page_not_found(e)
 
     ## File Section
     # https://docs.faculty.ai/user-guide/apis/flask_apis/flask_file_upload_download.html
