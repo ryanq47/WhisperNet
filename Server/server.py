@@ -313,19 +313,22 @@ class ControlServer:
         with a "page not found"
 
         This is done for security/scraping/URL discovery reasons
-        
+            
         '''
         try:
             err_404_path = random.choice(ControlServer.UrlSc.NOT_FOUND_LIST_404)
             logging.debug(f"Error: {e}")
 
             html = Utils.UtilsHandler.load_file(
-                current_path = sys_path, 
-                file_path = err_404_path, 
-                return_path = False )
+                current_path=sys_path, 
+                file_path=err_404_path, 
+                return_path=False
+            )
             
             resp = Response(html)
-            resp.set_cookie = ('err',str(e))
+
+            # Set the 'err' cookie with the value of 'e'
+            resp.set_cookie('err', str(e))
 
             return resp, 200
         ## Fallback for if something breaks
