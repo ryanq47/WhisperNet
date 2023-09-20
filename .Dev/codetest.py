@@ -139,7 +139,7 @@ class CodeTest:
                 }
 
                 headers = {
-                    "Authorization": f"Bearer {self.authorization_token}"
+                    "Authorization": f"Bearer {self.authorization_header}"
                 }
 
                 r = requests.post(
