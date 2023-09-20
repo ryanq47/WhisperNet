@@ -335,9 +335,13 @@ if __name__ == "__main__":
     
     ## Debug mode on windows is broken.
     #ControlServer.app.run(host="0.0.0.0", port=5000, debug=False)
-
-    from waitress import serve
-    serve(ControlServer.app, host=ip, port=port)
+    try:
+        from waitress import serve
+        serve(ControlServer.app, host=ip, port=port)
+    except OSError as oe:
+        print(f"OS Error: {oe}")
+    except Exception as e:
+        print(f"Unknown error: {e}")
 
         
     #while True:
