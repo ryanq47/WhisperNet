@@ -245,7 +245,7 @@ class ControlServer:
             listener_path = os.path.join(sys_path, "../Listeners/FlaskAPI/")
             
 
-            if ControlServer.path_struct.os_type == "nt":
+            if Data.path_struct.os_type == "nt":
                 command = ["python",f"{listener_path}/FlaskAPI.py","--port",str(port),"--ip",ip]
 
             else:
