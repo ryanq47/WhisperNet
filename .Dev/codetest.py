@@ -190,7 +190,7 @@ class CodeTest:
             #    "sudo", "docker", "run", "-d", "-p", "8888:8888", "flaskapilistener:v1"
             #])
             os.system("sudo docker run -d -p 8888:8888 flaskapilistener:v1")
-
+            os.system("sudo docker container ls")
         except Exception as e:
             print(colored(f"[!] Error : {e}", self.fail_color))
 
