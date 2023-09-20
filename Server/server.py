@@ -325,7 +325,7 @@ class ControlServer:
                 return_path = False )
             
             resp = Response(html)
-            resp.set_cookie = ("err",e)
+            resp.set_cookie = ('err',str(e))
 
             return resp, 200
         ## Fallback for if something breaks
