@@ -4,6 +4,8 @@ import threading
 import os
 from colorama import init
 from termcolor import colored
+import atexit
+
 
 sys_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -48,6 +50,8 @@ class CodeTest:
         #t.setDaemon(True)
         t.daemon = True
         t.start()
+        atexit.register(self.exit_handler)
+
 
     def _spawn_control_server(self):
         '''
@@ -57,7 +61,14 @@ class CodeTest:
         server_path = os.path.join(sys_path, "../Server/server.py")
 
         try:
-            os.system(f"python3 {server_path} --ip {self.c_ip} --port {self.c_port}")
+            # Use subprocess.Popen to store the server process object
+            import subprocess
+            self.server_process = subprocess.Popen([
+                "python3",
+                server_path,
+                "--ip", self.c_ip,
+                "--port", str(self.c_port)
+            ])
         except Exception as e:
             print(colored(f"[!] Error : {e}", self.fail_color))
 
@@ -82,7 +93,7 @@ class CodeTest:
             if self.oops_check(request=r):
                 print(colored("[*] Server login successful", self.color))
                 print("Response Len:",  len(r.text))
-                self.authorization_header = r.get("access_token")
+                self.authorization_header = r.json()["access_token"]
             else:
                 print(colored(f"request failed with status code {r.status_code} \n {r.text}", self.fail_color))
 
@@ -174,6 +185,17 @@ class CodeTest:
 
     def arrow(self, text):
         return f"-> {text}"
+
+    def exit_handler(self):
+        '''
+        Exit handler function to kill the server process
+        '''
+        if self.server_process:
+            print(colored("Terminating the server process...", self.arrow_color))
+            self.server_process.terminate()
+            self.server_process.wait()
+            print(colored("Server process terminated.", self.arrow_color))
+
 
 if __name__ == "__main__":
     test = CodeTest(
