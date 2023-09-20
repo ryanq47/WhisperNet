@@ -100,7 +100,7 @@ class Data:
     ## Path Struct
     path_struct = Utils.DataObjects.PathStruct()
     path_struct.sys_path = sys_path
-
+    path_struct.os_type = os.name
 
     ## Getting all the paths in the log just in case something fails/is off
     logging.debug(f'[*] PathStruct.sys_path: {path_struct.sys_path}')
@@ -243,7 +243,13 @@ class ControlServer:
             ## !! WARNING - SHELL = TRUE -- THIS IS AN ISSUE. SWITCH TO SHELL=FALSE & ADJUST COMMAND !! ##
             ## ^^ Fixed ^^ ##
             listener_path = os.path.join(sys_path, "../Listeners/FlaskAPI/")
-            command = ["python",f"{listener_path}/FlaskAPI.py","--port",str(port),"--ip",ip]
+            
+
+            if ControlServer.path_struct.os_type == "nt":
+                command = ["python",f"{listener_path}/FlaskAPI.py","--port",str(port),"--ip",ip]
+
+            else:
+                command = ["python3",f"{listener_path}/FlaskAPI.py","--port",str(port),"--ip",ip]
 
             if Utils.UtilsHandler.threaded_process_spawner(
                 path = listener_path,

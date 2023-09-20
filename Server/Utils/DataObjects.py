@@ -16,3 +16,4 @@ class PathStruct:
     def __init__(self):
         ## Holds the sys path to the server.py 
         self.sys_path = None
+        self.os_type = None
