@@ -170,7 +170,24 @@ class CodeTest:
             print(colored(f"{self.arrow('Building docker containers, this may take a minute...')}", self.arrow_color))
 
             self.server_process = subprocess.Popen([
-                "sudo", "docker", "build", dockerfile_path
+                "sudo", "docker", "build", "-t", "FlaskAPIListener:v1", dockerfile_path
+            ])
+        except Exception as e:
+            print(colored(f"[!] Error : {e}", self.fail_color))
+
+    def docker_start_listener(self):
+        '''
+            A representation of what an independent listener would look like.
+
+            THis function builds a docker container for the listener, and deploys it
+        '''
+        try:
+            dockerfile_path = os.path.join(sys_path, "../Listeners/FlaskAPI/")
+
+            print(colored(f"{self.arrow('Building docker containers, this may take a minute...')}", self.arrow_color))
+
+            self.server_process = subprocess.Popen([
+                "sudo", "docker", "run", "-d", "-p", "8888:8888", "FlaskAPIListener:v1"
             ])
         except Exception as e:
             print(colored(f"[!] Error : {e}", self.fail_color))
