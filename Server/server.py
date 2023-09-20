@@ -317,6 +317,7 @@ class ControlServer:
         '''
         try:
             err_404_path = random.choice(ControlServer.UrlSc.NOT_FOUND_LIST_404)
+            logging.debug(f"Error: {e}")
 
             html = Utils.UtilsHandler.load_file(
                 current_path = sys_path, 
