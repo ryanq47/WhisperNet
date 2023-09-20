@@ -1,8 +1,8 @@
 FROM ubuntu:latest
-RUN apt-get update &&\
-    apt-get install python3 -y
+RUN apt-get update -qq &&\
+    apt-get install python3 -y -qq
  
-RUN apt-get install python3-pip -y
+RUN apt-get install python3-pip -y -qq
 RUN python3 -m pip install Flask flask-jwt-extended requests pyyaml waitress
  
 RUN mkdir /listener
