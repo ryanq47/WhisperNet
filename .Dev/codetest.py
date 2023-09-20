@@ -14,7 +14,7 @@ class CodeTest:
     def __init__(self, c_port, c_ip):
         self.c_port = c_port
         self.c_ip = c_ip
-        self.authorization_header = None
+        self.authorization_header = ""
         self.color = "green"
         self.fail_color = "yellow" # red doesn't blend well with some backgrounsd
         self.arrow_color = "cyan"  # Change arrow color to cyan
@@ -82,6 +82,7 @@ class CodeTest:
             if self.oops_check(request=r):
                 print(colored("[*] Server login successful", self.color))
                 print("Response Len:",  len(r.text))
+                self.authorization_header = r.get("access_token")
             else:
                 print(colored(f"request failed with status code {r.status_code} \n {r.text}", self.fail_color))
 
