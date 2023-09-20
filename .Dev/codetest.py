@@ -19,8 +19,8 @@ class CodeTest:
         self.fail_color = "orange" # red doesn't blend well with some backgrounsd
         self.arrow_color = "cyan"  # Change arrow color to cyan
 
-    def startup(self)
-        f"""
+    def startup(self):
+        s = f"""
         Color Codes:
         {self.color}\t Successful Steps
         {self.fail_color}\t Failed Steps
@@ -29,6 +29,7 @@ class CodeTest:
 
         Note, this script is far from perfect. It's meant to be a quick "fuck what broke" code check.
         """
+        print(s)
 
     def spawn_control_server_thread(self):
         '''
