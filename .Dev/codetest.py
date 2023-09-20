@@ -121,7 +121,7 @@ class CodeTest:
 
     def control_server_spawn_local_listener(self, port_list=[]):
         '''
-        Spawns local listeners on specified ports.
+        Spawns local listeners on specified ports FROM the control server
         '''
         try:
             for i in port_list:
@@ -157,6 +157,24 @@ class CodeTest:
 
         except Exception as e:
             print(colored(f"[!] Error : {e}", self.fail_color))
+
+    def docker_spawn_listener(self):
+        '''
+            A representation of what an independent listener would look like.
+
+            THis function builds a docker container for the listener, and deploys it
+        '''
+        try:
+            dockerfile_path = os.path.join(sys_path, "../Listener/Dockerfile")
+
+            self.server_process = subprocess.Popen([
+                "docker build . ",
+                dockerfile_path,
+                "-t FlaskListener:v1"
+            ])
+        except Exception as e:
+            print(colored(f"[!] Error : {e}", self.fail_color))
+
 
     def local_listener_upcheck(self, ip=None, port=None):
         '''
@@ -215,5 +233,6 @@ if __name__ == "__main__":
 
     test.control_server_login()
     test.control_server_spawn_local_listener(port_list=["8080", "9090", "7070"])
+    test.docker_spawn_listener()
 
     input("Hit any key to exit & shutdown the server....")
