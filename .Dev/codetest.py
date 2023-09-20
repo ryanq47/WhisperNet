@@ -170,7 +170,7 @@ class CodeTest:
             self.server_process = subprocess.Popen([
                 "docker", "build .",
                 dockerfile_path,
-                "-t FlaskListener:v1"
+                "-t", "FlaskListener:v1"
             ])
         except Exception as e:
             print(colored(f"[!] Error : {e}", self.fail_color))
