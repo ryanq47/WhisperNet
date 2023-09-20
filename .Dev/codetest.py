@@ -167,6 +167,8 @@ class CodeTest:
         try:
             dockerfile_path = os.path.join(sys_path, "../Listeners/FlaskAPI/")
 
+            print(colored(f"{self.arrow('Building docker containers, this may take a minute...')}", self.arrow_color))
+
             self.server_process = subprocess.Popen([
                 "sudo", "docker", "build", dockerfile_path
             ])
