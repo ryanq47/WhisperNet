@@ -168,7 +168,7 @@ class CodeTest:
             dockerfile_path = os.path.join(sys_path, "../Listener/Dockerfile")
 
             self.server_process = subprocess.Popen([
-                "docker build . ",
+                "docker", "build .",
                 dockerfile_path,
                 "-t FlaskListener:v1"
             ])
