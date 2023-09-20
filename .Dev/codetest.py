@@ -164,16 +164,10 @@ class CodeTest:
 
             THis function builds a docker container for the listener, and deploys it
         '''
-        try:
-            dockerfile_path = os.path.join(sys_path, "../Listeners/FlaskAPI/")
+        t = threading.Thread(target=self.docker_start_listener)
+        t.daemon = True
+        t.start()
 
-            print(colored(f"{self.arrow('Building docker containers, this may take a minute...')}", self.arrow_color))
-
-            self.server_process = subprocess.Popen([
-                "sudo", "docker", "build", "-t", "flaskapilistener:v1", dockerfile_path
-            ])
-        except Exception as e:
-            print(colored(f"[!] Error : {e}", self.fail_color))
 
     def docker_start_listener(self):
         '''
@@ -185,6 +179,11 @@ class CodeTest:
             dockerfile_path = os.path.join(sys_path, "../Listeners/FlaskAPI/")
 
             print(colored(f"{self.arrow('Building docker containers, this may take a minute...')}", self.arrow_color))
+
+            dockerfile_path = os.path.join(sys_path, "../Listeners/FlaskAPI/")
+            self.server_process = subprocess.Popen([
+                "sudo", "docker", "build", "-t", "flaskapilistener:v1", dockerfile_path
+            ])
 
             #self.server_process = subprocess.Popen([
             #    "sudo", "docker", "run", "-d", "-p", "8888:8888", "flaskapilistener:v1"
