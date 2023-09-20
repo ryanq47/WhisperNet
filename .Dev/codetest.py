@@ -16,8 +16,19 @@ class CodeTest:
         self.c_ip = c_ip
         self.authorization_header = None
         self.color = "green"
-        self.fail_color = "red"
+        self.fail_color = "orange" # red doesn't blend well with some backgrounsd
         self.arrow_color = "cyan"  # Change arrow color to cyan
+
+    def startup(self)
+        f"""
+        Color Codes:
+        {self.color}\t Successful Steps
+        {self.fail_color}\t Failed Steps
+        {self.arrow_color}\t Actions being taken
+
+
+        Note, this script is far from perfect. It's meant to be a quick "fuck what broke" code check.
+        """
 
     def spawn_control_server_thread(self):
         '''
@@ -159,6 +170,8 @@ if __name__ == "__main__":
         c_port = 5000,
         c_ip = "127.0.0.1"
         )
+    
+    test.startup()
     
     test.spawn_control_server_thread()
     time.sleep(2) ## allows server to get a chance to start. very hacky
