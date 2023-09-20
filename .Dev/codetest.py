@@ -233,6 +233,9 @@ class CodeTest:
             self.server_process.terminate()
             self.server_process.wait()
             print(colored("Server process terminated.", self.arrow_color))
+        
+        # stops ALL docker containers
+        os.system("sudo docker stop $(docker ps -q)")
 
 if __name__ == "__main__":
     test = CodeTest(
