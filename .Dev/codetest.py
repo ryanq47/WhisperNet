@@ -1,5 +1,13 @@
 import requests
 import time
+import threading
+import os
+from colorama import init
+from termcolor import colored
+
+
+sys_path = os.path.dirname(os.path.realpath(__file__))
+
 
 class CodeTest:
     '''
@@ -9,6 +17,28 @@ class CodeTest:
         self.c_port = c_port
         self.c_ip = c_ip
         self.authorization_header = None
+        self.color = "green"
+
+    def spawn_control_server_thread(self):
+        '''
+        Spawns server, in a thread in daemon mode
+        '''
+        print(colored(f"Spawning server thread: {self.c_ip}:{self.c_port}", self.color))
+
+        t = threading.Thread(
+            target = self._spawn_control_server,
+        )
+        t.setDaemon(True)
+        t.start()
+
+    def _spawn_control_server(self):
+        '''
+        Implementation of spawnign the server
+        '''
+        print(f"Spawning server at: {self.c_ip}:{self.c_port}")
+        server_path = os.path.join(sys_path, "../Server/server.py")
+
+        os.system(f"python3 {server_path} --ip {self.c_ip} --port {self.c_port}")
 
     def control_server_login(self):
         '''
@@ -120,6 +150,8 @@ if __name__ == "__main__":
         c_port = 5000,
         c_ip = "127.0.0.1"
         )
+    
+    test.spawn_control_server_thread()
     test.control_server_upcheck()
     test.control_server_login()
     test.control_server_spawn_local_listener(port_list=["8080","9090","7070"])
