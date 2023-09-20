@@ -28,6 +28,11 @@ class CodeTest:
 
 
         Note, this script is far from perfect. It's meant to be a quick "fuck what broke" code check.
+
+        Quck Fixes:
+            OS Error (process already on port):
+                ps -fA | grep python
+                sudo kill -9 <PID>
         """
         print(s)
 
@@ -109,6 +114,8 @@ class CodeTest:
                 endpoint = f"http://{self.c_ip}:{self.c_port}/list"
 
                 print(colored(f"{self.arrow('Attempting to spawn local listener on')} {i}...", self.arrow_color))
+                print(colored(f"{self.arrow('Length of header token: ')} {len(self.authorization_header)} ", self.arrow_color))
+
 
                 ip = "0.0.0.0"
                 port = str(i)
