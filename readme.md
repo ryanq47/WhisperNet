@@ -48,10 +48,10 @@ Back to flexibility...
 ## The vision:
 Here's what I'm shooting for:
 
-![image](https://github.com/ryanq47/WhisperNet/assets/91687869/c475a273-c88b-4ca8-8a7b-f9b2b1abde05)
+![vision drawio](https://github.com/ryanq47/WhisperNet/assets/91687869/6f7c4188-eb8e-416b-92d1-12d9d5530842)
 
   
-I'll put this all into words later, but a quick TLDR: A full blown C2 enviornment, with features such as remote listeners, feature 2, and feature 3
+I'll put this all into words later, but a quick TLDR: A full blown C2 enviornment, with features such as remote listeners, and (easily implemented) custom plugins to suite your needs. 
 
   
 
