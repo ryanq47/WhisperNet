@@ -46,7 +46,7 @@ Back to flexibility...
 
   
 ## The vision:
-Here's what I'm shooting for:
+Here's what I'm shooting for: (I realize this is a bit small... click on it and you can zoom in)
 
 ![vision drawio](https://github.com/ryanq47/WhisperNet/assets/91687869/6f7c4188-eb8e-416b-92d1-12d9d5530842)
 
