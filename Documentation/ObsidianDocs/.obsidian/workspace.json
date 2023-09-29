@@ -56,9 +56,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "8eede2341bda8ade",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Plugins.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -124,7 +136,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Code Tests.md",
+                "file": "Plugins.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -141,7 +153,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Code Tests.md",
+                "file": "Plugins.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -164,7 +176,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Code Tests.md"
+                "file": "Plugins.md"
               }
             }
           },
@@ -196,15 +208,19 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "ea3d59c938fa7d33",
+  "active": "8eede2341bda8ade",
   "lastOpenFiles": [
+    "Pasted image 20230929010420.png",
+    "Pasted image 20230929010201.png",
+    "1. Task Tracker/Tasks/Untitled.md",
+    "Plugins.md",
     "1. Task Tracker/Task Tracker.md",
-    "Server/Code Tests.md",
     "Server/Modules/ApiEngine/Cookies.md",
-    "Code Test Tool.md",
-    "Untitled 1.md",
     "Status page.md",
     "1. Task Tracker/Tasks/Docker.md",
+    "Server/Code Tests.md",
+    "Code Test Tool.md",
+    "Untitled 1.md",
     "Server/Modules/ApiEngine/API General Overview.md",
     "Server/Modules/Listeners/Overview.md",
     "Server/Modules/ApiEngine/Endpoints/Listener Management.md",
@@ -217,16 +233,13 @@
     "1. Task Tracker/Tasks/Error Response in cookies.md",
     "1. Task Tracker/Tasks/Request logging.md",
     "Untitled 2.md",
-    "1. Task Tracker/Tasks/Untitled.md",
     "1. Task Tracker/Tasks/Untitled 2.md",
     "1. Task Tracker/Tasks/Untitled 1.md",
     "Server/Modules/Listeners/Local Listeners.md",
     "Server/Modules/Listeners/Listener setup.canvas",
     "Server/Modules/WSGI/WSGI & Flask setup.canvas",
     "Server/Modules/Utils/UtilsHandler.md",
-    "1. Task Tracker/Tasks/Gunicorn research & frontend.md",
     "Server/Modules/WSGI",
-    "Server/Modules/WSGI/WSGI.md",
     "Server/Modules/Utils",
     "Server/Modules/Listeners",
     "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
