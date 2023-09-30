@@ -12,7 +12,7 @@ class Info:
 
 
 ## Static or not?
-class PluginClass:
+class PluginClass(ControlServer):
 
     def main():
         '''
@@ -22,4 +22,9 @@ class PluginClass:
 
         ## does stuff
 
+    def register_routes(self):
+        self.app.route('/plugin2')(self.plugin2_function)
     
+
+    def plugin2_function(self):
+        return "plugin online"
