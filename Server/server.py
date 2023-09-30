@@ -141,20 +141,22 @@ import importlib
 from PluginEngine.Plugins.testplugin import PluginClass
 def load_plugins(app):
     #plugins_dir = 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\PluginEngine\\Plugins\\'
-    plugins_dir = os.path.join(sys_path, "PluginEngine.Plugins.")
+    #plugins_dir = os.path.join(sys_path, "PluginEngine.Plugins.")
 
-    for plugin_file in os.listdir(plugins_dir):
-        '''if plugin_file.endswith('.py'):
+    plugin_instance = app
+    plugin_instance.register_routes()
+
+    '''for plugin_file in os.listdir(plugins_dir):
+        if plugin_file.endswith('.py'):
             module_name = plugin_file[:-3]
             print(f"[*] loading {module_name}")
             module_path = f'{plugins_dir}.{module_name}'
-            module = importlib.import_module(module_path)'''
-        module = importlib.import_module("testplugin.PluginClass")
+            module = importlib.import_module(module_path)
 
-        for name, obj in inspect.getmembers(module):
-            if inspect.isclass(obj) and issubclass(obj, PluginClass) and obj != PluginClass:
-                plugin_instance = obj(app)
-                plugin_instance.register_routes()
+            for name, obj in inspect.getmembers(module):
+                if inspect.isclass(obj) and issubclass(obj, PluginClass) and obj != PluginClass:
+                    plugin_instance = obj(app)
+                    plugin_instance.register_routes()'''
 
 
 ## Move to own file eventually
