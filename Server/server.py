@@ -143,7 +143,7 @@ class ControlServer:
         self.app.config['JWT_SECRET_KEY'] = 'PLEASECHANGEME'  # Change this to your secret key - also move to a config file
         self.jwt = JWTManager(self.app)
         self.config_file_path = Utils.UtilsHandler.load_file(current_path=sys_path, file_path=api_config_profile)
-        self.UrlSc = ApiEngine.ConfigHandler.UrlSchema(api_config_profile=config_file_path)
+        self.UrlSc = ApiEngine.ConfigHandler.UrlSchema(api_config_profile=self.config_file_path)
         self.UrlSc.load()
 
 
