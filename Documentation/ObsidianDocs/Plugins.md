@@ -77,6 +77,8 @@ etc, for different actions/functions
 #### Shit to figure out:
 
 - [ ] Where will plugin logic live
+- [ ] How will the server interact/control plugins
+	- Gonna need a standard setup
 - [ ] How to dynamically load/setup URL's
 	- Doable, ask chat GPT for this one
 - [ ] How to autheticate these external plugins are l;egit

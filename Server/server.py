@@ -138,20 +138,34 @@ class ListenerController:
 
 ## Move to own file eventually
 class ControlServer:
-    app = Flask(__name__)
-    app.config['JWT_SECRET_KEY'] = 'PLEASECHANGEME'  # Change this to your secret key - also move to a config file
-    jwt = JWTManager(app)
-    config_file_path = Utils.UtilsHandler.load_file(current_path=sys_path, file_path=api_config_profile)
-    UrlSc = ApiEngine.ConfigHandler.UrlSchema(api_config_profile=config_file_path)
-    UrlSc.load()
+    def __init__(self):
+        self.app = Flask(__name__)
+        self.app.config['JWT_SECRET_KEY'] = 'PLEASECHANGEME'  # Change this to your secret key - also move to a config file
+        self.jwt = JWTManager(self.app)
+        self.config_file_path = Utils.UtilsHandler.load_file(current_path=sys_path, file_path=api_config_profile)
+        self.UrlSc = ApiEngine.ConfigHandler.UrlSchema(api_config_profile=config_file_path)
+        self.UrlSc.load()
 
-    @app.route("/", methods=["GET"])
-    @app.route(f"/{UrlSc.HOME_BASE}", methods=["GET"])
-    def no_subdir():
+
+    def init_routes(self):
+        self.app.route("/", methods=["GET"])(self.no_subdir)
+        self.app.route("/<home_base>", methods=["GET"])(self.no_subdir)
+        self.app.route(f"/{self.UrlSc.AGENT_BASE_ENDPOINT}", methods=["GET"])(self.agent_base)
+        self.app.route(f"/{self.UrlSc.SERVER_LOGIN_ENDPOINT}", methods=["POST"])(self.server_login)
+        self.app.route(f"/{self.UrlSc.CREATE_USER}", methods=["POST"])(self.create_user)
+        self.app.route(f"/{self.UrlSc.DELETE_USER}", methods=["POST"])(self.delete_user)
+        self.app.route(f"/{self.UrlSc.SERVER_BASE_ENDPOINT}", methods=["GET"])(self.server_base)
+        self.app.route(f"/list", methods=["POST"])(self.spawn_listener)
+        self.app.route(f"/{self.UrlSc.UPLOAD_BASE_ENDPOINT}/<path:path>", methods=["GET"])(self.download_file)
+        self.app.route(f"/{self.UrlSc.UPLOAD_BASE_ENDPOINT}/<filename>", methods=["POST"])(self.post_file)
+        self.app.route(f"/status/listeners", methods=["POST"])(self.status)
+        self.app.route('/status')(self.index)
+
+    def no_subdir(self):
         try:
             # Yaml load code here
             ## load random choice from list
-            html_file_path = random.choice(ControlServer.UrlSc.HOMEPAGE_LIST)
+            html_file_path = random.choice(self.UrlSc.HOMEPAGE_LIST)
 
             # open file
             html = Utils.UtilsHandler.load_file(
@@ -163,16 +177,14 @@ class ControlServer:
             ## oh my god it worked on the first time
 
         except Exception:
-            ControlServer.page_not_found()
+            self.page_not_found()
     
     ## for agents checking in
-    @app.route(f"/{UrlSc.AGENT_BASE_ENDPOINT}", methods=["GET"])
-    def agent_base():
+    def agent_base(self):
         return "agent_base"
     
     ## login
-    @app.route(f"/{UrlSc.SERVER_LOGIN_ENDPOINT}", methods=["POST"])
-    def server_login():
+    def server_login(self):
         username = request.json.get('username')
         password = request.json.get('password')
 
@@ -186,13 +198,12 @@ class ControlServer:
             access_token = create_access_token(identity="username")
             return {'access_token': access_token}, 200
         else:
-            return ControlServer.page_not_found()
+            return self.page_not_found()
 
     ## == User Manageemnt == ##
     ## Create users
-    @app.route(f"/{UrlSc.CREATE_USER}", methods=["POST"])
     @jwt_required()
-    def create_user():
+    def create_user(self):
         username = request.json.get('username')
         password = request.json.get('password')
 
@@ -203,12 +214,11 @@ class ControlServer:
         ):
             return f"user {username} created"
         else:
-            return ControlServer.page_not_found()
+            return self.page_not_found()
 
     ## Delete users
-    @app.route(f"/{UrlSc.DELETE_USER}", methods=["POST"])
     @jwt_required()
-    def delete_user():
+    def delete_user(self):
         username = request.json.get('username')
 
         if  SecurityEngine.AuthenticationHandler.UserManagement.delete_user(
@@ -217,23 +227,21 @@ class ControlServer:
         ):
             return f"user {username} deleted"
         else:
-            return ControlServer.page_not_found()
+            return self.page_not_found()
 
 
     # commands to control the server
-    @app.route(f"/{UrlSc.SERVER_BASE_ENDPOINT}", methods=["GET"])
     @jwt_required()
-    def server_base():
+    def server_base(self):
         try:
             return "server_base"
         except:
-            ControlServer.page_not_found()
+            self.page_not_found()
     
     ## Listener Section
-    #@app.route(f"/{UrlSc.SPAWN_TCP_LISTENER_ENDPOINT}", methods=["POST"])
-    @app.route(f"/list", methods=["POST"])
+    #@self.app.route(f"/{UrlSc.SPAWN_TCP_LISTENER_ENDPOINT}", methods=["POST"])
     @jwt_required()
-    def spawn_listener():
+    def spawn_listener(self):
         try:
             ip = request.json.get('ip')
             port = request.json.get('port')
@@ -259,23 +267,21 @@ class ControlServer:
 
         except Exception as e:
             logging.debug("Error occured spawning a listener")
-            return ControlServer.page_not_found(e)
+            return self.page_not_found(e)
 
     ## File Section
     # https://docs.faculty.ai/user-guide/apis/flask_apis/flask_file_upload_download.html
     # by default, http://ip/files/FILENAME
-    @app.route(f"/{UrlSc.UPLOAD_BASE_ENDPOINT}/<path:path>", methods=["GET"])
-    def download_file(path):
+    def download_file(self, path):
         try:
             ## as attachment downloads it, instead of displaying in browser
-            return send_from_directory(ControlServer.UrlSc.UPLOAD_FOLDER, path, as_attachment=True)
+            return send_from_directory(self.UrlSc.UPLOAD_FOLDER, path, as_attachment=True)
         except Exception as e:
             #print(e)
-            return ControlServer.page_not_found()
+            return self.page_not_found()
 
-    @app.route(f"/{UrlSc.UPLOAD_BASE_ENDPOINT}/<filename>", methods=["POST"])
     @jwt_required()
-    def post_file(filename):
+    def post_file(self, filename):
         """Upload a file."""
 
         if "/" in filename:
@@ -284,18 +290,16 @@ class ControlServer:
         
         Utils.UtilsHandler.write_file(
             current_path=sys_path,
-            file_path=ControlServer.UrlSc.UPLOAD_FOLDER + "/" + filename,
+            file_path=self.UrlSc.UPLOAD_FOLDER + "/" + filename,
             data = request.data
         )
 
         # Return 201 CREATED
         return "", 201
-    @app.route(f"/status/listeners", methods=["POST"])
-    def status():
+    def status(self):
         pass
     
-    @app.route('/status')
-    def index():
+    def index(self):
         dummy_json_data = {
             "status": "up",
             "message": "Website is up and running!",
@@ -306,13 +310,14 @@ class ControlServer:
         # Render the HTML template with initial JSON data
         return render_template('index.html', json_data=dummy_json_data)
 
+    '''
     ## any bad auth returns this
-    @app.errorhandler(exceptions.NoAuthorizationError)
-    @app.errorhandler(401)
-    @app.errorhandler(403)
-    @app.errorhandler(404)
-    @app.errorhandler(405) # Method not allowed
-    def page_not_found(e=None):
+    @self.app.errorhandler(exceptions.NoAuthorizationError)
+    @self.app.errorhandler(401)
+    @self.app.errorhandler(403)
+    @self.app.errorhandler(404)
+    @self.app.errorhandler(405) # Method not allowed'''
+    def page_not_found(self, e=None):
         '''
         Handles all 40X & any try/except errors. Basically it returns a 200
         with a "page not found"
@@ -321,7 +326,7 @@ class ControlServer:
             
         '''
         try:
-            err_404_path = random.choice(ControlServer.UrlSc.NOT_FOUND_LIST_404)
+            err_404_path = random.choice(self.UrlSc.NOT_FOUND_LIST_404)
             logging.debug(f"Error: {e}")
 
             html = Utils.UtilsHandler.load_file(
@@ -350,7 +355,8 @@ if __name__ == "__main__":
     #ControlServer.app.run(host="0.0.0.0", port=5000, debug=False)
     try:
         from waitress import serve
-        serve(ControlServer.app, host=ip, port=port)
+        control_server = ControlServer()
+        serve(control_server.app, host=ip, port=port)
     except OSError as oe:
         print(f"OS Error: {oe}")
     except Exception as e:
