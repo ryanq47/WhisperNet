@@ -142,7 +142,7 @@ from PluginEngine.Plugins.testplugin import PluginClass
 def load_plugins(app):
     #plugins_dir = 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\PluginEngine\\Plugins\\'
     #plugins_dir = os.path.join(sys_path, "PluginEngine.Plugins.")
-    a = PluginClass()
+    a = PluginClass(app)
 
     a.register_routes()
 
