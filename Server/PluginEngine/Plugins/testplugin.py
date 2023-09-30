@@ -2,8 +2,8 @@
 
 
 '''
-from server import ControlServer
-
+#from server import ControlServer
+from PluginEngine.Plugins.baseplugin import BasePlugin
 
 class Info:
     name    = "plugin_name"
@@ -12,7 +12,7 @@ class Info:
 
 
 ## Static or not?
-class PluginClass(ControlServer):
+class PluginClass(BasePlugin):
 
     def main():
         '''
