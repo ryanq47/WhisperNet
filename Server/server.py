@@ -141,13 +141,13 @@ import importlib
 from PluginEngine.Plugins.testplugin import PluginClass
 def load_plugins(app):
     #plugins_dir = 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\PluginEngine\\Plugins\\'
-    plugins_dir =  os.path.join(sys_path, "PluginEngine/Plugins/")
+    plugins_dir = os.path.join(sys_path, "PluginEngine.Plugins.")
 
     for plugin_file in os.listdir(plugins_dir):
         if plugin_file.endswith('.py'):
             module_name = plugin_file[:-3]
             print(f"[*] loading {module_name}")
-            module_path = f'{plugins_dir}.{module_name}'
+            module_path = module_name.PluginClass #f'{plugins_dir}.{module_name}'
             module = importlib.import_module(module_path)
 
             for name, obj in inspect.getmembers(module):
