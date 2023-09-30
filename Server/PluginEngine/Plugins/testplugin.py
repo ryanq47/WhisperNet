@@ -14,7 +14,7 @@ class Info:
 ## Static or not?
 class PluginClass(BasePlugin):
 
-    def main():
+    def main(self):
         '''
         Main function/entry point for the plugin.
         

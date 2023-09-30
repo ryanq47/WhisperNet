@@ -142,8 +142,9 @@ from PluginEngine.Plugins.testplugin import PluginClass
 def load_plugins(app):
     #plugins_dir = 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\PluginEngine\\Plugins\\'
     #plugins_dir = os.path.join(sys_path, "PluginEngine.Plugins.")
+    a = PluginClass
 
-    PluginClass.register_routes()
+    a.register_routes()
 
     '''for plugin_file in os.listdir(plugins_dir):
         if plugin_file.endswith('.py'):
