@@ -25,7 +25,6 @@ class PluginClass(BasePlugin):
         ## does stuff
 
     def register_routes(self):
-        print("register_routes called")
         self.app.route('/plugin2')(self.plugin2_function)
     
 
