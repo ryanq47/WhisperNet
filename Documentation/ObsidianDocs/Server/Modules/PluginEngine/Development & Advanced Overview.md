@@ -31,5 +31,8 @@ For each plugin:
 	- This method calls "register_routes()", which registers the plugin's respective routes in the flask app. 
 
 
-
+Plugin setup alone:
 ![[Pasted image 20231001140536.png]]
+
+Plugin setup + Extended tie in to project
+![[Pasted image 20231001150030.png]]

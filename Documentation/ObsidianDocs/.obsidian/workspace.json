@@ -76,7 +76,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -142,7 +142,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1. Task Tracker/Tasks/Plugins.md",
+                "file": "Server/Modules/PluginEngine/Development & Advanced Overview.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -159,7 +159,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1. Task Tracker/Tasks/Plugins.md",
+                "file": "Server/Modules/PluginEngine/Development & Advanced Overview.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -182,7 +182,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1. Task Tracker/Tasks/Plugins.md"
+                "file": "Server/Modules/PluginEngine/Development & Advanced Overview.md"
               }
             }
           },
@@ -214,12 +214,13 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "802e70140968aa12",
+  "active": "02a70b38215b799c",
   "lastOpenFiles": [
-    "1. Task Tracker/Task Tracker.md",
-    "1. Task Tracker/Tasks/Plugins.md",
-    "Server/Modules/PluginEngine/Development & Advanced Overview.md",
+    "Pasted image 20231001150030.png",
     "Server/Modules/PluginEngine/Overview.md",
+    "1. Task Tracker/Tasks/Plugins.md",
+    "1. Task Tracker/Task Tracker.md",
+    "Server/Modules/PluginEngine/Development & Advanced Overview.md",
     "Untitled 3.md",
     "Server/Code Tests.md",
     "Server/Modules/Plugin.md",
@@ -245,7 +246,6 @@
     "1. Task Tracker/Tasks/Async Switch.md",
     "1. Task Tracker/Tasks/Error Response in cookies.md",
     "1. Task Tracker/Tasks/Request logging.md",
-    "1. Task Tracker/Tasks/Untitled 2.md",
     "Server/Modules/Listeners/Listener setup.canvas",
     "Server/Modules/WSGI/WSGI & Flask setup.canvas",
     "Server/Modules/WSGI",
