@@ -110,20 +110,13 @@ class Data:
 
 import importlib
 from PluginEngine.Plugins.PluginTemplate import PluginClass
-from PluginEngine.Plugins.Builtin.FlaskAPIListenerPlugin import FlaskAPIListener
+from PluginEngine.Plugins.FlaskAPIListenerPlugin import FlaskAPIListener
 
 def load_plugins(app):
     #plugins_dir = 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\PluginEngine\\Plugins\\'
     print("calling PluginClass")
-    #a = PluginClass(app)
-
-    #b = FlaskAPIListener(app)
-
-    #a.main()
-    #b.main()
     
     plugins_dir = os.path.join(sys_path, "PluginEngine/Plugins")
-
     for plugin_file in os.listdir(plugins_dir):
         try:
             if plugin_file.endswith('.py'):
@@ -157,7 +150,6 @@ def load_plugins(app):
                     this is the best current solution
                 
                     '''
-
         except Exception as e:
             print(e)
             logging.warning(f"[!] Error loading {plugin_file}: {e}")

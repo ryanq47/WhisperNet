@@ -37,6 +37,7 @@ class Info:
     author  = "Plugin Author"
     endpoint = "/template"
     classname = "PluginClass"
+    plugin_type = "Builtin"
 
 ################################################
 # Authenitcation settings
@@ -86,7 +87,6 @@ class PluginClass(BasePlugin):
         Main function/entry point for the plugin.
         '''
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-        #print("------- I FUCKING LOADED IN CLASS -------")
         print(f"{self.print_symbol} Loading {Info.name}")
         self.register_routes()
 

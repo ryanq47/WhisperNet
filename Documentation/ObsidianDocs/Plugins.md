@@ -91,7 +91,7 @@ etc, for different actions/functions
 
 #### Solutions:
 
-Where will plugin logic live
+Where will plugin logic + actual plugins live. All plugins will live in here. I originally had them broken up into subfolders, but that added complexity to the loader
 ```
 
 ├── PluginEngine
@@ -99,9 +99,8 @@ Where will plugin logic live
 │   └── Plugins
 │       ├── BasePlugin.py
 │       ├── PluginTemplate.py
-│       ├── Builtin ## Builtin PLugins
-│           ├── FlaskAPIListenerPlugin.py
-│       ├── CustomPlugins ## Custom Plugins directory, name whatever you'd like.
+│       ├── FlaskAPIListenerPlugin.py
+
 
 
 ```

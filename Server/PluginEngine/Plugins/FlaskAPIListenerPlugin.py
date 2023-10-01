@@ -37,6 +37,8 @@ class Info:
     author  = "ryanq.47"
     endpoint = "/flasklistener"
     classname = "FlaskAPIListener"
+    plugin_type = "Builtin"
+
 
 ################################################
 # Authenitcation settings
