@@ -2,13 +2,15 @@
 
 
 '''
-#from server import ControlServer
+## Don't remove me. This is the base plugin class, parent to all classes for plugins.
 from PluginEngine.Plugins.baseplugin import BasePlugin
 
 
 '''
 ## If you want JWT tokens on your endpoint, uncomment the lines below
 
+Then, add '@jwt_required' decorator to your function. Boom, you now need an account/authorization to access
+this endpoint.
 
 '''
 #from flask_jwt_extended import jwt_required
@@ -16,7 +18,7 @@ from PluginEngine.Plugins.baseplugin import BasePlugin
 
 
 class Info:
-    name    = "Plugin Template"
+    name    = "PluginTemplate"
     author  = "Plugin Author"
     endpoint = "Plugin Endpoint"
 
@@ -33,7 +35,11 @@ class PluginClass(BasePlugin):
 
     ## Put all the routes here.
     def register_routes(self):
-        self.app.route('/plugin')(self.plugin_function)
+        self.app.route(f'/{Info.name}')(self.plugin_function)
     
     def plugin_function(self):
-        return Info.name
+        startup_message = (f"Plugin Name: {Info.name}\n \
+        Plugin Author: {Info.author}\n \
+        Plugin Endpoint: {Info.endpoint}\n")
+
+        return startup_message

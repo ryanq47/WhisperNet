@@ -1,3 +1,10 @@
+'''
+The base plugin. Required at the moment, and adds extra methods to sub classes that
+could be useful.
+
+
+'''
+
 class BasePlugin:
     def __init__(self, app):
         self.app = app
@@ -7,3 +14,4 @@ class BasePlugin:
     def register_routes(self):
         # Define common route registration logic here.
         pass
+
