@@ -26,4 +26,4 @@ class PluginClass(BasePlugin):
     
 
     def plugin2_function(self):
-        return "plugin online"
+        return Info.name
