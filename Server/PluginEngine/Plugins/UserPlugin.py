@@ -22,9 +22,9 @@ Go ahead and define any other imports you may need here.
 '''
 import logging
 import inspect
-#from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
-#from flask import Flask, jsonify, request, send_from_directory, render_template, Response
+from flask import request
 
+import SecurityEngine.AuthenticationHandler
 
 
 ################################################
@@ -36,10 +36,10 @@ by anything that may need it.
 
 '''
 class Info:
-    name    = "PluginTemplate"
-    author  = "Plugin Author"
-    endpoint = "/template"
-    classname = "PluginClass"
+    name    = "UserHandler"
+    author  = "ryanq.47"
+    endpoint = "/user"
+    classname = "UserHandler"
     plugin_type = "Builtin"
 
 ################################################
@@ -53,7 +53,7 @@ Then, add '@jwt_required' decorator to your functions you want protected.
 Boom, you now need an account/authorization to access this endpoint.
 
 '''
-#from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required
 
 ################################################
 # Logging & Debugging
@@ -84,7 +84,7 @@ if global_debug:
 
 ## Inherets BasePlugin
 ## Is a class instance, the __init__ is from BasePlugin.
-class PluginClass(BasePlugin):
+class UserHandler(BasePlugin):
     def main(self):
         '''
         Main function/entry point for the plugin.
@@ -96,14 +96,47 @@ class PluginClass(BasePlugin):
     ## Put all the routes here.
     def register_routes(self):
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-        self.app.route(f'/{Info.endpoint}', methods=["GET"])(self.plugin_function)
-    
+        self.app.route(f'/{Info.endpoint}', methods=["GET"])(self.userhandler_base)
+
+        self.app.route(f"{Info.endpoint}/createuser", methods=["POST"])(self.create_user)
+        self.app.route(f"{Info.endpoint}/deleteuser", methods=["POST"])(self.delete_user)
+
+        #self.app.route(f"/{self.UrlSc.CREATE_USER}", methods=["POST"])(self.create_user)
+        #self.app.route(f"/{self.UrlSc.DELETE_USER}", methods=["POST"])(self.delete_user)
 
     ## Define your plugin functions here.
-    def plugin_function(self):
+    def userhandler_base(self):
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
         startup_message = (f"Plugin is up!<br>Plugin Name: {Info.name}<br> \
         Plugin Author: {Info.author}<br> \
         Plugin Endpoint: {Info.endpoint}<br>")
 
         return startup_message
+    
+    ## Create users
+    @jwt_required()
+    def create_user(self):
+        username = request.json.get('username')
+        password = request.json.get('password')
+
+        if  SecurityEngine.AuthenticationHandler.UserManagement.create_user(
+            username=username,
+            password=password,
+            path_struct=self.DataStruct.path_struct
+        ):
+            return f"user {username} created"
+        else:
+            return self.page_not_found()
+        
+    ## Delete users
+    @jwt_required()
+    def delete_user(self):
+        username = request.json.get('username')
+
+        if  SecurityEngine.AuthenticationHandler.UserManagement.delete_user(
+            username=username,
+            path_struct=self.DataStruct.path_struct
+        ):
+            return f"user {username} deleted"
+        else:
+            return self.page_not_found()

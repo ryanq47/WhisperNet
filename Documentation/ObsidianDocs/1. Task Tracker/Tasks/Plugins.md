@@ -76,22 +76,26 @@ etc, for different actions/functions
 
 #### Shit to figure out:
 
-- [ ] Where will plugin logic live
-- [ ] How will the server interact/control plugins
+- [x] Where will plugin logic live
+- [x] How will the server interact/control plugins
 	- Gonna need a standard setup
-- [ ] How to dynamically load/setup URL's
+- [x] How to dynamically load/setup URL's
 	- Doable, ask chat GPT for this one
 - [ ] How to autheticate these external plugins are l;egit
 	- Maybe server initiates first comm? sends message to listener @ ip address, and if it responds, it's trusted?
 		- Issues here, PWNED plugin for ex.
 	- Server initiates first contact, gets HASH of external plugin code. if matches what is local, good to go?
 		- Start simple here to get it implemented
+- [ ] Dynamic URL's need a rethought
 - [ ] Data seperation. Need to keep that in mind, as if a plugin gets owned it would be bad if it could access other data.
 - [ ] SSL (eventually... start without it.)
 
 #### Solutions:
 
 Where will plugin logic + actual plugins live. All plugins will live in here. I originally had them broken up into subfolders, but that added complexity to the loader
+
+The loader itself is located in server.py
+
 ```
 
 ├── PluginEngine
@@ -122,3 +126,5 @@ http://server.com/plugin01/
 See "PluginTemplate" for a more complete example/the template I use for each plugin
 
 ```
+Technical connections between plugins
+![[Pasted image 20231001140536.png]]

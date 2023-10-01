@@ -6390,3 +6390,80 @@ jinja2.exceptions.TemplateNotFound: index.html
 2023-10-01 02:17:26 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
 2023-10-01 02:17:28 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
 2023-10-01 02:17:50 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:18:42 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:20:48 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:20:51 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:23:11 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:23:31 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:24:18 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:24:18 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:24:29 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:24:29 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:25:15 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:25:15 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:25:18 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:25:18 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:26:00 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:26:01 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:26:19 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:26:19 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:26:44 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:26:44 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:27:13 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:27:14 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:27:21 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:27:21 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:27:43 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:27:43 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:27:59 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:27:59 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:28:04 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:28:04 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:28:29 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:28:29 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:28:33 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:28:33 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:28:43 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:28:43 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:29:13 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:29:13 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:29:39 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:29:40 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:29:48 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:29:48 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:30:42 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:30:42 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:35:38 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:35:38 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:35:53 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:35:53 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:36:28 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:36:28 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:36:33 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:36:33 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:37:04 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:37:04 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:37:14 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:37:14 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:37:22 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:37:22 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:37:23 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:37:23 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:38:40 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:38:40 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:38:46 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:38:46 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:38:57 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:38:57 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:39:09 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:39:09 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:39:41 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:39:41 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:39:50 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:39:50 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:40:10 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:40:11 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:40:25 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:40:25 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 02:40:26 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:40:26 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'

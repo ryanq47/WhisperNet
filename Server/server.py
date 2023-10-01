@@ -19,9 +19,9 @@ try:
     import signal
     import sys
     import time
+    import importlib
     from flask import Flask, jsonify, request, send_from_directory, render_template, Response
     from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
-
 
 
     # My Modules
@@ -105,17 +105,12 @@ class Data:
     ## Getting all the paths in the log just in case something fails/is off
     logging.debug(f'[*] PathStruct.sys_path: {path_struct.sys_path}')
 
-
-
-
-import importlib
-from PluginEngine.Plugins.PluginTemplate import PluginClass
-from PluginEngine.Plugins.FlaskAPIListenerPlugin import FlaskAPIListener
-
 def load_plugins(app):
-    #plugins_dir = 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\PluginEngine\\Plugins\\'
-    print("calling PluginClass")
+    '''
+    Plugin Loader
     
+    app (object): The flask app. Passed to plugins so they can add routes, and other flask stuff
+    '''
     plugins_dir = os.path.join(sys_path, "PluginEngine/Plugins")
     for plugin_file in os.listdir(plugins_dir):
         try:
@@ -135,9 +130,8 @@ def load_plugins(app):
                     if name != module.Info.classname:  
                         continue
 
-
                     # Instantiate the class with 'app' as an argument
-                    plugin_instance = class_obj(app)
+                    plugin_instance = class_obj(app, Data)
 
                     # Calling main on the class
                     plugin_instance.main()
@@ -154,8 +148,6 @@ def load_plugins(app):
             print(e)
             logging.warning(f"[!] Error loading {plugin_file}: {e}")
             
-
-
 ## Move to own file eventually
 class ControlServer:
     def __init__(self):
@@ -169,14 +161,11 @@ class ControlServer:
         self.init_routes()
 
 
-
     def init_routes(self):
         self.app.route("/", methods=["GET"])(self.no_subdir)
         self.app.route("/home_base", methods=["GET"])(self.no_subdir)
         self.app.route(f"/{self.UrlSc.AGENT_BASE_ENDPOINT}", methods=["GET"])(self.agent_base)
         self.app.route(f"/{self.UrlSc.SERVER_LOGIN_ENDPOINT}", methods=["POST"])(self.server_login)
-        self.app.route(f"/{self.UrlSc.CREATE_USER}", methods=["POST"])(self.create_user)
-        self.app.route(f"/{self.UrlSc.DELETE_USER}", methods=["POST"])(self.delete_user)
         self.app.route(f"/{self.UrlSc.SERVER_BASE_ENDPOINT}", methods=["GET"])(self.server_base)
         self.app.route(f"/{self.UrlSc.UPLOAD_BASE_ENDPOINT}/<path:path>", methods=["GET"])(self.download_file)
         self.app.route(f"/{self.UrlSc.UPLOAD_BASE_ENDPOINT}/<filename>", methods=["POST"])(self.post_file)
@@ -219,35 +208,6 @@ class ControlServer:
         ):
             access_token = create_access_token(identity="username")
             return {'access_token': access_token}, 200
-        else:
-            return self.page_not_found()
-
-    ## == User Manageemnt == ##
-    ## Create users
-    @jwt_required()
-    def create_user(self):
-        username = request.json.get('username')
-        password = request.json.get('password')
-
-        if  SecurityEngine.AuthenticationHandler.UserManagement.create_user(
-            username=username,
-            password=password,
-            path_struct=Data.path_struct
-        ):
-            return f"user {username} created"
-        else:
-            return self.page_not_found()
-
-    ## Delete users
-    @jwt_required()
-    def delete_user(self):
-        username = request.json.get('username')
-
-        if  SecurityEngine.AuthenticationHandler.UserManagement.delete_user(
-            username=username,
-            path_struct=Data.path_struct
-        ):
-            return f"user {username} deleted"
         else:
             return self.page_not_found()
 

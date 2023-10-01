@@ -22,31 +22,61 @@
             }
           },
           {
-            "id": "ea3d59c938fa7d33",
+            "id": "802e70140968aa12",
             "type": "leaf",
+            "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Server/Code Tests.md",
+                "file": "1. Task Tracker/Tasks/Plugins.md",
                 "mode": "source",
                 "source": false
-              }
+              },
+              "pinned": true
             }
           },
           {
-            "id": "8eede2341bda8ade",
+            "id": "191b05a92d20ef43",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Server/Modules/PluginEngine/Development & Advanced Overview.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true
+            }
+          },
+          {
+            "id": "0ed49e7ec29982d5",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Server/Modules/PluginEngine/Overview.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true
+            }
+          },
+          {
+            "id": "02a70b38215b799c",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Plugins.md",
+                "file": "Server/Modules/PluginEngine/Development & Advanced Overview.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -112,7 +142,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Plugins.md",
+                "file": "1. Task Tracker/Tasks/Plugins.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -129,7 +159,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Plugins.md",
+                "file": "1. Task Tracker/Tasks/Plugins.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -152,7 +182,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Plugins.md"
+                "file": "1. Task Tracker/Tasks/Plugins.md"
               }
             }
           },
@@ -184,11 +214,18 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "8eede2341bda8ade",
+  "active": "802e70140968aa12",
   "lastOpenFiles": [
-    "Server/Code Tests.md",
     "1. Task Tracker/Task Tracker.md",
-    "Plugins.md",
+    "1. Task Tracker/Tasks/Plugins.md",
+    "Server/Modules/PluginEngine/Development & Advanced Overview.md",
+    "Server/Modules/PluginEngine/Overview.md",
+    "Untitled 3.md",
+    "Server/Code Tests.md",
+    "Server/Modules/Plugin.md",
+    "Server/Modules/PluginEngine",
+    "Untitled 2.md",
+    "Pasted image 20231001140536.png",
     "Status page.md",
     "Server/Modules/ApiEngine/Cookies.md",
     "Pasted image 20230929010420.png",
@@ -208,13 +245,9 @@
     "1. Task Tracker/Tasks/Async Switch.md",
     "1. Task Tracker/Tasks/Error Response in cookies.md",
     "1. Task Tracker/Tasks/Request logging.md",
-    "Untitled 2.md",
     "1. Task Tracker/Tasks/Untitled 2.md",
-    "1. Task Tracker/Tasks/Untitled 1.md",
-    "Server/Modules/Listeners/Local Listeners.md",
     "Server/Modules/Listeners/Listener setup.canvas",
     "Server/Modules/WSGI/WSGI & Flask setup.canvas",
-    "Server/Modules/Utils/UtilsHandler.md",
     "Server/Modules/WSGI",
     "Server/Modules/Utils",
     "Server/Modules/Listeners",
@@ -235,7 +268,6 @@
     "Server/Visual Progress.canvas",
     "Server/Modules/ApiEngine",
     "Clients/Python Client/Dev Docs/MindMaps/VisProg.canvas",
-    "Clients/Python Client/Dev Docs/MindMaps/Plugin Abstraction Layers.canvas",
-    "1. Task Tracker/Tasks"
+    "Clients/Python Client/Dev Docs/MindMaps/Plugin Abstraction Layers.canvas"
   ]
 }

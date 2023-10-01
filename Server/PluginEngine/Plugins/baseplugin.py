@@ -7,9 +7,11 @@ could be useful.
 
 
 class BasePlugin:
-    def __init__(self, app):
+    def __init__(self, app, DataStruct):
         self.app = app
         self.print_symbol = "[*]"
+        ## A class with data that might be handy
+        self.DataStruct = DataStruct
         print("BaseClass init")
 
 
