@@ -6373,3 +6373,10 @@ jinja2.exceptions.TemplateNotFound: index.html
 2023-09-30 23:44:06 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
 2023-09-30 23:44:16 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
 2023-09-30 23:44:21 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 01:53:53 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 01:53:54 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 01:54:25 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 01:54:26 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:03:57 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:03:59 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 02:04:37 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server

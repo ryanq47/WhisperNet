@@ -89,4 +89,37 @@ etc, for different actions/functions
 - [ ] Data seperation. Need to keep that in mind, as if a plugin gets owned it would be bad if it could access other data.
 - [ ] SSL (eventually... start without it.)
 
-## MindMap
+#### Solutions:
+
+Where will plugin logic live
+```
+
+├── PluginEngine
+│   ├── PluginHandler.py
+│   └── Plugins
+│       ├── BasePlugin.py
+│       ├── PluginTemplate.py
+│       ├── Builtin ## Builtin PLugins
+│           ├── FlaskAPIListenerPlugin.py
+│       ├── CustomPlugins ## Custom Plugins directory, name whatever you'd like.
+
+
+```
+
+
+How will the server interact/control plugins:
+```
+The server will dynamically load each plugin. Each plugin has a "base class" that it inherets, which opens the possibility for some functions to be used by all plugins. On plugin load, a method called "register_routes" is called. This "registers" the routes/endpoitns for the respective URL's of the plugin. Each route is mapped to a function within the plugin. 
+
+
+
+ex:
+
+http://server.com/plugin01/
+
+--> plugin01_function():
+		return "plugin loaded"
+
+See "PluginTemplate" for a more complete example/the template I use for each plugin
+
+```
