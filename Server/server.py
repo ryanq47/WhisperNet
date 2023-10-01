@@ -145,7 +145,7 @@ def load_plugins(app):
     print("calling PluginClass")
     a = PluginClass(app)
 
-    a.register_routes()
+    a.main()
 
     '''for plugin_file in os.listdir(plugins_dir):
         if plugin_file.endswith('.py'):
@@ -263,36 +263,6 @@ class ControlServer:
         except:
             self.page_not_found()
     
-    ## Listener Section
-    #@self.app.route(f"/{UrlSc.SPAWN_TCP_LISTENER_ENDPOINT}", methods=["POST"])
-    @jwt_required()
-    def spawn_listener(self):
-        try:
-            ip = request.json.get('ip')
-            port = request.json.get('port')
-            ## for later, local or network
-            #type = request.json.get('type')
-
-            ## !! WARNING - SHELL = TRUE -- THIS IS AN ISSUE. SWITCH TO SHELL=FALSE & ADJUST COMMAND !! ##
-            ## ^^ Fixed ^^ ##
-            listener_path = os.path.join(sys_path, "../Listeners/FlaskAPI/")
-            
-
-            if Data.path_struct.os_type == "nt":
-                command = ["python",f"{listener_path}/FlaskAPI.py","--port",str(port),"--ip",ip]
-
-            else:
-                command = ["python3",f"{listener_path}/FlaskAPI.py","--port",str(port),"--ip",ip]
-
-            if Utils.UtilsHandler.threaded_process_spawner(
-                path = listener_path,
-                command = command
-            ):
-                return f"Success - Listener started on {ip}:{port}"
-
-        except Exception as e:
-            logging.debug("Error occured spawning a listener")
-            return self.page_not_found(e)
 
     ## File Section
     # https://docs.faculty.ai/user-guide/apis/flask_apis/flask_file_upload_download.html

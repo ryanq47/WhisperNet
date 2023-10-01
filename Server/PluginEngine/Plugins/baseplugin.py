@@ -8,6 +8,7 @@ could be useful.
 class BasePlugin:
     def __init__(self, app):
         self.app = app
+        self.print_symbol = "[*]"
         print("BaseClass init")
 
 

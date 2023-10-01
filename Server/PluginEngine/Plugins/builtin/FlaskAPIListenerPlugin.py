@@ -1,7 +1,5 @@
 '''
-Hey! This is the plugin template. You can create your own plugins with this template. Said plugins can either
-live directly on this server, or have an external component. See the FlaskAPIListenerPlugin for an example 
-of an external component.
+Hey! This is the plugin template. You can create your own plugins with this template.
 
 The first section is plugin options, aimed at making some harder settings a bit easier to configure.
 
@@ -25,23 +23,20 @@ Then, add '@jwt_required' decorator to your functions you want protected.
 Boom, you now need an account/authorization to access this endpoint.
 
 '''
-#from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required
 
-
-''' Imports
-Go ahead and define any other imports you may need here.
-
-'''
-
+from flask import Flask, jsonify, request, send_from_directory, render_template, Response
+import logging
+import os
 
 class Info:
-    name    = "PluginTemplate"
-    author  = "Plugin Author"
-    endpoint = "Plugin Endpoint"
+    name    = "FlaskAPIListener"
+    author  = "ryanq.47"
+    endpoint = "/devlistener"
 
 
 ## Inherets BasePlugin
-class PluginClass(BasePlugin):
+class FlaskAPIListener(BasePlugin):
     def main(self):
         '''
         Main function/entry point for the plugin.
@@ -54,7 +49,8 @@ class PluginClass(BasePlugin):
 
     ## Put all the routes here.
     def register_routes(self):
-        self.app.route(f'/{Info.name}')(self.plugin_function)
+        ## Base Endpoint
+        self.app.route(f"/{Info.endpoint}", methods=["POST", "GET"])(self.spawn_listener)
     
 
     ## Define your plugin functions here.
@@ -65,3 +61,4 @@ class PluginClass(BasePlugin):
         Plugin Endpoint: {Info.endpoint}<br>")
 
         return startup_message
+    
