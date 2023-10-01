@@ -5,6 +5,7 @@ could be useful.
 
 '''
 
+
 class BasePlugin:
     def __init__(self, app):
         self.app = app

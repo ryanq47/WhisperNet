@@ -32,7 +32,7 @@ import os
 class Info:
     name    = "FlaskAPIListener"
     author  = "ryanq.47"
-    endpoint = "/devlistener"
+    endpoint = "/listener"
 
 
 ## Inherets BasePlugin
@@ -50,12 +50,12 @@ class FlaskAPIListener(BasePlugin):
     ## Put all the routes here.
     def register_routes(self):
         ## Base Endpoint
-        self.app.route(f"/{Info.endpoint}", methods=["POST", "GET"])(self.spawn_listener)
+        self.app.route(f"/{Info.endpoint}", methods=["POST", "GET"])(self._plugin_function)
     
 
     ## Define your plugin functions here.
 
-    def plugin_function(self):
+    def _plugin_function(self):
         startup_message = (f"Plugin is up!<br>Plugin Name: {Info.name}<br> \
         Plugin Author: {Info.author}<br> \
         Plugin Endpoint: {Info.endpoint}<br>")

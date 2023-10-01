@@ -16,6 +16,17 @@ Last but not least, fill in the "Info" class with the proper fields.
 ## Don't remove me. This is the base plugin class, parent to all classes for plugins.
 from PluginEngine.Plugins.BasePlugin import BasePlugin
 
+'''Info calss
+Fill in your info for the plugin here. This is defined near the top, so it's accessible
+by anything that may need it.
+
+'''
+class Info:
+    name    = "PluginTemplate"
+    author  = "Plugin Author"
+    endpoint = "/template"
+    classname = "PluginClass"
+
 
 ''' Authentication
 ## If you want JWT tokens on your endpoint, uncomment the lines below
@@ -27,6 +38,15 @@ Boom, you now need an account/authorization to access this endpoint.
 '''
 #from flask_jwt_extended import jwt_required
 
+''' Logging
+I highly recommend you to use the logging module, it makes life a lot easier
+
+'''
+import logging
+logging.basicConfig(level=logging.DEBUG)
+## Change the path to the system path + a log folder/file somewhere
+logging.basicConfig(filename=f'{Info.name}.log', filemode='a', format='%(asctime)s - %(levelname)s - %(message)s', force=True, datefmt='%Y-%m-%d %H:%M:%S')
+
 
 ''' Imports
 Go ahead and define any other imports you may need here.
@@ -34,10 +54,7 @@ Go ahead and define any other imports you may need here.
 '''
 
 
-class Info:
-    name    = "PluginTemplate"
-    author  = "Plugin Author"
-    endpoint = "Plugin Endpoint"
+
 
 
 ## Inherets BasePlugin
@@ -48,6 +65,7 @@ class PluginClass(BasePlugin):
         Main function/entry point for the plugin.
         
         '''
+        #print("------- I FUCKING LOADED IN CLASS -------")
         print(f"{self.print_symbol} Loading {Info.name}")
         self.register_routes()
 
@@ -55,7 +73,9 @@ class PluginClass(BasePlugin):
 
     ## Put all the routes here.
     def register_routes(self):
-        self.app.route(f'/{Info.name}')(self.plugin_function)
+        #print("------- REGISTERIGN PLSUGSHG -------")
+
+        self.app.route(f'/{Info.endpoint}')(self.plugin_function)
     
 
     ## Define your plugin functions here.
@@ -66,3 +86,7 @@ class PluginClass(BasePlugin):
         Plugin Endpoint: {Info.endpoint}<br>")
 
         return startup_message
+
+
+
+#print("------- I FUCKING LOADED NOT IN CLASS-------")

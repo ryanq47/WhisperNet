@@ -106,6 +106,7 @@ class CodeTest:
         '''
         print(colored(f"{self.arrow('Checking if the control server is up')}...", self.arrow_color))
         try:
+            time.sleep(3)
             r = requests.get(
                 url=f"http://{self.c_ip}:{self.c_port}/"
             )

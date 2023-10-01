@@ -105,64 +105,63 @@ class Data:
     ## Getting all the paths in the log just in case something fails/is off
     logging.debug(f'[*] PathStruct.sys_path: {path_struct.sys_path}')
 
-class ListenerController:
-    '''
-    A class that takes care of the listeners, spawns them, etc.
-    '''
 
-    @staticmethod
-    def spawn_listener(ip="127.0.0.1",port=80):
-        '''
-        Spawns a listener class. 
-
-        ip (str): The IP to listen on.
-            0.0.0.0 for any interface
-            127.0.0.1 for localhost
-
-        port (int): The port to listen on
-        '''
-        try:
-            new_listener = tcp_listener.ServerSockHandler(
-                ip = ip,
-                port = port,
-                evasion_profile = evasion_profile,
-                function_debug_symbol="[^TCP_LIST]"
-            )
-            new_listener_thread = threading.Thread(target=new_listener.start_server)
-            #new_listener_thread.daemon = True
-            new_listener_thread.start()
-        
-        except Exception as e:
-            logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-            logging.warning(f"(temp) Error: {e}")
 
 
 import importlib
 from PluginEngine.Plugins.PluginTemplate import PluginClass
-from PluginEngine.Plugins.Builtin import FlaskAPIListener
+from PluginEngine.Plugins.Builtin.FlaskAPIListenerPlugin import FlaskAPIListener
 
 def load_plugins(app):
     #plugins_dir = 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\PluginEngine\\Plugins\\'
-    #plugins_dir = os.path.join(sys_path, "PluginEngine.Plugins.")
     print("calling PluginClass")
-    a = PluginClass(app)
+    #a = PluginClass(app)
 
-    b = FlaskAPIListener(app)
+    #b = FlaskAPIListener(app)
 
-    a.main()
-    b.main()
+    #a.main()
+    #b.main()
+    
+    plugins_dir = os.path.join(sys_path, "PluginEngine/Plugins")
 
-    '''for plugin_file in os.listdir(plugins_dir):
-        if plugin_file.endswith('.py'):
-            module_name = plugin_file[:-3]
-            print(f"[*] loading {module_name}")
-            module_path = f'{plugins_dir}.{module_name}'
-            module = importlib.import_module(module_path)
+    for plugin_file in os.listdir(plugins_dir):
+        try:
+            if plugin_file.endswith('.py'):
+                print(f"Discovered {plugin_file}")
+                module_name = plugin_file[:-3]
+                module_path = f"PluginEngine.Plugins.{module_name}"
+                module = importlib.import_module(module_path)
 
-            for name, obj in inspect.getmembers(module):
-                if inspect.isclass(obj) and issubclass(obj, PluginClass) and obj != PluginClass:
-                    plugin_instance = obj(app)
-                    plugin_instance.register_routes()'''
+                # Find classes defined in the module
+                classes = inspect.getmembers(module, inspect.isclass)
+
+                # Look for a class that you want to instantiate
+                for name, class_obj in classes:
+                    ## Take the classname value from info class, tell it to not load anyhing else but this
+                    #note, baseplugin yells about this cause it doens't have an info class,. it's fine
+                    if name != module.Info.classname:  
+                        continue
+
+
+                    # Instantiate the class with 'app' as an argument
+                    plugin_instance = class_obj(app)
+
+                    # Calling main on the class
+                    plugin_instance.main()
+
+                    '''
+                    okay tldr
+
+                    This fixes the problem of differnet class names for different plugin.
+                    I can't set them all to the same name, as that would override each other, but 
+                    this is the best current solution
+                
+                    '''
+
+        except Exception as e:
+            print(e)
+            logging.warning(f"[!] Error loading {plugin_file}: {e}")
+            
 
 
 ## Move to own file eventually
@@ -175,17 +174,18 @@ class ControlServer:
         self.config_file_path = Utils.UtilsHandler.load_file(current_path=sys_path, file_path=api_config_profile)
         self.UrlSc = ApiEngine.ConfigHandler.UrlSchema(api_config_profile=self.config_file_path)
         self.UrlSc.load()
+        self.init_routes()
+
 
 
     def init_routes(self):
         self.app.route("/", methods=["GET"])(self.no_subdir)
-        self.app.route("/<home_base>", methods=["GET"])(self.no_subdir)
+        self.app.route("/home_base", methods=["GET"])(self.no_subdir)
         self.app.route(f"/{self.UrlSc.AGENT_BASE_ENDPOINT}", methods=["GET"])(self.agent_base)
         self.app.route(f"/{self.UrlSc.SERVER_LOGIN_ENDPOINT}", methods=["POST"])(self.server_login)
         self.app.route(f"/{self.UrlSc.CREATE_USER}", methods=["POST"])(self.create_user)
         self.app.route(f"/{self.UrlSc.DELETE_USER}", methods=["POST"])(self.delete_user)
         self.app.route(f"/{self.UrlSc.SERVER_BASE_ENDPOINT}", methods=["GET"])(self.server_base)
-        self.app.route(f"/list", methods=["POST"])(self.spawn_listener)
         self.app.route(f"/{self.UrlSc.UPLOAD_BASE_ENDPOINT}/<path:path>", methods=["GET"])(self.download_file)
         self.app.route(f"/{self.UrlSc.UPLOAD_BASE_ENDPOINT}/<filename>", methods=["POST"])(self.post_file)
         self.app.route(f"/status/listeners", methods=["POST"])(self.status)
@@ -356,16 +356,14 @@ if __name__ == "__main__":
     try:
         from waitress import serve
         control_server = ControlServer()
-        serve(control_server.app, host=ip, port=port)
+        #serve(control_server.app, host=ip, port=port)
+        control_server.app.run(host="0.0.0.0", port=5000, debug=True)
     except OSError as oe:
         print(f"OS Error: {oe}")
     except Exception as e:
         print(f"Unknown error: {e}")
 
         
-    #while True:
-        #ListenerController.spawn_listener()
-        #time.sleep(100)
 
 
 '''
