@@ -38,8 +38,8 @@ class PluginClass(BasePlugin):
         self.app.route(f'/{Info.name}')(self.plugin_function)
     
     def plugin_function(self):
-        startup_message = (f"Plugin Name: {Info.name}\n \
-        Plugin Author: {Info.author}\n \
-        Plugin Endpoint: {Info.endpoint}\n")
+        startup_message = (f"Plugin is up!<br>Plugin Name: {Info.name}<br> \
+        Plugin Author: {Info.author}<br> \
+        Plugin Endpoint: {Info.endpoint}<br>")
 
         return startup_message
