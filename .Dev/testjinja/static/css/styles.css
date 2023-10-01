@@ -1,0 +1,60 @@
+/* Set background image */
+body, html {
+    height: 100%;
+    background-image: url("../images/fp-dots.png"); /* Adjust the path as needed */
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-color: black; 
+}
+
+.login-container {
+    font: sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.center-content {
+    text-align: center;
+}
+
+/* Add your other styles here */
+
+/* Style input fields */
+.form-group input[type="text"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Style labels */
+.form-group label {
+    display: block;
+    font-weight: bold;
+}
+
+/* Style the login button */
+button[type="submit"] {
+    background-color: blue;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Style the login button on hover */
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+

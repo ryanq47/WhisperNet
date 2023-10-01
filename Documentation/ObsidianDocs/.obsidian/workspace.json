@@ -69,14 +69,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Server/Modules/PluginEngine/Development & Advanced Overview.md",
+                "file": "Server/Code Tests.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "bfc1f187faf7866f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Plugin - Web Interface.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -142,7 +154,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Modules/PluginEngine/Development & Advanced Overview.md",
+                "file": "Plugin - Web Interface.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -159,7 +171,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Modules/PluginEngine/Development & Advanced Overview.md",
+                "file": "Plugin - Web Interface.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -182,7 +194,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Modules/PluginEngine/Development & Advanced Overview.md"
+                "file": "Plugin - Web Interface.md"
               }
             }
           },
@@ -214,15 +226,18 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "02a70b38215b799c",
+  "active": "bfc1f187faf7866f",
   "lastOpenFiles": [
+    "1. Task Tracker/Tasks/Untitled 1.md",
+    "Plugin - Web Interface.md",
+    "1. Task Tracker/Task Tracker.md",
+    "Server/Code Tests.md",
+    "1. Task Tracker/Tasks/Plugins.md",
+    "Server/Modules/2.DataEngine/DBHandler.py/General.md",
+    "Server/Modules/PluginEngine/Development & Advanced Overview.md",
     "Pasted image 20231001150030.png",
     "Server/Modules/PluginEngine/Overview.md",
-    "1. Task Tracker/Tasks/Plugins.md",
-    "1. Task Tracker/Task Tracker.md",
-    "Server/Modules/PluginEngine/Development & Advanced Overview.md",
     "Untitled 3.md",
-    "Server/Code Tests.md",
     "Server/Modules/Plugin.md",
     "Server/Modules/PluginEngine",
     "Untitled 2.md",
@@ -244,8 +259,6 @@
     "1. Task Tracker/Tasks/API Docs.md",
     "1. Task Tracker/Tasks/Agent Commands.md",
     "1. Task Tracker/Tasks/Async Switch.md",
-    "1. Task Tracker/Tasks/Error Response in cookies.md",
-    "1. Task Tracker/Tasks/Request logging.md",
     "Server/Modules/Listeners/Listener setup.canvas",
     "Server/Modules/WSGI/WSGI & Flask setup.canvas",
     "Server/Modules/WSGI",
