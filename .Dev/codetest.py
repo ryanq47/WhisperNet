@@ -120,6 +120,67 @@ class CodeTest:
             print(colored(f"[!] Error : {e}", self.fail_color))
             return False
 
+    def control_server_create_user(self):
+        print(colored(f"{self.arrow('Trying to create user')}...", self.arrow_color))
+        try:
+            endpoint = f"http://{self.c_ip}:{self.c_port}/user/createuser"
+
+            data = {
+                "username": "testuser",
+                "password": "1234",
+            }
+
+            headers = {
+                "Authorization": f"Bearer {self.authorization_header}"
+            }
+
+            r = requests.post(
+                url=endpoint,
+                json=data,
+                headers=headers
+            )
+
+            #if self.oops_check(request=r):
+            if "testuser created" in r.text:
+                print(colored("[*] user created successfully", self.color))
+
+            else:
+                print(colored(f"Request failed with status code {r.status_code} \n {r.text}", self.fail_color))
+
+        except Exception as e:
+            print(colored(f"[!] Error : {e}", self.fail_color))
+
+    def control_server_delete_user(self):
+        print(colored(f"{self.arrow('Trying to delete user')}...", self.arrow_color))
+        try:
+            endpoint = f"http://{self.c_ip}:{self.c_port}/user/deleteuser"
+
+            data = {
+                "username": "testuser",
+                "password": "1234",
+            }
+
+            headers = {
+                "Authorization": f"Bearer {self.authorization_header}"
+            }
+
+            r = requests.post(
+                url=endpoint,
+                json=data,
+                headers=headers
+            )
+
+            #if self.oops_check(request=r):
+            if "testuser deleted" in r.text:
+                print(colored("[*] user deleted successfully", self.color))
+
+            else:
+                print(colored(f"Request failed with status code {r.status_code} \n {r.text}", self.fail_color))
+
+        except Exception as e:
+            print(colored(f"[!] Error : {e}", self.fail_color))
+
+
     def control_server_spawn_local_listener(self, port_list=[]):
         '''
         Spawns local listeners on specified ports FROM the control server
@@ -259,6 +320,8 @@ if __name__ == "__main__":
         print(colored(f"Waiting for server to come online...", 'blue'))
 
     test.control_server_login()
+    test.control_server_create_user()
+    test.control_server_delete_user()
     test.control_server_spawn_local_listener(port_list=["8080", "9090", "7070"])
     test.docker_spawn_listener()
     test.docker_start_listener()
