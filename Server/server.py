@@ -139,13 +139,18 @@ class ListenerController:
 
 import importlib
 from PluginEngine.Plugins.PluginTemplate import PluginClass
+from PluginEngine.Plugins.Builtin import FlaskAPIListener
+
 def load_plugins(app):
     #plugins_dir = 'C:\\Users\\Ryan\\Documents\\GitHub\\logec-suite\\Server\\PluginEngine\\Plugins\\'
     #plugins_dir = os.path.join(sys_path, "PluginEngine.Plugins.")
     print("calling PluginClass")
     a = PluginClass(app)
 
+    b = FlaskAPIListener(app)
+
     a.main()
+    b.main()
 
     '''for plugin_file in os.listdir(plugins_dir):
         if plugin_file.endswith('.py'):

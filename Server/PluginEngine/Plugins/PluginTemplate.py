@@ -41,6 +41,7 @@ class Info:
 
 
 ## Inherets BasePlugin
+## Is a class instance, the __init__ is from BasePlugin.
 class PluginClass(BasePlugin):
     def main(self):
         '''
