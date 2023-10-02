@@ -1,3 +1,10 @@
+/*color of blue background lines: rgba 0,174,237, 0.678*/
+
+* {
+    /*color: rgba(0, 174, 237, 0.678);*/
+    font-family: monospace;
+}
+
 /* Set background image */
 body, html {
     height: 100%;
@@ -54,7 +61,9 @@ button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-
+.text-primary {
+    color: rgba(0, 174, 237, 0.678);
+}
 
 /*Dashobard stuff*/
 .table.table-striped tbody tr {
@@ -91,7 +100,7 @@ body {
 
 /* Style the table header */
 #data-table th {
-    background-color: #007BFF;
+    background-color: rgba(0, 174, 237, 0.678);
     color: white;
 }
 
