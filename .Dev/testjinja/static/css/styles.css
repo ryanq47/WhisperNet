@@ -56,5 +56,55 @@ button[type="submit"]:hover {
 
 
 
+/*Dashobard stuff*/
+.table.table-striped tbody tr {
+    color: white;
+}
+
+th {
+  color: white;
+}
+
+html {
+    background-image: url("../images/fp-dots.png");
+    background-color: black;
+    /* Other background properties like size, position, repeat, etc. can be added here */
+    height: 100%;
+    color: white;
+}
+
+body {
+    background: transparent; /* Set the body background to transparent */
+    height: 100%;
+    color: white;
+}
+
+/* For the table */
+/* Add some basic styles to the container */
+.container {
+    margin: 20px;
+    padding: 20px;
+    background-color: black;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the table header */
+#data-table th {
+    background-color: #007BFF;
+    color: white;
+}
+
+/* Style alternating rows */
+#data-table tbody tr:nth-child(even) {
+    background-color: rgb(62, 62, 62);
+}
+
+/* Add some padding and space to table cells */
+#data-table td, #data-table th {
+    padding: 10px;
+    text-align: left;
+}
+
 
 

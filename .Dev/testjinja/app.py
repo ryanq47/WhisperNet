@@ -23,7 +23,16 @@ def login():
 @app.route('/dashboard', methods=['GET'])
 
 def dashboard():
-    return render_template('dashboard.html')
+    servername = "DevServer"
+    list_of_plugins = [
+        {'name':'pluginname', 'author':'author', 'endpoint':'endpoint',},
+        {'name':'pluginname', 'author':'author', 'endpoint':'endpoint',},
+        {'name':'pluginname', 'author':'author', 'endpoint':'endpoint',},
+        ]
+
+    return render_template('dashboard.html', 
+                           plugins=list_of_plugins,
+                           servername = servername)
 
 
 
