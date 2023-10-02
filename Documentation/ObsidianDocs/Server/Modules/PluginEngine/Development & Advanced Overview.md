@@ -1,7 +1,25 @@
 
-I've tried my best to make plugins as easy to develop as possible. in `PluginEngine/Plugins` there is a file named `PluginTemplate.py`. This is the base plugin, and contains everything you need to create a plugin.
+I've tried my best to make plugins as easy to develop as possible. in `PluginEngine/Plugins/PluginTemplate` there is a file named `PluginTemplate.py`. This is the base plugin, and contains everything you need to create a plugin.
+
+Each plugin has it's own directory that must be named the same as the plugin name. This is so plugins can be in their own folder, and was the simplest way to implement in the loader
+
+Ex:
+```
+Server/PluginEngine/Plugins/PluginTemplate/PluginTemplate.py
 
 
+├── BasePlugin.py
+├── FlaskAPIListenerPlugin
+│   ├── FlaskAPIListenerPlugin.py
+
+├── PluginTemplate
+│   ├── PluginTemplate.py
+
+├── UserPlugin
+│   ├── UserPlugin.py
+
+
+```
 
 
 
@@ -36,3 +54,31 @@ Plugin setup alone:
 
 Plugin setup + Extended tie in to project
 ![[Pasted image 20231001150030.png]]
+
+
+
+
+#### Plugins using Jinja/dynamic loading:
+There is a small catch when creating these plugins. You'll have to store your assets (css, HTML, and images) at Server/templates and Server/static respectively. I can't find a way to make flask load templates from different paths, so this is the next best solution. Note, you will have to name your assets something related to your plugin, such as "myplugin-index.html"
+
+Additionally, this makes these plugins not as easy to drag & drop into your server instance... which kinda sucks.
+
+here's the file structure:
+```
+ryan@DESKTOP-FDIVIMF:/mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server/templates$ tree
+.
+├── webserverfrontendplugin-dashboard.html
+└── webserverfrontendplugin-index.html
+
+0 directories, 2 files
+ryan@DESKTOP-FDIVIMF:/mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server/templates$ cd ../static/; tree
+.
+├── css
+│   └── webserverfrontend-styles.css
+└── images
+    ├── fp-dots.png
+    ├── fp-dots2.png
+    ├── login.gif
+    └── login2.gif
+
+```

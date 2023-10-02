@@ -6467,3 +6467,182 @@ jinja2.exceptions.TemplateNotFound: index.html
 2023-10-01 02:40:25 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
 2023-10-01 02:40:26 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
 2023-10-01 02:40:26 - WARNING - [!] Error loading BasePlugin.py: module 'PluginEngine.Plugins.BasePlugin' has no attribute 'Info'
+2023-10-01 09:11:59 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:11:59 - DEBUG - [^] load_file
+2023-10-01 09:11:59 - DEBUG - current_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server, file_path=Config/ApiSchemas/default.yaml
+2023-10-01 09:11:59 - DEBUG - Loading /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server/Config/ApiSchemas/default.yaml
+2023-10-01 09:11:59 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.25.186.197:5000
+2023-10-01 09:11:59 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-01 09:11:59 - INFO -  * Restarting with stat
+2023-10-01 09:12:00 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:12:00 - DEBUG - [^] load_file
+2023-10-01 09:12:00 - DEBUG - current_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server, file_path=Config/ApiSchemas/default.yaml
+2023-10-01 09:12:00 - DEBUG - Loading /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server/Config/ApiSchemas/default.yaml
+2023-10-01 09:12:00 - WARNING -  * Debugger is active!
+2023-10-01 09:12:00 - INFO -  * Debugger PIN: 856-102-074
+2023-10-01 09:12:21 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:12:21 - DEBUG - [^] load_file
+2023-10-01 09:12:21 - DEBUG - current_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server, file_path=Config/ApiSchemas/default.yaml
+2023-10-01 09:12:21 - DEBUG - Loading /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server/Config/ApiSchemas/default.yaml
+2023-10-01 09:12:21 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.25.186.197:5000
+2023-10-01 09:12:21 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-01 09:12:21 - INFO -  * Restarting with stat
+2023-10-01 09:12:22 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:12:22 - DEBUG - [^] load_file
+2023-10-01 09:12:22 - DEBUG - current_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server, file_path=Config/ApiSchemas/default.yaml
+2023-10-01 09:12:22 - DEBUG - Loading /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server/Config/ApiSchemas/default.yaml
+2023-10-01 09:12:22 - WARNING -  * Debugger is active!
+2023-10-01 09:12:22 - INFO -  * Debugger PIN: 856-102-074
+2023-10-01 09:12:49 - INFO -  * Detected change in '/mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server/server.py', reloading
+2023-10-01 09:12:51 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:12:52 - DEBUG - [^] load_file
+2023-10-01 09:12:52 - DEBUG - current_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server, file_path=Config/ApiSchemas/default.yaml
+2023-10-01 09:12:52 - DEBUG - Loading /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server/Config/ApiSchemas/default.yaml
+2023-10-01 09:12:52 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.25.186.197:5000
+2023-10-01 09:12:52 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-01 09:12:52 - INFO -  * Restarting with stat
+2023-10-01 09:12:52 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:12:53 - DEBUG - [^] load_file
+2023-10-01 09:12:53 - DEBUG - current_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server, file_path=Config/ApiSchemas/default.yaml
+2023-10-01 09:12:53 - DEBUG - Loading /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server/Config/ApiSchemas/default.yaml
+2023-10-01 09:12:53 - WARNING -  * Debugger is active!
+2023-10-01 09:12:53 - INFO -  * Debugger PIN: 856-102-074
+2023-10-01 09:13:44 - INFO -  * Detected change in '/mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server/server.py', reloading
+2023-10-01 09:13:44 - INFO -  * Restarting with stat
+2023-10-01 09:13:47 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:13:48 - DEBUG - [^] load_file
+2023-10-01 09:13:48 - DEBUG - current_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server, file_path=Config/ApiSchemas/default.yaml
+2023-10-01 09:13:48 - DEBUG - Loading /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server/Config/ApiSchemas/default.yaml
+2023-10-01 09:13:48 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.25.186.197:5000
+2023-10-01 09:13:48 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-01 09:13:48 - INFO -  * Restarting with stat
+2023-10-01 09:13:48 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:13:48 - DEBUG - [^] load_file
+2023-10-01 09:13:48 - DEBUG - current_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server, file_path=Config/ApiSchemas/default.yaml
+2023-10-01 09:13:48 - DEBUG - Loading /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server/Config/ApiSchemas/default.yaml
+2023-10-01 09:13:48 - WARNING -  * Debugger is active!
+2023-10-01 09:13:48 - INFO -  * Debugger PIN: 856-102-074
+2023-10-01 09:14:04 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:14:15 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:14:16 - DEBUG - [^] load_file
+2023-10-01 09:14:16 - DEBUG - current_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server, file_path=Config/ApiSchemas/default.yaml
+2023-10-01 09:14:16 - DEBUG - Loading /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server/Config/ApiSchemas/default.yaml
+2023-10-01 09:14:16 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.25.186.197:5000
+2023-10-01 09:14:16 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-01 09:14:16 - INFO -  * Restarting with stat
+2023-10-01 09:14:16 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:14:16 - DEBUG - [^] load_file
+2023-10-01 09:14:16 - DEBUG - current_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server, file_path=Config/ApiSchemas/default.yaml
+2023-10-01 09:14:16 - DEBUG - Loading /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server/Config/ApiSchemas/default.yaml
+2023-10-01 09:14:16 - WARNING -  * Debugger is active!
+2023-10-01 09:14:16 - INFO -  * Debugger PIN: 856-102-074
+2023-10-01 09:14:29 - INFO -  * Detected change in '/mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server/server.py', reloading
+2023-10-01 09:14:29 - INFO -  * Restarting with stat
+2023-10-01 09:14:31 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:14:31 - DEBUG - [^] load_file
+2023-10-01 09:14:31 - DEBUG - current_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server, file_path=Config/ApiSchemas/default.yaml
+2023-10-01 09:14:31 - DEBUG - Loading /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server/Config/ApiSchemas/default.yaml
+2023-10-01 09:14:31 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.25.186.197:5000
+2023-10-01 09:14:31 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-01 09:14:31 - INFO -  * Restarting with stat
+2023-10-01 09:14:32 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:14:32 - DEBUG - [^] load_file
+2023-10-01 09:14:32 - DEBUG - current_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server, file_path=Config/ApiSchemas/default.yaml
+2023-10-01 09:14:32 - DEBUG - Loading /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server/Config/ApiSchemas/default.yaml
+2023-10-01 09:14:32 - WARNING -  * Debugger is active!
+2023-10-01 09:14:32 - INFO -  * Debugger PIN: 856-102-074
+2023-10-01 09:14:42 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:14:42 - DEBUG - [^] load_file
+2023-10-01 09:14:42 - DEBUG - current_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server, file_path=Config/ApiSchemas/default.yaml
+2023-10-01 09:14:42 - DEBUG - Loading /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server/Config/ApiSchemas/default.yaml
+2023-10-01 09:14:42 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.25.186.197:5000
+2023-10-01 09:14:42 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-01 09:14:42 - INFO -  * Restarting with stat
+2023-10-01 09:14:43 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:14:51 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:14:52 - DEBUG - [^] load_file
+2023-10-01 09:14:52 - DEBUG - current_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server, file_path=Config/ApiSchemas/default.yaml
+2023-10-01 09:14:52 - DEBUG - Loading /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server/Config/ApiSchemas/default.yaml
+2023-10-01 09:14:52 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.25.186.197:5000
+2023-10-01 09:14:52 - INFO - [33mPress CTRL+C to quit[0m
+2023-10-01 09:14:52 - INFO -  * Restarting with stat
+2023-10-01 09:14:52 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:14:53 - DEBUG - [^] load_file
+2023-10-01 09:14:53 - DEBUG - current_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server, file_path=Config/ApiSchemas/default.yaml
+2023-10-01 09:14:53 - DEBUG - Loading /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server/Config/ApiSchemas/default.yaml
+2023-10-01 09:14:53 - WARNING -  * Debugger is active!
+2023-10-01 09:14:53 - INFO -  * Debugger PIN: 856-102-074
+2023-10-01 09:15:31 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:15:32 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:16:14 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:16:16 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:21:26 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:21:32 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:21:37 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:21:40 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:21:54 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:21:56 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:22:13 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:22:16 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:22:17 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:23:51 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:27:28 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:27:42 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:28:33 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:29:26 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:29:28 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:31:25 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:31:37 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:31:38 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:31:49 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:32:08 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:32:50 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:33:04 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:33:26 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:33:41 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:35:50 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:35:54 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:36:09 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:38:37 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:40:08 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:40:35 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:40:42 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:41:37 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:41:47 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:41:56 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:42:22 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:42:48 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:44:03 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:44:12 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:44:13 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:45:48 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:45:50 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:46:22 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:46:39 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:46:40 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:47:09 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 09:47:47 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server

@@ -105,48 +105,49 @@ class Data:
     ## Getting all the paths in the log just in case something fails/is off
     logging.debug(f'[*] PathStruct.sys_path: {path_struct.sys_path}')
 
+
 def load_plugins(app):
-    '''
-    Plugin Loader
-    
-    app (object): The flask app. Passed to plugins so they can add routes, and other flask stuff
-    '''
-    plugins_dir = os.path.join(sys_path, "PluginEngine/Plugins")
-    for plugin_file in os.listdir(plugins_dir):
-        try:
+    plugins_root_dir = os.path.join(sys_path, "PluginEngine/Plugins")
+
+    # Iterate over subdirectories (one for each plugin)
+    for plugin_folder in os.listdir(plugins_root_dir):
+        #print(plugin_folder)
+        plugin_folder_path = os.path.join(plugins_root_dir, plugin_folder)
+
+        # Check if it's a directory
+        if not os.path.isdir(plugin_folder_path):
+            continue
+
+        # Inside each plugin folder, look for Python files with the same name as the folder
+        for plugin_file in os.listdir(plugin_folder_path):
             if plugin_file.endswith('.py'):
-                print(f"Discovered {plugin_file}")
-                module_name = plugin_file[:-3]
-                module_path = f"PluginEngine.Plugins.{module_name}"
-                module = importlib.import_module(module_path)
+                print(f"[*] Discovered {plugin_file}")
 
-                # Find classes defined in the module
-                classes = inspect.getmembers(module, inspect.isclass)
+                plugin_name = plugin_file[:-3]  # Remove the '.py' extension
+                module_path = f"PluginEngine.Plugins.{plugin_folder}.{plugin_name}"
 
-                # Look for a class that you want to instantiate
-                for name, class_obj in classes:
-                    ## Take the classname value from info class, tell it to not load anyhing else but this
-                    #note, baseplugin yells about this cause it doens't have an info class,. it's fine
-                    if name != module.Info.classname:  
-                        continue
+                try:
+                    module = importlib.import_module(module_path)
 
-                    # Instantiate the class with 'app' as an argument
-                    plugin_instance = class_obj(app, Data)
+                    # Find classes defined in the module
+                    classes = inspect.getmembers(module, inspect.isclass)
 
-                    # Calling main on the class
-                    plugin_instance.main()
+                    # Look for a class that you want to instantiate
+                    for name, class_obj in classes:
+                        if name != module.Info.classname:
+                            continue
 
-                    '''
-                    okay tldr
+                        # Instantiate the class with 'app' as an argument
+                        plugin_instance = class_obj(app, Data)
 
-                    This fixes the problem of differnet class names for different plugin.
-                    I can't set them all to the same name, as that would override each other, but 
-                    this is the best current solution
-                
-                    '''
-        except Exception as e:
-            print(e)
-            logging.warning(f"[!] Error loading {plugin_file}: {e}")
+                        # Calling main on the class
+                        plugin_instance.main()
+
+                except ImportError as e:
+                    print(f"Error importing module {module_path}: {e}")
+                except AttributeError as e:
+                    print(f"AttributeError: {e}")
+
             
 ## Move to own file eventually
 class ControlServer:

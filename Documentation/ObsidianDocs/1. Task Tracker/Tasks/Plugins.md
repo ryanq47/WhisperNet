@@ -3,7 +3,7 @@ SCOPE: Whole Project - left off
 TASKTYPE: Refactor/Reimplement
 MODULE: All
 ESTTIMETOIMPLEMENT: 3 Hours
-STATUS: In Progress
+STATUS: In Progress - nearly completed
 PRIORITY: High
 DUE: DATE
 ---
@@ -81,14 +81,14 @@ etc, for different actions/functions
 	- Gonna need a standard setup
 - [x] How to dynamically load/setup URL's
 	- Doable, ask chat GPT for this one
-- [ ] How to autheticate these external plugins are l;egit
+- [ ] How to autheticate these external plugins are legit
 	- Maybe server initiates first comm? sends message to listener @ ip address, and if it responds, it's trusted?
 		- Issues here, PWNED plugin for ex.
 	- Server initiates first contact, gets HASH of external plugin code. if matches what is local, good to go?
 		- Start simple here to get it implemented
-- [ ] Dynamic URL's need a rethought
+- [ ] Dynamic URL's from a file need a rethought
 - [ ] Data seperation. Need to keep that in mind, as if a plugin gets owned it would be bad if it could access other data.
-- [ ] SSL (eventually... start without it.)
+- [ ] For external... SSL (eventually... start without it.)
 
 #### Solutions:
 

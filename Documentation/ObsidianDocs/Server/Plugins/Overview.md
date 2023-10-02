@@ -1,0 +1,1 @@
+This folder contains guides to using each plugin, if applicable

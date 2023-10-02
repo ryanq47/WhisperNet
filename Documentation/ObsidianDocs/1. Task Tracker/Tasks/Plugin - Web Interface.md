@@ -1,9 +1,9 @@
 ---
-SCOPE: Server
+SCOPE: Server  - ongoing/sidework
 TASKTYPE: Implementation
 MODULE: Plugin
 ESTTIMETOIMPLEMENT: 2 hours
-STATUS: Idea stage
+STATUS: In progress - ongoing
 PRIORITY: Med
 DUE: DATE
 ---
@@ -18,6 +18,8 @@ Trying some stuff out with the flask setup in .Dev/testjinja
 ## Possible Solutions/Plan
 
 
-## Resources
+## Todo
 
-## MindMap
+- [ ] Implement authentication
+- [ ] Come up with use case/more ideas
+- [ ] Make it look decent/standardize coloring N stuff
