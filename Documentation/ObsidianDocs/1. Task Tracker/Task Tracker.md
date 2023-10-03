@@ -7,7 +7,8 @@ Currently just established a few new items:
 - ServerDataDbHandler for interacting with it
 
 Up next: 
-- BaseErrorClass
+- BaseLoggingClass
+- Moved template plugin to it, along with ServerDataDbHandler. Do docs on it & implement elsewhere
 
 
 ```dataview

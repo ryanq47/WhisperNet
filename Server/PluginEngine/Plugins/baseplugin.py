@@ -4,9 +4,10 @@ could be useful.
 
 
 '''
+import Utils.LoggingBaseClass
 
 
-class BasePlugin:
+class BasePlugin(Utils.LoggingBaseClass.BaseLogging):
     def __init__(self, app, DataStruct):
         self.app = app
         self.print_symbol = "[*]"

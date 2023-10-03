@@ -6748,3 +6748,29 @@ jinja2.exceptions.TemplateNotFound: index.html
 2023-10-01 23:14:29 - DEBUG - [*] connect_to_db
 2023-10-01 23:14:29 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
 2023-10-01 23:14:29 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-02 00:56:09 - WARNING - LOGGING IS WORKING
+2023-10-02 00:56:09 - DEBUG - [*] connect_to_db
+2023-10-02 00:56:09 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-02 00:56:09 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-02 00:56:10 - WARNING - LOGGING IS WORKING
+2023-10-02 00:56:11 - DEBUG - [*] connect_to_db
+2023-10-02 00:56:11 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-02 00:56:11 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-02 00:56:39 - DEBUG - [*] connect_to_db
+2023-10-02 00:56:39 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-02 00:56:39 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-02 01:01:34 - DEBUG - [*] connect_to_db
+2023-10-02 01:01:34 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-02 01:01:34 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-02 01:01:40 - DEBUG - [*] connect_to_db
+2023-10-02 01:01:40 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-02 01:01:40 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-02 01:01:41 - DEBUG - [*] connect_to_db
+2023-10-02 01:01:41 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-02 01:01:41 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-02 01:02:34 - DEBUG - [*] connect_to_db
+2023-10-02 01:02:34 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-02 01:02:34 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-02 01:04:04 - DEBUG - [*] connect_to_db
+2023-10-02 01:04:04 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-02 01:04:04 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server

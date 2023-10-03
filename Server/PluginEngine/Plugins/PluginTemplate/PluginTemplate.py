@@ -67,19 +67,16 @@ Debugging:
     This will print the function name and the line number of the function call. It makes it easier to debug. Set the 
     logging level to something other than "DEBUG" to shut this off. It can get quite noisy.
 
+Accessing logger.
+    The logger is stored in BaseClass, which inheretes it from BaseLogging. You can access it with
+    'self.logger'. This is just an instance of the logginh function from python, so everything works in it.
 
-Options:
+    ex: self.logger.debug("mylog") is equivalent to logging.debug("mylog").
 
-    If global_debug is True, the plugin will log to console.
-    function_debug_symbol is the symbol to put before each log entry for this plugin. 
+    This is set up this way so consistent logging can be achieved
+    
+
 '''
-global_debug = True
-function_debug_symbol = f"[*] {Info.name}:"
-
-logging.basicConfig(level=logging.DEBUG)
-logging.basicConfig(filename=f'{Info.name}.log', filemode='a', format='%(asctime)s - %(levelname)s - %(message)s', force=True, datefmt='%Y-%m-%d %H:%M:%S')
-if global_debug:
-    logging.getLogger().addHandler(logging.StreamHandler())
 
 
 ## Inherets BasePlugin
@@ -89,19 +86,19 @@ class PluginClass(BasePlugin):
         '''
         Main function/entry point for the plugin.
         '''
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
         print(f"{self.print_symbol} Loading {Info.name}")
         self.register_routes()
 
     ## Put all the routes here.
     def register_routes(self):
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
         self.app.route(f'/{Info.endpoint}', methods=["GET"])(self.plugin_function)
     
 
     ## Define your plugin functions here.
     def plugin_function(self):
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
         startup_message = (f"Plugin is up!<br>Plugin Name: {Info.name}<br> \
         Plugin Author: {Info.author}<br> \
         Plugin Endpoint: {Info.endpoint}<br>")

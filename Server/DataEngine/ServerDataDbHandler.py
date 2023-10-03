@@ -1,6 +1,7 @@
 import sqlite3
-import logging
+#import l
 import inspect
+import Utils.LoggingBaseClass
 
 '''
 This DB Handler handles the core quieries for the ServerData.db database.
@@ -9,8 +10,10 @@ This DB Handler handles the core quieries for the ServerData.db database.
 
 function_debug_symbol = "[*]"
 
-class ServerDataDbHandler:
+class ServerDataDbHandler(Utils.LoggingBaseClass.BaseLogging):
     def __init__(self):
+        super().__init__()
+        #self.logger.warning("LOGGING IS WORKING")
         self.dbconn = None
         self.cursor = None
         # hardecoded as this module is not meant to be used for anything else
@@ -18,15 +21,15 @@ class ServerDataDbHandler:
         
     ## DB obs
     def connect_to_db(self, db_name):
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
         try:
             self.dbconn = sqlite3.connect(db_name)
             self.cursor = self.dbconn.cursor()
-            logging.debug(f"[DBHandler.connect_to_db()] Successful connection to: {db_name}")
+            self.logger.debug(f"[DBHandler.connect_to_db()] Successful connection to: {db_name}")
 
         except Exception as e:
-            logging.debug(f"[DBHandler.connect_to_db()] Error: {e}")
+            self.logger.debug(f"[DBHandler.connect_to_db()] Error: {e}")
 
     def write_to_plugins_table(self, name, endpoint, author, type, loaded) -> bool:
         '''
@@ -38,7 +41,7 @@ class ServerDataDbHandler:
         type (str): The type of the plugin
         loaded (bool): Whether or not the plugin is loaded or not
         '''
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
         if not self.guard_db_connection():
             return False
@@ -56,7 +59,7 @@ class ServerDataDbHandler:
             return True
         
         except Exception as e:
-            logging.warning(f"[*] {inspect.stack()[0][3]}: {e}")
+            self.logger.warning(f"[*] {inspect.stack()[0][3]}: {e}")
             return False
 
     ######
@@ -66,7 +69,7 @@ class ServerDataDbHandler:
         '''
         A guard against the self.dbconn being None.
         '''
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
         if self.dbconn is None:
             return False
