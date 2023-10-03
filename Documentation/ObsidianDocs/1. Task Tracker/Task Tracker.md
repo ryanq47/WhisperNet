@@ -1,9 +1,13 @@
 
 Notes:
 
-left off toying around with the stats plugin (/stats)
 
-Was finalizing the plugin templates + logic surrounding that
+Currently just established a few new items:
+- ServerData.DB for holding general server items
+- ServerDataDbHandler for interacting with it
+
+Up next: 
+- BaseErrorClass
 
 
 ```dataview

@@ -105,7 +105,19 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1. Task Tracker/Tasks/Plugins.md",
+                "file": "Server/DataBases/ServerData.db.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "2a08cb00b081eb7e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Err Handle class.md",
                 "mode": "source",
                 "source": false
               }
@@ -251,17 +263,22 @@
   },
   "active": "0e750e7f5d61a3f9",
   "lastOpenFiles": [
-    "1. Task Tracker/Tasks/Plugins.md",
+    "Err Handle class.md",
+    "1. Task Tracker/Tasks/Untitled.md",
     "1. Task Tracker/Task Tracker.md",
+    "Server/DataBases/ServerData.db.md",
+    "Server/DataBases/SecurityData.db.md",
+    "1. Task Tracker/Tasks/Plugins.md",
+    "Server/DataBases",
+    "Server/Untitled.md",
+    "Server/Modules/PluginEngine/Development & Advanced Overview.md",
+    "Server/Modules/PluginEngine/Overview.md",
+    "Server/Code Tests.md",
+    "1. Task Tracker/Tasks/Plugin - Web Interface.md",
     "Server/Plugins/stats plugin (name not final).md",
     "1. Task Tracker/Tasks/Error Response in cookies.md",
     "1. Task Tracker/Tasks/Listener Plugin.md",
-    "1. Task Tracker/Tasks/Untitled.md",
-    "1. Task Tracker/Tasks/Plugin - Web Interface.md",
-    "Server/Modules/PluginEngine/Overview.md",
-    "Server/Code Tests.md",
     "Server/Plugins/Overview.md",
-    "Server/Modules/PluginEngine/Development & Advanced Overview.md",
     "Server/Plugins",
     "Server/Modules/PluginEngine/Untitled.md",
     "1. Task Tracker/Tasks/Untitled 1.md",
@@ -279,10 +296,6 @@
     "1. Task Tracker/Tasks/Docker.md",
     "Code Test Tool.md",
     "Untitled 1.md",
-    "Server/Modules/ApiEngine/API General Overview.md",
-    "Server/Modules/Listeners/Overview.md",
-    "Server/Modules/ApiEngine/Endpoints/Listener Management.md",
-    "Server/Modules/ApiEngine/Endpoints/Login.md",
     "Server/Modules/Listeners/Listener setup.canvas",
     "Server/Modules/WSGI/WSGI & Flask setup.canvas",
     "Server/Modules/WSGI",
@@ -301,7 +314,6 @@
     "Server/Security Testing",
     "Server/Modules/ApiEngine/Process Overview.canvas",
     "Server/Modules/Error Handling",
-    "Server/Modules/ApiEngine/Endpoints",
     "Server/Visual Progress.canvas",
     "Clients/Python Client/Dev Docs/MindMaps/VisProg.canvas",
     "Clients/Python Client/Dev Docs/MindMaps/Plugin Abstraction Layers.canvas"

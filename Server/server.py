@@ -25,19 +25,20 @@ try:
 
 
     # My Modules
-    import tcp_listener
-    import DataEngine.JsonHandler as json_parser
-    import DataEngine.JsonHandler
-    import DataEngine.DataDBHandler
+    #import tcp_listener
+    #import DataEngine.JsonHandler as json_parser
+    #import DataEngine.JsonHandler
+    #import DataEngine.DataDBHandler
     #from DataEngine.RSAEncryptionHandler import Encryptor ##  Not needed, switching to SSL
-    import ClientEngine.ClientHandler
-    import ClientEngine.MaliciousClientHandler
+    #import ClientEngine.ClientHandler
+    #import ClientEngine.MaliciousClientHandler
     import SecurityEngine.AuthenticationHandler
-    import Comms.CommsHandler
+    #import Comms.CommsHandler
     import Utils.UtilsHandler
-    import Utils.KeyGen
+    #import Utils.KeyGen
     import ApiEngine.ConfigHandler
     import Utils.DataObjects
+    import DataEngine.ServerDataDbHandler
 
     ## Error modules
     import ApiEngine.ErrorDefinitions
@@ -102,6 +103,27 @@ class Data:
     path_struct.sys_path = sys_path
     path_struct.os_type = os.name
 
+    ## DB instance of the ServerData.db
+    server_data_db_handler =  DataEngine.ServerDataDbHandler.ServerDataDbHandler()
+
+    ## DataLake?
+    '''
+    Maybe a db for purely server based stuff. 
+    Usecase would be for the stats plugin/having a data pool available for plugins to use
+
+    ## One DB for user/security related items
+
+    ## One DB for Data/Non critical data, so:
+        - Plugins loaded
+        - Other
+
+    ## Addtitonally, each plugin should/can have its own DB.
+    Ideally, this would be stored in the plugin subfolder. BaseClass will need a 
+    DB implementation/interface method as well for easy db access.
+        
+    
+    '''
+
     ## Getting all the paths in the log just in case something fails/is off
     logging.debug(f'[*] PathStruct.sys_path: {path_struct.sys_path}')
 
@@ -142,6 +164,18 @@ def load_plugins(app):
 
                         # Calling main on the class
                         plugin_instance.main()
+
+                        ## Write to Plugins table
+                        
+                        ## Need to find way to access said path, somethings fucky wucky
+                        p_name = module.Info.name
+                        endpoint = module.Info.endpoint
+                        author = module.Info.author
+                        type = module.Info.plugin_type
+                        loaded = 0
+
+                        Data.server_data_db_handler.write_to_plugins_table(p_name, endpoint, author, type, loaded)
+                        
 
                 except ImportError as e:
                     print(f"Error importing module {module_path}: {e}")

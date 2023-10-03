@@ -1,0 +1,1 @@
+This DB holds sensitive information, such as users, and their passwords.

@@ -6646,3 +6646,105 @@ jinja2.exceptions.TemplateNotFound: index.html
 2023-10-01 09:46:40 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
 2023-10-01 09:47:09 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
 2023-10-01 09:47:47 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 22:52:21 - DEBUG - [*] connect_to_db
+2023-10-01 22:52:21 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 22:52:21 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 22:52:23 - DEBUG - [*] connect_to_db
+2023-10-01 22:52:23 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 22:52:23 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 22:53:23 - DEBUG - [*] connect_to_db
+2023-10-01 22:53:23 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 22:53:23 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 22:53:34 - DEBUG - [*] connect_to_db
+2023-10-01 22:53:34 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 22:53:34 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 22:53:37 - DEBUG - [*] connect_to_db
+2023-10-01 22:53:37 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 22:53:37 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 22:53:38 - DEBUG - [*] connect_to_db
+2023-10-01 22:53:38 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 22:53:38 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 22:53:51 - DEBUG - [*] connect_to_db
+2023-10-01 22:53:51 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 22:53:51 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 22:54:02 - DEBUG - [*] connect_to_db
+2023-10-01 22:54:02 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 22:54:02 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 22:54:04 - DEBUG - [*] connect_to_db
+2023-10-01 22:54:04 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 22:54:04 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 22:54:12 - DEBUG - [*] connect_to_db
+2023-10-01 22:54:12 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 22:54:12 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 22:55:03 - DEBUG - [*] connect_to_db
+2023-10-01 22:55:03 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 22:55:03 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 22:55:13 - DEBUG - [*] connect_to_db
+2023-10-01 22:55:13 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 22:55:13 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 22:55:30 - DEBUG - [*] connect_to_db
+2023-10-01 22:55:30 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 22:55:30 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:04:21 - DEBUG - [*] connect_to_db
+2023-10-01 23:04:21 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 23:04:21 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:04:27 - DEBUG - [*] connect_to_db
+2023-10-01 23:04:27 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 23:04:27 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:04:28 - DEBUG - [*] connect_to_db
+2023-10-01 23:04:28 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 23:04:28 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:04:47 - DEBUG - [*] connect_to_db
+2023-10-01 23:04:47 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 23:04:47 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:04:50 - DEBUG - [*] connect_to_db
+2023-10-01 23:04:50 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 23:04:50 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:04:51 - DEBUG - [*] connect_to_db
+2023-10-01 23:04:51 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 23:04:51 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:04:53 - DEBUG - [*] connect_to_db
+2023-10-01 23:04:53 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 23:04:53 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:05:19 - DEBUG - [*] connect_to_db
+2023-10-01 23:05:19 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 23:05:19 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:05:33 - DEBUG - [*] connect_to_db
+2023-10-01 23:05:33 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 23:05:33 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:05:34 - DEBUG - [*] connect_to_db
+2023-10-01 23:05:34 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 23:05:34 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:06:04 - DEBUG - [*] connect_to_db
+2023-10-01 23:06:04 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 23:06:04 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:06:57 - DEBUG - [*] connect_to_db
+2023-10-01 23:06:57 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 23:06:57 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:08:17 - DEBUG - [*] connect_to_db
+2023-10-01 23:08:17 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 23:08:17 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:08:26 - DEBUG - [*] connect_to_db
+2023-10-01 23:08:26 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataEngine/ServerData.db
+2023-10-01 23:08:26 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:10:00 - DEBUG - [*] connect_to_db
+2023-10-01 23:10:00 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-01 23:10:00 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:10:04 - DEBUG - [*] connect_to_db
+2023-10-01 23:10:04 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-01 23:10:04 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:10:05 - DEBUG - [*] connect_to_db
+2023-10-01 23:10:05 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-01 23:10:05 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:13:41 - DEBUG - [*] connect_to_db
+2023-10-01 23:13:41 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-01 23:13:41 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:13:48 - DEBUG - [*] connect_to_db
+2023-10-01 23:13:48 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-01 23:13:48 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:14:28 - DEBUG - [*] connect_to_db
+2023-10-01 23:14:28 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-01 23:14:28 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
+2023-10-01 23:14:29 - DEBUG - [*] connect_to_db
+2023-10-01 23:14:29 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-01 23:14:29 - DEBUG - [*] PathStruct.sys_path: /mnt/c/Users/Ryan/Documents/GitHub/logec-suite/Server
