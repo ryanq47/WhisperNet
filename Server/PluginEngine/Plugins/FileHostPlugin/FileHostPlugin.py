@@ -1,5 +1,7 @@
 '''
-Hey! This is the External plugin template. You can create the external part of your plugins with this.
+Hey! This is the plugin template. You can create your own plugins with this template. Said plugins can either
+live directly on this server, or have an external component. See the FlaskAPIListenerPlugin for an example 
+of an external component.
 
 The first section is plugin options, aimed at making some harder settings a bit easier to configure.
 
@@ -12,7 +14,7 @@ Throw a description of your plugin here as well:
 Last but not least, fill in the "Info" class with the proper fields. 
 '''
 ## Don't remove me. This is the base plugin class, parent to all classes for plugins.
-from ExternalBaseClass import ExternalBasePlugin
+from PluginEngine.Plugins.BasePlugin import BasePlugin
 from Utils.LoggingBaseClass import BaseLogging
 
 ''' Imports
@@ -21,9 +23,10 @@ Go ahead and define any other imports you may need here.
 '''
 import logging
 import inspect
-from time import sleep
 #from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
 #from flask import Flask, jsonify, request, send_from_directory, render_template, Response
+from flask import jsonify
+
 
 ################################################
 # Info class
@@ -34,10 +37,24 @@ by anything that may need it.
 
 '''
 class Info:
-    name    = "ExternalPluginTemplate"
-    author  = "Plugin Author"
-    plugin_type = "External"
+    name    = "FileHost"
+    author  = "ryanq47"
+    endpoint = "/filehost"
+    classname = "FileHost"
+    plugin_type = "Builtin"
 
+################################################
+# Authenitcation settings
+################################################
+'''
+## If you want JWT tokens on your endpoint, uncomment the lines below
+
+Then, add '@jwt_required' decorator to your functions you want protected. 
+
+Boom, you now need an account/authorization to access this endpoint.
+
+'''
+#from flask_jwt_extended import jwt_required
 
 ################################################
 # Logging & Debugging
@@ -64,16 +81,18 @@ Accessing logger.
 
 ## Inherets BasePlugin
 ## Is a class instance, the __init__ is from BasePlugin.
-class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
-    def __init__(self):
+class FileHost(BasePlugin, BaseLogging):
+    def __init__(self, app, DataStruct):
         #super().__init__(app, DataStruct)  # Problem with this was that it was trying to stuff app, 
         # and Datastruct into both, and both parent classes take different args, thus causing problems.
 
         ## Initialize BasePlugin and BaseLogging parent classes. Can't use one super call as stated above
-        ExternalBasePlugin.__init__(self)
+        BasePlugin.__init__(self, app, DataStruct)
         BaseLogging.__init__(self)  
         # Just in case you need to test logging/it breaks...
         #self.logger.warning("LOGGING IS WORKING - <PLUGINNAME>")
+
+
 
     def main(self):
         '''
@@ -81,32 +100,20 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
         '''
         self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
         self.logger.debug(f"{self.logging_debug_symbol} Loading {Info.name}")
+        self.register_routes()
 
-        self.control_server_url = "http://127.0.0.1:5000/external"
-        self.control_server_command_endpoint = "/command"
-
-        while True:
-            self.get_command_loop()
-            sleep(30)
-            ## using super here to access the functions in the parent. Could call it by name, 
-            ## buy would hav to do ExternalBasePlugin.get_command(self) instead
+    ## Put all the routes here.
+    def register_routes(self):
+        self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
+        self.app.route(f'/{Info.endpoint}/command', methods=["GET"])(self.command_endpoint)
 
     
-    ## Define your plugin functions here.
-    def plugin_function(self):
-        self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
-        startup_message = (f"Plugin is up!<br>Plugin Name: {Info.name}<br> \
-        Plugin Author: {Info.author}<br> \
-        Plugin Endpoint: {Info.endpoint}<br>")
 
-        return startup_message
+    def command_endpoint(self):
+        json = {
+            "command": "stuff"
+        }
+
+        return jsonify(json)
 
 
-    def get_command_loop(self):
-        command = super().get_command()
-        logging.debug(f"{self.logging_debug_symbol}: {command}")
-        ## do stuff with command - build out command tree?
-
-if __name__ == "__main__":
-    exteral_plugin = ExternalPluginClass()
-    exteral_plugin.main()
