@@ -62,7 +62,8 @@ class ServerDataDbHandler(BaseLogging):
             self.logger.warning(f"{self.logging_warning_symbol} {inspect.stack()[0][3]}: {e}")
             self.dbconn.rollback()
             return False
-        
+    
+
     def retrieve_plugins_from_table(self, cursor = None):
         '''
         A method to retirieve plugins from the Plugins table
