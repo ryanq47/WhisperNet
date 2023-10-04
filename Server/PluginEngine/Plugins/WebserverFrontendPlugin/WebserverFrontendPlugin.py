@@ -22,8 +22,11 @@ Go ahead and define any other imports you may need here.
 '''
 import logging
 import inspect
+import sqlite3
 #from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
 from flask import render_template, request, redirect
+
+import DataEngine.ServerDataDbHandler
 
 
 
@@ -82,6 +85,9 @@ class WebserverFrontend(BasePlugin, BaseLogging):
         BasePlugin.__init__(self, app, DataStruct)
         BaseLogging.__init__(self)  
         #self.logger.warning("LOGGING IS WORKING - WebServerFrontendPlugin")
+        self.datadb_instance = DataEngine.ServerDataDbHandler.ServerDataDbHandler()
+        self.dbconn = None
+        self.cursor = None
 
     def main(self):
         '''
@@ -103,11 +109,32 @@ class WebserverFrontend(BasePlugin, BaseLogging):
 
     def dashboard(self):
         servername = "DevServer"
-        list_of_plugins = [
-            {'name':'pluginname', 'author':'author', 'endpoint':'endpoint',},
-            {'name':'pluginname', 'author':'author', 'endpoint':'endpoint',},
-            {'name':'pluginname', 'author':'author', 'endpoint':'endpoint',},
-            ]
+        list_of_plugins = []
+
+        ## if self.dbconn is none, then connect
+        if not self.guard_db_connection():
+            self.connect_to_db()
+
+
+
+
+        plugin_data = self.datadb_instance.retrieve_plugins_from_table(cursor = self.cursor)
+        #print(plugin_data)
+
+        ## populate the list of plugins from the database
+        for plugin in plugin_data:
+            '''
+            Data comes back in a tuple:
+            [('FlaskAPIListnener', '/flasklistener', 'ryanq.47', 'Builtin', 0), (more data)]
+            This makes it slightly less readable for creating the dict below. Also,
+            should prolly make a dedicated function for this.
+            '''
+            dict_ = {
+                'name': plugin[0],
+                'endpoint': plugin[1],
+                'author': plugin[2],
+            }
+            list_of_plugins.append(dict_)
 
         return render_template('webserverfrontendplugin-dashboard.html', 
                             plugins=list_of_plugins,
@@ -125,3 +152,28 @@ class WebserverFrontend(BasePlugin, BaseLogging):
 
         # You can redirect the user to a different page after login, for example:
         return redirect(f'{Info.endpoint}/dashboard')
+    
+    def connect_to_db(self):
+        db_name = "DataBases/ServerData.db"
+        try:
+            self.dbconn = sqlite3.connect(db_name)
+            self.cursor = self.dbconn.cursor()
+            self.logger.info(f"{self.logging_info_symbol} Successful connection to: {db_name}")
+
+        except Exception as e:
+            self.logger.warning(f"{self.logging_warning_symbol} Error: {e}")
+
+
+    def guard_db_connection(self) -> bool:
+        '''
+        A guard against the self.dbconn being None.
+        '''
+        self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
+
+        if self.dbconn is None:
+            self.logger.warning(f"{self.logging_info_symbol} Connection to DB is None. Reconnecting")
+            return False
+
+        return True
+
+    

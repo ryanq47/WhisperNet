@@ -6,10 +6,8 @@ Currently just established a few new items:
 - ServerData.DB for holding general server items
 - ServerDataDbHandler for interacting with it
 
-Up next: 
-- BaseLoggingClass
-- Moved template plugin to it, along with ServerDataDbHandler. Do docs on it & implement elsewhere
-- Move all raise errors to Utils.ErrorDefinitions
+
+okay -- Everything *should* be in place now (save for a template for external plugings). So, full steam ahead with developing/focusing on plugins!!! 
 
 
 

@@ -55,11 +55,41 @@ class ServerDataDbHandler(BaseLogging):
             values = (name, endpoint, author, type, loaded)
             self.cursor.execute(sql, values)
             self.dbconn.commit()
+            #self.dbconn.close()
             return True
         
         except Exception as e:
             self.logger.warning(f"{self.logging_warning_symbol} {inspect.stack()[0][3]}: {e}")
+            self.dbconn.rollback()
             return False
+        
+    def retrieve_plugins_from_table(self, cursor = None):
+        '''
+        A method to retirieve plugins from the Plugins table
+
+        REturn a string (actaully I think it's a tuple... need to check) on success, or a bool (false) on failure
+
+        '''
+        self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
+
+        #if not self.guard_db_connection():
+            #return False
+        
+        ''' Note, this is currently handled by the DB primary key settign, which is the "name" column in the Plugins table
+        if row_exists:
+            self.update_plugin_row(name, endpoint, author, type, loaded)
+        '''
+
+        try:
+            sql = "SELECT name, endpoint, author, type, loaded FROM Plugins"
+            cursor.execute(sql)
+            data = cursor.fetchall()
+            return data
+        
+        except Exception as e:
+            self.logger.warning(f"{self.logging_warning_symbol} {inspect.stack()[0][3]}: {e}")
+            return False
+
 
     ######
     # Guard clauses
@@ -71,6 +101,7 @@ class ServerDataDbHandler(BaseLogging):
         self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
 
         if self.dbconn is None:
+            self.logger.warning(f"{self.logging_info_symbol} Connection to DB is None.")
             return False
 
         return True
