@@ -121,7 +121,9 @@ class UserHandler(BasePlugin, BaseLogging):
             password=password,
             path_struct=self.DataStruct.path_struct
         ):
+            self.logger.info(f"{self.logging_info_symbol} Created user '{username}'")
             return f"user {username} created"
+
         else:
             return self.page_not_found()
         
@@ -134,6 +136,7 @@ class UserHandler(BasePlugin, BaseLogging):
             username=username,
             path_struct=self.DataStruct.path_struct
         ):
+            self.logger.info(f"{self.logging_info_symbol} Deleted user '{username}'")
             return f"user {username} deleted"
         else:
             return self.page_not_found()
