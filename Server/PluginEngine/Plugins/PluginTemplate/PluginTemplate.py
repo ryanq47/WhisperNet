@@ -15,6 +15,7 @@ Last but not least, fill in the "Info" class with the proper fields.
 '''
 ## Don't remove me. This is the base plugin class, parent to all classes for plugins.
 from PluginEngine.Plugins.BasePlugin import BasePlugin
+from Utils.LoggingBaseClass import BaseLogging
 
 ''' Imports
 Go ahead and define any other imports you may need here.
@@ -80,12 +81,12 @@ Accessing logger.
 
 ## Inherets BasePlugin
 ## Is a class instance, the __init__ is from BasePlugin.
-class PluginClass(BasePlugin):
+class PluginClass(BasePlugin, BaseLogging):
     def __init__(self, app, DataStruct):
-        ## Weird setup, this takes in app, DataStruct, passes it to baseclass, which then init's and sets it to self.app, and self.DataStruct
         super().__init__(app, DataStruct)
-        ## Getting the logger instance here
-        self.logger = super().logger
+        self.logger.warning("LOGGING IS WORKING - PLUGIN TEMP")
+
+
 
     def main(self):
         '''

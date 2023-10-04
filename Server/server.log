@@ -12,3 +12,133 @@
 2023-10-03 21:15:28 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
 2023-10-03 21:15:49 - DEBUG - [*] connect_to_db
 2023-10-03 21:15:49 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:37:45 - DEBUG - [*] connect_to_db
+2023-10-03 21:37:45 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:39:01 - DEBUG - [*] connect_to_db
+2023-10-03 21:39:01 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:40:01 - DEBUG - [*] connect_to_db
+2023-10-03 21:40:01 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:40:01 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:40:01 - DEBUG - [*] connect_to_db
+2023-10-03 21:40:01 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:40:01 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:40:41 - DEBUG - BASELOGGING INIT
+2023-10-03 21:40:41 - DEBUG - [*] connect_to_db
+2023-10-03 21:40:41 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:40:41 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:40:41 - DEBUG - BASELOGGING INIT
+2023-10-03 21:40:42 - DEBUG - [*] connect_to_db
+2023-10-03 21:40:42 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:40:42 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:41:34 - DEBUG - BASELOGGING INIT
+2023-10-03 21:41:34 - DEBUG - [*] connect_to_db
+2023-10-03 21:41:34 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:41:34 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:41:42 - DEBUG - BASELOGGING INIT
+2023-10-03 21:41:42 - DEBUG - [*] connect_to_db
+2023-10-03 21:41:42 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:41:42 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:41:43 - DEBUG - BASELOGGING INIT
+2023-10-03 21:41:43 - DEBUG - [*] connect_to_db
+2023-10-03 21:41:43 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:41:43 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:42:06 - DEBUG - BASELOGGING INIT
+2023-10-03 21:42:06 - WARNING - LOGGING IS WORKING
+2023-10-03 21:42:06 - DEBUG - [*] connect_to_db
+2023-10-03 21:42:06 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:42:06 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:42:14 - DEBUG - BASELOGGING INIT
+2023-10-03 21:42:14 - WARNING - LOGGING IS WORKING
+2023-10-03 21:42:14 - DEBUG - [*] connect_to_db
+2023-10-03 21:42:14 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:42:14 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:42:15 - DEBUG - BASELOGGING INIT
+2023-10-03 21:42:15 - WARNING - LOGGING IS WORKING
+2023-10-03 21:42:15 - DEBUG - [*] connect_to_db
+2023-10-03 21:42:15 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:42:15 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:42:52 - DEBUG - BASELOGGING INIT
+2023-10-03 21:42:52 - WARNING - LOGGING IS WORKING
+2023-10-03 21:42:52 - DEBUG - [*] connect_to_db
+2023-10-03 21:42:52 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:42:52 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:42:52 - DEBUG - BASELOGGING INIT
+2023-10-03 21:42:52 - WARNING - LOGGING IS WORKING
+2023-10-03 21:42:52 - DEBUG - [*] connect_to_db
+2023-10-03 21:42:52 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:42:52 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:43:11 - DEBUG - BASELOGGING INIT
+2023-10-03 21:43:11 - WARNING - LOGGING IS WORKING
+2023-10-03 21:43:11 - DEBUG - [*] connect_to_db
+2023-10-03 21:43:11 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:43:11 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:43:11 - DEBUG - BASELOGGING INIT
+2023-10-03 21:43:11 - WARNING - LOGGING IS WORKING
+2023-10-03 21:43:11 - DEBUG - [*] connect_to_db
+2023-10-03 21:43:11 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:43:11 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:45:41 - DEBUG - BASELOGGING INIT
+2023-10-03 21:45:41 - WARNING - LOGGING IS WORKING
+2023-10-03 21:45:42 - DEBUG - [*] connect_to_db
+2023-10-03 21:45:42 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:45:42 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:45:42 - DEBUG - BASELOGGING INIT
+2023-10-03 21:45:42 - WARNING - LOGGING IS WORKING
+2023-10-03 21:45:42 - DEBUG - [*] connect_to_db
+2023-10-03 21:45:42 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:45:42 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:46:31 - DEBUG - BASELOGGING INIT
+2023-10-03 21:46:31 - WARNING - LOGGING IS WORKING
+2023-10-03 21:46:31 - DEBUG - [*] connect_to_db
+2023-10-03 21:46:31 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:46:31 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:46:31 - DEBUG - BASELOGGING INIT
+2023-10-03 21:46:31 - WARNING - LOGGING IS WORKING
+2023-10-03 21:46:31 - DEBUG - [*] connect_to_db
+2023-10-03 21:46:31 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:46:31 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:47:24 - DEBUG - BASELOGGING INIT
+2023-10-03 21:47:24 - WARNING - LOGGING IS WORKING
+2023-10-03 21:47:24 - DEBUG - [*] connect_to_db
+2023-10-03 21:47:24 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:47:24 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:47:25 - DEBUG - BASELOGGING INIT
+2023-10-03 21:47:25 - WARNING - LOGGING IS WORKING
+2023-10-03 21:47:25 - DEBUG - [*] connect_to_db
+2023-10-03 21:47:25 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:47:25 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:47:52 - DEBUG - BASELOGGING INIT
+2023-10-03 21:47:52 - WARNING - LOGGING IS WORKING
+2023-10-03 21:47:52 - DEBUG - [*] connect_to_db
+2023-10-03 21:47:52 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:47:52 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:48:28 - DEBUG - BASELOGGING INIT
+2023-10-03 21:48:28 - WARNING - LOGGING IS WORKING
+2023-10-03 21:48:28 - DEBUG - [*] connect_to_db
+2023-10-03 21:48:28 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:48:28 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:49:34 - DEBUG - BASELOGGING INIT
+2023-10-03 21:49:34 - WARNING - LOGGING IS WORKING
+2023-10-03 21:49:34 - DEBUG - [*] connect_to_db
+2023-10-03 21:49:34 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:49:34 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:49:34 - DEBUG - BASELOGGING INIT
+2023-10-03 21:49:34 - WARNING - LOGGING IS WORKING
+2023-10-03 21:49:34 - DEBUG - [*] connect_to_db
+2023-10-03 21:49:34 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:49:34 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:51:11 - DEBUG - BASELOGGING INIT
+2023-10-03 21:51:11 - WARNING - LOGGING IS WORKING
+2023-10-03 21:51:11 - DEBUG - [*] connect_to_db
+2023-10-03 21:51:11 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:51:11 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:51:12 - DEBUG - BASELOGGING INIT
+2023-10-03 21:51:12 - WARNING - LOGGING IS WORKING
+2023-10-03 21:51:12 - DEBUG - [*] connect_to_db
+2023-10-03 21:51:12 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:51:12 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server
+2023-10-03 21:53:13 - DEBUG - BASELOGGING INIT
+2023-10-03 21:53:13 - WARNING - LOGGING IS WORKING
+2023-10-03 21:53:13 - DEBUG - [*] connect_to_db
+2023-10-03 21:53:13 - DEBUG - [DBHandler.connect_to_db()] Successful connection to: DataBases/ServerData.db
+2023-10-03 21:53:13 - DEBUG - [*] PathStruct.sys_path: C:\Users\Ryan\Documents\GitHub\logec-suite\Server

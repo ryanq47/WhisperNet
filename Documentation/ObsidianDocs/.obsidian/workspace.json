@@ -15,7 +15,7 @@
               "type": "markdown",
               "state": {
                 "file": "1. Task Tracker/Task Tracker.md",
-                "mode": "preview",
+                "mode": "source",
                 "source": false
               },
               "pinned": true
@@ -69,7 +69,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Server/Code Tests.md",
+                "file": "Server/Modules/Error Handling & Logging/BaseLogging.md",
                 "mode": "source",
                 "source": false
               }
@@ -227,9 +227,11 @@
   },
   "active": "0e750e7f5d61a3f9",
   "lastOpenFiles": [
+    "Server/Modules/Error Handling & Logging/BaseLogging.md",
+    "Server/Code Tests.md",
+    "1. Task Tracker/Task Tracker.md",
     "1. Task Tracker/Tasks/Code Test Tool.md",
     "1. Task Tracker/Tasks/Request logging.md",
-    "1. Task Tracker/Task Tracker.md",
     "1. Task Tracker/Tasks/Plugins.md",
     "1. Task Tracker/Tasks/Plugin - Web Interface.md",
     "Data Struct.md",
@@ -243,7 +245,6 @@
     "1. Task Tracker/Tasks/Move to new logging.md",
     "1. Task Tracker/Tasks/Untitled.md",
     "Server/Modules/PluginEngine/Overview.md",
-    "Server/Code Tests.md",
     "Server/Plugins/stats plugin (name not final).md",
     "Dev Guide/Notes Guide/Colors & comments.md",
     "Server/DataBases/ServerData.db.md",
@@ -255,7 +256,6 @@
     "Server/Modules/2.DataEngine/DBHandler.py/General.md",
     "Server/Modules/ApiEngine/API General Overview.md",
     "Server/Modules/ApiEngine/Process Overview.canvas",
-    "Server/Modules/ApiEngine/Cookies.md",
     "General/Images/Pasted image 20231003212206.png",
     "Server/Plugins/Parent Classes",
     "Server/DataBases",

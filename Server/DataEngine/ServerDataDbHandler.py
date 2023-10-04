@@ -1,7 +1,7 @@
 import sqlite3
 #import l
 import inspect
-import Utils.LoggingBaseClass
+from Utils.LoggingBaseClass import BaseLogging
 
 '''
 This DB Handler handles the core quieries for the ServerData.db database.
@@ -10,15 +10,16 @@ This DB Handler handles the core quieries for the ServerData.db database.
 
 function_debug_symbol = "[*]"
 
-class ServerDataDbHandler(Utils.LoggingBaseClass.BaseLogging):
+class ServerDataDbHandler(BaseLogging):
     def __init__(self):
         super().__init__()
-        #self.logger.warning("LOGGING IS WORKING")
+        self.logger.warning("LOGGING IS WORKING")
         self.dbconn = None
         self.cursor = None
         # hardecoded as this module is not meant to be used for anything else
         self.connect_to_db("DataBases/ServerData.db")
-        self.logger = super().logger
+        #self.logger = super().logger
+        print(f"!!!! {self.logger}")
 
     ## DB obs
     def connect_to_db(self, db_name):

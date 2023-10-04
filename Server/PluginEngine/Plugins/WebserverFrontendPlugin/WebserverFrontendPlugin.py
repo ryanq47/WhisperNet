@@ -80,8 +80,7 @@ class WebserverFrontend(BasePlugin, BaseLogging):
     ## Weird setup, this takes in app, DataStruct, passes it to baseclass, which then init's and sets it to self.app, and self.DataStruct
     def __init__(self, app, DataStruct):
         super().__init__(app, DataStruct)
-        ## Getting the logger instance here
-        self.logger = super().logger
+        self.logger.warning("LOGGING IS WORKING - WebServerFrontendPlugin")
 
     def main(self):
         '''

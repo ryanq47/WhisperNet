@@ -5,7 +5,6 @@ A base class for handling errors
 import logging
 
 class BaseLogging():
-    pass
 
     # child classes will have to call super().__init__() to access/run this correctly
     def __init__(self):
@@ -21,4 +20,5 @@ class BaseLogging():
                             force=True, datefmt='%Y-%m-%d %H:%M:%S')
         
         self.logger.addHandler(logging.StreamHandler())
+        logging.debug("BASELOGGING INIT")
 
