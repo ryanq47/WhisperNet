@@ -1,6 +1,5 @@
 ## move to different file eventually
 import yaml
-import ApiEngine.ErrorDefinitions
 import Utils.ErrorDefinitions
 
 class UrlSchema:
@@ -48,7 +47,7 @@ class UrlSchema:
                 self.yaml_parser = yaml.safe_load(yaml_stream)
                 return True
             except yaml.YAMLError as ye:
-                raise ApiEngine.ErrorDefinitions.YAML_LOAD_ERROR
+                raise Utils.ErrorDefinitions.YAML_LOAD_ERROR
             except Exception as e:
                 raise Utils.ErrorDefinitions.GENERAL_ERROR()
 

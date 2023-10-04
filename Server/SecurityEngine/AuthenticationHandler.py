@@ -8,10 +8,16 @@ import os
 import Utils.ErrorDefinitions
 import bcrypt
 import Utils.GuardClauses
+from Utils.LoggingBaseClass import BaseLogging
 
-function_debug_symbol = "[^]"
 
-class Authentication:
+## This is super hacky. My Dumbass made this a static method, so to properly use the BaseLogging class, I need to to 
+## init the instance, and then call the logging function
+base_logging = BaseLogging()
+function_debug_symbol = base_logging.function_debug_symbol
+
+
+class Authentication(BaseLogging):
     '''
     The authentication interface for the whole platform. Pulls from the user.db database, and can be used to authentcation
     with whatever wild methods I come up with in the future. Flexible on purpose
@@ -29,7 +35,8 @@ class Authentication:
             
         Dev notes, this is not perfect. Might need some work. It just feels weird
         '''
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
         print(f"User: {username}")
 
@@ -50,7 +57,7 @@ class Authentication:
             # dosen't return anything, could be an issue?
             ## This could also be show stopper
             #raise Utils.ErrorDefinitions.GENERAL_ERROR
-            logging.debug(f"Authentication Error: {e}")
+            base_logging.logger.debug(f"Authentication Error: {e}")
         
         return False
 
@@ -62,7 +69,7 @@ class Authentication:
         Validates a username. Private Func,Should not be called from outside this class.
 
         '''
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
         try:
             if Utils.GuardClauses.guard_t_f_check(username is None, "[*] Username argument is 'None'! Authentication will fail!"):
@@ -77,7 +84,7 @@ class Authentication:
 
 
             if pass_blob == False:
-                logging.debug(f"[*] Could not get password hash for user '{username}' from users.db")
+                base_logging.logger.debug(f"[*] Could not get password hash for user '{username}' from users.db")
                 return False
 
             ## get username's password blob
@@ -94,14 +101,14 @@ class Authentication:
             #if bcrypt.checkpw("1234".encode(), "$2b$12$6l17I4n6BUqF3C43ldlg4u8kzCdDCLU/AJBTa44Yi.PGNon5hv3Mu".encode()):
             
             if bcrypt.checkpw(password.encode(), pass_blob.encode()):
-                logging.info(f"Successful Login: '{username}':'{password}'")
+                base_logging.logger.info(f"Successful Login: '{username}':'{password}'")
                 return True
             
             else:
-                logging.warning(f"Bad Login: '{username}':'{password}'")
+                base_logging.logger.warning(f"Bad Login: '{username}':'{password}'")
         
         except Exception as e:
-            logging.debug(f"[*] Error: {e}")
+            base_logging.logger.debug(f"[*] Error: {e}")
 
         return False
 
@@ -119,7 +126,7 @@ class UserManagement:
         username: username of user to create
         pass: pass of user to create
         '''
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
         try:
             server_absolute_path = path_struct.sys_path
             db_relative_path = "DataBases/users.db"
@@ -144,7 +151,7 @@ class UserManagement:
                 return True
         
         except Exception as e:
-            logging.debug(f"Could not connect to DB: {e}")
+            base_logging.logger.debug(f"Could not connect to DB: {e}")
         
         return False
     
@@ -156,7 +163,7 @@ class UserManagement:
         path_struct: The class instance containing path data
         username: The username to delete
         '''
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
         try:
             server_absolute_path = path_struct.sys_path
             db_relative_path = "DataBases/users.db"
@@ -172,7 +179,7 @@ class UserManagement:
                 return True
         
         except Exception as e:
-            logging.debug(f"Could not connect to DB: {e}")
+            base_logging.logger.debug(f"Could not connect to DB: {e}")
         
         return False
   

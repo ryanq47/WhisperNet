@@ -83,8 +83,14 @@ Accessing logger.
 ## Is a class instance, the __init__ is from BasePlugin.
 class PluginClass(BasePlugin, BaseLogging):
     def __init__(self, app, DataStruct):
-        super().__init__(app, DataStruct)
-        self.logger.warning("LOGGING IS WORKING - PLUGIN TEMP")
+        #super().__init__(app, DataStruct)  # Problem with this was that it was trying to stuff app, 
+        # and Datastruct into both, and both parent classes take different args, thus causing problems.
+
+        ## Initialize BasePlugin and BaseLogging parent classes. Can't use one super call as stated above
+        BasePlugin.__init__(self, app, DataStruct)
+        BaseLogging.__init__(self)  
+        # Just in case you need to test logging/it breaks...
+        #self.logger.warning("LOGGING IS WORKING - <PLUGINNAME>")
 
 
 
@@ -93,7 +99,7 @@ class PluginClass(BasePlugin, BaseLogging):
         Main function/entry point for the plugin.
         '''
         self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
-        print(f"{self.print_symbol} Loading {Info.name}")
+        self.logger.debug(f"{self.logging_debug_symbol} Loading {Info.name}")
         self.register_routes()
 
     ## Put all the routes here.

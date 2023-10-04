@@ -9,9 +9,8 @@ Currently just established a few new items:
 Up next: 
 - BaseLoggingClass
 - Moved template plugin to it, along with ServerDataDbHandler. Do docs on it & implement elsewhere
+- Move all raise errors to Utils.ErrorDefinitions
 
-!!Bug with plugins
-- realting to logging, the class instances are seemingly not pickingup on the parent classes self.logger. ServerDataDbHandler works fine, and it's not loaded by the loader, so start there
 
 
 ```dataview

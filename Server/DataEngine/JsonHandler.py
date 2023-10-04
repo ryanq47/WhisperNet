@@ -6,6 +6,11 @@ import inspect
 ## should proooooly be a static method due to the compile method, have it return the validate object to self.json_compiled
 ## then pass that into the json_parser so it has the compiled data without re-compiling
 
+'''
+DEPRACATED but SOMETHIGN imports it and i cant find it
+
+'''
+
 function_debug_symbol = "[^]"
 
 class json_ops:

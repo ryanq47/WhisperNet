@@ -79,15 +79,16 @@ Options:
 class WebserverFrontend(BasePlugin, BaseLogging):
     ## Weird setup, this takes in app, DataStruct, passes it to baseclass, which then init's and sets it to self.app, and self.DataStruct
     def __init__(self, app, DataStruct):
-        super().__init__(app, DataStruct)
-        self.logger.warning("LOGGING IS WORKING - WebServerFrontendPlugin")
+        BasePlugin.__init__(self, app, DataStruct)
+        BaseLogging.__init__(self)  
+        #self.logger.warning("LOGGING IS WORKING - WebServerFrontendPlugin")
 
     def main(self):
         '''
         Main function/entry point for the plugin.
         '''
         self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
-        print(f"{self.print_symbol} Loading {Info.name}")
+        self.logger.debug(f"{self.logging_debug_symbol} Loading {Info.name}")
         self.register_routes()
 
     ## Put all the routes here.

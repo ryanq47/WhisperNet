@@ -3,7 +3,7 @@ Handles all encrpytion realted items needed
 '''
 
 import bcrypt
-import SecurityEngine.ErrorDefinitions
+import Utils.ErrorDefinitions
 
 class Hashing:
     def bcrypt_hash(data=None) -> bytes:
@@ -19,7 +19,7 @@ class Hashing:
 
             return hashed_password
         except:
-            raise SecurityEngine.ErrorDefinitions.GENERAL_ERROR
+            raise Utils.ErrorDefinitions.GENERAL_ERROR
         
     # depracated, being weird
     def bcrypt_hash_and_compare(entered_data=None, stored_data=None) -> bool:
@@ -44,4 +44,4 @@ class Hashing:
                 return False
 
         except:
-            raise SecurityEngine.ErrorDefinitions.GENERAL_ERROR
+            raise Utils.ErrorDefinitions.GENERAL_ERROR

@@ -2,26 +2,27 @@ import sqlite3
 import logging
 import inspect
 import Utils.UtilsHandler
-import DataEngine.ErrorDefinitions
+import Utils.ErrorDefinitions
 import Utils.GuardClauses
+from Utils.LoggingBaseClass import BaseLogging
 
 function_debug_symbol = "[^]"
 
 
-class AuthenticationSQLDBHandler:
+class AuthenticationSQLDBHandler(BaseLogging):
     '''
     This DB handler is for Authentication
 
     DB is connected to on initilization of this class.
-
     
     '''
 
     def __init__(self, db_path):
+        super().__init__()
         self.dbconn = None
         self.cursor = None
         self.connect_to_db(db_path)
-        logging.debug(f"[*] Successful DB connection to {db_path}")
+        self.logger.debug(f"[*] Successful DB connection to {db_path}")
 
     def connect_to_db(self, db_path):
         '''
@@ -31,12 +32,12 @@ class AuthenticationSQLDBHandler:
         sets self.curson to the cursor of self.dbconn
         
         '''
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
         try:
             self.dbconn = sqlite3.connect(db_path)
             self.cursor = self.dbconn.cursor()
-            logging.debug(f"[DBHandler.connect_to_db()] Successful connection to: {db_path}")
+            self.logger.debug(f"[DBHandler.connect_to_db()] Successful connection to: {db_path}")
 
 
         except Exception as e:
@@ -49,7 +50,7 @@ class AuthenticationSQLDBHandler:
         
         '''
 
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
         # guard clause to check if username is none.
         if Utils.GuardClauses.guard_t_f_check(username is None, "[*] Username argument is 'None'!"):
@@ -75,7 +76,7 @@ class AuthenticationSQLDBHandler:
 
         Note, may need to add a check for if more than one result is returned
         '''
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
         print(username)
 
@@ -103,7 +104,7 @@ class AuthenticationSQLDBHandler:
         The DB implementation of create_user. This directly accesses, and modifies the DB. Apart of the 
         AuthenticationSQLDBHandler class
         '''
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
         
         try:
             insert_query = f'INSERT OR IGNORE INTO users (username, password_hash) VALUES (?, ?)'
@@ -112,7 +113,7 @@ class AuthenticationSQLDBHandler:
             self.dbconn.commit()
             return True
         except sqlite3.IntegrityError:
-            logging.warning(f"[*] User {username} already exists!")
+            self.logger.warning(f"[*] User {username} already exists!")
 
         except:
             raise DataEngine.ErrorDefinitions.GENERAL_ERROR
@@ -124,7 +125,7 @@ class AuthenticationSQLDBHandler:
         The DB implementation of delete_user. This directly accesses, and modifies the DB. 
         Apart of the AuthenticationSQLDBHandler
         '''
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
         try:
             delete_query = f'DELETE FROM users WHERE username = ?'
@@ -144,7 +145,7 @@ class AuthenticationSQLDBHandler:
         pass: blob
         id: BLOB (not sure if needed)
         """
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
         self.cursor.execute(f'''
         CREATE TABLE IF NOT EXISTS stats (

@@ -87,7 +87,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -153,7 +154,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md",
+                "file": "Server/Modules/Error Handling & Logging/BaseLogging.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -170,7 +171,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md",
+                "file": "Server/Modules/Error Handling & Logging/BaseLogging.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -193,7 +194,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md"
+                "file": "Server/Modules/Error Handling & Logging/BaseLogging.md"
               }
             }
           },
@@ -225,11 +226,11 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "0e750e7f5d61a3f9",
+  "active": "02a70b38215b799c",
   "lastOpenFiles": [
+    "1. Task Tracker/Task Tracker.md",
     "Server/Modules/Error Handling & Logging/BaseLogging.md",
     "Server/Code Tests.md",
-    "1. Task Tracker/Task Tracker.md",
     "1. Task Tracker/Tasks/Code Test Tool.md",
     "1. Task Tracker/Tasks/Request logging.md",
     "1. Task Tracker/Tasks/Plugins.md",

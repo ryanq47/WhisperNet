@@ -25,24 +25,15 @@ try:
 
 
     # My Modules
-    #import tcp_listener
-    #import DataEngine.JsonHandler as json_parser
-    #import DataEngine.JsonHandler
-    #import DataEngine.DataDBHandler
-    #from DataEngine.RSAEncryptionHandler import Encryptor ##  Not needed, switching to SSL
-    #import ClientEngine.ClientHandler
-    #import ClientEngine.MaliciousClientHandler
     import SecurityEngine.AuthenticationHandler
-    #import Comms.CommsHandler
     import Utils.UtilsHandler
-    #import Utils.KeyGen
     import ApiEngine.ConfigHandler
     import Utils.DataObjects
     import DataEngine.ServerDataDbHandler
 
     ## Error modules
-    import ApiEngine.ErrorDefinitions
     import Utils.ErrorDefinitions
+    from Utils.LoggingBaseClass import BaseLogging
 
 except Exception as e:
     print(f"[server.py] Import Error: {e}")
@@ -76,6 +67,8 @@ function_debug_symbol = "[^]"
 Here's the global Debug + Logging settings. 
 Global Debug print to screen will be a setting in the future
 """
+
+'''
 if not quiet:
     global_debug = True
 else:
@@ -87,9 +80,10 @@ logging.basicConfig(level=logging.DEBUG)
 logging.basicConfig(filename='server.log', filemode='a', format='%(asctime)s - %(levelname)s - %(message)s', force=True, datefmt='%Y-%m-%d %H:%M:%S')
 if global_debug:
     logging.getLogger().addHandler(logging.StreamHandler())
+'''
+    
 
-
-class Data:
+class Data(BaseLogging):
     '''
     Initizaling the data objects. See documentation for more info &
     justification on why these exist
@@ -125,69 +119,14 @@ class Data:
     '''
 
     ## Getting all the paths in the log just in case something fails/is off
-    logging.debug(f'[*] PathStruct.sys_path: {path_struct.sys_path}')
+    #self.logger.debug(f'[*] PathStruct.sys_path: {path_struct.sys_path}')
 
-
-def load_plugins(app):
-    plugins_root_dir = os.path.join(sys_path, "PluginEngine/Plugins")
-
-    # Iterate over subdirectories (one for each plugin)
-    for plugin_folder in os.listdir(plugins_root_dir):
-        #print(plugin_folder)
-        plugin_folder_path = os.path.join(plugins_root_dir, plugin_folder)
-
-        # Check if it's a directory
-        if not os.path.isdir(plugin_folder_path):
-            continue
-
-        # Inside each plugin folder, look for Python files with the same name as the folder
-        for plugin_file in os.listdir(plugin_folder_path):
-            if plugin_file.endswith('.py'):
-                print(f"[*] Discovered {plugin_file}")
-
-                plugin_name = plugin_file[:-3]  # Remove the '.py' extension
-                module_path = f"PluginEngine.Plugins.{plugin_folder}.{plugin_name}"
-
-                try:
-                    module = importlib.import_module(module_path)
-
-                    # Find classes defined in the module
-                    classes = inspect.getmembers(module, inspect.isclass)
-
-                    # Look for a class that you want to instantiate
-                    for name, class_obj in classes:
-                        if name != module.Info.classname:
-                            continue
-
-                        # Instantiate the class with 'app' as an argument
-                        plugin_instance = class_obj(app, Data)
-
-                        # Calling main on the class
-                        plugin_instance.main()
-
-                        ## Write to Plugins table
-                        
-                        ## Need to find way to access said path, somethings fucky wucky
-                        p_name = module.Info.name
-                        endpoint = module.Info.endpoint
-                        author = module.Info.author
-                        type = module.Info.plugin_type
-                        loaded = 0
-
-                        Data.server_data_db_handler.write_to_plugins_table(p_name, endpoint, author, type, loaded)
-                        
-
-                except ImportError as e:
-                    print(f"Error importing module {module_path}: {e}")
-                except AttributeError as e:
-                    print(f"AttributeError: {e}")
-
-            
-## Move to own file eventually
-class ControlServer:
+class ControlServer(BaseLogging):
     def __init__(self):
+        super().__init__()
+        ## this could use a refactor
         self.app = Flask(__name__)
-        load_plugins(self.app)
+        self.load_plugins(self.app)
         self.app.config['JWT_SECRET_KEY'] = 'PLEASECHANGEME'  # Change this to your secret key - also move to a config file
         self.jwt = JWTManager(self.app)
         self.config_file_path = Utils.UtilsHandler.load_file(current_path=sys_path, file_path=api_config_profile)
@@ -314,7 +253,7 @@ class ControlServer:
         '''
         try:
             err_404_path = random.choice(self.UrlSc.NOT_FOUND_LIST_404)
-            logging.debug(f"Error: {e}")
+            self.logger.debug(f"Error: {e}")
 
             html = Utils.UtilsHandler.load_file(
                 current_path=sys_path, 
@@ -331,6 +270,62 @@ class ControlServer:
         ## Fallback for if something breaks
         except:
             return "", 200
+
+
+    ## ugly af
+    def load_plugins(self, app):
+        plugins_root_dir = os.path.join(sys_path, "PluginEngine/Plugins")
+
+        # Iterate over subdirectories (one for each plugin)
+        for plugin_folder in os.listdir(plugins_root_dir):
+            #print(plugin_folder)
+            plugin_folder_path = os.path.join(plugins_root_dir, plugin_folder)
+
+            # Check if it's a directory
+            if not os.path.isdir(plugin_folder_path):
+                continue
+
+            # Inside each plugin folder, look for Python files with the same name as the folder
+            for plugin_file in os.listdir(plugin_folder_path):
+                if plugin_file.endswith('.py'):
+                    self.logger.info(f"{self.logging_info_symbol} Discovered:\t {plugin_file}")
+
+                    plugin_name = plugin_file[:-3]  # Remove the '.py' extension
+                    module_path = f"PluginEngine.Plugins.{plugin_folder}.{plugin_name}"
+
+                    try:
+                        module = importlib.import_module(module_path)
+
+                        # Find classes defined in the module
+                        classes = inspect.getmembers(module, inspect.isclass)
+
+                        # Look for a class that you want to instantiate
+                        for name, class_obj in classes:
+                            if name != module.Info.classname:
+                                continue
+
+                            # Instantiate the class with 'app' as an argument
+                            plugin_instance = class_obj(app, Data)
+
+                            # Calling main on the class
+                            plugin_instance.main()
+
+                            ## Write to Plugins table
+                            
+                            ## Need to find way to access said path, somethings fucky wucky
+                            p_name = module.Info.name
+                            endpoint = module.Info.endpoint
+                            author = module.Info.author
+                            type = module.Info.plugin_type
+                            loaded = 0
+
+                            Data.server_data_db_handler.write_to_plugins_table(p_name, endpoint, author, type, loaded)
+                            
+
+                    except ImportError as e:
+                        self.logger.warning(f"{self.logging_warning_symbol} Error importing module {module_path}: {e}")
+                    except AttributeError as e:
+                        self.logger.warning(f"{self.logging_warning_symbol} AttributeError: {e}")
 
 
 if __name__ == "__main__":

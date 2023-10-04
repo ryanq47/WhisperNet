@@ -15,6 +15,7 @@ Last but not least, fill in the "Info" class with the proper fields.
 '''
 ## Don't remove me. This is the base plugin class, parent to all classes for plugins.
 from PluginEngine.Plugins.BasePlugin import BasePlugin
+from Utils.LoggingBaseClass import BaseLogging
 
 ''' Imports
 Go ahead and define any other imports you may need here.
@@ -71,33 +72,29 @@ Options:
     If global_debug is True, the plugin will log to console.
     function_debug_symbol is the symbol to put before each log entry for this plugin. 
 '''
-global_debug = True
-function_debug_symbol = f"[*] {Info.name}:"
-
-logging.basicConfig(level=logging.DEBUG)
-logging.basicConfig(filename=f'{Info.name}.log', filemode='a', format='%(asctime)s - %(levelname)s - %(message)s', force=True, datefmt='%Y-%m-%d %H:%M:%S')
-if global_debug:
-    logging.getLogger().addHandler(logging.StreamHandler())
 
 ################################################
 # The actual code
 ################################################
 
 ## Inherets BasePlugin
-class FlaskAPIListener(BasePlugin):
+class FlaskAPIListener(BasePlugin, BaseLogging):
+    def __init__(self, app, DataStruct):
+        BasePlugin.__init__(self, app, DataStruct)
+        BaseLogging.__init__(self)  
     def main(self):
         '''
         Main function/entry point for the plugin.
         '''
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-        print(f"{self.print_symbol} Loading {Info.name}")
+        logging.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
+        self.logger.debug(f"{self.logging_debug_symbol} Loading {Info.name}")
         self.register_routes()
 
         ## does stuff
 
     ## Put all the routes here.
     def register_routes(self):
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        logging.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
         ## Base Endpoint
         self.app.route(f"/{Info.endpoint}", methods=["POST", "GET"])(self._plugin_function)
     
@@ -105,7 +102,7 @@ class FlaskAPIListener(BasePlugin):
     ## Define your plugin functions here.
 
     def _plugin_function(self):
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        logging.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
         startup_message = (f"Plugin is up!<br>Plugin Name: {Info.name}<br> \
         Plugin Author: {Info.author}<br> \
         Plugin Endpoint: {Info.endpoint}<br>")
