@@ -10,7 +10,7 @@
 
   
 
-(Yet another) Command and Control (C2) Infrastructure Setup Tool. Where I aim to be different (or at least keep this project somewhat relevant) is in its flexibility.
+(Yet another) Command and Control (C2)/ Offensive Infrastructure Tool. Where I aim to be different (or at least keep this project somewhat relevant) is in its flexibility.
 
   
 
