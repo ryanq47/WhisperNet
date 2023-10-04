@@ -122,8 +122,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "68d51c73cdff9b98",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Server/Modules/Error Handling & Logging/BaseLogging.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 9
       }
     ],
     "direction": "vertical"
@@ -189,7 +202,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md",
+                "file": "Server/Modules/Error Handling & Logging/BaseLogging.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -206,7 +219,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md",
+                "file": "Server/Modules/Error Handling & Logging/BaseLogging.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -229,7 +242,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md"
+                "file": "Server/Modules/Error Handling & Logging/BaseLogging.md"
               }
             }
           },
@@ -261,11 +274,15 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "0e750e7f5d61a3f9",
+  "active": "68d51c73cdff9b98",
   "lastOpenFiles": [
+    "Server/Modules/Error Handling & Logging/Error Handling Overview.md",
+    "Server/Modules/Error Handling & Logging/BaseLogging.md",
+    "Server/Plugins/BasePlugin.md",
     "Err Handle class.md",
-    "1. Task Tracker/Tasks/Untitled.md",
     "1. Task Tracker/Task Tracker.md",
+    "Server/Plugins/Parent Classes",
+    "1. Task Tracker/Tasks/Untitled.md",
     "Server/DataBases/ServerData.db.md",
     "Server/DataBases/SecurityData.db.md",
     "1. Task Tracker/Tasks/Plugins.md",
@@ -293,9 +310,6 @@
     "Server/Modules/ApiEngine/Cookies.md",
     "Pasted image 20230929010420.png",
     "Pasted image 20230929010201.png",
-    "1. Task Tracker/Tasks/Docker.md",
-    "Code Test Tool.md",
-    "Untitled 1.md",
     "Server/Modules/Listeners/Listener setup.canvas",
     "Server/Modules/WSGI/WSGI & Flask setup.canvas",
     "Server/Modules/WSGI",
@@ -313,7 +327,6 @@
     "General/Images/Pasted image 20230904190547.png",
     "Server/Security Testing",
     "Server/Modules/ApiEngine/Process Overview.canvas",
-    "Server/Modules/Error Handling",
     "Server/Visual Progress.canvas",
     "Clients/Python Client/Dev Docs/MindMaps/VisProg.canvas",
     "Clients/Python Client/Dev Docs/MindMaps/Plugin Abstraction Layers.canvas"

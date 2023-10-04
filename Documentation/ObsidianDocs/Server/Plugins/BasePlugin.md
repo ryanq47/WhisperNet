@@ -1,0 +1,1 @@
+A base parent plugin for all plugins. Provides an interface for any needed functinos
