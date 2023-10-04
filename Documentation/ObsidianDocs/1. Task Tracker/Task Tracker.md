@@ -2,14 +2,12 @@
 Notes:
 
 
-Currently just established a few new items:
-- ServerData.DB for holding general server items
-- ServerDataDbHandler for interacting with it
-
 
 okay -- Everything *should* be in place now (save for a template for external plugings). So, full steam ahead with developing/focusing on plugins!!! 
 - The last thing to maybe figure out is the path struct stuff - or I can just say fuck it and make the user work from the server.py directory. might be easier  to add a check & say just work in said dir.
 
+Left off - workign on plugins
+- Login for stats. Need to implement JWT after auth (somehow)
 
 
 ```dataview
