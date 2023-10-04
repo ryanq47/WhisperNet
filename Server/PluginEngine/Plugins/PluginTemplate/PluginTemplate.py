@@ -69,12 +69,11 @@ Debugging:
 
 Accessing logger.
     The logger is stored in BaseClass, which inheretes it from BaseLogging. You can access it with
-    'self.logger'. This is just an instance of the logginh function from python, so everything works in it.
+    'self.logger'. This is just an instance of the logging function from python, so everything works in it.
 
     ex: self.logger.debug("mylog") is equivalent to logging.debug("mylog").
 
     This is set up this way so consistent logging can be achieved
-    
 
 '''
 
@@ -82,6 +81,12 @@ Accessing logger.
 ## Inherets BasePlugin
 ## Is a class instance, the __init__ is from BasePlugin.
 class PluginClass(BasePlugin):
+    def __init__(self, app, DataStruct):
+        ## Weird setup, this takes in app, DataStruct, passes it to baseclass, which then init's and sets it to self.app, and self.DataStruct
+        super().__init__(app, DataStruct)
+        ## Getting the logger instance here
+        self.logger = super().logger
+
     def main(self):
         '''
         Main function/entry point for the plugin.

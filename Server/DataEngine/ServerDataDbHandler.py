@@ -18,7 +18,8 @@ class ServerDataDbHandler(Utils.LoggingBaseClass.BaseLogging):
         self.cursor = None
         # hardecoded as this module is not meant to be used for anything else
         self.connect_to_db("DataBases/ServerData.db")
-        
+        self.logger = super().logger
+
     ## DB obs
     def connect_to_db(self, db_name):
         self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")

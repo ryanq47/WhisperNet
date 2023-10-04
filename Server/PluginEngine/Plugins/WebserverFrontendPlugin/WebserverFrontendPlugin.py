@@ -15,7 +15,7 @@ Last but not least, fill in the "Info" class with the proper fields.
 '''
 ## Don't remove me. This is the base plugin class, parent to all classes for plugins.
 from PluginEngine.Plugins.BasePlugin import BasePlugin
-
+from Utils.LoggingBaseClass import BaseLogging
 ''' Imports
 Go ahead and define any other imports you may need here.
 
@@ -63,7 +63,7 @@ I highly recommend you to use the logging module, it makes life a lot easier
 
 Debugging:
 
-    The first instruction in each function is "logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")"
+    The first instruction in each function is "logging.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")"
     This will print the function name and the line number of the function call. It makes it easier to debug. Set the 
     logging level to something other than "DEBUG" to shut this off. It can get quite noisy.
 
@@ -71,31 +71,29 @@ Debugging:
 Options:
 
     If global_debug is True, the plugin will log to console.
-    function_debug_symbol is the symbol to put before each log entry for this plugin. 
+    self.function_debug_symbol is the symbol to put before each log entry for this plugin. 
 '''
-global_debug = True
-function_debug_symbol = f"[*] {Info.name}:"
-
-logging.basicConfig(level=logging.DEBUG)
-logging.basicConfig(filename=f'{Info.name}.log', filemode='a', format='%(asctime)s - %(levelname)s - %(message)s', force=True, datefmt='%Y-%m-%d %H:%M:%S')
-if global_debug:
-    logging.getLogger().addHandler(logging.StreamHandler())
 
 
 ## Inherets BasePlugin
-## Is a class instance, the __init__ is from BasePlugin.
-class WebserverFrontend(BasePlugin):
+class WebserverFrontend(BasePlugin, BaseLogging):
+    ## Weird setup, this takes in app, DataStruct, passes it to baseclass, which then init's and sets it to self.app, and self.DataStruct
+    def __init__(self, app, DataStruct):
+        super().__init__(app, DataStruct)
+        ## Getting the logger instance here
+        self.logger = super().logger
+
     def main(self):
         '''
         Main function/entry point for the plugin.
         '''
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
         print(f"{self.print_symbol} Loading {Info.name}")
         self.register_routes()
 
     ## Put all the routes here.
     def register_routes(self):
-        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
         self.app.route(f'/stats', methods=['GET'])(self.login_page)
         self.app.route(f'/{Info.endpoint}/dashboard', methods=['GET'])(self.dashboard)
         self.app.route(f'/{Info.endpoint}/login', methods=['POST'])(self.login)
