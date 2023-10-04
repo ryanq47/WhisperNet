@@ -25,7 +25,7 @@ import logging
 import inspect
 #from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
 #from flask import Flask, jsonify, request, send_from_directory, render_template, Response
-from flask import jsonify
+from flask import jsonify, send_from_directory
 
 
 ################################################
@@ -92,8 +92,6 @@ class FileHost(BasePlugin, BaseLogging):
         # Just in case you need to test logging/it breaks...
         #self.logger.warning("LOGGING IS WORKING - <PLUGINNAME>")
 
-
-
     def main(self):
         '''
         Main function/entry point for the plugin.
@@ -105,15 +103,34 @@ class FileHost(BasePlugin, BaseLogging):
     ## Put all the routes here.
     def register_routes(self):
         self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
+        self.app.route(f'/{Info.endpoint}', methods = ["GET"])(self.filehost_base_directory)
         self.app.route(f'/{Info.endpoint}/command', methods=["GET"])(self.command_endpoint)
+        self.app.route(f'/{Info.endpoint}/<path:filename>', methods = ["GET"])(self.filehost_download_file)
+        self.app.route(f'/{Info.endpoint}/upload', methods = ["GET"])(self.filehost_upload_file)
 
-    
 
+    # for controlling ext plugin
     def command_endpoint(self):
         json = {
             "command": "stuff"
         }
 
         return jsonify(json)
+    
+    def filehost_download_file(self, filename):
+        print(f"Filename; {filename}")
+        return send_from_directory(
+            "PluginEngine/Plugins/FileHostPlugin/Files",
+            filename,
+            as_attachment=True)
 
 
+    def filehost_upload_file(self):
+        return "not implemented."
+
+    def filehost_base_directory(self):
+        '''
+        eventually.. if not auth then re-auth
+        '''
+
+        return "<center> Table with stuff & files eventually </center>"
