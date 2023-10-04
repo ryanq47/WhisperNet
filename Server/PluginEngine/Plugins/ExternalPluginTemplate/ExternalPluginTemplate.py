@@ -81,13 +81,14 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
         '''
         self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
         self.logger.debug(f"{self.logging_debug_symbol} Loading {Info.name}")
+
+        self.control_server_url = "https://www.google.com"
+
         while True:
-            self.control_server_url = "https://www.google.com"
+            self.get_command_loop()
             ## using super here to access the functions in the parent. Could call it by name, 
             ## buy would hav to do ExternalBasePlugin.get_command(self) instead
-            command = super().get_command()
-            print(len(command))
-            sleep(5)
+
     
     ## Define your plugin functions here.
     def plugin_function(self):
@@ -98,6 +99,11 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
 
         return startup_message
 
+
+    def get_command_loop(self):
+        command = super().get_command()
+        logging.debug(f"{self.logging_debug_symbol}")
+        ## do stuff with command - build out command tree?
 
 if __name__ == "__main__":
     exteral_plugin = ExternalPluginClass()
