@@ -27,6 +27,7 @@ import sqlite3
 from flask import render_template, request, redirect
 
 import DataEngine.ServerDataDbHandler
+import SecurityEngine.AuthenticationHandler
 
 
 
@@ -115,9 +116,6 @@ class WebserverFrontend(BasePlugin, BaseLogging):
         if not self.guard_db_connection():
             self.connect_to_db()
 
-
-
-
         plugin_data = self.datadb_instance.retrieve_plugins_from_table(cursor = self.cursor)
         #print(plugin_data)
 
@@ -144,14 +142,18 @@ class WebserverFrontend(BasePlugin, BaseLogging):
         username = request.form['username']
         password = request.form['password']
 
-        # Add your authentication logic here (e.g., checking credentials)
-        # For this example, we'll simply print the received data.
-        #print(f'Username: {username}, Password: {password}')
-
         ## LOGIN LOGIC HERE
 
-        # You can redirect the user to a different page after login, for example:
-        return redirect(f'{Info.endpoint}/dashboard')
+        if SecurityEngine.AuthenticationHandler.Authentication.authentication_eval(
+            username = username,
+            password = password
+        ):
+            
+            ## need to issue JWT tokens here too
+
+            return redirect(f'{Info.endpoint}/dashboard')
+        else:
+            return render_template('webserverfrontendplugin-index.html')
     
     def connect_to_db(self):
         db_name = "DataBases/ServerData.db"

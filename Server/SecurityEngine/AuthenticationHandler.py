@@ -40,9 +40,10 @@ class Authentication(BaseLogging):
 
         print(f"User: {username}")
 
-        server_absolute_path = path_struct.sys_path
+        #server_absolute_path = path_struct.sys_path
         db_relative_path = "DataBases/users.db"
-        db_absolute_path = os.path.join(server_absolute_path, db_relative_path)
+        db_absolute_path = db_relative_path
+        #db_absolute_path = os.path.join(server_absolute_path, db_relative_path)
 
         try:
             db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
