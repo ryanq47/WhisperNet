@@ -1,54 +1,61 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+<!-- Header -->
 
 <head>
     <title>My First Bootstrap Page</title>
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- My stylesheet -->
 </head>
 
 <body>
+    <!-- Page Heading -->
     <h1 class="text-primary">
         <center>
             {{ servername }}
         </center>
     </h1>
 
+    <!-- Bootstrap Javascript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <div class="container-lg" style="margin-left: 200px;">
+    <!-- Main Content Container -->
+    <div class="container-lg">
         <h2>Header 2</h2>
         <p>Stuff Stuff Stuff</p>
     </div>
 
+    <!-- Hosted Files Table Container -->
     <div class="container-lg">
-        <h2>Loaded Plugins</h2>
+        <h2>Hosted Files</h2>
         <table id="data-table" class="table table-responsive table-striped">
             <thead>
                 <tr>
-                    <th>Plugin</th>
-                    <th>Author</th>
-                    <th>Endpoint</th>
+                    <th>File Name</th>
+                    <th>Contents (first 40 bytes)</th>
                 </tr>
             </thead>
             <tbody>
-                {% for plugin in plugins %}
+                {% for file in files %}
                 <tr>
-                    <td>{{ plugin.name }}</td>
-                    <td>{{ plugin.author }}</td>
-                    <td>{{ plugin.endpoint }}</td>
+                    <td>{{ file.name }}</td>
+                    <td>{{ file.contents }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 
+    <!-- Footer -->
     <footer style="color: red">
         <center>README! This PLUGIN IS IN DEVELOPMENT. THERE IS NO GUARANTEE THAT THIS IS SECURE. USE AT YOUR OWN RISK</center>
     </footer>
 </body>
 
 </html>
+
 {% endblock %}

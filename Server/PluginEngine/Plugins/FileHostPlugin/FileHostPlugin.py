@@ -16,6 +16,7 @@ Last but not least, fill in the "Info" class with the proper fields.
 ## Don't remove me. This is the base plugin class, parent to all classes for plugins.
 from PluginEngine.Plugins.BasePlugin import BasePlugin
 from Utils.LoggingBaseClass import BaseLogging
+import os
 
 ''' Imports
 Go ahead and define any other imports you may need here.
@@ -25,7 +26,7 @@ import logging
 import inspect
 #from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
 #from flask import Flask, jsonify, request, send_from_directory, render_template, Response
-from flask import jsonify, send_from_directory
+from flask import jsonify, send_from_directory, render_template
 
 
 ################################################
@@ -133,4 +134,36 @@ class FileHost(BasePlugin, BaseLogging):
         eventually.. if not auth then re-auth
         '''
 
-        return "<center> Table with stuff & files eventually </center>"
+        servername = "FileHost Plugin"
+
+        list_of_files = []
+
+        ## populate the list of plugins from the database
+        for file in os.listdir("PluginEngine/Plugins/FileHostPlugin/Files/"):
+            '''
+            Data comes back in a tuple:
+            [('FlaskAPIListnener', '/flasklistener', 'ryanq.47', 'Builtin', 0), (more data)]
+            This makes it slightly less readable for creating the dict below. Also,
+            should prolly make a dedicated function for this.
+            '''
+            try:
+                ## chagne to join
+                with open(f"PluginEngine/Plugins/FileHostPlugin/Files/{file}", "rb") as f:
+                    data = f.read(40)
+
+                dict_ = {
+                    'name': file,
+                    'contents': data,
+                }
+
+            except Exception as e: 
+                dict_ = {
+                    'name': f"ERROR: {e}",
+                    'contents': '',
+                }
+            finally:
+                list_of_files.append(dict_)
+
+        return render_template('filehost-dashboard.html', 
+                            files=list_of_files,
+                            servername = servername)

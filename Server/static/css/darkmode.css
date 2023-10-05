@@ -1,0 +1,139 @@
+/* Set a global font family and background image */
+* {
+    font-family: monospace;
+    background-image: url("../images/fp-dots.png"); /* Adjust the path as needed */
+    /* This one looks kinda cool: height: 100%; */
+    background-color: black;
+    color: white;
+    
+}
+
+:root {
+    --accent-color: rgba(0, 237, 12, 0.678);
+  }
+
+/* Set background color and image for body and HTML elements */
+body, html {
+    /* height: 100%; */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    color: white;
+}
+
+
+/* Left-aligned navbar */
+.left-aligned-navbar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 150px;
+    background-color: rgba(255, 255, 255, 0.122);
+    padding: 10px;
+    flex-direction: column;
+    border-radius: 5px;
+
+  }
+
+/* Text IN navbar */
+.left-aligned-navbar a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+.left-aligned-navbar a:hover {
+    background-color: var(--accent-color);
+}
+
+/* Style for the login container */
+.login-container {
+    font: sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.center-content {
+    text-align: center;
+}
+
+/* Style input fields */
+.form-group input[type="text"],
+.form-group input[type="password"] {
+    width: 250px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Style labels */
+.form-group label {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Style the login button */
+button[type="submit"] {
+    background-color: blue;
+    color: #fff;
+    /* Add other button styles as needed */
+}
+
+
+/* Container-lG*/
+/*This fixes the indent issue, or another method is to just remove the 'class="container-lg" from base.html*/
+.container-lg {
+    position: fixed;
+    left: 200px;
+    top: 25px;
+    bottom: 0;
+    width: 100%;
+  }
+
+
+/*Dashobard stuff*/
+
+/* Add some padding and space to table cells */
+#data-table td, #data-table th {
+    padding: 2px;
+    text-align: left;
+    color:white;
+    
+}
+
+#data-table th {
+    background-color: var(--accent-color);
+    /*background-color: rgba(0, 237, 12, 0.678);*/
+    color: white;
+}
+
+/* Style alternating rows */
+#data-table tbody tr:nth-child(even) {
+    /*background-color: rgba(0, 237, 12, 0.189);*/
+    background-color: var(--accent-color);
+}
+
+/*The container containing thebuttons */
+#color-change-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: white;
+  }
+
+  /* The actual buttons themselves*/
+.change-color-button {
+    color: white;
+    border-radius: 4px;
+    background-color: var(--accent-color);
+
+}

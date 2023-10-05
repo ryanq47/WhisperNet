@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Page Title</title>
+    <!-- Local CSS -->
+
+    <link rel="stylesheet" href="../static/css/darkmode.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- Bootstrap NavBar -->
+    <nav class="left-aligned-navbar">
+        <h4>WhisperNet</h4>
+        <a href="/stats/dashboard">Home</a>
+        <a href="/filehost">FileHost</a>
+        <a href="#">For i in plugins... put those here</a>
+
+      </nav>
+
+
+    <!-- Content -->
+    <div class="container-lg">
+        {% block content %}{% endblock %}
+    </div>
+
+
+    <!-- Bootstrap JS scripts (include jQuery and Popper.js dependencies) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+<footer>
+    <div id="color-change-container">
+
+        <p> Change accent color: </p>
+        <button class="change-color-button" data-color="#B8232A">Red</button>
+        <button class="change-color-button" data-color="#40A4FF">Blue</button>
+        <button class="change-color-button" data-color="#149414">Green</button>
+      
+        <script>
+          const changeColorButtons = document.querySelectorAll('.change-color-button');
+      
+          changeColorButtons.forEach(button => {
+            button.addEventListener('click', () => {
+              const color = button.getAttribute('data-color');
+              document.documentElement.style.setProperty('--accent-color', color);
+            });
+          });
+        </script>
+      
+      </div>
+</footer>
+
+</html>
