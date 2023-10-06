@@ -1,0 +1,75 @@
+/* Created by me... then revised by chatGPT to look somewhat modern */
+
+/* Reset some default styles for consistency */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Define grid areas */
+  .header { grid-area: header; }
+  .nodesblock { grid-area: nodesblock; }
+  .fileinteractblock { grid-area: fileinteractblock; }
+  .logblock { grid-area: logblock; }
+  .filesblock { grid-area: filesblock; }
+  .footer { grid-area: footer; }
+  .navbar { grid-area: navbar; }
+  
+  /* Define the grid container */
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas:
+      'header header header header header header'
+      'logblock logblock logblock fileinteractblock fileinteractblock fileinteractblock'
+      'logblock logblock logblock nodesblock nodesblock nodesblock'
+      'filesblock filesblock filesblock filesblock filesblock filesblock'
+      'footer footer footer footer footer footer';
+    gap: 20px;
+    background-color: #f9f9f9; /* Light background color */
+    padding: 20px;
+    margin-left: 150px;
+    height: 100vh;
+  }
+  
+  /* Style for the grid items */
+  .grid-container > div {
+    background-color: #fff; /* White background color */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Drop shadow for cards */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+    color: #333; /* Text color */
+  }
+  
+  /* Define specific styles for the footer */
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background-color: #333; /* Dark footer background */
+    color: #fff; /* Text color */
+    padding: 10px;
+  }
+  
+  /* Flexbox container styles */
+  .logblock, .fileinteractblock, .nodesblock, .filesblock, .header {
+    min-height: 200px;
+    background-color: var(--accent-color); /* Light gray background */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px;
+  }
+  
+  /* Sub-element styles */
+  .logblock > *,  .fileinteractblock > *, .nodesblock > *, .filesblock > * {
+    background-color: var(--accent-color); /* Light gray background */
+    padding: 10px;
+    text-align: left;
+  }
+  
+  

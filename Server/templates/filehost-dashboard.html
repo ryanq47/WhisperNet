@@ -9,28 +9,26 @@
     <title>My First Bootstrap Page</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- My stylesheet -->
+    <!-- Stylesheet for plugin -->
+    <link href="static/css/filehost-layout.css" rel="stylesheet">
+
 </head>
 
 <body>
-    <!-- Page Heading -->
-    <h1 class="text-primary">
-        <center>
-            {{ servername }}
-        </center>
-    </h1>
+
 
     <!-- Bootstrap Javascript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Main Content Container -->
-    <div class="container-lg">
-        <h2>Header 2</h2>
-        <p>Stuff Stuff Stuff</p>
-    </div>
 
+    <h1 class="header">
+
+        <center>
+            FileHost Plugin
+        </center>
+    </h1>
     <!-- Hosted Files Table Container -->
-    <div class="container-lg">
+    <div class="filesblock container-lg">
         <h2>Hosted Files</h2>
         <table id="data-table" class="table table-responsive table-striped">
             <thead>
@@ -50,8 +48,61 @@
         </table>
     </div>
 
+    <div class="nodesblock container-lg">
+        <p>Nodes</b>
+
+        <p>192.168.0.10 - Up - Synced Successful at 17:00.25</p>
+        <p>192.168.0.10 - Up - Synced Successful at 17:00.25</p>
+        <p>192.168.0.10 - Down - Synced Failed at 17:00.25</p>
+        <p>192.168.0.10 - Up - Synced Successful at 17:00.25</p>
+        <p>192.168.0.10 - Up - Synced Successful at 17:00.25</p>
+        <p>192.168.0.10 - Up - Synced Successful at 17:00.25</p>
+        <p>192.168.0.10 - Up - Synced Successful at 17:00.25</p>
+        <p>192.168.0.10 - Up - Synced Successful at 17:00.25</p>
+        <p>192.168.0.10 - Up - Synced Successful at 17:00.25</p>
+        <p>192.168.0.10 - Up - Synced Successful at 17:00.25</p>
+
+    </div>
+
+    <div class="fileinteractblock">
+        <p>fileinteractblock</p>
+        <button type="button">Upload</button>
+
+
+
+    </div>
+
+    <div class="logblock">
+        <h2>File Access Logs</h2>
+        <p>IP -- File Name -- TIME:DATE -- Hosting Server</p>
+        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+
+
+    </div>
+
+
+
     <!-- Footer -->
-    <footer style="color: red">
+    <footer style="color: red", class = "footer">
         <center>README! This PLUGIN IS IN DEVELOPMENT. THERE IS NO GUARANTEE THAT THIS IS SECURE. USE AT YOUR OWN RISK</center>
     </footer>
 </body>

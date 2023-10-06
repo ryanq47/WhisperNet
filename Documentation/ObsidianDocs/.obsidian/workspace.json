@@ -86,8 +86,24 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "b5c23ddf1d482db0",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "Untitled.canvas",
+                "viewState": {
+                  "x": 281,
+                  "y": 26,
+                  "zoom": 0
+                }
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -153,7 +169,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md",
+                "file": "Untitled.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -170,7 +186,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md",
+                "file": "Untitled.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -193,7 +209,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md"
+                "file": "Untitled.canvas"
               }
             }
           },
@@ -225,10 +241,11 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "0e750e7f5d61a3f9",
+  "active": "b5c23ddf1d482db0",
   "lastOpenFiles": [
-    "Server/Modules/Error Handling & Logging/BaseLogging.md",
     "1. Task Tracker/Task Tracker.md",
+    "Untitled.canvas",
+    "Server/Modules/Error Handling & Logging/BaseLogging.md",
     "Server/Code Tests.md",
     "1. Task Tracker/Tasks/Code Test Tool.md",
     "1. Task Tracker/Tasks/Request logging.md",
@@ -254,7 +271,6 @@
     "Server/Modules/Listeners - Dep/Local Listeners.md",
     "Server/Modules/Listeners - Dep/Listener setup.canvas",
     "Server/Modules/2.DataEngine/DBHandler.py/General.md",
-    "Server/Modules/ApiEngine/API General Overview.md",
     "Server/Modules/ApiEngine/Process Overview.canvas",
     "General/Images/Pasted image 20231003212206.png",
     "Server/Plugins/Parent Classes",
@@ -280,7 +296,6 @@
     "General/Images/Pasted image 20230904190547.png",
     "Server/Security Testing",
     "Server/Visual Progress.canvas",
-    "Clients/Python Client/Dev Docs/MindMaps/VisProg.canvas",
-    "Clients/Python Client/Dev Docs/MindMaps/Plugin Abstraction Layers.canvas"
+    "Clients/Python Client/Dev Docs/MindMaps/VisProg.canvas"
   ]
 }

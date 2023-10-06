@@ -91,6 +91,7 @@ button[type="submit"] {
 
 /* Container-lG*/
 /*This fixes the indent issue, or another method is to just remove the 'class="container-lg" from base.html*/
+/*
 .container-lg {
     position: fixed;
     left: 200px;
@@ -99,6 +100,9 @@ button[type="submit"] {
     width: 100%;
   }
 
+  Commenting out for now, using other methods to grid
+
+  */
 
 /*Dashobard stuff*/
 
@@ -137,3 +141,4 @@ button[type="submit"] {
     background-color: var(--accent-color);
 
 }
+
