@@ -143,7 +143,7 @@ class WebserverFrontend(BasePlugin, BaseLogging):
         password = request.form['password']
 
         ## LOGIN LOGIC HERE
-
+        # for API stuff
         if SecurityEngine.AuthenticationHandler.Authentication.authentication_eval(
             username = username,
             password = password

@@ -75,7 +75,7 @@
                     <tr>
                         <td> 127.0.0.1 </td>
                         <td> Up </td>
-                        <td> Successful </td>
+                        <td> Waiting... </td>
                         <td> 17:01:25 - 10-01-23 </td>
                     </tr>
                 </tbody>
@@ -87,13 +87,16 @@
 
     <div class="fileinteractblock">
         <p>fileinteractblock</p>
-        <button type="button">Upload</button>
+        <!-- Form handler for the button -->
+        <form action="/filehost/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <button type="submit">Upload</button>
+        </form>
 
     </div>
 
     <div class="logblock">
         <h2>File Access Logs</h2>
-
         <table id="data-table", class="table">
             <thead>
                 <tr>

@@ -57,6 +57,15 @@ Boom, you now need an account/authorization to access this endpoint.
 #from flask_jwt_extended import jwt_required
 
 ################################################
+# Input Validation
+################################################
+'''
+Hey. You. PUT FUCKING INPUT VALIDATION ON ALL THE FORMS (if applicable...). 
+It's not hard, plus it keeps your stuff safe. Please.
+
+'''
+
+################################################
 # Logging & Debugging
 ################################################
 ''' ## Logging & Debugging ##

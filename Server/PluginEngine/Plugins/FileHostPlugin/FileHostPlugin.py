@@ -27,6 +27,11 @@ import inspect
 #from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
 #from flask import Flask, jsonify, request, send_from_directory, render_template, Response
 from flask import jsonify, send_from_directory, render_template
+from flask_login import LoginManager, login_required
+'''
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, FileField
+from wtforms.validators import DataRequired, Length'''
 
 
 ################################################
@@ -56,6 +61,24 @@ Boom, you now need an account/authorization to access this endpoint.
 
 '''
 #from flask_jwt_extended import jwt_required
+
+################################################
+# Input Validation
+################################################
+'''
+Hey. You. PUT FUCKING INPUT VALIDATION ON ALL THE FORMS (if applicable...). 
+It's not hard, plus it keeps your stuff safe. Please.
+
+'''
+
+'''
+class FileUploadForm(FlaskForm):
+    file_upload = FileField('File Upload')  # Add a FileField for file uploads
+    submit = SubmitField('Submit')
+
+## Globally accessible forms.
+class Forms:
+    file_upload_form = FileUploadForm()'''
 
 ################################################
 # Logging & Debugging
@@ -107,7 +130,7 @@ class FileHost(BasePlugin, BaseLogging):
         self.app.route(f'/{Info.endpoint}', methods = ["GET"])(self.filehost_base_directory)
         self.app.route(f'/{Info.endpoint}/command', methods=["GET"])(self.command_endpoint)
         self.app.route(f'/{Info.endpoint}/<path:filename>', methods = ["GET"])(self.filehost_download_file)
-        self.app.route(f'/{Info.endpoint}/upload', methods = ["GET"])(self.filehost_upload_file)
+        self.app.route(f'/{Info.endpoint}/upload', methods = ["POST"])(self.filehost_upload_file)
 
 
     # for controlling ext plugin
@@ -127,8 +150,32 @@ class FileHost(BasePlugin, BaseLogging):
 
 
     def filehost_upload_file(self):
-        return "not implemented."
+        '''
+        Endpoint for uploading files to the FileHost plugin. 
+        Not Secure yet.
+        
 
+        dev: needs a refactor/rething. Maybe throw forms in a stataic class
+        '''
+        return "temp"
+        ## Note, CSRF is missing is issue
+        '''
+        try:
+            
+            if Forms.file_upload_form.validate_on_submit():
+                uploaded_file = Forms.file_upload_form.file_upload.data
+
+                if uploaded_file:
+                    uploaded_file.save('PluginEngine/Plugins/FileHostPlugin/Files/' + uploaded_file.filename)
+                    return "success"
+
+            return render_template('filehost-dashboard.html', form=Forms.file_upload_form)
+
+        except Exception as e: 
+            print(e)
+        '''
+
+    @login_required
     def filehost_base_directory(self):
         '''
         eventually.. if not auth then re-auth

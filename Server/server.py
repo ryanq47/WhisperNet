@@ -20,8 +20,13 @@ try:
     import sys
     import time
     import importlib
-    from flask import Flask, jsonify, request, send_from_directory, render_template, Response
+    from flask import Flask, jsonify, request, send_from_directory, render_template, Response, redirect
     from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
+    #from flask_wtf.csrf import CSRFProtect  # Import CSRFProtect
+    from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+
+
+
 
 
     # My Modules
@@ -38,6 +43,9 @@ try:
 except Exception as e:
     print(f"[server.py] Import Error: {e}")
     exit()
+
+
+login_manager = LoginManager()
 
 """
 Argparse settings first in order to be able to change anything
@@ -122,10 +130,10 @@ class Data(BaseLogging):
     #self.logger.debug(f'[*] PathStruct.sys_path: {path_struct.sys_path}')
 
 class ControlServer(BaseLogging):
-    def __init__(self):
+    def __init__(self, app):
         super().__init__()
+        self.app = app
         ## this could use a refactor
-        self.app = Flask(__name__)
         self.load_plugins(self.app)
         self.app.config['JWT_SECRET_KEY'] = 'PLEASECHANGEME'  # Change this to your secret key - also move to a config file
         self.jwt = JWTManager(self.app)
@@ -136,37 +144,10 @@ class ControlServer(BaseLogging):
 
 
     def init_routes(self):
-        self.app.route("/", methods=["GET"])(self.no_subdir)
-        self.app.route("/home_base", methods=["GET"])(self.no_subdir)
-        self.app.route(f"/{self.UrlSc.AGENT_BASE_ENDPOINT}", methods=["GET"])(self.agent_base)
-        self.app.route(f"/{self.UrlSc.SERVER_LOGIN_ENDPOINT}", methods=["POST"])(self.server_login)
-        self.app.route(f"/{self.UrlSc.SERVER_BASE_ENDPOINT}", methods=["GET"])(self.server_base)
-        self.app.route(f"/{self.UrlSc.UPLOAD_BASE_ENDPOINT}/<path:path>", methods=["GET"])(self.download_file)
-        self.app.route(f"/{self.UrlSc.UPLOAD_BASE_ENDPOINT}/<filename>", methods=["POST"])(self.post_file)
-        self.app.route(f"/status/listeners", methods=["POST"])(self.status)
-        self.app.route('/status')(self.index)
+        self.app.route("/", methods=["GET"])(self.login_page)
+        self.app.route('/login', methods=["POST"])(self.web_user_login)
+        self.app.route('/logout')(self.web_user_logout)
 
-    def no_subdir(self):
-        try:
-            # Yaml load code here
-            ## load random choice from list
-            html_file_path = random.choice(self.UrlSc.HOMEPAGE_LIST)
-
-            # open file
-            html = Utils.UtilsHandler.load_file(
-                current_path = sys_path, 
-                file_path = html_file_path, 
-                return_path = False )
-            # return HTML
-            return html
-            ## oh my god it worked on the first time
-
-        except Exception:
-            self.page_not_found()
-    
-    ## for agents checking in
-    def agent_base(self):
-        return "agent_base"
     
     ## login
     def server_login(self):
@@ -186,55 +167,6 @@ class ControlServer(BaseLogging):
             return self.page_not_found()
 
 
-    # commands to control the server
-    @jwt_required()
-    def server_base(self):
-        try:
-            return "server_base"
-        except:
-            self.page_not_found()
-    
-
-    ## File Section
-    # https://docs.faculty.ai/user-guide/apis/flask_apis/flask_file_upload_download.html
-    # by default, http://ip/files/FILENAME
-    def download_file(self, path):
-        try:
-            ## as attachment downloads it, instead of displaying in browser
-            return send_from_directory(self.UrlSc.UPLOAD_FOLDER, path, as_attachment=True)
-        except Exception as e:
-            #print(e)
-            return self.page_not_found()
-
-    @jwt_required()
-    def post_file(self, filename):
-        """Upload a file."""
-
-        if "/" in filename:
-            # Return 400 BAD REQUEST
-            return "No Subdirectories allowed", 400
-        
-        Utils.UtilsHandler.write_file(
-            current_path=sys_path,
-            file_path=self.UrlSc.UPLOAD_FOLDER + "/" + filename,
-            data = request.data
-        )
-
-        # Return 201 CREATED
-        return "", 201
-    def status(self):
-        pass
-    
-    def index(self):
-        dummy_json_data = {
-            "status": "up",
-            "message": "Website is up and running!",
-        }
-
-        #path = os.path.join(sys_path, "ApiEngine\html\statuspage\statuspage.html")
-
-        # Render the HTML template with initial JSON data
-        return render_template('index.html', json_data=dummy_json_data)
 
     '''
     ## any bad auth returns this
@@ -270,7 +202,6 @@ class ControlServer(BaseLogging):
         ## Fallback for if something breaks
         except:
             return "", 200
-
 
     ## ugly af
     def load_plugins(self, app):
@@ -328,6 +259,48 @@ class ControlServer(BaseLogging):
                         self.logger.warning(f"{self.logging_warning_symbol} AttributeError: {e}")
 
 
+    ## User login stuff for the WEB interface
+    def login_page(self):
+        return render_template('builtin-login.html')
+    
+    def web_user_login(self):
+        '''
+        Logic for login here
+        '''
+
+        username = request.form['username']
+        password = request.form['password']
+
+        ## Check user against DB
+        if SecurityEngine.AuthenticationHandler.Authentication.authentication_eval(
+            username = username,
+            password = password
+        ):
+            ## Might be prone to injection
+            user = User(username)
+            login_user(user)
+            #return 'Logged in successfully'
+            return redirect("/filehost")
+        else:
+            return render_template('builtin-login.html')
+
+    
+    def web_user_logout(self):
+        logout_user()
+        return 'Logged out successfully'
+
+## no idea what this actually does, I just know that it's needed
+@login_manager.user_loader
+def load_user(user_id):
+    ## User Logic here?
+    user = User(user_id)
+    return user
+
+class User(UserMixin):
+    def __init__(self, id):
+        self.id = id
+
+
 if __name__ == "__main__":
     ## Init data structures
 
@@ -337,9 +310,20 @@ if __name__ == "__main__":
     #ControlServer.app.run(host="0.0.0.0", port=5000, debug=False)
     try:
         from waitress import serve
-        control_server = ControlServer()
-        #serve(control_server.app, host=ip, port=port)
-        control_server.app.run(host="0.0.0.0", port=5000, debug=True)
+
+        app = Flask(__name__)
+
+        control_server = ControlServer(app)
+        #serve(app, host=ip, port=port)
+        app.secret_key = 'notasecretkey'
+
+        ## Web Based login
+
+        login_manager.init_app(app)
+
+
+        app.run(host="0.0.0.0", port=5000, debug=True)
+
     except OSError as oe:
         print(f"OS Error: {oe}")
     except Exception as e:
