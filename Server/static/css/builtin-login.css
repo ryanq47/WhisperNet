@@ -1,0 +1,72 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global styles */
+body {
+    font-family: sans-serif;
+    background-image: url("../images/fp-dots.png"); /* Adjust the path as needed */
+    background-color: black;
+    color: white;
+}
+
+/* Set background color and image for body and HTML elements */
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+/* Style for the login container */
+.login-container {
+    font-family: sans-serif;
+    color: white;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Use viewport height for full-screen login */
+    width: 300px;
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 5px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+/* Style the login form */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Style the login inputs */
+input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+/* Style the login button */
+button[type="submit"] {
+    background-color: rgb(87, 87, 87);
+    color: white;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+/* Style the login button on hover */
+button[type="submit"]:hover {
+    background-color: lightblue;
+}

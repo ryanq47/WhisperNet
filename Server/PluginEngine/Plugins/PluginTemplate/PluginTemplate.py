@@ -47,14 +47,16 @@ class Info:
 # Authenitcation settings
 ################################################
 '''
-## If you want JWT tokens on your endpoint, uncomment the lines below
+## To lock endpoints behind a login, do this:
 
-Then, add '@jwt_required' decorator to your functions you want protected. 
+Add '@login_required' decorator to your functions you want protected. 
 
 Boom, you now need an account/authorization to access this endpoint.
+These users are the same throughout the entire program, so all you have to do 
+is add that decorator, and the following imports, and you are good to go. 
 
 '''
-#from flask_jwt_extended import jwt_required
+#from flask_login import login_required
 
 ################################################
 # Input Validation
