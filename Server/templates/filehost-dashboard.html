@@ -12,7 +12,7 @@
     
     <!-- Stylesheet for plugin -->
     <!-- <link href="static/css/filehost-layout-light.css" rel="stylesheet"> -->
-    <link href="static/css/filehost-layout-dark.css" rel="stylesheet">
+    <link id = "stylesheet" href="static/css/filehost-layout-dark.css" rel="stylesheet">
 
     <!-- reference stylesheet -->
     <!-- <link href="static/css/filehost-layout-light.css" rel="stylesheet"> -->
@@ -131,6 +131,19 @@
     <!-- Footer -->
     <footer style="color: red", class = "footer">
         <center>README! This PLUGIN IS IN DEVELOPMENT. THERE IS NO GUARANTEE THAT THIS IS SECURE. USE AT YOUR OWN RISK</center>
+    
+        <button onclick="setStylesheet('../static/css/filehost-layout-dark.css')">Dark</button>
+        <button onclick="setStylesheet('../static/css/filehost-layout-light.css')">Light</button>
+        
+        <script>
+            // Function to set the active stylesheet
+            function setStylesheet(stylesheetName) {
+                const stylesheet = document.getElementById("stylesheet");
+                stylesheet.setAttribute("href", stylesheetName);
+            }
+        </script>
+    
+    
     </footer>
 </body>
 
