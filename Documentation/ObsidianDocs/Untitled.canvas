@@ -1,12 +1,19 @@
 {
 	"nodes":[
-		{"id":"dd0e7f1bf845978f","x":-320,"y":-400,"width":980,"height":880,"type":"text","text":""},
-		{"id":"0e182684e75fcfa6","x":-300,"y":-380,"width":140,"height":840,"type":"text","text":"Menu\n\nstuff\n\nstuff"},
-		{"id":"ea5ea816a8cbf044","x":-140,"y":-380,"width":780,"height":60,"type":"text","text":"Header"},
-		{"id":"c9ce385e70ea1f43","x":-140,"y":200,"width":780,"height":260,"type":"text","text":"filesblock\nFiles?\n\nMyFile.txt -- 40kb -- MyFileContents..."},
-		{"id":"7aae854fdfacace3","x":-140,"y":-300,"width":390,"height":480,"type":"text","text":"[ NodesBlock ]\n\nNodes?\n\n192.168.0.10 - Up - Stuff - Synced Successful"},
+		{"id":"dd0e7f1bf845978f","type":"text","text":"","x":-320,"y":-400,"width":980,"height":880},
+		{"id":"0e182684e75fcfa6","type":"text","text":"Menu\n\nstuff\n\nstuff","x":-300,"y":-380,"width":140,"height":840},
+		{"id":"ea5ea816a8cbf044","type":"text","text":"Header","x":-140,"y":-380,"width":780,"height":60},
+		{"id":"c9ce385e70ea1f43","type":"text","text":"filesblock\nFiles?\n\nMyFile.txt -- 40kb -- MyFileContents...","x":-140,"y":200,"width":780,"height":260},
+		{"id":"7aae854fdfacace3","type":"text","text":"[ NodesBlock ]\n\nNodes?\n\n192.168.0.10 - Up - Stuff - Synced Successful","x":-140,"y":-300,"width":390,"height":480},
 		{"id":"2bbf31ba368476e7","type":"text","text":"fileinteractblock\nUpload Files Area/Button","x":250,"y":-300,"width":390,"height":240},
-		{"id":"b385f1676fe61901","x":250,"y":-60,"width":390,"height":240,"type":"text","text":"logblock\nOther Data/Stats? ACCESS LOG \n\n172.0.0.1 -- file.txt -- TIME:DATE\nMaybe switch to left? not sure\n"}
+		{"id":"b385f1676fe61901","type":"text","text":"logblock\nOther Data/Stats? ACCESS LOG \n\n172.0.0.1 -- file.txt -- TIME:DATE\nMaybe switch to left? not sure\n","x":250,"y":-60,"width":390,"height":240},
+		{"id":"fc71a3bfa825a7ef","type":"text","text":"","x":820,"y":-400,"width":980,"height":880},
+		{"id":"41c9769307d2d2fe","type":"text","text":"Menu\n\nstuff\n\nstuff","x":840,"y":-380,"width":140,"height":840},
+		{"id":"80cf105188c6b020","type":"text","text":"Server Name -- Server IP","x":1000,"y":-380,"width":780,"height":60},
+		{"id":"6e788814ff1233bd","type":"text","text":"Dynamic Infra Map\n\nIP, Port, Name, etc","x":1000,"y":-300,"width":780,"height":280},
+		{"id":"0dfcef3ebb52f1de","type":"text","text":"Notifications","x":1400,"y":0,"width":380,"height":400},
+		{"id":"a4ab8872c6963aff","x":1000,"y":410,"width":780,"height":50,"type":"text","text":"Uptime - Other Quick Stats"},
+		{"id":"48f81be6f3cb20f9","type":"text","text":"Loaded Plugins","x":1000,"y":0,"width":380,"height":400}
 	],
 	"edges":[]
 }

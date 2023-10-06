@@ -53,14 +53,16 @@ class Info:
 # Authenitcation settings
 ################################################
 '''
-## If you want JWT tokens on your endpoint, uncomment the lines below
+## To lock endpoints behind a login, do this:
 
-Then, add '@jwt_required' decorator to your functions you want protected. 
+Add '@login_required' decorator to your functions you want protected. 
 
 Boom, you now need an account/authorization to access this endpoint.
+These users are the same throughout the entire program, so all you have to do 
+is add that decorator, and the following imports, and you are good to go. 
 
 '''
-#from flask_jwt_extended import jwt_required
+#from flask_login import LoginManager, login_required
 
 ################################################
 # Input Validation
@@ -134,6 +136,7 @@ class FileHost(BasePlugin, BaseLogging):
 
 
     # for controlling ext plugin
+    @login_required
     def command_endpoint(self):
         json = {
             "command": "stuff"
@@ -141,6 +144,7 @@ class FileHost(BasePlugin, BaseLogging):
 
         return jsonify(json)
     
+    @login_required
     def filehost_download_file(self, filename):
         print(f"Filename; {filename}")
         return send_from_directory(
@@ -148,7 +152,7 @@ class FileHost(BasePlugin, BaseLogging):
             filename,
             as_attachment=True)
 
-
+    @login_required
     def filehost_upload_file(self):
         '''
         Endpoint for uploading files to the FileHost plugin. 
@@ -180,9 +184,7 @@ class FileHost(BasePlugin, BaseLogging):
         '''
         eventually.. if not auth then re-auth
         '''
-
         servername = "FileHost Plugin"
-
         list_of_files = []
 
         ## populate the list of plugins from the database

@@ -40,10 +40,10 @@ by anything that may need it.
 
 '''
 class Info:
-    name    = "WebserverFrontendPlugin"
+    name    = "Home"
     author  = "ryanq.47"
-    endpoint = "/stats"
-    classname = "WebserverFrontend"
+    endpoint = "/home"
+    classname = "Home"
     plugin_type = "Builtin"
 
 ################################################
@@ -80,7 +80,7 @@ Options:
 
 
 ## Inherets BasePlugin
-class WebserverFrontend(BasePlugin, BaseLogging):
+class Home(BasePlugin, BaseLogging):
     ## Weird setup, this takes in app, DataStruct, passes it to baseclass, which then init's and sets it to self.app, and self.DataStruct
     def __init__(self, app, DataStruct):
         BasePlugin.__init__(self, app, DataStruct)
@@ -101,12 +101,8 @@ class WebserverFrontend(BasePlugin, BaseLogging):
     ## Put all the routes here.
     def register_routes(self):
         self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
-        self.app.route(f'/stats', methods=['GET'])(self.login_page)
-        self.app.route(f'/{Info.endpoint}/dashboard', methods=['GET'])(self.dashboard)
-        self.app.route(f'/{Info.endpoint}/login', methods=['POST'])(self.login)
-
-    def login_page(self):
-        return render_template('webserverfrontendplugin-index.html')
+        self.app.route(f'/{Info.endpoint}', methods=['GET'])(self.dashboard)
+        #self.app.route(f'/{Info.endpoint}/dashboard', methods=['GET'])(self.dashboard)
 
     def dashboard(self):
         servername = "DevServer"
@@ -134,26 +130,9 @@ class WebserverFrontend(BasePlugin, BaseLogging):
             }
             list_of_plugins.append(dict_)
 
-        return render_template('webserverfrontendplugin-dashboard.html', 
+        return render_template('home-dashboard.html', 
                             plugins=list_of_plugins,
                             servername = servername)
-
-    def login(self):
-        username = request.form['username']
-        password = request.form['password']
-
-        ## LOGIN LOGIC HERE
-        # for API stuff
-        if SecurityEngine.AuthenticationHandler.Authentication.authentication_eval(
-            username = username,
-            password = password
-        ):
-            
-            ## need to issue JWT tokens here too
-
-            return redirect(f'{Info.endpoint}/dashboard')
-        else:
-            return render_template('webserverfrontendplugin-index.html')
     
     def connect_to_db(self):
         db_name = "DataBases/ServerData.db"
@@ -164,7 +143,6 @@ class WebserverFrontend(BasePlugin, BaseLogging):
 
         except Exception as e:
             self.logger.warning(f"{self.logging_warning_symbol} Error: {e}")
-
 
     def guard_db_connection(self) -> bool:
         '''

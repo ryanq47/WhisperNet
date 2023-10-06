@@ -11,10 +11,9 @@ body, html {
 
 /* Define grid areas */
 .header { grid-area: header; }
-.nodesblock { grid-area: nodesblock; }
-.fileinteractblock { grid-area: fileinteractblock; }
-.logblock { grid-area: logblock; }
-.filesblock { grid-area: filesblock; }
+.notifications { grid-area: notifications; }
+.inframap { grid-area: inframap; }
+.loadedplugins { grid-area: loadedplugins; }
 .footer { grid-area: footer; }
 .navbar { grid-area: navbar; }
 
@@ -25,9 +24,9 @@ body, html {
   grid-template-rows: auto;
   grid-template-areas:
     'header header header header header header'
-    'logblock logblock logblock fileinteractblock fileinteractblock fileinteractblock'
-    'logblock logblock logblock nodesblock nodesblock nodesblock'
-    'filesblock filesblock filesblock filesblock filesblock filesblock'
+    'inframap inframap inframap inframap inframap inframap'
+    'notifications notifications notifications loadedplugins loadedplugins loadedplugins'
+    'notifications notifications notifications loadedplugins loadedplugins loadedplugins'
     'footer footer footer footer footer footer';
   gap: 20px;
   /*background-color: #f9f9f9;*/ /* Light background color */
@@ -61,7 +60,7 @@ body, html {
 }
 
 /* Flexbox container styles */
-.logblock, .fileinteractblock, .nodesblock, .filesblock, .header {
+.inframap, .notifications, .loadedplugins {
   min-height: 200px;
   background-color: var(--accent-color); /* Light gray background */
   border-radius: 8px; /* Rounded corners */
@@ -70,8 +69,12 @@ body, html {
 
 }
 
+.header {
+  min-height: 50px;
+}
+
 /* Sub-element styles */
-.logblock > *,  .fileinteractblock > *, .nodesblock > *, .filesblock > * {
+.inframap > *,  .notifications > *, .loadedplugins > * {
   background-color: var(--accent-color); /* Light gray background */
   padding: 10px;
   text-align: left;
@@ -116,33 +119,4 @@ table {
     border-bottom: 2px solid #ffffff00;
   }
 
-/* Style the tooltip container */
-.tooltip {
-    position: relative;
-    display: inline-block;
-    cursor: pointer; /* Change the cursor to a pointer on hover */
-}
 
-        /* Style the tooltip text */
-.tooltip .tooltiptext {
-    visibility: visible;
-    width: 200px;
-    background-color: #e11b1b;
-    color: #fff;
-    text-align: center;
-    border-radius: 5px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%; /* Position the tooltip above the element */
-    left: 50%;
-    transform: translateX(-50%); /* Center the tooltip horizontally */
-    opacity: 0;
-    transition: opacity 0.2s;
-}
-
-/* Show the tooltip text when hovering over the container */
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-}

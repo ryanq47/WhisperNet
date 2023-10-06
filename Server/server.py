@@ -25,10 +25,6 @@ try:
     #from flask_wtf.csrf import CSRFProtect  # Import CSRFProtect
     from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
-
-
-
-
     # My Modules
     import SecurityEngine.AuthenticationHandler
     import Utils.UtilsHandler
