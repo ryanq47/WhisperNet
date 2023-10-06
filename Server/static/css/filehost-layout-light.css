@@ -28,7 +28,8 @@ body, html {
       'filesblock filesblock filesblock filesblock filesblock filesblock'
       'footer footer footer footer footer footer';
     gap: 20px;
-    background-color: #f9f9f9; /* Light background color */
+    /*background-color: #f9f9f9;*/ /* Light background color */
+    background-color: #8f8f8f6f;
     padding: 20px;
     margin-left: 150px;
     height: 100vh;
@@ -63,6 +64,8 @@ body, html {
     background-color: var(--accent-color); /* Light gray background */
     border-radius: 8px; /* Rounded corners */
     padding: 20px;
+    overflow: auto; /* Add overflow property for scrollbar */
+  
   }
   
   /* Sub-element styles */
@@ -70,6 +73,8 @@ body, html {
     background-color: var(--accent-color); /* Light gray background */
     padding: 10px;
     text-align: left;
+    /* text Color */
+    color: black;
   }
   
   

@@ -9,8 +9,13 @@
     <title>My First Bootstrap Page</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <!-- Stylesheet for plugin -->
-    <link href="static/css/filehost-layout.css" rel="stylesheet">
+    <!-- <link href="static/css/filehost-layout-light.css" rel="stylesheet"> -->
+    <link href="static/css/filehost-layout-dark.css" rel="stylesheet">
+
+    <!-- reference stylesheet -->
+    <!-- <link href="static/css/filehost-layout-light.css" rel="stylesheet"> -->
 
 </head>
 
@@ -28,9 +33,9 @@
         </center>
     </h1>
     <!-- Hosted Files Table Container -->
-    <div class="filesblock container-lg">
+    <div class="filesblock">
         <h2>Hosted Files</h2>
-        <table id="data-table" class="table table-responsive table-striped">
+        <table id="data-table", class="table">
             <thead>
                 <tr>
                     <th>File Name</th>
@@ -48,19 +53,35 @@
         </table>
     </div>
 
-    <div class="nodesblock container-lg">
+    <div class="nodesblock">
         <p>Nodes</b>
+            <table id="data-table", class="table">
+                <thead>
+                    <tr>
+                        <th>IP</th>
+                        <th>Status</th>
+                        <th>Sync</th>
+                        <th>Time</th>
+    
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> 127.0.0.1 </td>
+                        <td> Up </td>
+                        <td> Successful </td>
+                        <td> 17:01:25 - 10-01-23 </td>
+                    </tr>
+                    <tr>
+                        <td> 127.0.0.1 </td>
+                        <td> Up </td>
+                        <td> Successful </td>
+                        <td> 17:01:25 - 10-01-23 </td>
+                    </tr>
+                </tbody>
+            </table>   
+        <!-- <p>192.168.0.10 - Up - Synced Successful at 17:00.25</p> -->
 
-        <p>192.168.0.10 - Up - Synced Successful at 17:00.25</p>
-        <p>192.168.0.10 - Up - Synced Successful at 17:00.25</p>
-        <p>192.168.0.10 - Down - Synced Failed at 17:00.25</p>
-        <p>192.168.0.10 - Up - Synced Successful at 17:00.25</p>
-        <p>192.168.0.10 - Up - Synced Successful at 17:00.25</p>
-        <p>192.168.0.10 - Up - Synced Successful at 17:00.25</p>
-        <p>192.168.0.10 - Up - Synced Successful at 17:00.25</p>
-        <p>192.168.0.10 - Up - Synced Successful at 17:00.25</p>
-        <p>192.168.0.10 - Up - Synced Successful at 17:00.25</p>
-        <p>192.168.0.10 - Up - Synced Successful at 17:00.25</p>
 
     </div>
 
@@ -68,33 +89,39 @@
         <p>fileinteractblock</p>
         <button type="button">Upload</button>
 
-
-
     </div>
 
     <div class="logblock">
         <h2>File Access Logs</h2>
-        <p>IP -- File Name -- TIME:DATE -- Hosting Server</p>
-        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
-        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
-        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
-        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
-        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
-        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
-        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
-        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
-        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
-        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
-        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
-        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
-        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
-        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
-        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
-        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
-        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
-        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
-        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
-        <p>172.0.0.1 -- file.txt -- TIME:DATE</p>
+
+        <table id="data-table", class="table">
+            <thead>
+                <tr>
+                    <th>IP</th>
+                    <th>FileName</th>
+                    <th>Time/Date</th>
+                    <th>Hosting Server</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> 127.0.0.1 </td>
+                    <td> myfile.txt </td>
+                    <td> 17:01:25 - 10-01-23 </td>
+                    <td> notsafe.com </td>
+                </tr>
+                <tr>
+                    <td> 127.0.0.1 </td>
+                    <td> myfile.txt </td>
+                    <td> 17:01:25 - 10-01-23 </td>
+                    <td> notsafe.com </td>
+                </tr>
+            </tbody>
+        </table>        
+        
+        <!-- <p>172.0.0.1 -- file.txt -- TIME:DATE</p> -->
+
 
 
     </div>

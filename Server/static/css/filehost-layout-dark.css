@@ -1,10 +1,12 @@
 /* Created by me... then revised by chatGPT to look somewhat modern */
 
+
 /* Reset some default styles for consistency */
 body, html {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
+  background-color: black;
 }
 
 /* Define grid areas */
@@ -37,13 +39,13 @@ body, html {
 
 /* Style for the grid items */
 .grid-container > div {
-  background-color: #fff; /* White background color */
+  background-color: #222222; /* White background color */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Drop shadow for cards */
   border-radius: 8px; /* Rounded corners */
   padding: 20px;
   text-align: center;
   font-size: 18px;
-  color: #333; /* Text color */
+  color: #ffffff; /* Text color */
 }
 
 /* Define specific styles for the footer */
@@ -74,6 +76,42 @@ body, html {
   padding: 10px;
   text-align: left;
   /* text Color */
-  color: black;
+  color: rgb(255, 255, 255);
 }
+
+
+/* table stuff - oerrides the base css file. delete to revert to that*/
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for table headers */
+  th {
+    background-color: var(--accent-color);
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+    border-bottom: 2px solid #fff; /* Add a bottom border for separation */
+  }
+  
+  /* Style for table rows */
+  tr {
+    background-color: #050505; /* Light background color for rows */
+  }
+  
+  /* Style for alternating rows */
+  tr:nth-child(even) {
+    background-color: #1e1e1e; /* Slightly darker background for even rows */
+  }
+  
+  /* Style for table cells */
+  td, th {
+    padding: 10px;
+    text-align: left;
+    color: #ffffff; /* Text color */
+    border: 1px solid #ccc; /* Add a light border to cells */
+  }
 

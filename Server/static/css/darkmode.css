@@ -107,24 +107,41 @@ button[type="submit"] {
 /*Dashobard stuff*/
 
 /* Add some padding and space to table cells */
-#data-table td, #data-table th {
-    padding: 2px;
-    text-align: left;
-    color:white;
-    
-}
-
-#data-table th {
+/* Apply a global style for tables */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for table headers */
+  th {
     background-color: var(--accent-color);
-    /*background-color: rgba(0, 237, 12, 0.678);*/
     color: white;
-}
-
-/* Style alternating rows */
-#data-table tbody tr:nth-child(even) {
-    /*background-color: rgba(0, 237, 12, 0.189);*/
-    background-color: var(--accent-color);
-}
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+    border-bottom: 2px solid #fff; /* Add a bottom border for separation */
+  }
+  
+  /* Style for table rows */
+  tr {
+    background-color: #f9f9f9; /* Light background color for rows */
+  }
+  
+  /* Style for alternating rows */
+  tr:nth-child(even) {
+    background-color: #e6e6e6; /* Slightly darker background for even rows */
+  }
+  
+  /* Style for table cells */
+  td, th {
+    padding: 10px;
+    text-align: left;
+    color: #333; /* Text color */
+    border: 1px solid #ccc; /* Add a light border to cells */
+  }
+  
 
 /*The container containing thebuttons */
 #color-change-container {
