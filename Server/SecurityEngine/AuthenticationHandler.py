@@ -52,6 +52,7 @@ class Authentication(BaseLogging):
 
             if db_instance.get_username(username=username):
                 if Authentication._validate_password(db_instance=db_instance, username=username, password=password):
+                    #base_logging.logger.warning(f"{base_logging.logging_warning_symbol} User {username} authenticated")
                     return True
             
         except Exception as e:
@@ -89,8 +90,9 @@ class Authentication(BaseLogging):
                 db_path=db_absolute_path
             )
 
-            if db_instance.get_username(username=username):
-                if Authentication._validate_password(db_instance=db_instance, username=username, password=password):
+            if db_instance.get_api_username(username=username):
+                if Authentication._validate_api_password(db_instance=db_instance, username=username, password=password):
+                    #base_logging.logger.warning(f"{base_logging.logging_warning_symbol} User {username} authenticated")
                     return True
             
         except Exception as e:
@@ -101,6 +103,56 @@ class Authentication(BaseLogging):
         
         return False
 
+    @staticmethod
+    def api_get_user_role(username = None) -> bool:
+        '''
+        Gets API user role
+            
+        '''
+        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        print(f"User: {username}")
+
+        #server_absolute_path = path_struct.sys_path
+        db_relative_path = "DataBases/users.db"
+        db_absolute_path = db_relative_path
+        #db_absolute_path = os.path.join(server_absolute_path, db_relative_path)
+
+        try:
+            db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
+                db_path=db_absolute_path
+            )
+
+            role = db_instance.get_api_user_roll(username=username)
+
+            if role:
+                ## Role is a tuple in a list due to SQLite, so we are just retruning the tuple & stripping the list
+                # role: [(admin, filehost_admin)]
+    
+                role = role[0]
+                # role converted to (admin, filehost_admin)
+
+                ## turning into list for jwt
+                role_dict = []
+                ## Split on "," remove spaces, and lowercase
+                for i in role.split(","):
+                    i = i.replace(" ", "")
+                    i = i.lower()
+                    role_dict.append(i)
+
+                ## role_dict = [admin, filehost_admin]
+                return role_dict
+            
+            else:
+                base_logging.logger.warning(f"{base_logging.logging_warning_symbol} User {username} seemingly does not have any roles")
+                    
+        except Exception as e:
+            # dosen't return anything, could be an issue?
+            ## This could also be show stopper
+            #raise Utils.ErrorDefinitions.GENERAL_ERROR
+            base_logging.logger.warning(f"{base_logging.logging_warning_symbol} Error: {e}")
+        
+        return False
 
 
     @staticmethod

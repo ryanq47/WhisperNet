@@ -216,12 +216,13 @@
   },
   "active": "b5c23ddf1d482db0",
   "lastOpenFiles": [
+    "Server/Modules/PluginEngine/Development & Advanced Overview.md",
+    "Server/Modules/PluginEngine/Overview.md",
+    "Server/Authentication (Web + API).md",
     "Pasted image 20231007142634.png",
     "Pasted image 20231007135210.png",
     "Pasted image 20231007135110.png",
     "Server/Plugins/FileHost/Endpoints.md",
-    "Server/Authentication (Web + API).md",
-    "Server/Modules/PluginEngine/Overview.md",
     "Authentication Model.canvas",
     "Server/Plugins/FileHost/Overview.md",
     "Plugin Design.canvas",
@@ -270,7 +271,6 @@
     "General/Images/Pasted image 20230913002046.png",
     "General/Images/Pasted image 20230913002028.png",
     "Server/Globals",
-    "General/Images/Pasted image 20230904190836.png",
     "Server/Visual Progress.canvas"
   ]
 }

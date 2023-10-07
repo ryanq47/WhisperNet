@@ -69,6 +69,31 @@ class AuthenticationSQLDBHandler(BaseLogging):
 
         # if exist, return true
 
+    def get_api_username(self, username = None) -> bool:
+        '''
+        Get a username
+        
+        '''
+
+        self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        # guard clause to check if username is none.
+        if Utils.GuardClauses.guard_t_f_check(username is None, "[*] Username argument is 'None'!"):
+            return False
+
+        # check if user exists
+        self.cursor.execute(f"SELECT 1 FROM api_users WHERE username = ?", (username,))
+
+        result = self.cursor.fetchone()
+
+        if result:
+            return True
+        
+        else:
+            return False
+
+        # if exist, return true
+
     def get_password_blob(self, username = None):
         '''
         Get a password blob
@@ -118,6 +143,36 @@ class AuthenticationSQLDBHandler(BaseLogging):
 
             if password_hash:
                 return password_hash
+            
+            else:
+                return False
+        except Exception as e:
+            print(f"[*] Error: {e}")
+
+    def get_api_user_roll(self, username = None):
+        '''
+        Gets the role of the API user provided.
+
+        returns a list of tupels
+
+        [(admin, user)]        
+        
+        '''
+        self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        print(username)
+
+        # guard clause to check if username is none.
+        if Utils.GuardClauses.guard_t_f_check(username is None, "[*] Username argument is 'None'! Authentication will fail!"):
+            return False
+
+        try:
+            self.cursor.execute(f"SELECT role FROM api_users WHERE username = ?", (username,))
+
+            role = self.cursor.fetchone()
+
+            if role:
+                return role
             
             else:
                 return False

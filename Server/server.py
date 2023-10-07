@@ -297,20 +297,26 @@ class ControlServer(BaseLogging):
             username = username,
             password = password
         ):
+            ## Get role
 
-            #user_role = "filehost_admin" #get_user_role(username) 
-            #user_role = "a"
+            ## Dict
+            user_role = SecurityEngine.AuthenticationHandler.Authentication.api_get_user_role(
+                username = username
+            )
 
-            # Create a dictionary with user identity and any claims (e.g., role)
-            identity_dict = {'username': username, 'role': user_role}
+            if user_role:
+                # Create a dictionary with user identity and any claims (e.g., role)
+                identity_dict = {'username': username, 'role': user_role}
 
-            # Create a JWT token with the user's identity and claims
-            access_token = create_access_token(identity=identity_dict)
+                # Create a JWT token with the user's identity and claims
+                access_token = create_access_token(identity=identity_dict)
 
-            return jsonify({"access_token": access_token}), 200
+                print(user_role)
+                return jsonify({"access_token": access_token}), 200
 
 
         else:
+            print(f"{username} failed to authenticate as api user")
             return render_template('builtin-login.html')
 
 
