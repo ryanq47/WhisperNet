@@ -69,7 +69,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Server/Plugins/FileHost/Endpoints.md",
+                "file": "Server/Authentication (Web + API).md",
                 "mode": "source",
                 "source": false
               }
@@ -142,7 +142,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Plugins/FileHost/Endpoints.md",
+                "file": "Server/Authentication (Web + API).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -159,7 +159,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Plugins/FileHost/Endpoints.md",
+                "file": "Server/Authentication (Web + API).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -182,7 +182,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Plugins/FileHost/Endpoints.md"
+                "file": "Server/Authentication (Web + API).md"
               }
             }
           },
@@ -216,8 +216,14 @@
   },
   "active": "b5c23ddf1d482db0",
   "lastOpenFiles": [
-    "Server/Plugins/FileHost/Overview.md",
+    "Pasted image 20231007142634.png",
+    "Pasted image 20231007135210.png",
+    "Pasted image 20231007135110.png",
     "Server/Plugins/FileHost/Endpoints.md",
+    "Server/Authentication (Web + API).md",
+    "Server/Modules/PluginEngine/Overview.md",
+    "Authentication Model.canvas",
+    "Server/Plugins/FileHost/Overview.md",
     "Plugin Design.canvas",
     "Server/Plugins/FileHost",
     "1. Task Tracker/Task Tracker.md",
@@ -237,14 +243,11 @@
     "Status page.md",
     "1. Task Tracker/Tasks/Move to new logging.md",
     "1. Task Tracker/Tasks/Untitled.md",
-    "Server/Modules/PluginEngine/Overview.md",
     "Server/Plugins/stats plugin (name not final).md",
     "Dev Guide/Notes Guide/Colors & comments.md",
     "Server/DataBases/ServerData.db.md",
     "Dev Guide/Procedures/New Code Steps.md",
     "Server/Modules/Utils/UtilsHandler.md",
-    "Server/Modules/Listeners - Dep/Overview.md",
-    "Server/Modules/Listeners - Dep/Local Listeners.md",
     "Server/Modules/Listeners - Dep/Listener setup.canvas",
     "Server/Modules/ApiEngine/Process Overview.canvas",
     "General/Images/Pasted image 20231003212206.png",
@@ -268,8 +271,6 @@
     "General/Images/Pasted image 20230913002028.png",
     "Server/Globals",
     "General/Images/Pasted image 20230904190836.png",
-    "General/Images/Pasted image 20230904190547.png",
-    "Server/Visual Progress.canvas",
-    "Clients/Python Client/Dev Docs/MindMaps/VisProg.canvas"
+    "Server/Visual Progress.canvas"
   ]
 }

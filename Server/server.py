@@ -131,7 +131,6 @@ class ControlServer(BaseLogging):
         self.app = app
         ## this could use a refactor
         self.load_plugins(self.app)
-        self.app.config['JWT_SECRET_KEY'] = 'PLEASECHANGEME'  # Change this to your secret key - also move to a config file
         self.jwt = JWTManager(self.app)
         self.config_file_path = Utils.UtilsHandler.load_file(current_path=sys_path, file_path=api_config_profile)
         self.UrlSc = ApiEngine.ConfigHandler.UrlSchema(api_config_profile=self.config_file_path)
@@ -143,7 +142,7 @@ class ControlServer(BaseLogging):
         self.app.route("/", methods=["GET"])(self.login_page)
         self.app.route('/login', methods=["POST"])(self.web_user_login)
         self.app.route('/logout')(self.web_user_logout)
-
+        self.app.route('/api/login', methods=["POST"])(self.api_user_login)
     
     ## login
     def server_login(self):
@@ -280,10 +279,40 @@ class ControlServer(BaseLogging):
         else:
             return render_template('builtin-login.html')
 
-    
     def web_user_logout(self):
         logout_user()
         return 'Logged out successfully'
+    
+    def api_user_login(self):
+        '''
+        API login
+        '''
+        data = request.get_json()
+
+        username = data.get('username')
+        password = data.get('password')
+
+        ## Check user against DB
+        if SecurityEngine.AuthenticationHandler.Authentication.api_authentication_eval(
+            username = username,
+            password = password
+        ):
+
+            #user_role = "filehost_admin" #get_user_role(username) 
+            #user_role = "a"
+
+            # Create a dictionary with user identity and any claims (e.g., role)
+            identity_dict = {'username': username, 'role': user_role}
+
+            # Create a JWT token with the user's identity and claims
+            access_token = create_access_token(identity=identity_dict)
+
+            return jsonify({"access_token": access_token}), 200
+
+
+        else:
+            return render_template('builtin-login.html')
+
 
 ## no idea what this actually does, I just know that it's needed
 @login_manager.user_loader
@@ -316,6 +345,9 @@ if __name__ == "__main__":
         ## Web Based login
 
         login_manager.init_app(app)
+
+        ## JWT stuff
+        app.config['JWT_SECRET_KEY'] = 'PLEASECHANGEME'  # Change this to your secret key - also move to a config file
 
 
         app.run(host="0.0.0.0", port=5000, debug=True)

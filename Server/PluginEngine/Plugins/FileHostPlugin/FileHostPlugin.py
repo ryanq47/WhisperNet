@@ -33,6 +33,10 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, FileField
 from wtforms.validators import DataRequired, Length'''
 
+## API stuff
+from functools import wraps
+from flask import request, jsonify
+from flask_jwt_extended import get_jwt_identity, jwt_required
 
 ################################################
 # Info class
@@ -104,6 +108,23 @@ Accessing logger.
 
 '''
 
+## RoleCheck Decorator - move to BasePlugin after testing
+def role_required(required_role):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            current_user = get_jwt_identity()
+            user_role = current_user.get('role') if current_user else None
+
+            if user_role != required_role:
+                return jsonify({"message": "Access denied"}), 403
+
+            return func(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
+
 
 ## Inherets BasePlugin
 ## Is a class instance, the __init__ is from BasePlugin.
@@ -130,21 +151,27 @@ class FileHost(BasePlugin, BaseLogging):
     def register_routes(self):
         self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
         self.app.route(f'/{Info.endpoint}', methods = ["GET"])(self.filehost_base_directory)
-        self.app.route(f'/{Info.endpoint}/api/command', methods=["GET"])(self.command_endpoint)
+        self.app.route(f'/api/{Info.endpoint}/command', methods=["GET"])(self.command_endpoint)
         self.app.route(f'/{Info.endpoint}/<path:filename>', methods = ["GET"])(self.filehost_download_file)
         self.app.route(f'/{Info.endpoint}/upload', methods = ["POST"])(self.filehost_upload_file)
 
 
     # for controlling ext plugin
-    @login_required
-    #@jwt_required
+    #@login_required
+
+
+    ## Something funky happening here, I bet somethings not returning right, and as 
+    ## such, erroring out.
+    @jwt_required()
+    @role_required('filehost_admin')
     def command_endpoint(self):
         json = {
             "command": "stuff"
         }
 
-        return jsonify(json)
+        return "data"#jsonify(json)
     
+    # these don't need a (). Funky
     @login_required
     def filehost_download_file(self, filename):
         print(f"Filename; {filename}")
