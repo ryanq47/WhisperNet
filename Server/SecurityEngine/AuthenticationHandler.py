@@ -62,6 +62,45 @@ class Authentication(BaseLogging):
         
         return False
 
+    @staticmethod
+    def api_authentication_eval(username = None, password = None, path_struct = None) -> bool:
+        '''
+        Checks if api user is authorized for access
+
+        Checks:
+            - Username
+            - Password
+
+            
+        Dev notes, this is not perfect. Might need some work. It just feels weird
+        '''
+
+        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        print(f"User: {username}")
+
+        #server_absolute_path = path_struct.sys_path
+        db_relative_path = "DataBases/users.db"
+        db_absolute_path = db_relative_path
+        #db_absolute_path = os.path.join(server_absolute_path, db_relative_path)
+
+        try:
+            db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
+                db_path=db_absolute_path
+            )
+
+            if db_instance.get_username(username=username):
+                if Authentication._validate_password(db_instance=db_instance, username=username, password=password):
+                    return True
+            
+        except Exception as e:
+            # dosen't return anything, could be an issue?
+            ## This could also be show stopper
+            #raise Utils.ErrorDefinitions.GENERAL_ERROR
+            base_logging.logger.debug(f"Authentication Error: {e}")
+        
+        return False
+
 
 
     @staticmethod
@@ -76,6 +115,7 @@ class Authentication(BaseLogging):
             if Utils.GuardClauses.guard_t_f_check(username is None, "[*] Username argument is 'None'! Authentication will fail!"):
                 return False
 
+            ## 
             pass_blob_tuple = db_instance.get_password_blob(username=username)
             ## blob is first item in tuple
             pass_blob = pass_blob_tuple[0]
@@ -113,6 +153,63 @@ class Authentication(BaseLogging):
 
         return False
 
+    @staticmethod
+    def _validate_api_password(db_instance=None, password=None, username=None) -> bool:
+        '''
+        Validates an api pass. Exact same as _validate_password, save for the function it calls. Made more sense to implement
+        a dedicated method, rather than add an argument to _validate_password, potentially breaking existing code
+
+        ## This is what changed
+        pass_blob_tuple = db_instance.get_api_password_blob(username=username)
+
+        from
+
+        pass_blob_tuple = db_instance.get_password_blob(username=username)
+
+        '''
+        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        try:
+            if Utils.GuardClauses.guard_t_f_check(username is None, "[*] Username argument is 'None'! Authentication will fail!"):
+                return False
+
+            ## 
+            pass_blob_tuple = db_instance.get_api_password_blob(username=username)
+            ## blob is first item in tuple
+            pass_blob = pass_blob_tuple[0]
+
+            print(f"PassBlob: {pass_blob}")
+            print(f"PassWord: {password}")
+
+
+            if pass_blob == False:
+                base_logging.logger.debug(f"[*] Could not get password hash for user '{username}' from users.db")
+                return False
+
+            ## get username's password blob
+            ## [func dep, beign weird
+            '''
+            if SecurityEngine.EncryptionHandler.Hashing.bcrypt_hash_and_compare(
+                #entered_data=password,
+                #stored_data=pass_blob
+                entered_data=username,
+                stored_data=pass_blob
+            ):
+                print(f"Successful Login: '{username}':'{password}'")'''
+
+            #if bcrypt.checkpw("1234".encode(), "$2b$12$6l17I4n6BUqF3C43ldlg4u8kzCdDCLU/AJBTa44Yi.PGNon5hv3Mu".encode()):
+            
+            if bcrypt.checkpw(password.encode(), pass_blob.encode()):
+                base_logging.logger.info(f"Successful Login: '{username}':'{password}'")
+                return True
+            
+            else:
+                base_logging.logger.warning(f"Bad Login: '{username}':'{password}'")
+        
+        except Exception as e:
+            base_logging.logger.debug(f"[*] Error: {e}")
+
+        return False
 
 class UserManagement:
     '''

@@ -20,7 +20,7 @@
     <!-- Hosted Files Table Container -->
     <div class="loadedplugins">
         <h2>Loaded Plugins</h2>
-        <table id="data-table" class="table table-responsive table-striped">
+        <table id="data-table" class="table">
             <thead>
                 <tr>
                     <th>Plugin</th>
@@ -41,9 +41,38 @@
     </div>
 
     <div class="inframap">
-        <p>InfraMap</p> 
+        <p>External Plugin Inventory -- Put map in its own plugin</p> 
         <!-- <p>192.168.0.10 - Up - Synced Successful at 17:00.25</p> -->
-        <img src="static/images/inframap.png" alt="Img" style="width:100%;height:100%;">
+        <!-- <img src="static/images/inframap.png" alt="Img" style="width:100%;height:100%;"> -->
+
+        <table id="data-table", class="table">
+            <thead>
+                <tr>
+                    <th>Plugin</th>
+                    <th>Last Checkin</th>
+                    <th>Name</th>
+                    <th>IP</th>
+                    <th>Status</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> FileHost </td>
+                    <td> 17:01:25 - 10-01-23  </td>
+                    <td> FH01 </td>
+                    <td> 127.0.0.1 </td>
+                    <td> Up </td>
+                </tr>
+                <tr>
+                    <td> FileHost </td>
+                    <td> 17:01:25 - 10-01-23  </td>
+                    <td> EXT_FH02 </td>
+                    <td> 123.123.123.123 </td>
+                    <td> Up </td>
+                </tr>
+            </tbody>
+        </table> 
 
 
     </div>

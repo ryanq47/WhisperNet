@@ -97,7 +97,32 @@ class AuthenticationSQLDBHandler(BaseLogging):
         except Exception as e:
             print(f"[*] Error: {e}")
 
-        #return pass blob
+    def get_api_password_blob(self, username = None):
+        '''
+        Get a password blob for API users. Exact copy of get_password_blob save for the table being accessed
+        
+        Note, may need to add a check for if more than one result is returned -- hey dipshit, fixed with primary keys
+        '''
+        self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        print(username)
+
+        # guard clause to check if username is none.
+        if Utils.GuardClauses.guard_t_f_check(username is None, "[*] Username argument is 'None'! Authentication will fail!"):
+            return False
+
+        try:
+            self.cursor.execute(f"SELECT password_hash FROM api_users WHERE username = ?", (username,))
+
+            password_hash = self.cursor.fetchone()
+
+            if password_hash:
+                return password_hash
+            
+            else:
+                return False
+        except Exception as e:
+            print(f"[*] Error: {e}")
 
     def create_user(self, username = None, password_blob = None) -> bool:
         '''

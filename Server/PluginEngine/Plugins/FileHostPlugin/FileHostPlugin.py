@@ -130,13 +130,14 @@ class FileHost(BasePlugin, BaseLogging):
     def register_routes(self):
         self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
         self.app.route(f'/{Info.endpoint}', methods = ["GET"])(self.filehost_base_directory)
-        self.app.route(f'/{Info.endpoint}/command', methods=["GET"])(self.command_endpoint)
+        self.app.route(f'/{Info.endpoint}/api/command', methods=["GET"])(self.command_endpoint)
         self.app.route(f'/{Info.endpoint}/<path:filename>', methods = ["GET"])(self.filehost_download_file)
         self.app.route(f'/{Info.endpoint}/upload', methods = ["POST"])(self.filehost_upload_file)
 
 
     # for controlling ext plugin
     @login_required
+    #@jwt_required
     def command_endpoint(self):
         json = {
             "command": "stuff"
