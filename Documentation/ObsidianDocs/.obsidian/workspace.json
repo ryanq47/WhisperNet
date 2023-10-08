@@ -69,8 +69,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Server/Authentication (Web + API).md",
-                "mode": "source",
+                "file": "Server/Plugins/FileHost/Endpoints.md",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -142,7 +142,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Authentication (Web + API).md",
+                "file": "Server/Plugins/FileHost/Endpoints.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -159,7 +159,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Authentication (Web + API).md",
+                "file": "Server/Plugins/FileHost/Endpoints.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -182,7 +182,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Authentication (Web + API).md"
+                "file": "Server/Plugins/FileHost/Endpoints.md"
               }
             }
           },
@@ -216,9 +216,9 @@
   },
   "active": "b5c23ddf1d482db0",
   "lastOpenFiles": [
+    "Server/Authentication (Web + API).md",
     "Server/Modules/PluginEngine/Development & Advanced Overview.md",
     "Server/Modules/PluginEngine/Overview.md",
-    "Server/Authentication (Web + API).md",
     "Pasted image 20231007142634.png",
     "Pasted image 20231007135210.png",
     "Pasted image 20231007135110.png",

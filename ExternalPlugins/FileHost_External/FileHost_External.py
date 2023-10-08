@@ -27,6 +27,8 @@ from time import sleep
 
 from flask import Flask, send_from_directory
 import threading
+import requests
+import os
 
 ################################################
 # Info class
@@ -116,18 +118,75 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
 
     def get_command_loop(self):
         command = super().get_command()
-        logging.debug(f"{self.logging_debug_symbol}: {command}")
+        self.logger.debug(f"{self.logging_debug_symbol}: {command}")
         ## do stuff with command - build out command tree?
 
 
     def serve_file(self, filename):
-        print(f"Filename; {filename}")
+        self.logger.debug(f"Filename: {filename}")
         return send_from_directory(
             "Files/",
             filename,
             ## Important to have as_attachment=True here.
             as_attachment=True)
+    
+    ## Maybe a manual upload function? Would require some more work + auth.
 
+    def sync_files(self, server):
+        '''
+        Sync's files with the control server. 
+        
+        '''
+        #self.logger.debug(f"Filename; {filename}")
+
+        ## Request files from server
+        ## save to Files/
+
+        ## Send msg back to control server on success/fail
+
+        local_directory = "Files/"
+        # Send an HTTP GET request to the base URL
+
+        ## The actual file base_url
+        base_url = "http://127.0.0.1:5000/filehost/files/"
+        ## A list of all files, locked behind API auth
+        file_url = "http://127.0.0.1:5000/api/filehost/files/"
+        '''Contents of file_url could be:
+        file01.txt
+        file02.txt
+        FileDir/File03.txt
+        
+        '''
+
+        response = requests.get(base_url)
+
+        # Check if the request was successful
+        if response.status_code == 200:
+            # Parse the response content as HTML or any other format if needed
+            # For example, if the server returns an HTML page with links to files, you can use a library like BeautifulSoup to parse it.
+            # Then, extract the file URLs and iterate through them to download the files.
+
+            # Here, we assume the server directly provides file URLs.
+            file_urls = response.text.splitlines()
+
+            # Create the local directory if it doesn't exist
+            os.makedirs(local_directory, exist_ok=True)
+
+            # Download each file
+            for file_url in file_urls:
+                filename = os.path.basename(file_url)
+                local_file_path = os.path.join(local_directory, filename)
+
+                # Send an HTTP GET request to the file URL and save the content to a local file
+                with open(local_file_path, 'wb') as local_file:
+                    file_response = requests.get(file_url)
+                    if file_response.status_code == 200:
+                        local_file.write(file_response.content)
+                    else:
+                        self.logger.warning(f"Failed to download {file_url}")
+
+        else:
+            self.logger.warning(f"Failed to retrieve files from {base_url}")
 
 if __name__ == "__main__":
     app = Flask(__name__)

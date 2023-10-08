@@ -154,6 +154,7 @@ class FileHost(BasePlugin, BaseLogging):
         self.app.route(f'/api/{Info.endpoint}/command', methods=["GET"])(self.command_endpoint)
         self.app.route(f'/{Info.endpoint}/<path:filename>', methods = ["GET"])(self.filehost_download_file)
         self.app.route(f'/{Info.endpoint}/upload', methods = ["POST"])(self.filehost_upload_file)
+        self.app.route(f'/api/{Info.endpoint}/files', methods = ["GET"])(self.filehost_api_file_listing)
 
 
     # for controlling ext plugin
@@ -244,3 +245,40 @@ class FileHost(BasePlugin, BaseLogging):
         return render_template('filehost-dashboard.html', 
                             files=list_of_files,
                             servername = servername)
+
+    #@jwt_required
+    def filehost_api_file_listing(self):
+        '''
+        Endpoint for listing the files in the FileHost plugin. Purely for API
+        access only, and requires a JWT to access.
+
+        Need to find best way of getting a list of file. maybe os.lsitdir?
+
+        Or, may be best to JSON it
+
+        
+        '''
+
+        json_file_data = {}
+        filenames = os.listdir("PluginEngine/Plugins/FileHostPlugin/Files/")
+
+        for file in filenames:
+            try:
+                print(file)
+                file_path = f"PluginEngine/Plugins/FileHostPlugin/Files/{file}"
+                file_size = os.path.getsize(file_path)
+
+                file_data = {
+                    file:{
+                            "filename": file,
+                            ## Note, this is depednent on what you set the file endpoint to. 
+                            "filedir": f"{Info.endpoint}/{file}",
+                            "filesize": file_size,
+                        }
+                }
+                json_file_data.update(file_data)
+
+            except Exception as e:
+                self.logger.warning(f"{self.logging_warning_symbol} Error with getting file info: {e}")
+
+        return json_file_data
