@@ -25,7 +25,7 @@ from time import sleep
 #from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
 #from flask import Flask, jsonify, request, send_from_directory, render_template, Response
 
-from flask import Flask
+from flask import Flask, send_from_directory
 import threading
 
 ################################################
@@ -102,6 +102,7 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
     def register_routes(self):
         self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
         self.app.route(f'/', methods = ["GET"])(self.plugin_function)
+        self.app.route(f'/<path:filename>', methods = ["GET"])(self.serve_file)
 
 
     ## Define your plugin functions here.
@@ -117,6 +118,15 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
         command = super().get_command()
         logging.debug(f"{self.logging_debug_symbol}: {command}")
         ## do stuff with command - build out command tree?
+
+
+    def serve_file(self, filename):
+        print(f"Filename; {filename}")
+        return send_from_directory(
+            "Files/",
+            filename,
+            ## Important to have as_attachment=True here.
+            as_attachment=True)
 
 
 if __name__ == "__main__":
