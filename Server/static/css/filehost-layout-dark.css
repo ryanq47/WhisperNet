@@ -1,12 +1,10 @@
-/* Created by me... then revised by chatGPT to look somewhat modern */
-
-
 /* Reset some default styles for consistency */
 body, html {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: black;
+  font-family: 'Roboto', sans-serif;
+  background-color: #000;
+  color: #00ff00; /* Neon green text color */
 }
 
 /* Define grid areas */
@@ -17,6 +15,12 @@ body, html {
 .filesblock { grid-area: filesblock; }
 .footer { grid-area: footer; }
 .navbar { grid-area: navbar; }
+
+/* Define the container for chromatic aberration effect */
+.aberration-container {
+  position: relative;
+  overflow: hidden;
+}
 
 /* Define the grid container */
 .grid-container {
@@ -30,8 +34,7 @@ body, html {
     'filesblock filesblock filesblock filesblock filesblock filesblock'
     'footer footer footer footer footer footer';
   gap: 20px;
-  /*background-color: #f9f9f9;*/ /* Light background color */
-  background-color: #8f8f8f6f;
+  background-color: #000; /* Dark background color */
   padding: 20px;
   margin-left: 150px;
   height: 100vh;
@@ -39,13 +42,13 @@ body, html {
 
 /* Style for the grid items */
 .grid-container > div {
-  background-color: #222222; /* White background color */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Drop shadow for cards */
+  background-color: #1e1e1e; /* Dark gray background color */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4); /* CyberPunk-style shadow */
   border-radius: 8px; /* Rounded corners */
   padding: 20px;
   text-align: center;
   font-size: 18px;
-  color: #ffffff; /* Text color */
+  color: #00ff00; /* Neon green text color */
 }
 
 /* Define specific styles for the footer */
@@ -55,94 +58,63 @@ body, html {
   left: 0;
   right: 0;
   text-align: center;
-  background-color: #333; /* Dark footer background */
-  color: #fff; /* Text color */
+  background-color: #1e1e1e; /* Dark gray footer background */
+  color: #00ff00; /* Neon green text color */
   padding: 10px;
 }
+
 
 /* Flexbox container styles */
 .logblock, .fileinteractblock, .nodesblock, .filesblock, .header {
   min-height: 200px;
-  background-color: var(--accent-color); /* Light gray background */
+  background-color: #2e2e2e; /* Slightly lighter gray background */
   border-radius: 8px; /* Rounded corners */
   padding: 20px;
   overflow: auto; /* Add overflow property for scrollbar */
-
 }
 
 /* Sub-element styles */
 .logblock > *,  .fileinteractblock > *, .nodesblock > *, .filesblock > * {
-  background-color: var(--accent-color); /* Light gray background */
+  background-color: #2e2e2e; /* Slightly lighter gray background */
   padding: 10px;
   text-align: left;
-  /* text Color */
-  color: rgb(255, 255, 255);
+  color: #00ff00; /* Neon green text color */
 }
 
-
-/* table stuff - oerrides the base css file. delete to revert to that*/
+/* table stuff - overrides the base CSS file. Delete to revert to that */
 table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  /* Style for table headers */
-  th {
-    background-color: var(--accent-color);
-    color: white;
-    font-weight: bold;
-    padding: 10px;
-    text-align: left;
-    border-bottom: 2px solid #fff; /* Add a bottom border for separation */
-  }
-  
-  /* Style for table rows */
-  tr {
-    background-color: #050505; /* Light background color for rows */
-  }
-  
-  /* Style for alternating rows */
-  tr:nth-child(even) {
-    background-color: #1e1e1e; /* Slightly darker background for even rows */
-  }
-  
-  /* Style for table cells */
-  td, th {
-    padding: 10px;
-    text-align: left;
-    color: #ffffff; /* Text color */
-    /*border: 1px solid #ccc; Add a light border to cells */
-    border-bottom: 2px solid #ffffff00;
-  }
-
-/* Style the tooltip container */
-.tooltip {
-    position: relative;
-    display: inline-block;
-    cursor: pointer; /* Change the cursor to a pointer on hover */
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #1e1e1e; /* Dark gray background for tables */
 }
 
-        /* Style the tooltip text */
-.tooltip .tooltiptext {
-    visibility: visible;
-    width: 200px;
-    background-color: #e11b1b;
-    color: #fff;
-    text-align: center;
-    border-radius: 5px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%; /* Position the tooltip above the element */
-    left: 50%;
-    transform: translateX(-50%); /* Center the tooltip horizontally */
-    opacity: 0;
-    transition: opacity 0.2s;
+/* Style for table headers */
+th {
+  background-color: #2e2e2e; /* Slightly darker gray background for headers */
+  color: #00ff00; /* Neon green text color for headers */
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 2px solid #333; /* Add a bottom border for separation */
 }
 
-/* Show the tooltip text when hovering over the container */
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
+/* Style for table rows */
+tr {
+  background-color: #1e1e1e; /* Dark gray background for rows */
+}
+
+/* Style for alternating rows */
+tr:nth-child(even) {
+  background-color: #2e2e2e; /* Slightly lighter gray background for even rows */
+}
+
+/* Style for table cells */
+td, th {
+  padding: 10px;
+  text-align: left;
+  /*color: #00ff00; /* Neon green text color for cells */
+  color: var(--accent-color);
+
+  border-bottom: 2px solid #333; /* Add a bottom border for separation */
 }

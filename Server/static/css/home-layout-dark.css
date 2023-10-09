@@ -30,7 +30,7 @@ body, html {
     'footer footer footer footer footer footer';
   gap: 20px;
   /*background-color: #f9f9f9;*/ /* Light background color */
-  background-color: #8f8f8f6f;
+  background-color: #0000006f;
   padding: 20px;
   margin-left: 150px;
   height: 100vh;
@@ -38,13 +38,13 @@ body, html {
 
 /* Style for the grid items */
 .grid-container > div {
-  background-color: #222222; /* White background color */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Drop shadow for cards */
+  background-color: #1e1e1e; /* Dark gray background color */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4); /* CyberPunk-style shadow */
   border-radius: 8px; /* Rounded corners */
   padding: 20px;
   text-align: center;
   font-size: 18px;
-  color: #ffffff; /* Text color */
+  color: #00ff00; /* Neon green text color */
 }
 
 /* Define specific styles for the footer */
@@ -66,6 +66,7 @@ body, html {
   border-radius: 8px; /* Rounded corners */
   padding: 20px;
   overflow: auto; /* Add overflow property for scrollbar */
+  
 
 }
 
@@ -73,50 +74,52 @@ body, html {
   min-height: 50px;
 }
 
-/* Sub-element styles */
+/* Headers on each box */
 .inframap > *,  .notifications > *, .loadedplugins > * {
   background-color: var(--accent-color); /* Light gray background */
   padding: 10px;
   text-align: left;
   /* text Color */
   color: rgb(255, 255, 255);
+  background-color: #2e2e2e;
 }
 
 
-/* table stuff - oerrides the base css file. delete to revert to that*/
 table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  /* Style for table headers */
-  th {
-    background-color: var(--accent-color);
-    color: white;
-    font-weight: bold;
-    padding: 10px;
-    text-align: left;
-    border-bottom: 2px solid #fff; /* Add a bottom border for separation */
-  }
-  
-  /* Style for table rows */
-  tr {
-    background-color: #050505; /* Light background color for rows */
-  }
-  
-  /* Style for alternating rows */
-  tr:nth-child(even) {
-    background-color: #1e1e1e; /* Slightly darker background for even rows */
-  }
-  
-  /* Style for table cells */
-  td, th {
-    padding: 10px;
-    text-align: left;
-    color: #ffffff; /* Text color */
-    /*border: 1px solid #ccc; Add a light border to cells */
-    border-bottom: 2px solid #ffffff00;
-  }
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #1e1e1e; /* Dark gray background for tables */
+}
+
+/* Style for table headers */
+th {
+  background-color: #2e2e2e; /* Slightly darker gray background for headers */
+  color: #00ff00; /* Neon green text color for headers */
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 2px solid #333; /* Add a bottom border for separation */
+}
+
+/* Style for table rows */
+tr {
+  background-color: #1e1e1e; /* Dark gray background for rows */
+}
+
+/* Style for alternating rows */
+tr:nth-child(even) {
+  background-color: #2e2e2e; /* Slightly lighter gray background for even rows */
+}
+
+/* Style for table cells */
+td, th {
+  padding: 10px;
+  text-align: left;
+  /*color: #00ff00; /* Neon green text color for cells */
+  color: var(--accent-color);
+
+  border-bottom: 2px solid #333; /* Add a bottom border for separation */
+}
 
 
