@@ -144,6 +144,8 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
 
         Messy ATM
         '''
+        self.logger.info(f"{self.logging_info_symbol} Starting Sync....")
+
         #self.logger.debug(f"Filename; {filename}")
 
         ## Request files from server
@@ -176,7 +178,7 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
             # For example, if the server returns an HTML page with links to files, you can use a library like BeautifulSoup to parse it.
             # Then, extract the file URLs and iterate through them to download the files.
 
-            '''
+            ''' Ex Json data
             {
                 "myfile00.txt": {
                     "filedir": "/filehost/myfile00.txt",
@@ -186,39 +188,44 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
             
             '''
 
-            # Need to do some json magic
-            #file_urls = response.text.splitlines()
-
             file_urls_dict = json.loads(response.text)
-
             # Create the local directory if it doesn't exist
             os.makedirs(local_directory, exist_ok=True)
 
             # Download each file
             for file_url in file_urls_dict:
                 print(file_url)
+                chunk_size = 1024
+                filesize = file_urls_dict[file_url]["filesize"]
+                filename = file_urls_dict[file_url]["filename"]
+                filepath_on_server = file_urls_dict[file_url]["filedir"]
+                #filehash = file_urls_dict[file_url]["filehash"]
 
-                filepath = file_urls_dict[file_url]["filedir"]
-
-                filename = os.path.basename(file_url)
+                #filename = os.path.basename(file_url)
                 local_file_path = os.path.join(local_directory, filename)
+
+                ## Need to do hash checking. IF hashes are the same, DO NOT
+                ## redownload. Saves on processing & Network bandwidth
 
                 # Send an HTTP GET request to the file URL and save the content to a local file
                 with open(local_file_path, 'wb') as local_file:
-
-                    ## Don't need headers ATM
-                    file_response = requests.get(
-                        url = f"{base_url}/{filepath}",
-                        headers=headers
+                    server_response = requests.get(
+                        url=f"{base_url}/{filepath_on_server}",
+                        headers=headers,
+                        stream=True  # Set stream=True to enable streaming the content
                     )
-                    if file_response.status_code == 200:
-                        local_file.write(file_response.content)
+
+                    if server_response.status_code == 200:
+                        for chunk in server_response.iter_content(chunk_size=chunk_size):
+                            if chunk:
+                                local_file.write(chunk)
+
+                        ## Additional file checks, hash checking for file integrity?
                     else:
-                        self.logger.warning(f"Failed to download {file_url}")
-                        print(file_response.status_code)
+                        self.logger.warning(f"{self.logging_warning_symbol} Failed to download {file_url}: {server_response.status_code}")
 
         else:
-            self.logger.warning(f"Failed to retrieve files from {base_url}")
+            self.logger.warning(f"Failed to retrieve files from {base_url}, code: {response.status_code}")
             print(response.text)
 
 if __name__ == "__main__":
