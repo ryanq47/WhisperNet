@@ -172,8 +172,8 @@ class FileHost(BasePlugin, BaseLogging):
 
         return "data"#jsonify(json)
     
-    # these don't need a (). Funky
-    @login_required
+    ## disabling until I can find a way to do an OR here, web OR api login.
+    #@login_required
     def filehost_download_file(self, filename):
         print(f"Filename; {filename}")
         return send_from_directory(
@@ -181,6 +181,7 @@ class FileHost(BasePlugin, BaseLogging):
             filename,
             as_attachment=True)
 
+    # these don't need a (). Funky
     @login_required
     def filehost_upload_file(self):
         '''
