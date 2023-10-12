@@ -29,6 +29,7 @@ from flask import Flask, send_from_directory
 import threading
 import requests
 import os
+import json
 
 ################################################
 # Info class
@@ -65,6 +66,10 @@ Accessing logger.
     This is set up this way so consistent logging can be achieved
 
 '''
+
+## TEMP AUTH. DO NOT USE
+user = "fh01"
+password = "password"
 
 
 ## Inherets BasePlugin
@@ -132,11 +137,15 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
     
     ## Maybe a manual upload function? Would require some more work + auth.
 
-    def sync_files(self, server):
+    def sync_files(self):
         '''
         Sync's files with the control server. 
         
+
+        Messy ATM
         '''
+        self.logger.info(f"{self.logging_info_symbol} Starting Sync....")
+
         #self.logger.debug(f"Filename; {filename}")
 
         ## Request files from server
@@ -144,21 +153,24 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
 
         ## Send msg back to control server on success/fail
 
+        ## Where to store files locally
         local_directory = "Files/"
         # Send an HTTP GET request to the base URL
 
-        ## The actual file base_url
-        base_url = "http://127.0.0.1:5000/filehost/files/"
+        ## substitue for now
+        base_url = "http://127.0.0.1:5000/"
         ## A list of all files, locked behind API auth
-        file_url = "http://127.0.0.1:5000/api/filehost/files/"
-        '''Contents of file_url could be:
-        file01.txt
-        file02.txt
-        FileDir/File03.txt
-        
-        '''
+        api_file_url = "http://127.0.0.1:5000/api/filehost/files"
 
-        response = requests.get(base_url)
+        headers = {
+            "Authorization": f"Bearer {self.JWT}"
+        }
+
+        response = requests.get(
+            url = api_file_url,
+            headers = headers
+            
+        )
 
         # Check if the request was successful
         if response.status_code == 200:
@@ -166,27 +178,55 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
             # For example, if the server returns an HTML page with links to files, you can use a library like BeautifulSoup to parse it.
             # Then, extract the file URLs and iterate through them to download the files.
 
-            # Here, we assume the server directly provides file URLs.
-            file_urls = response.text.splitlines()
+            ''' Ex Json data
+            {
+                "myfile00.txt": {
+                    "filedir": "/filehost/myfile00.txt",
+                    "filename": "myfile00.txt",
+                    "filesize": 28
+                },
+            
+            '''
 
+            file_urls_dict = json.loads(response.text)
             # Create the local directory if it doesn't exist
             os.makedirs(local_directory, exist_ok=True)
 
             # Download each file
-            for file_url in file_urls:
-                filename = os.path.basename(file_url)
+            for file_url in file_urls_dict:
+                print(file_url)
+                chunk_size = 1024
+                filesize = file_urls_dict[file_url]["filesize"]
+                filename = file_urls_dict[file_url]["filename"]
+                filepath_on_server = file_urls_dict[file_url]["filedir"]
+                #filehash = file_urls_dict[file_url]["filehash"]
+
+                #filename = os.path.basename(file_url)
                 local_file_path = os.path.join(local_directory, filename)
+
+                ## Need to do hash checking. IF hashes are the same, DO NOT
+                ## redownload. Saves on processing & Network bandwidth
 
                 # Send an HTTP GET request to the file URL and save the content to a local file
                 with open(local_file_path, 'wb') as local_file:
-                    file_response = requests.get(file_url)
-                    if file_response.status_code == 200:
-                        local_file.write(file_response.content)
+                    server_response = requests.get(
+                        url=f"{base_url}/{filepath_on_server}",
+                        headers=headers,
+                        stream=True  # Set stream=True to enable streaming the content
+                    )
+
+                    if server_response.status_code == 200:
+                        for chunk in server_response.iter_content(chunk_size=chunk_size):
+                            if chunk:
+                                local_file.write(chunk)
+
+                        ## Additional file checks, hash checking for file integrity?
                     else:
-                        self.logger.warning(f"Failed to download {file_url}")
+                        self.logger.warning(f"{self.logging_warning_symbol} Failed to download {file_url}: {server_response.status_code}")
 
         else:
-            self.logger.warning(f"Failed to retrieve files from {base_url}")
+            self.logger.warning(f"Failed to retrieve files from {base_url}, code: {response.status_code}")
+            print(response.text)
 
 if __name__ == "__main__":
     app = Flask(__name__)
@@ -200,8 +240,12 @@ if __name__ == "__main__":
         target=exteral_plugin.heartbeat_daemon
     )
 
-
     heartbeat_daemon.daemon = True
     heartbeat_daemon.start()
+
+    exteral_plugin.login_to_server(
+        username="api_admin",
+        password="1234"
+    )
 
     app.run(host="0.0.0.0", port=5001, debug=True)
