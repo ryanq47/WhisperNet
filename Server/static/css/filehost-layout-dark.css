@@ -1,28 +1,49 @@
-/* Reset some default styles for consistency */
+:root {
+  --basecolor: #4ae0e8;
+  --dark-bg: #0d0d0d; /* Dark background */
+  --medium-bg: #1e1e1e; /* Slightly lighter background */
+  --light-bg: #2e2e2e; /* Even lighter background */
+  --text-color: #4ae0e8; /* White text */
+  --header-bg: #171717; /* Header background */
+  --footer-bg: #171717; /* Footer background */
+}
+
 body, html {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
-  background-color: #000;
-  color: #00ff00; /* Neon green text color */
+  background-color: var(--dark-bg);
+  color: var(--text-color);
 }
 
-/* Define grid areas */
+/* Header Section */
 .header { grid-area: header; }
+
+/* Nodes Block */
 .nodesblock { grid-area: nodesblock; }
+
+/* File Interaction Block */
 .fileinteractblock { grid-area: fileinteractblock; }
+
+/* Log Block */
 .logblock { grid-area: logblock; }
+
+/* Files Block */
 .filesblock { grid-area: filesblock; }
+
+/* Footer Section */
 .footer { grid-area: footer; }
+
+/* Navbar Section */
 .navbar { grid-area: navbar; }
 
-/* Define the container for chromatic aberration effect */
+/* Container for Chromatic Aberration Effect */
 .aberration-container {
   position: relative;
   overflow: hidden;
 }
 
-/* Define the grid container */
+/* Grid Container */
 .grid-container {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -34,87 +55,85 @@ body, html {
     'filesblock filesblock filesblock filesblock filesblock filesblock'
     'footer footer footer footer footer footer';
   gap: 20px;
-  background-color: #000; /* Dark background color */
+  background-color: var(--dark-bg);
   padding: 20px;
   margin-left: 150px;
   height: 100vh;
 }
 
-/* Style for the grid items */
+/* Grid Items */
 .grid-container > div {
-  background-color: #1e1e1e; /* Dark gray background color */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4); /* CyberPunk-style shadow */
-  border-radius: 8px; /* Rounded corners */
+  background-color: var(--medium-bg);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
   padding: 20px;
   text-align: center;
   font-size: 18px;
-  color: #00ff00; /* Neon green text color */
+  color: var(--basecolor); /* Neon green text */
 }
 
-/* Define specific styles for the footer */
+/* Footer Section Styles */
 .footer {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   text-align: center;
-  background-color: #1e1e1e; /* Dark gray footer background */
-  color: #00ff00; /* Neon green text color */
+  background-color: var(--footer-bg);
+  color: var(--text-color);
   padding: 10px;
 }
 
-
-/* Flexbox container styles */
+/* Flexbox Container Styles */
 .logblock, .fileinteractblock, .nodesblock, .filesblock, .header {
   min-height: 200px;
-  background-color: #2e2e2e; /* Slightly lighter gray background */
-  border-radius: 8px; /* Rounded corners */
+  background-color: var(--light-bg);
+  border-radius: 8px;
   padding: 20px;
-  overflow: auto; /* Add overflow property for scrollbar */
+  overflow: auto;
+  color: var(--basecolor);
 }
 
-/* Sub-element styles */
-.logblock > *,  .fileinteractblock > *, .nodesblock > *, .filesblock > * {
-  background-color: #2e2e2e; /* Slightly lighter gray background */
+/* Sub-element Styles */
+.logblock > *, .fileinteractblock > *, .nodesblock > *, .filesblock > * {
+  background-color: var(--light-bg);
   padding: 10px;
   text-align: left;
-  color: #00ff00; /* Neon green text color */
+  color: var(--text-color);
 }
 
-/* table stuff - overrides the base CSS file. Delete to revert to that */
+/* Table Styles */
 table {
   border-collapse: collapse;
   width: 100%;
   margin-bottom: 20px;
-  background-color: #1e1e1e; /* Dark gray background for tables */
+  background-color: var(--medium-bg);
 }
 
-/* Style for table headers */
+/* Table Header Styles */
 th {
-  background-color: #2e2e2e; /* Slightly darker gray background for headers */
-  color: #00ff00; /* Neon green text color for headers */
+  background-color: var(--light-bg);
+  color: var(--basecolor); /* Neon green text */
   font-weight: bold;
   padding: 10px;
   text-align: left;
-  border-bottom: 2px solid #333; /* Add a bottom border for separation */
+  border-bottom: 2px solid #333;
 }
 
-/* Style for table rows */
+/* Table Row Styles */
 tr {
-  background-color: #1e1e1e; /* Dark gray background for rows */
+  background-color: var(--medium-bg);
 }
 
-/* Style for alternating rows */
+/* Alternating Row Styles */
 tr:nth-child(even) {
-  background-color: #2e2e2e; /* Slightly lighter gray background for even rows */
+  background-color: var(--light-bg);
 }
 
-/* Style for table cells */
+/* Table Cell Styles */
 td, th {
   padding: 10px;
   text-align: left;
-  /*color: #00ff00; /* Neon green text color for cells */
-  color: var(--accent-color);
-
-  border-bottom: 2px solid #333; /* Add a bottom border for separation */
+  color: var(--text-color);
+  border-bottom: 2px solid #333;
 }
