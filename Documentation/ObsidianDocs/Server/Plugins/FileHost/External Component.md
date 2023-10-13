@@ -67,3 +67,7 @@ Checkin messages to CS. Post to /api/filehost/checkin? then the CS could take sa
 }
 
 ```
+
+- [ ] DB handler outline exsits
+- [ ] Need to build out write TO db, and read from db. 
+	- [ ] After this, read from DB to webserver

@@ -74,9 +74,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "bea8261318ebcde3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Server/Plugins/FileHost/External Component.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -214,7 +226,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "b5c23ddf1d482db0",
+  "active": "bea8261318ebcde3",
   "lastOpenFiles": [
     "Pasted image 20231013103045.png",
     "Pasted image 20231013100938.png",

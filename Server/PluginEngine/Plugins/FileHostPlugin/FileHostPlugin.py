@@ -157,6 +157,7 @@ class FileHost(BasePlugin, BaseLogging):
         self.app.route(f'/{Info.endpoint}/<path:filename>', methods = ["GET"])(self.filehost_download_file)
         self.app.route(f'/{Info.endpoint}/upload', methods = ["POST"])(self.filehost_upload_file)
         self.app.route(f'/api/{Info.endpoint}/files', methods = ["GET"])(self.filehost_api_file_listing)
+        self.app.route(f'/api/{Info.endpoint}/checkin', methods = ["POST"])(self.filehost_checkin)
 
 
     # for controlling ext plugin
@@ -214,7 +215,11 @@ class FileHost(BasePlugin, BaseLogging):
     @login_required
     def filehost_base_directory(self):
         '''
-        eventually.. if not auth then re-auth
+        Code for the dashboard at /filehost
+
+        eventually.. if not auth then re-auth.
+
+        Also, break these into sub functions
         '''
         servername = "FileHost Plugin"
         list_of_files = []
@@ -244,6 +249,9 @@ class FileHost(BasePlugin, BaseLogging):
                 }
             finally:
                 list_of_files.append(dict_)
+
+        ## populate the messages from the external filehosts
+
 
         return render_template('filehost-dashboard.html', 
                             files=list_of_files,
@@ -287,6 +295,47 @@ class FileHost(BasePlugin, BaseLogging):
 
         return json_file_data
     
+
+    def filehost_checkin(self):
+        '''
+        An endpoint to post checkin data.
+        Need to decide if I want to make this protected or not
+        
+        {
+            "name":"",
+            "ip":"",
+            "message":"syncing | sync successful | sync failed | error"
+            "timestamp":""
+        
+        }
+        '''
+        try:
+            plugin_instance_name = request.json.get('name')
+            plugin_external_ip = request.json.get('ip')
+            plugin_message = request.json.get('message')
+            plugin_timestamp = request.json.get('timestamp')
+
+            ## Dump data to DB -- for now just doing a non-persistent message setup
+            '''
+            Needs to:
+                if new fh, add row.
+
+                if existing fh, update row with new data. primary key will be name
+            
+            
+            '''
+
+
+            print("Data:")
+            print(plugin_instance_name, plugin_external_ip, plugin_message, plugin_timestamp)
+            return "success"
+        
+
+        except Exception as e:
+            self.logger.warning(f"{self.logging_warning_symbol} Error with checkin: {e}")
+
+
+
 
     ## doesnt belong here, move to a util class eventually
     def md5_hash_file(self, file_path):

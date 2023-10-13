@@ -6,8 +6,9 @@ import time
 import json
 import requests
 from Utils.ControlServerHandler import ControlServerHandler
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 import os
+import time
 
 class ExternalBasePlugin(BaseLogging):
     def __init__(self):
@@ -18,6 +19,11 @@ class ExternalBasePlugin(BaseLogging):
         self.JWT = None
         self.api_password = None
         self.api_username = None
+
+        ## stats stuff
+        self.name = "fh01"
+        self.plugin_type = "filehost_external"
+        self.external_ip = None
 
 
     def heartbeat_daemon(self):
@@ -32,6 +38,7 @@ class ExternalBasePlugin(BaseLogging):
             )
 
             sync.sync_files()
+            self.checkin_to_server(message="Heartbeat")
             time.sleep(self.heartbeat_time)
 
     def get_command(self):
@@ -54,10 +61,14 @@ class ExternalBasePlugin(BaseLogging):
         Loads Credentials from .env file
         
         '''
-        load_dotenv()
+        self.api_username = "api_admin"
+        self.api_password = "1234"
 
-        self.api_username = os.getenv("CONTROLSERVER_API_USERNAME")
-        self.api_password = os.getenv("CONTROLSERVER_API_PASSWORD")
+    
+        #load_dotenv()
+
+        #self.api_username = os.getenv("CONTROLSERVER_API_USERNAME")
+        #self.api_password = os.getenv("CONTROLSERVER_API_PASSWORD")
 
 
 
@@ -100,4 +111,44 @@ class ExternalBasePlugin(BaseLogging):
             self.logger.warning(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
 
 
+    def checkin_to_server(self, message=None):
+        '''
+        Sends checkin to server
+
+        {
+            "name":"fh01",
+            "plugin_type":"filehost_external"
+            "ip":"123.0.0.0",
+            "message":"syncing | sync successful | sync failed | error"
+            "timestamp":""
+        }
+
+        '''
+
+        dict_data = {
+            "name":self.name,
+            "plugin_type":self.plugin_type,
+            "ip":self.external_ip,
+            "message":message,
+            "timestamp":time.asctime()
+        }
+
+        json_data = json.dumps(dict_data)
+
+        headers = {
+                "Content-Type": "application/json"
+        }
+
+        r = requests.post(
+            url = "http://127.0.0.1:5000/api/filehost/checkin",
+            headers = headers,
+            data = json_data
+        )
+
+    def get_external_ip(self):
+        '''
+        Gets external ip
+        '''
+
+        return "123.0.0.1"
 
