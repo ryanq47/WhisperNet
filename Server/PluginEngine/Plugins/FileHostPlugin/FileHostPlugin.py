@@ -38,6 +38,8 @@ from functools import wraps
 from flask import request, jsonify
 from flask_jwt_extended import get_jwt_identity, jwt_required
 
+import hashlib
+
 ################################################
 # Info class
 ################################################
@@ -275,6 +277,7 @@ class FileHost(BasePlugin, BaseLogging):
                             ## Note, this is depednent on what you set the file endpoint to. 
                             "filedir": f"{Info.endpoint}/{file}",
                             "filesize": file_size,
+                            "filehash": self.md5_hash_file(file_path),
                         }
                 }
                 json_file_data.update(file_data)
@@ -283,3 +286,26 @@ class FileHost(BasePlugin, BaseLogging):
                 self.logger.warning(f"{self.logging_warning_symbol} Error with getting file info: {e}")
 
         return json_file_data
+    
+
+    ## doesnt belong here, move to a util class eventually
+    def md5_hash_file(self, file_path):
+        '''
+        Does an md5 on a file and returns the hash.
+        
+        '''
+
+        try:
+            md5_hash = hashlib.md5()
+            
+            with open(file_path, 'rb') as file:
+                while chunk := file.read(8192):
+                    md5_hash.update(chunk)
+
+            # Get the MD5 hash in hexadecimal format
+            remote_md5_hex = md5_hash.hexdigest()
+            return remote_md5_hex
+        except Exception as e: 
+            self.logger.warning(f"{self.logging_warning_symbol} Error with getting file hash: {e}")
+
+
