@@ -42,3 +42,28 @@ At the moment, here are the key functions of the Daemon:
 			-  MD5 hashes of the files will be compared. If the hashes do not match, the FileHost Plugin will pull the files from the CS, overwriting its local copy. 
 				- This is a design choice. Honestly, it was the most simple way of doing basic file tracking. Maybe I'll step it up in the future, but for now this works fine.
 			- If hashes DO match, no action is taken. This saves on bandwidth/redownloading files the plugin already has. 
+
+
+
+
+
+
+## IDea Section
+
+Checkin messages to CS. Post to /api/filehost/checkin? then the CS could take said data, organize as needed, and display on webserver. Might be a good idea to dump these messages in a DB as well.
+
+```
+
+{
+	plugin_name: {
+		"name":"",
+		"ip":"",
+		"message":"syncing | sync successful | sync failed | error"
+		"timestamp":""
+	
+	
+	}
+	
+}
+
+```
