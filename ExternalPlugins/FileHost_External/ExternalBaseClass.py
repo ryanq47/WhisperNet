@@ -5,6 +5,9 @@ import inspect
 import time
 import json
 import requests
+from Utils.ControlServerHandler import ControlServerHandler
+from dotenv import load_dotenv
+import os
 
 class ExternalBasePlugin(BaseLogging):
     def __init__(self):
@@ -13,11 +16,22 @@ class ExternalBasePlugin(BaseLogging):
         self.control_server_command_endpoint = None
         self.heartbeat_time = 60
         self.JWT = None
+        self.api_password = None
+        self.api_username = None
+
 
     def heartbeat_daemon(self):
         while True:
             print("Heartbeat")
-            self.sync_files()
+
+            ## spin up class with data to sync files
+            sync = ControlServerHandler(
+                jwt = self.JWT,
+                server_url = "",
+                server_port = ""
+            )
+
+            sync.sync_files()
             time.sleep(self.heartbeat_time)
 
     def get_command(self):
@@ -34,15 +48,28 @@ class ExternalBasePlugin(BaseLogging):
             self.logger.warning(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
             return None
     
-    def login_to_server(self, username, password):
+
+    def load_creds(self):
+        '''
+        Loads Credentials from .env file
+        
+        '''
+        load_dotenv()
+
+        self.api_username = os.getenv("CONTROLSERVER_API_USERNAME")
+        self.api_password = os.getenv("CONTROLSERVER_API_PASSWORD")
+
+
+
+    def login_to_server(self):
         '''
             Logs into server. Sets self.JWT on success
         '''
         try: 
 
             auth_data = {
-                "username":username,
-                "password":password
+                "username":self.api_username,
+                "password":self.api_password
             }
 
             headers = {

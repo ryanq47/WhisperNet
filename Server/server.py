@@ -52,8 +52,8 @@ parser.add_argument('--port', help="The port to listen on", required=True)
 parser.add_argument('--quiet', help="No output to console", action='store_true')
 parser.add_argument('--fileserverport', help="what port for the file server", default=80)
 parser.add_argument('-c', '--generatekeys', help="ReGen Certs & Keys", action="store_true")
-parser.add_argument('--evasionprofile', help="The evasion profile", default="/EvasionProfiles/default.yaml")
-parser.add_argument('--apiconfigprofile', help="The API config profile", default="Config/ApiSchemas/default.yaml")
+#parser.add_argument('--evasionprofile', help="The evasion profile", default="/EvasionProfiles/default.yaml")
+#parser.add_argument('--apiconfigprofile', help="The API config profile", default="Config/ApiSchemas/default.yaml")
 
 ## Globals bad. I know
 args                = parser.parse_args()
@@ -62,8 +62,8 @@ port                = int(args.port)
 quiet               = args.quiet
 fileserverport      = args.fileserverport
 generate_keys       = args.generatekeys
-evasion_profile     = args.evasionprofile
-api_config_profile  = args.apiconfigprofile
+#evasion_profile     = args.evasionprofile
+#api_config_profile  = args.apiconfigprofile
 sys_path = os.path.dirname(os.path.realpath(__file__))
 function_debug_symbol = "[^]"
 
@@ -132,9 +132,9 @@ class ControlServer(BaseLogging):
         ## this could use a refactor
         self.load_plugins(self.app)
         self.jwt = JWTManager(self.app)
-        self.config_file_path = Utils.UtilsHandler.load_file(current_path=sys_path, file_path=api_config_profile)
-        self.UrlSc = ApiEngine.ConfigHandler.UrlSchema(api_config_profile=self.config_file_path)
-        self.UrlSc.load()
+        #self.config_file_path = Utils.UtilsHandler.load_file(current_path=sys_path, file_path=api_config_profile)
+        #self.UrlSc = ApiEngine.ConfigHandler.UrlSchema(api_config_profile=self.config_file_path)
+        #self.UrlSc.load()
         self.init_routes()
 
 
