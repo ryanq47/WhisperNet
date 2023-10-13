@@ -249,7 +249,7 @@ class FileHost(BasePlugin, BaseLogging):
                             files=list_of_files,
                             servername = servername)
 
-    #@jwt_required
+    @jwt_required()
     def filehost_api_file_listing(self):
         '''
         Endpoint for listing the files in the FileHost plugin. Purely for API
