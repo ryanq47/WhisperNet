@@ -28,10 +28,10 @@ import inspect
 #from flask import Flask, jsonify, request, send_from_directory, render_template, Response
 from flask import jsonify, send_from_directory, render_template
 from flask_login import LoginManager, login_required
-'''
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, FileField
-from wtforms.validators import DataRequired, Length'''
+
+#from flask_wtf import FlaskForm
+#from wtforms import StringField, SubmitField, FileField
+#from wtforms.validators import DataRequired, Length
 
 ## API stuff
 from functools import wraps
@@ -195,8 +195,9 @@ class FileHost(BasePlugin, BaseLogging):
 
         dev: needs a refactor/rething. Maybe throw forms in a stataic class
         '''
-        return "temp"
+        return "Not Implemented"
         ## Note, CSRF is missing is issue
+        
         '''
         try:
             
@@ -212,6 +213,7 @@ class FileHost(BasePlugin, BaseLogging):
         except Exception as e: 
             print(e)
         '''
+        
 
     @login_required
     def filehost_base_directory(self):
@@ -303,7 +305,7 @@ class FileHost(BasePlugin, BaseLogging):
     def filehost_checkin(self):
         '''
         An endpoint to post checkin data.
-        Need to decide if I want to make this protected or not
+        Need to decide if I want to make this protected or not. for now its not
         
         {
             "name":"",
