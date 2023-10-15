@@ -6,16 +6,17 @@ import time
 import json
 import requests
 from Utils.ControlServerHandler import ControlServerHandler
-#from dotenv import load_dotenv
+from dotenv import load_dotenv
 import os
 import time
+from datetime import datetime
 
 class ExternalBasePlugin(BaseLogging):
     def __init__(self):
         
         self.control_server_url = None
         self.control_server_command_endpoint = None
-        self.heartbeat_time = 60
+        self.heartbeat_time = 5
         self.JWT = None
         self.api_password = None
         self.api_username = None
@@ -61,14 +62,11 @@ class ExternalBasePlugin(BaseLogging):
         Loads Credentials from .env file
         
         '''
-        self.api_username = "api_admin"
-        self.api_password = "1234"
 
-    
-        #load_dotenv()
+        load_dotenv()
 
-        #self.api_username = os.getenv("CONTROLSERVER_API_USERNAME")
-        #self.api_password = os.getenv("CONTROLSERVER_API_PASSWORD")
+        self.api_username = os.getenv("CONTROLSERVER_API_USERNAME")
+        self.api_password = os.getenv("CONTROLSERVER_API_PASSWORD")
 
 
 
@@ -130,7 +128,7 @@ class ExternalBasePlugin(BaseLogging):
             "plugin_type":self.plugin_type,
             "ip":self.external_ip,
             "message":message,
-            "timestamp":time.asctime()
+            "timestamp":datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         }
 
         json_data = json.dumps(dict_data)

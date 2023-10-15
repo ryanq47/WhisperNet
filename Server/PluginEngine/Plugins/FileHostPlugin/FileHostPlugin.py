@@ -140,6 +140,7 @@ class FileHost(BasePlugin, BaseLogging):
         BaseLogging.__init__(self)  
         # Just in case you need to test logging/it breaks...
         #self.logger.warning("LOGGING IS WORKING - <PLUGINNAME>")
+        self.node_checkin_data = []
 
     def main(self):
         '''
@@ -250,12 +251,15 @@ class FileHost(BasePlugin, BaseLogging):
             finally:
                 list_of_files.append(dict_)
 
-        ## populate the messages from the external filehosts
+        ## populate the checkin messages from the external filehosts  
 
+        ## Do needed transfomrations to data
+        self.data_management()
 
         return render_template('filehost-dashboard.html', 
                             files=list_of_files,
-                            servername = servername)
+                            servername = servername,
+                            nodedata = self.node_checkin_data)
 
     @jwt_required()
     def filehost_api_file_listing(self):
@@ -275,7 +279,7 @@ class FileHost(BasePlugin, BaseLogging):
 
         for file in filenames:
             try:
-                print(file)
+                #print(file)
                 file_path = f"PluginEngine/Plugins/FileHostPlugin/Files/{file}"
                 file_size = os.path.getsize(file_path)
 
@@ -322,12 +326,30 @@ class FileHost(BasePlugin, BaseLogging):
 
                 if existing fh, update row with new data. primary key will be name
             
+                    or... just log it. no need for persistent DB data for now.
+                    The only having to having a DB is for currently connected nodes. 
+                    Downsides are complexity
             
             '''
 
+            log_string = f"{self.logging_info_symbol} Checkin: Plugin Name: '{plugin_instance_name}' " \
+            f"Plugin IP: '{plugin_external_ip}' " \
+            f"Message: '{plugin_message}' " \
+            f"Timestamp: '{plugin_timestamp}' "
 
-            print("Data:")
-            print(plugin_instance_name, plugin_external_ip, plugin_message, plugin_timestamp)
+            self.logger.info(log_string)
+
+
+            data_dict = {
+                "name":plugin_instance_name,
+                "ip":plugin_external_ip,
+                "message":plugin_message,
+                "timestamp":plugin_timestamp,
+            }
+
+            self.node_checkin_data.append(data_dict)
+            #print(self.node_checkin_data)
+
             return "success"
         
 
@@ -335,7 +357,15 @@ class FileHost(BasePlugin, BaseLogging):
             self.logger.warning(f"{self.logging_warning_symbol} Error with checkin: {e}")
 
 
+    def data_management(self):
+        '''
+        Does some general actions on data to make sure it's compliant/dosen't run away 
+        or get unmanageable
+        
+        '''
 
+        ## Keeps list limited in size.
+        self.node_checkin_data = self.node_checkin_data[-15:] 
 
     ## doesnt belong here, move to a util class eventually
     def md5_hash_file(self, file_path):
