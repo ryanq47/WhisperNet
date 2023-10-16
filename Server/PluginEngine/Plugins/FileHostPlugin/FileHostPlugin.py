@@ -141,6 +141,7 @@ class FileHost(BasePlugin, BaseLogging):
         # Just in case you need to test logging/it breaks...
         #self.logger.warning("LOGGING IS WORKING - <PLUGINNAME>")
         self.node_checkin_data = []
+        self.node_file_access_data = []
 
     def main(self):
         '''
@@ -159,6 +160,7 @@ class FileHost(BasePlugin, BaseLogging):
         self.app.route(f'/{Info.endpoint}/upload', methods = ["POST"])(self.filehost_upload_file)
         self.app.route(f'/api/{Info.endpoint}/files', methods = ["GET"])(self.filehost_api_file_listing)
         self.app.route(f'/api/{Info.endpoint}/checkin', methods = ["POST"])(self.filehost_checkin)
+        self.app.route(f'/api/{Info.endpoint}/filelogs', methods = ["POST"])(self.filehost_file_access_logs)
 
 
     # for controlling ext plugin
@@ -186,6 +188,7 @@ class FileHost(BasePlugin, BaseLogging):
             as_attachment=True)
 
     # these don't need a (). Funky
+    #also not exactly the most secure. no validation on upload
     @login_required
     def filehost_upload_file(self):
         '''
@@ -281,7 +284,8 @@ class FileHost(BasePlugin, BaseLogging):
         return render_template('filehost-dashboard.html', 
                             files=list_of_files,
                             servername = servername,
-                            nodedata = self.node_checkin_data)
+                            nodedata = self.node_checkin_data,
+                            filelogdata = self.node_file_access_data)
 
     @jwt_required()
     def filehost_api_file_listing(self):
@@ -378,6 +382,54 @@ class FileHost(BasePlugin, BaseLogging):
         except Exception as e:
             self.logger.warning(f"{self.logging_warning_symbol} Error with checkin: {e}")
 
+    def filehost_file_access_logs(self):
+        '''
+        An endpoint to post file access.
+        Takes a post request.
+        URI: /api/filehost/filelogs
+        
+        {
+
+            "filename":"notsafefile.exe",
+            "accessorip":"y.y.y.y"
+            "hostip":"x.x.x.x",
+            "hostingserver":"fh01"
+            "timestamp":"010101"
+
+        }
+        '''
+        try:
+            file_name = request.json.get('filename')
+            file_accessor_ip = request.json.get('accessorip')
+            node_ip = request.json.get('hostip')
+            node_name = request.json.get('hostingserver')
+            file_timestamp = request.json.get('timestamp')
+
+
+            log_string = f"{self.logging_info_symbol} File Access: Plugin Name: '{node_name}' " \
+            f"Plugin IP: '{node_ip}' " \
+            f"filename: '{file_name}' " \
+            f"accessor IP: '{file_accessor_ip}' " \
+            f"Timestamp: '{file_timestamp}' "
+
+            self.logger.info(log_string)
+
+
+            data_dict = {
+                "node_name":node_name,
+                "file_accessor_ip":file_accessor_ip,
+                "filename":file_name,
+                "timestamp":file_timestamp,
+            }
+
+            self.node_file_access_data.append(data_dict)
+            #print(self.node_checkin_data)
+
+            return "success"
+        
+
+        except Exception as e:
+            self.logger.warning(f"{self.logging_warning_symbol} Error with filelogs: {e}")
 
     def data_management(self):
         '''
@@ -388,6 +440,7 @@ class FileHost(BasePlugin, BaseLogging):
 
         ## Keeps list limited in size.
         self.node_checkin_data = self.node_checkin_data[-15:] 
+        self.node_file_access_data = self.node_file_access_data[-30:]
 
     ## doesnt belong here, move to a util class eventually
     def md5_hash_file(self, file_path):

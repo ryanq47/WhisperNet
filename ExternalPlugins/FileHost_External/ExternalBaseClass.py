@@ -128,7 +128,7 @@ class ExternalBasePlugin(BaseLogging):
             "plugin_type":self.plugin_type,
             "ip":self.external_ip,
             "message":message,
-            "timestamp":datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            "timestamp":self.get_timestamp()
         }
 
         json_data = json.dumps(dict_data)
@@ -143,6 +143,42 @@ class ExternalBasePlugin(BaseLogging):
             data = json_data
         )
 
+    def post_file_logs(self, filename = None, accessorip = None):
+        '''
+        Sends file log data to server. 
+        
+        dict_data = {
+            "filename":"notsafefile.exe",
+            "accessorip":"y.y.y.y",
+            "hostip":"x.x.x.x",
+            "hostingserver":"fh01",
+            "timestamp":"010101"
+
+        }
+
+        '''
+
+        dict_data = {
+            "filename":filename,
+            "accessorip":accessorip,
+            "hostip":self.external_ip,
+            "hostingserver":self.name,
+            "timestamp":self.get_timestamp()
+        }
+
+        json_data = json.dumps(dict_data)
+
+        headers = {
+                "Content-Type": "application/json"
+        }
+
+        r = requests.post(
+            url = "http://127.0.0.1:5000/api/filehost/filelogs",
+            headers = headers,
+            data = json_data
+        )
+
+
     def get_external_ip(self):
         '''
         Gets external ip
@@ -150,3 +186,10 @@ class ExternalBasePlugin(BaseLogging):
 
         return "123.0.0.1"
 
+    def get_timestamp(self):
+        try:
+            return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        
+        except Exception as e:
+            self.logger.warning(f"{self.logging_warning_symbol} Error getting timestamp: {e}")
+            return "Error getting timestamp"

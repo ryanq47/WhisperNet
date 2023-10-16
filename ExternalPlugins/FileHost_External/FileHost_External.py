@@ -131,6 +131,13 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
 
     def serve_file(self, filename):
         self.logger.debug(f"Filename: {filename}")
+
+        ## May need to thread this as it COULD hang the node if something doesnt work
+        self.post_file_logs(
+            filename=filename,
+            accessorip="1.2.3.4"
+        )
+
         return send_from_directory(
             "Files/",
             filename,

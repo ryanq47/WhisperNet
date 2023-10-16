@@ -226,8 +226,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "bea8261318ebcde3",
+  "active": "e250de59ef9ddaa7",
   "lastOpenFiles": [
+    "Server/Plugins/SimpleC2",
     "Pasted image 20231013103045.png",
     "Pasted image 20231013100938.png",
     "Server/Plugins/FileHost/Endpoints.md",
@@ -281,7 +282,6 @@
     "Valuecheck Function.canvas",
     "DataState.canvas",
     "General/Images",
-    "General/Images/Pasted image 20230913002046.png",
     "Server/Globals",
     "Server/Visual Progress.canvas"
   ]

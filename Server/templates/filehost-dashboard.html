@@ -98,28 +98,28 @@
         <table id="data-table", class="table">
             <thead>
                 <tr>
-                    <th>IP</th>
+                    <th>Accessor IP</th>
                     <th>FileName</th>
-                    <th>Time/Date</th>
-                    <th>Hosting Server</th>
+                    <th>Node Name</th>
+                    <th>Time</th>
+                    <th>HTTP Code</th>
 
                 </tr>
             </thead>
+            {% for filelog in filelogdata %}
+
             <tbody>
                 <tr>
-                    <td> 127.0.0.1 </td>
-                    <td> myfile.txt </td>
-                    <td> 17:01:25 - 10-01-23 </td>
-                    <td> notsafe.com </td>
+                    <td> {{filelog.file_accessor_ip}} </td>
+                    <td> {{filelog.filename}} </td>
+                    <td> {{filelog.node_name}} </td>
+                    <td> {{filelog.timestamp}} </td>
+                    <td> 200 | 500 | 404 </td>
+
                 </tr>
-                <tr>
-                    <td> 127.0.0.1 </td>
-                    <td> myfile.txt </td>
-                    <td> 17:01:25 - 10-01-23 </td>
-                    <td> notsafe.com </td>
-                </tr>
+            {% endfor %}
             </tbody>
-        </table>        
+        </table>      
         
         <!-- <p>172.0.0.1 -- file.txt -- TIME:DATE</p> -->
 
