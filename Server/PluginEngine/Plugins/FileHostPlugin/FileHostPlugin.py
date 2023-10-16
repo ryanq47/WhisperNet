@@ -26,7 +26,7 @@ import logging
 import inspect
 #from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
 #from flask import Flask, jsonify, request, send_from_directory, render_template, Response
-from flask import jsonify, send_from_directory, render_template
+from flask import jsonify, send_from_directory, render_template, flash, redirect
 from flask_login import LoginManager, login_required
 
 #from flask_wtf import FlaskForm
@@ -206,11 +206,17 @@ class FileHost(BasePlugin, BaseLogging):
                     # Save the uploaded file to a specific directory
                     uploaded_file.save('PluginEngine/Plugins/FileHostPlugin/Files/' + uploaded_file.filename)
 
-                    return 'File uploaded successfully!'
+                    #flash("File uploaded successfully")
+                    return redirect("/filehost")
+
+            
+            #flash("Upload Failed")
+            return redirect("/filehost")
         except Exception as e:
             self.logger.warning(f"{self.logging_warning_symbol} Error uploading file: {e}")
+            #flash("Upload Failed")
+            return redirect("/filehost")
 
-            return 'File upload failed'
         
         '''
         try:
