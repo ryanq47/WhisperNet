@@ -1,5 +1,14 @@
 /* Created by me... then revised by chatGPT to look somewhat modern */
 
+:root {
+  --basecolor: #4ae0e8;
+  --dark-bg: #0d0d0d; /* Dark background */
+  --medium-bg: #1e1e1e; /* Slightly lighter background */
+  --light-bg: #2e2e2e; /* Even lighter background */
+  --text-color: #4ae0e8; /* White text */
+  --header-bg: #171717; /* Header background */
+  --footer-bg: #171717; /* Footer background */
+}
 
 /* Reset some default styles for consistency */
 body, html {
@@ -44,7 +53,7 @@ body, html {
   padding: 20px;
   text-align: center;
   font-size: 18px;
-  color: #00ff00; /* Neon green text color */
+  color: var(--basecolor);
 }
 
 /* Define specific styles for the footer */
@@ -95,8 +104,7 @@ table {
 /* Style for table headers */
 th {
   background-color: #2e2e2e; /* Slightly darker gray background for headers */
-  color: #00ff00; /* Neon green text color for headers */
-  font-weight: bold;
+  color: var(--basecolor);  font-weight: bold;
   padding: 10px;
   text-align: left;
   border-bottom: 2px solid #333; /* Add a bottom border for separation */
@@ -117,8 +125,7 @@ td, th {
   padding: 10px;
   text-align: left;
   /*color: #00ff00; /* Neon green text color for cells */
-  color: var(--accent-color);
-
+  color: var(--basecolor);
   border-bottom: 2px solid #333; /* Add a bottom border for separation */
 }
 
