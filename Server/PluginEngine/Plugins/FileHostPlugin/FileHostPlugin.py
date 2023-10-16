@@ -434,7 +434,8 @@ class FileHost(BasePlugin, BaseLogging):
     def data_management(self):
         '''
         Does some general actions on data to make sure it's compliant/dosen't run away 
-        or get unmanageable
+        or get unmanageable. Everything trimmed here has a log fiel for each respective
+        event, so this doens't just vanish on exit
         
         '''
 

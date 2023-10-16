@@ -22,7 +22,6 @@ class ExternalBasePlugin(BaseLogging):
         self.api_username = None
 
         ## stats stuff
-        self.name = "fh01"
         self.plugin_type = "filehost_external"
         self.external_ip = None
 
@@ -124,7 +123,7 @@ class ExternalBasePlugin(BaseLogging):
         '''
 
         dict_data = {
-            "name":self.name,
+            "name":self.control_server_name,
             "plugin_type":self.plugin_type,
             "ip":self.external_ip,
             "message":message,
@@ -162,7 +161,7 @@ class ExternalBasePlugin(BaseLogging):
             "filename":filename,
             "accessorip":accessorip,
             "hostip":self.external_ip,
-            "hostingserver":self.name,
+            "hostingserver":self.control_server_name,
             "timestamp":self.get_timestamp()
         }
 
