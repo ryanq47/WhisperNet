@@ -195,8 +195,22 @@ class FileHost(BasePlugin, BaseLogging):
 
         dev: needs a refactor/rething. Maybe throw forms in a stataic class
         '''
-        return "Not Implemented"
+        #return "Not Implemented"
         ## Note, CSRF is missing is issue
+        try:
+
+            if request.method == 'POST':
+                uploaded_file = request.files['file']
+
+                if uploaded_file:
+                    # Save the uploaded file to a specific directory
+                    uploaded_file.save('PluginEngine/Plugins/FileHostPlugin/Files/' + uploaded_file.filename)
+
+                    return 'File uploaded successfully!'
+        except Exception as e:
+            self.logger.warning(f"{self.logging_warning_symbol} Error uploading file: {e}")
+
+            return 'File upload failed'
         
         '''
         try:
