@@ -74,9 +74,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "bea8261318ebcde3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Server/Plugins/FileHost/External Component.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -214,8 +226,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "b5c23ddf1d482db0",
+  "active": "e250de59ef9ddaa7",
   "lastOpenFiles": [
+    "Server/Plugins/SimpleC2",
     "Pasted image 20231013103045.png",
     "Pasted image 20231013100938.png",
     "Server/Plugins/FileHost/Endpoints.md",
@@ -269,7 +282,6 @@
     "Valuecheck Function.canvas",
     "DataState.canvas",
     "General/Images",
-    "General/Images/Pasted image 20230913002046.png",
     "Server/Globals",
     "Server/Visual Progress.canvas"
   ]

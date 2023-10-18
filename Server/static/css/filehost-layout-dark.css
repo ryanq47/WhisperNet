@@ -19,11 +19,11 @@ body, html {
 /* Header Section */
 .header { grid-area: header; }
 
+
 /* Nodes Block */
 .nodesblock { grid-area: nodesblock; }
 
 /* File Interaction Block */
-.fileinteractblock { grid-area: fileinteractblock; }
 
 /* Log Block */
 .logblock { grid-area: logblock; }
@@ -50,7 +50,7 @@ body, html {
   grid-template-rows: auto;
   grid-template-areas:
     'header header header header header header'
-    'logblock logblock logblock fileinteractblock fileinteractblock fileinteractblock'
+    'logblock logblock logblock nodesblock nodesblock nodesblock'
     'logblock logblock logblock nodesblock nodesblock nodesblock'
     'filesblock filesblock filesblock filesblock filesblock filesblock'
     'footer footer footer footer footer footer';

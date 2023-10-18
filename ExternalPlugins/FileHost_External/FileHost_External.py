@@ -54,6 +54,8 @@ class Info:
 parser = argparse.ArgumentParser()
 parser.add_argument('--ip', help="The IP of the Control Server to connect to", required=True, default="127.0.0.1")
 parser.add_argument('--port', help="The port of the Control Server to connect to.", required=True, default=5000)
+parser.add_argument('--name', help="Give this plugin a name", required=False, default="Unnamed_Filehost_Node")
+
 args = parser.parse_args()
 
 
@@ -95,6 +97,7 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
         self.app = app
         self.control_server_ip      = args.ip
         self.control_server_port    = args.port
+        self.control_server_name    = args.name
         self.authorization_header   = None
 
     def main(self):
@@ -131,6 +134,13 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
 
     def serve_file(self, filename):
         self.logger.debug(f"Filename: {filename}")
+
+        ## May need to thread this as it COULD hang the node if something doesnt work
+        self.post_file_logs(
+            filename=filename,
+            accessorip="1.2.3.4"
+        )
+
         return send_from_directory(
             "Files/",
             filename,

@@ -67,3 +67,20 @@ Checkin messages to CS. Post to /api/filehost/checkin? then the CS could take sa
 }
 
 ```
+
+
+
+- [ ] create an endpoint for taking in file access logs, similar to the checkin. Same setup as checkin but with this
+
+```
+
+{
+
+	"filename":"",
+	"hostip":"",
+	"hostingserver":"syncing | sync successful | sync failed | error"
+	"timestamp":""
+
+}
+
+```

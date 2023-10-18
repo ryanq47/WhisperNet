@@ -26,12 +26,12 @@ import logging
 import inspect
 #from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
 #from flask import Flask, jsonify, request, send_from_directory, render_template, Response
-from flask import jsonify, send_from_directory, render_template
+from flask import jsonify, send_from_directory, render_template, flash, redirect
 from flask_login import LoginManager, login_required
-'''
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, FileField
-from wtforms.validators import DataRequired, Length'''
+
+#from flask_wtf import FlaskForm
+#from wtforms import StringField, SubmitField, FileField
+#from wtforms.validators import DataRequired, Length
 
 ## API stuff
 from functools import wraps
@@ -140,6 +140,8 @@ class FileHost(BasePlugin, BaseLogging):
         BaseLogging.__init__(self)  
         # Just in case you need to test logging/it breaks...
         #self.logger.warning("LOGGING IS WORKING - <PLUGINNAME>")
+        self.node_checkin_data = []
+        self.node_file_access_data = []
 
     def main(self):
         '''
@@ -157,6 +159,8 @@ class FileHost(BasePlugin, BaseLogging):
         self.app.route(f'/{Info.endpoint}/<path:filename>', methods = ["GET"])(self.filehost_download_file)
         self.app.route(f'/{Info.endpoint}/upload', methods = ["POST"])(self.filehost_upload_file)
         self.app.route(f'/api/{Info.endpoint}/files', methods = ["GET"])(self.filehost_api_file_listing)
+        self.app.route(f'/api/{Info.endpoint}/checkin', methods = ["POST"])(self.filehost_checkin)
+        self.app.route(f'/api/{Info.endpoint}/filelogs', methods = ["POST"])(self.filehost_file_access_logs)
 
 
     # for controlling ext plugin
@@ -184,6 +188,7 @@ class FileHost(BasePlugin, BaseLogging):
             as_attachment=True)
 
     # these don't need a (). Funky
+    #also not exactly the most secure. no validation on upload
     @login_required
     def filehost_upload_file(self):
         '''
@@ -193,8 +198,29 @@ class FileHost(BasePlugin, BaseLogging):
 
         dev: needs a refactor/rething. Maybe throw forms in a stataic class
         '''
-        return "temp"
+        #return "Not Implemented"
         ## Note, CSRF is missing is issue
+        try:
+
+            if request.method == 'POST':
+                uploaded_file = request.files['file']
+
+                if uploaded_file:
+                    # Save the uploaded file to a specific directory
+                    uploaded_file.save('PluginEngine/Plugins/FileHostPlugin/Files/' + uploaded_file.filename)
+
+                    #flash("File uploaded successfully")
+                    return redirect("/filehost")
+
+            
+            #flash("Upload Failed")
+            return redirect("/filehost")
+        except Exception as e:
+            self.logger.warning(f"{self.logging_warning_symbol} Error uploading file: {e}")
+            #flash("Upload Failed")
+            return redirect("/filehost")
+
+        
         '''
         try:
             
@@ -210,11 +236,16 @@ class FileHost(BasePlugin, BaseLogging):
         except Exception as e: 
             print(e)
         '''
+        
 
     @login_required
     def filehost_base_directory(self):
         '''
-        eventually.. if not auth then re-auth
+        Code for the dashboard at /filehost
+
+        eventually.. if not auth then re-auth.
+
+        Also, break these into sub functions
         '''
         servername = "FileHost Plugin"
         list_of_files = []
@@ -245,9 +276,16 @@ class FileHost(BasePlugin, BaseLogging):
             finally:
                 list_of_files.append(dict_)
 
+        ## populate the checkin messages from the external filehosts  
+
+        ## Do needed transfomrations to data
+        self.data_management()
+
         return render_template('filehost-dashboard.html', 
                             files=list_of_files,
-                            servername = servername)
+                            servername = servername,
+                            nodedata = self.node_checkin_data,
+                            filelogdata = self.node_file_access_data)
 
     @jwt_required()
     def filehost_api_file_listing(self):
@@ -267,7 +305,7 @@ class FileHost(BasePlugin, BaseLogging):
 
         for file in filenames:
             try:
-                print(file)
+                #print(file)
                 file_path = f"PluginEngine/Plugins/FileHostPlugin/Files/{file}"
                 file_size = os.path.getsize(file_path)
 
@@ -287,6 +325,123 @@ class FileHost(BasePlugin, BaseLogging):
 
         return json_file_data
     
+
+    def filehost_checkin(self):
+        '''
+        An endpoint to post checkin data.
+        Need to decide if I want to make this protected or not. for now its not
+        
+        {
+            "name":"",
+            "ip":"",
+            "message":"syncing | sync successful | sync failed | error"
+            "timestamp":""
+        
+        }
+        '''
+        try:
+            plugin_instance_name = request.json.get('name')
+            plugin_external_ip = request.json.get('ip')
+            plugin_message = request.json.get('message')
+            plugin_timestamp = request.json.get('timestamp')
+
+            ## Dump data to DB -- for now just doing a non-persistent message setup
+            '''
+            Needs to:
+                if new fh, add row.
+
+                if existing fh, update row with new data. primary key will be name
+            
+                    or... just log it. no need for persistent DB data for now.
+                    The only having to having a DB is for currently connected nodes. 
+                    Downsides are complexity
+            
+            '''
+
+            log_string = f"{self.logging_info_symbol} Checkin: Plugin Name: '{plugin_instance_name}' " \
+            f"Plugin IP: '{plugin_external_ip}' " \
+            f"Message: '{plugin_message}' " \
+            f"Timestamp: '{plugin_timestamp}' "
+
+            self.logger.info(log_string)
+
+
+            data_dict = {
+                "name":plugin_instance_name,
+                "ip":plugin_external_ip,
+                "message":plugin_message,
+                "timestamp":plugin_timestamp,
+            }
+
+            self.node_checkin_data.append(data_dict)
+            #print(self.node_checkin_data)
+
+            return "success"
+        
+
+        except Exception as e:
+            self.logger.warning(f"{self.logging_warning_symbol} Error with checkin: {e}")
+
+    def filehost_file_access_logs(self):
+        '''
+        An endpoint to post file access.
+        Takes a post request.
+        URI: /api/filehost/filelogs
+        
+        {
+
+            "filename":"notsafefile.exe",
+            "accessorip":"y.y.y.y"
+            "hostip":"x.x.x.x",
+            "hostingserver":"fh01"
+            "timestamp":"010101"
+
+        }
+        '''
+        try:
+            file_name = request.json.get('filename')
+            file_accessor_ip = request.json.get('accessorip')
+            node_ip = request.json.get('hostip')
+            node_name = request.json.get('hostingserver')
+            file_timestamp = request.json.get('timestamp')
+
+
+            log_string = f"{self.logging_info_symbol} File Access: Plugin Name: '{node_name}' " \
+            f"Plugin IP: '{node_ip}' " \
+            f"filename: '{file_name}' " \
+            f"accessor IP: '{file_accessor_ip}' " \
+            f"Timestamp: '{file_timestamp}' "
+
+            self.logger.info(log_string)
+
+
+            data_dict = {
+                "node_name":node_name,
+                "file_accessor_ip":file_accessor_ip,
+                "filename":file_name,
+                "timestamp":file_timestamp,
+            }
+
+            self.node_file_access_data.append(data_dict)
+            #print(self.node_checkin_data)
+
+            return "success"
+        
+
+        except Exception as e:
+            self.logger.warning(f"{self.logging_warning_symbol} Error with filelogs: {e}")
+
+    def data_management(self):
+        '''
+        Does some general actions on data to make sure it's compliant/dosen't run away 
+        or get unmanageable. Everything trimmed here has a log fiel for each respective
+        event, so this doens't just vanish on exit
+        
+        '''
+
+        ## Keeps list limited in size.
+        self.node_checkin_data = self.node_checkin_data[-15:] 
+        self.node_file_access_data = self.node_file_access_data[-30:]
 
     ## doesnt belong here, move to a util class eventually
     def md5_hash_file(self, file_path):
