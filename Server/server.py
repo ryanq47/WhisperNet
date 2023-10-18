@@ -136,6 +136,7 @@ class ControlServer(BaseLogging):
         #self.UrlSc = ApiEngine.ConfigHandler.UrlSchema(api_config_profile=self.config_file_path)
         #self.UrlSc.load()
         self.init_routes()
+        self.plugins_with_dashboard = []
 
 
     def init_routes(self):
@@ -243,7 +244,13 @@ class ControlServer(BaseLogging):
                             endpoint = module.Info.endpoint
                             author = module.Info.author
                             type = module.Info.plugin_type
+                            has_dashboard = module.Info.dashboard
                             loaded = 0
+
+                            #if has_dashboard:
+                            #    self.plugins_with_dashboard.append(module.Info.endpoint)
+
+                            
 
                             Data.server_data_db_handler.write_to_plugins_table(p_name, endpoint, author, type, loaded)
                             
