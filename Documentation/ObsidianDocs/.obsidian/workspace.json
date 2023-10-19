@@ -81,7 +81,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Server/Plugins/FileHost/External Component.md",
+                "file": "Server/Plugins/FileHost/Endpoints.md",
                 "mode": "source",
                 "source": false
               }
@@ -154,7 +154,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Plugins/FileHost/External Component.md",
+                "file": "Server/Plugins/FileHost/Endpoints.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -171,7 +171,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Plugins/FileHost/External Component.md",
+                "file": "Server/Plugins/FileHost/Endpoints.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -194,7 +194,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Plugins/FileHost/External Component.md"
+                "file": "Server/Plugins/FileHost/Endpoints.md"
               }
             }
           },
@@ -226,13 +226,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "e250de59ef9ddaa7",
+  "active": "bea8261318ebcde3",
   "lastOpenFiles": [
+    "Server/Plugins/FileHost/External Component.md",
+    "1. Task Tracker/Task Tracker.md",
     "Server/Plugins/SimpleC2",
     "Pasted image 20231013103045.png",
     "Pasted image 20231013100938.png",
     "Server/Plugins/FileHost/Endpoints.md",
-    "Server/Plugins/FileHost/External Component.md",
     "Server/Authentication (Web + API).md",
     "Server/Modules/PluginEngine/Development & Advanced Overview.md",
     "Server/Modules/PluginEngine/Overview.md",
@@ -243,7 +244,6 @@
     "Server/Plugins/FileHost/Overview.md",
     "Plugin Design.canvas",
     "Server/Plugins/FileHost",
-    "1. Task Tracker/Task Tracker.md",
     "Server/Modules/Error Handling & Logging/BaseLogging.md",
     "Server/Code Tests.md",
     "1. Task Tracker/Tasks/Code Test Tool.md",
@@ -282,7 +282,6 @@
     "Valuecheck Function.canvas",
     "DataState.canvas",
     "General/Images",
-    "Server/Globals",
     "Server/Visual Progress.canvas"
   ]
 }

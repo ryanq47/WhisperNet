@@ -51,3 +51,105 @@ Displays JSON data of the current files on the control server.
 }
 
 ```
+
+#### /api/filehost/nodes
+
+Contains the currently active FIlehost Nodes
+
+```
+JSON node info
+
+{
+
+Honestly, the checkinlogs might be enough for a bit
+
+}
+
+```
+
+
+#### /api/filehost/checkin
+POST
+Auth Required
+
+Checkin endpoint for nodes
+```
+        {
+            "name":"",
+            "ip":"",
+            "message":"syncing | sync successful | sync failed | error"
+            "timestamp":""
+        }
+```
+
+#### /api/filehost/checkinlogs
+GET
+Auth Required
+
+logs of checkins 
+
+```
+{
+
+        {
+            "name":"",
+            "ip":"",
+            "message":"syncing | sync successful | sync failed | error"
+            "timestamp":""
+        },
+        {
+            "name":"",
+            "ip":"",
+            "message":"syncing | sync successful | sync failed | error"
+            "timestamp":""
+        }
+}
+```
+
+
+#### /api/filehost/updatefilelogs
+
+POST
+Auth Required
+
+fileaccess logs, a post endpoint. 
+
+```
+        {
+            "filename":"notsafefile.exe",
+            "accessorip":"y.y.y.y"
+            "hostip":"x.x.x.x",
+            "hostingserver":"fh01"
+            "timestamp":"010101"
+        }
+
+```
+
+#### /api/filehost/filelogs
+
+GET
+Auth Required
+
+Where to retrieve file access logs from.
+
+Created from data posted to updatefilelogs
+
+```
+{
+        {
+            "filename":"notsafefile.exe",
+            "accessorip":"y.y.y.y"
+            "hostip":"x.x.x.x",
+            "hostingserver":"fh01"
+            "timestamp":"010101"
+        },
+        {
+            "filename":"notsafefile.exe",
+            "accessorip":"y.y.y.y"
+            "hostip":"x.x.x.x",
+            "hostingserver":"fh01"
+            "timestamp":"010101"
+        },
+}
+
+```

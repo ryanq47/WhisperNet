@@ -160,7 +160,7 @@ class FileHost(BasePlugin, BaseLogging):
         self.app.route(f'/{Info.endpoint}/upload', methods = ["POST"])(self.filehost_upload_file)
         self.app.route(f'/api/{Info.endpoint}/files', methods = ["GET"])(self.filehost_api_file_listing)
         self.app.route(f'/api/{Info.endpoint}/checkin', methods = ["POST"])(self.filehost_checkin)
-        self.app.route(f'/api/{Info.endpoint}/filelogs', methods = ["POST"])(self.filehost_file_access_logs)
+        self.app.route(f'/api/{Info.endpoint}/updatefilelogs', methods = ["POST"])(self.filehost_file_access_logs)
 
 
     # for controlling ext plugin
