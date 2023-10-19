@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WhisperNet</class>
+ <widget class="QMainWindow" name="WhisperNet">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1579</width>
+    <height>1165</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>850</width>
+    <height>688</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>10000</width>
+    <height>10000</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <underline>false</underline>
+   </font>
+  </property>
+  <property name="acceptDrops">
+   <bool>false</bool>
+  </property>
+  <property name="windowTitle">
+   <string>Logec-Suite</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../../../../../Downloads/Documents/Screenshot_2023-04-30_01-44-21.png</normaloff>../../../../../Downloads/Documents/Screenshot_2023-04-30_01-44-21.png</iconset>
+  </property>
+  <property name="animated">
+   <bool>true</bool>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_4">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="main_tab_widget">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="tabPosition">
+       <enum>QTabWidget::North</enum>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <property name="tabsClosable">
+       <bool>false</bool>
+      </property>
+      <property name="movable">
+       <bool>true</bool>
+      </property>
+      <property name="tabBarAutoHide">
+       <bool>false</bool>
+      </property>
+      <widget class="QWidget" name="simplec2_tab">
+       <attribute name="title">
+        <string>SimpleC2</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_40">
+        <item row="0" column="0" colspan="2">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QGroupBox" name="simplec2_clientsbox">
+            <property name="styleSheet">
+             <string notr="true">border:0</string>
+            </property>
+            <property name="title">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_12" rowstretch="0">
+             <property name="sizeConstraint">
+              <enum>QLayout::SetNoConstraint</enum>
+             </property>
+             <item row="0" column="0">
+              <widget class="QTableWidget" name="simplec2_clienttable">
+               <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+                <bool>false</bool>
+               </attribute>
+               <attribute name="horizontalHeaderStretchLastSection">
+                <bool>true</bool>
+               </attribute>
+               <column>
+                <property name="text">
+                 <string>Client</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>IP</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Port</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Listener</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Sleep</string>
+                </property>
+               </column>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="c2_gui_groupbox_options">
+            <property name="styleSheet">
+             <string notr="true">border:0</string>
+            </property>
+            <property name="title">
+             <string/>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_29"/>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0" colspan="2">
+         <widget class="QGroupBox" name="simplec2_shellbox">
+          <property name="styleSheet">
+           <string notr="true">border:0</string>
+          </property>
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_30">
+           <item row="0" column="0">
+            <widget class="QTabWidget" name="c2_shell_tab">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>400</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Enter</string>
+             </property>
+             <property name="whatsThis">
+              <string>Enter</string>
+             </property>
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <widget class="QWidget" name="tab_57">
+              <attribute name="title">
+               <string>RemoteShell</string>
+              </attribute>
+              <layout class="QGridLayout" name="gridLayout_42">
+               <item row="0" column="0" colspan="2">
+                <widget class="QTextEdit" name="simplec2_remoteshell_box">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Monospace</family>
+                   <pointsize>9</pointsize>
+                   <underline>false</underline>
+                  </font>
+                 </property>
+                 <property name="toolTip">
+                  <string/>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <property name="readOnly">
+                  <bool>false</bool>
+                 </property>
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Monospace'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>root@127.0.0.1&gt; </string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QPushButton" name="simplec2_shell_send">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="toolTip">
+                  <string>Hit the Enter Key</string>
+                 </property>
+                 <property name="text">
+                  <string>--&gt;&gt; Send &lt;&lt;-- </string>
+                 </property>
+                 <property name="shortcut">
+                  <string>Return</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLineEdit" name="simplec2_remoteshell_input">
+                 <property name="font">
+                  <font>
+                   <family>DejaVu Sans Mono</family>
+                   <pointsize>9</pointsize>
+                   <underline>false</underline>
+                  </font>
+                 </property>
+                 <property name="toolTip">
+                  <string extracomment="Commands"/>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Enter Command Here!</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="tab_59">
+              <attribute name="title">
+               <string>LocalShell</string>
+              </attribute>
+              <layout class="QGridLayout" name="gridLayout_50">
+               <item row="0" column="0" colspan="2">
+                <widget class="QTextEdit" name="c2_systemshell">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Monospace</family>
+                   <pointsize>9</pointsize>
+                   <underline>false</underline>
+                  </font>
+                 </property>
+                 <property name="toolTip">
+                  <string/>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(29, 29, 29);</string>
+                 </property>
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Monospace'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Cantarell'; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>$</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLineEdit" name="c2_systemshell_input">
+                 <property name="font">
+                  <font>
+                   <family>DejaVu Sans Mono</family>
+                   <pointsize>9</pointsize>
+                   <underline>false</underline>
+                  </font>
+                 </property>
+                 <property name="toolTip">
+                  <string extracomment="Commands"/>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(29, 29, 29);</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Enter Command Here!</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QPushButton" name="c2_systemshell_send">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="toolTip">
+                  <string>Hit the Enter Key</string>
+                 </property>
+                 <property name="text">
+                  <string>--&gt;&gt; Send &lt;&lt;-- </string>
+                 </property>
+                 <property name="shortcut">
+                  <string>Return</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>FileHost</string>
+       </attribute>
+       <widget class="QWidget" name="verticalLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>730</y>
+          <width>1551</width>
+          <height>371</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QTextEdit" name="textEdit">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="html">
+            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Debug Center. Enter a URL to test&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTextBrowser" name="FileHost_TextBox"/>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit">
+           <property name="text">
+            <string>http://127.0.0.1:5000</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="FileHost_PushButton">
+           <property name="text">
+            <string>Make Request</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QPushButton" name="pushButton">
+        <property name="geometry">
+         <rect>
+          <x>890</x>
+          <y>41</y>
+          <width>641</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Upload File</string>
+        </property>
+       </widget>
+       <widget class="QTableWidget" name="tableWidget">
+        <property name="geometry">
+         <rect>
+          <x>890</x>
+          <y>80</y>
+          <width>641</width>
+          <height>631</height>
+         </rect>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="alternatingRowColors">
+         <bool>false</bool>
+        </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>File Name</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Size (MB)</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Contents</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QTableWidget" name="tableWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>440</y>
+          <width>871</width>
+          <height>271</height>
+         </rect>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="alternatingRowColors">
+         <bool>false</bool>
+        </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>File Name</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Accessor IP</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Node Name</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>HTTP Code</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QTableWidget" name="tableWidget_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>110</y>
+          <width>871</width>
+          <height>291</height>
+         </rect>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="alternatingRowColors">
+         <bool>false</bool>
+        </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>Node Name</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>IP</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Contents</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>TimeStamp</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QTextEdit" name="textEdit_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>871</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;SomeData&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QTextEdit" name="textEdit_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>79</y>
+          <width>871</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Node Logs&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QTextEdit" name="textEdit_4">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>410</y>
+          <width>871</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;File Logs&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1579</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionDEBUG"/>
+    <addaction name="actionRELOAD"/>
+    <addaction name="actionSave_Project"/>
+    <addaction name="actionSaveAs_Project"/>
+    <addaction name="actionOpen_Project"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menu_GettingStarted">
+    <property name="title">
+     <string>Getting Started</string>
+    </property>
+    <addaction name="GettingStarted_Readme"/>
+    <addaction name="actionRead_Me_webview"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menu_GettingStarted"/>
+  </widget>
+  <action name="action_Target_Listen">
+   <property name="text">
+    <string>Listen for connection</string>
+   </property>
+  </action>
+  <action name="actionBash">
+   <property name="text">
+    <string>/bin/bash</string>
+   </property>
+  </action>
+  <action name="action_bin_sh">
+   <property name="text">
+    <string>/bin/sh</string>
+   </property>
+  </action>
+  <action name="action_Target_Python_binbash">
+   <property name="text">
+    <string>Python Linux Shell</string>
+   </property>
+  </action>
+  <action name="action_Target_Python_binsh">
+   <property name="text">
+    <string>Windows Shell</string>
+   </property>
+  </action>
+  <action name="action_Perl">
+   <property name="text">
+    <string>Pearl Linux Shell</string>
+   </property>
+  </action>
+  <action name="actionShell_Type">
+   <property name="text">
+    <string>Shell Type</string>
+   </property>
+  </action>
+  <action name="actionLanguage">
+   <property name="text">
+    <string>Language</string>
+   </property>
+  </action>
+  <action name="actionDisable_Firewall">
+   <property name="text">
+    <string>Disable Firewall</string>
+   </property>
+  </action>
+  <action name="GettingStarted_Readme">
+   <property name="text">
+    <string>Read Me! (To shell tab)</string>
+   </property>
+  </action>
+  <action name="menu_Data_Download">
+   <property name="text">
+    <string>Download Files from Target</string>
+   </property>
+  </action>
+  <action name="menu_Data_Upload">
+   <property name="text">
+    <string>Upload Files to Target</string>
+   </property>
+  </action>
+  <action name="action_Target_Ruby_NonInteractive">
+   <property name="text">
+    <string>Linx Ruby Shell (Non-interactive)</string>
+   </property>
+  </action>
+  <action name="actionEncrypt_Files">
+   <property name="text">
+    <string>Encrypt Files</string>
+   </property>
+  </action>
+  <action name="actionLinux">
+   <property name="text">
+    <string>Linux</string>
+   </property>
+  </action>
+  <action name="actionOther">
+   <property name="text">
+    <string>Other</string>
+   </property>
+  </action>
+  <action name="actionCVE_2017_0144_Eternal_Blue">
+   <property name="text">
+    <string>CVE-2017-0144: Eternal Blue</string>
+   </property>
+  </action>
+  <action name="action_Target_Python_win">
+   <property name="text">
+    <string>Python Windows Shell</string>
+   </property>
+  </action>
+  <action name="actionDEBUG">
+   <property name="text">
+    <string>DEBUG</string>
+   </property>
+  </action>
+  <action name="actionRead_Me_webview">
+   <property name="text">
+    <string>Read Me! (webview)</string>
+   </property>
+  </action>
+  <action name="actionNetInfo">
+   <property name="text">
+    <string>NetInfo</string>
+   </property>
+  </action>
+  <action name="actionPortScan_DB">
+   <property name="text">
+    <string>PortScan DB</string>
+   </property>
+  </action>
+  <action name="actionPortScan_DB_2">
+   <property name="text">
+    <string>PortScan DB</string>
+   </property>
+  </action>
+  <action name="actionHelp_DB">
+   <property name="text">
+    <string>Help DB</string>
+   </property>
+  </action>
+  <action name="actionTables_DB">
+   <property name="text">
+    <string>Tables DB</string>
+   </property>
+  </action>
+  <action name="actionHelp_Menu_DB">
+   <property name="text">
+    <string>Help Menu DB</string>
+   </property>
+  </action>
+  <action name="actionTables_DB_2">
+   <property name="text">
+    <string>Tables DB</string>
+   </property>
+  </action>
+  <action name="actionPortScan_DB_3">
+   <property name="text">
+    <string>PortScan DB</string>
+   </property>
+  </action>
+  <action name="actionOther_More_Cool_DB">
+   <property name="text">
+    <string>Other More Cool DB</string>
+   </property>
+  </action>
+  <action name="actionPort_Scan">
+   <property name="text">
+    <string>Port Scan</string>
+   </property>
+  </action>
+  <action name="actionError_DB">
+   <property name="text">
+    <string>Error DB</string>
+   </property>
+  </action>
+  <action name="actionRELOAD">
+   <property name="text">
+    <string>Reload - This has a mem leak so only use for dev</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+R</string>
+   </property>
+  </action>
+  <action name="actionSave_Project">
+   <property name="text">
+    <string>Save Project</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionSaveAs_Project">
+   <property name="text">
+    <string>Save Project As...</string>
+   </property>
+  </action>
+  <action name="actionOpen_Project">
+   <property name="text">
+    <string>Open Project</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
