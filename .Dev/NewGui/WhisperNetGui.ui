@@ -437,7 +437,7 @@ p, li { white-space: pre-wrap; }
         </column>
         <column>
          <property name="text">
-          <string>Contents</string>
+          <string>FilePath</string>
          </property>
         </column>
        </widget>
@@ -480,7 +480,7 @@ p, li { white-space: pre-wrap; }
          </property>
         </column>
        </widget>
-       <widget class="QTableWidget" name="tableWidget_3">
+       <widget class="QTableWidget" name="FileHost_NodeLogTable">
         <property name="geometry">
          <rect>
           <x>10</x>
