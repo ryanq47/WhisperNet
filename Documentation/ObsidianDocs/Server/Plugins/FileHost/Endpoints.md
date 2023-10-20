@@ -1,5 +1,6 @@
 Todo
-- [ ] implement file access logs, both node, and server side
+- [x] implement file access logs, both node, and server side
+- [ ] Need to do fileaccess logs next I believe
 
 Server HTTP
 

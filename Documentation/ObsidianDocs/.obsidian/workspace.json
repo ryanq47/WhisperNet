@@ -86,9 +86,20 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "1289ec411cd9519c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "1. Task Tracker/Tasks/Server Optimizations.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ],
-        "currentTab": 5
+        ]
       }
     ],
     "direction": "vertical"
@@ -154,7 +165,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Plugins/FileHost/Endpoints.md",
+                "file": "1. Task Tracker/Task Tracker.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -171,7 +182,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Plugins/FileHost/Endpoints.md",
+                "file": "1. Task Tracker/Task Tracker.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -194,7 +205,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Plugins/FileHost/Endpoints.md"
+                "file": "1. Task Tracker/Task Tracker.md"
               }
             }
           },
@@ -226,17 +237,22 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "bea8261318ebcde3",
+  "active": "0e750e7f5d61a3f9",
   "lastOpenFiles": [
-    "Server/Plugins/FileHost/External Component.md",
+    "1. Task Tracker/Tasks/Server Optimizations.md",
+    "1. Task Tracker/Tasks/Untitled.md",
     "1. Task Tracker/Task Tracker.md",
+    "Server/Plugins/FileHost/Endpoints.md",
+    "1. Task Tracker/Tasks/Error Response in cookies.md",
+    "1. Task Tracker/Tasks/Move to new logging.md",
+    "1. Task Tracker/Tasks/Plugins.md",
+    "Server/Modules/PluginEngine/Development & Advanced Overview.md",
+    "Server/Modules/PluginEngine/Overview.md",
+    "Server/Plugins/FileHost/External Component.md",
     "Server/Plugins/SimpleC2",
     "Pasted image 20231013103045.png",
     "Pasted image 20231013100938.png",
-    "Server/Plugins/FileHost/Endpoints.md",
     "Server/Authentication (Web + API).md",
-    "Server/Modules/PluginEngine/Development & Advanced Overview.md",
-    "Server/Modules/PluginEngine/Overview.md",
     "Pasted image 20231007142634.png",
     "Pasted image 20231007135210.png",
     "Pasted image 20231007135110.png",
@@ -248,7 +264,6 @@
     "Server/Code Tests.md",
     "1. Task Tracker/Tasks/Code Test Tool.md",
     "1. Task Tracker/Tasks/Request logging.md",
-    "1. Task Tracker/Tasks/Plugins.md",
     "1. Task Tracker/Tasks/Plugin - Web Interface.md",
     "Data Struct.md",
     "DEV- Server Refactor & Adjust.canvas",
@@ -256,10 +271,7 @@
     "Untitled 3.md",
     "Untitled 2.md",
     "Untitled 1.md",
-    "Untitled.md",
     "Status page.md",
-    "1. Task Tracker/Tasks/Move to new logging.md",
-    "1. Task Tracker/Tasks/Untitled.md",
     "Server/Plugins/stats plugin (name not final).md",
     "Dev Guide/Notes Guide/Colors & comments.md",
     "Server/DataBases/ServerData.db.md",
