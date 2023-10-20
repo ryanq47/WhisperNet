@@ -1,3 +1,5 @@
+Todo
+- [ ] implement file access logs, both node, and server side
 
 Server HTTP
 
@@ -52,18 +54,42 @@ Displays JSON data of the current files on the control server.
 
 ```
 
-#### /api/filehost/nodes
+#### /api/filehost/nodelogs
 
-Contains the currently active FIlehost Nodes
+GET
+Auth Required
+
+Contains the currently active FIlehost Nodes. Note that the primary key is the name of the node, so no duplicates here. These are just status updates
 
 ```
-JSON node info
 
 {
-
-Honestly, the checkinlogs might be enough for a bit
-
+  "filehost01": {
+    "ip": null,
+    "message": "Heartbeat",
+    "name": "filehost01",
+    "timestamp": "2023-10-19 20:55:59"
+  },
+  "filehost02": {
+    "ip": null,
+    "message": "Heartbeat",
+    "name": "filehost02",
+    "timestamp": "2023-10-19 20:55:57"
+  },
+  "filehost03": {
+    "ip": null,
+    "message": "Heartbeat",
+    "name": "filehost03",
+    "timestamp": "2023-10-19 20:55:57"
+  },
+  "filehost04": {
+    "ip": null,
+    "message": "Heartbeat",
+    "name": "filehost04",
+    "timestamp": "2023-10-19 20:55:59"
+  }
 }
+
 
 ```
 
@@ -80,30 +106,6 @@ Checkin endpoint for nodes
             "message":"syncing | sync successful | sync failed | error"
             "timestamp":""
         }
-```
-
-#### /api/filehost/checkinlogs
-GET
-Auth Required
-
-logs of checkins 
-
-```
-{
-
-        {
-            "name":"",
-            "ip":"",
-            "message":"syncing | sync successful | sync failed | error"
-            "timestamp":""
-        },
-        {
-            "name":"",
-            "ip":"",
-            "message":"syncing | sync successful | sync failed | error"
-            "timestamp":""
-        }
-}
 ```
 
 
@@ -130,20 +132,21 @@ fileaccess logs, a post endpoint.
 GET
 Auth Required
 
-Where to retrieve file access logs from.
+Where to retrieve file access logs from. Note that this is limited to 30 updating items. so, 
+each request (should) contain new data as it comes in, while holding up to 30 past entries
 
 Created from data posted to updatefilelogs
 
 ```
 {
-        {
+        1:{
             "filename":"notsafefile.exe",
             "accessorip":"y.y.y.y"
             "hostip":"x.x.x.x",
             "hostingserver":"fh01"
             "timestamp":"010101"
         },
-        {
+        2:{
             "filename":"notsafefile.exe",
             "accessorip":"y.y.y.y"
             "hostip":"x.x.x.x",

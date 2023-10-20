@@ -165,7 +165,7 @@ class FileHost(BasePlugin, BaseLogging):
         self.app.route(f'/api/{Info.endpoint}/checkin', methods = ["POST"])(self.filehost_checkin)
         self.app.route(f'/api/{Info.endpoint}/updatefilelogs', methods = ["POST"])(self.filehost_file_access_logs)
         self.app.route(f'/api/{Info.endpoint}/filelogs', methods = ["GET"])(self.filehost_api_get_file_access_logs)
-        self.app.route(f'/api/{Info.endpoint}/nodelogs', methods = ["GET"])(self.filehost_checkin_logs)
+        self.app.route(f'/api/{Info.endpoint}/nodelogs', methods = ["GET"])(self.filehost_api_get_checkin_logs)
 
     # for controlling ext plugin
     #@login_required
@@ -291,7 +291,7 @@ class FileHost(BasePlugin, BaseLogging):
                             nodedata = self.node_checkin_logs,
                             filelogdata = self.file_access_logs)
 
-    @jwt_required()
+    #@jwt_required()
     def filehost_api_file_listing(self):
         '''
         Endpoint for listing the files in the FileHost plugin. Purely for API
@@ -332,12 +332,34 @@ class FileHost(BasePlugin, BaseLogging):
     def filehost_api_get_file_access_logs(self):
         '''
         And endpoint for getting file access logs via the api
+
+        ## NOT IMPLEMENTED YET - just using placeholder data
         
         '''
+        self.data_management()
+        temp_dict = {}
+        i = 0
 
-        ## display json
 
-        return self.file_access_logs
+        ## this works a little weird. in order to have mutliple json rows, each "key" needs to 
+        ## be diff so i gave each key a number. not ideal but it works
+        for data in self.file_access_logs:
+
+            file_data = {
+                i:{
+                    "filename": "placeholder",
+                    ## Note, this is depednent on what you set the file endpoint to. 
+                    "filedir": "test",
+                    "filesize": "file_size",
+                    "filehash": "test",
+                }
+            }
+            temp_dict.update(file_data)
+            i = i + 1
+        ## rename this
+        return jsonify(temp_dict)
+
+        #return self.file_access_logs
 
         #return jsonify(self.file_access_logs)
 
@@ -448,14 +470,30 @@ class FileHost(BasePlugin, BaseLogging):
         except Exception as e:
             self.logger.warning(f"{self.logging_warning_symbol} Error with checkin: {e}")
 
-    def filehost_checkin_logs(self):
+    def filehost_api_get_checkin_logs(self):
         '''
         Logs for file checkins displayed to the api
         
         '''
+        temp_dict = {}
 
+        ## accidently made it so only one log of each thing shows up here. win win I suppose?
+
+        ## simlar to filehost_api_get_file_access_logs, but limits the keys to the name of the node checking in
+        ## This allows for updates of the nodes without duplicat nodes to process
+        for data in self.node_checkin_logs:
+            file_data = {
+                data['name']:{
+                    "name": data['name'],
+                    ## Note, this is depednent on what you set the file endpoint to. 
+                    "ip": data['ip'],
+                    "message": data['message'],
+                    "timestamp": data['timestamp'],
+                }
+            }
+            temp_dict.update(file_data)
         ## rename this
-        return self.node_checkin_logs
+        return jsonify(temp_dict)
 
     def data_management(self):
         '''
