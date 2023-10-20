@@ -407,7 +407,7 @@ p, li { white-space: pre-wrap; }
          <string>Upload File</string>
         </property>
        </widget>
-       <widget class="QTableWidget" name="tableWidget">
+       <widget class="QTableWidget" name="FileHost_FileLogTable">
         <property name="geometry">
          <rect>
           <x>890</x>
