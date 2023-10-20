@@ -347,11 +347,11 @@ class FileHost(BasePlugin, BaseLogging):
 
             file_data = {
                 i:{
-                    "filename": "placeholder",
-                    ## Note, this is depednent on what you set the file endpoint to. 
-                    "filedir": "test",
-                    "filesize": "file_size",
-                    "filehash": "test",
+                    "filename": data['filename'],
+                    ## seemingly broken for some reason
+                    "accessorip": "placeholder",#data['accessorip'],
+                    "hostingserver": "placeholder",##data['hostingserver'],
+                    "timestamp": data['timestamp'],
                 }
             }
             temp_dict.update(file_data)

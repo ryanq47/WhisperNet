@@ -161,7 +161,7 @@ class ExternalBasePlugin(BaseLogging):
             "filename":filename,
             "accessorip":accessorip,
             "hostip":self.external_ip,
-            "hostingserver":self.control_server_name,
+            "hostingserver":"controlserver",#self.control_server_name,
             "timestamp":self.get_timestamp()
         }
 
@@ -172,7 +172,7 @@ class ExternalBasePlugin(BaseLogging):
         }
 
         r = requests.post(
-            url = "http://127.0.0.1:5000/api/filehost/filelogs",
+            url = "http://127.0.0.1:5000/api/filehost/updatefilelogs",
             headers = headers,
             data = json_data
         )
