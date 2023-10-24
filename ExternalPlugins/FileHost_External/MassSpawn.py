@@ -1,4 +1,4 @@
-endrange = 100
+endrange = 5
 import os
 import time
 import threading

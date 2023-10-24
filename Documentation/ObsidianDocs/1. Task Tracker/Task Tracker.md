@@ -5,8 +5,7 @@ Left off:
 - Implemetnign GUI node logs.
 	- Notes, Everythign works well. JSON is spit out properly by server, and GUI reflects that. Good job.
 	- Server could use some optimization in time
-		- [ ] Each functionthat delivers data needs to be cached
-		- [ ] User & pass can fail at high request rates for the db. worth checking into a solution
+		[here](obsidian://open?vault=ObsidianDocs&file=1.%20Task%20Tracker%2FTasks%2FServer%20Optimizations)
 	- Need to get File Logs working, and then rethink/double check the GUI code for better ways/layouts before continuing with it.
 	- Additionally, upload button woutl be nice to have as well
 

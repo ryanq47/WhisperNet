@@ -78,13 +78,15 @@
           {
             "id": "bea8261318ebcde3",
             "type": "leaf",
+            "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
                 "file": "Server/Plugins/FileHost/Endpoints.md",
                 "mode": "source",
                 "source": false
-              }
+              },
+              "pinned": true
             }
           },
           {
@@ -99,7 +101,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -165,7 +168,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md",
+                "file": "Server/Plugins/FileHost/Endpoints.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -182,7 +185,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md",
+                "file": "Server/Plugins/FileHost/Endpoints.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -205,7 +208,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md"
+                "file": "Server/Plugins/FileHost/Endpoints.md"
               }
             }
           },
@@ -237,18 +240,18 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0e750e7f5d61a3f9",
+  "active": "bea8261318ebcde3",
   "lastOpenFiles": [
-    "1. Task Tracker/Tasks/Server Optimizations.md",
-    "1. Task Tracker/Tasks/Untitled.md",
     "1. Task Tracker/Task Tracker.md",
     "Server/Plugins/FileHost/Endpoints.md",
-    "1. Task Tracker/Tasks/Error Response in cookies.md",
-    "1. Task Tracker/Tasks/Move to new logging.md",
-    "1. Task Tracker/Tasks/Plugins.md",
     "Server/Modules/PluginEngine/Development & Advanced Overview.md",
+    "1. Task Tracker/Tasks/Plugins.md",
     "Server/Modules/PluginEngine/Overview.md",
     "Server/Plugins/FileHost/External Component.md",
+    "1. Task Tracker/Tasks/Server Optimizations.md",
+    "1. Task Tracker/Tasks/Untitled.md",
+    "1. Task Tracker/Tasks/Error Response in cookies.md",
+    "1. Task Tracker/Tasks/Move to new logging.md",
     "Server/Plugins/SimpleC2",
     "Pasted image 20231013103045.png",
     "Pasted image 20231013100938.png",

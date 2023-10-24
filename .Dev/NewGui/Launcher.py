@@ -22,6 +22,7 @@ class MyApplication(QMainWindow):
     ## these auto get put in "self.xxxx"... i assume throuth the QMainWindow inheretence somewhere
     filehost_response_received = Signal(str)
     nodelogs_response_received = Signal(str)
+    fileaccesslog_response_received = Signal(str)
 
     def __init__(self):
         super().__init__()
@@ -41,10 +42,11 @@ class MyApplication(QMainWindow):
         Inits objects from the UI file, and sets them here as class vars
         '''
         try:
-            self.FileHost_PushButton = ui_file.findChild(QPushButton, "FileHost_PushButton")  # Replace "QtWidgets" with the appropriate module
             self.FileHost_TextBox= ui_file.findChild(QTextBrowser, "FileHost_TextBox")  # Replace "QtWidgets" with the appropriate module
             self.FileHost_FileLogTable = ui_file.findChild(QTableWidget, "FileHost_FileLogTable")  
             self.FileHost_NodeLogTable = ui_file.findChild(QTableWidget, "FileHost_NodeLogTable")
+            self.FileHost_FileAccessLogsTable = ui_file.findChild(QTableWidget, "FileHost_FileAccessLogsTable")
+
         except Exception as e:
             print(e)
 
@@ -54,8 +56,7 @@ class MyApplication(QMainWindow):
 
         self.setWindowTitle("WhisperNet")
 
-        ##FileHost
-        self.FileHost_PushButton.clicked.connect(self.filehost_event_update)
+
 
     def filehost_debug(self):
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
@@ -91,6 +92,12 @@ class MyApplication(QMainWindow):
         ## On response/emit of handle_response, update table
         self.nodelogs_response_received.connect(self.filehost_api_nodelogs_update_table)
 
+        self.fileaccesslog_manager = WebRequestManager()
+        self.fileaccesslog_manager.send_get_request("http://127.0.0.1:5000/api/filehost/filelogs")
+        self.fileaccesslog_manager.request_finished.connect(lambda response: self.handle_response(response, self.fileaccesslog_response_received))
+        ## On response/emit of handle_response, update table
+        self.fileaccesslog_response_received.connect(self.filehost_api_fileaccesslogs_update_table)
+
     ## Naming Scheme:
     ##  Plugin   Api Section Action Item
     def filehost_api_files_update_table(self, data):
@@ -99,6 +106,9 @@ class MyApplication(QMainWindow):
         
         '''
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        if self.FileHost_FileLogTable == None:
+            logging.warning(f"{function_debug_symbol} self.FileHost_FileLogTable == None. File Log Table will not load.")
 
         data_dict = Utils.json_to_dict(json_string = data)
 
@@ -167,6 +177,9 @@ class MyApplication(QMainWindow):
         '''
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
+        if self.FileHost_NodeLogTable == None:
+            logging.warning(f"{function_debug_symbol} self.FileHost_NodeLogTable == None. Node Log Table will not load.")
+
         data_dict = Utils.json_to_dict(json_string = data)
 
         if not data_dict:
@@ -215,6 +228,67 @@ class MyApplication(QMainWindow):
                 self.FileHost_NodeLogTable.setItem(row_num, 1, QTableWidgetItem(str(nodeip)))
                 self.FileHost_NodeLogTable.setItem(row_num, 2, QTableWidgetItem(str(nodemessage)))
                 self.FileHost_NodeLogTable.setItem(row_num, 3, QTableWidgetItem(str(nodetimestamp)))
+
+                ## bumping row number to next
+                row_num = row_num + 1
+
+    def filehost_api_fileaccesslogs_update_table(self, data):
+        '''
+        Parses, and updates the table of node logs in the FileHost section
+        
+        '''
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        data_dict = Utils.json_to_dict(json_string = data)
+
+        if self.FileHost_FileAccessLogsTable == None:
+            logging.warning(f"{function_debug_symbol} self.FileHost_FileAccessLogsTable == None. File Access Log Table will not load.")
+
+        if not data_dict:
+            self.FileHost_FileAccessLogsTable.setRowCount(1)  # Set the number of rows
+            self.FileHost_FileAccessLogsTable.setItem(0, 0, QTableWidgetItem("Error"))
+            self.FileHost_FileAccessLogsTable.setItem(0, 1, QTableWidgetItem("With"))
+            self.FileHost_FileAccessLogsTable.setItem(0, 2, QTableWidgetItem("JSON"))
+            self.FileHost_FileAccessLogsTable.setItem(0, 3, QTableWidgetItem(""))
+
+        elif data_dict == "empty":
+            self.FileHost_FileAccessLogsTable.setRowCount(1)  # Set the number of rows
+            self.FileHost_FileAccessLogsTable.setItem(0, 0, QTableWidgetItem("Empty"))
+
+        else:
+            self.FileHost_FileAccessLogsTable.setRowCount(len(data_dict))  # Set the number of rows
+            #self.FileHost_FileLogTable.setRowCount(3)
+            row_num = 0
+            ## For each entry into the data 
+            '''
+            {
+                entry {
+                    data...
+                }
+            }
+            
+            '''
+            for entry in data_dict:
+
+                ## Pulling each data value
+                '''
+                {
+                    entry {
+                        filedir:123,
+                        filehash:456
+                    }
+                }
+                
+                '''
+
+                accessorip = data_dict[entry]['accessorip']
+                filename = data_dict[entry]['filename']
+                nodename = data_dict[entry]['hostingserver'] ## chane to hosting node
+                accesstimestamp = data_dict[entry]['timestamp']
+                self.FileHost_FileAccessLogsTable.setItem(row_num, 0, QTableWidgetItem(str(filename)))
+                self.FileHost_FileAccessLogsTable.setItem(row_num, 1, QTableWidgetItem(str(accessorip)))
+                self.FileHost_FileAccessLogsTable.setItem(row_num, 2, QTableWidgetItem(str(nodename)))
+                self.FileHost_FileAccessLogsTable.setItem(row_num, 3, QTableWidgetItem(str(accesstimestamp)))
 
                 ## bumping row number to next
                 row_num = row_num + 1

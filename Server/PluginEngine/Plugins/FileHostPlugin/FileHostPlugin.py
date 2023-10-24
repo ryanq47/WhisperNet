@@ -151,12 +151,19 @@ class FileHost(BasePlugin, BaseLogging):
         # Just in case you need to test logging/it breaks...
         #self.logger.warning("LOGGING IS WORKING - <PLUGINNAME>")
 
+        ## Naming: 
+            ## current: Current data being served
+            ## node: raw data from the nodes
+
         ## Holds a JSON string of currently hosted files
         self.current_hosted_files = None
+        ## holds calucalted file access logs         
+        self.current_file_access_logs = None
         ## Node checkin logs
         self.node_checkin_logs = []
-        ## file access logs
-        self.file_access_logs = []
+        ## raw file access logs FROM NODES
+        self.node_file_access_logs = []
+
 
         subroutine_thread = threading.Thread(
             target=self.filehost_subroutine
@@ -307,8 +314,11 @@ class FileHost(BasePlugin, BaseLogging):
                             files=list_of_files,
                             servername = servername,
                             nodedata = self.node_checkin_logs,
-                            filelogdata = self.file_access_logs)
+                            filelogdata = self.node_file_access_logs)
 
+################################################
+# Hosted files
+################################################
     #@jwt_required()
     def filehost_api_file_listing(self):
         '''
@@ -351,12 +361,25 @@ class FileHost(BasePlugin, BaseLogging):
                 self.logger.warning(f"{self.logging_warning_symbol} Error with getting file info: {e}")
 
         return json_file_data
-    
+
+################################################
+# File Access Logs
+################################################
+    ## GET endpoint
     def filehost_api_get_file_access_logs(self):
         '''
-        And endpoint for getting file access logs via the api
+        API endpoint for GETTING 
+        
+        '''
+        #print(self.current_file_access_logs)
+        return self.current_file_access_logs
 
-        ## NOT IMPLEMENTED YET - just using placeholder data
+    @BasePlugin.optimization_calc_n_cache
+    def filehost_calculate_file_access_logs(self):
+        '''
+        ## Currently using placeholder data
+
+        Calculates & creates the file access log JSON to serve via the API
         
         '''
         self.filehost_data_management()
@@ -366,26 +389,27 @@ class FileHost(BasePlugin, BaseLogging):
 
         ## this works a little weird. in order to have mutliple json rows, each "key" needs to 
         ## be diff so i gave each key a number. not ideal but it works
-        for data in self.file_access_logs:
+        for data in self.node_file_access_logs:
 
             file_data = {
                 i:{
-                    "filename": data['filename'],
+                    "filename": "placeholder", #data['filename'],
                     ## seemingly broken for some reason
                     "accessorip": "placeholder",#data['accessorip'],
                     "hostingserver": "placeholder",##data['hostingserver'],
-                    "timestamp": data['timestamp'],
+                    "timestamp": "placeholder" #data['timestamp'],
                 }
             }
             temp_dict.update(file_data)
             i = i + 1
         ## rename this
-        return jsonify(temp_dict)
+        return temp_dict #jsonify(temp_dict)
 
-        #return self.file_access_logs
+        #return self.node_file_access_logs
 
-        #return jsonify(self.file_access_logs)
+        #return jsonify(self.node_file_access_logs)
 
+    ## POST endpoint for getting data from nodes
     def filehost_file_access_logs(self):
         '''
         An endpoint to post file access.
@@ -426,7 +450,7 @@ class FileHost(BasePlugin, BaseLogging):
                 "timestamp":file_timestamp,
             }
 
-            self.file_access_logs.append(data_dict)
+            self.node_file_access_logs.append(data_dict)
             #print(self.node_checkin_logs)
 
             return "success"
@@ -434,6 +458,12 @@ class FileHost(BasePlugin, BaseLogging):
 
         except Exception as e:
             self.logger.warning(f"{self.logging_warning_symbol} Error with filelogs: {e}")
+
+
+
+################################################
+# Node Checkin Stuff
+################################################
 
     def filehost_checkin(self):
         '''
@@ -516,6 +546,10 @@ class FileHost(BasePlugin, BaseLogging):
         ## rename this
         return jsonify(temp_dict)
 
+################################################
+# Some failsafes
+################################################
+
     def filehost_data_management(self):
         '''
         Does some general actions on data to make sure it's compliant/dosen't run away 
@@ -526,7 +560,7 @@ class FileHost(BasePlugin, BaseLogging):
 
         ## Keeps list limited in size.
         self.node_checkin_logs = self.node_checkin_logs[-15:] 
-        self.file_access_logs = self.file_access_logs[-30:]
+        self.node_file_access_logs = self.node_file_access_logs[-30:]
 
     def filehost_subroutine(self):
         '''
@@ -539,7 +573,12 @@ class FileHost(BasePlugin, BaseLogging):
 
         while True:
             self.logger.debug(f"{self.logging_debug_symbol} Subroutine triggering...")
+            ## Calcing hosted files
             self.current_hosted_files = self.filehost_calculate_current_hosted_files()
+
+            ## calcing file access logs
+            self.current_file_access_logs = self.filehost_calculate_file_access_logs()
+
 
             ## Finally, end on a data cleanup
             self.filehost_data_management()

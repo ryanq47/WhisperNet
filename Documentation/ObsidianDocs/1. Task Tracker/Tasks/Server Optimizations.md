@@ -15,7 +15,8 @@ Currently the server runs fine. however, with 5 filehost plugins, it's at about 
 
 ## Possible Solutions/Plan
 
-
+- [ ] Each function that delivers data needs to be cached
+- [ ] User & pass can fail at high request rates for the db. worth checking into a solution
 ## Resources
 
 ## MindMap

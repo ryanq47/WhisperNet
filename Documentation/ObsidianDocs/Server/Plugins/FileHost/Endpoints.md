@@ -1,6 +1,7 @@
 Todo
 - [x] implement file access logs, both node, and server side
-- [ ] Need to do fileaccess logs next I believe
+- [x] Need to do fileaccess logs next I believe
+	- [ ] Server side is ready, need to actually post logs to the server now. Doc this process as well
 
 Server HTTP
 
@@ -133,7 +134,7 @@ fileaccess logs, a post endpoint.
 GET
 Auth Required
 
-Where to retrieve file access logs from. Note that this is limited to 30 updating items. so, 
+Where to retrieve file access logs from (i.e. who access what and when). Note that this is limited to 30 updating items. so, 
 each request (should) contain new data as it comes in, while holding up to 30 past entries
 
 Created from data posted to updatefilelogs
