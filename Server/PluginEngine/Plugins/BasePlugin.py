@@ -6,6 +6,8 @@ could be useful.
 import inspect
 from Utils.LoggingBaseClass import BaseLogging
 import Utils.ErrorDefinitions
+import threading
+import concurrent.futures
 
 class BasePlugin(BaseLogging):
     def __init__(self, app, DataStruct):
@@ -52,6 +54,36 @@ class BasePlugin(BaseLogging):
 
         pass
         return "results"
+    
+    def cache_data(self, func) -> list:
+        '''
+        A decorator made to optimize "expensive" fucntions, and return the 
+        results. Ideally, these results will be assigned to a varaible, so they can be 
+        cached. Each function will run in a thread, so it won't be blocking
+
+        args: func: The function you want to run. it MUST return ~something~
+        
+        Example problem I had:
+            Each time a node tried to get file data from the server, it would run 'os.listdir()'. With one node this
+            was doable, but crank it up to 5+ checking every 5 seconds, and you have a ton of uneccesary calculation going on. 
+            This is meant to fix this, and not block the execution flow.
+        
+        '''
+        def wrapper(*args, **kwargs):
+            self.logger.debug(f"Starting cache")
+            #print("Before the method is called.")
+
+            ## Using concurrent in order to get data back from the function
+            with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
+                future = executor.submit(func, *args, **kwargs)
+                
+                # Wait for the thread to complete and retrieve the result
+                result = future.result()
+
+                return result
+
+        # returning restul
+        return wrapper
     
 
     
