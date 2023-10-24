@@ -55,7 +55,8 @@ class BasePlugin(BaseLogging):
         pass
         return "results"
     
-    def cache_data(self, func) -> list:
+    @staticmethod
+    def optimization_calc_n_cache(func) -> list:
         '''
         A decorator made to optimize "expensive" fucntions, and return the 
         results. Ideally, these results will be assigned to a varaible, so they can be 
@@ -70,7 +71,7 @@ class BasePlugin(BaseLogging):
         
         '''
         def wrapper(*args, **kwargs):
-            self.logger.debug(f"Starting cache")
+            #self.logger.debug(f"Starting cache")
             #print("Before the method is called.")
 
             ## Using concurrent in order to get data back from the function
@@ -86,6 +87,6 @@ class BasePlugin(BaseLogging):
         return wrapper
     
 
-    
+
 
     

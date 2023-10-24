@@ -28,7 +28,7 @@ class ExternalBasePlugin(BaseLogging):
 
     def heartbeat_daemon(self):
         while True:
-            print("Heartbeat")
+            #print("Heartbeat")
 
             ## spin up class with data to sync files
             sync = ControlServerHandler(

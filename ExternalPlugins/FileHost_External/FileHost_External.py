@@ -55,6 +55,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--ip', help="The IP of the Control Server to connect to", required=True, default="127.0.0.1")
 parser.add_argument('--port', help="The port of the Control Server to connect to.", required=True, default=5000)
 parser.add_argument('--name', help="Give this plugin a name", required=False, default="Unnamed_Filehost_Node")
+parser.add_argument('--quiet', help="Make the plugin shutup & not spit out logs to the terminal", required=False, action="store_true")
 
 args = parser.parse_args()
 
@@ -99,6 +100,12 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
         self.control_server_port    = args.port
         self.control_server_name    = args.name
         self.authorization_header   = None
+        self.quiet                  = args.quiet
+
+        if not self.quiet:
+            pass
+            #self.logger.addHandler(logging.StreamHandler())
+
 
     def main(self):
         '''

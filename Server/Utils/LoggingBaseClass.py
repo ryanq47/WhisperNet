@@ -19,7 +19,7 @@ class BaseLogging():
         ## This will need to be adjusted on all modules/code that inheretes this
         self.logger = logging.getLogger()
         ## Change me to logging.DEBUG for a shitload of DEBUG messages
-        logging.basicConfig(level=logging.DEBUG)
+        logging.basicConfig(level=logging.WARNING)
         logging.basicConfig(filename=self.log_file_name, filemode='a', 
                             format='%(asctime)s - %(levelname)s - %(message)s', 
                             force=True, datefmt='%Y-%m-%d %H:%M:%S')

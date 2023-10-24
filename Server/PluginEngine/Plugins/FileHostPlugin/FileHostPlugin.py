@@ -40,6 +40,8 @@ from flask import request, jsonify
 from flask_jwt_extended import get_jwt_identity, jwt_required
 
 import hashlib
+import time
+import threading
 
 ################################################
 # Info class
@@ -111,6 +113,13 @@ Accessing logger.
 
 '''
 
+################################################
+# Other Stuff
+################################################
+SUBROUTINE_REFRESH_TIME = 5
+
+
+
 ## RoleCheck Decorator - move to BasePlugin after testing
 def role_required(required_role):
     def decorator(func):
@@ -141,10 +150,19 @@ class FileHost(BasePlugin, BaseLogging):
         BaseLogging.__init__(self)  
         # Just in case you need to test logging/it breaks...
         #self.logger.warning("LOGGING IS WORKING - <PLUGINNAME>")
-        self.node_checkin_logs = []
 
+        ## Holds a JSON string of currently hosted files
+        self.current_hosted_files = None
+        ## Node checkin logs
+        self.node_checkin_logs = []
         ## file access logs
         self.file_access_logs = []
+
+        subroutine_thread = threading.Thread(
+            target=self.filehost_subroutine
+        )
+        subroutine_thread.daemon = True
+        subroutine_thread.start()
 
     def main(self):
         '''
@@ -283,7 +301,7 @@ class FileHost(BasePlugin, BaseLogging):
         ## populate the checkin messages from the external filehosts  
 
         ## Do needed transfomrations to data
-        self.data_management()
+        self.filehose_data_management()
 
         return render_template('filehost-dashboard.html', 
                             files=list_of_files,
@@ -294,13 +312,18 @@ class FileHost(BasePlugin, BaseLogging):
     #@jwt_required()
     def filehost_api_file_listing(self):
         '''
-        Endpoint for listing the files in the FileHost plugin. Purely for API
-        access only, and requires a JWT to access.
+            Endpoint for listing the files in the FileHost plugin. Purely for API
+            access only, and requires a JWT to access.
 
-        Need to find best way of getting a list of file. maybe os.lsitdir?
+        '''
+        ## Returns json string
+        return self.current_hosted_files
 
-        Or, may be best to JSON it
-
+    @BasePlugin.optimization_calc_n_cache
+    def filehost_calculate_current_hosted_files(self):
+        '''
+        Calculates/performs needed actions to get the files currently hosted
+        by the server. 
         
         '''
 
@@ -336,7 +359,7 @@ class FileHost(BasePlugin, BaseLogging):
         ## NOT IMPLEMENTED YET - just using placeholder data
         
         '''
-        self.data_management()
+        self.filehost_data_management()
         temp_dict = {}
         i = 0
 
@@ -362,8 +385,6 @@ class FileHost(BasePlugin, BaseLogging):
         #return self.file_access_logs
 
         #return jsonify(self.file_access_logs)
-
-
 
     def filehost_file_access_logs(self):
         '''
@@ -495,7 +516,7 @@ class FileHost(BasePlugin, BaseLogging):
         ## rename this
         return jsonify(temp_dict)
 
-    def data_management(self):
+    def filehost_data_management(self):
         '''
         Does some general actions on data to make sure it's compliant/dosen't run away 
         or get unmanageable. Everything trimmed here has a log fiel for each respective
@@ -506,6 +527,24 @@ class FileHost(BasePlugin, BaseLogging):
         ## Keeps list limited in size.
         self.node_checkin_logs = self.node_checkin_logs[-15:] 
         self.file_access_logs = self.file_access_logs[-30:]
+
+    def filehost_subroutine(self):
+        '''
+        Does stuff on time based triggers. 
+        '''
+        self.logger.info(f"{self.logging_info_symbol} Starting {Info.name} subroutine")
+        ## Calc dir data
+        # call filehost_api_file_listing
+        ## >> rename: filehost_calculate_current_hosted_files
+
+        while True:
+            self.logger.debug(f"{self.logging_debug_symbol} Subroutine triggering...")
+            self.current_hosted_files = self.filehost_calculate_current_hosted_files()
+
+            ## Finally, end on a data cleanup
+            self.filehost_data_management()
+            ## Refresh time
+            time.sleep(SUBROUTINE_REFRESH_TIME)
 
     ## doesnt belong here, move to a util class eventually
     def md5_hash_file(self, file_path):

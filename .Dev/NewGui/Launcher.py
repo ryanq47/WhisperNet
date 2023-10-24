@@ -1,5 +1,5 @@
 import json
-from symbol import arglist
+#from symbol import arglist
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtUiTools import QUiLoader
