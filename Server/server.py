@@ -19,6 +19,7 @@ try:
     import signal
     import sys
     import time
+    import random
     import importlib
     from flask import Flask, jsonify, request, send_from_directory, render_template, Response, redirect
     from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
@@ -340,6 +341,16 @@ def startup_banner(ip = None, port = None, version = None):
     #ip = "127.0.0.1"
     #port = 5000
 
+    demonsay_list = [
+        "~~~shh... blueteam is watching~~~",
+        "0x41414141414141414141...",
+        "There is no right or wrong, only fun and boring",
+        "No place like 127.0.0.1",
+        "For legal reasons, this software does not exist"
+    ]
+
+    demonsay = random.choice(demonsay_list)
+
     a = f"""
  __      __.__    .__                             _______          __      _________                                
 /  \    /  \  |__ |__| ____________   ___________ \      \   _____/  |_   /   _____/ ______________  __ ___________ 
@@ -351,7 +362,7 @@ def startup_banner(ip = None, port = None, version = None):
   =================================================================================================================
   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     V: {version} -- github.com/ryanq47/whispernet
-    Author: Ryanq.47                                         |_|      ~~shhhh~~
+    Author: Ryanq.47                                         |_|      {demonsay}
                                                             ('.') ///   
                                                             <(_)`-/'    
                                                         <-._/J L /  -bf-
