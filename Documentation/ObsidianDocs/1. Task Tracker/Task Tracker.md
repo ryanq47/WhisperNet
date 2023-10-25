@@ -4,7 +4,7 @@ Notes:
 Immediate to do:
 	- Server could use some optimization in time (ongoing)
 		[here](obsidian://open?vault=ObsidianDocs&file=1.%20Task%20Tracker%2FTasks%2FServer%20Optimizations)
-- [ ] Fix webserver variable issue (should be quick)
+- [x] Fix webserver variable issue (should be quick)
 - [ ] Upload button in GUI
 - [ ] CLI args for logging levels for server, (and ext plugins)
 - [ ] Docs all of this

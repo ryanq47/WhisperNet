@@ -308,7 +308,7 @@ class FileHost(BasePlugin, BaseLogging):
         ## populate the checkin messages from the external filehosts  
 
         ## Do needed transfomrations to data
-        self.filehose_data_management()
+        self.filehost_data_management()
 
         return render_template('filehost-dashboard.html', 
                             files=list_of_files,
