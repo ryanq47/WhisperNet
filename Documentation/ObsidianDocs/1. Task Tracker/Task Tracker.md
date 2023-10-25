@@ -1,16 +1,15 @@
 
 Notes:
 
-Left off:
-- Implemetnign GUI node logs.
-	- Notes, Everythign works well. JSON is spit out properly by server, and GUI reflects that. Good job.
-	- Server could use some optimization in time
+Immediate to do:
+	- Server could use some optimization in time (ongoing)
 		[here](obsidian://open?vault=ObsidianDocs&file=1.%20Task%20Tracker%2FTasks%2FServer%20Optimizations)
-	- Need to get File Logs working, and then rethink/double check the GUI code for better ways/layouts before continuing with it.
-	- Additionally, upload button woutl be nice to have as well
-
-- [ ] CLI args for logging levels for server, and ext plugins
+- [ ] Fix webserver variable issue (should be quick)
+- [ ] Upload button in GUI
+- [ ] CLI args for logging levels for server, (and ext plugins)
 - [ ] Docs all of this
+- [ ] General bug test/cleanup.
+	- [ ] Perf Testing, 20-100 node load test :)
 
 Post that, c2 design time. 
 

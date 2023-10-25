@@ -1,7 +1,7 @@
 Todo
 - [x] implement file access logs, both node, and server side
 - [x] Need to do fileaccess logs next I believe
-	- [ ] Server side is ready, need to actually post logs to the server now. Doc this process as well
+	- [x] Server side is ready, need to actually post logs to the server now. Doc this process as well
 
 Server HTTP
 

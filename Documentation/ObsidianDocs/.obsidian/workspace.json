@@ -101,8 +101,7 @@
               }
             }
           }
-        ],
-        "currentTab": 5
+        ]
       }
     ],
     "direction": "vertical"
@@ -168,7 +167,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Plugins/FileHost/Endpoints.md",
+                "file": "1. Task Tracker/Task Tracker.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -185,7 +184,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Plugins/FileHost/Endpoints.md",
+                "file": "1. Task Tracker/Task Tracker.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -208,7 +207,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Plugins/FileHost/Endpoints.md"
+                "file": "1. Task Tracker/Task Tracker.md"
               }
             }
           },
@@ -240,10 +239,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "bea8261318ebcde3",
+  "active": "0e750e7f5d61a3f9",
   "lastOpenFiles": [
-    "1. Task Tracker/Task Tracker.md",
     "Server/Plugins/FileHost/Endpoints.md",
+    "1. Task Tracker/Task Tracker.md",
     "Server/Modules/PluginEngine/Development & Advanced Overview.md",
     "1. Task Tracker/Tasks/Plugins.md",
     "Server/Modules/PluginEngine/Overview.md",
