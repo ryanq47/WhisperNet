@@ -54,7 +54,6 @@ class ExternalBasePlugin(BaseLogging):
         except Exception as e:
             self.logger.warning(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
             return None
-    
 
     def load_creds(self):
         '''
@@ -66,8 +65,6 @@ class ExternalBasePlugin(BaseLogging):
 
         self.api_username = os.getenv("CONTROLSERVER_API_USERNAME")
         self.api_password = os.getenv("CONTROLSERVER_API_PASSWORD")
-
-
 
     def login_to_server(self):
         '''
@@ -142,7 +139,7 @@ class ExternalBasePlugin(BaseLogging):
             data = json_data
         )
 
-    def post_file_logs(self, filename = None, accessorip = None):
+    def post_file_logs(self, filename = None, accessorip = None, http_status_code = None):
         '''
         Sends file log data to server. 
         
@@ -162,7 +159,8 @@ class ExternalBasePlugin(BaseLogging):
             "accessorip":accessorip,
             "hostip":self.external_ip,
             "hostingserver":"controlserver",#self.control_server_name,
-            "timestamp":self.get_timestamp()
+            "timestamp":self.get_timestamp(),
+            "httpstatuscode":http_status_code
         }
 
         json_data = json.dumps(dict_data)

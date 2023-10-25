@@ -476,7 +476,12 @@ p, li { white-space: pre-wrap; }
                 </column>
                 <column>
                  <property name="text">
-                  <string>HTTP Code</string>
+                  <string>HTTP Code </string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>TimeStamp</string>
                  </property>
                 </column>
                </widget>

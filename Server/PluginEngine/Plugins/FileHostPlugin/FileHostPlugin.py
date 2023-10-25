@@ -387,17 +387,18 @@ class FileHost(BasePlugin, BaseLogging):
         i = 0
 
 
+
         ## this works a little weird. in order to have mutliple json rows, each "key" needs to 
         ## be diff so i gave each key a number. not ideal but it works
         for data in self.node_file_access_logs:
-
+            print(data)
             file_data = {
                 i:{
-                    "filename": "placeholder", #data['filename'],
-                    ## seemingly broken for some reason
-                    "accessorip": "placeholder",#data['accessorip'],
-                    "hostingserver": "placeholder",##data['hostingserver'],
-                    "timestamp": "placeholder" #data['timestamp'],
+                    "filename": data['filename'], #"placeholder", #data['filename'],
+                    "accessorip": data['file_accessor_ip'],# My dumbass named this weird somewhere.
+                    "hostingserver": data['node_name'],##data['hostingserver'],
+                    "timestamp": data['timestamp'],#data['timestamp'],
+                    "httpstatuscode": data['httpstatuscode']
                 }
             }
             temp_dict.update(file_data)
@@ -432,12 +433,14 @@ class FileHost(BasePlugin, BaseLogging):
             node_ip = request.json.get('hostip')
             node_name = request.json.get('hostingserver')
             file_timestamp = request.json.get('timestamp')
+            http_status_code = request.json.get('httpstatuscode')
 
 
             log_string = f"{self.logging_info_symbol} File Access: Plugin Name: '{node_name}' " \
             f"Plugin IP: '{node_ip}' " \
             f"filename: '{file_name}' " \
             f"accessor IP: '{file_accessor_ip}' " \
+            f"HTTP status code: '{http_status_code}' " \
             f"Timestamp: '{file_timestamp}' "
 
             self.logger.info(log_string)
@@ -448,6 +451,7 @@ class FileHost(BasePlugin, BaseLogging):
                 "file_accessor_ip":file_accessor_ip,
                 "filename":file_name,
                 "timestamp":file_timestamp,
+                "httpstatuscode":http_status_code
             }
 
             self.node_file_access_logs.append(data_dict)

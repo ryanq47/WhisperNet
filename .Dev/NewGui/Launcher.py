@@ -250,6 +250,7 @@ class MyApplication(QMainWindow):
             self.FileHost_FileAccessLogsTable.setItem(0, 1, QTableWidgetItem("With"))
             self.FileHost_FileAccessLogsTable.setItem(0, 2, QTableWidgetItem("JSON"))
             self.FileHost_FileAccessLogsTable.setItem(0, 3, QTableWidgetItem(""))
+            self.FileHost_FileAccessLogsTable.setItem(0, 4, QTableWidgetItem(""))
 
         elif data_dict == "empty":
             self.FileHost_FileAccessLogsTable.setRowCount(1)  # Set the number of rows
@@ -285,10 +286,14 @@ class MyApplication(QMainWindow):
                 filename = data_dict[entry]['filename']
                 nodename = data_dict[entry]['hostingserver'] ## chane to hosting node
                 accesstimestamp = data_dict[entry]['timestamp']
+                httpstatuscode = data_dict[entry]['httpstatuscode']
+
                 self.FileHost_FileAccessLogsTable.setItem(row_num, 0, QTableWidgetItem(str(filename)))
                 self.FileHost_FileAccessLogsTable.setItem(row_num, 1, QTableWidgetItem(str(accessorip)))
                 self.FileHost_FileAccessLogsTable.setItem(row_num, 2, QTableWidgetItem(str(nodename)))
-                self.FileHost_FileAccessLogsTable.setItem(row_num, 3, QTableWidgetItem(str(accesstimestamp)))
+                self.FileHost_FileAccessLogsTable.setItem(row_num, 3, QTableWidgetItem(str(httpstatuscode)))
+                self.FileHost_FileAccessLogsTable.setItem(row_num, 4, QTableWidgetItem(str(accesstimestamp)))
+
 
                 ## bumping row number to next
                 row_num = row_num + 1
@@ -362,10 +367,6 @@ class Utils:
         except Exception as e:
             logging.warning(f"{function_debug_symbol} JSON to Dict failed: {e}")
             return False
-
-
-
-
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

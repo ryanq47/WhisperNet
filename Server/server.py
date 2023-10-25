@@ -260,7 +260,6 @@ class ControlServer(BaseLogging):
                     except AttributeError as e:
                         self.logger.warning(f"{self.logging_warning_symbol} AttributeError: {e}")
 
-
     ## User login stuff for the WEB interface
     def login_page(self):
         return render_template('builtin-login.html')

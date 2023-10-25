@@ -25,7 +25,7 @@ from time import sleep
 #from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
 #from flask import Flask, jsonify, request, send_from_directory, render_template, Response
 
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, request, make_response
 import threading
 import requests
 import os
@@ -141,19 +141,42 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
 
     def serve_file(self, filename):
         self.logger.debug(f"Filename: {filename}")
+        requesting_ip = None
 
-        ## May need to thread this as it COULD hang the node if something doesnt work
-        self.post_file_logs(
-            filename=filename,
-            accessorip="1.2.3.4"
-        )
+        try:
+            requesting_ip = request.remote_addr
 
-        return send_from_directory(
-            "Files/",
-            filename,
-            ## Important to have as_attachment=True here.
-            as_attachment=True)
-    
+            # May need to thread this as it COULD hang the node if something doesn't work
+            response = send_from_directory(
+                "Files/",
+                filename,
+                as_attachment=True)
+
+            # Get the HTTP status code from the response object
+            http_status_code = response.status_code
+
+            # Log the status code or do any other necessary actions
+            self.post_file_logs(
+                filename=filename,
+                accessorip=requesting_ip,
+                http_status_code=http_status_code  # Include the status code in your logs
+            )
+
+            return response
+        
+        except Exception as e:
+            self.logger.warning(f"{self.logging_warning_symbol} Error serving file: File: {filename} IP: {requesting_ip}")
+            
+            #http_status_code = response.status_code
+            self.post_file_logs(
+                filename=filename,
+                accessorip=requesting_ip,
+                http_status_code=404  # Include the status code in your logs
+            )
+
+            ##!! 404 me eventually
+            response = make_response("", 404)
+            return response
     ## Maybe a manual upload function? Would require some more work + auth.
 
 
