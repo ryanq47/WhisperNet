@@ -158,3 +158,9 @@ Created from data posted to updatefilelogs
 }
 
 ```
+
+
+#### /api/filehost/filelogs
+
+POST
+for uploading files TO the server

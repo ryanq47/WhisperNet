@@ -244,13 +244,10 @@ class ControlServer(BaseLogging):
                             endpoint = module.Info.endpoint
                             author = module.Info.author
                             type = module.Info.plugin_type
-                            has_dashboard = module.Info.dashboard
                             loaded = 0
 
                             #if has_dashboard:
                             #    self.plugins_with_dashboard.append(module.Info.endpoint)
-
-                            
 
                             Data.server_data_db_handler.write_to_plugins_table(p_name, endpoint, author, type, loaded)
                             
@@ -338,6 +335,36 @@ class User(UserMixin):
         self.id = id
 
 
+def startup_banner(ip = None, port = None, version = None):
+    #version = "version"
+    #ip = "127.0.0.1"
+    #port = 5000
+
+    a = f"""
+ __      __.__    .__                             _______          __      _________                                
+/  \    /  \  |__ |__| ____________   ___________ \      \   _____/  |_   /   _____/ ______________  __ ___________ 
+\   \/\/   /  |  \|  |/  ___/\____ \_/ __ \_  __ \/   |   \_/ __ \   __\  \_____  \_/ __ \_  __ \  \/ // __ \_  __ \\
+ \        /|   Y  \  |\___ \ |  |_> >  ___/|  | \/    |    \  ___/|  |    /        \  ___/|  | \/\   /\  ___/|  | \/
+  \__/\  / |___|  /__/____  >|   __/ \___  >__|  \____|__  /\___  >__|   /_______  /\___  >__|    \_/  \___  >__|   
+       \/       \/        \/ |__|        \/              \/     \/               \/     \/                 \/    
+
+  =================================================================================================================
+  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    V: {version} -- github.com/ryanq47/whispernet
+    Author: Ryanq.47                                         |_|      ~~shhhh~~
+                                                            ('.') ///   
+                                                            <(_)`-/'    
+                                                        <-._/J L /  -bf-
+    IP: {ip} Port: {port}
+    WebInt: http://{ip}:{port}/
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  =================================================================================================================
+
+"""
+    
+    return a
+
+
 if __name__ == "__main__":
     ## Init data structures
 
@@ -346,6 +373,9 @@ if __name__ == "__main__":
     ## Debug mode on windows is broken.
     #ControlServer.app.run(host="0.0.0.0", port=5000, debug=False)
     try:
+        ## These vars are defined at the top, and in relation to argparse
+        print(startup_banner(ip = ip, port = port, version="??"))
+
         from waitress import serve
 
         app = Flask(__name__)
@@ -361,8 +391,11 @@ if __name__ == "__main__":
         ## JWT stuff
         app.config['JWT_SECRET_KEY'] = 'PLEASECHANGEME'  # Change this to your secret key - also move to a config file
 
+        ## Telling flask to SHYUT UP
+        log = logging.getLogger('werkzeug')
+        log.setLevel(logging.WARNING)
 
-        app.run(host="0.0.0.0", port=5000, debug=True)
+        app.run(host="0.0.0.0", port=5000, debug=False)
 
     except OSError as oe:
         print(f"OS Error: {oe}")
