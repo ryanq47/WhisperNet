@@ -56,6 +56,7 @@ parser.add_argument('--ip', help="The IP of the Control Server to connect to", r
 parser.add_argument('--port', help="The port of the Control Server to connect to.", required=True, default=5000)
 parser.add_argument('--name', help="Give this plugin a name", required=False, default="Unnamed_Filehost_Node")
 parser.add_argument('--quiet', help="Make the plugin shutup & not spit out logs to the terminal", required=False, action="store_true")
+parser.add_argument('--log', help="What level of logging you want. I reccomend INFO (and it is the default) for most cases. Options: INFO, DEBUG, WARNING", required=False, default="INFO")
 
 args = parser.parse_args()
 
@@ -88,10 +89,9 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
     def __init__(self, app):
         #super().__init__(app, DataStruct)  # Problem with this was that it was trying to stuff app, 
         # and Datastruct into both, and both parent classes take different args, thus causing problems.
-
         ## Initialize BasePlugin and BaseLogging parent classes. Can't use one super call as stated above
         ExternalBasePlugin.__init__(self)
-        BaseLogging.__init__(self)
+        BaseLogging.__init__(self, level = args.log)
           
         # Just in case you need to test logging/it breaks...
         #self.logger.warning("LOGGING IS WORKING - <PLUGINNAME>")

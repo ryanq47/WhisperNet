@@ -26,6 +26,7 @@ class ExternalBasePlugin(BaseLogging):
         self.external_ip = None
 
 
+
     def heartbeat_daemon(self):
         while True:
             #print("Heartbeat")

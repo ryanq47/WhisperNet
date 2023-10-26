@@ -7,10 +7,11 @@ Immediate to do:
 - [x] Fix webserver variable issue (should be quick)
 - [ ] Upload button in GUI
 	- [ ] "working" on the gui side, Still protoyping/testing
-- [ ] CLI args for logging levels for server, (and ext plugins)
+- [ ] CLI args for logging levels for server, (and ext plugins) <<
+	- [ ] Something's up with baselogging & the constructros getting called multiple times.
 - [ ] Docs all of this
 - [ ] General bug test/cleanup.
-	- [ ] Perf Testing, 20-100 node load test :)
+	- [ ] Perf Testing, 20-100 node load test :) 
 - [ ] 
 
 Post that, c2 design time. 
