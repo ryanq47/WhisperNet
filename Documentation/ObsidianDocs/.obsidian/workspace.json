@@ -64,18 +64,6 @@
             }
           },
           {
-            "id": "b5c23ddf1d482db0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Server/Plugins/FileHost/External Component.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "bea8261318ebcde3",
             "type": "leaf",
             "pinned": true,
@@ -87,18 +75,6 @@
                 "source": false
               },
               "pinned": true
-            }
-          },
-          {
-            "id": "1289ec411cd9519c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1. Task Tracker/Tasks/Server Optimizations.md",
-                "mode": "source",
-                "source": false
-              }
             }
           }
         ]
@@ -242,11 +218,12 @@
   "active": "0e750e7f5d61a3f9",
   "lastOpenFiles": [
     "Server/Plugins/FileHost/Endpoints.md",
+    "Server/Plugins/FileHost/External Component.md",
+    "Server/Plugins/FileHost/Overview.md",
     "1. Task Tracker/Task Tracker.md",
     "Server/Modules/PluginEngine/Development & Advanced Overview.md",
     "1. Task Tracker/Tasks/Plugins.md",
     "Server/Modules/PluginEngine/Overview.md",
-    "Server/Plugins/FileHost/External Component.md",
     "1. Task Tracker/Tasks/Server Optimizations.md",
     "1. Task Tracker/Tasks/Untitled.md",
     "1. Task Tracker/Tasks/Error Response in cookies.md",
@@ -259,7 +236,6 @@
     "Pasted image 20231007135210.png",
     "Pasted image 20231007135110.png",
     "Authentication Model.canvas",
-    "Server/Plugins/FileHost/Overview.md",
     "Plugin Design.canvas",
     "Server/Plugins/FileHost",
     "Server/Modules/Error Handling & Logging/BaseLogging.md",

@@ -36,7 +36,7 @@ from flask_login import LoginManager, login_required
 
 ## API stuff
 from functools import wraps
-from flask import request, jsonify
+from flask import request, jsonify, make_response
 from flask_jwt_extended import get_jwt_identity, jwt_required
 
 import hashlib
@@ -218,7 +218,7 @@ class FileHost(BasePlugin, BaseLogging):
 
     # these don't need a (). Funky
     #also not exactly the most secure. no validation on upload
-    @login_required
+    #@login_required
     def filehost_upload_file(self):
         '''
         Endpoint for uploading files to the FileHost plugin. 
@@ -265,7 +265,39 @@ class FileHost(BasePlugin, BaseLogging):
         except Exception as e: 
             print(e)
         '''
+
+    #@login_required
+    def filehost_api_upload_file(self):
+        '''
+        Endpoint for uploading files to the FileHost plugin. 
+        Not Secure yet.
         
+
+        dev: needs a refactor/rething. Maybe throw forms in a stataic class
+        '''
+        #return "Not Implemented"
+        ## Note, CSRF is missing is issue
+        try:
+
+            if request.method == 'POST':
+                uploaded_file = request.files['file']
+
+                if uploaded_file:
+                    # Save the uploaded file to a specific directory
+                    uploaded_file.save('PluginEngine/Plugins/FileHostPlugin/Files/' + uploaded_file.filename)
+
+                    #flash("File uploaded successfully")
+                    #return redirect("/filehost")
+                    return make_response("", 200)
+
+            
+            #flash("Upload Failed")
+            return redirect("/filehost")
+        except Exception as e:
+            self.logger.warning(f"{self.logging_warning_symbol} Error uploading file: {e}")
+            #flash("Upload Failed")
+            return make_response("", 404)
+
 
     @login_required
     def filehost_base_directory(self):

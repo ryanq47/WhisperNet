@@ -3,7 +3,7 @@ import json
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QTextBrowser, QTableWidgetItem, QTableWidget
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QTextBrowser, QTableWidgetItem, QTableWidget, QFileDialog
 
 ## Netowrk Stuff
 from PySide6.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply
@@ -32,6 +32,7 @@ class MyApplication(QMainWindow):
 
         self.init_objects_from_ui(ui_file = ui_file)
         self.initUI()
+        self.init_butons()
         ## starts events & timers
         self.filehost_timer = QTimer()
         self.events_and_timers()
@@ -46,6 +47,7 @@ class MyApplication(QMainWindow):
             self.FileHost_FileLogTable = ui_file.findChild(QTableWidget, "FileHost_FileLogTable")  
             self.FileHost_NodeLogTable = ui_file.findChild(QTableWidget, "FileHost_NodeLogTable")
             self.FileHost_FileAccessLogsTable = ui_file.findChild(QTableWidget, "FileHost_FileAccessLogsTable")
+            self.FileHost_UploadFileButton = ui_file.findChild(QPushButton, "FileHost_UploadFileButton")
 
         except Exception as e:
             print(e)
@@ -56,7 +58,12 @@ class MyApplication(QMainWindow):
 
         self.setWindowTitle("WhisperNet")
 
-
+    def init_butons(self):
+        '''
+        For initialzing all the buttons N stuff. Called at class initialization
+        '''
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        self.FileHost_UploadFileButton.clicked.connect(self.filehost_upload_file)
 
     def filehost_debug(self):
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
@@ -320,6 +327,37 @@ class MyApplication(QMainWindow):
         else:
             string = f"Error with request: {reply.error()}"
             signal.emit(string)  # Emit the custom signal
+
+    def filehost_upload_file(self):
+        # Open a file dialog to select files for upload
+        file_dialog = QFileDialog()
+        files = file_dialog.getOpenFileNames(self, "Select File(s) to Upload")[0]
+
+        if files:
+            # URL of the web server to which you want to send the files
+            server_url = "http://127.0.0.1:5000/api/filehost/upload"
+
+            # Prepare a dictionary of files to send in the POST request
+            #files_to_upload = []
+            for file in files:
+                #files_to_upload.append(("file", (file_path, open(file_path, "rb"))))
+                with open(file,'rb') as f:
+                    file_bytes = f.read()
+
+                    try:
+                        web = WebRequestManager()
+                        web.send_post_request(
+                            url = server_url,
+                            data = file_bytes
+                        )
+                        print("Theoretically if you're seeing this... this should have worked")
+                        '''response = requests.post(server_url, files=files_to_upload)
+                        if response.status_code == 200:
+                            print("Upload successful")
+                        else:
+                            print(f"Upload failed with status code {response.status_code}")'''
+                    except Exception as e:
+                        print(f"Error: {e}")
 
 ## Class for handling data ops - move to a util file eventually
 class WebRequestManager(QNetworkAccessManager):

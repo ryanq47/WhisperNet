@@ -6,10 +6,12 @@ Immediate to do:
 		[here](obsidian://open?vault=ObsidianDocs&file=1.%20Task%20Tracker%2FTasks%2FServer%20Optimizations)
 - [x] Fix webserver variable issue (should be quick)
 - [ ] Upload button in GUI
+	- [ ] "working" on the gui side, Still protoyping/testing
 - [ ] CLI args for logging levels for server, (and ext plugins)
 - [ ] Docs all of this
 - [ ] General bug test/cleanup.
 	- [ ] Perf Testing, 20-100 node load test :)
+- [ ] 
 
 Post that, c2 design time. 
 

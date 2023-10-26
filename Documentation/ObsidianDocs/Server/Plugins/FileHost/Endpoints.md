@@ -21,6 +21,15 @@ Server API
 
 ## Per Endpoint Details
 
+#### /filehost/upload
+
+The upload endpoint for uploading files from the web interface
+
+
+#### /api/filehost/upload
+
+The upload endpoint for the API. 
+
 #### /api/filehost/files
 
 Displays JSON data of the current files on the control server. 
