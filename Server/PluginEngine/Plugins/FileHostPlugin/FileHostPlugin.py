@@ -191,6 +191,8 @@ class FileHost(BasePlugin, BaseLogging):
         self.app.route(f'/api/{Info.endpoint}/updatefilelogs', methods = ["POST"])(self.filehost_file_access_logs)
         self.app.route(f'/api/{Info.endpoint}/filelogs', methods = ["GET"])(self.filehost_api_get_file_access_logs)
         self.app.route(f'/api/{Info.endpoint}/nodelogs', methods = ["GET"])(self.filehost_api_get_checkin_logs)
+        self.app.route(f'/api/{Info.endpoint}/upload', methods = ["POST"])(self.filehost_api_upload_file)
+
 
     # for controlling ext plugin
     #@login_required
@@ -275,6 +277,7 @@ class FileHost(BasePlugin, BaseLogging):
 
         dev: needs a refactor/rething. Maybe throw forms in a stataic class
         '''
+        print("API uplaod triggered")
         #return "Not Implemented"
         ## Note, CSRF is missing is issue
         try:
@@ -288,11 +291,12 @@ class FileHost(BasePlugin, BaseLogging):
 
                     #flash("File uploaded successfully")
                     #return redirect("/filehost")
+                    print("file worked ===========================")
                     return make_response("", 200)
 
-            
+            return make_response("", 404)
             #flash("Upload Failed")
-            return redirect("/filehost")
+            #return redirect("/filehost")
         except Exception as e:
             self.logger.warning(f"{self.logging_warning_symbol} Error uploading file: {e}")
             #flash("Upload Failed")

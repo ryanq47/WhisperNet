@@ -1,4 +1,6 @@
+from http.client import responses
 import json
+import re
 #from symbol import arglist
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
@@ -15,7 +17,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 ## Change the path to the system path + a log folder/file somewhere
 logging.basicConfig(filename='WhisperNetGui.log', filemode='a', format='%(asctime)s - %(levelname)s - %(message)s', force=True, datefmt='%Y-%m-%d %H:%M:%S')
-#logging.getLogger().addHandler(logging.StreamHandler())
+logging.getLogger().addHandler(logging.StreamHandler())
 function_debug_symbol = "[*]"
 
 class MyApplication(QMainWindow):
@@ -23,6 +25,7 @@ class MyApplication(QMainWindow):
     filehost_response_received = Signal(str)
     nodelogs_response_received = Signal(str)
     fileaccesslog_response_received = Signal(str)
+    filehost_upload_response_received = Signal(str)
 
     def __init__(self):
         super().__init__()
@@ -321,14 +324,19 @@ class MyApplication(QMainWindow):
 
         '''
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-        if reply.error() == QNetworkReply.NoError:
-            response_data = reply.readAll().data().decode()
-            signal.emit(response_data)  # Emit the custom signal
-        else:
-            string = f"Error with request: {reply.error()}"
-            signal.emit(string)  # Emit the custom signal
+        try:
+            if reply.error() == QNetworkReply.NoError:
+                response_data = reply.readAll().data().decode()
+                signal.emit(response_data)  # Emit the custom signal
+            else:
+                string = f"Error with request: {reply.error()}"
+                signal.emit(string)  # Emit the custom signal
+        except Exception as e:
+            logging.debug(f"{function_debug_symbol} Error with handle_response: {e}")
 
     def filehost_upload_file(self):
+        logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
         # Open a file dialog to select files for upload
         file_dialog = QFileDialog()
         files = file_dialog.getOpenFileNames(self, "Select File(s) to Upload")[0]
@@ -345,19 +353,25 @@ class MyApplication(QMainWindow):
                     file_bytes = f.read()
 
                     try:
-                        web = WebRequestManager()
-                        web.send_post_request(
+                        self.filehost_post_manager = WebRequestManager()
+                        self.filehost_post_manager.send_post_request(
                             url = server_url,
-                            data = file_bytes
+                            ## issue ehre with the type of data being sent. Server jtakes json with bytes, qt is being a pITA
+                            data = {'file': file_bytes}
                         )
-                        print("Theoretically if you're seeing this... this should have worked")
-                        '''response = requests.post(server_url, files=files_to_upload)
-                        if response.status_code == 200:
-                            print("Upload successful")
-                        else:
-                            print(f"Upload failed with status code {response.status_code}")'''
+                        #self.filehost_post_manager.request_finished.connect(lambda response: print("It worked? or at lteast connected"))
+                        ## Handle response
+                        self.filehost_post_manager.request_finished.connect(lambda response: self.handle_response(response, self.filehost_upload_response_received))
+
+                        ## Upon recieveing response, do action with response
+                        self.filehost_upload_response_received.connect(self.filehost_upload_file_completed)
+                        #print("Theoretically if you're seeing this... this should have worked")
+
                     except Exception as e:
                         print(f"Error: {e}")
+
+    def filehost_upload_file_completed(self, response):
+        print(response)
 
 ## Class for handling data ops - move to a util file eventually
 class WebRequestManager(QNetworkAccessManager):
@@ -365,11 +379,16 @@ class WebRequestManager(QNetworkAccessManager):
 
     def send_post_request(self, url, data):
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-        request = QNetworkRequest(url)
-        request.setHeader(QNetworkRequest.ContentTypeHeader, "application/json")
-        
-        reply = self.post(request, data)
-        reply.finished.connect(self.handle_response)
+        try:
+            request = QNetworkRequest(url)
+            request.setHeader(QNetworkRequest.ContentTypeHeader, "application/json")
+            #application/octet-stream
+            #request.setHeader(QNetworkRequest.ContentTypeHeader, "application/octet-stream")
+
+            reply = self.post(request, data)
+            reply.finished.connect(self.handle_response)
+        except Exception as e:
+            logging.warning(f"{function_debug_symbol} Error sending post request: {e}")
 
     def send_get_request(self, url):
         logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
