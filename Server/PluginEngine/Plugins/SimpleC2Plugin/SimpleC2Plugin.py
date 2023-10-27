@@ -26,7 +26,7 @@ import logging
 import inspect
 #from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
 #from flask import Flask, jsonify, request, send_from_directory, render_template, Response
-from flask import jsonify, send_from_directory, render_template, flash, redirect
+from flask import jsonify, send_from_directory, render_template, redirect, make_response
 from flask_login import LoginManager, login_required
 
 #from flask_wtf import FlaskForm
@@ -142,6 +142,12 @@ class SimpleC2(BasePlugin, BaseLogging):
         # Just in case you need to test logging/it breaks...
         #self.logger.warning("LOGGING IS WORKING - <PLUGINNAME>")
 
+        ## Data Structures
+        self.node_checkin_logs = []
+
+################################################
+# Main Stuff
+################################################
 
     def main(self):
         '''
@@ -156,6 +162,14 @@ class SimpleC2(BasePlugin, BaseLogging):
         self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
         self.app.route(f'/{Info.endpoint}', methods = ["GET"])(self.simplec2_dashboard)
         self.app.route(f'/api/{Info.endpoint}/', methods=["GET"])(self.simplec2_api_placeholder)
+        self.app.route(f'/api/{Info.endpoint}/postcommand', methods = ["POST"])(self.simplec2_api_post_client_command)
+        self.app.route(f'/api/{Info.endpoint}/nodecheckin', methods = ["POST"])(self.simplec2_api_node_checkin)
+        self.app.route(f'/api/{Info.endpoint}/nodelogs', methods = ["GET"])(self.simplec2_api_get_checkin_logs)
+
+
+################################################
+# HTML Dashboard
+################################################
 
     def simplec2_dashboard(self):
         '''
@@ -170,3 +184,114 @@ class SimpleC2(BasePlugin, BaseLogging):
         api
         '''
         return "api"
+    
+################################################
+# API
+################################################
+
+    ## Endpoint for CLinet sending command
+    ## Post, JSON   
+    def simplec2_api_post_client_command(self):
+        '''
+        Endpoint for Client sending command. Gets magically parsed, and forwarded to the respective listener
+        '''
+        ...
+
+        ## Parse json.
+
+        ## Get listener.
+
+        ## post to listener.
+        return make_response("up", 200)
+    
+    def simplec2_post_command_to_listener(self, command = None, listener = None, target = None):
+        '''
+        Forwards the command onto the listener
+        
+
+        JSON:
+
+        {
+            command: command (powershell whoami)
+            target: "target_ip/name of target, etc
+
+        }
+
+
+        '''
+
+        ## Requests.send to listneer at post addr.
+        ## 127.0.0.1:80/postaddr/post_commands
+
+        ## on the listnere side, take post, parse it, queue it
+
+        ...
+
+################################################
+# API - Checkin Stuff
+################################################
+
+    def simplec2_api_node_checkin(self):
+        '''
+        Checkin endpoint for nodes. Post
+        
+        {
+            "name":"",
+            "ip":"",
+            "message":"syncing | sync successful | sync failed | error"
+            "timestamp":""
+        
+        }
+        '''
+        try:
+            plugin_instance_name = request.json.get('name')
+            plugin_external_ip = request.json.get('ip')
+            plugin_message = request.json.get('message')
+            plugin_timestamp = request.json.get('timestamp')
+
+            log_string = f"{self.logging_info_symbol} Checkin: Plugin Name: '{plugin_instance_name}' " \
+            f"Plugin IP: '{plugin_external_ip}' " \
+            f"Message: '{plugin_message}' " \
+            f"Timestamp: '{plugin_timestamp}' "
+
+            self.logger.info(log_string)
+
+            data_dict = {
+                "name":plugin_instance_name,
+                "ip":plugin_external_ip,
+                "message":plugin_message,
+                "timestamp":plugin_timestamp,
+            }
+
+            self.node_checkin_logs.append(data_dict)
+            #print(self.node_checkin_logs)
+
+            return "success"
+        
+        except Exception as e:
+            self.logger.warning(f"{self.logging_warning_symbol} Error with checkin: {e}")
+    
+    def simplec2_api_get_checkin_logs(self):
+        '''
+        Logs for file checkins displayed to the api
+        
+        '''
+        temp_dict = {}
+
+        ## accidently made it so only one log of each thing shows up here. win win I suppose?
+
+        ## simlar to filehost_api_get_file_access_logs, but limits the keys to the name of the node checking in
+        ## This allows for updates of the nodes without duplicat nodes to process
+        for data in self.node_checkin_logs:
+            file_data = {
+                data['name']:{
+                    "name": data['name'],
+                    ## Note, this is depednent on what you set the file endpoint to. 
+                    "ip": data['ip'],
+                    "message": data['message'],
+                    "timestamp": data['timestamp'],
+                }
+            }
+            temp_dict.update(file_data)
+        ## rename this
+        return jsonify(temp_dict)

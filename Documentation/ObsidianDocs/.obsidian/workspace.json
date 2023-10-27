@@ -76,8 +76,38 @@
               },
               "pinned": true
             }
+          },
+          {
+            "id": "c9fbdf201dfab79f",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "Server/Plugins/SimpleC2/SimpleC2 Drawing.canvas",
+                "viewState": {
+                  "x": 1569.8853132005504,
+                  "y": 220.3605672457862,
+                  "zoom": -0.3333333333333333
+                }
+              },
+              "pinned": true
+            }
+          },
+          {
+            "id": "a18e0143a177c7b7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Server/Plugins/SimpleC2/Endpoints.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -143,7 +173,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md",
+                "file": "Server/Plugins/SimpleC2/Endpoints.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -160,7 +190,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md",
+                "file": "Server/Plugins/SimpleC2/Endpoints.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -183,7 +213,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1. Task Tracker/Task Tracker.md"
+                "file": "Server/Plugins/SimpleC2/Endpoints.md"
               }
             }
           },
@@ -215,12 +245,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0e750e7f5d61a3f9",
+  "active": "a18e0143a177c7b7",
   "lastOpenFiles": [
     "Server/Plugins/FileHost/Endpoints.md",
+    "Server/Plugins/SimpleC2/Endpoints.md",
+    "Server/Plugins/SimpleC2/SimpleC2 Drawing.canvas",
+    "Plugin Design.canvas",
+    "Server/Visual Progress.canvas",
+    "1. Task Tracker/Task Tracker.md",
+    "Server/Plugins/SimpleC2",
     "Server/Plugins/FileHost/External Component.md",
     "Server/Plugins/FileHost/Overview.md",
-    "1. Task Tracker/Task Tracker.md",
     "Server/Modules/PluginEngine/Development & Advanced Overview.md",
     "1. Task Tracker/Tasks/Plugins.md",
     "Server/Modules/PluginEngine/Overview.md",
@@ -236,7 +271,6 @@
     "Pasted image 20231007135210.png",
     "Pasted image 20231007135110.png",
     "Authentication Model.canvas",
-    "Plugin Design.canvas",
     "Server/Plugins/FileHost",
     "Server/Modules/Error Handling & Logging/BaseLogging.md",
     "Server/Code Tests.md",
@@ -252,7 +286,6 @@
     "Status page.md",
     "Server/Plugins/stats plugin (name not final).md",
     "Dev Guide/Notes Guide/Colors & comments.md",
-    "Server/DataBases/ServerData.db.md",
     "Server/Modules/Listeners - Dep/Listener setup.canvas",
     "Server/Modules/ApiEngine/Process Overview.canvas",
     "General/Images/Pasted image 20231003212206.png",
@@ -269,9 +302,6 @@
     "Server/Modules/Utils",
     "Server/Modules/Listeners - Dep",
     "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
-    "Valuecheck Function.canvas",
-    "DataState.canvas",
-    "General/Images",
-    "Server/Visual Progress.canvas"
+    "Valuecheck Function.canvas"
   ]
 }
