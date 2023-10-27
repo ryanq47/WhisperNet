@@ -105,9 +105,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "733e8c6df591fcb4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Server/Plugins/SimpleC2/Nodes/HTTP Node.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 6
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -173,7 +185,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Plugins/SimpleC2/Endpoints.md",
+                "file": "Server/Plugins/SimpleC2/Nodes/HTTP Node.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -190,7 +202,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Plugins/SimpleC2/Endpoints.md",
+                "file": "Server/Plugins/SimpleC2/Nodes/HTTP Node.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -213,7 +225,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Plugins/SimpleC2/Endpoints.md"
+                "file": "Server/Plugins/SimpleC2/Nodes/HTTP Node.md"
               }
             }
           },
@@ -245,11 +257,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "a18e0143a177c7b7",
+  "active": "733e8c6df591fcb4",
   "lastOpenFiles": [
-    "Server/Plugins/FileHost/Endpoints.md",
     "Server/Plugins/SimpleC2/Endpoints.md",
+    "Server/Plugins/SimpleC2/Nodes/HTTP Node.md",
     "Server/Plugins/SimpleC2/SimpleC2 Drawing.canvas",
+    "Server/Plugins/SimpleC2/Nodes",
+    "Server/Plugins/FileHost/Endpoints.md",
     "Plugin Design.canvas",
     "Server/Visual Progress.canvas",
     "1. Task Tracker/Task Tracker.md",
@@ -284,8 +298,6 @@
     "Untitled 2.md",
     "Untitled 1.md",
     "Status page.md",
-    "Server/Plugins/stats plugin (name not final).md",
-    "Dev Guide/Notes Guide/Colors & comments.md",
     "Server/Modules/Listeners - Dep/Listener setup.canvas",
     "Server/Modules/ApiEngine/Process Overview.canvas",
     "General/Images/Pasted image 20231003212206.png",
@@ -300,7 +312,6 @@
     "Server/Modules/WSGI/WSGI & Flask setup.canvas",
     "Server/Modules/WSGI",
     "Server/Modules/Utils",
-    "Server/Modules/Listeners - Dep",
     "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
     "Valuecheck Function.canvas"
   ]

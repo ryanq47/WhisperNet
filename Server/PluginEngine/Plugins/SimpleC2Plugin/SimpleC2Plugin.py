@@ -29,10 +29,6 @@ import inspect
 from flask import jsonify, send_from_directory, render_template, redirect, make_response
 from flask_login import LoginManager, login_required
 
-#from flask_wtf import FlaskForm
-#from wtforms import StringField, SubmitField, FileField
-#from wtforms.validators import DataRequired, Length
-
 ## API stuff
 from functools import wraps
 from flask import request, jsonify
