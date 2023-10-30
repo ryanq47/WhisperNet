@@ -134,11 +134,14 @@ class ExternalBasePlugin(BaseLogging):
                 "Content-Type": "application/json"
         }
 
-        r = requests.post(
-            url = "http://127.0.0.1:5000/api/filehost/checkin",
-            headers = headers,
-            data = json_data
-        )
+        try:
+            r = requests.post(
+                url = "http://127.0.0.1:5000/api/filehost/checkin",
+                headers = headers,
+                data = json_data
+            )
+        except Exception as e:
+            self.logger.warning(f"{self.logging_warning_symbol} Could not contact server at __ : {e}")
 
     def post_file_logs(self, filename = None, accessorip = None, http_status_code = None):
         '''
