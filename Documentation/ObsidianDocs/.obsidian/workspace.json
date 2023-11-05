@@ -109,13 +109,15 @@
           {
             "id": "733e8c6df591fcb4",
             "type": "leaf",
+            "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
                 "file": "Server/Plugins/SimpleC2/Nodes/HTTP Node.md",
                 "mode": "source",
                 "source": false
-              }
+              },
+              "pinned": true
             }
           }
         ],

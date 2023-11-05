@@ -1,7 +1,22 @@
 Todo:
 
+- [ ] Find a way to store/hold onto the data posted by clients, and get itback to the server. Maybe a dedicated endpoint under clientname/results/data or soemthign taht holds the JSON? need to think about it.
+
 
 Simple desc
+
+
+```
+Client Checkin Chain:
+
+POST /checkin
+GET /command
+<actions>
+POST /result
+<sleep>
+
+
+```
 
 ## Per Endpoint Details
 
@@ -40,3 +55,33 @@ download: download from a server
 
 
 etc etc fill me in 
+
+#### /checkin
+A checkin for the clients to check in at. 
+```
+{
+	id: 
+	timestamp:
+	message: (if applicable)
+
+}
+
+
+```
+
+#### /data or /results?
+
+A post endpoint to post results of commands. A little different than the usual post results on a heartbeat, this would instantly post to the respective listener upon command completion, instead of waiting
+
+
+```
+{
+	id: 
+	txid: transaction id, to track transaction?
+	timestamp:
+	data: "domain/username"
+
+}
+
+
+```

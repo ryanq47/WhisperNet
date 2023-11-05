@@ -15,7 +15,7 @@ class BaseLogging():
         self.logging_debug_symbol = "[D]"
         self.quiet = False
 
-        print('init')
+        #print('init')
         ## Exists so this can be changed if necessary
         self.log_file_name = "plugin.log"
         ## This will need to be adjusted on all modules/code that inheretes this

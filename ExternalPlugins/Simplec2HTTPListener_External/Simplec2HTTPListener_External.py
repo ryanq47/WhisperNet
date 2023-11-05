@@ -124,7 +124,11 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
         #self.app.route(f'/', methods = ["GET"])(self.plugin_function)
         #self.app.route(f'/<path:filename>', methods = ["GET"])(self.serve_file)
         self.app.route(f'/command', methods = ["POST"])(self.endpoint_get_command)
+
+        ## client endpoints
         self.app.route(f'/clientname/command', methods = ["GET"])(self.client_get_command)
+        self.app.route(f'/clientname/checkin', methods = ["POST"])(self.client_post_checkin)
+        self.app.route(f'/clientname/data', methods = ["POST"])(self.client_post_data)
 
     def get_command_loop(self):
         command = super().get_command()
@@ -148,6 +152,61 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
         }
 
         return jsonify(command)
+    
+    ## [x] POST works with postman
+    def client_post_checkin(self):
+        '''
+        POST
+        Where clients can check in
+        
+        {
+            id: 
+            timestamp:
+            message: (if applicable)
+        }
+        '''
+        try:
+            id = request.json.get('id')
+            timestamp = request.json.get('timestamp')
+            message = request.json.get('message')
+
+                #id, message, timestamp)
+            self.logger.info(f"{self.logging_info_symbol} ClientCheckin: ID: {id} message: {message} timestamp: {timestamp}")
+        
+        except Exception as e:
+            self.logger.warning(f"{self.logging_warning_symbol} Error with client_post_checkin: {e}")
+
+
+        return ""
+    
+    ## [x] POST works with postman
+    def client_post_data(self):
+        '''
+        POST
+        where clients can dump data 
+        {
+            id: 
+            txid: transaction id, to track transaction?
+            timestamp:
+            data: "domain/username"
+
+        }
+        
+        '''
+        try:
+
+            id = request.json.get('id')
+            timestamp = request.json.get('timestamp')
+            data = request.json.get('data')
+            #print(id, data, timestamp)
+
+            self.logger.info(f"{self.logging_info_symbol} ClientCheckin: ID: {id} data (length): {len(data)} timestamp: {timestamp}")
+        
+        except Exception as e:
+            self.logger.warning(f"{self.logging_warning_symbol} Error with client_post_data: {e}")
+
+
+        return ""
 
 if __name__ == "__main__":
     app = Flask(__name__)

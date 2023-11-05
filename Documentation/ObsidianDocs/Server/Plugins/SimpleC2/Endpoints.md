@@ -7,7 +7,7 @@ Todo:
 GET
 Auth Required
 
-Contains the currently active FIlehost Nodes. Note that the primary key is the name of the node, so no duplicates here. These are just status updates
+Contains the currently active listener Nodes. Note that the primary key is the name of the node, so no duplicates here. These are just status updates
 
 ```
 
