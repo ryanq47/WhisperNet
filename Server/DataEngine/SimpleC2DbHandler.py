@@ -1,7 +1,7 @@
 import sqlite3
 import inspect
 from Utils.LoggingBaseClass import BaseLogging
-
+import time
 '''
 This DB Handler handles the core quieries for the ServerData.db database.
 
@@ -45,16 +45,20 @@ class SimpleC2DbHandler(BaseLogging):
         
         '''
         table_creation_sql = f"""CREATE TABLE IF NOT EXISTS {client_name} (
-                                data TEXT NOT NULL
+                                Data TEXT NOT NULL,
+                                Timestamp INTEGER NOT NULL
                                 );"""
 
         try:
+            unix_timestamp = int(time.time())
+
             self.cursor.execute(table_creation_sql)
 
             ## dangerous, open to injection
-            insert_sql = f"INSERT INTO {client_name} (Data) VALUES (?);"
+            insert_sql = f"INSERT INTO {client_name} (Data, Timestamp) VALUES (?, ?);"
 
-            self.cursor.execute(insert_sql, (data,))
+            self.cursor.execute(insert_sql, (data,unix_timestamp,))
+            self.dbconn.commit()
 
         except Exception as e:
             self.logger.warning(f"{self.logging_warning_symbol} {inspect.stack()[0][3]}: {e}")

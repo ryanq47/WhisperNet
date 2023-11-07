@@ -263,7 +263,14 @@ class SimpleC2(BasePlugin, BaseLogging):
         raw_json_string = request.get_data(as_text=True)
         print(raw_json_string)
 
+        db_instance = SimpleC2DbHandler()
+
         ## call sqlite lib
+
+        db_instance.write_client_data_to_table(
+            client_name = "bob",
+            data = "data"
+        )
 
         ## reutrn code?
         return ""
