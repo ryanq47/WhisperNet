@@ -123,13 +123,15 @@
           {
             "id": "5c0c6852599ff126",
             "type": "leaf",
+            "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
                 "file": "Server/Plugins/SimpleC2/Storage Planning/DB & data.md",
                 "mode": "source",
                 "source": false
-              }
+              },
+              "pinned": true
             }
           }
         ],

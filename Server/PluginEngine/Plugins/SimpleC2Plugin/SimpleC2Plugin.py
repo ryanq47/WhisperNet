@@ -16,6 +16,7 @@ Last but not least, fill in the "Info" class with the proper fields.
 ## Don't remove me. This is the base plugin class, parent to all classes for plugins.
 from PluginEngine.Plugins.BasePlugin import BasePlugin
 from Utils.LoggingBaseClass import BaseLogging
+from DataEngine.SimpleC2DbHandler import SimpleC2DbHandler
 import os
 
 ''' Imports
@@ -161,7 +162,7 @@ class SimpleC2(BasePlugin, BaseLogging):
         self.app.route(f'/api/{Info.endpoint}/postcommand', methods = ["POST"])(self.simplec2_api_post_client_command)
         self.app.route(f'/api/{Info.endpoint}/nodecheckin', methods = ["POST"])(self.simplec2_api_node_checkin)
         self.app.route(f'/api/{Info.endpoint}/nodelogs', methods = ["GET"])(self.simplec2_api_get_checkin_logs)
-
+        self.app.route(f'/api/{Info.endpoint}/clientdata', methods = ["POST"])(self.simplec2_api_post_client_data)
 
 ################################################
 # HTML Dashboard
@@ -222,6 +223,46 @@ class SimpleC2(BasePlugin, BaseLogging):
         ## on the listnere side, take post, parse it, queue it
 
         ...
+
+
+################################################
+# API - Client Data & ops
+################################################
+
+    def simplec2_api_post_client_data():
+        ''' Naming is a littel confusing
+        POST
+
+        Gets POST data from nodes on client responses. 
+        Client -[data]-> Node -[data]-> Server
+
+        This function is desinged to be POSTED to. It takes the json data listed below.
+        Each POST will write said data to the respective client table in the SimpleC2Data.
+        
+        {
+            id: 
+            txid: transaction id, to track transaction?
+            timestamp:
+            data: "domain/username"
+
+        }
+        
+        Concerns:
+            Concurrency could be a big problem here, especially if the post commands 
+            are not handled correctly.
+
+            Fixes:
+                - Check if DB is locked b4 action.
+                - Batch send JSON data (i.e. send 100 json entries, loop over & enter into DB)
+                - Use a diff DB solution (not ideal)
+
+        '''
+
+        ## get JSON data from post request
+
+        ## call sqlite lib
+
+        ## reutrn code?
 
 ################################################
 # API - Checkin Stuff
