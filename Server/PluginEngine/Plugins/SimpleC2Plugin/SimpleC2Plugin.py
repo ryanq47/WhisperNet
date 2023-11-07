@@ -229,7 +229,7 @@ class SimpleC2(BasePlugin, BaseLogging):
 # API - Client Data & ops
 ################################################
 
-    def simplec2_api_post_client_data():
+    def simplec2_api_post_client_data(self):
         ''' Naming is a littel confusing
         POST
 
@@ -259,11 +259,14 @@ class SimpleC2(BasePlugin, BaseLogging):
         '''
 
         ## get JSON data from post request
+        ## Note, keep an eye on the def of get_data, as large requests could slow the server.
+        raw_json_string = request.get_data(as_text=True)
+        print(raw_json_string)
 
         ## call sqlite lib
 
         ## reutrn code?
-
+        return ""
 ################################################
 # API - Checkin Stuff
 ################################################

@@ -612,7 +612,7 @@ class FileHost(BasePlugin, BaseLogging):
         ## >> rename: filehost_calculate_current_hosted_files
 
         while True:
-            self.logger.debug(f"{self.logging_debug_symbol} Subroutine triggering...")
+            self.logger.debug(f"{self.logging_debug_symbol} Filehost Subroutine(s) triggering...")
             ## Calcing hosted files
             self.current_hosted_files = self.filehost_calculate_current_hosted_files()
 
