@@ -26,3 +26,7 @@ Storing as raw JSON string, instead of parsing.
 
 Idea: 
 One table for each client that checks in
+
+## DB Fields:
+Data: Holds raw json string of data
+Timestamp: Hodls unix timestamp at time of db insertion.
