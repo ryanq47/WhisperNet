@@ -14,6 +14,8 @@ Last but not least, fill in the "Info" class with the proper fields.
 ## Don't remove me. This is the base plugin class, parent to all classes for plugins.
 from ExternalBaseClass import ExternalBasePlugin
 from Utils.LoggingBaseClass import BaseLogging
+from Utils.YamlLoader import PluginConfig
+
 
 ''' Imports
 Go ahead and define any other imports you may need here.
@@ -46,11 +48,13 @@ class Info:
     name    = "FH01_Ext"
     author  = "Plugin Author"
     plugin_type = "External"
+    config_file_path = "config.yaml"
 
 
 ################################################
 # ArgParse
 ################################################
+'''
 parser = argparse.ArgumentParser()
 parser.add_argument('--ip', help="The IP of the Control Server to connect to", required=True, default="127.0.0.1")
 parser.add_argument('--port', help="The port of the Control Server to connect to.", required=True, default=5000)
@@ -58,7 +62,7 @@ parser.add_argument('--name', help="Give this plugin a name", required=False, de
 parser.add_argument('--quiet', help="Make the plugin shutup & not spit out logs to the terminal", required=False, action="store_true")
 parser.add_argument('--log', help="What level of logging you want. I reccomend INFO (and it is the default) for most cases. Options: INFO, DEBUG, WARNING", required=False, default="INFO")
 
-args = parser.parse_args()
+args = parser.parse_args()'''
 
 
 ################################################
@@ -86,26 +90,36 @@ Accessing logger.
 ## Inherets BasePlugin
 ## Is a class instance, the __init__ is from BasePlugin.
 class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
-    def __init__(self, app):
+    def __init__(self, app, config):
         #super().__init__(app, DataStruct)  # Problem with this was that it was trying to stuff app, 
         # and Datastruct into both, and both parent classes take different args, thus causing problems.
         ## Initialize BasePlugin and BaseLogging parent classes. Can't use one super call as stated above
         ExternalBasePlugin.__init__(self)
-        BaseLogging.__init__(self, level = args.log)
-          
+        BaseLogging.__init__(self, level = "debug")
+
+        self.config = config
+
+
         # Just in case you need to test logging/it breaks...
         #self.logger.warning("LOGGING IS WORKING - <PLUGINNAME>")
         self.app = app
-        self.control_server_ip      = args.ip
-        self.control_server_port    = args.port
-        self.control_server_name    = args.name
+        self.control_server_ip      = self.config.get_value("server.ip")
+        self.control_server_port    = self.config.get_value("server.port")
+        self.plugin_name            = self.config.get_value("plugin.name")
         self.authorization_header   = None
-        self.quiet                  = args.quiet
+        self.listen_address         = self.config.get_value("plugin.network.ip")
+        self.listen_port            = self.config.get_value("plugin.network.port")
 
-        if not self.quiet:
-            pass
-            #self.logger.addHandler(logging.StreamHandler())
+        #self.quiet                  = args.quiet
 
+        #if not self.quiet:
+            #pass
+        self.logger.addHandler(logging.StreamHandler())
+        self.banner()
+
+    def banner(self):
+        banner = f"SimpleC2 HTTP Listener >> Server: {self.control_server_ip}:{self.control_server_port} >> Listening on: {self.listen_address}:{self.listen_port} "
+        print(banner)
 
     def main(self):
         '''
@@ -194,24 +208,45 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
         
         '''
         try:
+            #print("hafdhsfasdhfasdjfhasdk")
 
             id = request.json.get('id')
             timestamp = request.json.get('timestamp')
             data = request.json.get('data')
             #print(id, data, timestamp)
 
-            self.logger.info(f"{self.logging_info_symbol} ClientCheckin: ID: {id} data (length): {len(data)} timestamp: {timestamp}")
-        
+            ## potential problem here, each request will forawrd to server. this could easily overload server.
+            ## might be best to subroutine this & then each subroutine post data.
+            self.post_clientdata_entries(client_data="")
+
+            self.logger.warning(f"{self.logging_info_symbol} ClientCheckin: ID: {id} data (length): {len(data)} timestamp: {timestamp}")
+            #print("hi")
         except Exception as e:
             self.logger.warning(f"{self.logging_warning_symbol} Error with client_post_data: {e}")
 
 
         return ""
 
+
+def init_config():
+    try:
+        config = PluginConfig(config_file_path = Info.config_file_path)
+        config.load_config()
+        #self.logger.info(f"{self.logging_warning_symbol} Config: {Info.config_file_path} successfuly loaded!")
+        return config
+
+    except Exception as e:
+        print("Cannot load config file! Exiting")
+        #self.logger.warning(f"{self.logging_warning_symbol} Cannot load config: {Info.config_file_path}! Exiting!")
+        exit()
+
 if __name__ == "__main__":
     app = Flask(__name__)
 
-    exteral_plugin = ExternalPluginClass(app)
+    ## config stuff
+    config = init_config()
+
+    exteral_plugin = ExternalPluginClass(app, config=config)
     exteral_plugin.main()
 
     ## Setup Daemon for heartbeat in background
@@ -223,4 +258,6 @@ if __name__ == "__main__":
     heartbeat_daemon.daemon = True
     heartbeat_daemon.start()
 
-    app.run(host="0.0.0.0", port=5001, debug=True)
+
+
+    app.run(host=config.get_value("plugin.network.ip"), port=config.get_value("plugin.network.port"), debug=True)

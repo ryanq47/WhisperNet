@@ -6,7 +6,7 @@ import logging
 
 class BaseLogging():
     # child classes will have to call super().__init__() to access/run this correctly
-    def __init__(self, level = "INFO"):
+    def __init__(self, level = "DEBUG"):
         # The symbol used directly after calling functions, immensely helpful for dev
         self.function_debug_symbol = "[^]"
         #for each debugging level...

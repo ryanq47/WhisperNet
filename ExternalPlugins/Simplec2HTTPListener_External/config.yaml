@@ -1,0 +1,24 @@
+---
+plugin:
+  name: http_listener_01
+  type: simplec2_http_listener
+  version: 1.0.0
+  description: simple c2 http listener
+  author: ryanq.47
+  license: _
+  dependencies:
+    - dependency1
+    - dependency2
+    - dependency3
+  
+  ## Listneer stuff
+  network:
+    ip: "0.0.0.0"
+    port: 5001
+    option3: 42
+
+server:
+  ip: "127.0.0.1"
+  port: 5000
+  option3: 42
+  # Add more configuration options as needed

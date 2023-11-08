@@ -17,6 +17,7 @@ Last but not least, fill in the "Info" class with the proper fields.
 from PluginEngine.Plugins.BasePlugin import BasePlugin
 from Utils.LoggingBaseClass import BaseLogging
 from DataEngine.SimpleC2DbHandler import SimpleC2DbHandler
+
 import os
 
 ''' Imports
@@ -139,8 +140,11 @@ class SimpleC2(BasePlugin, BaseLogging):
         # Just in case you need to test logging/it breaks...
         #self.logger.warning("LOGGING IS WORKING - <PLUGINNAME>")
 
+
         ## Data Structures
         self.node_checkin_logs = []
+
+
 
 ################################################
 # Main Stuff

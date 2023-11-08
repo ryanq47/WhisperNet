@@ -1,0 +1,16 @@
+---
+name: SamplePlugin
+type: plugin
+version: 1.0.0
+description: A sample plugin for demonstration purposes
+author: Your Name
+license: MIT
+dependencies:
+  - dependency1
+  - dependency2
+  - dependency3
+configuration:
+  option1: true
+  option2: "default_value"
+  option3: 42
+  # Add more configuration options as needed

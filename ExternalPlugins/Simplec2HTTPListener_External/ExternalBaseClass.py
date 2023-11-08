@@ -22,7 +22,7 @@ class ExternalBasePlugin(BaseLogging):
         self.api_username = None
 
         ## stats stuff
-        self.plugin_type = "filehost_external"
+        self.plugin_type = "simplec2_http_listener"
         self.external_ip = None
 
 
@@ -121,7 +121,7 @@ class ExternalBasePlugin(BaseLogging):
         '''
 
         dict_data = {
-            "name":self.control_server_name,
+            "name":self.plugin_name,
             "plugin_type":self.plugin_type,
             "ip":self.external_ip,
             "message":message,
@@ -186,6 +186,35 @@ class ExternalBasePlugin(BaseLogging):
         '''
 
         return "123.0.0.1"
+
+    def post_clientdata_entries(self, client_data):
+        '''
+        Designed to post client data entries to the server
+
+        
+        '''
+
+        try:
+            dict_data = {
+                "id":"id",
+                "timestamp":"timestamp",
+                "data":"data"
+            }
+
+            json_data = json.dumps(dict_data)
+
+            headers = {
+                    "Content-Type": "application/json"
+            }
+
+            r = requests.post(
+                url = "http://127.0.0.1:5000/api/simplec2/clientdata",
+                headers = headers,
+                data = json_data
+            )
+        except Exception as e:
+            self.logger.warning(f"{self.logging_warning_symbol} Error with posting client data to server: {e}")
+
 
     def get_timestamp(self):
         try:

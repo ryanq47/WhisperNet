@@ -1,7 +1,9 @@
 Todo:
 
-- [ ] Find a way to store/hold onto the data posted by clients, and get itback to the server. Maybe a dedicated endpoint under clientname/results/data or soemthign taht holds the JSON? need to think about it.
+- [x] Find a way to store/hold onto the data posted by clients, and get itback to the server. Maybe a dedicated endpoint under clientname/results/data or soemthign taht holds the JSON? need to think about it.
+	- Solved: Post to /clientdata, that endpoint takes the json provided, and pops it into a db. Each unqiue ID gets a table in the SimpleC2Data.db
 
+- [ ] Setup external listener to be able to post successfully to this endpoint
 
 Simple desc
 
@@ -12,7 +14,7 @@ Client Checkin Chain:
 POST /checkin
 GET /command
 <actions>
-POST /result
+POST /clientdata
 <sleep>
 
 
@@ -69,7 +71,7 @@ A checkin for the clients to check in at.
 
 ```
 
-#### /data or /results?
+#### /clientdata
 
 A post endpoint to post results of commands. A little different than the usual post results on a heartbeat, this would instantly post to the respective listener upon command completion, instead of waiting
 
