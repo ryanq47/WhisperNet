@@ -5,15 +5,24 @@ import inspect
 import time
 import json
 import requests
-from Utils.ControlServerHandler import ControlServerHandler
+from Utils.ControlServerHandler import ControlServerHandlerFileSync
 from dotenv import load_dotenv
 import os
 import time
 from datetime import datetime
+from Utils.YamlLoader import PluginConfig
 
-class ExternalBasePlugin(BaseLogging):
-    def __init__(self):
+
+## Deals with pure server interactions
+class ServerConnector:
+    def __init__(self, config_object):
+        '''
+        config_object: The config object for interacting with the config file. 
         
+        Upon init of this class, it will set configuration items, load credentials form the .env file, and then log into the server
+        '''
+        self.config = config_object
+        self.logger = BaseLogging(name="ServerConnectorLogger", level=self.config.get_value("plugin.logging.level"), print_to_screen=True)
         self.control_server_url = None
         self.control_server_command_endpoint = None
         self.heartbeat_time = 5
@@ -22,23 +31,29 @@ class ExternalBasePlugin(BaseLogging):
         self.api_username = None
 
         ## stats stuff
-        self.plugin_type = "simplec2_http_listener"
         self.external_ip = None
 
+        self.set_config_items()
+        self.load_creds()
+        self.login_to_server()
 
+    def set_config_items(self):
+        self.plugin_name = self.config.get_value("plugin.name")
+        self.plugin_type = self.config.get_value("plugin.type")
 
     def heartbeat_daemon(self):
         while True:
             #print("Heartbeat")
 
             ## spin up class with data to sync files
-            sync = ControlServerHandler(
+            ## Easy feature to flip on if needed for doubling a lsitener as a fiel host
+            '''sync = ControlServerHandlerFileSync(
                 jwt = self.JWT,
                 server_url = "",
                 server_port = ""
             )
 
-            sync.sync_files()
+            sync.sync_files()'''
             self.checkin_to_server(message="Heartbeat")
             time.sleep(self.heartbeat_time)
 
@@ -104,7 +119,6 @@ class ExternalBasePlugin(BaseLogging):
 
         except Exception as e:
             self.logger.warning(f"{self.logger.function_debug_symbol} {inspect.stack()[0][3]}")
-
 
     def checkin_to_server(self, message=None):
         '''
@@ -179,7 +193,6 @@ class ExternalBasePlugin(BaseLogging):
             data = json_data
         )
 
-
     def get_external_ip(self):
         '''
         Gets external ip
@@ -223,3 +236,4 @@ class ExternalBasePlugin(BaseLogging):
         except Exception as e:
             self.logger.warning(f"{self.logger.logging_warning_symbol} Error getting timestamp: {e}")
             return "Error getting timestamp"
+

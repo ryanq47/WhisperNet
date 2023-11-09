@@ -4,7 +4,7 @@ import os
 from Utils.LoggingBaseClass import BaseLogging
 import hashlib
 
-class ControlServerHandler(BaseLogging):
+class ControlServerHandlerFileSync(BaseLogging):
 
     def __init__(self, jwt, server_url, server_port):
         BaseLogging.__init__(self)

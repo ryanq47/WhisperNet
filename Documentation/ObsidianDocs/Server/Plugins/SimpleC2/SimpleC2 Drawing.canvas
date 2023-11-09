@@ -1,16 +1,26 @@
 {
 	"nodes":[
-		{"id":"e2cb20ba20748977","x":-1620,"y":-80,"width":340,"height":50,"type":"text","text":"## /api/simplec2/target/targetname"},
+		{"id":"e2cb20ba20748977","type":"text","text":"## /api/simplec2/target/targetname","x":-1620,"y":-80,"width":340,"height":50},
 		{"id":"84119805db7bb389","type":"text","text":"## ../targetname/command\n\n- endpoint to get next command from\n\n","x":-1960,"y":80,"width":340,"height":100},
 		{"id":"5c99f321a14086f0","type":"text","text":"## ../targetname/command_results\n- Endpoint to post command results to ","x":-1580,"y":80,"width":340,"height":100},
-		{"id":"4054b8eecd2e76fe","x":880,"y":-300,"width":340,"height":60,"type":"text","text":"## Server"},
-		{"id":"be1df4a8ce5490cb","x":870,"y":-165,"width":360,"height":60,"type":"text","text":"## Gets command from client"},
-		{"id":"f37f08134d7f7258","x":855,"y":-5,"width":390,"height":50,"type":"text","text":"## Finds what listener client is on"},
-		{"id":"943efc766840d92e","x":925,"y":140,"width":250,"height":60,"type":"text","text":"## Sends POST to listener with command"},
-		{"id":"c53de1fd5077f279","x":880,"y":280,"width":340,"height":80,"type":"text","text":"## Listener queues up command in order it was sent/time based"},
-		{"id":"305a239ffb21bebe","x":1360,"y":-282,"width":250,"height":355,"type":"text","text":"This makes more sense. Let the listener do the acual handling of stuff. \n\nStill going to need the checkin part on the server side"},
-		{"id":"9387226fb029a8d1","x":1780,"y":-312,"width":120,"height":60,"type":"text","text":"## Server"},
-		{"id":"28f8d0f509dcba75","type":"text","text":"## /api/simplec2/nodes/checkin\n- Thinking about doing an endpoint per node? or justhave one.","x":1660,"y":-155,"width":360,"height":100}
+		{"id":"4054b8eecd2e76fe","type":"text","text":"## Server","x":880,"y":-300,"width":340,"height":60},
+		{"id":"be1df4a8ce5490cb","type":"text","text":"## Gets command from client","x":870,"y":-165,"width":360,"height":60},
+		{"id":"f37f08134d7f7258","type":"text","text":"## Finds what listener client is on","x":855,"y":-5,"width":390,"height":50},
+		{"id":"943efc766840d92e","type":"text","text":"## Sends POST to listener with command","x":925,"y":140,"width":250,"height":60},
+		{"id":"c53de1fd5077f279","type":"text","text":"## Listener queues up command in order it was sent/time based","x":880,"y":280,"width":340,"height":80},
+		{"id":"305a239ffb21bebe","type":"text","text":"This makes more sense. Let the listener do the acual handling of stuff. \n\nStill going to need the checkin part on the server side","x":1360,"y":-282,"width":250,"height":355},
+		{"id":"9387226fb029a8d1","type":"text","text":"## Server","x":1780,"y":-312,"width":120,"height":60},
+		{"id":"28f8d0f509dcba75","type":"text","text":"## /api/simplec2/nodes/checkin\n- Thinking about doing an endpoint per node? or justhave one.","x":1660,"y":-155,"width":360,"height":100},
+		{"id":"b39c9d4ef70006f6","x":-340,"y":-240,"width":250,"height":60,"type":"text","text":"## Main Flow"},
+		{"id":"91179531e34887e3","x":-665,"y":110,"width":300,"height":50,"type":"text","text":"## HeartBeat Daemon "},
+		{"id":"28c913827f6a15f5","x":-640,"y":-30,"width":250,"height":60,"type":"text","text":"## ServerConnector"},
+		{"id":"a56b08fa042eba68","type":"text","text":"## ExternalPluginClass","x":-20,"y":-30,"width":250,"height":60},
+		{"id":"80c721d23e842525","type":"text","text":"## Subroutine","x":180,"y":100,"width":250,"height":60},
+		{"id":"20c389d3b94fea8c","x":-340,"y":-360,"width":250,"height":60,"type":"text","text":"## Plugin Exec Flow"},
+		{"id":"095f607ed5ddeef5","x":-640,"y":190,"width":250,"height":60,"type":"text","text":"## Checkin to server"},
+		{"id":"ecd5f56919af7fc3","x":180,"y":300,"width":250,"height":60,"type":"text","text":"#### Posts client data to server"},
+		{"id":"1a3741b934e73eb7","x":180,"y":240,"width":250,"height":60,"type":"text","text":"## Other steps"},
+		{"id":"d6f12eb6597e1e66","x":-340,"y":320,"width":250,"height":50,"type":"text","text":"## Flask Server"}
 	],
 	"edges":[
 		{"id":"abe1e1930bcecfd9","fromNode":"9387226fb029a8d1","fromSide":"bottom","toNode":"28f8d0f509dcba75","toSide":"top"},
@@ -19,6 +29,17 @@
 		{"id":"e3b8c48e68f6d55c","fromNode":"4054b8eecd2e76fe","fromSide":"bottom","toNode":"be1df4a8ce5490cb","toSide":"top"},
 		{"id":"c7d684e4fe2f81de","fromNode":"be1df4a8ce5490cb","fromSide":"bottom","toNode":"f37f08134d7f7258","toSide":"top"},
 		{"id":"1af2c893110d9b21","fromNode":"f37f08134d7f7258","fromSide":"bottom","toNode":"943efc766840d92e","toSide":"top"},
-		{"id":"55d818ad7a0e2ce2","fromNode":"943efc766840d92e","fromSide":"bottom","toNode":"c53de1fd5077f279","toSide":"top"}
+		{"id":"55d818ad7a0e2ce2","fromNode":"943efc766840d92e","fromSide":"bottom","toNode":"c53de1fd5077f279","toSide":"top"},
+		{"id":"494db2cd35c4a183","fromNode":"b39c9d4ef70006f6","fromSide":"bottom","toNode":"28c913827f6a15f5","toSide":"top","label":"THREAD"},
+		{"id":"b4657749b5faf695","fromNode":"20c389d3b94fea8c","fromSide":"bottom","toNode":"b39c9d4ef70006f6","toSide":"top"},
+		{"id":"05e594491ba0d927","fromNode":"28c913827f6a15f5","fromSide":"bottom","toNode":"91179531e34887e3","toSide":"top"},
+		{"id":"c92f888c2437d640","fromNode":"a56b08fa042eba68","fromSide":"bottom","toNode":"80c721d23e842525","toSide":"top"},
+		{"id":"b676ad6b640f72a6","fromNode":"b39c9d4ef70006f6","fromSide":"bottom","toNode":"a56b08fa042eba68","toSide":"top","label":"THREAD"},
+		{"id":"ba60d093dcdbf75d","fromNode":"ecd5f56919af7fc3","fromSide":"left","toNode":"80c721d23e842525","toSide":"left"},
+		{"id":"2beddba490c95b81","fromNode":"80c721d23e842525","fromSide":"right","toNode":"ecd5f56919af7fc3","toSide":"right"},
+		{"id":"28bb8bf1f1c5decd","fromNode":"91179531e34887e3","fromSide":"right","toNode":"095f607ed5ddeef5","toSide":"right"},
+		{"id":"73453197207643e4","fromNode":"095f607ed5ddeef5","fromSide":"left","toNode":"91179531e34887e3","toSide":"left"},
+		{"id":"1cec85a216bb89b8","fromNode":"80c721d23e842525","fromSide":"bottom","toNode":"1a3741b934e73eb7","toSide":"top"},
+		{"id":"79f2f87ec379a624","fromNode":"b39c9d4ef70006f6","fromSide":"bottom","toNode":"d6f12eb6597e1e66","toSide":"top","label":"MAIN THREAD"}
 	]
 }

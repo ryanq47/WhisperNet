@@ -121,15 +121,20 @@
             }
           },
           {
-            "id": "d05725f20aec132d",
+            "id": "a112dd7457c02209",
             "type": "leaf",
+            "pinned": true,
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "Server/Plugins/SimpleC2/Endpoints.md",
-                "mode": "source",
-                "source": false
-              }
+                "file": "Server/Plugins/SimpleC2/SimpleC2 Drawing.canvas",
+                "viewState": {
+                  "x": 152.17696638961664,
+                  "y": 157.84720584461223,
+                  "zoom": -0.7293931735417789
+                }
+              },
+              "pinned": true
             }
           }
         ],

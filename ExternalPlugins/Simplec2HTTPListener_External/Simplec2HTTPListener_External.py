@@ -12,7 +12,7 @@ Throw a description of your plugin here as well:
 Last but not least, fill in the "Info" class with the proper fields. 
 '''
 ## Don't remove me. This is the base plugin class, parent to all classes for plugins.
-from ExternalBaseClass import ExternalBasePlugin
+from ExternalBaseClass import ServerConnector
 from Utils.LoggingBaseClass import BaseLogging
 from Utils.YamlLoader import PluginConfig
 
@@ -90,16 +90,17 @@ Accessing logger.
 
 ## Inherets BasePlugin
 ## Is a class instance, the __init__ is from BasePlugin.
-class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
+class ExternalPluginClass():
     def __init__(self, app, config):
+        self.config = config
+
         #super().__init__(app, DataStruct)  # Problem with this was that it was trying to stuff app, 
         # and Datastruct into both, and both parent classes take different args, thus causing problems.
         ## Initialize BasePlugin and BaseLogging parent classes. Can't use one super call as stated above
-        ExternalBasePlugin.__init__(self)
+        #ExternalBasePlugin.__init__(self)
         #BaseLogging.__init__(self, level = "debug", print_to_screen=True)
-        self.logger = BaseLogging(name="MyLogger", level="INFO", print_to_screen=True)
+        self.logger = BaseLogging(name="C2Logger", level=self.config.get_value("plugin.logging.level"), print_to_screen=True)
 
-        self.config = config
 
 
         # Just in case you need to test logging/it breaks...
@@ -161,8 +162,8 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
 
         self.register_routes()
         
-        self.load_creds()
-        self.login_to_server()
+        #self.load_creds()
+        #self.login_to_server()
 
     ## Move these to the config file eventually
     def register_routes(self):
@@ -355,18 +356,19 @@ if __name__ == "__main__":
     ## config stuff
     config = init_config()
 
+    ## setting up webapp
     exteral_plugin = ExternalPluginClass(app, config=config)
     exteral_plugin.main()
 
+
+    external_base_plugin = ServerConnector(config_object = config)
     ## Setup Daemon for heartbeat in background
     ## Note, this daemon method is inhereted from BasePlugin
     heartbeat_daemon = threading.Thread(
-        target=exteral_plugin.heartbeat_daemon
+        target=external_base_plugin.heartbeat_daemon
     )
 
     heartbeat_daemon.daemon = True
     heartbeat_daemon.start()
-
-
 
     app.run(host=config.get_value("plugin.network.ip"), port=config.get_value("plugin.network.port"), debug=True)

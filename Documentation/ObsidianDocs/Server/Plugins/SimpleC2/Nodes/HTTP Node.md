@@ -7,9 +7,16 @@ Todo:
 - [ ] Setup external listener to be able to post successfully to this endpoint. 
 	- [x] Data posted from client comes in successfully 
 		- /clentdata --
-	- [ ] Data is cached in a subroutine (think batches) -- in progress, testing & solidyfying jank ass logic
+	- [x] Data is cached in a subroutine (think batches) -- in progress, testing & solidyfying jank ass logic
 	- [ ] Data is then forwarded to server
 
+- [ ] Fixing jank logoc:
+```
+Moved away form inheretence
+Detailed thread drawing in SimpleC2 Drawing. keep it like this, I find this layout best
+Keep fixing jank logic. Specifically left off on getting the serverconnector working as intneded/wokring with the main flow, and documenting it. 
+
+```
 
 
 
