@@ -261,23 +261,32 @@ class SimpleC2(BasePlugin, BaseLogging):
                 - Use a diff DB solution (not ideal)
 
         '''
+        try:
+            ## Content length check/protection here?
 
-        ## get JSON data from post request
-        ## Note, keep an eye on the def of get_data, as large requests could slow the server.
-        raw_json_string = request.get_data(as_text=True)
-        print(raw_json_string)
+            ## get JSON data from post request
+            ## Note, keep an eye on the def of get_data, as large requests could slow the server.
+            raw_json_string = request.get_data(as_text=True)
+            print(raw_json_string)
 
-        db_instance = SimpleC2DbHandler()
+            db_instance = SimpleC2DbHandler()
 
-        ## call sqlite lib
+            client_name = request.json.get('id')
+            client_data = request.json.get('data')
 
-        db_instance.write_client_data_to_table(
-            client_name = "bob",
-            data = "data"
-        )
+            ## call sqlite lib
 
-        ## reutrn code?
-        return ""
+            db_instance.write_client_data_to_table(
+                client_name = client_name,
+                data = client_data
+            )
+
+            ## reutrn code?
+            return ""
+        
+        except Exception as e:
+            self.logger.warning(f"{self.logging_warning_symbol} Error with simplec2_api_post_client_data: {e}")
+
 ################################################
 # API - Checkin Stuff
 ################################################

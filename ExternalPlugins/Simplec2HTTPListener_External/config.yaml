@@ -6,12 +6,13 @@ plugin:
   description: simple c2 http listener
   author: ryanq.47
   license: _
-  dependencies:
-    - dependency1
-    - dependency2
-    - dependency3
+  subroutine:
+    ## How often the subroutine is triggered
+    interval: 5
+    ## Symbol to print for subroutine based events
+    symbol: "[subr]"
   
-  ## Listneer stuff
+  ## Listener stuff
   network:
     ip: "0.0.0.0"
     port: 5001

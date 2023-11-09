@@ -56,3 +56,19 @@ Checkin endpoint for nodes
         }
 ```
 
+
+####  /api/simplec2/clientdata
+POST
+
+Where listeners can post their data back to the server. Built to come in as single requests (for now). so, one post request will contain one data thingy. Really dumb design wtf ryan fix that.
+
+
+```
+{
+	id: 
+	txid: transaction id, to track transaction?
+	timestamp:
+	data: "domain/username"
+
+}
+

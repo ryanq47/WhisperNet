@@ -53,7 +53,7 @@ class ExternalBasePlugin(BaseLogging):
             return data
         
         except Exception as e:
-            self.logger.warning(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
+            self.logger.warning(f"{self.logger.function_debug_symbol} {inspect.stack()[0][3]}")
             return None
 
     def load_creds(self):
@@ -96,14 +96,14 @@ class ExternalBasePlugin(BaseLogging):
                 jwt = json_data["access_token"]
 
                 self.JWT = jwt
-                self.logger.info(f"{self.logging_info_symbol} Authentication to ControlServer successful")
+                self.logger.info(f"{self.logger.logging_info_symbol} Authentication to ControlServer successful")
             
             except Exception as e:
-                self.logger.warning(f"{self.logging_warning_symbol} Error logging into ControlServer: {e}")
+                self.logger.warning(f"{self.logger.logging_warning_symbol} Error logging into ControlServer: {e}")
         
 
         except Exception as e:
-            self.logger.warning(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
+            self.logger.warning(f"{self.logger.function_debug_symbol} {inspect.stack()[0][3]}")
 
 
     def checkin_to_server(self, message=None):
@@ -141,7 +141,7 @@ class ExternalBasePlugin(BaseLogging):
                 data = json_data
             )
         except Exception as e:
-            self.logger.warning(f"{self.logging_warning_symbol} Could not contact server at __ : {e}")
+            self.logger.warning(f"{self.logger.logging_warning_symbol} Could not contact server at __ : {e}")
 
     def post_file_logs(self, filename = None, accessorip = None, http_status_code = None):
         '''
@@ -213,7 +213,7 @@ class ExternalBasePlugin(BaseLogging):
                 data = json_data
             )
         except Exception as e:
-            self.logger.warning(f"{self.logging_warning_symbol} Error with posting client data to server: {e}")
+            self.logger.warning(f"{self.logger.logging_warning_symbol} Error with posting client data to server: {e}")
 
 
     def get_timestamp(self):
@@ -221,5 +221,5 @@ class ExternalBasePlugin(BaseLogging):
             return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         
         except Exception as e:
-            self.logger.warning(f"{self.logging_warning_symbol} Error getting timestamp: {e}")
+            self.logger.warning(f"{self.logger.logging_warning_symbol} Error getting timestamp: {e}")
             return "Error getting timestamp"

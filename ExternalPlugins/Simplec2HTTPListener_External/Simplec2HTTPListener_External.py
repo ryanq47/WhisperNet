@@ -87,6 +87,7 @@ Accessing logger.
 
 '''
 
+
 ## Inherets BasePlugin
 ## Is a class instance, the __init__ is from BasePlugin.
 class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
@@ -95,7 +96,8 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
         # and Datastruct into both, and both parent classes take different args, thus causing problems.
         ## Initialize BasePlugin and BaseLogging parent classes. Can't use one super call as stated above
         ExternalBasePlugin.__init__(self)
-        BaseLogging.__init__(self, level = "debug")
+        #BaseLogging.__init__(self, level = "debug", print_to_screen=True)
+        self.logger = BaseLogging(name="MyLogger", level="INFO", print_to_screen=True)
 
         self.config = config
 
@@ -109,19 +111,27 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
         self.authorization_header   = None
         self.listen_address         = self.config.get_value("plugin.network.ip")
         self.listen_port            = self.config.get_value("plugin.network.port")
+        self.subroutine_interval    = self.config.get_value("plugin.subroutine.interval")
+        self.subroutine_symbol      = self.config.get_value("plugin.subroutine.symbol")
+        self.plugin_version         = self.config.get_value("plugin.version")
 
         #self.quiet                  = args.quiet
 
         #if not self.quiet:
             #pass
-        self.logger.addHandler(logging.StreamHandler())
+        #self.logger.addHandler(logging.StreamHandler())
+
+        self.command_results_batch = []
+
         self.banner()
+
+        self.start_subroutine()
 
     def banner(self):
         #banner = f"SimpleC2 HTTP Listener >> Server: {self.control_server_ip}:{self.control_server_port} >> Listening on: {self.listen_address}:{self.listen_port} "
 
         title = "WhisperNet SimpleC2 HTTP Listener"
-        version = self.config.get_value("plugin.version")
+        version = self.plugin_version
         #description = self.config.get_value("plugin.description")
         #details = "stuff"
 
@@ -146,16 +156,17 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
         '''
         Main function/entry point for the plugin.
         '''
-        self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
-        self.logger.debug(f"{self.logging_debug_symbol} Loading {Info.name}")
+        self.logger.debug(f"{self.logger.function_debug_symbol} {inspect.stack()[0][3]}")
+        self.logger.debug(f"{self.logger.logging_debug_symbol} Loading {Info.name}")
 
         self.register_routes()
         
         self.load_creds()
         self.login_to_server()
 
+    ## Move these to the config file eventually
     def register_routes(self):
-        self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
+        self.logger.debug(f"{self.logger.function_debug_symbol} {inspect.stack()[0][3]}")
         #self.app.route(f'/', methods = ["GET"])(self.plugin_function)
         #self.app.route(f'/<path:filename>', methods = ["GET"])(self.serve_file)
         self.app.route(f'/command', methods = ["POST"])(self.endpoint_get_command)
@@ -163,13 +174,12 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
         ## client endpoints
         self.app.route(f'/clientname/command', methods = ["GET"])(self.client_get_command)
         self.app.route(f'/clientname/checkin', methods = ["POST"])(self.client_post_checkin)
-        self.app.route(f'/clientname/data', methods = ["POST"])(self.client_post_data)
+        self.app.route(f'/clientdata', methods = ["POST"])(self.client_post_data)
 
     def get_command_loop(self):
         command = super().get_command()
-        self.logger.debug(f"{self.logging_debug_symbol}: {command}")
+        self.logger.debug(f"{self.logger.logging_debug_symbol}: {command}")
         ## do stuff with command - build out command tree?
-
 
     def endpoint_get_command(self):
         '''
@@ -206,10 +216,10 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
             message = request.json.get('message')
 
                 #id, message, timestamp)
-            self.logger.info(f"{self.logging_info_symbol} ClientCheckin: ID: {id} message: {message} timestamp: {timestamp}")
+            self.logger.info(f"{self.logger.logging_info_symbol} ClientCheckin: ID: {id} message: {message} timestamp: {timestamp}")
         
         except Exception as e:
-            self.logger.warning(f"{self.logging_warning_symbol} Error with client_post_checkin: {e}")
+            self.logger.warning(f"{self.logger.logging_warning_symbol} Error with client_post_checkin: {e}")
 
 
         return ""
@@ -236,29 +246,107 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
             data = request.json.get('data')
             #print(id, data, timestamp)
 
+            ## Impelment a batch system here, with a subroutine to fire off the results every X seconds
+
             ## potential problem here, each request will forawrd to server. this could easily overload server.
             ## might be best to subroutine this & then each subroutine post data.
-            self.post_clientdata_entries(client_data="")
+            #self.post_clientdata_entries(client_data="")
 
-            self.logger.warning(f"{self.logging_info_symbol} ClientCheckin: ID: {id} data (length): {len(data)} timestamp: {timestamp}")
+            ## appending onto list
+            self.command_results_batch.append(request.get_data(as_text=True))
+
+            self.logger.warning(f"{self.logger.logging_info_symbol} ClientCheckin: ID: {id} data (length): {len(data)} timestamp: {timestamp}")
             #print("hi")
         except Exception as e:
-            self.logger.warning(f"{self.logging_warning_symbol} Error with client_post_data: {e}")
+            self.logger.warning(f"{self.logger.logging_warning_symbol} Error with client_post_data: {e}")
 
 
         return ""
+
+
+################################################
+# Some failsafes & subroutines
+################################################
+
+    def batch(self):
+        '''
+        A batch system to be called upon by a subroutine
+        
+        Steps:
+            Get JSON command results
+            append to self.command_results_batch
+            on subrouting, loop over items and send to server
+
+        '''
+        pass
+
+    def send_result_data_to_server(self):
+        '''
+        a function to send data to server
+        '''
+
+        pass
+
+        '''
+        for i in self.result_data:
+            reqeusts.post(i)
+        
+        '''
+        try:
+            headers = {
+                    "Content-Type": "application/json"
+            }
+
+            ## change this to send all json at once. Makes more sense efficiency wise. Granted,
+            ## could still overload the server with requests if they are too big
+
+            ##nah fuck it its fine for now. one request is one client data thingy. easier to implement
+
+            ## basically if there's nothing to send, save the trouble of sending the data
+            if self.command_results_batch == None:
+                self.logger.debug(f"{self.logger.logging_debug_symbol} {self.subroutine_symbol} No data to send to server, not sending")
+                return
+
+            for data in self.command_results_batch:
+                requests.post(
+                    url = f"http://{self.control_server_ip}:{self.control_server_port}/api/simplec2/clientdata",
+                    data = data,
+                    headers=headers
+                )
+            
+        except Exception as e:
+            self.logger.warning(f"{self.logger.logging_warning_symbol} Error sending client data to server: {e}")
+        
+        ## clearing list
+        self.command_results_batch = []
+
+    def subroutine(self):
+        '''
+        
+        '''
+        while True:
+            self.logger.debug(f"{self.logger.logging_debug_symbol} Starting SimpleC2 Node subroutine")
+            self.send_result_data_to_server()
+            sleep(self.subroutine_interval)
+
+    def start_subroutine(self):
+        subroutine_thread = threading.Thread(
+            target=self.subroutine
+        )
+        subroutine_thread.daemon = True
+        subroutine_thread.start()
 
 
 def init_config():
     try:
         config = PluginConfig(config_file_path = Info.config_file_path)
         config.load_config()
-        #self.logger.info(f"{self.logging_warning_symbol} Config: {Info.config_file_path} successfuly loaded!")
+        #self.logger.info(f"{self.logger.logging_warning_symbol} Config: {Info.config_file_path} successfuly loaded!")
         return config
 
     except Exception as e:
         print("Cannot load config file! Exiting")
-        #self.logger.warning(f"{self.logging_warning_symbol} Cannot load config: {Info.config_file_path}! Exiting!")
+        #self.logger.warning(f"{self.logger.logging_warning_symbol} Cannot load config: {Info.config_file_path}! Exiting!")
         exit()
 
 if __name__ == "__main__":
