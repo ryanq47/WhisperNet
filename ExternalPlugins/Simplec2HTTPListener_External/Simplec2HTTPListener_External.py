@@ -118,8 +118,29 @@ class ExternalPluginClass(ExternalBasePlugin, BaseLogging):
         self.banner()
 
     def banner(self):
-        banner = f"SimpleC2 HTTP Listener >> Server: {self.control_server_ip}:{self.control_server_port} >> Listening on: {self.listen_address}:{self.listen_port} "
+        #banner = f"SimpleC2 HTTP Listener >> Server: {self.control_server_ip}:{self.control_server_port} >> Listening on: {self.listen_address}:{self.listen_port} "
+
+        title = "WhisperNet SimpleC2 HTTP Listener"
+        version = self.config.get_value("plugin.version")
+        #description = self.config.get_value("plugin.description")
+        #details = "stuff"
+
+        banner = f"""
+*****************************************************************
+ _   _ _   _         _     _     _                       
+| | | | | | |       | |   (_)   | |                      
+| |_| | |_| |_ _ __ | |    _ ___| |_ ___ _ __   ___ _ __ 
+|  _  | __| __| '_ \| |   | / __| __/ _ \ '_ \ / _ \ '__|
+| | | | |_| |_| |_) | |___| \__ \ ||  __/ | | |  __/ |   
+\_| |_/\__|\__| .__/\_____/_|___/\__\___|_| |_|\___|_|   
+              | |                                        
+              |_|                                                 
+*   {title} : {version} *
+*   Server: {self.control_server_ip}:{self.control_server_port} >> Listening on: {self.listen_address}:{self.listen_port} *
+*****************************************************************
+"""
         print(banner)
+
 
     def main(self):
         '''
