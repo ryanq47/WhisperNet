@@ -37,6 +37,20 @@ POST /clientdata
 
 ## Per Endpoint Details
 
+#### /synccommand
+
+Endpoint for server to POST new commands to the nodes to queue for the client.
+
+so: Hacker/user (posts command) -> server (posts command) -> Node -> (appends) ClientIdCommandQueue <- (client checks in)
+
+```
+{
+'command':['powershell', 'whoami /all'] #to get added to queue
+'client': "clientid" # which client to add this command to
+
+}
+```
+
 #### /command
 
 Node for C2 clients getting commands from server
