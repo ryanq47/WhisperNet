@@ -26,8 +26,8 @@ Simple desc
 ```
 Client Checkin Chain:
 
-POST /checkin
-GET /command
+POST /checkin 
+POST /command - 
 <actions>
 POST /clientdata
 <sleep>
@@ -51,21 +51,6 @@ so: Hacker/user (posts command) -> server (posts command) -> Node -> (appends) C
 }
 ```
 
-#### /command
-
-Node for C2 clients getting commands from server
-
-
-```
-{
-		//    suffix         option
-	command: ["powershell", "whoami /all"]
-	
-
-}
-
-
-```
 
 - Starter command suffixes:
 

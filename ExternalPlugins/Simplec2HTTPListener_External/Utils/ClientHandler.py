@@ -1,17 +1,18 @@
 ## Holds clietn object code.
-
+from collections import deque #double ended queue. NOT thread safe, use queue.Queue if needed
 
 class Client:
     def __init__(self, name):
         self.name = name
-        self.command_queue = None
+        self.command_queue = deque() #None
 
 
-    def add_to_command_queue(self):
+    def enqueue_command(self, command = "sleep"):
         '''
         Adds command to client command queue
         
         '''
+        self.command_queue.append(command)
         ...
 
     def reload_command_queue(self):
@@ -31,4 +32,18 @@ class Client:
         Gets next cmomand in command queue. If none, returns sleep
         '''
         #...
-        return "sleep"
+        try:
+            command = self.command_queue.popleft()
+
+        except Exception as e:
+            command = "sleep"
+        
+        return command
+    
+    def print_queue(self):
+        '''
+        prints all contents of queue
+        '''
+        ## thank you python for making this easy. 
+        for command in self.command_queue:
+            print(command)
