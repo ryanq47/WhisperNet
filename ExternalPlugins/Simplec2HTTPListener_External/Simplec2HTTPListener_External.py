@@ -200,12 +200,11 @@ class ExternalPluginClass():
 
         '''
         #maybe change to ID
-        client_name = request.json.get('id')
+        id = request.json.get('id')
         #timestamp = request.json.get('timestamp')
         #message = request.json.get('message')
         command = request.json.get('action')
         arguments = request.json.get('arguments')
-
 
         command_dict = {
             "action":command,
@@ -214,13 +213,13 @@ class ExternalPluginClass():
 
         #command_json = json.dumps(command_dict)
 
-        client_object = self.get_client(name=client_name)
+        client_object = self.get_client(name=id)
 
         ## if object does not exist. Kinda hacky
         if client_object == None:
             # create object
-            self.logger.debug(f"{self.logger.logging_debug_symbol}: Client object for id: {client_name} did not exist. Creating one")
-            client_object = self.check_in_client(client_name)
+            self.logger.debug(f"{self.logger.logging_debug_symbol}: Client object for id: {id} did not exist. Creating one")
+            client_object = self.check_in_client(id)
 
         client_object.enqueue_command(command=command_dict)
         print("Queue contents:")

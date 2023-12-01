@@ -143,17 +143,17 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "Server/Plugins/SimpleC2/SimpleC2 Drawing.canvas",
+                "file": "Server/Plugins/SimpleC2/Nodes/HTTPNode Command Drawing.canvas",
                 "viewState": {
-                  "x": -174.87080366225837,
-                  "y": -17.268565615462876,
-                  "zoom": -1.1550086328403655
+                  "x": -439.8204178980326,
+                  "y": 35.35533905932738,
+                  "zoom": -0.5
                 }
               }
             }
           }
         ],
-        "currentTab": 7
+        "currentTab": 9
       }
     ],
     "direction": "vertical"
@@ -219,7 +219,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Plugins/SimpleC2/Nodes/HTTP Node.md",
+                "file": "Server/Plugins/SimpleC2/Nodes/HTTPNode Command Drawing.canvas",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -236,7 +236,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Plugins/SimpleC2/Nodes/HTTP Node.md",
+                "file": "Server/Plugins/SimpleC2/Nodes/HTTPNode Command Drawing.canvas",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -259,7 +259,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Plugins/SimpleC2/Nodes/HTTP Node.md"
+                "file": "Server/Plugins/SimpleC2/Nodes/HTTPNode Command Drawing.canvas"
               }
             }
           },
@@ -291,10 +291,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "733e8c6df591fcb4",
+  "active": "818e70d6a4e482e1",
   "lastOpenFiles": [
-    "Server/Plugins/SimpleC2/SimpleC2 Drawing.canvas",
+    "Server/Plugins/SimpleC2/Nodes/Untitled.md",
+    "Server/Plugins/SimpleC2/Nodes/HTTPNode Command Drawing.canvas",
     "Server/Plugins/SimpleC2/Nodes/HTTP Node.md",
+    "Server/Plugins/SimpleC2/SimpleC2 Drawing.canvas",
     "Server/Plugins/SimpleC2/Endpoints.md",
     "Server/Plugins/FileHost/Endpoints.md",
     "1. Task Tracker/Task Tracker.md",
@@ -332,7 +334,6 @@
     "Err Handle class.md",
     "Untitled 3.md",
     "Untitled 2.md",
-    "Untitled 1.md",
     "Server/Modules/Listeners - Dep/Listener setup.canvas",
     "Server/Modules/ApiEngine/Process Overview.canvas",
     "General/Images/Pasted image 20231003212206.png",
@@ -346,7 +347,6 @@
     "General/Images/Pasted image 20230929010201.png",
     "Server/Modules/WSGI/WSGI & Flask setup.canvas",
     "Server/Modules/WSGI",
-    "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas",
-    "Valuecheck Function.canvas"
+    "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas"
   ]
 }
