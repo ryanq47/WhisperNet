@@ -184,7 +184,8 @@ class ExternalPluginClass():
         self.logger.debug(f"{self.logger.logging_debug_symbol}: {command}")
         ## do stuff with command - build out command tree?
 
-    def endpoint_get_command(self):
+    #/synccommand
+    def endpoint_get_command(self): 
         ''' POST
         An endpont that gets the JSON from the server for commands for clients
         
@@ -202,7 +203,16 @@ class ExternalPluginClass():
         client_name = request.json.get('id')
         #timestamp = request.json.get('timestamp')
         #message = request.json.get('message')
-        command = request.json.get('command')
+        command = request.json.get('action')
+        arguments = request.json.get('arguments')
+
+
+        command_dict = {
+            "action":command,
+            "arguments":arguments
+        }
+
+        #command_json = json.dumps(command_dict)
 
         client_object = self.get_client(name=client_name)
 
@@ -212,7 +222,7 @@ class ExternalPluginClass():
             self.logger.debug(f"{self.logger.logging_debug_symbol}: Client object for id: {client_name} did not exist. Creating one")
             client_object = self.check_in_client(client_name)
 
-        client_object.enqueue_command(command=command)
+        client_object.enqueue_command(command=command_dict)
         print("Queue contents:")
         client_object.print_queue()
 
@@ -325,16 +335,19 @@ class ExternalPluginClass():
             ## need to figure out formatting here too witht he command
             command = client_object.dequeue_command()
 
-            command = {
-                "command": command#['powershell', 'whoami /all']
-            }
+            print(command)
+            #command = {
+            #    "action": command,#['powershell', 'whoami /all']
+            #    "arguments":"none"
+            #}
 
             return jsonify(command)
     
         except Exception as e:
             self.logger.debug(f"{self.logger.logging_debug_symbol}: Error with client_get_command: {e} ")
             command = {
-                "command": "sleep"#['powershell', 'whoami /all']
+                "action": "sleep",#['powershell', 'whoami /all']
+                "arguments":"none"
             }
             return jsonify(command)
 

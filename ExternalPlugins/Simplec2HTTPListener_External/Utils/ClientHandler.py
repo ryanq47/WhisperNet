@@ -7,11 +7,20 @@ class Client:
         self.command_queue = deque() #None
 
 
-    def enqueue_command(self, command = "sleep"):
+    def enqueue_command(self, command = ""):
         '''
         Adds command to client command queue
         
+
+        Commands are storn as python dict objects. They are converted to JSON at reqeuest
         '''
+
+
+        if command == "" or command == None:
+            command = {"action":"sleep", "arguments":"none"}
+
+        #print(command)
+
         self.command_queue.append(command)
         ...
 
@@ -36,8 +45,9 @@ class Client:
             command = self.command_queue.popleft()
 
         except Exception as e:
-            command = "sleep"
+            command = {"action":"sleep", "arguments":"none"}
         
+        print(command)
         return command
     
     def print_queue(self):
