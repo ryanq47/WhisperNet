@@ -3,26 +3,26 @@ QWidget {
     color: #dcdcdc; /* Light grey text */
 }
 QPushButton {
-    background-color: #5364A5; /* Placeholder for button background color */
+    background-color: #e61919; /* Placeholder for button background color */
     color: white;
     border-style: outset;
     border-width: 2px;
-    border-radius: 2px;
-    border-color: #5364A5;
+    border-radius: 10px;
+    border-color: #e61919;
     padding: 6px;
     min-width: 80px;
 }
 QPushButton:hover {
-    background-color: #5364A5; /* Placeholder for button hover color */
+    background-color: #e61919; /* Placeholder for button hover color */
 }
 QPushButton:pressed {
-    background-color: #5364A5; /* Placeholder for button pressed color */
+    background-color: #e61919; /* Placeholder for button pressed color */
     border-style: inset;
 }
 QLineEdit, QTextEdit, QPlainTextEdit, QSpinBox, QDoubleSpinBox, QComboBox {
     background-color: #2b2b2b;
     color: #dcdcdc;
-    border-radius: 1px;
+    border-radius: 5px;
     padding: 2px;
     border: 1px solid #555;
 }
@@ -35,7 +35,7 @@ QMenuBar, QMenu {PLACEME
     border: 1px solid #555;
 }
 QMenuBar::item:selected, QMenu::item:selected {
-    background-color: #5364A5; /* Placeholder for menu selection color */
+    background-color: #e61919; /* Placeholder for menu selection color */
 }
 QScrollBar:vertical {
     border: 1px solid #2b2b2b;
@@ -44,19 +44,19 @@ QScrollBar:vertical {
     margin: 22px 0 22px 0;
 }
 QScrollBar::handle:vertical {
-    background: #5364A5; /* Placeholder for scrollbar handle color */
+    background: #e61919; /* Placeholder for scrollbar handle color */
     min-height: 20px;
 }
 QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
     border: 1px solid #2b2b2b;
-    background: #5364A5; /* Placeholder for scrollbar button color */
+    background: #e61919; /* Placeholder for scrollbar button color */
     height: 20px;
     subcontrol-position: top;
     subcontrol-origin: margin;
 }
 /* TABS */
 QTabWidget::pane { /* The tab widget frame */
-    border-top: 2px solid #5364A5; /* Placeholder for tab border color */
+    border-top: 2px solid #e61919; /* Placeholder for tab border color */
 }
 
 QTabWidget::tab-bar {
@@ -67,22 +67,21 @@ QTabBar::tab {
     background: #2b2b2b;
     color: #dcdcdc;
     border: 1px solid #555;
-    border-bottom-color: #5364A5; /* Placeholder for non-selected tab border color */
+    border-bottom-color: #e61919; /* Placeholder for non-selected tab border color */
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     padding: 5px;
     min-width: 80px;
     align-items: center;
     justify-content: center;
-    max-height: 20px;
 }
 
 QTabBar::tab:selected, QTabBar::tab:hover {
-    background: #5364A5; /* Placeholder for selected/hover tab color */
+    background: #e61919; /* Placeholder for selected/hover tab color */
 }
 
 QTabBar::tab:selected {
-    border-color: #5364A5; /* Placeholder for selected tab border color */
+    border-color: #e61919; /* Placeholder for selected tab border color */
     border-bottom-color: #1e1e1e; /* same as window background color */
 }
 
@@ -102,12 +101,12 @@ QTreeWidget::item {
 }
 
 QTreeWidget::item:selected {
-    background-color: #5364A5; /* Placeholder for selected item color */
+    background-color: #e61919; /* Placeholder for selected item color */
     color: white;
 }
 
 QTreeWidget::item:hover {
-    background-color: #5364A5; /* Placeholder for hover item color */
+    background-color: #e61919; /* Placeholder for hover item color */
 }
 
 QTreeWidget::branch {
@@ -135,13 +134,13 @@ QTreeWidget QScrollBar:vertical {
 }
 
 QTreeWidget QScrollBar::handle:vertical {
-    background: #5364A5; /* Placeholder for tree widget scrollbar handle color */
+    background: #e61919; /* Placeholder for tree widget scrollbar handle color */
     min-height: 20px;
 }
 
 QTreeWidget QScrollBar::add-line:vertical, QTreeWidget QScrollBar::sub-line:vertical {
     border: 1px solid #2b2b2b;
-    background: #5364A5; /* Placeholder for tree widget scrollbar button color */
+    background: #e61919; /* Placeholder for tree widget scrollbar button color */
     height: 20px;
     subcontrol-position: top;
     subcontrol-origin: margin;
@@ -149,8 +148,8 @@ QTreeWidget QScrollBar::add-line:vertical, QTreeWidget QScrollBar::sub-line:vert
 
 /* Styles for the header (column titles) */
 QHeaderView::section {
-    background-color: #5364A5; /* Placeholder for header background color */
+    background-color: #e61919; /* Placeholder for header background color */
     color: white;
     padding-left: 4px;
-    border: 1px solid #5364A5; /* Placeholder for header border color */
+    border: 1px solid #e61919; /* Placeholder for header border color */
 }

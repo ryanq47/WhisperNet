@@ -1,41 +1,49 @@
 QWidget {
     background-color: #1e1e1e; /* Dark grey background */
-    color: #dcdcdc; /* Light grey text */
+    color: #dcdcdc; /* Light grey text, bold for aggression */
+    font-weight: bold;
 }
 QPushButton {
-    background-color: #5364A5; /* Placeholder for button background color */
+    background-color: #5364A5; /* Blue background for buttons */
     color: white;
-    border-style: outset;
+    border-style: solid;
     border-width: 2px;
-    border-radius: 2px;
+    border-radius: 0px; /* Sharper corners */
     border-color: #5364A5;
     padding: 6px;
     min-width: 80px;
+    font-weight: bold; /* Bolder text */
 }
 QPushButton:hover {
-    background-color: #5364A5; /* Placeholder for button hover color */
+    background-color: #43528B; /* Darker blue for hover */
+    color: #ffffff;
+    border-color: #43528B;
 }
 QPushButton:pressed {
-    background-color: #5364A5; /* Placeholder for button pressed color */
+    background-color: #333E66; /* Even darker blue when pressed */
     border-style: inset;
 }
 QLineEdit, QTextEdit, QPlainTextEdit, QSpinBox, QDoubleSpinBox, QComboBox {
     background-color: #2b2b2b;
     color: #dcdcdc;
-    border-radius: 1px;
+    border-radius: 0px; /* Sharper edges */
     padding: 2px;
     border: 1px solid #555;
+    font-weight: bold; /* Bolder text */
 }
 QLabel, QCheckBox, QRadioButton {
     color: #dcdcdc;
+    font-weight: bold; /* Bolder text */
 }
-QMenuBar, QMenu {PLACEME
+QMenuBar, QMenu {
     background-color: #2b2b2b;
     color: #dcdcdc;
     border: 1px solid #555;
+    font-weight: bold; /* Bolder text for menu */
 }
 QMenuBar::item:selected, QMenu::item:selected {
-    background-color: #5364A5; /* Placeholder for menu selection color */
+    background-color: #5364A5; /* Blue for selected menu items */
+    color: white;
 }
 QScrollBar:vertical {
     border: 1px solid #2b2b2b;
@@ -44,19 +52,19 @@ QScrollBar:vertical {
     margin: 22px 0 22px 0;
 }
 QScrollBar::handle:vertical {
-    background: #5364A5; /* Placeholder for scrollbar handle color */
+    background: #5364A5; /* Blue scrollbar handle */
     min-height: 20px;
 }
 QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
     border: 1px solid #2b2b2b;
-    background: #5364A5; /* Placeholder for scrollbar button color */
+    background: #5364A5; /* Blue for scrollbar buttons */
     height: 20px;
     subcontrol-position: top;
     subcontrol-origin: margin;
 }
 /* TABS */
-QTabWidget::pane { /* The tab widget frame */
-    border-top: 2px solid #5364A5; /* Placeholder for tab border color */
+QTabWidget::pane {
+    border-top: 2px solid #5364A5; /* Blue top border for tabs */
 }
 
 QTabWidget::tab-bar {
@@ -67,7 +75,7 @@ QTabBar::tab {
     background: #2b2b2b;
     color: #dcdcdc;
     border: 1px solid #555;
-    border-bottom-color: #5364A5; /* Placeholder for non-selected tab border color */
+    border-bottom-color: #5364A5; /* Blue for non-selected tab border */
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     padding: 5px;
@@ -78,16 +86,17 @@ QTabBar::tab {
 }
 
 QTabBar::tab:selected, QTabBar::tab:hover {
-    background: #5364A5; /* Placeholder for selected/hover tab color */
+    background: #5364A5; /* Blue for selected/hover tab */
+    color: white;
 }
 
 QTabBar::tab:selected {
-    border-color: #5364A5; /* Placeholder for selected tab border color */
-    border-bottom-color: #1e1e1e; /* same as window background color */
+    border-color: #5364A5; /* Blue border for selected tab */
+    border-bottom-color: #1e1e1e; /* Same as window background color */
 }
 
 QTabBar::tab:!selected {
-    margin-top: 2px; /* make non-selected tabs look smaller */
+    margin-top: 2px; /* Make non-selected tabs look smaller */
 }
 
 /* Q Tree Widget */
@@ -98,16 +107,16 @@ QTreeWidget {
 }
 
 QTreeWidget::item {
-    border-bottom: 1px solid #555; /* subtle separator for items */
+    border-bottom: 1px solid #555; /* Subtle separator for items */
 }
 
 QTreeWidget::item:selected {
-    background-color: #5364A5; /* Placeholder for selected item color */
+    background-color: #5364A5; /* Blue for selected item */
     color: white;
 }
 
 QTreeWidget::item:hover {
-    background-color: #5364A5; /* Placeholder for hover item color */
+    background-color: #43528B; /* Darker blue for hover item */
 }
 
 QTreeWidget::branch {
@@ -135,13 +144,13 @@ QTreeWidget QScrollBar:vertical {
 }
 
 QTreeWidget QScrollBar::handle:vertical {
-    background: #5364A5; /* Placeholder for tree widget scrollbar handle color */
+    background: #5364A5; /* Blue for tree widget scrollbar handle */
     min-height: 20px;
 }
 
 QTreeWidget QScrollBar::add-line:vertical, QTreeWidget QScrollBar::sub-line:vertical {
     border: 1px solid #2b2b2b;
-    background: #5364A5; /* Placeholder for tree widget scrollbar button color */
+    background: #5364A5; /* Blue for tree widget scrollbar button */
     height: 20px;
     subcontrol-position: top;
     subcontrol-origin: margin;
@@ -149,8 +158,8 @@ QTreeWidget QScrollBar::add-line:vertical, QTreeWidget QScrollBar::sub-line:vert
 
 /* Styles for the header (column titles) */
 QHeaderView::section {
-    background-color: #5364A5; /* Placeholder for header background color */
+    background-color: #5364A5; /* Blue for header background */
     color: white;
     padding-left: 4px;
-    border: 1px solid #5364A5; /* Placeholder for header border color */
+    border: 1px solid #5364A5; /* Blue for header border */
 }
