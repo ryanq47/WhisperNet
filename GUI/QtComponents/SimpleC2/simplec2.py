@@ -7,9 +7,10 @@ class simplec2(QWidget):
         
         loader = QUiLoader()
         ## This NEEDS self as a second arg for some reason.
-        self.ui_file = loader.load('c2_main_ui.ui', self)
+        self.ui_file = loader.load('QtComponents/SimpleC2/c2_layout_widgets.ui', self)
 
         self.__ui_load()
+        self.name = "SimpleC2"
 
     def __ui_load(self):
         '''

@@ -11,6 +11,8 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QT
 from PySide6.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply
 from PySide6.QtCore import Qt, Slot, Signal, QUrl, QTimer
 
+from QtComponents.SimpleC2.simplec2 import simplec2
+
 import inspect
 import logging
 
@@ -36,6 +38,10 @@ class MyApplication(QMainWindow):
         self.init_objects_from_ui(ui_file = ui_file)
         self.initUI()
         self.init_butons()
+
+        self.simplec2 = simplec2()
+        #self.mainLayout.addWidget(self.simplec2)
+
         ## starts events & timers
         self.filehost_timer = QTimer()
         self.events_and_timers()
