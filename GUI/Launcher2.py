@@ -1,7 +1,11 @@
-from PySide6.QtWidgets import QMainWindow, QTabWidget, QVBoxLayout, QPushButton, QWidget, QLabel, QApplication
+from PySide6.QtWidgets import QMainWindow, QTabWidget, QVBoxLayout, QPushButton, QWidget, QLabel, QApplication, QGridLayout
+from PySide6.QtGui import QAction
 import sys
-from QtComponents.SimpleC2.simplec2 import simplec2
 from PySide6.QtUiTools import QUiLoader
+from functools import partial
+
+from QtComponents.SimpleC2.simplec2 import simplec2
+from QtComponents.FileHost.filehost import filehost
 
 
 class MainWindow(QMainWindow):
@@ -10,16 +14,25 @@ class MainWindow(QMainWindow):
 
         # Load the base UI from a file
         self.load_base_ui("QtComponents/Base/base_window.ui")
+
+        # Create a QTabWidget
         self.tab_widget = QTabWidget()
 
-        # Set the QTabWidget as the central widget of the QMainWindow
-        self.setCentralWidget(self.tab_widget)
+        # Create a container widget and set the grid layout
+        containerWidget = QWidget()
+        gridLayout = QGridLayout(containerWidget)
 
-        ## Setup default tabs as needed
+        # Add the QTabWidget to the grid layout
+        gridLayout.addWidget(self.tab_widget, 0, 0, 1, 1)  # Adjust row, column, rowspan, colspan as needed
+
+        # Set the container widget as the central widget of the QMainWindow
+        self.setCentralWidget(containerWidget)
+
+        # Setup default tabs as needed
         self.init_tab_setup()
         self.add_menu_bar()
 
-        ## Set Stylesheet
+        # Set Stylesheet
         self.global_set_stylesheet()
 
     def add_menu_bar(self):
@@ -39,6 +52,15 @@ class MainWindow(QMainWindow):
         file_menu.addAction("Save")
         file_menu.addSeparator()
         file_menu.addAction("Exit")
+
+        ## Add View options
+        view_simplec2 = QAction("SimpleC2", self)
+        view_simplec2.triggered.connect(partial(self.add_new_tab, simplec2()))
+        view_menu.addAction(view_simplec2)        
+
+        view_filehost = QAction("FileHost", self)
+        view_filehost.triggered.connect(partial(self.add_new_tab, filehost()))
+        view_menu.addAction(view_filehost)   
 
     def init_tab_setup(self):
         '''
@@ -94,7 +116,6 @@ class MainWindow(QMainWindow):
         except Exception as e:
             print(f"An error occurred: {e}")
     
-
     def close_tab(self, index):
         # Close the tab at the given index
         self.tab_widget.removeTab(index)

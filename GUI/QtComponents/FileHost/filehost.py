@@ -1,16 +1,17 @@
 from PySide6.QtWidgets import QWidget, QTextEdit, QMessageBox
 from PySide6.QtUiTools import QUiLoader
 
-class simplec2(QWidget):
+class filehost(QWidget):
     def __init__(self):
         super().__init__()
         
         loader = QUiLoader()
         ## This NEEDS self as a second arg for some reason.
-        self.ui_file = loader.load('c2_main_ui.ui', self)
+        self.ui_file = loader.load('QtComponents/FileHost/filehost.ui', self)
 
         self.__ui_load()
-        self.name = "TEMPNAME"
+        self.name = "FileHost"
+
 
     def __ui_load(self):
         '''
