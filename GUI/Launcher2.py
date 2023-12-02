@@ -1,9 +1,10 @@
 from PySide6.QtWidgets import QMainWindow, QTabWidget, QVBoxLayout, QPushButton, QWidget, QLabel, QApplication, QGridLayout
 from PySide6.QtGui import QAction
+from PySide6.QtCore import Qt
 import sys
 from PySide6.QtUiTools import QUiLoader
 from functools import partial
-
+import subprocess
 from QtComponents.SimpleC2.simplec2 import simplec2
 from QtComponents.FileHost.filehost import filehost
 
@@ -24,7 +25,12 @@ class MainWindow(QMainWindow):
 
         # Add the QTabWidget to the grid layout
         gridLayout.addWidget(self.tab_widget, 0, 0, 1, 1)  # Adjust row, column, rowspan, colspan as needed
-
+        
+        ## Set Min Size & name
+        # W x H
+        self.setMinimumSize(1000, 600)  # Set minimum size: 400px width, 300px height
+        self.setWindowTitle('Whisper Net')
+        
         # Set the container widget as the central widget of the QMainWindow
         self.setCentralWidget(containerWidget)
 
@@ -44,14 +50,21 @@ class MainWindow(QMainWindow):
 
         # Add menus to the menu bar
         file_menu = menu_bar.addMenu("File")
-        edit_menu = menu_bar.addMenu("Edit")
+        #edit_menu = menu_bar.addMenu("Edit")
         view_menu = menu_bar.addMenu("View")
 
         # Add actions to the menus (example)
-        file_menu.addAction("Open")
-        file_menu.addAction("Save")
+        #file_menu.addAction("Open")
+        #file_menu.addAction("Save")
         file_menu.addSeparator()
-        file_menu.addAction("Exit")
+
+        file_menu_restart = QAction("Restart", self)
+        file_menu_restart.triggered.connect(self.restart)
+        file_menu.addAction(file_menu_restart)
+
+        file_menu_exit = QAction("Exit", self)
+        file_menu_exit.triggered.connect(partial(exit,"Exiting..."))
+        file_menu.addAction(file_menu_exit)
 
         ## Add View options
         view_simplec2 = QAction("SimpleC2", self)
@@ -71,9 +84,18 @@ class MainWindow(QMainWindow):
 
         self.add_new_tab(tab_obj=simplec2())
 
+
+    def keyPressEvent(self, event):
+        '''
+        Sets up key proess events. Not changing method name as I'm not sure if that will break it.
+        '''
+        if event.key() == Qt.Key_R and event.modifiers() == Qt.ControlModifier:
+            print("Ctrl + R pressed")
+            self.restart() 
+
     def load_base_ui(self, ui_file_path):
         """
-        Load the base UI from the specified UI file.
+        Load the base UI from the specified UI file
         """
         loader = QUiLoader()
         base_widget = loader.load(ui_file_path, self)
@@ -120,6 +142,12 @@ class MainWindow(QMainWindow):
         # Close the tab at the given index
         self.tab_widget.removeTab(index)
 
+    def restart(self):
+        '''
+        Temp/hacky restart of program
+        '''
+        subprocess.Popen([sys.executable, __file__])
+        QApplication.quit()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
