@@ -23,8 +23,7 @@ class Filehost(QWidget):
             print(errmsg)
 
         try:
-            ## Sets layout
-            self.setLayout(self.ui_file.layout())
+            pass
 
             #self.c2_systemshell = self.ui_file.findChild(QTextEdit, "test_text")  # Replace "QtWidgets" with the appropriate module
             #self.c2_systemshell.setText("test")
