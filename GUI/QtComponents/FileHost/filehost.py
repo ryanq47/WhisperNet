@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QWidget, QTextEdit, QMessageBox
 from PySide6.QtUiTools import QUiLoader
 
-class filehost(QWidget):
+class Filehost(QWidget):
     def __init__(self):
         super().__init__()
         

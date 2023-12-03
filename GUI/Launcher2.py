@@ -5,8 +5,9 @@ import sys
 from PySide6.QtUiTools import QUiLoader
 from functools import partial
 import subprocess
-from QtComponents.SimpleC2.simplec2 import simplec2
-from QtComponents.FileHost.filehost import filehost
+from QtComponents.SimpleC2.simplec2 import Simplec2
+from QtComponents.FileHost.filehost import Filehost
+from QtComponents.Secrets.secrets import Secrets
 
 
 class MainWindow(QMainWindow):
@@ -68,12 +69,16 @@ class MainWindow(QMainWindow):
 
         ## Add View options
         view_simplec2 = QAction("SimpleC2", self)
-        view_simplec2.triggered.connect(partial(self.add_new_tab, simplec2()))
+        view_simplec2.triggered.connect(partial(self.add_new_tab, Simplec2()))
         view_menu.addAction(view_simplec2)        
 
         view_filehost = QAction("FileHost", self)
-        view_filehost.triggered.connect(partial(self.add_new_tab, filehost()))
-        view_menu.addAction(view_filehost)   
+        view_filehost.triggered.connect(partial(self.add_new_tab, Filehost()))
+        view_menu.addAction(view_filehost)
+
+        view_secrets = QAction("Secrets", self)
+        view_secrets.triggered.connect(partial(self.add_new_tab, Secrets()))
+        view_menu.addAction(view_secrets)   
 
     def init_tab_setup(self):
         '''
@@ -82,8 +87,10 @@ class MainWindow(QMainWindow):
         self.tab_widget.setTabsClosable(True)
         self.tab_widget.tabCloseRequested.connect(self.close_tab)
 
-        self.add_new_tab(tab_obj=simplec2())
+        self.add_new_tab(tab_obj=Simplec2())
 
+    #def load_ui_elements(self):
+        #self.lower_tab_widget = self.ui_file.findChild(QTextEdit, "test_text")
 
     def keyPressEvent(self, event):
         '''
@@ -127,16 +134,26 @@ class MainWindow(QMainWindow):
         except Exception as e:
             print(f"An error occurred: {e}")
 
-    def add_new_tab(self, tab_obj):
+    def add_new_tab(self, tab_obj, widget="upper"):
         '''
         Adds a new tab from a widget.
         tab_obj: instance of widget. 
         '''
-        try:
-            new_tab = tab_obj
-            self.tab_widget.addTab(new_tab, tab_obj.name)
-        except Exception as e:
-            print(f"An error occurred: {e}")
+        if widget == "upper":
+            try:
+                new_tab = tab_obj
+                self.tab_widget.addTab(new_tab, tab_obj.name)
+            except Exception as e:
+                print(f"An error occurred: {e}")
+        if widget == "lower":
+            try:
+                new_tab = tab_obj
+                self.tab_widget.addTab(new_tab, tab_obj.name)
+            except Exception as e:
+                print(f"An error occurred: {e}")
+
+        else:
+            print("Invalid location for tab")
     
     def close_tab(self, index):
         # Close the tab at the given index
