@@ -29,6 +29,9 @@ class Simplec2(QWidget):
             #self.c2_systemshell = self.ui_file.findChild(QTextEdit, "test_text")  # Replace "QtWidgets" with the appropriate module
             #self.c2_systemshell.setText("test")
 
+            
+            ## MUST GO LAST!!!
+            self.setLayout(self.ui_file.layout())
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {e}")
             print(f"[!] {e}")

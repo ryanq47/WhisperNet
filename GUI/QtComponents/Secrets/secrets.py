@@ -2,6 +2,7 @@ from PySide6.QtWidgets import QWidget, QMessageBox, QTableWidget, QHeaderView, Q
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply
 from PySide6.QtCore import Signal
+import json
 
 class Secrets(QWidget):
     get_secrets_response = Signal(str)
@@ -32,11 +33,10 @@ class Secrets(QWidget):
 
         try:
             ## Sets layout
-            #self.setLayout(self.ui_file.layout())
             self.secrets_table = self.ui_file.findChild(QTableWidget, "secrets_table_widget")
             self.secrets_table_update = self.ui_file.findChild(QPushButton, "secrets_update")
 
-            self.secrets_table_update.clicked.connect(self.update_secrets)
+            self.secrets_table_update.clicked.connect(self.get_secrets)
 
             
             #if self.secrets_table == None:
@@ -45,6 +45,9 @@ class Secrets(QWidget):
 
             #self.c2_systemshell = self.ui_file.findChild(QTextEdit, "test_text")  # Replace "QtWidgets" with the appropriate module
             #self.c2_systemshell.setText("test")
+
+            ## MUST GO LAST!!!
+            self.setLayout(self.ui_file.layout())
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {e}")
@@ -88,39 +91,43 @@ class Secrets(QWidget):
         self.get_secrets_response.connect(self.update_secrets)
 
     ## Not set up yet
-    def update_secrets(self, data):
+    def update_secrets(self, json_data):
         '''
         Updates secrets
         '''
         ## not getting updated... hmm
+        #print(json_data)
 
         #print(data)
-        print("update secrets")
+        #print("update secrets")
         row_num = 0
-
-        data = ["","","","","","","","","","","","","","","","",""]
-        self.secrets_table.setRowCount(5)  # Set the number of rows
-
-        #self.secrets_table.setItem(1, 0, QTableWidgetItem("stuff"))
 
         ## Flip json to pyobj
         ## Once in pydict form, this can count how many items
         #self.secrets_table.setRowCount((len(data_dict)))  # Set the number of rows
-        
-        for secret in data:
-            user     = "test"#secret["username"]
-            password = "test"#secret["password"]
-            domain   = "test"#secret["domain"]
-            comment  = "test"#secret["comment"]
-            host     = "test"#secret["host"]
+        dict_data = json.loads(json_data)
+        self.secrets_table.setRowCount((len(dict_data))) # Set the number
+
+
+        for secret in dict_data:
+            user     = secret["username"]
+            password = secret["password"]
+            domain   = secret["domain"]
+            comment  = secret["comments"]
+            host     = secret["host"]
+            port     = secret["port"]
+            service  = secret["service"]
+
             
-            #issue with this being none, somethings fucked up
             self.secrets_table.setItem(row_num, 0, QTableWidgetItem(user))
             self.secrets_table.setItem(row_num, 1, QTableWidgetItem(password))
             self.secrets_table.setItem(row_num, 2, QTableWidgetItem(domain))
-            self.secrets_table.setItem(row_num, 3, QTableWidgetItem(comment))
-            self.secrets_table.setItem(row_num, 4, QTableWidgetItem(host))
-            
+            self.secrets_table.setItem(row_num, 3, QTableWidgetItem(host))
+            self.secrets_table.setItem(row_num, 4, QTableWidgetItem(service))
+            self.secrets_table.setItem(row_num, 5, QTableWidgetItem(port))
+            self.secrets_table.setItem(row_num, 6, QTableWidgetItem(comment))
+
+
             row_num = row_num + 1
 
 
