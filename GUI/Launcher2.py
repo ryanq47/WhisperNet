@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QMainWindow, QTabWidget, QVBoxLayout, QPushButton, QWidget, QLabel, QApplication, QGridLayout
+from PySide6.QtWidgets import QMainWindow, QMenu, QTabWidget, QVBoxLayout, QPushButton, QWidget, QLabel, QApplication, QGridLayout, QSplitter
 from PySide6.QtGui import QAction
 from PySide6.QtCore import Qt
 import sys
@@ -8,7 +8,7 @@ import subprocess
 from QtComponents.SimpleC2.simplec2 import Simplec2
 from QtComponents.FileHost.filehost import Filehost
 from QtComponents.Secrets.secrets import Secrets
-
+from QtComponents.Console.console import Console
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -17,21 +17,24 @@ class MainWindow(QMainWindow):
         # Load the base UI from a file
         self.load_base_ui("QtComponents/Base/base_window.ui")
 
-        # Create a QTabWidget
-        self.tab_widget = QTabWidget()
+        # Create two QTabWidget instances
+        self.tab_widget_top = QTabWidget()
+        self.tab_widget_bottom = QTabWidget()
+
+        # Create a splitter and add the tab widgets to it
+        splitter = QSplitter(Qt.Vertical)  # Vertical splitter
+        splitter.addWidget(self.tab_widget_top)
+        splitter.addWidget(self.tab_widget_bottom)
 
         # Create a container widget and set the grid layout
         containerWidget = QWidget()
         gridLayout = QGridLayout(containerWidget)
+        gridLayout.addWidget(splitter, 0, 0, 1, 1)  # Add the splitter to the layout
 
-        # Add the QTabWidget to the grid layout
-        gridLayout.addWidget(self.tab_widget, 0, 0, 1, 1)  # Adjust row, column, rowspan, colspan as needed
-        
-        ## Set Min Size & name
-        # W x H
-        self.setMinimumSize(1000, 600)  # Set minimum size: 400px width, 300px height
+        # Set minimum size and window title
+        self.setMinimumSize(1000, 600)  # Set minimum size
         self.setWindowTitle('Whisper Net')
-        
+
         # Set the container widget as the central widget of the QMainWindow
         self.setCentralWidget(containerWidget)
 
@@ -67,27 +70,61 @@ class MainWindow(QMainWindow):
         file_menu_exit.triggered.connect(partial(exit,"Exiting..."))
         file_menu.addAction(file_menu_exit)
 
-        ## Add View options
+
+        ## Can definently optizime this later/shorten it up.
+        #### Upper/Lower menu
+        upper_menu = QMenu('Upper', self)
+        view_menu.addMenu(upper_menu)
+
+        # Create 'Lower' submenu under 'View'
+        lower_menu = QMenu('Lower', self)
+        view_menu.addMenu(lower_menu)
+
+        ## Add Upper View options
         view_simplec2 = QAction("SimpleC2", self)
-        view_simplec2.triggered.connect(partial(self.add_new_tab, Simplec2()))
-        view_menu.addAction(view_simplec2)        
+        view_simplec2.triggered.connect(partial(self.add_new_tab, Simplec2(), "upper"))
+        upper_menu.addAction(view_simplec2)        
 
         view_filehost = QAction("FileHost", self)
-        view_filehost.triggered.connect(partial(self.add_new_tab, Filehost()))
-        view_menu.addAction(view_filehost)
+        view_filehost.triggered.connect(partial(self.add_new_tab, Filehost(), "upper"))
+        upper_menu.addAction(view_filehost)
 
         view_secrets = QAction("Secrets", self)
-        view_secrets.triggered.connect(partial(self.add_new_tab, Secrets()))
-        view_menu.addAction(view_secrets)   
+        view_secrets.triggered.connect(partial(self.add_new_tab, Secrets(), "upper"))
+        upper_menu.addAction(view_secrets)   
+
+        view_console = QAction("Console", self)
+        view_console.triggered.connect(partial(self.add_new_tab, Console(), "upper"))
+        upper_menu.addAction(view_console)  
+
+        ## Add Lower View options
+        view_simplec2 = QAction("SimpleC2", self)
+        view_simplec2.triggered.connect(partial(self.add_new_tab, Simplec2(), "lower"))
+        lower_menu.addAction(view_simplec2)        
+
+        view_filehost = QAction("FileHost", self)
+        view_filehost.triggered.connect(partial(self.add_new_tab, Filehost(), "lower"))
+        lower_menu.addAction(view_filehost)
+
+        view_secrets = QAction("Secrets", self)
+        view_secrets.triggered.connect(partial(self.add_new_tab, Secrets(), "lower"))
+        lower_menu.addAction(view_secrets)   
+
+        view_console = QAction("Console", self)
+        view_console.triggered.connect(partial(self.add_new_tab, Console(), "lower"))
+        lower_menu.addAction(view_console)  
 
     def init_tab_setup(self):
         '''
         Sets the needed init tabs, and a couple tab settings
         '''
-        self.tab_widget.setTabsClosable(True)
-        self.tab_widget.tabCloseRequested.connect(self.close_tab)
+        self.tab_widget_top.setTabsClosable(True)
+        self.tab_widget_top.tabCloseRequested.connect(self.close_tab_upper)
+        self.tab_widget_bottom.setTabsClosable(True)
+        self.tab_widget_bottom.tabCloseRequested.connect(self.close_tab_lower)
 
-        self.add_new_tab(tab_obj=Simplec2())
+        self.add_new_tab(tab_obj=Simplec2(), location="upper")
+        self.add_new_tab(tab_obj=Secrets(), location="lower")
 
     #def load_ui_elements(self):
         #self.lower_tab_widget = self.ui_file.findChild(QTextEdit, "test_text")
@@ -115,8 +152,8 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(base_widget)
 
         # Access the tab widget from the loaded UI
-        self.tab_widget = base_widget.findChild(QTabWidget, 'base_tab_widget')
-        if self.tab_widget is None:
+        self.tab_widget_top = base_widget.findChild(QTabWidget, 'base_tab_widget')
+        if self.tab_widget_top is None:
             print("Error: QTabWidget not found in the UI file.")
             return
 
@@ -134,30 +171,33 @@ class MainWindow(QMainWindow):
         except Exception as e:
             print(f"An error occurred: {e}")
 
-    def add_new_tab(self, tab_obj, widget="upper"):
+    def add_new_tab(self, tab_obj, location="upper"):
         '''
         Adds a new tab from a widget.
         tab_obj: instance of widget. 
         '''
-        if widget == "upper":
+        if location == "upper":
             try:
                 new_tab = tab_obj
-                self.tab_widget.addTab(new_tab, tab_obj.name)
+                self.tab_widget_top.addTab(new_tab, tab_obj.name)
             except Exception as e:
                 print(f"An error occurred: {e}")
-        if widget == "lower":
+        if location == "lower":
             try:
                 new_tab = tab_obj
-                self.tab_widget.addTab(new_tab, tab_obj.name)
+                self.tab_widget_bottom.addTab(new_tab, tab_obj.name)
             except Exception as e:
                 print(f"An error occurred: {e}")
 
         else:
             print("Invalid location for tab")
     
-    def close_tab(self, index):
+    def close_tab_upper(self, index):
         # Close the tab at the given index
-        self.tab_widget.removeTab(index)
+        self.tab_widget_top.removeTab(index)
+    def close_tab_lower(self, index):
+        # Close the tab at the given index
+        self.tab_widget_bottom.removeTab(index)
 
     def restart(self):
         '''

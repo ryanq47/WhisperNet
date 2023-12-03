@@ -67,22 +67,22 @@ QTabWidget::pane {
     border-top: 2px solid #5364A5; /* Blue top border for tabs */
 }
 
-QTabWidget::tab-bar {
-    left: 5px; /* move to the right by 5px */
-}
+/*QTabWidget::tab-bar {*/
+    /*left: 5px;  move to the right by 5px */
+/*}*/ 
 
 QTabBar::tab {
     background: #2b2b2b;
     color: #dcdcdc;
     border: 1px solid #555;
     border-bottom-color: #5364A5; /* Blue for non-selected tab border */
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
     padding: 5px;
-    min-width: 80px;
+    min-width: 50px;
     align-items: center;
     justify-content: center;
-    max-height: 20px;
+    max-height: 12px;
 }
 
 QTabBar::tab:selected, QTabBar::tab:hover {
@@ -162,4 +162,11 @@ QHeaderView::section {
     color: white;
     padding-left: 4px;
     border: 1px solid #5364A5; /* Blue for header border */
+}
+
+QSplitter::handle {
+	background-color: #9E9E9E;
+}
+QSplitter::handle:vertical {
+	height: 5px;
 }
