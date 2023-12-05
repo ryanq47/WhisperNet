@@ -69,7 +69,9 @@ class Secrets(QWidget):
             menu = QMenu(self)
             action1 = menu.addAction("[temp] Pop Data Box")
             action2 = menu.addAction("Connect")
-            action3 = menu.addAction("Action 3")
+            #action3 = menu.addAction("Edit")
+            action3 = menu.addAction("Delete")
+
 
             action = menu.exec(event.globalPos())
 
@@ -101,8 +103,14 @@ class Secrets(QWidget):
         '''
         Layout settings if needed
         '''
+        ## Makes selection of a cell choose all in that row
+        self.secrets_table.setSelectionBehavior(QTableWidget.SelectRows)
+
+        #for columns
+        #self.secrets_table.setSelectionBehavior(QTableWidget.SelectRows)
+
         ## Makes top labels stretch accross the screen
-        pass
+        #pass
         #self.secrets_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
     def func_name(self):
