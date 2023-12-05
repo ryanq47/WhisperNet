@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QMessageBox, QTableWidget, QHeaderView, QTableWidgetItem, QPushButton
+from PySide6.QtWidgets import QWidget, QMessageBox, QTableWidget, QHeaderView, QTableWidgetItem, QPushButton, QMenu
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply
 from PySide6.QtCore import Signal
@@ -53,6 +53,50 @@ class Secrets(QWidget):
             QMessageBox.critical(self, "Error", f"An error occurred: {e}")
             print(f"[!] {e}")
 
+    def contextMenuEvent(self, event):
+        '''
+        Context menu for the right clicks on the qtable 
+        
+        bugs:
+        rows are off by one. Most likely due to the header row? could use some debugging
+        Temp fix is to do row = row -1 to get them lined up.
+        
+        The last row does not work with the menu as well. Prolly related to somethign above
+        '''
+        row = self.secrets_table.rowAt(event.pos().y())
+        row = row -1 ## Row is off by one for some reason, probably due to header of Qtablewidget counting as a row
+        if row >= 0:  # Ensure that the right-click is on a row
+            menu = QMenu(self)
+            action1 = menu.addAction("[temp] Pop Data Box")
+            action2 = menu.addAction("Connect")
+            action3 = menu.addAction("Action 3")
+
+            action = menu.exec(event.globalPos())
+
+            if action == action1:
+                print(f"Action 1 selected on row {row}")
+                self.getRowData(row)
+            elif action == action2:
+                print(f"Action 2 selected on row {row}")
+            elif action == action3:
+                print(f"Action 3 selected on row {row}")
+    
+    ## gets row data
+    def getRowData(self, row):
+        '''
+        Gets the row data, puts it into a list. Should prolly turn into a dict for other functions to take.
+        '''
+        rowData = []
+        for column in range(self.secrets_table.columnCount()):
+            item = self.secrets_table.item(row, column)
+            if item is not None:
+                rowData.append(item.text())
+            else:
+                rowData.append("")
+
+        #print(f"Data in row {row}: {rowData}")
+        self.show_test_message(message=str(rowData), header="Row Data")
+
     def layout_settings(self):
         '''
         Layout settings if needed
@@ -68,13 +112,13 @@ class Secrets(QWidget):
         ...
         ##self.uielement.setText("test")
 
-    def show_test_message(self):
+    def show_test_message(self, message="empty", header="header"):
         '''
         A test popup box for debugging/etc
         '''
         msg = QMessageBox()
-        msg.setWindowTitle("Test Message")
-        msg.setText("This is a test popup message.")
+        msg.setWindowTitle(header)
+        msg.setText(message)
         msg.setIcon(QMessageBox.Information)
         msg.exec_()
 
