@@ -3,6 +3,8 @@ from PySide6.QtUiTools import QUiLoader
 from PySide6.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply
 from PySide6.QtCore import Signal
 import json
+from QtComponents.ConnectTool.connecttool import ConnectTool
+
 
 class Secrets(QWidget):
     get_secrets_response = Signal(str)
@@ -77,7 +79,15 @@ class Secrets(QWidget):
 
             if action == action1:
                 print(f"Action 1 selected on row {row}")
-                self.getRowData(row)
+                data = self.getRowData(row)
+                ## could be condensesd
+                self.connectTool = ConnectTool(
+                    username = data["username"],
+                    password = data["password"],
+                    target   = data["host"],
+                    port     = data["port"]
+                )
+                self.connectTool.show()
             elif action == action2:
                 print(f"Action 2 selected on row {row}")
             elif action == action3:
@@ -86,18 +96,19 @@ class Secrets(QWidget):
     ## gets row data
     def getRowData(self, row):
         '''
-        Gets the row data, puts it into a list. Should prolly turn into a dict for other functions to take.
+        Gets the row data and puts it into a dictionary.
         '''
-        rowData = []
-        for column in range(self.secrets_table.columnCount()):
-            item = self.secrets_table.item(row, column)
-            if item is not None:
-                rowData.append(item.text())
-            else:
-                rowData.append("")
+        column_labels = ["username", "password", "domain", "host", "service", "port", "comments"]
+        dict_row_data = {}
 
-        #print(f"Data in row {row}: {rowData}")
-        self.show_test_message(message=str(rowData), header="Row Data")
+        for column, label in enumerate(column_labels):
+            item = self.secrets_table.item(row, column)
+            dict_row_data[label] = item.text() if item is not None else ""
+
+        # Display the data for testing
+        #self.show_test_message(message=str(dict_row_data), header="Row Data")
+        
+        return dict_row_data
 
     def layout_settings(self):
         '''

@@ -22,6 +22,7 @@ class CustomTableWidget(QTableWidget):
 
             if action == action1:
                 print(f"Action 1 selected on row {row}")
+
             elif action == action2:
                 print(f"Action 2 selected on row {row}")
             elif action == action3:
