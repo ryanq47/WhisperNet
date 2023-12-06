@@ -102,7 +102,7 @@ QTabBar::tab:!selected {
 /* Q Tree Widget */
 QTreeWidget {
     border: 1px solid #555;
-    background-color: #2b2b2b;
+    /*background-color: #2b2b2b;*/
     color: #dcdcdc;
 }
 

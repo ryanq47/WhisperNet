@@ -69,8 +69,8 @@ class Secrets(QWidget):
         row = row -1 ## Row is off by one for some reason, probably due to header of Qtablewidget counting as a row
         if row >= 0:  # Ensure that the right-click is on a row
             menu = QMenu(self)
-            action1 = menu.addAction("[temp] Pop Data Box")
-            action2 = menu.addAction("Connect")
+            action1 = menu.addAction("Connect")
+            action2 = menu.addAction("___")
             #action3 = menu.addAction("Edit")
             action3 = menu.addAction("Delete")
 
