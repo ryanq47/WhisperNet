@@ -2,7 +2,7 @@ from PySide6.QtWidgets import QWidget, QTextEdit, QMessageBox, QTreeWidgetItem, 
 from PySide6.QtGui import QIcon
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtNetwork import QNetworkReply
-from PySide6.QtCore import Qt, Signal
+from PySide6.QtCore import Qt, Signal, QTimer
 from functools import partial
 from Utils.QtWebRequestManager import WebRequestManager
 import json
@@ -17,7 +17,9 @@ class Simplec2(QWidget):
         self.ui_file = loader.load('QtComponents/SimpleC2/c2_layout_widgets.ui', self)
 
         self.__ui_load()
+        self.__q_timer()
         self.name = "SimpleC2"
+        self.client_items = {}
 
 
     def __ui_load(self):
@@ -54,6 +56,14 @@ class Simplec2(QWidget):
             QMessageBox.critical(self, "Error", f"An error occurred: {e}")
             print(f"[!] {e}")
 
+    def __q_timer(self):
+        '''
+        A qtimer for updating events. 
+        '''
+        self.one_sec_timer = QTimer(self)
+        self.one_sec_timer.timeout.connect(self.get_client_data)
+        self.one_sec_timer.start(1000)
+
     def contextMenuEvent(self, event):
         # Find the item at the cursor position
         #print("MEEEEEE")
@@ -67,8 +77,10 @@ class Simplec2(QWidget):
             action2 = menu.addAction("Something2")
 
             # Connect actions to methods or use lambda functions
-            action1.triggered.connect(lambda: self.action1_triggered(item))
-            action2.triggered.connect(lambda: self.action2_triggered(item))
+            #action1.triggered.connect(lambda: self.action1_triggered(item))
+            #action2.triggered.connect(lambda: self.action2_triggered(item))
+            action1.triggered.connect(self.show_test_message)
+            action2.triggered.connect(self.show_test_message)
 
             # Display the menu
             menu.exec(event.globalPos())
@@ -90,53 +102,64 @@ class Simplec2(QWidget):
         msg.setIcon(QMessageBox.Information)
         msg.exec_()
 
-    def add_client_to_widget(self, json_data = None):
+    def add_client_to_widget(self, json_data=None):
         '''
         Adds a host to the GUI widget/window
-        
-        json_data will hold data needed to populate the entry (eventually)
-        json_data: A json dict. Gets turned into a pyobject
+
         '''
-        #print(data_dict)
+        try:
+            data_dict = json.loads(json_data) if json_data else []
+        except Exception as e:
+            print(f"Error with JSON data: {e}")
+            return
 
-        ## Flip to obj
-        data_dict = json.loads(json_data)
-        
-        if data_dict == None:
-            data_dict = {
-                "client":"ERROR",
-                "ip":"",
-                "port":"",
-                "listener":"",
-                "sleep":"",
-                "username":"",
-                "client_type":""
-            }
-
-        #print(data_dict)
+        # Dictionary to keep track of existing clients
+          # Reset or initialize this appropriately
 
         for data in data_dict:
-            print(data)
-            #print("data_dict:", data_dict, "type:", type(data_dict))
-            ## Main entry
-            client_entry = QTreeWidgetItem([data["client"], data["ip"], 
-                                            data["port"], data["listener"], 
-                                            data["sleep"]])
-            
-            client_entry.setIcon(0, QIcon("Assets/client.png"))
-            self.client_tree.addTopLevelItem(client_entry)
+            client_name = data["client"]
+            if client_name in self.client_items:
+                #print("UPDATE")
+                # Update existing client
+                self.update_client_row(client_name, data)
+            else:
+                # Add new client
+                #print("NEWROW")
+                self.add_client_row(data)
 
-            ## Sub Items
-            #                         parent,        stuff         stuff
-            username_subitem = QTreeWidgetItem(client_entry, ["User:", data["username"]])
-            clienttype_subitem = QTreeWidgetItem(client_entry, ["Client Type:", data["client_type"]])
-
-            #subItem.setIcon(0, QIcon("path/to/icon.png"))#if you want an icon
-            # Check CSS for more icon stuff, under : /*QTree Item thingy*/
-            ## force expanded
-            #client_entry.setExpanded(True)
+    def add_client_row(self, data):
+        client_entry = QTreeWidgetItem([data["client"], data["ip"], data["port"], data["listener"], data["sleep"]])
+        client_entry.setIcon(0, QIcon("Assets/client.png"))
+        self.client_tree.addTopLevelItem(client_entry)
         
-        self.update_client_tree_options()
+        # Sub items
+        username_subitem = QTreeWidgetItem(client_entry, ["User:", data["username"]])
+        clienttype_subitem = QTreeWidgetItem(client_entry, ["Client Type:", data["client_type"]])
+
+        # Add to the reference dictionary
+        self.client_items[data["client"]] = client_entry
+
+    def update_client_row(self, client_name, data):
+        # Retrieve the existing item
+        client_entry = self.client_items[client_name]
+
+        # Update the relevant data
+        client_entry.setText(0, data["client"])
+        client_entry.setText(1, data["ip"])
+        client_entry.setText(2, data["port"])
+        client_entry.setText(3, data["listener"])
+        client_entry.setText(4, data["sleep"])
+
+        # Assuming you have the subitems as children of the client_entry,
+        # update them as well
+        client_entry.child(0).setText(1, data["username"])  # Update username subitem
+        client_entry.child(1).setText(1, data["client_type"])
+
+    def clear_client_widget(self):
+        '''
+        Clears ALL items fromthe client widget. A bit extreme and only temp
+        '''
+        self.client_tree.clear()
 
     def get_client_data(self):
         '''
@@ -170,6 +193,16 @@ class Simplec2(QWidget):
 
         for column in range(self.client_tree.columnCount()):
             self.client_tree.resizeColumnToContents(column)
+
+    def show_test_message(self):
+        '''
+        A test popup box for debugging/etc
+        '''
+        msg = QMessageBox()
+        msg.setWindowTitle("Test Message")
+        msg.setText("This is a test popup message.")
+        msg.setIcon(QMessageBox.Information)
+        msg.exec_()
 
     def handle_response(self, reply, signal):        
         '''
