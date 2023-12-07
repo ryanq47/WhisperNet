@@ -172,7 +172,7 @@ class Simplec2(QWidget):
 
         #post request for now. Subject to chagne
         self.request_manager.send_get_request(
-            url = "https://67ea750d-d74e-490d-ac09-0167215b8b23.mock.pstmn.io/simplec2/clients",
+            url = "http://127.0.0.1:5000/api/simplec2/clients",
             #data = ""
         )
 

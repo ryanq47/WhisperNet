@@ -167,6 +167,7 @@ class SimpleC2(BasePlugin, BaseLogging):
         self.app.route(f'/api/{Info.endpoint}/nodecheckin', methods = ["POST"])(self.simplec2_api_node_checkin)
         self.app.route(f'/api/{Info.endpoint}/nodelogs', methods = ["GET"])(self.simplec2_api_get_checkin_logs)
         self.app.route(f'/api/{Info.endpoint}/clientdata', methods = ["POST"])(self.simplec2_api_post_client_data)
+        self.app.route(f'/api/{Info.endpoint}/clients', methods = ["GET"])(self.simplec2_api_get_client_data)
 
 ################################################
 # HTML Dashboard
@@ -287,6 +288,74 @@ class SimpleC2(BasePlugin, BaseLogging):
         except Exception as e:
             self.logger.warning(f"{self.logging_warning_symbol} Error with simplec2_api_post_client_data: {e}")
 
+
+    def simplec2_api_get_client_data(self):
+        '''
+        for the GUI to GET client data from the server
+        
+
+        WIll figure out the intraceuies later
+        '''
+        client_data = [
+            {
+                "client": "WIN-0N3BY",
+                "ip": "192.168.93.214",
+                "port": "8233",
+                "listener": "Listener-HTTP-4",
+                "sleep": "31s",
+                "username": "Admin",
+                "client_type": "C++"
+            },
+            {
+                "client": "WIN-HFT63",
+                "ip": "192.168.214.109",
+                "port": "8182",
+                "listener": "Listener-HTTP-8",
+                "sleep": "58s",
+                "username": "User",
+                "client_type": "Python"
+            },
+            {
+                "client": "WIN-GUN75",
+                "ip": "192.168.96.93",
+                "port": "8870",
+                "listener": "Listener-HTTP-9",
+                "sleep": "36s",
+                "username": "Guest",
+                "client_type": "C++"
+            },
+            {
+                "client": "WIN-V5DYU",
+                "ip": "192.168.250.41",
+                "port": "8982",
+                "listener": "Listener-HTTP-3",
+                "sleep": "56s",
+                "username": "Admin",
+                "client_type": "Python"
+            },
+            {
+                "client": "WIN-5MXHF",
+                "ip": "192.168.100.114",
+                "port": "8133",
+                "listener": "Listener-HTTP-1",
+                "sleep": "14s",
+                "username": "Admin",
+                "client_type": "Python"
+            },
+            {
+                "client": "WIN-UV2PK",
+                "ip": "192.168.26.52",
+                "port": "8438",
+                "listener": "Listener-HTTP-5",
+                "sleep": "57s",
+                "username": "Admin",
+                "client_type": "Java"
+            }
+        ]
+
+        return jsonify(client_data)
+
+        ...
 ################################################
 # API - Checkin Stuff
 ################################################
