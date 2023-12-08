@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QMainWindow, QDockWidget, QMenu, QTabWidget, QVBoxLayout, QPushButton, QWidget, QLabel, QApplication, QGridLayout, QSplitter
+from PySide6.QtWidgets import QMainWindow, QMenu, QTabWidget, QVBoxLayout, QPushButton, QWidget, QLabel, QApplication, QGridLayout, QSplitter
 from PySide6.QtGui import QAction
 from PySide6.QtCore import Qt
 import sys
@@ -18,35 +18,29 @@ class MainWindow(QMainWindow):
         self.load_base_ui("QtComponents/Base/base_window.ui")
 
         # Create two QTabWidget instances
-        tab_widget_top = QTabWidget()
-        tab_widget_bottom = QTabWidget()
+        self.tab_widget_top = QTabWidget()
+        self.tab_widget_bottom = QTabWidget()
 
         # Create a splitter and add the tab widgets to it
-        #splitter = QSplitter(Qt.Vertical)  # Vertical splitter
-        #splitter.addWidget(tab_widget_top)
-        #splitter.addWidget(tab_widget_bottom)
+        splitter = QSplitter(Qt.Vertical)  # Vertical splitter
+        splitter.addWidget(self.tab_widget_top)
+        splitter.addWidget(self.tab_widget_bottom)
 
-        # Create dock widgets and add the splitter to it
-        dock_widget = QDockWidget("Dockable Panel", self)
-        #dock_widget.setWidget(splitter)
-        dock_widget.setAllowedAreas(Qt.AllDockWidgetAreas)  # Allow docking anywhere
-
-        # Add the dock widget to the main window
-        #self.addDockWidget(Qt.RightDockWidgetArea, dock_widget)  # Add dock widget to the right
+        # Create a container widget and set the grid layout
+        containerWidget = QWidget()
+        gridLayout = QGridLayout(containerWidget)
+        gridLayout.addWidget(splitter, 0, 0, 1, 1)  # Add the splitter to the layout
 
         # Set minimum size and window title
         self.setMinimumSize(1000, 600)  # Set minimum size
         self.setWindowTitle('Whisper Net')
 
+        # Set the container widget as the central widget of the QMainWindow
+        self.setCentralWidget(containerWidget)
+
         # Setup default tabs as needed
         self.init_tab_setup()
         self.add_menu_bar()
-        
-        self.setCentralWidget(Simplec2())
-
-        self.add_dock_widget(Console().name, "bottom", Console())
-        #self.add_dock_widget("Assets", "left", Secrets())
-        #self.add_dock_widget("Assets", "right", Secrets())
 
         # Set Stylesheet
         self.global_set_stylesheet()
@@ -88,38 +82,42 @@ class MainWindow(QMainWindow):
 
         ## Add Upper View options
         view_simplec2 = QAction("SimpleC2", self)
-        view_simplec2.triggered.connect(partial(self.pop_new_widget, Simplec2()))
+        view_simplec2.triggered.connect(partial(self.add_new_tab, Simplec2(), "upper"))
         upper_menu.addAction(view_simplec2)        
 
         view_filehost = QAction("FileHost", self)
-        view_filehost.triggered.connect(partial(self.pop_new_widget, Filehost()))
+        view_filehost.triggered.connect(partial(self.add_new_tab, Filehost(), "upper"))
         upper_menu.addAction(view_filehost)
 
         view_secrets = QAction("Secrets", self)
-        view_secrets.triggered.connect(partial(self.pop_new_widget, Secrets()))
+        view_secrets.triggered.connect(partial(self.add_new_tab, Secrets(), "upper"))
         upper_menu.addAction(view_secrets)   
 
         view_console = QAction("Console", self)
-        view_console.triggered.connect(partial(self.pop_new_widget, Console()))
+        view_console.triggered.connect(partial(self.add_new_tab, Console(), "upper"))
         upper_menu.addAction(view_console)  
 
-    def add_dock_widget(self, title, position, object):
-        dock = QDockWidget(title)
-        dock.setWidget(object)#WIDGETNAME)
-        if position == "left":
-            self.addDockWidget(Qt.LeftDockWidgetArea, dock)
-        elif position == "right":
-            self.addDockWidget(Qt.RightDockWidgetArea, dock)
-        elif position == "bottom":
-            self.addDockWidget(Qt.BottomDockWidgetArea, dock)
-        elif position == "top":
-            self.addDockWidget(Qt.TopDockWidgetArea, dock)
+        ## Add Lower View options
+        view_simplec2 = QAction("SimpleC2", self)
+        view_simplec2.triggered.connect(partial(self.add_new_tab, Simplec2(), "lower"))
+        lower_menu.addAction(view_simplec2)        
+
+        view_filehost = QAction("FileHost", self)
+        view_filehost.triggered.connect(partial(self.add_new_tab, Filehost(), "lower"))
+        lower_menu.addAction(view_filehost)
+
+        view_secrets = QAction("Secrets", self)
+        view_secrets.triggered.connect(partial(self.add_new_tab, Secrets(), "lower"))
+        lower_menu.addAction(view_secrets)   
+
+        view_console = QAction("Console", self)
+        view_console.triggered.connect(partial(self.add_new_tab, Console(), "lower"))
+        lower_menu.addAction(view_console)  
 
     def init_tab_setup(self):
         '''
         Sets the needed init tabs, and a couple tab settings
         '''
-        return
         self.tab_widget_top.setTabsClosable(True)
         self.tab_widget_top.tabCloseRequested.connect(self.close_tab_upper)
         self.tab_widget_bottom.setTabsClosable(True)
@@ -193,18 +191,7 @@ class MainWindow(QMainWindow):
 
         else:
             print("Invalid location for tab")
-
-    def pop_new_widget(self, object_instance):
-        """ Slot to pop up a new widget """
-        new_dock_widget = QDockWidget(object_instance.name, self)
-        new_object = object_instance  # Example widget, you can replace with your desired widget
-        new_dock_widget.setWidget(new_object)
-        new_dock_widget.setAllowedAreas(Qt.AllDockWidgetAreas)
-        self.addDockWidget(Qt.RightDockWidgetArea, new_dock_widget)
-
-        # Optionally, you can set features like closable, movable, floatable, etc.
-        new_dock_widget.setFeatures(QDockWidget.DockWidgetMovable | QDockWidget.DockWidgetClosable)
-
+    
     def close_tab_upper(self, index):
         # Close the tab at the given index
         self.tab_widget_top.removeTab(index)

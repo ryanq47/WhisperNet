@@ -100,7 +100,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Server/Plugins/SimpleC2/Endpoints.md",
+                "file": "Server/Plugins/Secrets/General.md",
                 "mode": "source",
                 "source": false
               }
@@ -153,7 +153,7 @@
             }
           }
         ],
-        "currentTab": 9
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -219,7 +219,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Plugins/SimpleC2/Nodes/HTTPNode Command Drawing.canvas",
+                "file": "Server/Plugins/Secrets/General.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -236,7 +236,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Plugins/SimpleC2/Nodes/HTTPNode Command Drawing.canvas",
+                "file": "Server/Plugins/Secrets/General.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -259,7 +259,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Plugins/SimpleC2/Nodes/HTTPNode Command Drawing.canvas"
+                "file": "Server/Plugins/Secrets/General.md"
               }
             }
           },
@@ -291,13 +291,16 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "818e70d6a4e482e1",
+  "active": "a18e0143a177c7b7",
   "lastOpenFiles": [
-    "Server/Plugins/SimpleC2/Nodes/Untitled.md",
+    "Server/Plugins/FileHost/Overview.md",
+    "Server/Plugins/Secrets/General.md",
+    "Server/Plugins/SimpleC2/Endpoints.md",
+    "Server/Plugins/Secrets",
     "Server/Plugins/SimpleC2/Nodes/HTTPNode Command Drawing.canvas",
+    "Server/Plugins/SimpleC2/Nodes/Untitled.md",
     "Server/Plugins/SimpleC2/Nodes/HTTP Node.md",
     "Server/Plugins/SimpleC2/SimpleC2 Drawing.canvas",
-    "Server/Plugins/SimpleC2/Endpoints.md",
     "Server/Plugins/FileHost/Endpoints.md",
     "1. Task Tracker/Task Tracker.md",
     "Server/Plugins/SimpleC2/Storage Planning/DB & data.md",
@@ -307,7 +310,6 @@
     "Server/Visual Progress.canvas",
     "Server/Plugins/SimpleC2",
     "Server/Plugins/FileHost/External Component.md",
-    "Server/Plugins/FileHost/Overview.md",
     "Server/Modules/PluginEngine/Development & Advanced Overview.md",
     "1. Task Tracker/Tasks/Plugins.md",
     "Server/Modules/PluginEngine/Overview.md",
@@ -346,7 +348,6 @@
     "General/Images/Pasted image 20230929010420.png",
     "General/Images/Pasted image 20230929010201.png",
     "Server/Modules/WSGI/WSGI & Flask setup.canvas",
-    "Server/Modules/WSGI",
     "Server/Modules/1. ClientEngine/ClientHandler Docs/Client - Server map.canvas"
   ]
 }

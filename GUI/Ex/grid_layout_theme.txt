@@ -1,0 +1,82 @@
+import sys
+from PySide6.QtWidgets import QApplication, QMainWindow, QDockWidget, QTextEdit, QListWidget, QMenu
+from PySide6.QtGui import QAction
+from PySide6.QtCore import Qt
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        # Main Window Settings
+        self.setWindowTitle("Unity-like Layout with Cobalt Strike Theme")
+        self.setGeometry(100, 100, 800, 600)
+
+        # Storing references to dock widgets
+        self.dock_widgets = {}
+
+        # Adding a central widget
+        self.central_widget = QTextEdit()
+        self.setCentralWidget(self.central_widget)
+
+        # Adding dock widgets
+        self.add_dock_widget("Scene View", "left")
+        self.add_dock_widget("Game View", "bottom")
+        self.add_dock_widget("Inspector", "right")
+        self.add_dock_widget("Hierarchy", "left")
+        self.add_dock_widget("Assets", "bottom")
+
+        # Create the menu bar
+        self.create_menu_bar()
+
+        # Apply the theme
+        self.apply_cobalt_strike_theme()
+
+    def add_dock_widget(self, title, position):
+        dock = QDockWidget(title)
+        dock.setWidget(QListWidget())
+        self.dock_widgets[title] = dock
+        if position == "left":
+            self.addDockWidget(Qt.LeftDockWidgetArea, dock)
+        elif position == "right":
+            self.addDockWidget(Qt.RightDockWidgetArea, dock)
+        elif position == "bottom":
+            self.addDockWidget(Qt.BottomDockWidgetArea, dock)
+        elif position == "top":
+            self.addDockWidget(Qt.TopDockWidgetArea, dock)
+
+    def create_menu_bar(self):
+        view_menu = self.menuBar().addMenu("&View")
+
+        for title, dock in self.dock_widgets.items():
+            action = QAction(title, self)
+            action.setCheckable(True)
+            action.setChecked(True)
+            action.triggered.connect(lambda checked, title=title: self.toggle_dock_widget(title))
+            view_menu.addAction(action)
+
+    def toggle_dock_widget(self, title):
+        dock = self.dock_widgets[title]
+        dock.setVisible(not dock.isVisible())
+
+    def apply_cobalt_strike_theme(self):
+        style_sheet = """
+            QMainWindow {
+                background-color: #232629;
+            }
+            QDockWidget {
+                titlebar-close-icon: url(close.png);
+                titlebar-normal-icon: url(undock.png);
+            }
+            QTextEdit, QListWidget {
+                border: 1px solid #76797C;
+                background-color: #31363b;
+                color: #eff0f1;
+            }
+        """
+        self.setStyleSheet(style_sheet)
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec())
