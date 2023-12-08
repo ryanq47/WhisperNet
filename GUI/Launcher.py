@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QMainWindow, QDockWidget, QMenu, QTabWidget, QVBoxLayout, QPushButton, QWidget, QLabel, QApplication, QGridLayout, QSplitter
+from PySide6.QtWidgets import QMainWindow, QDockWidget, QMessageBox, QMenu, QTabWidget, QVBoxLayout, QPushButton, QWidget, QLabel, QApplication, QGridLayout, QSplitter
 from PySide6.QtGui import QAction
 from PySide6.QtCore import Qt
 import sys
@@ -39,14 +39,11 @@ class MainWindow(QMainWindow):
         self.setWindowTitle('Whisper Net')
 
         # Setup default tabs as needed
-        self.init_tab_setup()
+        self.init_window_setup()
         self.add_menu_bar()
         
-        self.setCentralWidget(Simplec2())
+        #self.setCentralWidget(Simplec2())
 
-        self.add_dock_widget(Console().name, "bottom", Console())
-        #self.add_dock_widget("Assets", "left", Secrets())
-        #self.add_dock_widget("Assets", "right", Secrets())
 
         # Set Stylesheet
         self.global_set_stylesheet()
@@ -62,6 +59,16 @@ class MainWindow(QMainWindow):
         file_menu = menu_bar.addMenu("File")
         #edit_menu = menu_bar.addMenu("Edit")
         view_menu = menu_bar.addMenu("View")
+        layout_menu = menu_bar.addMenu("Layout")
+
+        ## Layout Menu
+        layout_menu_init = QAction("init", self)
+        layout_menu_init.triggered.connect(self.init_window_setup)
+        layout_menu.addAction(layout_menu_init)
+
+        layout_menu_1 = QAction("Layout2", self)
+        layout_menu_1.triggered.connect(self.layout_one)
+        layout_menu.addAction(layout_menu_1)
 
         # Add actions to the menus (example)
         #file_menu.addAction("Open")
@@ -76,32 +83,33 @@ class MainWindow(QMainWindow):
         file_menu_exit.triggered.connect(partial(exit,"Exiting..."))
         file_menu.addAction(file_menu_exit)
 
-
         ## Can definently optizime this later/shorten it up.
         #### Upper/Lower menu
-        upper_menu = QMenu('Upper', self)
-        view_menu.addMenu(upper_menu)
+        #upper_menu = QMenu('Upper', self)
+        #view_menu.addMenu(upper_menu)
 
         # Create 'Lower' submenu under 'View'
-        lower_menu = QMenu('Lower', self)
-        view_menu.addMenu(lower_menu)
+        #lower_menu = QMenu('Lower', self)
+        #view_menu.addMenu(lower_menu)
 
         ## Add Upper View options
         view_simplec2 = QAction("SimpleC2", self)
         view_simplec2.triggered.connect(partial(self.pop_new_widget, Simplec2()))
-        upper_menu.addAction(view_simplec2)        
+        view_menu.addAction(view_simplec2)        
 
         view_filehost = QAction("FileHost", self)
         view_filehost.triggered.connect(partial(self.pop_new_widget, Filehost()))
-        upper_menu.addAction(view_filehost)
+        view_menu.addAction(view_filehost)
 
         view_secrets = QAction("Secrets", self)
         view_secrets.triggered.connect(partial(self.pop_new_widget, Secrets()))
-        upper_menu.addAction(view_secrets)   
+        view_menu.addAction(view_secrets)   
 
         view_console = QAction("Console", self)
         view_console.triggered.connect(partial(self.pop_new_widget, Console()))
-        upper_menu.addAction(view_console)  
+        view_menu.addAction(view_console) 
+
+
 
     def add_dock_widget(self, title, position, object):
         dock = QDockWidget(title)
@@ -115,18 +123,29 @@ class MainWindow(QMainWindow):
         elif position == "top":
             self.addDockWidget(Qt.TopDockWidgetArea, dock)
 
-    def init_tab_setup(self):
+    def init_window_setup(self):
         '''
-        Sets the needed init tabs, and a couple tab settings
+        Sets the needed init windows, and a couple tab settings
         '''
-        return
+
+        #return
+        '''
         self.tab_widget_top.setTabsClosable(True)
         self.tab_widget_top.tabCloseRequested.connect(self.close_tab_upper)
         self.tab_widget_bottom.setTabsClosable(True)
         self.tab_widget_bottom.tabCloseRequested.connect(self.close_tab_lower)
 
         self.add_new_tab(tab_obj=Simplec2(), location="upper")
-        self.add_new_tab(tab_obj=Secrets(), location="lower")
+        self.add_new_tab(tab_obj=Secrets(), location="lower")'''
+        
+        ## Here so wehn the user clicks init, it wipes the layout. might spit a warning on startup
+        self.clear_dock_widgets()
+
+        self.add_dock_widget(Console().name, "bottom", Console())
+        self.add_dock_widget(Console().name, "top", Simplec2())
+
+        #self.add_dock_widget("Assets", "left", Secrets())
+        #self.add_dock_widget("Assets", "right", Secrets())
 
     #def load_ui_elements(self):
         #self.lower_tab_widget = self.ui_file.findChild(QTextEdit, "test_text")
@@ -218,6 +237,26 @@ class MainWindow(QMainWindow):
         '''
         subprocess.Popen([sys.executable, __file__])
         QApplication.quit()
+
+    def show_test_message(self):
+        '''
+        A test popup box for debugging/etc
+        '''
+        msg = QMessageBox()
+        msg.setWindowTitle("Test Message")
+        msg.setText("This is a test popup message.")
+        msg.setIcon(QMessageBox.Information)
+        msg.exec_()
+
+    def layout_one(self):
+        self.clear_dock_widgets()
+
+    def clear_dock_widgets(self):
+        """ Remove all dock widgets and rearrange them """
+        # Remove all existing dock widgets
+        for dock_widget in self.findChildren(QDockWidget):
+            self.removeDockWidget(dock_widget)
+            dock_widget.deleteLater()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
