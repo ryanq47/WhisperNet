@@ -1,0 +1,11 @@
+<b>Bold Text</b>, <i>Italic Text</i>, <u>Underlined Text</u>
+<font color="red">Red Text</font>, <font face="Arial">Arial Font</font>, <font size="5">Larger Text</font>
+
+<ul>
+  <li>First item</li>
+  <li>Second item</li>
+  <li>Third item</li>
+</ul>
+
+
+I take rich text! Give me HTML to do cool stuff

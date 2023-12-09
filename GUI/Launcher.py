@@ -9,6 +9,8 @@ from QtComponents.SimpleC2.simplec2 import Simplec2
 from QtComponents.FileHost.filehost import Filehost
 from QtComponents.Secrets.secrets import Secrets
 from QtComponents.Console.console import Console
+from QtComponents.Notes.notes import Notes
+from QtComponents.ClientGraphics.clientgraphics import ClientGraphics
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -70,6 +72,10 @@ class MainWindow(QMainWindow):
         layout_menu_1.triggered.connect(self.layout_one)
         layout_menu.addAction(layout_menu_1)
 
+        layout_menu_21_9 = QAction("21:9", self)
+        layout_menu_21_9.triggered.connect(self.layout_21_9)
+        layout_menu.addAction(layout_menu_21_9)
+
         # Add actions to the menus (example)
         #file_menu.addAction("Open")
         #file_menu.addAction("Save")
@@ -108,8 +114,6 @@ class MainWindow(QMainWindow):
         view_console = QAction("Console", self)
         view_console.triggered.connect(partial(self.pop_new_widget, Console()))
         view_menu.addAction(view_console) 
-
-
 
     def add_dock_widget(self, title, position, object):
         dock = QDockWidget(title)
@@ -257,6 +261,46 @@ class MainWindow(QMainWindow):
         for dock_widget in self.findChildren(QDockWidget):
             self.removeDockWidget(dock_widget)
             dock_widget.deleteLater()
+
+    ## MOve me to file
+
+    def layout_21_9(self):
+        '''
+        21:9 layout
+
+        Limitation: Have to do in a qsplitter :(. QDockWidget does not support any resizing.
+        '''
+        self.clear_dock_widgets()
+
+        # Bottom area with consoles
+        bottom_splitter = QSplitter(Qt.Horizontal)
+        for _ in range(3):  # Assuming 4 consoles in the bottom area
+            console = Console()  # Create a new instance for each console
+            bottom_splitter.addWidget(console)
+
+        bottom_splitter.addWidget(Notes())
+
+        bottom_dock = QDockWidget("Bottom Dock", self)
+        bottom_dock.setWidget(bottom_splitter)
+        self.addDockWidget(Qt.BottomDockWidgetArea, bottom_dock)
+
+
+
+        # Top area with different widgets
+        top_splitter = QSplitter(Qt.Horizontal)
+        top_splitter.addWidget(Simplec2())
+        top_splitter.addWidget(ClientGraphics())
+
+        top_dock = QDockWidget("Top Dock", self)
+        top_dock.setWidget(top_splitter)
+        self.addDockWidget(Qt.TopDockWidgetArea, top_dock)
+
+        total_width = self.width()
+
+        # Set the sizes of the splitter widgets to distribute space equally
+        bottom_splitter.setSizes([100]*4)  # Equally distribute space among 4 widgets
+        top_splitter.setSizes([total_width//2, total_width//2])
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

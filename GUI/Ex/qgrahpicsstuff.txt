@@ -1,0 +1,46 @@
+from PySide6.QtWidgets import QApplication, QGraphicsView, QGraphicsScene, QGraphicsPixmapItem, QGraphicsItem
+from PySide6.QtGui import QPixmap, QCursor
+from PySide6.QtCore import Qt
+import sys
+
+class DraggablePixmapItem(QGraphicsPixmapItem):
+    def __init__(self, pixmap):
+        super().__init__(pixmap)
+
+        # Enable item interaction
+        self.setFlags(QGraphicsItem.ItemIsSelectable | QGraphicsItem.ItemIsMovable)
+
+    def mousePressEvent(self, event):
+        if event.button() == Qt.RightButton:
+            print("Right-clicked on the item")
+            # You can add more right-click functionality here
+        else:
+            super().mousePressEvent(event)
+
+class GraphicsViewDemo(QGraphicsView):
+    def __init__(self):
+        super().__init__()
+
+        # Set up the scene
+        self.scene = QGraphicsScene(self)
+        self.setScene(self.scene)
+
+        # Set the size of the QGraphicsView
+        self.setGeometry(100, 100, 800, 600)
+
+        # Add items to the scene
+        self.add_draggable_item("root.png", 0, 0)
+        self.add_draggable_item("client.png", 100, 100)
+
+    def add_draggable_item(self, icon_path, x, y):
+        pixmap = QPixmap(icon_path)
+        item = DraggablePixmapItem(pixmap)
+        item.setPos(x, y)
+        self.scene.addItem(item)
+
+# Example usage
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    demo = GraphicsViewDemo()
+    demo.show()
+    sys.exit(app.exec_())
