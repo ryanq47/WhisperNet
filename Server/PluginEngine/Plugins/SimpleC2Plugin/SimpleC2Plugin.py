@@ -167,7 +167,8 @@ class SimpleC2(BasePlugin, BaseLogging):
         self.app.route(f'/api/{Info.endpoint}/nodecheckin', methods = ["POST"])(self.simplec2_api_node_checkin)
         self.app.route(f'/api/{Info.endpoint}/nodelogs', methods = ["GET"])(self.simplec2_api_get_checkin_logs)
         self.app.route(f'/api/{Info.endpoint}/clientdata', methods = ["POST"])(self.simplec2_api_post_client_data)
-        self.app.route(f'/api/{Info.endpoint}/clients', methods = ["GET"])(self.simplec2_api_get_client_data)
+        self.app.route(f'/api/{Info.endpoint}/clients', methods = ["GET","POST"])(self.simplec2_api_client)
+        self.app.route(f'/api/{Info.endpoint}/console', methods = ["GET"])(self.simplec2_api_console)
 
 ################################################
 # HTML Dashboard
@@ -289,73 +290,110 @@ class SimpleC2(BasePlugin, BaseLogging):
             self.logger.warning(f"{self.logging_warning_symbol} Error with simplec2_api_post_client_data: {e}")
 
 
-    def simplec2_api_get_client_data(self):
+    def simplec2_api_client(self):
         '''
         for the GUI to GET client data from the server
         
+        or POST to the server for queuing commands N stuff
 
         WIll figure out the intraceuies later
         '''
-        client_data = [
-            {
-                "client": "WIN-0N3BY",
-                "ip": "192.168.93.214",
-                "port": "8233",
-                "listener": "Listener-HTTP-4",
-                "sleep": "31s",
-                "username": "Admin",
-                "client_type": "C++"
-            },
-            {
-                "client": "WIN-HFT63",
-                "ip": "192.168.214.109",
-                "port": "8182",
-                "listener": "Listener-HTTP-8",
-                "sleep": "58s",
-                "username": "User",
-                "client_type": "Python"
-            },
-            {
-                "client": "WIN-GUN75",
-                "ip": "192.168.96.93",
-                "port": "8870",
-                "listener": "Listener-HTTP-9",
-                "sleep": "36s",
-                "username": "Guest",
-                "client_type": "C++"
-            },
-            {
-                "client": "WIN-V5DYU",
-                "ip": "192.168.250.41",
-                "port": "8982",
-                "listener": "Listener-HTTP-3",
-                "sleep": "56s",
-                "username": "Admin",
-                "client_type": "Python"
-            },
-            {
-                "client": "WIN-5MXHF",
-                "ip": "192.168.100.114",
-                "port": "8133",
-                "listener": "Listener-HTTP-1",
-                "sleep": "14s",
-                "username": "Admin",
-                "client_type": "Python"
-            },
-            {
-                "client": "WIN-UV2PK",
-                "ip": "192.168.26.52",
-                "port": "8438",
-                "listener": "Listener-HTTP-5",
-                "sleep": "57s",
-                "username": "Admin",
-                "client_type": "Java"
-            }
-        ]
+        if request.method == 'GET':
+            client_data = [
+                {
+                    "client": "WIN-0N3BY",
+                    "ip": "192.168.93.214",
+                    "port": "8233",
+                    "listener": "Listener-HTTP-4",
+                    "sleep": "31s",
+                    "username": "Admin",
+                    "client_type": "C++"
+                },
+                {
+                    "client": "WIN-HFT63",
+                    "ip": "192.168.214.109",
+                    "port": "8182",
+                    "listener": "Listener-HTTP-8",
+                    "sleep": "58s",
+                    "username": "User",
+                    "client_type": "Python"
+                },
+                {
+                    "client": "WIN-GUN75",
+                    "ip": "192.168.96.93",
+                    "port": "8870",
+                    "listener": "Listener-HTTP-9",
+                    "sleep": "36s",
+                    "username": "Guest",
+                    "client_type": "C++"
+                },
+                {
+                    "client": "WIN-V5DYU",
+                    "ip": "192.168.250.41",
+                    "port": "8982",
+                    "listener": "Listener-HTTP-3",
+                    "sleep": "56s",
+                    "username": "Admin",
+                    "client_type": "Python"
+                },
+                {
+                    "client": "WIN-5MXHF",
+                    "ip": "192.168.100.114",
+                    "port": "8133",
+                    "listener": "Listener-HTTP-1",
+                    "sleep": "14s",
+                    "username": "Admin",
+                    "client_type": "Python"
+                },
+                {
+                    "client": "WIN-UV2PK",
+                    "ip": "192.168.26.52",
+                    "port": "8438",
+                    "listener": "Listener-HTTP-5",
+                    "sleep": "57s",
+                    "username": "Admin",
+                    "client_type": "Java"
+                }
+            ]
 
-        return jsonify(client_data)
+            return jsonify(client_data)
+
+        elif request.method == "POST":
+            '''
+            This is meant to be used for queing command N stuff
+            '''
+            ## turn into a func eventually
+
+            # Get data from request
+            id = request.json.get('id')
+
+
+            if id == "server":
+                return "simplec2 console API is up"
+                #something?
+                ...
+
+            else:
+                ## Do actions, 
+
+                ## Get Client Object (dunno how, gonna take somethinking)
+                ## Queue command
+                ## Get callbacktime/info from client object
+
+                ## put injson
+
+                # return json with details for console/gui
+                fake_data = {
+                    "message":"FakeDataReturn",
+                    "callback":"",
+                }
+
+                return jsonify(fake_data)
+
+
 
         ...
+
 ################################################
 # API - Checkin Stuff
 ################################################
