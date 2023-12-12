@@ -48,7 +48,7 @@
      </property>
      <widget class="QWidget" name="RemoteShell_Layout_2">
       <attribute name="title">
-       <string>RemoteShell</string>
+       <string>Console</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_43">
        <property name="leftMargin">
@@ -64,7 +64,7 @@
         <number>0</number>
        </property>
        <item row="1" column="1">
-        <widget class="QPushButton" name="simplec2_shell_send_2">
+        <widget class="QPushButton" name="console_send">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -80,7 +80,7 @@
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QLineEdit" name="simplec2_remoteshell_input_2">
+        <widget class="QLineEdit" name="console_input">
          <property name="font">
           <font>
            <weight>75</weight>
@@ -288,7 +288,7 @@
           <string notr="true">background-color: rgb(1, 1, 1);border-radius: 2px;</string>
          </property>
          <property name="readOnly">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="html">
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;

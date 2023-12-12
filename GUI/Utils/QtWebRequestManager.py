@@ -32,3 +32,15 @@ class WebRequestManager(QNetworkAccessManager):
 
         reply = self.sender()
         self.request_finished.emit(reply)
+
+    def encode_str_to_bytes(self, data):
+        '''
+        Turn a str into bytes
+        '''
+        return data.encode()
+
+    def decode_bytes_to_str(self, data):
+        '''
+        Turn a str into bytes
+        '''
+        return data.decode()

