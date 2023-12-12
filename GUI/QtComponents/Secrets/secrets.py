@@ -168,31 +168,33 @@ class Secrets(QWidget):
         ## Flip json to pyobj
         ## Once in pydict form, this can count how many items
         #self.secrets_table.setRowCount((len(data_dict)))  # Set the number of rows
-        dict_data = json.loads(json_data)
-        self.secrets_table.setRowCount((len(dict_data))) # Set the number
+        try:
+            dict_data = json.loads(json_data)
+            self.secrets_table.setRowCount((len(dict_data))) # Set the number
 
 
-        for secret in dict_data:
-            user     = secret["username"]
-            password = secret["password"]
-            domain   = secret["domain"]
-            comment  = secret["comments"]
-            host     = secret["host"]
-            port     = secret["port"]
-            service  = secret["service"]
+            for secret in dict_data:
+                user     = secret["username"]
+                password = secret["password"]
+                domain   = secret["domain"]
+                comment  = secret["comments"]
+                host     = secret["host"]
+                port     = secret["port"]
+                service  = secret["service"]
 
-            
-            self.secrets_table.setItem(row_num, 0, QTableWidgetItem(user))
-            self.secrets_table.setItem(row_num, 1, QTableWidgetItem(password))
-            self.secrets_table.setItem(row_num, 2, QTableWidgetItem(domain))
-            self.secrets_table.setItem(row_num, 3, QTableWidgetItem(host))
-            self.secrets_table.setItem(row_num, 4, QTableWidgetItem(service))
-            self.secrets_table.setItem(row_num, 5, QTableWidgetItem(port))
-            self.secrets_table.setItem(row_num, 6, QTableWidgetItem(comment))
+                
+                self.secrets_table.setItem(row_num, 0, QTableWidgetItem(user))
+                self.secrets_table.setItem(row_num, 1, QTableWidgetItem(password))
+                self.secrets_table.setItem(row_num, 2, QTableWidgetItem(domain))
+                self.secrets_table.setItem(row_num, 3, QTableWidgetItem(host))
+                self.secrets_table.setItem(row_num, 4, QTableWidgetItem(service))
+                self.secrets_table.setItem(row_num, 5, QTableWidgetItem(port))
+                self.secrets_table.setItem(row_num, 6, QTableWidgetItem(comment))
 
 
-            row_num = row_num + 1
-
+                row_num = row_num + 1
+        except Exception as e:
+            print(f"[!] Error with updating secrets: {e}")
 
     def handle_response(self, reply, signal):        
         '''

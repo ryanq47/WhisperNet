@@ -65,8 +65,6 @@ class Console(QWidget):
             with open("Config/Strings.yaml", 'r') as file:
                 self.yaml_strings = yaml.safe_load(file)
                 print(self.yaml_strings)  # Add this line to check the loaded content
-
-
         except Exception as e:
             print(e)
 

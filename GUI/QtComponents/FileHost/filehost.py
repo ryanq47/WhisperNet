@@ -179,7 +179,7 @@ class Filehost(QWidget):
             self.FileHost_NodeLogTable.setItem(0, 2, QTableWidgetItem("JSON"))
             self.FileHost_NodeLogTable.setItem(0, 3, QTableWidgetItem(""))
 
-        elif data_dict == "empty":
+        elif data_dict == "empty" or data_dict == None:
             self.FileHost_NodeLogTable.setRowCount(1)  # Set the number of rows
             self.FileHost_NodeLogTable.setItem(0, 0, QTableWidgetItem("Empty"))
 
