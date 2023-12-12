@@ -4,6 +4,9 @@ from PySide6.QtCore import Signal, QTimer
 from Utils.QtWebRequestManager import WebRequestManager
 from PySide6.QtNetwork import QNetworkReply
 import json
+import yaml
+
+#from Utils.YamlLoader import YamlLoader
 
 class Console(QWidget):
     signal_server_response= Signal(str)
@@ -16,8 +19,12 @@ class Console(QWidget):
         self.ui_file = loader.load('QtComponents/Console/console.ui', self)
         self.id = id
         self.name = "Console"
+
+
+        self.__yaml_load()
         self.__ui_load()
         self.init_console()
+
 
     def __ui_load(self):
         '''
@@ -47,6 +54,26 @@ class Console(QWidget):
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {e}")
             print(f"[!] {e}")
+
+    def __yaml_load(self):
+        '''
+        Loads yaml stuff for any config
+
+        got annoyed with making a class/wrapper library for it so I said fuck it and did this
+        '''
+        try:
+            with open("Config/Strings.yaml", 'r') as file:
+                self.yaml_strings = yaml.safe_load(file)
+                print(self.yaml_strings)  # Add this line to check the loaded content
+
+
+        except Exception as e:
+            print(e)
+
+        if self.yaml_strings == None:
+            print("none")
+
+
 
     def func_name(self):
         '''
@@ -174,6 +201,10 @@ class Console(QWidget):
         '''
 
         text = self.console_input.text()
+
+        if text == None or text == "":
+            text = self.yaml_strings["Console"]["emptyinput"]
+
         self.update_console_window(text)
 
 
