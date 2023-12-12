@@ -1,5 +1,6 @@
-from PySide6.QtWidgets import QWidget, QTextEdit, QMessageBox, QPushButton, QLineEdit
+from PySide6.QtWidgets import QWidget, QTextEdit, QMessageBox, QPushButton, QLineEdit, QToolButton, QMenu
 from PySide6.QtUiTools import QUiLoader
+from PySide6.QtGui import QAction
 from PySide6.QtCore import Signal, QTimer
 from Utils.QtWebRequestManager import WebRequestManager
 from PySide6.QtNetwork import QNetworkReply
@@ -24,6 +25,7 @@ class Console(QWidget):
         self.__yaml_load()
         self.__ui_load()
         self.init_console()
+        self.init_options()
 
 
     def __ui_load(self):
@@ -41,11 +43,15 @@ class Console(QWidget):
 
             self.console_shell = self.ui_file.findChild(QTextEdit, "console_shell")  # Replace "QtWidgets" with the appropriate module
             self.console_send = self.ui_file.findChild(QPushButton, "console_send")  # Replace "QtWidgets" with the appropriate module
-            self.console_send.clicked.connect(self.get_command_from_input)
+            self.console_send.clicked.connect(self.handle_command_from_input)
             #self.console_send.clicked.connect(self.connect_to_server) ## This temporarily triggers server
 
             self.console_input = self.ui_file.findChild(QLineEdit, "console_input")  # Replace "QtWidgets" with the appropriate module
 
+            self.debug_console = self.ui_file.findChild(QTextEdit, "debug_console")  # Replace "QtWidgets" with the appropriate module
+            self.debug_console.hide()
+
+            self.options_button = self.ui_file.findChild(QToolButton, "options_button")
             #self.c2_systemshell.setText("test")
 
             ## MUST GO LAST!!!
@@ -71,7 +77,27 @@ class Console(QWidget):
         if self.yaml_strings == None:
             print("none")
 
+    def init_options(self):
+        '''
+        Sets options for the options button (bottom left button with '...')
+        '''
+        #self.options_button
+        menu = QMenu(self)
 
+        # Add actions to the menu
+        show_debug_console = QAction("Show Debug Console", self)
+        hide_debug_console = QAction("Hide Debug Console", self)
+
+        #action2 = QAction("Option 2", self)
+        menu.addAction(show_debug_console)
+        menu.addAction(hide_debug_console)
+
+        # Connect actions to functions
+        show_debug_console.triggered.connect(lambda _show_debug_console: self.debug_console.show())
+        hide_debug_console.triggered.connect(lambda _show_debug_console: self.debug_console.hide())
+
+        self.options_button.setMenu(menu)
+        self.options_button.setPopupMode(QToolButton.InstantPopup)
 
     def func_name(self):
         '''
@@ -188,7 +214,7 @@ class Console(QWidget):
             except Exception as e:
                 self.console_shell.setText(f"Error with console: {e}")
 
-    def get_command_from_input(self):
+    def handle_command_from_input(self):
         '''
         Gets command form the input box in the consoel gui.
 
@@ -201,10 +227,52 @@ class Console(QWidget):
         text = self.console_input.text()
 
         if text == None or text == "":
-            text = self.yaml_strings["Console"]["emptyinput"]
+            parsed_text = self.yaml_strings["Console"]["emptyinput"]
 
-        self.update_console_window(text)
+        ## Parse text
+        else:
+            parsed_text = self.parse_user_input(user_input = text)
+            
+            ## temp reflecting all input
+            #self.update_console_window(text)
+            
+        self.update_console_window(parsed_text)
 
+
+    def parse_user_input(self, user_input):
+        '''
+        Parses user input from the GUI console_input field
+
+        user_input: (str) the input
+        '''
+        ## Strip leading/tail whitespace & fixes most input problems
+        user_input = user_input.strip()
+
+        ## Extra empty handling, shouldn't be needed as this is handled in handle_command_from_input,
+        # but just in case.
+        if not user_input:
+            return None 
+        
+        try:
+            action = user_input.split(" ")[0]
+
+            ## Get length of action & remove that many chars from the original input
+            
+            ##len(action) to get lenfth of action, +1 to remove the extra space
+            command = user_input[len(action) + 1:]
+
+            #print(action)
+            #print(command)
+
+            command_dict = {
+                "action":action,
+                "command":command
+            }
+
+            return command_dict
+
+        except Exception as e:
+            return f"Error with input: {e}"
 
     def handle_response(self, reply, signal):        
         '''

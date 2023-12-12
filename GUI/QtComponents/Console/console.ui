@@ -63,7 +63,17 @@
        <property name="bottomMargin">
         <number>0</number>
        </property>
-       <item row="1" column="1">
+       <item row="1" column="1" colspan="3">
+        <widget class="QTextEdit" name="debug_console">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
         <widget class="QPushButton" name="console_send">
          <property name="enabled">
           <bool>true</bool>
@@ -79,7 +89,7 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
+       <item row="2" column="1">
         <widget class="QLineEdit" name="console_input">
          <property name="font">
           <font>
@@ -98,7 +108,7 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="0" colspan="2">
+       <item row="0" column="1" colspan="3">
         <widget class="QTextEdit" name="console_shell">
          <property name="enabled">
           <bool>true</bool>
@@ -299,6 +309,13 @@ p, li { white-space: pre-wrap; }
          </property>
          <property name="placeholderText">
           <string>root@127.0.0.1&gt; </string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QToolButton" name="options_button">
+         <property name="text">
+          <string>...</string>
          </property>
         </widget>
        </item>
