@@ -170,7 +170,7 @@ class Console(QWidget):
         self.signal_server_response.connect(self.update_console_window)
 
 
-    def update_console_window(self,text=None, json_data=None):
+    def update_console_window(self,text=None, json_data=None, ):
         '''
         Updates the console window. Can take 2 arguments/forms of data:
 
@@ -214,6 +214,8 @@ class Console(QWidget):
             except Exception as e:
                 self.console_shell.setText(f"Error with console: {e}")
 
+        self.debug_console.setText("Debug Console Placeholder\n" + "{'action': 'test', 'command': 'command', 'error': None}")
+
     def handle_command_from_input(self):
         '''
         Gets command form the input box in the consoel gui.
@@ -244,14 +246,21 @@ class Console(QWidget):
         Parses user input from the GUI console_input field
 
         user_input: (str) the input
+
+        returns a dict with data
         '''
+        console_debug_dict = {
+            "action":None,
+            "command":None,
+            "error":None
+        }
         ## Strip leading/tail whitespace & fixes most input problems
         user_input = user_input.strip()
 
         ## Extra empty handling, shouldn't be needed as this is handled in handle_command_from_input,
         # but just in case.
         if not user_input:
-            return None 
+            return console_debug_dict 
         
         try:
             action = user_input.split(" ")[0]
@@ -264,15 +273,32 @@ class Console(QWidget):
             #print(action)
             #print(command)
 
-            command_dict = {
-                "action":action,
-                "command":command
-            }
+            console_debug_dict["action"] = action
+            console_debug_dict["command"] = command
 
-            return command_dict
+            return console_debug_dict
 
         except Exception as e:
-            return f"Error with input: {e}"
+            console_debug_dict["error"] = f"Error with input: {e}"
+            return console_debug_dict 
+
+
+        ####
+        '''
+        Big question: 
+            How are we going to return the input command_dict, and server_response_dict? (2nd is not implemented yet)
+
+            I'm thinking a dict of dicts, so:
+            {
+                server_response: server_response_dict,
+                console_debug: console_debug_dict
+            }
+
+            I would need to rework the update_console_window to parse the server_response, and the console_debug dict
+            correctly. this is gonna be cool af tho.
+
+        '''
+        ####
 
     def handle_response(self, reply, signal):        
         '''
