@@ -9,7 +9,10 @@ import Utils.ErrorDefinitions
 import bcrypt
 import Utils.GuardClauses
 from Utils.LoggingBaseClass import BaseLogging
-
+## For role_required
+from flask_jwt_extended import get_jwt_identity, jwt_required
+from functools import wraps
+from flask import jsonify
 
 ## This is super hacky. My Dumbass made this a static method, so to properly use the BaseLogging class, I need to to 
 ## init the instance, and then call the logging function
@@ -332,4 +335,25 @@ class UserManagement:
             base_logging.logger.debug(f"Could not connect to DB: {e}")
         
         return False
-  
+
+class AccessManagement:
+    '''
+    A class to handle access stuff. 
+    '''
+    ## RoleCheck Decorator - move to BasePlugin after testing
+    @staticmethod
+    def role_required(required_role):
+        def decorator(func):
+            @wraps(func)
+            def wrapper(*args, **kwargs):
+                current_user = get_jwt_identity()
+                user_role = current_user.get('role') if current_user else None
+
+                if user_role != required_role:
+                    return jsonify({"message": "Access denied"}), 403
+
+                return func(*args, **kwargs)
+
+            return wrapper
+
+        return decorator

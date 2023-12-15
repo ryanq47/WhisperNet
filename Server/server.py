@@ -68,25 +68,6 @@ generate_keys       = args.generatekeys
 sys_path = os.path.dirname(os.path.realpath(__file__))
 function_debug_symbol = "[^]"
 
-"""
-Here's the global Debug + Logging settings. 
-Global Debug print to screen will be a setting in the future
-"""
-
-'''
-if not quiet:
-    global_debug = True
-else:
-    global_debug = False
-    
-##Reference: https://realpython.com/python-logging/
-logging.basicConfig(level=logging.DEBUG)
-## Change the path to the system path + a log folder/file somewhere
-logging.basicConfig(filename='server.log', filemode='a', format='%(asctime)s - %(levelname)s - %(message)s', force=True, datefmt='%Y-%m-%d %H:%M:%S')
-if global_debug:
-    logging.getLogger().addHandler(logging.StreamHandler())
-'''
-    
 
 class Data(BaseLogging):
     '''
@@ -137,68 +118,10 @@ class ControlServer(BaseLogging):
         #self.UrlSc = ApiEngine.ConfigHandler.UrlSchema(api_config_profile=self.config_file_path)
         #self.UrlSc.load()
         self.init_routes()
-        self.plugins_with_dashboard = []
-
 
     def init_routes(self):
-        self.app.route("/", methods=["GET"])(self.login_page)
-        self.app.route('/login', methods=["POST"])(self.web_user_login)
-        self.app.route('/logout')(self.web_user_logout)
-        self.app.route('/api/login', methods=["POST"])(self.api_user_login)
-    
-    ## login
-    def server_login(self):
-        username = request.json.get('username')
-        password = request.json.get('password')
-
-        ## need a guard statement here to make sure user & pass actually equal something
-
-        if SecurityEngine.AuthenticationHandler.Authentication.authentication_eval(
-            username=username,
-            password=password,
-            path_struct=Data.path_struct
-        ):
-            access_token = create_access_token(identity="username")
-            return {'access_token': access_token}, 200
-        else:
-            return self.page_not_found()
-
-
-
-    '''
-    ## any bad auth returns this
-    @self.app.errorhandler(exceptions.NoAuthorizationError)
-    @self.app.errorhandler(401)
-    @self.app.errorhandler(403)
-    @self.app.errorhandler(404)
-    @self.app.errorhandler(405) # Method not allowed'''
-    def page_not_found(self, e=None):
-        '''
-        Handles all 40X & any try/except errors. Basically it returns a 200
-        with a "page not found"
-
-        This is done for security/scraping/URL discovery reasons
-            
-        '''
-        try:
-            err_404_path = random.choice(self.UrlSc.NOT_FOUND_LIST_404)
-            self.logger.debug(f"Error: {e}")
-
-            html = Utils.UtilsHandler.load_file(
-                current_path=sys_path, 
-                file_path=err_404_path, 
-                return_path=False
-            )
-            
-            resp = Response(html)
-
-            # Set the 'err' cookie with the value of 'e'
-            resp.set_cookie('err', str(e))
-
-            return resp, 200
-        ## Fallback for if something breaks
-        except:
-            return "", 200
+        pass
+        #self.app.route("/", methods=["GET"])(self.login_page)
 
     ## ugly af
     def load_plugins(self, app):
@@ -216,7 +139,7 @@ class ControlServer(BaseLogging):
             # Inside each plugin folder, look for Python files with the same name as the folder
             for plugin_file in os.listdir(plugin_folder_path):
                 if plugin_file.endswith('.py'):
-                    self.logger.info(f"{self.logging_info_symbol} Discovered:\t {plugin_file}")
+                    self.logger.info(f"{self.logging_info_symbol} == Discovered: {plugin_file}")
 
                     plugin_name = plugin_file[:-3]  # Remove the '.py' extension
                     module_path = f"PluginEngine.Plugins.{plugin_folder}.{plugin_name}"
@@ -247,9 +170,6 @@ class ControlServer(BaseLogging):
                             type = module.Info.plugin_type
                             loaded = 0
 
-                            #if has_dashboard:
-                            #    self.plugins_with_dashboard.append(module.Info.endpoint)
-
                             Data.server_data_db_handler.write_to_plugins_table(p_name, endpoint, author, type, loaded)
                             
 
@@ -257,83 +177,6 @@ class ControlServer(BaseLogging):
                         self.logger.warning(f"{self.logging_warning_symbol} Error importing module {module_path}: {e}")
                     except AttributeError as e:
                         self.logger.warning(f"{self.logging_warning_symbol} AttributeError: {e}")
-
-    ## User login stuff for the WEB interface
-    def login_page(self):
-        return render_template('builtin-login.html')
-    
-    def web_user_login(self):
-        '''
-        Logic for login here
-        '''
-
-        username = request.form['username']
-        password = request.form['password']
-
-        ## Check user against DB
-        if SecurityEngine.AuthenticationHandler.Authentication.authentication_eval(
-            username = username,
-            password = password
-        ):
-            ## Might be prone to injection
-            user = User(username)
-            login_user(user)
-            #return 'Logged in successfully'
-            return redirect("/filehost")
-        else:
-            return render_template('builtin-login.html')
-
-    def web_user_logout(self):
-        logout_user()
-        return 'Logged out successfully'
-    
-    def api_user_login(self):
-        '''
-        API login
-        '''
-        data = request.get_json()
-
-        username = data.get('username')
-        password = data.get('password')
-
-        ## Check user against DB
-        if SecurityEngine.AuthenticationHandler.Authentication.api_authentication_eval(
-            username = username,
-            password = password
-        ):
-            ## Get role
-
-            ## Dict
-            user_role = SecurityEngine.AuthenticationHandler.Authentication.api_get_user_role(
-                username = username
-            )
-
-            if user_role:
-                # Create a dictionary with user identity and any claims (e.g., role)
-                identity_dict = {'username': username, 'role': user_role}
-
-                # Create a JWT token with the user's identity and claims
-                access_token = create_access_token(identity=identity_dict)
-
-                print(user_role)
-                return jsonify({"access_token": access_token}), 200
-
-
-        else:
-            print(f"{username} failed to authenticate as api user")
-            return render_template('builtin-login.html')
-
-
-## no idea what this actually does, I just know that it's needed
-@login_manager.user_loader
-def load_user(user_id):
-    ## User Logic here?
-    user = User(user_id)
-    return user
-
-class User(UserMixin):
-    def __init__(self, id):
-        self.id = id
 
 
 def startup_banner(ip = None, port = None, version = None):
@@ -374,7 +217,6 @@ def startup_banner(ip = None, port = None, version = None):
 """
     
     return a
-
 
 if __name__ == "__main__":
     ## Init data structures

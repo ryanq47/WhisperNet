@@ -100,7 +100,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Server/Plugins/Secrets/General.md",
+                "file": "Server/Authentication (Web + API).md",
                 "mode": "source",
                 "source": false
               }
@@ -219,7 +219,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Server/Plugins/Secrets/General.md",
+                "file": "Server/Authentication (Web + API).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -236,7 +236,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Server/Plugins/Secrets/General.md",
+                "file": "Server/Authentication (Web + API).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -259,7 +259,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Server/Plugins/Secrets/General.md"
+                "file": "Server/Authentication (Web + API).md"
               }
             }
           },
@@ -293,8 +293,8 @@
   },
   "active": "a18e0143a177c7b7",
   "lastOpenFiles": [
-    "Server/Plugins/FileHost/Overview.md",
     "Server/Plugins/Secrets/General.md",
+    "Server/Plugins/FileHost/Overview.md",
     "Server/Plugins/SimpleC2/Endpoints.md",
     "Server/Plugins/Secrets",
     "Server/Plugins/SimpleC2/Nodes/HTTPNode Command Drawing.canvas",

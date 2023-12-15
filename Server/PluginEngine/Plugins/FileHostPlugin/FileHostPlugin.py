@@ -39,6 +39,9 @@ from functools import wraps
 from flask import request, jsonify, make_response
 from flask_jwt_extended import get_jwt_identity, jwt_required
 
+from SecurityEngine.AuthenticationHandler import AccessManagement
+#@AccessManagement.role_required()
+
 import hashlib
 import time
 import threading
@@ -120,24 +123,6 @@ SUBROUTINE_REFRESH_TIME = 5
 
 
 
-## RoleCheck Decorator - move to BasePlugin after testing
-def role_required(required_role):
-    def decorator(func):
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            current_user = get_jwt_identity()
-            user_role = current_user.get('role') if current_user else None
-
-            if user_role != required_role:
-                return jsonify({"message": "Access denied"}), 403
-
-            return func(*args, **kwargs)
-
-        return wrapper
-
-    return decorator
-
-
 ## Inherets BasePlugin
 ## Is a class instance, the __init__ is from BasePlugin.
 class FileHost(BasePlugin, BaseLogging):
@@ -201,7 +186,7 @@ class FileHost(BasePlugin, BaseLogging):
     ## Something funky happening here, I bet somethings not returning right, and as 
     ## such, erroring out.
     @jwt_required()
-    @role_required('filehost_admin')
+    @AccessManagement.role_required('filehost_admin')
     def command_endpoint(self):
         json = {
             "command": "stuff"

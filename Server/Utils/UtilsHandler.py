@@ -6,7 +6,7 @@ import DataEngine.JsonHandler
 import Utils.ErrorDefinitions
 import subprocess
 import threading
-
+from flask import jsonify
 ################
 ## QOL Functions
 ################
@@ -298,3 +298,31 @@ def threaded_process_spawner(path=None, command=None) -> bool:
     except Exception:
         raise Utils.ErrorDefinitions.PROCESS_SPAWN_ERROR
     
+def api_response(status_code=None, message=None, data=None, **kwargs):
+    '''
+    Helper function to create a response json_str to send back to the user. 
+    
+    status_code(int): Status code
+    message(str): Message to send along with the response
+    data(Any): Data to be sent back 
+    
+    Note! You can include custom keys with kwargs:
+    ex:
+
+    return api_response(
+        code=200, 
+        message="Login successful", 
+        data=None,
+        access_token=access_token,  ## Kwarg
+        error_code="AUTH_FAILURE"## Kwarg
+    )
+
+    '''
+    response = {
+        'status': status_code,
+        'message': message,
+        'data': data
+    }
+    # Update the response with any additional keyword arguments
+    response.update(kwargs)
+    return jsonify(response), status_code
