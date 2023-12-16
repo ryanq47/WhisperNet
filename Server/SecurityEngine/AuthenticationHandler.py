@@ -342,18 +342,38 @@ class AccessManagement:
     '''
     ## RoleCheck Decorator - move to BasePlugin after testing
     @staticmethod
-    def role_required(required_role):
+    def role_required(*required_roles):
+        '''
+        
+        A (static) wrapper to allow/deny based on roles
+
+        required_roles: Roles required. I think it's a tuple. See 
+            below code exaple on how to properly call this func
+        
+        Ex Usage: 
+
+        With this, either 'admin' or 'editor' can access this function
+            
+            @role_required('admin', 'editor')
+            def sensitive_function():
+                # Your sensitive function code here
+                return "Sensitive data accessed"
+
+        '''
+
         def decorator(func):
             @wraps(func)
             def wrapper(*args, **kwargs):
                 current_user = get_jwt_identity()
-                user_role = current_user.get('role') if current_user else None
+                user_roles_str = current_user.get('role') if current_user else ''
 
-                if user_role != required_role:
+                # Splitting the roles string into a list of roles
+                user_roles = user_roles_str.split(',')
+
+                # Check if any of the user's roles match the required roles
+                if not any(role in required_roles for role in user_roles):
                     return jsonify({"message": "Access denied"}), 403
 
                 return func(*args, **kwargs)
-
             return wrapper
-
         return decorator

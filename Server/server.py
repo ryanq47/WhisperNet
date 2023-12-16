@@ -3,9 +3,7 @@ try:
     import subprocess
     import socket
     import threading
-    #import time
     import os
-    #import sys
     import random
     import atexit
     from datetime import datetime, timezone
@@ -15,10 +13,6 @@ try:
     import traceback
     import ssl
     import inspect
-    import asyncio
-    import signal
-    import sys
-    import time
     import random
     import importlib
     from flask import Flask, jsonify, request, send_from_directory, render_template, Response, redirect
@@ -121,7 +115,7 @@ class ControlServer(BaseLogging):
 
     def init_routes(self):
         pass
-        #self.app.route("/", methods=["GET"])(self.login_page)
+        #self.app.route("/", methods=["GET"])(self.<FUNC>)
 
     ## ugly af
     def load_plugins(self, app):
