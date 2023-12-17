@@ -13,6 +13,7 @@ from Utils.LoggingBaseClass import BaseLogging
 from flask_jwt_extended import get_jwt_identity, jwt_required
 from functools import wraps
 from flask import jsonify
+from Utils.UtilsHandler import api_response
 
 ## This is super hacky. My Dumbass made this a static method, so to properly use the BaseLogging class, I need to to 
 ## init the instance, and then call the logging function
@@ -364,15 +365,26 @@ class AccessManagement:
         def decorator(func):
             @wraps(func)
             def wrapper(*args, **kwargs):
-                current_user = get_jwt_identity()
-                user_roles_str = current_user.get('role') if current_user else ''
+                try:
+                    current_user = get_jwt_identity()
 
-                # Splitting the roles string into a list of roles
-                user_roles = user_roles_str.split(',')
+                    # This is a list
+                    user_roles = current_user.get('role')
 
-                # Check if any of the user's roles match the required roles
-                if not any(role in required_roles for role in user_roles):
-                    return jsonify({"message": "Access denied"}), 403
+                    # Check if any of the user's roles match the required roles
+                    if not any(role in required_roles for role in user_roles):
+                        return api_response(
+                            status_code=403,
+                        )
+                
+                except Exception as e:
+                    ## This is here so I can handle the errors instead of letting
+                    # flask spit out whatever it wants.
+                    return api_response(
+                        status_code=500
+                        #message=str(e) ## Dumb & stupid remove once done debugging
+                    )
+                #jsonify({"message": "Access denied"}), 403
 
                 return func(*args, **kwargs)
             return wrapper

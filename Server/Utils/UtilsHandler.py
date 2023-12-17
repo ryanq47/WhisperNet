@@ -298,7 +298,7 @@ def threaded_process_spawner(path=None, command=None) -> bool:
     except Exception:
         raise Utils.ErrorDefinitions.PROCESS_SPAWN_ERROR
     
-def api_response(status_code=None, message=None, data=None, **kwargs):
+def api_response(status_code=None, message=None, **kwargs):
     '''
     Helper function to create a response json_str to send back to the user. 
     
@@ -320,8 +320,8 @@ def api_response(status_code=None, message=None, data=None, **kwargs):
     '''
     response = {
         'status': status_code,
-        'message': message,
-        'data': data
+        'message': message
+        ## kwargs will get added here, see next line
     }
     # Update the response with any additional keyword arguments
     response.update(kwargs)

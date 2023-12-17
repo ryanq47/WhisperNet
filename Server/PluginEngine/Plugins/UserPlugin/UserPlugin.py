@@ -23,9 +23,12 @@ Go ahead and define any other imports you may need here.
 import logging
 import inspect
 from flask import request
+from werkzeug.exceptions import BadRequest
 
 import SecurityEngine.AuthenticationHandler
 from Utils.LoggingBaseClass import BaseLogging
+from Utils.UtilsHandler import api_response
+from SecurityEngine.AuthenticationHandler import AccessManagement
 
 ################################################
 # Info class
@@ -51,6 +54,11 @@ class Info:
 Then, add '@jwt_required' decorator to your functions you want protected. 
 
 Boom, you now need an account/authorization to access this endpoint.
+
+Roles Notes:
+This plugin has X roles:
+    iam_admin: Admin role
+    iam_user: Not sure if this will be needed, will there ever be a case of a "iam_user" needed?
 
 '''
 from flask_jwt_extended import jwt_required
@@ -95,8 +103,8 @@ class UserHandler(BasePlugin, BaseLogging):
         self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
         self.app.route(f'/{Info.endpoint}', methods=["GET"])(self.userhandler_base)
 
-        self.app.route(f"{Info.endpoint}/createuser", methods=["POST"])(self.create_user)
-        self.app.route(f"{Info.endpoint}/deleteuser", methods=["POST"])(self.delete_user)
+        self.app.route(f"/api/{Info.endpoint}/create", methods=["POST"])(self.create_user)
+        self.app.route(f"/api/{Info.endpoint}/delete", methods=["POST"])(self.delete_user)
 
         #self.app.route(f"/{self.UrlSc.CREATE_USER}", methods=["POST"])(self.create_user)
         #self.app.route(f"/{self.UrlSc.DELETE_USER}", methods=["POST"])(self.delete_user)
@@ -112,31 +120,49 @@ class UserHandler(BasePlugin, BaseLogging):
     
     ## Create users
     @jwt_required()
+    @AccessManagement.role_required('iam_admin')
     def create_user(self):
-        username = request.json.get('username')
-        password = request.json.get('password')
+        try:
+            username = request.json.get('username')
+            password = request.json.get('password')
 
-        if  SecurityEngine.AuthenticationHandler.UserManagement.create_user(
-            username=username,
-            password=password,
-            path_struct=self.DataStruct.path_struct
-        ):
+            # Early exit if user creation is not successful
+            if not SecurityEngine.AuthenticationHandler.UserManagement.create_user(
+                username=username,
+                password=password,
+                path_struct=self.DataStruct.path_struct
+            ):
+                return api_response(status_code=403)
+
+            # Main logic after early exit check
             self.logger.info(f"{self.logging_info_symbol} Created user '{username}'")
-            return f"user {username} created"
+            return api_response(status_code=200, message=f"User '{username}' created")
 
-        else:
-            return self.page_not_found()
-        
+        except BadRequest:
+            return api_response(status_code=400)
+        except Exception as e:
+            return api_response(status_code=500)
+
     ## Delete users
     @jwt_required()
+    @AccessManagement.role_required('iam_admin')
     def delete_user(self):
-        username = request.json.get('username')
+        try:
+            username = request.json.get('username')
 
-        if  SecurityEngine.AuthenticationHandler.UserManagement.delete_user(
-            username=username,
-            path_struct=self.DataStruct.path_struct
-        ):
+            # Early exit if user deletion is not successful
+            if not SecurityEngine.AuthenticationHandler.UserManagement.delete_user(
+                username=username,
+                path_struct=self.DataStruct.path_struct
+            ):
+                return api_response(status_code=403)
+
+            # Main logic after early exit check
             self.logger.info(f"{self.logging_info_symbol} Deleted user '{username}'")
-            return f"user {username} deleted"
-        else:
-            return self.page_not_found()
+            return api_response(status_code=200, message=f"User {username} deleted")
+
+        except BadRequest:
+            return api_response(status_code=400)
+        except Exception as e:
+            return api_response(status_code=500)
+

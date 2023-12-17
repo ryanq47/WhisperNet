@@ -188,6 +188,9 @@ class FileHost(BasePlugin, BaseLogging):
     @jwt_required()
     @AccessManagement.role_required('filehost_admin')
     def command_endpoint(self):
+        '''
+        Iirc endpoint for commands for the node. this whole thing needs a review
+        '''
         json = {
             "command": "stuff"
         }
