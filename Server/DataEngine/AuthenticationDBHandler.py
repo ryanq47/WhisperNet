@@ -17,6 +17,7 @@ class AuthenticationSQLDBHandler(BaseLogging):
     
     '''
 
+    #[X]
     def __init__(self, db_path):
         super().__init__()
         self.dbconn = None
@@ -24,6 +25,7 @@ class AuthenticationSQLDBHandler(BaseLogging):
         self.connect_to_db(db_path)
         self.logger.debug(f"[*] Successful DB connection to {db_path}")
 
+    #[X]
     def connect_to_db(self, db_path):
         '''
         Initiates the connection to the database
@@ -41,38 +43,23 @@ class AuthenticationSQLDBHandler(BaseLogging):
 
 
         except Exception as e:
-            raise DataEngine.ErrorDefinitions.GENERAL_ERROR
-        
+            raise Utils.ErrorDefinitions.GENERAL_ERROR
 
-    def get_username(self, username = None) -> bool:
+    def nuke_and_recreate_db(self):
         '''
-        Get a username
-        
+        Wipe, and recreate the DB. 
         '''
 
-        self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        self._wipe_db()
+        self._create_tables()
+        self._add_roles()
 
-        # guard clause to check if username is none.
-        if Utils.GuardClauses.guard_t_f_check(username is None, "[*] Username argument is 'None'!"):
-            return False
-
-        # check if user exists
-        self.cursor.execute(f"SELECT 1 FROM users WHERE username = ?", (username,))
-
-        result = self.cursor.fetchone()
-
-        if result:
-            return True
-        
-        else:
-            return False
-
-        # if exist, return true
-
+    #[X]
     def get_api_username(self, username = None) -> bool:
         '''
         Get a username
         
+        returns a bool, true if exists, false if not
         '''
 
         self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
@@ -94,6 +81,7 @@ class AuthenticationSQLDBHandler(BaseLogging):
 
         # if exist, return true
 
+    #[X]
     def get_api_password_blob(self, username = None):
         '''
         Get a password blob for API users. Exact copy of get_password_blob save for the table being accessed
@@ -150,7 +138,8 @@ class AuthenticationSQLDBHandler(BaseLogging):
                 return False
         except Exception as e:
             print(f"[*] Error: {e}")
-
+    
+    #[X]
     def create_api_user(self, username = None, password_blob = None) -> bool:
         '''
         The DB implementation of create_user. This directly accesses, and modifies the DB. Apart of the 
@@ -168,10 +157,11 @@ class AuthenticationSQLDBHandler(BaseLogging):
             self.logger.warning(f"[*] User {username} already exists!")
 
         except:
-            raise DataEngine.ErrorDefinitions.GENERAL_ERROR
+            raise Utils.ErrorDefinitions.GENERAL_ERROR
 
         return False
-
+    
+    #[X]
     def delete_api_user(self, username = None) -> bool:
         '''
         The DB implementation of delete_user. This directly accesses, and modifies the DB. 
@@ -187,11 +177,130 @@ class AuthenticationSQLDBHandler(BaseLogging):
             return True
         
         except Exception as e:
-            raise DataEngine.ErrorDefinitions.GENERAL_ERROR
+            raise Utils.ErrorDefinitions.GENERAL_ERROR
+    # [x]
+    def add_api_role(self, username=None, roles=None):
+        '''
+        Adds roles to an API user. 
 
-    def create_table(self):
+        roles (list): Roles to be added
+            Ex: ["filehost_admin", "iam_admin"]
+        
+        '''
+        self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        try:
+            # Fetch user_id from the username
+            user_query = 'SELECT user_id FROM api_users WHERE username = ?'
+            self.cursor.execute(user_query, (username,))
+            user_id = self.cursor.fetchone()
+
+            if user_id is None:
+                raise ValueError("User not found")
+
+            # Add each role to the user
+            for role_name in roles:
+                # Fetch role_id from the role_name
+                role_query = 'SELECT role_id FROM roles WHERE role_name = ?'
+                self.cursor.execute(role_query, (role_name,))
+                role_id = self.cursor.fetchone()
+
+                if role_id is None:
+                    raise ValueError(f"Role '{role_name}' not found")
+
+                # Insert user_id and role_id into user_roles
+                insert_query = 'INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)'
+                self.cursor.execute(insert_query, (user_id[0], role_id[0]))
+
+            self.dbconn.commit()
+            return True
+
+        except Exception as e:
+            self.dbconn.rollback()
+            self.logger.error(f"Error while adding roles: {e}")
+            raise Utils.ErrorDefinitions.GENERAL_ERROR
+
+    # [X]
+    def get_all_api_user_roles(self, username):
         """
-        Creates table if needed
+        Fetches all roles for a specific user.
+
+        :param username: The username of the user
+        :return: List of roles for the user
+        """
+        user_id = self.get_api_user_id(username)
+        if user_id is None:
+            return "User not found"
+
+        query = """
+            SELECT u.username, r.role_name FROM user_roles ur
+            JOIN api_users u ON ur.user_id = u.user_id
+            JOIN roles r ON ur.role_id = r.role_id
+            WHERE u.user_id = ?
+        """
+        try:
+            self.cursor.execute(query, (user_id,))
+            roles = self.cursor.fetchall()
+            return roles
+        except Exception as e:
+            self.logger.error(f"Error fetching roles for user {username}: {e}")
+            return "Error fetching roles"
+
+    # [X]
+    def get_api_users_with_role(self, role_name):
+        """
+        Fetches all users who have a specific role.
+
+        :param role_name: The name of the role
+        :return: List of users with the role
+        """
+        # First, get the role_id from role_name
+        role_query = 'SELECT role_id FROM roles WHERE role_name = ?'
+        try:
+            self.cursor.execute(role_query, (role_name,))
+            role_result = self.cursor.fetchone()
+            if role_result is None:
+                return "Role not found"
+            role_id = role_result[0]
+        except Exception as e:
+            self.logger.error(f"Error fetching role ID for role {role_name}: {e}")
+            return "Error fetching role ID"
+
+        # Then, get the users with the role_id
+        user_query = """
+            SELECT u.username, r.role_name FROM user_roles ur
+            JOIN api_users u ON ur.user_id = u.user_id
+            JOIN roles r ON ur.role_id = r.role_id
+            WHERE r.role_id = ?
+        """
+        try:
+            self.cursor.execute(user_query, (role_id,))
+            users = self.cursor.fetchall()
+            return users
+        except Exception as e:
+            self.logger.error(f"Error fetching users with role {role_name}: {e}")
+            return "Error fetching users"
+
+    def get_api_user_id(self, username):
+        """
+        Fetches the user ID for a given username.
+
+        :param username: The username of the user
+        :return: User ID or None if not found
+        """
+        query = 'SELECT user_id FROM api_users WHERE username = ?'
+        try:
+            self.cursor.execute(query, (username,))
+            result = self.cursor.fetchone()
+            return result[0] if result else None
+        except Exception as e:
+            self.logger.error(f"Error fetching user ID for username {username}: {e}")
+            return None
+    #[X] -- May run into type issues, changed user_id in api_users 
+    # into integer for auto increment
+    def _create_tables(self):
+        """
+        Creates tables if needed
 
         user: blob
         pass: blob
@@ -199,11 +308,76 @@ class AuthenticationSQLDBHandler(BaseLogging):
         """
         self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
-        self.cursor.execute(f'''
-        CREATE TABLE IF NOT EXISTS stats (
-        username BLOB UNIQUE,
-        password_hash BLOB,
-        id BLOB UNIQUE
-        )
-        ''')
-        self.cursor.commit()
+        self.cursor.execute("""
+            CREATE TABLE IF NOT EXISTS api_users (
+                user_id INTEGER PRIMARY KEY,
+                username VARCHAR(255) NOT NULL,
+                password_hash BLOB
+            );
+        """)
+
+        ## Roles table
+        self.cursor.execute("""
+            CREATE TABLE roles (
+                role_id INT PRIMARY KEY,
+                role_name VARCHAR(255) UNIQUE NOT NULL
+            );                   
+        """)
+
+        # combined user roles
+        self.cursor.execute("""
+            CREATE TABLE user_roles (
+                user_id INT,
+                role_id INT,
+                PRIMARY KEY (user_id, role_id),
+                FOREIGN KEY (user_id) REFERENCES api_users(user_id), 
+                FOREIGN KEY (role_id) REFERENCES roles(role_id)
+            );           
+        """)
+                #FOREIGN KEY (user_id) REFERENCES api_users(user_id),  was users
+
+
+
+        self.dbconn.commit()
+
+    # [x]
+    def _wipe_db(self):
+        
+        '''
+        Clears out the database with a predefined list of tables:
+        ['api_users','users','user_roles']
+
+        Technically injectable, but no input is taken so its "safe". 
+        '''
+        self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        tables = ['api_users','roles','user_roles']
+
+        for table in tables:
+            self.cursor.execute(f"DROP TABLE IF EXISTS {table}")
+            #print(f"wiping {table}")
+        self.dbconn.commit()
+    
+    # [x]
+    def _add_roles(self):
+        '''
+        Adds inital roles to DB. Should only be called on table wipe/recreation.
+
+        Roles have to be manually added to this function for now. Will figure out the plugin 
+        & custom role situation later.
+        
+        '''
+        roles_to_insert = [
+            (1, 'iam_admin'),
+            (2, 'iam_user'),
+            # ... more roles
+        ]
+
+        insert_query = 'INSERT INTO roles (role_id, role_name) VALUES (?, ?)'
+
+        try:
+            self.cursor.executemany(insert_query, roles_to_insert)
+            self.dbconn.commit()
+        except Exception as e:
+            self.dbconn.rollback()
+            self.logger.error(f"Error while inserting roles: {e}")

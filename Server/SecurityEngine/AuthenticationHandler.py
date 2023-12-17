@@ -272,45 +272,56 @@ class UserManagement:
     The class for handling user shit. I.e. creating, deleting, modifying
     '''
     @staticmethod
-    def create_user(path_struct = None, username = None, password = None):
+    def create_user(path_struct=None, username=None, password=None, roles=None):
         '''
         Creates users. Is an abstraction over the AuthenticationSQLDBHandler.create_user
 
         path_struct: The class instance containing path data
         username: username of user to create
-        pass: pass of user to create
+        password: password of user to create
+        roles: List of roles. Ex: ["filehost_admin", "iam_admin"]
         '''
         base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        # Validate input parameters
+        if not all([path_struct, username, password, roles]):
+            base_logging.logger.debug("Invalid input parameters for creating user")
+            return False
+
         try:
-            server_absolute_path = path_struct.sys_path
-            db_relative_path = "DataBases/users.db"
-            db_absolute_path = os.path.join(server_absolute_path, db_relative_path)
+            # Construct database path
+            db_absolute_path = os.path.join(path_struct.sys_path, "DataBases/users.db")
 
-
+            # Initialize database handler
             db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
                 db_path=db_absolute_path
             )
 
-            password_blob =  SecurityEngine.EncryptionHandler.Hashing.bcrypt_hash(
-                data = password
-            )
-
-            if Utils.GuardClauses.guard_t_f_check(password_blob is None, "[*] password_blob is none, error occured during hashing"):
+            # Hash the password
+            password_blob = SecurityEngine.EncryptionHandler.Hashing.bcrypt_hash(data=password)
+            if password_blob is None:
+                base_logging.logger.debug("[*] password_blob is none, error occurred during hashing")
                 return False
 
-            if db_instance.create_api_user(
-                username = username,
-                password_blob = password_blob,
-            ):
-                return True
-        
+            # Create user in the database
+            if not db_instance.create_api_user(username=username, password_blob=password_blob):
+                base_logging.logger.debug("Failed to create user in the database")
+                return False
+
+            # Add roles to the user
+            if not db_instance.add_api_role(roles=roles):
+                base_logging.logger.debug("Failed to add roles to the user")
+                return False
+
+            return True
+
         except Exception as e:
             base_logging.logger.debug(f"Could not connect to DB: {e}")
-        
-        return False
+            return False
+
     
     @staticmethod
-    def delete_user(path_struct = None, username = None):
+    def delete_user(path_struct=None, username=None):
         '''
         For deleting users. Is an abstraction over the AuthenticationSQLDBHandler.delete_user
 
@@ -318,24 +329,32 @@ class UserManagement:
         username: The username to delete
         '''
         base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-        try:
-            server_absolute_path = path_struct.sys_path
-            db_relative_path = "DataBases/users.db"
-            db_absolute_path = os.path.join(server_absolute_path, db_relative_path)
 
+        # Validate input parameters
+        if not all([path_struct, username]):
+            base_logging.logger.debug("Invalid input parameters for deleting user")
+            return False
+
+        try:
+            # Construct database path
+            db_absolute_path = os.path.join(path_struct.sys_path, "DataBases/users.db")
+
+            # Initialize database handler
             db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
                 db_path=db_absolute_path
             )
 
-            if db_instance.delete_api_user(
-                username = username
-            ):
+            # Delete user from the database
+            if db_instance.delete_api_user(username=username):
+                base_logging.logger.debug(f"Successfully deleted user '{username}'")
                 return True
-        
+            else:
+                base_logging.logger.debug(f"Failed to delete user '{username}'")
+                return False
+
         except Exception as e:
             base_logging.logger.debug(f"Could not connect to DB: {e}")
-        
-        return False
+            return False
 
 class AccessManagement:
     '''

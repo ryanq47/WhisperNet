@@ -125,12 +125,15 @@ class UserHandler(BasePlugin, BaseLogging):
         try:
             username = request.json.get('username')
             password = request.json.get('password')
+            roles = request.json.get('roles')
+            print(roles)
 
             # Early exit if user creation is not successful
             if not SecurityEngine.AuthenticationHandler.UserManagement.create_user(
                 username=username,
                 password=password,
-                path_struct=self.DataStruct.path_struct
+                path_struct=self.DataStruct.path_struct,
+                roles=roles
             ):
                 return api_response(status_code=403)
 
