@@ -298,7 +298,7 @@ class UserManagement:
             if Utils.GuardClauses.guard_t_f_check(password_blob is None, "[*] password_blob is none, error occured during hashing"):
                 return False
 
-            if db_instance.create_user(
+            if db_instance.create_api_user(
                 username = username,
                 password_blob = password_blob,
             ):
@@ -327,7 +327,7 @@ class UserManagement:
                 db_path=db_absolute_path
             )
 
-            if db_instance.delete_user(
+            if db_instance.delete_api_user(
                 username = username
             ):
                 return True
