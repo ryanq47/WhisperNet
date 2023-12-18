@@ -27,188 +27,51 @@ class Authentication(BaseLogging):
     with whatever wild methods I come up with in the future. Flexible on purpose
     
     '''
+
+    # [? test me]
     @staticmethod
-    def authentication_eval(username = None, password = None, path_struct = None) -> bool:
+    def api_authentication_eval(username=None, password=None, path_struct=None) -> bool:
         '''
-        Checks if user is authorized for access
+        Checks if API user is authorized for access.
 
         Checks:
             - Username
             - Password
-
-            
-        Dev notes, this is not perfect. Might need some work. It just feels weird
         '''
 
         base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
-        print(f"User: {username}")
+        # Validate input parameters
+        if not username or not password:
+            base_logging.logger.warning("Username or password not provided for authentication")
+            return False
 
-        #server_absolute_path = path_struct.sys_path
+        # Path setup
         db_relative_path = "DataBases/users.db"
-        db_absolute_path = db_relative_path
-        #db_absolute_path = os.path.join(server_absolute_path, db_relative_path)
+        db_absolute_path = db_relative_path  # or os.path.join(server_absolute_path, db_relative_path)
 
         try:
             db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
                 db_path=db_absolute_path
             )
 
-            if db_instance.get_username(username=username):
-                if Authentication._validate_password(db_instance=db_instance, username=username, password=password):
-                    #base_logging.logger.warning(f"{base_logging.logging_warning_symbol} User {username} authenticated")
-                    return True
-            
-        except Exception as e:
-            # dosen't return anything, could be an issue?
-            ## This could also be show stopper
-            #raise Utils.ErrorDefinitions.GENERAL_ERROR
-            base_logging.logger.debug(f"Authentication Error: {e}")
-        
-        return False
-
-    @staticmethod
-    def api_authentication_eval(username = None, password = None, path_struct = None) -> bool:
-        '''
-        Checks if api user is authorized for access
-
-        Checks:
-            - Username
-            - Password
-
-            
-        Dev notes, this is not perfect. Might need some work. It just feels weird
-        '''
-
-        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-
-        print(f"User: {username}")
-
-        #server_absolute_path = path_struct.sys_path
-        db_relative_path = "DataBases/users.db"
-        db_absolute_path = db_relative_path
-        #db_absolute_path = os.path.join(server_absolute_path, db_relative_path)
-
-        try:
-            db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
-                db_path=db_absolute_path
-            )
-
-            if db_instance.get_api_username(username=username):
-                if Authentication._validate_api_password(db_instance=db_instance, username=username, password=password):
-                    #base_logging.logger.warning(f"{base_logging.logging_warning_symbol} User {username} authenticated")
-                    return True
-            
-        except Exception as e:
-            # dosen't return anything, could be an issue?
-            ## This could also be show stopper
-            #raise Utils.ErrorDefinitions.GENERAL_ERROR
-            base_logging.logger.debug(f"Authentication Error: {e}")
-        
-        return False
-
-    @staticmethod
-    def api_get_user_role(username = None) -> bool:
-        '''
-        Gets API user role
-            
-        '''
-        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-
-        print(f"User: {username}")
-
-        #server_absolute_path = path_struct.sys_path
-        db_relative_path = "DataBases/users.db"
-        db_absolute_path = db_relative_path
-        #db_absolute_path = os.path.join(server_absolute_path, db_relative_path)
-
-        try:
-            db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
-                db_path=db_absolute_path
-            )
-
-            role = db_instance.get_api_user_roll(username=username)
-
-            if role:
-                ## Role is a tuple in a list due to SQLite, so we are just retruning the tuple & stripping the list
-                # role: [(admin, filehost_admin)]
-    
-                role = role[0]
-                # role converted to (admin, filehost_admin)
-
-                ## turning into list for jwt
-                role_dict = []
-                ## Split on "," remove spaces, and lowercase
-                for i in role.split(","):
-                    i = i.replace(" ", "")
-                    i = i.lower()
-                    role_dict.append(i)
-
-                ## role_dict = [admin, filehost_admin]
-                return role_dict
-            
-            else:
-                base_logging.logger.warning(f"{base_logging.logging_warning_symbol} User {username} seemingly does not have any roles")
-                    
-        except Exception as e:
-            # dosen't return anything, could be an issue?
-            ## This could also be show stopper
-            #raise Utils.ErrorDefinitions.GENERAL_ERROR
-            base_logging.logger.warning(f"{base_logging.logging_warning_symbol} Error: {e}")
-        
-        return False
-
-
-    @staticmethod
-    def _validate_password(db_instance=None, password=None, username=None) -> bool:
-        '''
-        Validates a username. Private Func,Should not be called from outside this class.
-
-        '''
-        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-
-        try:
-            if Utils.GuardClauses.guard_t_f_check(username is None, "[*] Username argument is 'None'! Authentication will fail!"):
+            # Check if the username exists
+            if not db_instance.get_api_username(username=username):
+                base_logging.logger.debug(f"Username {username} not found")
                 return False
 
-            ## 
-            pass_blob_tuple = db_instance.get_password_blob(username=username)
-            ## blob is first item in tuple
-            pass_blob = pass_blob_tuple[0]
-
-            print(f"PassBlob: {pass_blob}")
-            print(f"PassWord: {password}")
-
-
-            if pass_blob == False:
-                base_logging.logger.debug(f"[*] Could not get password hash for user '{username}' from users.db")
-                return False
-
-            ## get username's password blob
-            ## [func dep, beign weird
-            '''
-            if SecurityEngine.EncryptionHandler.Hashing.bcrypt_hash_and_compare(
-                #entered_data=password,
-                #stored_data=pass_blob
-                entered_data=username,
-                stored_data=pass_blob
-            ):
-                print(f"Successful Login: '{username}':'{password}'")'''
-
-            #if bcrypt.checkpw("1234".encode(), "$2b$12$6l17I4n6BUqF3C43ldlg4u8kzCdDCLU/AJBTa44Yi.PGNon5hv3Mu".encode()):
-            
-            if bcrypt.checkpw(password.encode(), pass_blob.encode()):
-                base_logging.logger.info(f"Successful Login: '{username}':'{password}'")
+            # Validate the password
+            if Authentication._validate_api_password(db_instance=db_instance, username=username, password=password):
                 return True
-            
             else:
-                base_logging.logger.warning(f"Bad Login: '{username}':'{password}'")
-        
+                base_logging.logger.debug(f"Incorrect password for user {username}")
+                return False
+
         except Exception as e:
-            base_logging.logger.debug(f"[*] Error: {e}")
+            base_logging.logger.error(f"Authentication Error: {e}")
+            return False
 
-        return False
-
+    # [X]
     @staticmethod
     def _validate_api_password(db_instance=None, password=None, username=None) -> bool:
         '''
@@ -235,7 +98,7 @@ class Authentication(BaseLogging):
             pass_blob = pass_blob_tuple[0]
 
             print(f"PassBlob: {pass_blob}")
-            print(f"PassWord: {password}")
+            #print(f"PassWord: {password}")
 
 
             if pass_blob == False:
@@ -254,23 +117,64 @@ class Authentication(BaseLogging):
                 print(f"Successful Login: '{username}':'{password}'")'''
 
             #if bcrypt.checkpw("1234".encode(), "$2b$12$6l17I4n6BUqF3C43ldlg4u8kzCdDCLU/AJBTa44Yi.PGNon5hv3Mu".encode()):
-            
-            if bcrypt.checkpw(password.encode(), pass_blob.encode()):
-                base_logging.logger.info(f"Successful Login: '{username}':'{password}'")
+            ## pass_blob is seemingly coming back from the db as a bytes object. Might get funky somewhere later
+            if bcrypt.checkpw(password.encode(), pass_blob):
+                base_logging.logger.info(f"Successful Login: '{username}'")
                 return True
             
             else:
-                base_logging.logger.warning(f"Bad Login: '{username}':'{password}'")
-        
+                base_logging.logger.warning(f"Bad Login: '{username}'")
+
         except Exception as e:
             base_logging.logger.debug(f"[*] Error: {e}")
 
         return False
 
+    
+    # [X]
+    @staticmethod
+    def api_get_user_role(username=None) -> list:
+        '''
+        Gets API user role, returns a list of roles
+
+        username: Username to query for its roles
+
+        ex: ['iam_admin', 'iam_user']
+        '''
+        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        # Path setup
+        db_relative_path = "DataBases/users.db"
+        db_absolute_path = db_relative_path  # or os.path.join(server_absolute_path, db_relative_path)
+
+        if not username:
+            base_logging.logger.warning(f"{base_logging.logging_warning_symbol} No username provided")
+            return []
+
+        try:
+            # Initialize DB instance and fetch roles
+            db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(db_path=db_absolute_path)
+            roles = db_instance.get_all_api_user_roles(username=username)
+
+            if not roles:
+                base_logging.logger.warning(f"{base_logging.logging_warning_symbol} User {username} does not have any roles")
+                return []
+
+            # Extract and return roles -- data look slike [(user,role)]
+            return [role[1] for role in roles]
+
+        except Exception as e:
+            base_logging.logger.error(f"{base_logging.logging_warning_symbol} Error fetching roles for user {username}: {e}")
+            # Depending on requirements, you might raise an error or return an empty list
+            return []
+
 class UserManagement:
     '''
     The class for handling user shit. I.e. creating, deleting, modifying
+
+    Note... there is nothing stopping a user from nuking the DB/deleting all the users and locking everyone out. 
     '''
+    #[x] - probably good.
     @staticmethod
     def create_user(path_struct=None, username=None, password=None, roles=None):
         '''
@@ -290,11 +194,11 @@ class UserManagement:
 
         try:
             # Construct database path
-            db_absolute_path = os.path.join(path_struct.sys_path, "DataBases/users.db")
+            #db_absolute_path = os.path.join(path_struct.sys_path, "DataBases/users.db")
 
             # Initialize database handler
             db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
-                db_path=db_absolute_path
+                db_path="DataBases/users.db"#db_absolute_path
             )
 
             # Hash the password
@@ -309,14 +213,14 @@ class UserManagement:
                 return False
 
             # Add roles to the user
-            if not db_instance.add_api_role(roles=roles):
+            if not db_instance.add_api_role(username=username, roles=roles):
                 base_logging.logger.debug("Failed to add roles to the user")
                 return False
 
             return True
 
         except Exception as e:
-            base_logging.logger.debug(f"Could not connect to DB: {e}")
+            base_logging.logger.debug(f"Could not create user: {e}")
             return False
 
     
@@ -355,6 +259,7 @@ class UserManagement:
         except Exception as e:
             base_logging.logger.debug(f"Could not connect to DB: {e}")
             return False
+
 
 class AccessManagement:
     '''

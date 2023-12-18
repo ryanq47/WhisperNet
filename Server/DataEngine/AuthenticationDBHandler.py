@@ -53,6 +53,7 @@ class AuthenticationSQLDBHandler(BaseLogging):
         self._wipe_db()
         self._create_tables()
         self._add_roles()
+        #self._add_initial_admin_user()
 
     #[X]
     def get_api_username(self, username = None) -> bool:
@@ -82,7 +83,7 @@ class AuthenticationSQLDBHandler(BaseLogging):
         # if exist, return true
 
     #[X]
-    def get_api_password_blob(self, username = None):
+    def get_api_password_blob(self, username = None) -> bytes:
         '''
         Get a password blob for API users. Exact copy of get_password_blob save for the table being accessed
         
@@ -103,36 +104,6 @@ class AuthenticationSQLDBHandler(BaseLogging):
 
             if password_hash:
                 return password_hash
-            
-            else:
-                return False
-        except Exception as e:
-            print(f"[*] Error: {e}")
-
-    def get_api_user_roll(self, username = None):
-        '''
-        Gets the role of the API user provided.
-
-        returns a list of tupels
-
-        [(admin, user)]        
-        
-        '''
-        self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-
-        print(username)
-
-        # guard clause to check if username is none.
-        if Utils.GuardClauses.guard_t_f_check(username is None, "[*] Username argument is 'None'! Authentication will fail!"):
-            return False
-
-        try:
-            self.cursor.execute(f"SELECT role FROM api_users WHERE username = ?", (username,))
-
-            role = self.cursor.fetchone()
-
-            if role:
-                return role
             
             else:
                 return False
@@ -161,23 +132,46 @@ class AuthenticationSQLDBHandler(BaseLogging):
 
         return False
     
-    #[X]
-    def delete_api_user(self, username = None) -> bool:
+    #[x]
+    def delete_api_user(self, username):
         '''
-        The DB implementation of delete_user. This directly accesses, and modifies the DB. 
-        Apart of the AuthenticationSQLDBHandler
-        '''
-        self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+        Deletes a user and their associated roles from the database.
 
+        :param username: The username of the user to be deleted
+        :return: True if the deletion is successful, False otherwise
+        '''
         try:
-            delete_query = f'DELETE FROM api_users WHERE username = ?'
-            values = (username,)
-            self.cursor.execute(delete_query, values)
+            # Begin a transaction
+            #self.dbconn.begin()
+
+            # Step 1: Delete entries from user_roles
+            # Fetch user_id from the username
+            user_query = 'SELECT user_id FROM api_users WHERE username = ?'
+            self.cursor.execute(user_query, (username,))
+            user_id = self.cursor.fetchone()
+
+            if user_id is None:
+                self.logger.error(f"User {username} not found for deletion")
+                return False
+
+            delete_roles_query = 'DELETE FROM user_roles WHERE user_id = ?'
+            self.cursor.execute(delete_roles_query, (user_id[0],))
+
+            # Step 2: Delete the user
+            delete_user_query = 'DELETE FROM api_users WHERE username = ?'
+            self.cursor.execute(delete_user_query, (username,))
+
+            # Commit the transaction
             self.dbconn.commit()
             return True
-        
+
         except Exception as e:
-            raise Utils.ErrorDefinitions.GENERAL_ERROR
+            # Rollback in case of error
+            self.dbconn.rollback()
+            self.logger.error(f"Error while deleting user {username}: {e}")
+            return False
+
+
     # [x]
     def add_api_role(self, username=None, roles=None):
         '''
@@ -188,6 +182,15 @@ class AuthenticationSQLDBHandler(BaseLogging):
         
         '''
         self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        if not username:
+            #print(username)
+            self.logger.error("Username not provided")
+            return False
+        
+        if not roles:
+            self.logger.error("Roles not provided")
+            return False
 
         try:
             # Fetch user_id from the username
@@ -311,7 +314,7 @@ class AuthenticationSQLDBHandler(BaseLogging):
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS api_users (
                 user_id INTEGER PRIMARY KEY,
-                username VARCHAR(255) NOT NULL,
+                username VARCHAR(255) UNIQUE NOT NULL,
                 password_hash BLOB
             );
         """)
