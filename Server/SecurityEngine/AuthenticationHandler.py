@@ -311,6 +311,61 @@ class UserManagement:
             base_logging.logger.debug(f"Could not change user password: {e}")
             return False
 
+    @staticmethod
+    def add_user_role(username = None, roles = None):
+        '''
+        Add a role to a user
+        '''
+        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        # Validate input parameters
+        if not all([username, roles]):
+            base_logging.logger.debug("Invalid input parameters for changing user role")
+            return False
+        
+        try:
+            db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
+                db_path="DataBases/users.db"
+            )
+
+            ## Takes list of roles
+            if not db_instance.add_api_role(username=username, roles = roles):
+                base_logging.logger.debug(f"Could not add roles to '{username}'")
+                return False
+
+            return True
+
+        except Exception as e:
+            base_logging.logger.debug(f"Could not add user role: {e}")
+            return False
+
+    @staticmethod
+    def delete_user_role(username = None, roles = None):
+        '''
+        Add a role to a user
+        '''
+        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        # Validate input parameters
+        if not all([username, roles]):
+            base_logging.logger.debug("Invalid input parameters for deleting user role")
+            return False
+        
+        try:
+            db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
+                db_path="DataBases/users.db"
+            )
+
+            ## Takes list of roles
+            if not db_instance.delete_api_role(username=username, roles = roles):
+                base_logging.logger.debug(f"Could not add roles to '{username}'")
+                return False
+
+            return True
+
+        except Exception as e:
+            base_logging.logger.debug(f"Could not add user role: {e}")
+            return False
 
     @staticmethod
     def default_role_check_and_setup():

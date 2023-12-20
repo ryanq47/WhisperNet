@@ -106,6 +106,8 @@ class UserHandler(BasePlugin, BaseLogging):
         self.app.route(f"/api/{Info.endpoint}/create", methods=["POST"])(self.create_user)
         self.app.route(f"/api/{Info.endpoint}/delete", methods=["POST"])(self.delete_user)
         self.app.route(f"/api/{Info.endpoint}/changepass", methods=["POST"])(self.change_user_password)
+        self.app.route(f"/api/{Info.endpoint}/role/add", methods=["POST"])(self.add_user_role)
+        self.app.route(f"/api/{Info.endpoint}/role/delete", methods=["POST"])(self.remove_user_role)
 
         #self.app.route(f"/{self.UrlSc.CREATE_USER}", methods=["POST"])(self.create_user)
         #self.app.route(f"/{self.UrlSc.DELETE_USER}", methods=["POST"])(self.delete_user)
@@ -119,6 +121,7 @@ class UserHandler(BasePlugin, BaseLogging):
 
         return startup_message
     
+    #[X]
     ## Create users
     @jwt_required()
     @AccessManagement.role_required('iam_admin')
@@ -147,6 +150,7 @@ class UserHandler(BasePlugin, BaseLogging):
         except Exception as e:
             return api_response(status_code=500)
 
+    #[X]
     ## Delete users
     @jwt_required()
     @AccessManagement.role_required('iam_admin')
@@ -170,6 +174,7 @@ class UserHandler(BasePlugin, BaseLogging):
         except Exception as e:
             return api_response(status_code=500)
 
+    #[X]
     @jwt_required()
     @AccessManagement.role_required('iam_admin')
     def change_user_password(self):
@@ -187,6 +192,62 @@ class UserHandler(BasePlugin, BaseLogging):
             # Main logic after early exit check
             self.logger.info(f"{self.logging_info_symbol} Changed password for '{username}'")
             return api_response(status_code=200, message=f"Changed password for '{username}'")
+
+        except BadRequest:
+            return api_response(status_code=400)
+        except Exception as e:
+            return api_response(status_code=500)
+
+    #[X]  
+    @jwt_required()
+    @AccessManagement.role_required('iam_admin')
+    def add_user_role(self):
+        '''
+        Adds a user role
+        
+        '''
+        try:
+            username = request.json.get('username')
+            roles = request.json.get('roles')
+            ## Roles is a list: ['role1','role2']
+
+            # Early exit if user deletion is not successful
+            if not SecurityEngine.AuthenticationHandler.UserManagement.add_user_role(
+                username=username,
+                roles=roles
+            ):
+                return api_response(status_code=403)
+
+            # Main logic after early exit check
+            self.logger.info(f"{self.logging_info_symbol} Added {roles} roles for '{username}'")
+            return api_response(status_code=200, message=f"Added {roles} roles for '{username}'")
+
+        except BadRequest:
+            return api_response(status_code=400)
+        except Exception as e:
+            return api_response(status_code=500)
+        
+    @jwt_required()
+    @AccessManagement.role_required('iam_admin')
+    def remove_user_role(self):
+        '''
+        Removes a user role
+        
+        '''
+        try:
+            username = request.json.get('username')
+            roles = request.json.get('roles')
+
+            # Early exit if user deletion is not successful
+            if not SecurityEngine.AuthenticationHandler.UserManagement.delete_user_role(
+                username=username,
+                roles=roles
+            ):
+                return api_response(status_code=403)
+
+            # Main logic after early exit check
+            self.logger.info(f"{self.logging_info_symbol} Removed {roles} roles for '{username}'")
+            return api_response(status_code=200, message=f"Removed {roles} roles for '{username}'")
 
         except BadRequest:
             return api_response(status_code=400)

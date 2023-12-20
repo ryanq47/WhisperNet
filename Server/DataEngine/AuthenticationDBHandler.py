@@ -198,16 +198,14 @@ class AuthenticationSQLDBHandler(BaseLogging):
     # [x]
     def add_api_role(self, username=None, roles=None):
         '''
-        Adds roles to an API user. 
+        Adds roles to an API user, skipping any roles that cannot be added.
 
         roles (list): Roles to be added
             Ex: ["filehost_admin", "iam_admin"]
-        
         '''
         self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
         if not username:
-            #print(username)
             self.logger.error("Username not provided")
             return False
         
@@ -224,27 +222,105 @@ class AuthenticationSQLDBHandler(BaseLogging):
             if user_id is None:
                 raise ValueError("User not found")
 
+            # Initialize a counter for successful role additions
+            successful_additions = 0
+
             # Add each role to the user
             for role_name in roles:
-                # Fetch role_id from the role_name
-                role_query = 'SELECT role_id FROM roles WHERE role_name = ?'
-                self.cursor.execute(role_query, (role_name,))
-                role_id = self.cursor.fetchone()
+                try:
+                    # Fetch role_id from the role_name
+                    role_query = 'SELECT role_id FROM roles WHERE role_name = ?'
+                    self.cursor.execute(role_query, (role_name,))
+                    role_id = self.cursor.fetchone()
 
-                if role_id is None:
-                    raise ValueError(f"Role '{role_name}' not found")
+                    if role_id is None:
+                        raise ValueError(f"Role '{role_name}' not found")
 
-                # Insert user_id and role_id into user_roles
-                insert_query = 'INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)'
-                self.cursor.execute(insert_query, (user_id[0], role_id[0]))
+                    # Insert user_id and role_id into user_roles
+                    insert_query = 'INSERT INTO user_roles (user_id, role_id) VALUES (?, ?)'
+                    self.cursor.execute(insert_query, (user_id[0], role_id[0]))
+                    successful_additions += 1
+
+                except Exception as role_error:
+                    self.logger.error(f"Error while adding role '{role_name}': {role_error}")
+                    continue  # Skip to the next role
 
             self.dbconn.commit()
-            return True
+
+            # Check if any roles were added successfully
+            if successful_additions > 0:
+                return True
+            else:
+                return False
 
         except Exception as e:
             self.dbconn.rollback()
-            self.logger.error(f"Error while adding roles: {e}")
+            self.logger.error(f"Error while processing roles: {e}")
             raise Utils.ErrorDefinitions.GENERAL_ERROR
+
+    def delete_api_role(self, username=None, roles=None):
+        '''
+        Removes specified roles from an API user, skipping any roles that cannot be removed.
+
+        roles (list): Roles to be removed
+            Ex: ["filehost_admin", "iam_admin"]
+        '''
+        self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        if not username:
+            self.logger.error("Username not provided")
+            return False
+        
+        if not roles:
+            self.logger.error("Roles not provided")
+            return False
+
+        try:
+            # Fetch user_id from the username
+            user_query = 'SELECT user_id FROM api_users WHERE username = ?'
+            self.cursor.execute(user_query, (username,))
+            user_id = self.cursor.fetchone()
+
+            if user_id is None:
+                raise ValueError("User not found")
+
+            # Initialize a counter for successful role removals
+            successful_removals = 0
+
+            # Remove each specified role from the user
+            for role_name in roles:
+                try:
+                    # Fetch role_id from the role_name
+                    role_query = 'SELECT role_id FROM roles WHERE role_name = ?'
+                    self.cursor.execute(role_query, (role_name,))
+                    role_id = self.cursor.fetchone()
+
+                    if role_id is None:
+                        raise ValueError(f"Role '{role_name}' not found")
+
+                    # Delete user_id and role_id from user_roles
+                    delete_query = 'DELETE FROM user_roles WHERE user_id = ? AND role_id = ?'
+                    self.cursor.execute(delete_query, (user_id[0], role_id[0]))
+                    if self.cursor.rowcount > 0:
+                        successful_removals += 1
+
+                except Exception as role_error:
+                    self.logger.error(f"Error while removing role '{role_name}': {role_error}")
+                    continue  # Skip to the next role
+
+            self.dbconn.commit()
+
+            # Check if any roles were successfully removed
+            if successful_removals > 0:
+                return True
+            else:
+                return False
+
+        except Exception as e:
+            self.dbconn.rollback()
+            self.logger.error(f"Error while processing role removals: {e}")
+            raise Utils.ErrorDefinitions.GENERAL_ERROR
+
 
     # [X]
     def get_all_api_user_roles(self, username):
