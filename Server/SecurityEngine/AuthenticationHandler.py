@@ -259,8 +259,58 @@ class UserManagement:
                 return False
 
         except Exception as e:
-            base_logging.logger.debug(f"Could not connect to DB: {e}")
+            base_logging.logger.debug(f"Could not delete user: {e}")
             return False
+
+    @staticmethod
+    def change_user_password(username=None, password=None):
+        '''
+        For changing a users password
+
+        username: username of user
+        password: password of user
+        
+        '''
+        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        # Validate input parameters
+        if not all([username, password]):
+            base_logging.logger.debug("Invalid input parameters for changing password")
+            return False
+        
+        try:
+            # Construct database path
+
+            # Initialize database handler
+            db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
+                db_path="DataBases/users.db"
+            )
+
+            ## Check if user exists
+            if not db_instance.get_api_username(username=username):
+                base_logging.logger.warning("[*] User does not exist, cannot change password")
+                return False
+
+
+            ## Hash new password
+            password_blob = SecurityEngine.EncryptionHandler.Hashing.bcrypt_hash(data=password)
+            if password_blob is None:
+                base_logging.logger.warning("[*] password_blob is none, error occurred during hashing")
+                return False
+
+
+            # Change user password
+            if db_instance.change_api_user_password(username=username, password_hash=password_blob):
+                base_logging.logger.debug(f"Successfully changed password for '{username}'")
+                return True
+            else:
+                base_logging.logger.debug(f"Failed to change password for '{username}'")
+                return False
+
+        except Exception as e:
+            base_logging.logger.debug(f"Could not change user password: {e}")
+            return False
+
 
     @staticmethod
     def default_role_check_and_setup():

@@ -91,8 +91,6 @@ class AuthenticationSQLDBHandler(BaseLogging):
         '''
         self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
-        print(username)
-
         # guard clause to check if username is none.
         if Utils.GuardClauses.guard_t_f_check(username is None, "[*] Username argument is 'None'! Authentication will fail!"):
             return False
@@ -109,7 +107,32 @@ class AuthenticationSQLDBHandler(BaseLogging):
                 return False
         except Exception as e:
             print(f"[*] Error: {e}")
-    
+
+    def change_api_user_password(self, username = None, password_hash = None) -> bool:
+        '''
+        
+        '''
+        self.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+
+        if not all([username, password_hash]):
+            self.logger.debug("Invalid input parameters for changing password")
+            return False
+
+        ## Update use in table
+        try:
+            self.cursor.execute(f"UPDATE api_users SET password_hash = ? WHERE username = ?", (password_hash, username,))
+            self.dbconn.commit()
+
+            ## Checking for affected rows basically
+            if self.cursor.rowcount == 0:
+                self.logger.error(f"No rows were updated")
+                return False
+            
+            return True
+        except Exception as e:
+            self.logger.error(f"[*] Error: {e}")
+            return False
+
     #[X]
     def create_api_user(self, username = None, password_blob = None) -> bool:
         '''

@@ -105,6 +105,7 @@ class UserHandler(BasePlugin, BaseLogging):
 
         self.app.route(f"/api/{Info.endpoint}/create", methods=["POST"])(self.create_user)
         self.app.route(f"/api/{Info.endpoint}/delete", methods=["POST"])(self.delete_user)
+        self.app.route(f"/api/{Info.endpoint}/changepass", methods=["POST"])(self.change_user_password)
 
         #self.app.route(f"/{self.UrlSc.CREATE_USER}", methods=["POST"])(self.create_user)
         #self.app.route(f"/{self.UrlSc.DELETE_USER}", methods=["POST"])(self.delete_user)
@@ -169,3 +170,25 @@ class UserHandler(BasePlugin, BaseLogging):
         except Exception as e:
             return api_response(status_code=500)
 
+    @jwt_required()
+    @AccessManagement.role_required('iam_admin')
+    def change_user_password(self):
+        try:
+            username = request.json.get('username')
+            password = request.json.get('password')
+
+            # Early exit if user deletion is not successful
+            if not SecurityEngine.AuthenticationHandler.UserManagement.change_user_password(
+                username=username,
+                password=password
+            ):
+                return api_response(status_code=403)
+
+            # Main logic after early exit check
+            self.logger.info(f"{self.logging_info_symbol} Changed password for '{username}'")
+            return api_response(status_code=200, message=f"Changed password for '{username}'")
+
+        except BadRequest:
+            return api_response(status_code=400)
+        except Exception as e:
+            return api_response(status_code=500)
