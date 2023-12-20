@@ -58,7 +58,7 @@ class AuthenticationSQLDBHandler(BaseLogging):
     #[X]
     def get_api_username(self, username = None) -> bool:
         '''
-        Get a username
+        Get a username - basically a "check if user exists" function
         
         returns a bool, true if exists, false if not
         '''

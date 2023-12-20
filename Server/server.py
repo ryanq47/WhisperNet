@@ -134,7 +134,7 @@ class ControlServer(BaseLogging):
             # Inside each plugin folder, look for Python files with the same name as the folder
             for plugin_file in os.listdir(plugin_folder_path):
                 if plugin_file.endswith('.py'):
-                    self.logger.info(f"{self.logging_info_symbol} == Discovered: {plugin_file}")
+                    self.logger.info(f"{self.logging_info_symbol} Discovered: {plugin_file}")
 
                     plugin_name = plugin_file[:-3]  # Remove the '.py' extension
                     module_path = f"PluginEngine.Plugins.{plugin_folder}.{plugin_name}"
@@ -179,6 +179,7 @@ class ControlServer(BaseLogging):
         '''
         SecurityEngine.AuthenticationHandler.UserManagement.default_role_check_and_setup()
 
+        successful_startup_banner()
 def startup_banner(ip = None, port = None, version = None):
     #version = "version"
     #ip = "127.0.0.1"
@@ -217,6 +218,18 @@ def startup_banner(ip = None, port = None, version = None):
 """
     
     return a
+
+def successful_startup_banner():
+    '''
+    Prints if the server successfuly starts. Using global ip & port vars. 
+    Yes it's bad. I know
+    '''
+    banner = f"""
+===============================================
+Server has successfuly started on: {ip}:{port}
+===============================================
+"""
+    print(banner)
 
 if __name__ == "__main__":
     ## Init data structures

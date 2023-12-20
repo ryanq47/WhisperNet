@@ -14,6 +14,7 @@ from flask_jwt_extended import get_jwt_identity, jwt_required
 from functools import wraps
 from flask import jsonify
 from Utils.UtilsHandler import api_response
+import getpass
 
 ## This is super hacky. My Dumbass made this a static method, so to properly use the BaseLogging class, I need to to 
 ## init the instance, and then call the logging function
@@ -265,18 +266,41 @@ class UserManagement:
     def default_role_check_and_setup():
         '''
         A method to prompt, and create default roles if they *do not* exist. 
+
+        Connects to DB, checks for the 'administrator' user with get_api_username, and 
+        if it does not exists, calls UserManagement.create_user to create it.
+
+        This is meant purely for the server first time startup.
         
         '''
+        try:
+            db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
+                db_path="DataBases/users.db"#db_absolute_path
+            )
+        
+            ## if Administrator user does not exist, create it.
+            if not db_instance.get_api_username(username="administrator"):
 
-        # if default roles not exist or whatever
-        user_list = ["administrator"]
+                user_list = ["administrator"]
 
-        for user in user_list:
-            password = input(f"Input password for {user}:")
-            if UserManagement.create_user(username=user, password = password, roles=["iam_admin"]):
-                print(f"User {user} created successfully")
-            else:
-                print(f"User {user} not created.")
+                for user in user_list:
+                    print("=Init User Setup===============================")
+                    print("No users detected by the server, creating users: ")
+                    print("Note, the password will not be visible on screen")
+
+                    password_1 = getpass.getpass(f"[>] Input password for {user}:")
+                    password_2 = getpass.getpass(f"[>] Input password again for {user}:")
+
+                    if password_1 != password_2: 
+                        base_logging.logger.warning(f"{base_logging.logging_info_symbol} Passwords do not match!")
+                        exit("Exiting, restart server & try again")
+                        #return 
+                    if UserManagement.create_user(username=user, password = password_1, roles=["iam_admin"]):
+                        base_logging.logger.info(f"{base_logging.logging_info_symbol} User '{user}' created successfully")
+                    else:
+                        base_logging.logger.warning(f"{base_logging.logging_info_symbol} User '{user}' was not created")
+        except Exception as e:
+            base_logging.logger.critical(f"{base_logging.logging_critical_symbol} Could not create user")
 
 
 class AccessManagement:
