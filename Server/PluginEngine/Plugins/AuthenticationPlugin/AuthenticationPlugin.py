@@ -27,6 +27,7 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 from flask import Flask, jsonify, request, send_from_directory, render_template, Response
 
 import SecurityEngine.AuthenticationHandler
+from datetime import timedelta
 
 
 ################################################
@@ -160,8 +161,13 @@ class AuthenticationPlugin(BasePlugin, BaseLogging):
                 # Curious if a user can have multiple roles here
                 identity_dict = {'username': username, 'role': user_role}
 
+                token_expire = timedelta(hours=1)
+
                 # Create a JWT token with the user's identity and claims
-                access_token = create_access_token(identity=identity_dict)
+                access_token = create_access_token(
+                    identity=identity_dict,
+                    expires_delta=token_expire ## Token expire in X time
+                    )
 
                 #print(user_role)
                 return api_response(
