@@ -112,6 +112,7 @@ class ControlServer(BaseLogging):
         #self.UrlSc = ApiEngine.ConfigHandler.UrlSchema(api_config_profile=self.config_file_path)
         #self.UrlSc.load()
         self.init_routes()
+        self.startup_tasks()
 
     def init_routes(self):
         pass
@@ -172,6 +173,11 @@ class ControlServer(BaseLogging):
                     except AttributeError as e:
                         self.logger.warning(f"{self.logging_warning_symbol} AttributeError: {e}")
 
+    def startup_tasks(self):
+        '''
+        Any other startup tasks
+        '''
+        SecurityEngine.AuthenticationHandler.UserManagement.default_role_check_and_setup()
 
 def startup_banner(ip = None, port = None, version = None):
     #version = "version"

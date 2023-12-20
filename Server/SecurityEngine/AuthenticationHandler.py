@@ -117,6 +117,7 @@ class Authentication(BaseLogging):
                 print(f"Successful Login: '{username}':'{password}'")'''
 
             #if bcrypt.checkpw("1234".encode(), "$2b$12$6l17I4n6BUqF3C43ldlg4u8kzCdDCLU/AJBTa44Yi.PGNon5hv3Mu".encode()):
+
             ## pass_blob is seemingly coming back from the db as a bytes object. Might get funky somewhere later
             if bcrypt.checkpw(password.encode(), pass_blob):
                 base_logging.logger.info(f"Successful Login: '{username}'")
@@ -188,8 +189,8 @@ class UserManagement:
         base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
         # Validate input parameters
-        if not all([path_struct, username, password, roles]):
-            base_logging.logger.debug("Invalid input parameters for creating user")
+        if not all([username, password, roles]):
+            base_logging.logger.warning("Invalid input parameters for creating user")
             return False
 
         try:
@@ -204,23 +205,23 @@ class UserManagement:
             # Hash the password
             password_blob = SecurityEngine.EncryptionHandler.Hashing.bcrypt_hash(data=password)
             if password_blob is None:
-                base_logging.logger.debug("[*] password_blob is none, error occurred during hashing")
+                base_logging.logger.warning("[*] password_blob is none, error occurred during hashing")
                 return False
 
             # Create user in the database
             if not db_instance.create_api_user(username=username, password_blob=password_blob):
-                base_logging.logger.debug("Failed to create user in the database")
+                base_logging.logger.warning("Failed to create user in the database")
                 return False
 
             # Add roles to the user
             if not db_instance.add_api_role(username=username, roles=roles):
-                base_logging.logger.debug("Failed to add roles to the user")
+                base_logging.logger.warning("Failed to add roles to the user")
                 return False
 
             return True
 
         except Exception as e:
-            base_logging.logger.debug(f"Could not create user: {e}")
+            base_logging.logger.warning(f"Could not create user: {e}")
             return False
 
     
@@ -259,6 +260,23 @@ class UserManagement:
         except Exception as e:
             base_logging.logger.debug(f"Could not connect to DB: {e}")
             return False
+
+    @staticmethod
+    def default_role_check_and_setup():
+        '''
+        A method to prompt, and create default roles if they *do not* exist. 
+        
+        '''
+
+        # if default roles not exist or whatever
+        user_list = ["administrator"]
+
+        for user in user_list:
+            password = input(f"Input password for {user}:")
+            if UserManagement.create_user(username=user, password = password, roles=["iam_admin"]):
+                print(f"User {user} created successfully")
+            else:
+                print(f"User {user} not created.")
 
 
 class AccessManagement:
