@@ -1,4 +1,4 @@
 cryptography==40.0.2
 werkzeug==2.3
 neo4j
-dotenv
+python-dotenv

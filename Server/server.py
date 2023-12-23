@@ -26,6 +26,7 @@ try:
     import ApiEngine.ConfigHandler
     import Utils.DataObjects
     import DataEngine.ServerDataDbHandler
+    import DataEngine.Neo4jHandler
 
     ## Error modules
     import Utils.ErrorDefinitions
@@ -177,6 +178,12 @@ class ControlServer(BaseLogging):
         '''
         Any other startup tasks
         '''
+
+        ## Try to connect to db (add logic later)
+        neo4j = DataEngine.Neo4jHandler.Neo4jConnection()
+        neo4j.test()
+
+        # GOES LAST
         SecurityEngine.AuthenticationHandler.UserManagement.default_role_check_and_setup()
 
         successful_startup_banner()

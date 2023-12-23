@@ -15,6 +15,21 @@ class Neo4jConnection(BaseLogging):
         self.driver = None
         self.connect()
 
+    def test(self) -> bool:
+        '''
+        Tests neo4j conn. Returns True on success
+        '''
+        try:
+            self.connect()
+            self.close()
+            print("Successfully connected to neo4j db")
+            return True
+
+        except Exception as e:
+            print(f"Error connecting to Neo4j DB {e}")
+            return False
+
+
     def connect(self):
         if not self.driver:
             try:
