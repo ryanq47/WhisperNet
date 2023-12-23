@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1530</width>
-    <height>965</height>
+    <width>1046</width>
+    <height>615</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -191,29 +191,58 @@ QHeaderView::section {
        </property>
        <column>
         <property name="text">
-         <string>Client</string>
+         <string>Network</string>
         </property>
        </column>
        <column>
         <property name="text">
-         <string>IP</string>
+         <string>?</string>
         </property>
        </column>
        <column>
         <property name="text">
-         <string>Port</string>
+         <string>?</string>
         </property>
        </column>
        <column>
         <property name="text">
-         <string>Listener</string>
+         <string>?</string>
         </property>
        </column>
        <column>
         <property name="text">
-         <string>Sleep</string>
+         <string>?</string>
         </property>
        </column>
+       <item>
+        <property name="text">
+         <string>10.0.0.0/24</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>10.0.0.4</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>10.0.0.2</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>10.0.0.10</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </item>
+       </item>
       </widget>
      </item>
     </layout>
@@ -221,7 +250,7 @@ QHeaderView::section {
    <item row="2" column="0">
     <widget class="QPushButton" name="add_client">
      <property name="text">
-      <string>Debug New Client</string>
+      <string>Debug New Network</string>
      </property>
     </widget>
    </item>
