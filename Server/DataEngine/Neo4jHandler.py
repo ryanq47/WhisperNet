@@ -90,6 +90,7 @@ class Neo4jConnection(BaseLogging):
                 session.close()
         return response
     
+    ## Netowrk Queries
     def get_network_nodes(self)-> list:
         '''
         A custom query to get all network nodes
@@ -107,6 +108,7 @@ class Neo4jConnection(BaseLogging):
             self.logger.error("Query failed:", e)
             return []
 
+    ## Host Queries
     def get_host_nodes(self) -> list:
         '''
         Get ALL host nodes
@@ -140,6 +142,56 @@ class Neo4jConnection(BaseLogging):
         except Exception as e:
             self.logger.error("Query failed:", e)
             return []
+
+    #-[x]
+    def add_host_node(self, ip):
+        '''
+        Adds a host node to the DB. 
+
+        ip: Primary key, str of IP address
+
+        '''
+        query = 'MERGE (h: Host{ip:$ip})  RETURN h'
+        #query = "MATCH (h: Host) RETURN h" # all hosts
+        try:
+            with self.__driver.session() as session:
+                results = session.run(query, ip=ip)
+                return [dict(record['h']) for record in results]
+        except Exception as e:
+            self.logger.error("Query failed:", e)
+            return []
+
+    #-[x]
+    def add_or_update_host_node_property(self, ip, property_name, value):
+        '''
+        Update a property of a host node. 
+
+        Allowed Properties: {"os", "name", "misc"} - limited for injection & management purposes.
+
+        ip: Ip of host (str)
+        property_name: name of property. See Allowed Properties
+
+        value: Value of the property. Protected by injection via paramaterization
+        
+        '''
+        allowed_properties = {"os", "name", "misc"}
+
+        if property_name not in allowed_properties:
+            self.logger.error(f"Invalid property name: {property_name}")
+            return []
+
+        query = f'MERGE (h:Host {{ip: $ip}}) SET h.{property_name} = $value RETURN h'
+
+        try:
+            with self.__driver.session() as session:
+                results = session.run(query, ip=ip, value=value)
+                return [dict(record['h']) for record in results]
+        except Exception as e:
+            self.logger.error(f"Query failed: {e}")
+            return []
+
+    ## Relationship Queries
+        
 
     def print_response(self, response = None):
         for record in response:
