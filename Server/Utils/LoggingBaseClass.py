@@ -27,13 +27,25 @@ init(autoreset=True)
 
 GLOBAL_LEVEL = logging.INFO
 
+## lower than debug
+FUNCTION_LEVEL = 15
+logging.addLevelName(FUNCTION_LEVEL, "FUNCTION")
+
+def function(self, message, *args, **kws):
+    if self.isEnabledFor(FUNCTION_LEVEL):
+        self._log(FUNCTION_LEVEL, message, args, **kws)
+
+# Add the function method to logging.Logger class
+logging.Logger.function = function
+
 class ColoredSymbolFormatter(logging.Formatter):
     symbols = {
         logging.DEBUG: Fore.LIGHTBLUE_EX + "[D]",
         logging.INFO: Fore.GREEN + "[*]",
         logging.WARNING: Fore.YELLOW + "[!]",
         logging.ERROR: Fore.LIGHTRED_EX + "[!!]",
-        logging.CRITICAL: Fore.MAGENTA + "[! WOAH !]"
+        logging.CRITICAL: Fore.MAGENTA + "[! WOAH !]",
+        FUNCTION_LEVEL: Fore.LIGHTCYAN_EX + "[FUNC]"
     }
 
     def format(self, record):
@@ -47,7 +59,8 @@ class SymbolFormatter(logging.Formatter):
         logging.INFO: "[*]",
         logging.WARNING: "[!]",
         logging.ERROR: "[!!]",
-        logging.CRITICAL: "[! WOAH !]"
+        logging.CRITICAL: "[! WOAH !]",
+        FUNCTION_LEVEL: "[FUNC]"
     }
 
     def format(self, record):
@@ -59,6 +72,8 @@ class BaseLogging:
         logger_name = name if name else self.__class__.__name__
         self.logger = logging.getLogger(logger_name)
         self.logger.setLevel(GLOBAL_LEVEL)
+
+        setattr(self.logger, 'function', lambda message, *args: self.logger._log(FUNCTION_LEVEL, message, args))
 
         #unused, here until I clean up old log statements
         self.function_debug_symbol = ""

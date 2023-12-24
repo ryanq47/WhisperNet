@@ -182,6 +182,12 @@ class ControlServer(BaseLogging):
         ## Try to connect to db (add logic later)
         neo4j = DataEngine.Neo4jHandler.Neo4jConnection()
         neo4j.test()
+        #neo4j.get_network_nodes()
+        #print(neo4j.get_host_node_by_ip(ip="10.0.0.11/24"))
+        #print(neo4j.get_host_nodes())
+        #print(neo4j.get_network_nodes())
+
+
 
         # GOES LAST
         SecurityEngine.AuthenticationHandler.UserManagement.default_role_check_and_setup()
