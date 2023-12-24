@@ -188,11 +188,18 @@ class ControlServer(BaseLogging):
         #print(neo4j.get_network_nodes())
 
         #neo4j.add_host_node(ip="192.168.1.1")
+        '''
         neo4j.add_or_update_host_node_property(
             ip = "192.168.1.1",
             property_name="os",
             value="windows69"
         )
+        neo4j.add_network_node(cidr="192.168.69.40/24")
+
+        neo4j.join_host_to_network(
+            cidr="10.0.10.0/24",
+            ip="10.0.0.69"
+        )'''
 
 
         # GOES LAST

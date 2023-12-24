@@ -91,6 +91,7 @@ class Neo4jConnection(BaseLogging):
         return response
     
     ## Netowrk Queries
+    #-[x]
     def get_network_nodes(self)-> list:
         '''
         A custom query to get all network nodes
@@ -108,6 +109,26 @@ class Neo4jConnection(BaseLogging):
             self.logger.error("Query failed:", e)
             return []
 
+    #-[x]
+    def add_network_node(self, cidr)->list:
+        '''
+        Adds a network node to the DB. 
+
+        cidr: Primary key, str of network id address
+            ex: 10.0.0.0/24
+
+        '''
+        query = 'MERGE (n: Network{cidr:$cidr}) RETURN n'
+        #query = "MATCH (h: Host) RETURN h" # all hosts
+        try:
+            with self.__driver.session() as session:
+                results = session.run(query, cidr=cidr)
+                return [dict(record['n']) for record in results]
+        except Exception as e:
+            self.logger.error("Query failed:", e)
+            return []
+
+
     ## Host Queries
     def get_host_nodes(self) -> list:
         '''
@@ -124,7 +145,6 @@ class Neo4jConnection(BaseLogging):
         except Exception as e:
             self.logger.error("Query failed:", e)
             return []
-
 
     def get_host_node_by_ip(self, ip) -> list:
         '''
@@ -191,7 +211,42 @@ class Neo4jConnection(BaseLogging):
             return []
 
     ## Relationship Queries
+    #-[x]
+    def join_host_to_network(self, cidr, ip):
+        '''
+        Join a host to a network
+
+        cidr: Network cidr of the network to join
+
+        ip: ip of the host
+
+        Using merge statements, so it theoretically shuold not matter if these nodes exist or not
+        '''
+
         
+        #query = '''
+        #MERGE (h:Host{ip:"192.168.1.1"})
+        #MERGE (n:Network{ip:"192.168.69.40/24"})
+        #MERGE (n)<-[r:PART_OF]-(h)
+        #return h,n,r
+        #'''
+
+        query = '''
+        MERGE (h:Host{ip:$ip})
+        MERGE (n:Network{cidr:$cidr})
+        MERGE (n)<-[r:PART_OF]-(h)
+        return h,n,r
+        '''
+
+        try:
+            with self.__driver.session() as session:
+                results = session.run(query, ip=ip, cidr=cidr)
+                ## NEed to think about if we need a return on this, or a true/false
+                return [dict(record['h']) for record in results]
+        except Exception as e:
+            self.logger.error(f"Query failed: {e}")
+            return []
+
 
     def print_response(self, response = None):
         for record in response:
