@@ -20,9 +20,26 @@ From here, call self.logger.whatever to log. DO NOT call logging.whatever as tha
 '''
 
 import logging
+from colorama import init, Fore, Style
 
-## stupid way to change this easy
-GLOBAL_LEVEL = logging.DEBUG
+# Initialize colorama
+init(autoreset=True)
+
+GLOBAL_LEVEL = logging.INFO
+
+class ColoredSymbolFormatter(logging.Formatter):
+    symbols = {
+        logging.DEBUG: Fore.LIGHTBLUE_EX + "[D]",
+        logging.INFO: Fore.GREEN + "[*]",
+        logging.WARNING: Fore.YELLOW + "[!]",
+        logging.ERROR: Fore.LIGHTRED_EX + "[!!]",
+        logging.CRITICAL: Fore.MAGENTA + "[! WOAH !]"
+    }
+
+    def format(self, record):
+        symbol = self.symbols.get(record.levelno, '')
+        record.msg = f"{symbol} {record.msg}{Style.RESET_ALL}"
+        return super().format(record)
 
 class SymbolFormatter(logging.Formatter):
     symbols = {
@@ -30,7 +47,7 @@ class SymbolFormatter(logging.Formatter):
         logging.INFO: "[*]",
         logging.WARNING: "[!]",
         logging.ERROR: "[!!]",
-        logging.CRITICAL: "[!!]"
+        logging.CRITICAL: "[! WOAH !]"
     }
 
     def format(self, record):
@@ -39,8 +56,11 @@ class SymbolFormatter(logging.Formatter):
 
 class BaseLogging:
     def __init__(self, name=None):
+        logger_name = name if name else self.__class__.__name__
+        self.logger = logging.getLogger(logger_name)
+        self.logger.setLevel(GLOBAL_LEVEL)
 
-        ## Moving these to nothing until they get cleaned up accross the project
+        #unused, here until I clean up old log statements
         self.function_debug_symbol = ""
         #for each debugging level...
         self.logging_warning_symbol = ""
@@ -49,20 +69,13 @@ class BaseLogging:
         self.logging_info_symbol = ""
         self.logging_debug_symbol = ""
 
-        # Use the class name as the logger name if not provided
-        logger_name = name if name else self.__class__.__name__
-
-        self.logger = logging.getLogger(logger_name)
-        self.logger.setLevel(GLOBAL_LEVEL)
-
-        # Check if handlers are already set to avoid duplicates, prevents some weird bugs
         if not self.logger.hasHandlers():
-            # Stream Handler
+            # Stream Handler with color
             stream_handler = logging.StreamHandler()
-            stream_handler.setFormatter(SymbolFormatter('%(asctime)s - %(message)s', '%Y-%m-%d %H:%M:%S'))
+            stream_handler.setFormatter(ColoredSymbolFormatter('%(asctime)s - %(message)s', '%Y-%m-%d %H:%M:%S'))
             self.logger.addHandler(stream_handler)
 
-            # File Handler
+            # File Handler without color
             file_handler = logging.FileHandler('server.log', 'a')
             file_handler.setFormatter(SymbolFormatter('%(asctime)s - %(message)s', '%Y-%m-%d %H:%M:%S'))
             self.logger.addHandler(file_handler)
