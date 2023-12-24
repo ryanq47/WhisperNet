@@ -22,11 +22,11 @@ class Neo4jConnection(BaseLogging):
         try:
             self.connect()
             self.close()
-            print("Successfully connected to neo4j db")
+            self.logger.info("Successfully connected to neo4j db")
             return True
 
         except Exception as e:
-            print(f"Error connecting to Neo4j DB {e}")
+            self.logger.error(f"Error connecting to Neo4j DB {e}")
             return False
 
 
@@ -35,12 +35,12 @@ class Neo4jConnection(BaseLogging):
             try:
                 # Establish a connection to the database
                 self.driver = GraphDatabase.driver(self.uri, auth=(self.user, self.password))
-                print("Neo4j connection established.")
+                self.logger.info("Neo4j connection established.")
             except Exception as e:
-                print(f"Failed to create the driver: {e}")
+                self.logger.error(f"Failed to create the driver: {e}")
 
     def close(self):
         # Close the connection if it's open
         if self.driver:
             self.driver.close()
-            print("Neo4j connection closed.")
+            self.logger.info("Neo4j connection closed.")

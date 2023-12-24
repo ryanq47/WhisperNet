@@ -14,6 +14,7 @@ class BasePlugin(BaseLogging):
         # breaks stuff, cause it's using the instance that calls it and that doesn't have logging implemented when called 
         ## as BasePlugin is called first. Design flaw for sure
         #self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
+       #BaseLogging.__init__(self)  
         try:
             self.app = app
             self.print_symbol = "[*]"

@@ -86,7 +86,8 @@ class FlaskAPIListener(BasePlugin, BaseLogging):
         '''
         Main function/entry point for the plugin.
         '''
-        logging.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
+        
+        self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
         self.logger.debug(f"{self.logging_debug_symbol} Loading {Info.name}")
         self.register_routes()
 
@@ -94,7 +95,7 @@ class FlaskAPIListener(BasePlugin, BaseLogging):
 
     ## Put all the routes here.
     def register_routes(self):
-        logging.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
+        self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
         ## Base Endpoint
         self.app.route(f"/{Info.endpoint}", methods=["POST", "GET"])(self._plugin_function)
     
@@ -102,7 +103,7 @@ class FlaskAPIListener(BasePlugin, BaseLogging):
     ## Define your plugin functions here.
 
     def _plugin_function(self):
-        logging.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
+        self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
         startup_message = (f"Plugin is up!<br>Plugin Name: {Info.name}<br> \
         Plugin Author: {Info.author}<br> \
         Plugin Endpoint: {Info.endpoint}<br>")

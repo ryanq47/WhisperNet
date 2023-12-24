@@ -11,7 +11,8 @@ function_debug_symbol = "[*]"
 
 class ServerDataDbHandler(BaseLogging):
     def __init__(self):
-        super().__init__()
+        BaseLogging.__init__(self)  
+
         self.dbconn = None
         self.cursor = None
         # hardecoded as this module is not meant to be used for anything else

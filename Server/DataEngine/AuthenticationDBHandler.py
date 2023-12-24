@@ -19,7 +19,7 @@ class AuthenticationSQLDBHandler(BaseLogging):
 
     #[X]
     def __init__(self, db_path):
-        super().__init__()
+        BaseLogging.__init__(self)  
         self.dbconn = None
         self.cursor = None
         self.connect_to_db(db_path)
