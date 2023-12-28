@@ -37,8 +37,9 @@ import json
 from functools import wraps
 from flask import request, jsonify
 from flask_jwt_extended import get_jwt_identity, jwt_required
-
-import hashlib
+from Utils.UtilsHandler import api_response
+from werkzeug.exceptions import BadRequest
+from DataEngine.Neo4jHandler import Neo4jConnection
 
 ################################################
 # Info class
@@ -170,7 +171,12 @@ class SimpleC2(BasePlugin, BaseLogging):
         self.app.route(f'/api/{Info.endpoint}/nodelogs', methods = ["GET"])(self.simplec2_api_get_checkin_logs)
         self.app.route(f'/api/{Info.endpoint}/clientdata', methods = ["POST"])(self.simplec2_api_post_client_data)
         self.app.route(f'/api/{Info.endpoint}/clients', methods = ["GET","POST"])(self.simplec2_api_client)
-        self.app.route(f'/api/{Info.endpoint}/console', methods = ["GET"])(self.simplec2_api_console)
+        #self.app.route(f'/api/{Info.endpoint}/console', methods = ["GET"])(self.simplec2_api_console)
+        self.app.route(f'/api/{Info.endpoint}/network/add', methods = ["POST"])(self.neo4j_add_network)
+        self.app.route(f'/api/{Info.endpoint}/network/remove', methods = ["POST"])(self.neo4j_remove_network)
+
+        self.app.route(f'/api/{Info.endpoint}/host/add', methods = ["POST"])(self.neo4j_add_host)
+        self.app.route(f'/api/{Info.endpoint}/host/remove', methods = ["POST"])(self.neo4j_remove_host)
 
 ################################################
 # HTML Dashboard
@@ -443,6 +449,108 @@ class SimpleC2(BasePlugin, BaseLogging):
                 return jsonify(return_data)
 
 
+################################################
+# API - DB stuff
+################################################
+    def neo4j_add_network(self):
+        '''
+            Adds a network to the DB
+
+            Request:
+                {
+                    "cidr":"10.0.0.0/24"
+                }
+        '''
+
+        try:
+            network_cidr = request.json.get('cidr')
+
+            neo4j = Neo4jConnection()
+            neo4j.add_network_node(
+                cidr = network_cidr
+            )
+
+            return api_response(status_code=200)
+
+        except BadRequest:
+            return api_response(status_code=400)
+        except Exception as e:
+            return api_response(status_code=500)
+
+    def neo4j_remove_network(self):
+        '''
+            Adds a network to the DB
+
+            Request:
+                {
+                    "cidr":"10.0.0.0/24"
+                }
+        '''
+
+        try:
+            network_cidr = request.json.get('cidr')
+
+            neo4j = Neo4jConnection()
+            neo4j.remove_network_node(
+                cidr = network_cidr
+            )
+
+            return api_response(status_code=200)
+
+        except BadRequest:
+            return api_response(status_code=400)
+        except Exception as e:
+            return api_response(status_code=500)
+
+    def neo4j_add_host(self):
+        '''
+            Adds a host to the DB
+
+            Request:
+                {
+                    "hostname":"DESKTOP-123ABC2"
+                }
+        '''
+
+        try:
+            host_hostname = request.json.get('hostname')
+
+            neo4j = Neo4jConnection()
+            neo4j.add_host_node(
+                hostname = host_hostname
+            )
+
+            return api_response(status_code=200)
+
+        except BadRequest:
+            return api_response(status_code=400)
+        except Exception as e:
+            return api_response(status_code=500)
+
+    def neo4j_remove_host(self):
+        '''
+            Removes a host from the DB
+
+            Request:
+                {
+                    "hostname":"DESKTOP-123ABC2"
+                }
+        '''
+
+        try:
+            host_hostname = request.json.get('hostname')
+
+            neo4j = Neo4jConnection()
+            neo4j.remove_host_node(
+                hostname = host_hostname
+            )
+
+            return api_response(status_code=200)
+
+        except BadRequest:
+            return api_response(status_code=400)
+        except Exception as e:
+            return api_response(status_code=500)
 
 ################################################
 # API - Checkin Stuff

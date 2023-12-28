@@ -127,6 +127,28 @@ class Neo4jConnection(BaseLogging):
         except Exception as e:
             self.logger.error("Query failed:", e)
             return []
+        
+    def remove_network_node(self, cidr)->list:
+        '''
+        Adds a network node to the DB. 
+
+        cidr: Primary key, str of network id address
+            ex: 10.0.0.0/24
+
+        '''
+        query = '''
+        MATCH (n: Network{cidr:$cidr})
+        DETACH DELETE n
+        '''
+        #query = "MATCH (h: Host) RETURN h" # all hosts
+        try:
+            with self.__driver.session() as session:
+                results = session.run(query, cidr=cidr)
+                return [dict(record['n']) for record in results]
+        except Exception as e:
+            self.logger.error("Query failed:", e)
+            return []
+
 
 
     ## Host Queries
@@ -164,18 +186,38 @@ class Neo4jConnection(BaseLogging):
             return []
 
     #-[x]
-    def add_host_node(self, ip):
+    def add_host_node(self, hostname):
         '''
         Adds a host node to the DB. 
 
         ip: Primary key, str of IP address
 
         '''
-        query = 'MERGE (h: Host{ip:$ip})  RETURN h'
+        query = 'MERGE (h: Host{hostname:$hostname})  RETURN h'
         #query = "MATCH (h: Host) RETURN h" # all hosts
         try:
             with self.__driver.session() as session:
-                results = session.run(query, ip=ip)
+                results = session.run(query, hostname=hostname)
+                return [dict(record['h']) for record in results]
+        except Exception as e:
+            self.logger.error("Query failed:", e)
+            return []
+
+    def remove_host_node(self, hostname):
+        '''
+        Adds a host node to the DB. 
+
+        ip: Primary key, str of IP address
+
+        '''
+        query = '''
+        MATCH (h: Host{hostname:$hostname})  
+        DETACH DELETE h
+        '''
+        #query = "MATCH (h: Host) RETURN h" # all hosts
+        try:
+            with self.__driver.session() as session:
+                results = session.run(query, hostname=hostname)
                 return [dict(record['h']) for record in results]
         except Exception as e:
             self.logger.error("Query failed:", e)
