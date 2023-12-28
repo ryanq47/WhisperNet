@@ -39,15 +39,15 @@ class Simplec2(QWidget):
             #self.c2_systemshell.setText("test")
             self.client_tree = self.ui_file.findChild(QTreeWidget, "client_tree_widget")
             
-            self.add_client = self.ui_file.findChild(QPushButton, "add_client")
-            self.refresh_manually = self.ui_file.findChild(QPushButton, "refresh_manually")
+            #self.add_client = self.ui_file.findChild(QPushButton, "add_client")
+            #self.refresh_manually = self.ui_file.findChild(QPushButton, "refresh_manually")
 
 
             # temp
             data_dict = None
-            self.add_client.clicked.connect(partial(self.add_client_to_widget,data_dict))
+            #self.add_client.clicked.connect(partial(self.add_client_to_widget,data_dict))
 
-            self.refresh_manually.clicked.connect(partial(self.get_client_data))
+            #self.refresh_manually.clicked.connect(partial(self.get_client_data))
 
 
             ## MUST GO LAST!!!
