@@ -174,9 +174,10 @@ class SimpleC2(BasePlugin, BaseLogging):
         #self.app.route(f'/api/{Info.endpoint}/console', methods = ["GET"])(self.simplec2_api_console)
         self.app.route(f'/api/{Info.endpoint}/network/add', methods = ["POST"])(self.neo4j_add_network)
         self.app.route(f'/api/{Info.endpoint}/network/remove', methods = ["POST"])(self.neo4j_remove_network)
+        self.app.route(f'/api/{Info.endpoint}/network/clients', methods = ["POST"])(self.neo4j_retrieve_clients_in_network)
 
-        self.app.route(f'/api/{Info.endpoint}/host/add', methods = ["POST"])(self.neo4j_add_host)
-        self.app.route(f'/api/{Info.endpoint}/host/remove', methods = ["POST"])(self.neo4j_remove_host)
+        self.app.route(f'/api/{Info.endpoint}/client/add', methods = ["POST"])(self.neo4j_add_client)
+        self.app.route(f'/api/{Info.endpoint}/client/remove', methods = ["POST"])(self.neo4j_remove_client)
 
 ################################################
 # HTML Dashboard
@@ -502,9 +503,9 @@ class SimpleC2(BasePlugin, BaseLogging):
         except Exception as e:
             return api_response(status_code=500)
 
-    def neo4j_add_host(self):
+    def neo4j_add_client(self):
         '''
-            Adds a host to the DB
+            Adds a client to the DB
 
             Request:
                 {
@@ -516,7 +517,7 @@ class SimpleC2(BasePlugin, BaseLogging):
             host_hostname = request.json.get('hostname')
 
             neo4j = Neo4jConnection()
-            neo4j.add_host_node(
+            neo4j.add_client_node(
                 hostname = host_hostname
             )
 
@@ -527,9 +528,9 @@ class SimpleC2(BasePlugin, BaseLogging):
         except Exception as e:
             return api_response(status_code=500)
 
-    def neo4j_remove_host(self):
+    def neo4j_remove_client(self):
         '''
-            Removes a host from the DB
+            Removes a client from the DB
 
             Request:
                 {
@@ -541,7 +542,7 @@ class SimpleC2(BasePlugin, BaseLogging):
             host_hostname = request.json.get('hostname')
 
             neo4j = Neo4jConnection()
-            neo4j.remove_host_node(
+            neo4j.remove_client_node(
                 hostname = host_hostname
             )
 
@@ -551,6 +552,28 @@ class SimpleC2(BasePlugin, BaseLogging):
             return api_response(status_code=400)
         except Exception as e:
             return api_response(status_code=500)
+
+    def neo4j_retrieve_clients_in_network(self):
+        '''
+        Retrieves clients under a given network 
+        '''
+
+
+        try:
+            host_hostname = request.json.get('cidr')
+
+            neo4j = Neo4jConnection()
+            '''neo4j.retrieve_clients_in_network(
+                cidr = cidr
+            )'''
+
+            return api_response(status_code=200)
+
+        except BadRequest:
+            return api_response(status_code=400)
+        except Exception as e:
+            return api_response(status_code=500)
+
 
 ################################################
 # API - Checkin Stuff

@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QTextEdit, QMessageBox, QPushButton, QLineEdit, QToolButton, QMenu
+from PySide6.QtWidgets import QWidget, QTextEdit, QMessageBox, QPushButton, QLineEdit, QToolButton, QMenu, QPlainTextEdit
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtGui import QAction
 from PySide6.QtCore import Signal, QTimer
@@ -47,6 +47,8 @@ class Console(QWidget):
             #self.console_send.clicked.connect(self.connect_to_server) ## This temporarily triggers server
 
             self.console_input = self.ui_file.findChild(QLineEdit, "console_input")  # Replace "QtWidgets" with the appropriate module
+            #self.console_input.setLineWrapMode(QPlainTextEdit.WidgetWidth)
+
 
             self.debug_console = self.ui_file.findChild(QTextEdit, "debug_console")  # Replace "QtWidgets" with the appropriate module
             self.debug_console.hide()
@@ -87,14 +89,18 @@ class Console(QWidget):
         # Add actions to the menu
         show_debug_console = QAction("Show Debug Console", self)
         hide_debug_console = QAction("Hide Debug Console", self)
+        expand_command_input = QAction("Expand Command Input", self)
 
         #action2 = QAction("Option 2", self)
         menu.addAction(show_debug_console)
         menu.addAction(hide_debug_console)
+        menu.addAction(expand_command_input)
 
         # Connect actions to functions
         show_debug_console.triggered.connect(lambda _show_debug_console: self.debug_console.show())
         hide_debug_console.triggered.connect(lambda _show_debug_console: self.debug_console.hide())
+        expand_command_input.triggered.connect(lambda _expand_command_input: self.console_input.setMinimumHeight(200))
+
 
         self.options_button.setMenu(menu)
         self.options_button.setPopupMode(QToolButton.InstantPopup)

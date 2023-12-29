@@ -1,5 +1,5 @@
-from PySide6.QtWidgets import QWidget, QTextEdit, QMessageBox, QTreeWidgetItem, QTreeWidget, QPushButton, QMenu
-from PySide6.QtGui import QIcon
+from PySide6.QtWidgets import QWidget, QTextEdit, QMessageBox, QTreeWidgetItem, QTreeWidget, QPushButton, QMenu, QToolButton
+from PySide6.QtGui import QIcon, QAction
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtNetwork import QNetworkReply
 from PySide6.QtCore import Qt, Signal, QTimer
@@ -18,6 +18,7 @@ class Simplec2(QWidget):
 
         self.__ui_load()
         self.__q_timer()
+        self.init_options()
         self.name = "SimpleC2"
         self.client_items = {}
 
@@ -41,6 +42,10 @@ class Simplec2(QWidget):
             
             #self.add_client = self.ui_file.findChild(QPushButton, "add_client")
             #self.refresh_manually = self.ui_file.findChild(QPushButton, "refresh_manually")
+            
+            self.options_button = self.ui_file.findChild(QToolButton, "options_button")
+            self.options_button.setText("Options")
+            self.info_bar = self.ui_file.findChild(QTextEdit, "info_bar")
 
 
             # temp
@@ -85,12 +90,29 @@ class Simplec2(QWidget):
             # Display the menu
             menu.exec(event.globalPos())
 
-    def func_name(self):
+    def init_options(self):
         '''
-        func
+        Sets options for the options button (bottom left button with '...')
         '''
-        ...
-        ##self.uielement.setText("test")
+        #self.options_button
+        menu = QMenu(self)
+
+        # Add actions to the menu
+        add_host = QAction("Add Host", self)
+        add_network = QAction("Add Network", self)
+
+        #hide_debug_console = QAction("Hide Debug Console", self)
+
+        #action2 = QAction("Option 2", self)
+        menu.addAction(add_host)
+        menu.addAction(add_network)
+
+        # Connect actions to functions
+        add_host.triggered.connect(lambda _add_host: self.info_bar.setText("add_host"))
+        add_network.triggered.connect(lambda _add_network: self.info_bar.setText("add_network"))
+
+        self.options_button.setMenu(menu)
+        self.options_button.setPopupMode(QToolButton.InstantPopup)
 
     def show_test_message(self):
         '''
@@ -203,6 +225,7 @@ class Simplec2(QWidget):
         msg.setText("This is a test popup message.")
         msg.setIcon(QMessageBox.Information)
         msg.exec_()
+
 
     def handle_response(self, reply, signal):        
         '''

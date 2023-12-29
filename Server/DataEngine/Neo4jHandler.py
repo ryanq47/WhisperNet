@@ -123,6 +123,7 @@ class Neo4jConnection(BaseLogging):
         try:
             with self.__driver.session() as session:
                 results = session.run(query, cidr=cidr)
+                self.logger.info(f"Created Network Node '{cidr}'")
                 return [dict(record['n']) for record in results]
         except Exception as e:
             self.logger.error("Query failed:", e)
@@ -144,6 +145,7 @@ class Neo4jConnection(BaseLogging):
         try:
             with self.__driver.session() as session:
                 results = session.run(query, cidr=cidr)
+                self.logger.info(f"Removed Network Node '{cidr}'")
                 return [dict(record['n']) for record in results]
         except Exception as e:
             self.logger.error("Query failed:", e)
@@ -151,15 +153,15 @@ class Neo4jConnection(BaseLogging):
 
 
 
-    ## Host Queries
-    def get_host_nodes(self) -> list:
+    ## Client Queries
+    def get_client_nodes(self) -> list:
         '''
-        Get ALL host nodes
+        Get ALL client nodes in the DB.
 
         returns: A list of Dicts:
         [{'os': 'Windows 10', 'ip': '10.0.0.1/24'}, {'os': 'Windows 10', 'ip': '10.0.0.3/24'}]        
         '''
-        query = "MATCH (h: Host) RETURN h" # all hosts
+        query = "MATCH (h: Client) RETURN h" # all clients
         try:
             with self.__driver.session() as session:
                 results = session.run(query)
@@ -168,14 +170,14 @@ class Neo4jConnection(BaseLogging):
             self.logger.error("Query failed:", e)
             return []
 
-    def get_host_node_by_ip(self, ip) -> list:
+    def get_client_node_by_ip(self, ip) -> list:
         '''
-        Get Nodes from their IP. Should *theoretically* only return 1 host
+        Get Nodes from their IP. Should *theoretically* only return 1 client
 
         returns: A list of Dicts:
         [{'os': 'Windows 10', 'ip': '10.0.0.1/24'}, {'os': 'Windows 10', 'ip': '10.0.0.3/24'}]
         '''
-        query = "MATCH (h: Host) WHERE h.ip = $ip RETURN h"
+        query = "MATCH (h: Client) WHERE h.ip = $ip RETURN h"
         #query = "MATCH (h: Host) RETURN h" # all hosts
         try:
             with self.__driver.session() as session:
@@ -186,51 +188,52 @@ class Neo4jConnection(BaseLogging):
             return []
 
     #-[x]
-    def add_host_node(self, hostname):
+    def add_client_node(self, hostname):
         '''
-        Adds a host node to the DB. 
+        Adds a client node to the DB. 
 
         ip: Primary key, str of IP address
 
         '''
-        query = 'MERGE (h: Host{hostname:$hostname})  RETURN h'
+        query = 'MERGE (h: Client{hostname:$hostname})  RETURN h'
         #query = "MATCH (h: Host) RETURN h" # all hosts
         try:
             with self.__driver.session() as session:
                 results = session.run(query, hostname=hostname)
+                self.logger.info(f"Created Client Node '{hostname}'")
                 return [dict(record['h']) for record in results]
         except Exception as e:
             self.logger.error("Query failed:", e)
             return []
 
-    def remove_host_node(self, hostname):
+    def remove_client_node(self, hostname):
         '''
-        Adds a host node to the DB. 
+        Remove a Client node from the DB. 
 
         ip: Primary key, str of IP address
 
         '''
         query = '''
-        MATCH (h: Host{hostname:$hostname})  
+        MATCH (h: Client{hostname:$hostname})  
         DETACH DELETE h
         '''
-        #query = "MATCH (h: Host) RETURN h" # all hosts
         try:
             with self.__driver.session() as session:
                 results = session.run(query, hostname=hostname)
+                self.logger.info(f"Removed Client Node '{hostname}'")
                 return [dict(record['h']) for record in results]
         except Exception as e:
             self.logger.error("Query failed:", e)
             return []
 
     #-[x]
-    def add_or_update_host_node_property(self, ip, property_name, value):
+    def add_or_update_client_node_property(self, ip, property_name, value):
         '''
-        Update a property of a host node. 
+        Update a property of a client node. 
 
         Allowed Properties: {"os", "name", "misc"} - limited for injection & management purposes.
 
-        ip: Ip of host (str)
+        ip: Ip of client (str)
         property_name: name of property. See Allowed Properties
 
         value: Value of the property. Protected by injection via paramaterization
@@ -242,11 +245,13 @@ class Neo4jConnection(BaseLogging):
             self.logger.error(f"Invalid property name: {property_name}")
             return []
 
-        query = f'MERGE (h:Host {{ip: $ip}}) SET h.{property_name} = $value RETURN h'
+        query = f'MERGE (h:Client {{ip: $ip}}) SET h.{property_name} = $value RETURN h'
 
         try:
             with self.__driver.session() as session:
                 results = session.run(query, ip=ip, value=value)
+                self.logger.info(f"Updated '{property_name}' to '{value}' on Client Node {ip} ")
+
                 return [dict(record['h']) for record in results]
         except Exception as e:
             self.logger.error(f"Query failed: {e}")
@@ -254,13 +259,13 @@ class Neo4jConnection(BaseLogging):
 
     ## Relationship Queries
     #-[x]
-    def join_host_to_network(self, cidr, ip):
+    def join_client_to_network(self, cidr, ip):
         '''
-        Join a host to a network
+        Join a client to a network
 
         cidr: Network cidr of the network to join
 
-        ip: ip of the host
+        ip: ip of the client
 
         Using merge statements, so it theoretically shuold not matter if these nodes exist or not
         '''
@@ -274,7 +279,7 @@ class Neo4jConnection(BaseLogging):
         #'''
 
         query = '''
-        MERGE (h:Host{ip:$ip})
+        MERGE (h:Client{ip:$ip})
         MERGE (n:Network{cidr:$cidr})
         MERGE (n)<-[r:PART_OF]-(h)
         return h,n,r
