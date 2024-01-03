@@ -135,7 +135,7 @@ class ControlServer(BaseLogging):
             # Inside each plugin folder, look for Python files with the same name as the folder
             for plugin_file in os.listdir(plugin_folder_path):
                 if plugin_file.endswith('.py'):
-                    self.logger.info(f"{self.logging_info_symbol} Discovered: {plugin_file}")
+                    self.logger.plugin(f"Loading: {plugin_file}")
 
                     plugin_name = plugin_file[:-3]  # Remove the '.py' extension
                     module_path = f"PluginEngine.Plugins.{plugin_folder}.{plugin_name}"
@@ -166,13 +166,15 @@ class ControlServer(BaseLogging):
                             type = module.Info.plugin_type
                             loaded = 0
 
-                            Data.server_data_db_handler.write_to_plugins_table(p_name, endpoint, author, type, loaded)
+                            ## not being used currently. Keeps track of the plugins. Need towipe table b4 doing a load plugins tho
+                            ## otherwise you get some annoyign unique constaints for the sqlite db
+                            #Data.server_data_db_handler.write_to_plugins_table(p_name, endpoint, author, type, loaded)
                             
-
                     except ImportError as e:
                         self.logger.warning(f"{self.logging_warning_symbol} Error importing module {module_path}: {e}")
                     except AttributeError as e:
                         self.logger.warning(f"{self.logging_warning_symbol} AttributeError: {e}")
+        self.logger.plugin("Done Loading Plugins")
 
     def startup_tasks(self):
         '''

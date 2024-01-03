@@ -111,7 +111,6 @@ class AuthenticationPlugin(BasePlugin, BaseLogging):
         '''
         self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
         self.logger.debug(f"{self.logging_debug_symbol} Loading {Info.name}")
-        self.logger.critical("WOAH TEST 123")
         self.register_routes()
 
     ## Put all the routes here.

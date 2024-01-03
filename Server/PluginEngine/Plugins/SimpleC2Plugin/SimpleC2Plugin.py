@@ -142,12 +142,8 @@ class SimpleC2(BasePlugin, BaseLogging):
         BaseLogging.__init__(self)  
         # Just in case you need to test logging/it breaks...
         #self.logger.warning("LOGGING IS WORKING - <PLUGINNAME>")
-
-        ## Creating ONE connection for performance purposses, otherwise 
-        ## it would take 2-3 seconds to create it, query, and return
-        ## should stick this in a func to be more resiliant
-        self.neo4j = Neo4jConnection()
-
+        self.neo4j = None
+        self.connect_to_neo4j()
         ## Data Structures
         self.node_checkin_logs = []
 
@@ -184,6 +180,21 @@ class SimpleC2(BasePlugin, BaseLogging):
 
         self.app.route(f'/api/{Info.endpoint}/client/add', methods = ["POST"])(self.neo4j_add_client)
         self.app.route(f'/api/{Info.endpoint}/client/remove', methods = ["POST"])(self.neo4j_remove_client)
+
+
+    def connect_to_neo4j(self):
+        '''
+        Creates Neo4j connection
+        
+        '''
+        ## Creating ONE connection for performance purposses, otherwise 
+        ## it would take 2-3 seconds to create it, query, and return
+        ## should stick this in a func to be more resiliant
+
+        try:
+            self.neo4j = Neo4jConnection()
+        except Exception as e:
+            self.logger.critical(f"Could not connect to Neo4j DB!: {e}")
 
 ################################################
 # HTML Dashboard

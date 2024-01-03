@@ -28,15 +28,15 @@ init(autoreset=True)
 GLOBAL_LEVEL = logging.INFO
 
 ## lower than debug
-FUNCTION_LEVEL = 15
-logging.addLevelName(FUNCTION_LEVEL, "FUNCTION")
+PLUGIN_LEVEL = 30
+logging.addLevelName(PLUGIN_LEVEL, "FUNCTION")
 
-def function(self, message, *args, **kws):
-    if self.isEnabledFor(FUNCTION_LEVEL):
-        self._log(FUNCTION_LEVEL, message, args, **kws)
+def plugin(self, message, *args, **kws):
+    if self.isEnabledFor(PLUGIN_LEVEL):
+        self._log(PLUGIN_LEVEL, message, args, **kws)
 
 # Add the function method to logging.Logger class
-logging.Logger.function = function
+logging.Logger.plugin = plugin
 
 class ColoredSymbolFormatter(logging.Formatter):
     symbols = {
@@ -45,7 +45,7 @@ class ColoredSymbolFormatter(logging.Formatter):
         logging.WARNING: Fore.YELLOW + "[!]",
         logging.ERROR: Fore.LIGHTRED_EX + "[!!]",
         logging.CRITICAL: Fore.MAGENTA + "[! WOAH !]",
-        FUNCTION_LEVEL: Fore.LIGHTCYAN_EX + "[FUNC]"
+        PLUGIN_LEVEL: Fore.LIGHTCYAN_EX + "[PLGN]"
     }
 
     def format(self, record):
@@ -60,7 +60,7 @@ class SymbolFormatter(logging.Formatter):
         logging.WARNING: "[!]",
         logging.ERROR: "[!!]",
         logging.CRITICAL: "[! WOAH !]",
-        FUNCTION_LEVEL: "[FUNC]"
+        PLUGIN_LEVEL: "[PLGN]"
     }
 
     def format(self, record):
@@ -73,7 +73,7 @@ class BaseLogging:
         self.logger = logging.getLogger(logger_name)
         self.logger.setLevel(GLOBAL_LEVEL)
 
-        setattr(self.logger, 'function', lambda message, *args: self.logger._log(FUNCTION_LEVEL, message, args))
+        setattr(self.logger, 'function', lambda message, *args: self.logger._log(PLUGIN_LEVEL, message, args))
 
         #unused, here until I clean up old log statements
         self.function_debug_symbol = ""

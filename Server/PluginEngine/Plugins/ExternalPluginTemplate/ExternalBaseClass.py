@@ -3,11 +3,21 @@ import urllib.request
 from Utils.LoggingBaseClass import BaseLogging
 import inspect
 
+## delete this, only exists so the plugin loader doesn't yell about not having the attribute "info"
+class Info:
+    name    = "empty"
+    author  = "empty"
+    endpoint = "/empty"
+    classname = "empty"
+    plugin_type = "empty"
+
 class ExternalBasePlugin(BaseLogging):
     def __init__(self):
         
         self.control_server_url = None
         self.control_server_command_endpoint = None
+
+
 
     def get_command(self):
         '''

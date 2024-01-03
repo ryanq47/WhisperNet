@@ -8,6 +8,7 @@ Throw a description of your plugin here as well:
 <desc> Plugin makes the world go around.
 ################################################
 
+Note, Named with .ignore so the plugin loader doesn't try and load it while its in the server section of code files
 
 Last but not least, fill in the "Info" class with the proper fields. 
 '''
