@@ -465,10 +465,12 @@ class SimpleC2(BasePlugin, BaseLogging):
 
         try:
             network_cidr = request.json.get('cidr')
+            network_nickname = request.json.get('nickname')
 
             neo4j = Neo4jConnection()
             neo4j.add_network_node(
-                cidr = network_cidr
+                cidr = network_cidr,
+                nickname = network_nickname
             )
 
             return api_response(status_code=200)
@@ -489,11 +491,11 @@ class SimpleC2(BasePlugin, BaseLogging):
         '''
 
         try:
-            network_cidr = request.json.get('cidr')
+            network_nickname = request.json.get('nickname')
 
             neo4j = Neo4jConnection()
             neo4j.remove_network_node(
-                cidr = network_cidr
+                nickname = network_nickname
             )
 
             return api_response(status_code=200)
@@ -514,11 +516,12 @@ class SimpleC2(BasePlugin, BaseLogging):
         '''
 
         try:
-            host_hostname = request.json.get('hostname')
+            #host_hostname = request.json.get('hostname')
+            host_nickname = request.json.get('nickname')
 
             neo4j = Neo4jConnection()
             neo4j.add_client_node(
-                hostname = host_hostname
+                nickname = host_nickname
             )
 
             return api_response(status_code=200)
@@ -539,11 +542,11 @@ class SimpleC2(BasePlugin, BaseLogging):
         '''
 
         try:
-            host_hostname = request.json.get('hostname')
+            host_nickname = request.json.get('nickname')
 
             neo4j = Neo4jConnection()
             neo4j.remove_client_node(
-                hostname = host_hostname
+                nickname = host_nickname
             )
 
             return api_response(status_code=200)

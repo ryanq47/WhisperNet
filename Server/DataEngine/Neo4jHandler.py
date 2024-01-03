@@ -17,6 +17,7 @@ class Neo4jConnection(BaseLogging):
 
         self.load_env()
         self.connect()
+        self.create_constraints()
 
     def load_env(self):
         '''
@@ -110,26 +111,7 @@ class Neo4jConnection(BaseLogging):
             return []
 
     #-[x]
-    def add_network_node(self, cidr)->list:
-        '''
-        Adds a network node to the DB. 
-
-        cidr: Primary key, str of network id address
-            ex: 10.0.0.0/24
-
-        '''
-        query = 'MERGE (n: Network{cidr:$cidr}) RETURN n'
-        #query = "MATCH (h: Host) RETURN h" # all hosts
-        try:
-            with self.__driver.session() as session:
-                results = session.run(query, cidr=cidr)
-                self.logger.info(f"Created Network Node '{cidr}'")
-                return [dict(record['n']) for record in results]
-        except Exception as e:
-            self.logger.error("Query failed:", e)
-            return []
-        
-    def remove_network_node(self, cidr)->list:
+    def add_network_node(self, cidr, nickname)->list:
         '''
         Adds a network node to the DB. 
 
@@ -138,19 +120,39 @@ class Neo4jConnection(BaseLogging):
 
         '''
         query = '''
-        MATCH (n: Network{cidr:$cidr})
+        MERGE (n: Network{cidr:$cidr}) SET n.nickname = $nickname RETURN n
+        '''
+        #query = "MATCH (h: Host) RETURN h" # all hosts
+        try:
+            with self.__driver.session() as session:
+                results = session.run(query, cidr=cidr, nickname=nickname)
+                self.logger.info(f"Created Network Node '{nickname}':'{cidr}'")
+                return [dict(record['n']) for record in results]
+        except Exception as e:
+            self.logger.error("Query failed:", e)
+            return []
+        
+    def remove_network_node(self, nickname)->list:
+        '''
+        Adds a network node to the DB. 
+
+        cidr: Primary key, str of network id address
+            ex: 10.0.0.0/24
+
+        '''
+        query = '''
+        MATCH (n: Network{nickname:$nickname})
         DETACH DELETE n
         '''
         #query = "MATCH (h: Host) RETURN h" # all hosts
         try:
             with self.__driver.session() as session:
-                results = session.run(query, cidr=cidr)
-                self.logger.info(f"Removed Network Node '{cidr}'")
+                results = session.run(query, nickname=nickname)
+                self.logger.info(f"Removed Network Node '{nickname}'")
                 return [dict(record['n']) for record in results]
         except Exception as e:
             self.logger.error("Query failed:", e)
             return []
-
 
 
     ## Client Queries
@@ -188,25 +190,25 @@ class Neo4jConnection(BaseLogging):
             return []
 
     #-[x]
-    def add_client_node(self, hostname):
+    def add_client_node(self, nickname):
         '''
         Adds a client node to the DB. 
 
         ip: Primary key, str of IP address
 
         '''
-        query = 'MERGE (h: Client{hostname:$hostname})  RETURN h'
+        query = 'MERGE (h: Client{nickname:$nickname})  RETURN h'
         #query = "MATCH (h: Host) RETURN h" # all hosts
         try:
             with self.__driver.session() as session:
-                results = session.run(query, hostname=hostname)
-                self.logger.info(f"Created Client Node '{hostname}'")
+                results = session.run(query, nickname=nickname)
+                self.logger.info(f"Created Client Node '{nickname}'")
                 return [dict(record['h']) for record in results]
         except Exception as e:
             self.logger.error("Query failed:", e)
             return []
 
-    def remove_client_node(self, hostname):
+    def remove_client_node(self, nickname):
         '''
         Remove a Client node from the DB. 
 
@@ -214,13 +216,13 @@ class Neo4jConnection(BaseLogging):
 
         '''
         query = '''
-        MATCH (h: Client{hostname:$hostname})  
+        MATCH (h: Client{nickname:$nickname})  
         DETACH DELETE h
         '''
         try:
             with self.__driver.session() as session:
-                results = session.run(query, hostname=hostname)
-                self.logger.info(f"Removed Client Node '{hostname}'")
+                results = session.run(query, nickname=nickname)
+                self.logger.info(f"Removed Client Node '{nickname}'")
                 return [dict(record['h']) for record in results]
         except Exception as e:
             self.logger.error("Query failed:", e)
@@ -302,6 +304,42 @@ class Neo4jConnection(BaseLogging):
             print("Labels:", list(node.labels))  # Convert labels to a list for easy viewing
             print("Properties:", dict(node))  # Convert node properties to a dictionary
             print()  # Just for a newline for better readability
+
+    def create_constraints(self):
+        '''
+        Creates constraints for the Network and Client nodes, if they do not already exist.
+        '''
+        # Query to fetch all constraints
+        fetch_constraints_query = "SHOW CONSTRAINTS"
+
+        # Queries to create constraints
+        create_network_constraint_query = "CREATE CONSTRAINT ON (n:Network) ASSERT n.nickname IS UNIQUE"
+        create_client_constraint_query = "CREATE CONSTRAINT ON (c:Client) ASSERT c.nickname IS UNIQUE"
+
+        try:
+            with self.__driver.session() as session:
+                # Fetch all existing constraints
+                existing_constraints = session.run(fetch_constraints_query).data()
+
+                # Check and create Network constraint
+                if not any('Network' in constraint['labelsOrTypes'] and 'nickname' in constraint['properties'] for constraint in existing_constraints):
+                    session.run(create_network_constraint_query)
+                    self.logger.info("Created Network constraint")
+
+                # Check and create Client constraint
+                if not any('Client' in constraint['labelsOrTypes'] and 'nickname' in constraint['properties'] for constraint in existing_constraints):
+                    session.run(create_client_constraint_query)
+                    self.logger.info("Created Client constraint")
+
+            self.logger.info("Constraint creation process completed")
+            return True
+
+        except Exception as e:
+            self.logger.error(f"Query failed: {e}")
+            return False
+
+
+
 
 class Neo4jParse(BaseLogging):
     def __init__(self):
