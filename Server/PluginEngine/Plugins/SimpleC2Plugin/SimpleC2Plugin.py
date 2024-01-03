@@ -143,6 +143,10 @@ class SimpleC2(BasePlugin, BaseLogging):
         # Just in case you need to test logging/it breaks...
         #self.logger.warning("LOGGING IS WORKING - <PLUGINNAME>")
 
+        ## Creating ONE connection for performance purposses, otherwise 
+        ## it would take 2-3 seconds to create it, query, and return
+        ## should stick this in a func to be more resiliant
+        self.neo4j = Neo4jConnection()
 
         ## Data Structures
         self.node_checkin_logs = []
@@ -174,7 +178,9 @@ class SimpleC2(BasePlugin, BaseLogging):
         #self.app.route(f'/api/{Info.endpoint}/console', methods = ["GET"])(self.simplec2_api_console)
         self.app.route(f'/api/{Info.endpoint}/network/add', methods = ["POST"])(self.neo4j_add_network)
         self.app.route(f'/api/{Info.endpoint}/network/remove', methods = ["POST"])(self.neo4j_remove_network)
+        self.app.route(f'/api/{Info.endpoint}/network/properties', methods = ["POST"])(self.neo4j_get_network_properties)
         self.app.route(f'/api/{Info.endpoint}/network/clients', methods = ["POST"])(self.neo4j_retrieve_clients_in_network)
+
 
         self.app.route(f'/api/{Info.endpoint}/client/add', methods = ["POST"])(self.neo4j_add_client)
         self.app.route(f'/api/{Info.endpoint}/client/remove', methods = ["POST"])(self.neo4j_remove_client)
@@ -467,8 +473,7 @@ class SimpleC2(BasePlugin, BaseLogging):
             network_cidr = request.json.get('cidr')
             network_nickname = request.json.get('nickname')
 
-            neo4j = Neo4jConnection()
-            neo4j.add_network_node(
+            self.neo4j.add_network_node(
                 cidr = network_cidr,
                 nickname = network_nickname
             )
@@ -493,8 +498,7 @@ class SimpleC2(BasePlugin, BaseLogging):
         try:
             network_nickname = request.json.get('nickname')
 
-            neo4j = Neo4jConnection()
-            neo4j.remove_network_node(
+            self.neo4j.remove_network_node(
                 nickname = network_nickname
             )
 
@@ -504,6 +508,36 @@ class SimpleC2(BasePlugin, BaseLogging):
             return api_response(status_code=400)
         except Exception as e:
             return api_response(status_code=500)
+
+    def neo4j_get_network_properties(self):
+        '''
+            Gets properties of a netowrk Node
+
+            Request:
+                {
+                    "nickname":"Dc01-org01"
+                }
+        '''
+
+        try:
+            network_nickname = request.json.get('nickname')
+
+            #neo4j = Neo4jConnection()
+            properties = self.neo4j.get_network_node_properties(
+                nickname = network_nickname
+            )
+
+            print(properties)
+
+            return api_response(
+                status_code=200,
+                data={}
+                )
+
+        except BadRequest:
+            return api_response(status_code=400)
+        except Exception as e:
+            return api_response(status_code=500)  
 
     def neo4j_add_client(self):
         '''
@@ -519,8 +553,7 @@ class SimpleC2(BasePlugin, BaseLogging):
             #host_hostname = request.json.get('hostname')
             host_nickname = request.json.get('nickname')
 
-            neo4j = Neo4jConnection()
-            neo4j.add_client_node(
+            self.neo4j.add_client_node(
                 nickname = host_nickname
             )
 
@@ -544,8 +577,7 @@ class SimpleC2(BasePlugin, BaseLogging):
         try:
             host_nickname = request.json.get('nickname')
 
-            neo4j = Neo4jConnection()
-            neo4j.remove_client_node(
+            self.neo4j.remove_client_node(
                 nickname = host_nickname
             )
 
@@ -565,8 +597,7 @@ class SimpleC2(BasePlugin, BaseLogging):
         try:
             host_hostname = request.json.get('cidr')
 
-            neo4j = Neo4jConnection()
-            '''neo4j.retrieve_clients_in_network(
+            '''self.neo4j.retrieve_clients_in_network(
                 cidr = cidr
             )'''
 
@@ -576,6 +607,7 @@ class SimpleC2(BasePlugin, BaseLogging):
             return api_response(status_code=400)
         except Exception as e:
             return api_response(status_code=500)
+
 
 
 ################################################

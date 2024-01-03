@@ -165,6 +165,27 @@ class Neo4jConnection(BaseLogging):
         except Exception as e:
             self.logger.error("Query failed:", e)
             return []
+    def get_network_node_properties(self, nickname):
+        '''
+        Gets ALL properties of the network node
+
+        nickname: Primary key, str of network id address
+            ex: "Dc01-org01"
+
+        '''
+        query = '''
+        MATCH (n: Network{nickname:$nickname})
+        return n
+        '''
+        #query = "MATCH (h: Host) RETURN h" # all hosts
+        try:
+            with self.__driver.session() as session:
+                results = session.run(query, nickname=nickname)
+                self.logger.info(f"Retrieved properties for Network Node '{nickname}'")
+                return [dict(record['n']) for record in results]
+        except Exception as e:
+            self.logger.error("Query failed:", e)
+            return []
 
 
     ## Client Queries
