@@ -29,7 +29,7 @@ try:
     #import ApiEngine.ConfigHandler
     #import Utils.DataObjects
     #import DataEngine.ServerDataDbHandler
-    #import DataEngine.Neo4jHandler
+    import DataEngine.Neo4jHandler
 
     ## Error modules
     #import Utils.ErrorDefinitions
@@ -148,10 +148,10 @@ class ControlServer():
         self.jwt = JWTManager(self.app)
         ## Try to connect to db (add logic later)
         
-        self.logger.warning("Neo4j disbaled during rebuild - make sure to re-enablle")
+        #self.logger.warning("Neo4j disbaled during rebuild - make sure to re-enablle")
         # Temp disabled during rebuild
-        #neo4j = DataEngine.Neo4jHandler.Neo4jConnection()
-        #neo4j.test()
+        neo4j = DataEngine.Neo4jHandler.Neo4jConnection()
+        neo4j.test()
 
         # GOES LAST
         #SecurityEngine.AuthenticationHandler.UserManagement.default_role_check_and_setup()
@@ -164,6 +164,8 @@ if __name__ == "__main__":
     
     ## Debug mode on windows is broken.
     #ControlServer.app.run(host="0.0.0.0", port=5000, debug=False)
+        
+    # try/except commented out so it will fail & give a stack trace if an exception is not caught elsewhere by the code. 
     #try:
         from waitress import serve
         ## These vars are defined at the top, and in relation to argparse
