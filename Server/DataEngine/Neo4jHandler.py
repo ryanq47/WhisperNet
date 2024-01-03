@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 from Utils.LoggingBaseClass import BaseLogging
 import inspect
+from neo4j.exceptions import Neo4jError
 
 ## trying to follow pep8 a bit closer on this one 
 
@@ -118,20 +119,31 @@ class Neo4jConnection(BaseLogging):
         cidr: Primary key, str of network id address
             ex: 10.0.0.0/24
 
+        Cypher Notes: Using CREATE, instead of MERGE. This creates a new node, and then 
+        will fail if the n.nickname already exists as it is constrained/our pirmary key
+            
+        Query: CREATE (n: Network{cidr:$cidr}) SET n.nickname = $nickname RETURN n
+
         '''
         query = '''
-        MERGE (n: Network{cidr:$cidr}) SET n.nickname = $nickname RETURN n
+            CREATE (n: Network{cidr:$cidr}) SET n.nickname = $nickname RETURN n
         '''
+        #MERGE (n: Network{cidr:$cidr}) SET n.nickname = $nickname RETURN n
+
+
         #query = "MATCH (h: Host) RETURN h" # all hosts
         try:
             with self.__driver.session() as session:
                 results = session.run(query, cidr=cidr, nickname=nickname)
                 self.logger.info(f"Created Network Node '{nickname}':'{cidr}'")
                 return [dict(record['n']) for record in results]
+        except Neo4jError as e:
+            self.logger.warning(f"Neo4j Error: {e}")
+            return
+
         except Exception as e:
-            self.logger.error("Query failed:", e)
+            self.logger.error(f"Query failed: {e}")
             return []
-        
     def remove_network_node(self, nickname)->list:
         '''
         Adds a network node to the DB. 
@@ -196,16 +208,29 @@ class Neo4jConnection(BaseLogging):
 
         ip: Primary key, str of IP address
 
+        Cypher Notes: Using CREATE, instead of MERGE. This creates a new node, and then 
+        will fail if the h.nickname already exists as it is constrained/our pirmary key
+
+        query = 'CREATE (h: Client{nickname:$nickname})  RETURN h'
+
         '''
-        query = 'MERGE (h: Client{nickname:$nickname})  RETURN h'
+        #query = 'MERGE (h: Client{nickname:$nickname})  RETURN h'
+        query = 'CREATE (h: Client{nickname:$nickname})  RETURN h'
+
+        #self.logger.critical("test123")
+
         #query = "MATCH (h: Host) RETURN h" # all hosts
         try:
             with self.__driver.session() as session:
                 results = session.run(query, nickname=nickname)
                 self.logger.info(f"Created Client Node '{nickname}'")
                 return [dict(record['h']) for record in results]
+        except Neo4jError as e:
+            self.logger.warning(f"Neo4j Error: {e}")
+            return
+
         except Exception as e:
-            self.logger.error("Query failed:", e)
+            self.logger.error(f"Query failed: {e}")
             return []
 
     def remove_client_node(self, nickname):
@@ -262,7 +287,7 @@ class Neo4jConnection(BaseLogging):
     ## Relationship Queries
     #-[x]
     def join_client_to_network(self, cidr, ip):
-        '''
+        ''' ## CHANGE ME TO USE NICKNAME
         Join a client to a network
 
         cidr: Network cidr of the network to join
