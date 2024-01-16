@@ -145,11 +145,7 @@ The Client Guide provides essential information on using the WhisperNet client, 
 # Server Guide
 
   
-The server is powered by flask and built as an API. However, it kind of acts like a normal webserver as well. What I mean by that, is that the paths '/' and '/home' both display a "normal" static webpage from an HTML file when navigated to via a web browser. Any other path results in a '200' response code with a message of 'oops not found'. Why? Simply, to make any directory brute forcing a lot harder. Seriously, spin this up, and throw Dirbuster at it. It gets mad because every URL it tries returns a 200 response code. 
-
-If you're thinking, "wait, I don't need to bruteforce, all the endpoints are listed here" then think again. There is a config file for setting said endpoints to whatever you want them to be (see: 'Addtl Details & short guides'). Take that blue team. 
-
-Anyways, getting back on track, the real magic happens when you interact with it like a normal API. Once authenticated, you can do a whole host of things on the server, from hosting files, to chatting with others who are connected (not quite implemented yet... it's getting there). 
+The server is powered by flask and built as an API. 
 
 
  
