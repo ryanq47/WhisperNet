@@ -4,45 +4,29 @@
 
   
 
-\<Very  much  so  still  in  Development,  this  will  update  as  things  are  completed.>
+\<Very  much  so  still  in  Development,  this  will  update  as  things  are  completed. \<Not Implemented> means the feature is being worked on, but not yet ready>
 
   
 
   
 
-(Yet another) Command and Control (C2)/ Offensive Infrastructure Tool. Where I aim to be different (or at least keep this project somewhat relevant) is in its flexibility.
+(Yet another) Command and Control (C2)/ Offensive Infrastructure Tool. Where I aim to be different (or at least keep this project somewhat relevant) is in its flexibility, via the Node system. 
 
   
 
-What does that mean? I don't fully know yet, but I have some ideas.
+What does that mean? I don't fully know yet, but I have ideas hashed out below:
 
   
 
-First off, I need to define a few items:
+First off, lets define a few items:
 
-- Clients: The control software, used to interact with the server, and Agents.
+- ?? : The control software, used to interact with the server, and Clients.
 
-- Agents: AKA RAT's. It's my own "malware" that contacts the C2 Server.
+- Clients: AKA RAT's. It's my own "malware" that contacts the C2 Server.
 
   
 
-Back to flexibility...
 
-- Plugins
-
-- Plugins are simple "tools" that do things. I'll get a better explanation later
-
-- Profiles:
-
-- Similar to, and inspired by Cobalt Strike's Malleable profiles.
-
-- "Evasion" Profiles:
-
-- Affect how the server behaves, adds some special sauce to the conversations you don't want to get caught
-
-- "Client" Profiles:
-
-- Essentially settings for all clients.
 
   
 ## The vision:
@@ -50,8 +34,27 @@ Here's what I'm shooting for: (I realize this is a bit small... click on it and 
 
 ![vision drawio](https://github.com/ryanq47/WhisperNet/assets/91687869/6f7c4188-eb8e-416b-92d1-12d9d5530842)
 
-  
-I'll put this all into words later, but a quick TLDR: A full blown C2 enviornment, with features such as remote listeners, and (easily implemented) custom plugins to suite your needs. 
+
+Key Features:
+
+ - Plugins:
+     Plugins are tools you can implement serverside, if you wish. Plugins can either be standalone, or communicate with nodes. A plugin template is provided in <path>. See <anchor to plugin guide> for more info
+
+
+ - Nodes:
+     The younger sibling of the Server. Nodes add a layer between your server (aka crown jewels) and the targets. Yes, this can be achieved with typical C2 best practices (redirectors, multiple domains, etc), but I thought a new setup may be a fun idea to try & build. 
+
+	 Pros:
+	   - Flexibility
+	   - Abstraction: If a node gets owned, taken down, blocked, etc, you can just spin up a new one. Having nodes infront of the server keeps it nested a layer deep, and (in my unproven opinion) safer. 
+	   - Simplicity: From a code & functionality perspective, nodes are simple. Do their subroutines/jobs, and send relevant info to the server. 
+
+	 Cons:
+	   - Complexity, both from a communication, and deployment point of view. There's a fair bit of compensation that happens to make sure the Nodes & server talk properly, and securely
+
+
+ - Logging:
+	I've learned the hard way that *every* action on a pentest needs to be logged, for a variety of reasons (CYA, Reporting, etc). Due to this, every action run through WhisperNet is logged in a dedicated log file. <Not Implemented>
 
   
 
@@ -154,41 +157,29 @@ Anyways, getting back on track, the real magic happens when you interact with it
   This is how you can start the server, along with a few additional common options 
 	  
 	  python3 server.py --ip 0.0.0.0 --port 8080 
-		  (opt) --evasionprofile <path_to_profile>
-		  (opt) --clientprofile <path_to_profile>
-		  (opt) --apischema <path_to_profile>
-  
+
+
   #### Endpoints: 
-  - There are a collection of default endpoints used to interact with the server. Note, these can be changed via a yaml config file in 'Config\ApiSchemas\default.yaml'
-  
-  - **/server**: Anything server related
-	  - /server/spawntcplistener [post]: Spawns a TCP listener.
-  - **/mgmt**: The management endpoint
-	  - /mgmt/login:  Log into the server
-	  - /mgmt/createuser: create a user
-	  - /mgmt/deleteuser: delete a user
-- **/files**: For file related operations (used by droppers, etc)
-	- /files/uploads: A mini file repo
-  
- #### Addlt Details & short guides:
- - Evasion Profiles
- - Client Profiles
- - ApiSchema
+  - There are a collection of default endpoints used to interact with the server.
+
+  - **/api**: API calls. Most items are nested here for Nodes & ?? to interact with
+
+
   
 
--  **Setting Up a Listener:** (move this to client)
+-  **Setting Up a Listener:** 
 
   
 
   
 
-# Agent Guide
+# Client Guide
 
   
 
   
 
-The Agent Guide covers essential topics related to WhisperNet agents:
+The Client Guide covers essential topics related to WhisperNet agents:
 
   
 
@@ -202,11 +193,10 @@ The Agent Guide covers essential topics related to WhisperNet agents:
 
   
 
--  **Current Agent Languages:**
+-  **Current Agent Languages:**:
+	- C++ <In Progress>
 
   
-
-- C# - .NET version \<Version  here>
 
   
 
@@ -231,6 +221,7 @@ In the Advanced/Dev Docs section, you'll find comprehensive information on topic
   
 
 -  **Obsidian Usage:** \<Notes  about  how  to  open  the  obisidan  docs>
+-  ** Postman Docs ** \<PDF docs for postman, throw in docs section or folder>
 
   
 
