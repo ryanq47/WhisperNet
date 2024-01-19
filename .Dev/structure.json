@@ -2,7 +2,18 @@ JSON structure. Make a dynamic creator or something to create the needed blocks 
 This is just the possible schema, for listener <-> client comms
 
 {
-    "auth":
+    "server_auth": { //for Node -> server auth
+        "user": {
+            "username": "serverUser",
+            "SID": "serverSID"
+        },
+        "password": {
+            "type": "strongType",
+            "value": "serverPassword"
+        }
+    },
+
+    "client_auth": //for client ops, such as passing a long a kerb ticket
     {
         "user": {
             "username":"value",
@@ -26,7 +37,7 @@ This is just the possible schema, for listener <-> client comms
         }
     },
 
-    "action":
+    "action": //Action can be used for client <-> Node OR Node <-> server
     {
         "action":"powershell",
         "arguments":"whoami /all",
@@ -37,7 +48,7 @@ This is just the possible schema, for listener <-> client comms
 
     },
 
-    "callback":
+    "callback": //callbacks also can be used for client <-> Node OR Node <-> server
     {
         "server":{
             "hostname":"safe.com",
