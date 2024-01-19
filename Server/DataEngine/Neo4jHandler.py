@@ -359,8 +359,8 @@ class Neo4jConnection(BaseLogging):
         fetch_constraints_query = "SHOW CONSTRAINTS"
 
         # Queries to create constraints
-        create_network_constraint_query = "CREATE CONSTRAINT ON (n:Network) ASSERT n.nickname IS UNIQUE"
-        create_client_constraint_query = "CREATE CONSTRAINT ON (c:Client) ASSERT c.nickname IS UNIQUE"
+        create_network_constraint_query = "CREATE CONSTRAINT FOR (n:Network) REQUIRE n.nickname IS UNIQUE"
+        create_client_constraint_query = "CREATE CONSTRAINT FOR (c:Client) REQUIRE c.nickname IS UNIQUE"
 
         try:
             with self.__driver.session() as session:
