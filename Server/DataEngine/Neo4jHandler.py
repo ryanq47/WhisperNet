@@ -186,7 +186,36 @@ class Neo4jConnection(BaseLogging):
         except Exception as e:
             self.logger.error("Query failed:", e)
             return []
+        
+    def add_or_update_network_node_property(self, nickname, property_name, value):
+        '''
+        Update a property of a client node. 
 
+        Allowed Properties: {"cidr", "nickname", "misc"} - limited for injection & management purposes.
+
+        nickname: nickname of client (str)
+        property_name: name of property. See Allowed Properties
+
+        value: Value of the property. Protected by injection via paramaterization
+        
+        '''
+        allowed_properties = {"cidr", "nickname", "misc"}
+
+        if property_name not in allowed_properties:
+            self.logger.error(f"Invalid property name: {property_name}")
+            return []
+
+        query = f'MERGE (h:Network {{nickname: $nickname}}) SET h.{property_name} = $value RETURN h'
+
+        try:
+            with self.__driver.session() as session:
+                results = session.run(query, nickname=nickname, value=value)
+                self.logger.info(f"Updated '{property_name}' to '{value}' on Network Node {nickname} ")
+
+                return [dict(record['h']) for record in results]
+        except Exception as e:
+            self.logger.error(f"Query failed: {e}")
+            return []
 
     ## Client Queries
     def get_client_nodes(self) -> list:
@@ -274,8 +303,31 @@ class Neo4jConnection(BaseLogging):
             self.logger.error("Query failed:", e)
             return []
 
+    #- [x]
+    def get_client_node_properties(self, nickname):
+        '''
+        Gets ALL properties of the network node
+
+        nickname: Primary key, str of network id address
+            ex: "Dc01-org01"
+
+        '''
+        query = '''
+        MATCH (n: Client{nickname:$nickname})
+        return n
+        '''
+        #query = "MATCH (h: Host) RETURN h" # all hosts
+        try:
+            with self.__driver.session() as session:
+                results = session.run(query, nickname=nickname)
+                self.logger.info(f"Retrieved properties for Network Node '{nickname}'")
+                return [dict(record['n']) for record in results]
+        except Exception as e:
+            self.logger.error("Query failed:", e)
+            return []
+
     #-[x]
-    def add_or_update_client_node_property(self, ip, property_name, value):
+    def add_or_update_client_node_property(self, nickname, property_name, value):
         '''
         Update a property of a client node. 
 
@@ -287,18 +339,18 @@ class Neo4jConnection(BaseLogging):
         value: Value of the property. Protected by injection via paramaterization
         
         '''
-        allowed_properties = {"os", "name", "misc"}
+        allowed_properties = {"os", "name", "misc", "ip"}
 
         if property_name not in allowed_properties:
             self.logger.error(f"Invalid property name: {property_name}")
             return []
 
-        query = f'MERGE (h:Client {{ip: $ip}}) SET h.{property_name} = $value RETURN h'
+        query = f'MERGE (h:Client {{nickname: $nickname}}) SET h.{property_name} = $value RETURN h'
 
         try:
             with self.__driver.session() as session:
-                results = session.run(query, ip=ip, value=value)
-                self.logger.info(f"Updated '{property_name}' to '{value}' on Client Node {ip} ")
+                results = session.run(query, nickname=nickname, value=value)
+                self.logger.info(f"Updated '{property_name}' to '{value}' on Client Node {nickname} ")
 
                 return [dict(record['h']) for record in results]
         except Exception as e:

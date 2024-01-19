@@ -175,12 +175,15 @@ class SimpleC2(BasePlugin, BaseLogging):
         self.app.route(f'/api/{Info.endpoint}/network/add', methods = ["POST"])(self.neo4j_add_network)
         self.app.route(f'/api/{Info.endpoint}/network/remove', methods = ["POST"])(self.neo4j_remove_network)
         self.app.route(f'/api/{Info.endpoint}/network/properties', methods = ["POST"])(self.neo4j_get_network_properties)
+        self.app.route(f'/api/{Info.endpoint}/network/addproperties', methods = ["POST"])(self.neo4j_add_network_properties)
+
         self.app.route(f'/api/{Info.endpoint}/network/clients', methods = ["POST"])(self.neo4j_retrieve_clients_in_network)
 
 
         self.app.route(f'/api/{Info.endpoint}/client/add', methods = ["POST"])(self.neo4j_add_client)
         self.app.route(f'/api/{Info.endpoint}/client/remove', methods = ["POST"])(self.neo4j_remove_client)
-
+        self.app.route(f'/api/{Info.endpoint}/client/properties', methods = ["POST"])(self.neo4j_get_client_properties)
+        self.app.route(f'/api/{Info.endpoint}/client/addproperties', methods = ["POST"])(self.neo4j_add_client_properties)
 
     def connect_to_neo4j(self):
         '''
@@ -526,7 +529,7 @@ class SimpleC2(BasePlugin, BaseLogging):
 
             Request:
                 {
-                    "nickname":"Dc01-org01"
+                    "nickname":"Subnet1"
                 }
         '''
 
@@ -549,6 +552,49 @@ class SimpleC2(BasePlugin, BaseLogging):
             return api_response(status_code=400)
         except Exception as e:
             return api_response(status_code=500)  
+
+    def neo4j_add_network_properties(self):
+        '''
+        Adds properties to a network. 
+        
+        Request:
+        {
+            "nickname":"NetworkNickname3",
+            "property":"cidr",
+            "value":"10.0.0.0/24"
+
+        }
+
+        '''
+
+        try:
+            network_nickname = request.json.get('nickname')
+            network_property = request.json.get('property')
+            network_property_value = request.json.get('value')
+
+            #neo4j = Neo4jConnection()
+            properties = self.neo4j.add_or_update_network_node_property(
+                nickname = network_nickname,
+                property_name=network_property,
+                value = network_property_value
+            )
+
+            print(properties)
+
+            ## blank response, properties command failed. Reutrn a 400 bad request
+            if properties == []:
+                return api_response(status_code=400)
+            
+
+            return api_response(
+                status_code=200,
+                data={}
+                )
+
+        except BadRequest:
+            return api_response(status_code=400)
+        except Exception as e:
+            return api_response(status_code=500) 
 
     def neo4j_add_client(self):
         '''
@@ -598,6 +644,79 @@ class SimpleC2(BasePlugin, BaseLogging):
             return api_response(status_code=400)
         except Exception as e:
             return api_response(status_code=500)
+
+    def neo4j_add_client_properties(self):
+        '''
+        Adds properties to a network. 
+        
+        Request:
+        {
+            "nickname":"NetworkNickname3",
+            "property":"cidr",
+            "value":"10.0.0.0/24"
+
+        }
+
+        '''
+
+        try:
+            client_nickname = request.json.get('nickname')
+            client_property = request.json.get('property')
+            client_property_value = request.json.get('value')
+
+            #neo4j = Neo4jConnection()
+            properties = self.neo4j.add_or_update_client_node_property(
+                nickname = client_nickname,
+                property_name=client_property,
+                value = client_property_value
+            )
+
+            print(properties)
+
+            ## blank response, properties command failed. Reutrn a 400 bad request
+            if properties == []:
+                return api_response(status_code=400)
+            
+
+            return api_response(
+                status_code=200,
+                data={}
+                )
+
+        except BadRequest:
+            return api_response(status_code=400)
+        except Exception as e:
+            return api_response(status_code=500) 
+
+    def neo4j_get_client_properties(self):
+        '''
+            Gets properties of a client Node
+
+            Request:
+                {
+                    "nickname":"Dc01-org01"
+                }
+        '''
+
+        try:
+            network_nickname = request.json.get('nickname')
+
+            #neo4j = Neo4jConnection()
+            properties = self.neo4j.get_client_node_properties(
+                nickname = network_nickname
+            )
+
+            print(properties)
+
+            return api_response(
+                status_code=200,
+                data={}
+                )
+
+        except BadRequest:
+            return api_response(status_code=400)
+        except Exception as e:
+            return api_response(status_code=500) 
 
     def neo4j_retrieve_clients_in_network(self):
         '''
