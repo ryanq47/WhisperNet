@@ -1,0 +1,57 @@
+JSON structure. Make a dynamic creator or something to create the needed blocks each way.
+This is just the possible schema, for listener <-> client comms
+
+{
+    "auth":
+    {
+        "user": {
+            "username":"value",
+            "SID":"value"
+        },
+        "password": {
+            "type":"?",
+            "value":"value"
+        },
+        "hash": {
+            "type":"ntlm,lm, rc4, etc",
+            "value":"value"
+        },
+        "kerb": {
+            "type":"tgt",
+            "value":"value"
+        },
+        "other": {
+            "type":"?",
+            "value":"value"
+        }
+    },
+
+    "action":
+    {
+        "action":"powershell",
+        "arguments":"whoami /all",
+        "execution_context": "current",
+        "timeout": "30", //timeout before command times out
+        "std_output": "",
+        "std_error": ""
+
+    },
+
+    "callback":
+    {
+        "server":{
+            "hostname":"safe.com",
+            "address":"127.0.0.1",
+            "port":"8080",
+            "path":"/"
+        },
+        //retry stuff, if fails, wait for next "checkin" to re send data?
+        "retry_policy": {
+            "max_retries": "3",
+            "retry_interval": "10"
+        },
+
+        "data_format": "json"
+
+    }
+}
