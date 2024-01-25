@@ -1,4 +1,223 @@
 ########################################
+# Client Auth
+########################################
+class ClientAuth:
+    def __init__(self, user=None, password=None, auth_hash=None, kerb=None, other=None):
+        self._user = user if user else User()
+        self._password = password if password else Password()
+        self._hash = auth_hash if auth_hash else Hash() # hash is a func in python, whoops. Switching to auth_hash
+        self._kerb = kerb if kerb else Kerb() 
+        self._other = other if other else Other() 
+
+    
+    # User getter and setter
+    @property
+    def user(self):
+        return self._user
+
+    @user.setter
+    def user(self, value):
+        # Validation logic here
+        self._user = value
+
+    # Password getter and setter
+    @property
+    def password(self):
+        return self._password
+
+    @password.setter
+    def password(self, value):
+        # Validation logic here
+        self._password = value
+
+    # Auth_hash getter and setter
+    @property
+    def auth_hash(self):
+        return self._hash
+
+    @auth_hash.setter
+    def auth_hash(self, value):
+        # Validation logic here
+        self._hash = value
+
+    # Kerb getter and setter
+    @property
+    def kerb(self):
+        return self._kerb
+
+    @kerb.setter
+    def kerb(self, value):
+        # Validation logic here
+        self._kerb = value
+
+    # Other getter and setter
+    @property
+    def other(self):
+        return self._other
+
+    @other.setter
+    def other(self, value):
+        # Validation logic here
+        self._other = value
+
+    def to_dict(self):
+        return {
+            'user': self.user.to_dict(),
+            'password': self.password.to_dict(),
+            'hash': self.auth_hash.to_dict(),
+            'kerb': self.kerb.to_dict(),
+            'other':self.other.to_dict(),
+        }   
+
+
+class User:
+    def __init__(self, username = None, SID = None):
+        self._username = username
+        self._SID = SID
+
+    @property
+    def username(self):
+        return self._username
+
+    @username.setter
+    def username(self, value):
+        # Validation logic here
+        self._username = value
+
+    @property
+    def SID(self):
+        return self._SID
+
+    @SID.setter
+    def SID(self, value):
+        # Validation logic here
+        self._SID = value
+
+
+    def to_dict(self):
+        return {
+            'username':self._username,
+            'SID':self._SID
+        }
+
+
+class Password:
+    def __init__(self, p_type=None, value=None):
+        self._type = p_type
+        self._value = value
+
+    @property
+    def type(self):
+        return self._type
+
+    @type.setter
+    def type(self, value):
+        # Validation logic here
+        self._type = value
+
+    @property
+    def value(self):
+        return self._value
+
+    @value.setter
+    def value(self, value):
+        # Validation logic here
+        self._value = value
+
+    def to_dict(self):
+        return {
+            'type':self._type,
+            'value':self._value
+        }
+
+class Hash:
+    def __init__(self, h_type=None, value=None):
+        self._type = h_type
+        self._value = value
+
+    @property
+    def type(self):
+        return self._type
+
+    @type.setter
+    def type(self, value):
+        # Validation logic here
+        self._type = value
+
+    @property
+    def value(self):
+        return self._value
+
+    @value.setter
+    def value(self, value):
+        # Validation logic here
+        self._value = value
+
+    def to_dict(self):
+        return {
+            'type':self._type,
+            'value':self._value
+        }
+
+class Kerb:
+    def __init__(self, k_type=None, value=None):
+        self._type = k_type
+        self._value = value
+
+    @property
+    def type(self):
+        return self._type
+
+    @type.setter
+    def type(self, value):
+        # Validation logic here
+        self._type = value
+
+    @property
+    def value(self):
+        return self._value
+
+    @value.setter
+    def value(self, value):
+        # Validation logic here
+        self._value = value
+
+    def to_dict(self):
+        return {
+            'type':self._type,
+            'value':self._value
+        }
+
+class Other:
+    def __init__(self, o_type=None, value=None):
+        self._type = o_type
+        self._value = value
+
+    @property
+    def type(self):
+        return self._type
+
+    @type.setter
+    def type(self, value):
+        # Validation logic here
+        self._type = value
+
+    @property
+    def value(self):
+        return self._value
+
+    @value.setter
+    def value(self, value):
+        # Validation logic here
+        self._value = value
+
+    def to_dict(self):
+        return {
+            'type':self._type,
+            'value':self._value
+        }
+
+########################################
 # Action
 ########################################
 class Action:
@@ -254,6 +473,9 @@ class MyJsonObject:
         self.server = Server()
         self.callback = Callback()
         self.action = Action()
+        self.client_auth = ClientAuth()
+
+
 
     ''' Not used, but optional
     # Example of a method to update server details
@@ -278,7 +500,8 @@ class MyJsonObject:
 
         return {
             "action":self.action.to_dict(),
-            "callback":self.callback.to_dict()
+            "callback":self.callback.to_dict(),
+            "client_auth":self.client_auth.to_dict()
 
         }
 
@@ -286,6 +509,18 @@ class MyJsonObject:
 obj = MyJsonObject()
 #obj.server.hostname = "example.com"
 #obj.server.port = "8080"
+
+obj.client_auth.user.username = "test"
+obj.client_auth.user.SID = "123-123-123"
+obj.client_auth.password.type = "plaintext"
+obj.client_auth.password.value = "ilikecheezeburgers"
+## See code for auth)hash rationale. 
+obj.client_auth.auth_hash.type = "NTLM"
+obj.client_auth.auth_hash.value = "aab:123:::"
+obj.client_auth.kerb.type = "tgt"
+obj.client_auth.kerb.value = "kerbticket"
+obj.client_auth.other.type = "something"
+obj.client_auth.other.value = "something"
 
 ## action testing[x]
 obj.action.action = "powershell"
@@ -306,9 +541,9 @@ obj.callback.retry_policy.retry_interval = "10"
 
 obj.callback.data_format = "json"
 
-print(obj.server.hostname)
-print(obj.callback.data_format)
-print(obj.callback.to_dict())
+#print(obj.server.hostname)
+#print(obj.callback.data_format)
+#print(obj.callback.to_dict())
 
-print(obj.action.to_dict())
+#print(obj.action.to_dict())
 print(obj.to_dict())
