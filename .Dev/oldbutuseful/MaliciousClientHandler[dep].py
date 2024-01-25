@@ -26,7 +26,7 @@ try:
     import Comms.CommsHandler
     import Utils.QueueHandler
     import Utils.UtilsHandler
-    import DataEngine.JsonHandler
+    #import DataEngine.JsonHandler
     import DataEngine.DBHandler
     import DataEngine.EvasionHandler
 

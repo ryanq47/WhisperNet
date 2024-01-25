@@ -1,3 +1,6 @@
+import json
+from Utils.LoggingBaseClass import BaseLogging
+
 ########################################
 # Client Auth
 ########################################
@@ -221,12 +224,13 @@ class Other:
 # Action
 ########################################
 class Action:
-    def __init__(self, action=None, arguments=None, timeout=None, std_output=None, std_error=None):
+    def __init__(self, action=None, arguments=None, timeout=None, std_output=None, std_error=None, execution_context=None):
         self._action = action
         self._arguments = arguments
         self._timeout = timeout
         self._std_output = std_output
         self._std_error = std_error
+        self._execution_context = std_error
 
     
     #action
@@ -468,42 +472,142 @@ class Server:
 ########################################
 # Parent/Construction of everything
 ########################################
-class MyJsonObject:
+class JsonObject(BaseLogging):
     def __init__(self):
+        BaseLogging.__init__(self)  
         self.server = Server()
         self.callback = Callback()
         self.action = Action()
         self.client_auth = ClientAuth()
 
-
-
-    ''' Not used, but optional
-    # Example of a method to update server details
-    def update_server(self, hostname=None, address=None, port=None, path=None):
-        self.server.hostname = hostname if hostname is not None else self.server.hostname
-        self.server.address = address if address is not None else self.server.address
-        self.server.port = port if port is not None else self.server.port
-        self.server.path = path if path is not None else self.server.path
-
-    # Example of a method to update callback details
-    def update_callback(self, server=None, max_retries=None, retry_interval=None, data_format=None):
-        if server:
-            self.callback.server = server
-        if max_retries or retry_interval:
-            self.callback.retry_policy = RetryPolicy(max_retries, retry_interval)
-        if data_format:
-            self.callback.data_format = data_format
-    '''
-
     def to_dict(self):
-        '''Turns everyhting into the final dict'''
+        '''Turns all supplied values into the final dict.
+        Call this method to get a DICT from the object. 
 
-        return {
-            "action":self.action.to_dict(),
-            "callback":self.callback.to_dict(),
-            "client_auth":self.client_auth.to_dict()
+        Returns: Dict
+        
+        
+        '''
+        py_dict = {}
 
-        }
+        try:
+            py_dict = {
+                "action":self.action.to_dict(),
+                "callback":self.callback.to_dict(),
+                "client_auth":self.client_auth.to_dict()
+            }
+        except Exception as e:
+            self.logger.error(f"Could not create a dict: {e}")
+
+        return py_dict
+    
+
+
+    def to_json(self, inlcude_empty_keys=False):
+        """
+        Turns all supplied values into a final dict and removes keys with None values.
+        Call this method to get a JSON string from the object. 
+
+        Returns: 
+            str: A JSON string representation of the object with 'None' values omitted.
+        """
+        try:
+            py_dict = self.to_dict()
+
+            ## Just in case this is needed in the future. 
+            if inlcude_empty_keys:
+                dict_with_empty = json.dumps(py_dict)
+                return json.dumps(dict_with_empty)
+
+            else:
+                # Recursively remove keys where the value is None
+                cleaned_dict = self.remove_none_values(py_dict)
+
+                # Convert the cleaned dictionary to JSON
+                json_data = json.dumps(cleaned_dict)
+
+                return json_data
+
+        except Exception as e:
+            self.logger.error(f"Could not create a JSON object: {e}")
+            return None
+
+    def remove_none_values(self, d):
+        """ Recursively remove keys with None values from a dictionary. """
+        if not isinstance(d, dict):
+            return d
+        return {k: self.remove_none_values(v) for k, v in d.items() if v is not None}
+
+    def from_json(self, json_data):
+        """
+        Create an instance of MyJsonObject from a JSON string.
+        
+        Args:
+            json_data (str): A JSON string representation of the object.
+            
+        Returns:
+            MyJsonObject: An instance of MyJsonObject populated with data from the JSON string.
+        """
+
+        ## Alrighty this looks complicated, but all it's doing is pulling keys from the JSON, and 
+        ## Putting them into the args of each class, thus creating our pydict object
+        ## If the key is not present, then it gets a value of None
+        try:
+            data = json.loads(json_data)
+
+            # Creating Action instance from JSON
+            action_data = data.get("action", {})
+            self.action = Action(
+                action=action_data.get("action", None),
+                arguments=action_data.get("arguments", None),
+                timeout=action_data.get("timeout", None),
+                std_output=action_data.get("std_output", None),
+                std_error=action_data.get("std_error", None),
+                execution_context=action_data.get("execution_context", None)
+
+            )
+
+            # Creating ClientAuth instance from JSON
+            auth_data = data.get("client_auth", {})
+            user_data = auth_data.get("user", {})
+            password_data = auth_data.get("password", {})
+            hash_data = auth_data.get("hash", {})
+            kerb_data = auth_data.get("kerb", {})
+            other_data = auth_data.get("other", {})
+
+            self.client_auth = ClientAuth(
+                user=User(username=user_data.get("username", None), SID=user_data.get("SID", None)),
+                password=Password(p_type=password_data.get("type", None), value=password_data.get("value", None)),
+                auth_hash=Hash(h_type=hash_data.get("type", None), value=hash_data.get("value", None)),
+                kerb=Kerb(k_type=kerb_data.get("type", None), value=kerb_data.get("value", None)),
+                other=Other(o_type=other_data.get("type", None), value=other_data.get("value", None))
+            )
+
+            # Creating Callback instance from JSON
+            callback_data = data.get("callback", {})
+            server_data = callback_data.get("server", {})
+            retry_policy_data = callback_data.get("retry_policy", {})
+
+            self.callback = Callback(
+                server=Server(
+                    hostname=server_data.get("hostname", None),
+                    address=server_data.get("address", None),
+                    port=server_data.get("port", None),
+                    path=server_data.get("path", None)
+                ),
+                retry_policy=RetryPolicy(
+                    max_retries=retry_policy_data.get("max_retries", None),
+                    retry_interval=retry_policy_data.get("retry_interval", None)
+                ),
+                data_format=callback_data.get("data_format", None)
+            )
+
+            return self
+
+        except Exception as e:
+            self.logger.error(f"Error parsing JSON data: {e}")
+            return None
+
 
 
 '''Test Suite. 
@@ -547,5 +651,6 @@ obj.callback.data_format = "json"
 #print(obj.callback.to_dict())
 
 #print(obj.action.to_dict())
-print(obj.to_dict())
+#print(obj.to_dict())
+#print(obj.to_json())
 '''
