@@ -1,0 +1,8 @@
+{
+    "files": [
+        "Screen01.ui.qml",
+        "main.py",
+        "qml/base.ui.qml",
+        "test.qml"
+    ]
+}
