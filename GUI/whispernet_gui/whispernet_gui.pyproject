@@ -2,6 +2,7 @@
     "files": [
         ".dev/base.ui.qml",
         ".dev/login.ui.qml",
+        "Qml/DraggableItem.qml",
         "Qml/Login.qml",
         "Qml/Popup.qml",
         "Qml/Test.qml",

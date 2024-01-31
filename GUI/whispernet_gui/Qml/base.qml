@@ -175,7 +175,7 @@ ApplicationWindow {
     }
 
 
-    //cool little custom item in qml
+    //cool little custom item in qml.
     Test {
         id: button
         x: 100; y: 100
@@ -183,6 +183,12 @@ ApplicationWindow {
         onClicked: {
             devPopup.open()
         }
+    }
+
+    DraggableItem{
+        id: test
+        x: 50
+        y: 50
     }
 
 }
