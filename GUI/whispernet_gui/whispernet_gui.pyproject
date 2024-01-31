@@ -1,6 +1,7 @@
 {
     "files": [
         ".dev/base.ui.qml",
+        "Qml/Popup.qml",
         "Qml/base.qml",
         "main.py"
     ]

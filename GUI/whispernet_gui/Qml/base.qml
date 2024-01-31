@@ -2,15 +2,14 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 
-Window  {
+Window {
     width: 1366
     height: 768
     visible: true
-    title:"WhispherNet ~ Gui"
+    title: "WhispherNet ~ Gui"
 
     Rectangle {
         id: base_rectangle
-        //color: "#ffffff"
         anchors.fill: parent
 
         gradient: Gradient {
@@ -21,28 +20,121 @@ Window  {
 
     ToolBar {
         id: toolBar
-        x: 0
-        y: 0
-        width: 1366
-        height: 30
+        anchors.top: parent.top
+        width: parent.width
 
         Row {
-            id: row
             anchors.fill: parent
 
             ToolButton {
-                id: toolButton
+                id: fileButton
                 text: qsTr("File")
-                height: 30
+                onClicked: filePopup.open()
             }
 
             ToolButton {
-                id: toolButton1
+                id: viewButton
                 text: qsTr("View")
-                height: 30
+                onClicked: viewPopup.open()
             }
         }
     }
+
+    Popup {
+        id: filePopup
+        x: fileButton.x // Align the popup with the file button
+        y: toolBar.height
+        width: 100
+        height: 200
+
+        Rectangle {
+            width: parent.width
+            height: parent.height
+            color: "lightblue"
+
+            Column {
+                anchors.fill: parent
+                spacing: 5  // Add some spacing between the buttons
+
+                ToolButton {
+                    id: filePopupButton1
+                    text: qsTr("Item1")
+                    width: parent.width
+                    onClicked: devPopup.open()
+
+                    // Optional: Set a fixed height or let it size to content
+                }
+                ToolButton {
+                    id: filePopupButton2
+                    text: qsTr("Item2")
+                    width: parent.width
+                    onClicked: devPopup.open()
+
+                    // Optional: Set a fixed height or let it size to content
+                }
+
+                // The Text can either be part of the Column or outside it
+                Text {
+                    text: "File options"
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    visible: false  // Set to true if you want it to be visible
+                }
+            }
+        }
+    }
+
+    Popup {
+        id: viewPopup
+        x: viewButton.x // Align the popup with the view button
+        y: toolBar.height
+        width: 100
+        height: 200
+
+        Rectangle {
+            width: parent.width
+            height: parent.height
+            color: "lightgreen"
+
+            Column {
+                anchors.fill:parent
+
+                ToolButton {
+                    id: viewPopupButton1
+                    text: qsTr("Item1")
+                    width: parent.width
+                    onClicked:devPopup.open()
+
+                }
+                ToolButton {
+                    id: viewPopupButton2
+                    text: qsTr("Item2")
+                    width: parent.width
+                    onClicked:devPopup.open()
+
+                }
+
+            }
+        }
+    }
+
+    Popup {
+        id: devPopup
+        x:500
+        y:500
+
+        height: 30
+        width: 160
+
+        Text {
+            color: "White"
+
+            anchors.fill: parent
+            id: devPopupText
+            text: qsTr("Congrats your popup works")
+        }
+
+    }
+
 }
 
 
