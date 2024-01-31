@@ -4,7 +4,9 @@
         ".dev/login.ui.qml",
         "Qml/Login.qml",
         "Qml/Popup.qml",
+        "Qml/Test.qml",
         "Qml/base.qml",
+        "js/Utils.qml",
         "js/i_hate_javascript.txt",
         "js/utils.js",
         "main.py"

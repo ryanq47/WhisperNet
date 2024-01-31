@@ -1,7 +1,10 @@
 import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
-import "../js/utils.js" as Utils
+
+//import ./Utils.qml
+//import "../js/utils.js" as Utils
+//import "./Utils.qml" as Utils
 
 
 ApplicationWindow {
@@ -70,14 +73,7 @@ ApplicationWindow {
                     id: filePopupButton2
                     text: qsTr("Login To Server")
                     width: parent.width
-                    onClicked: Utils.openWindow("Login.qml")
-
-                        //{
-                        //popupLoader.source = "Login.qml"
-                        //myPopup.open()
-                        //devPopup.open()
-                    //}
-                    // Optional: Set a fixed height or let it size to content
+                    onClicked: utils.createWindow("Login.qml")
                 }
 
                 // The Text can either be part of the Column or outside it
@@ -133,7 +129,7 @@ ApplicationWindow {
         width: 160
 
         Text {
-            color: "White"
+            color: "Black"
 
             anchors.fill: parent
             id: devPopupText
@@ -141,6 +137,8 @@ ApplicationWindow {
         }
 
     }
+
+
     // Loader to dynamically load the popup content
     Loader {
         id: popupLoader
@@ -155,6 +153,36 @@ ApplicationWindow {
         contentItem: popupLoader.item  // Set the loaded item as the content
 
         // Positioning and other properties as needed
+    }
+
+
+    //can't get these to work in a utils file, so its here for now
+    QtObject {
+        id: utils
+        function createWindow(qmlFilePath) {
+            var component = Qt.createComponent(qmlFilePath);
+            if (component.status === Component.Ready) {
+                var window = component.createObject();
+                if (window === null) {
+                    console.error("Error creating window");
+                } else {
+                    window.visible = true;
+                }
+            } else if (component.status === Component.Error) {
+                console.error("Error loading component:", component.errorString());
+            }
+        }
+    }
+
+
+    //cool little custom item in qml
+    Test {
+        id: button
+        x: 100; y: 100
+        text: "Start"
+        onClicked: {
+            devPopup.open()
+        }
     }
 
 }
