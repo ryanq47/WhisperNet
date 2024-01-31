@@ -1,8 +1,12 @@
 {
     "files": [
         ".dev/base.ui.qml",
+        ".dev/login.ui.qml",
+        "Qml/Login.qml",
         "Qml/Popup.qml",
         "Qml/base.qml",
+        "js/i_hate_javascript.txt",
+        "js/utils.js",
         "main.py"
     ]
 }

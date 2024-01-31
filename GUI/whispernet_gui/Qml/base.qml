@@ -1,8 +1,10 @@
 import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
+import "../js/utils.js" as Utils
 
-Window {
+
+ApplicationWindow {
     width: 1366
     height: 768
     visible: true
@@ -58,7 +60,7 @@ Window {
 
                 ToolButton {
                     id: filePopupButton1
-                    text: qsTr("Item1")
+                    text: qsTr("item 1")
                     width: parent.width
                     onClicked: devPopup.open()
 
@@ -66,10 +68,15 @@ Window {
                 }
                 ToolButton {
                     id: filePopupButton2
-                    text: qsTr("Item2")
+                    text: qsTr("Login To Server")
                     width: parent.width
-                    onClicked: devPopup.open()
+                    onClicked: Utils.openWindow("Login.qml")
 
+                        //{
+                        //popupLoader.source = "Login.qml"
+                        //myPopup.open()
+                        //devPopup.open()
+                    //}
                     // Optional: Set a fixed height or let it size to content
                 }
 
@@ -133,6 +140,21 @@ Window {
             text: qsTr("Congrats your popup works")
         }
 
+    }
+    // Loader to dynamically load the popup content
+    Loader {
+        id: popupLoader
+        source: ""  // Initially empty
+    }
+
+    //basically a func to setup the popup
+    Popup {
+        id: myPopup
+        width: 300
+        height: 200
+        contentItem: popupLoader.item  // Set the loaded item as the content
+
+        // Positioning and other properties as needed
     }
 
 }
