@@ -18,14 +18,20 @@ ApplicationWindow {
     Button {
         text: qsTr("Post Data")
         anchors.horizontalCenter: parent.horizontalCenter
-        onClicked: networkManager.postData("http://google.com")
+        onClicked: networkManager.postData("http://google.com","data_here")
     }
 
     // Connect the dataReceived signal to a handler
     Connections {
         target: networkManager
-        onDataReceived: {
+        function onDataReceived(data) {
+            //keeping in old debugging statements for if data is being dumb
+            //console.log("Type of data:")  // Print the actual data content
+            //console.log(typeof data)  // Should print 'string'
+            //console.log("data:")  // Print the actual data content
+            //console.log(data)  // Print the actual data content
             receivedDataText.text = qsTr("Received: ") + data
+            //receivedDataText.text = qsTr(data)
         }
     }
 }
