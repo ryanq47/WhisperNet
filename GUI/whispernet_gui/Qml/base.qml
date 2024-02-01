@@ -15,13 +15,16 @@ ApplicationWindow {
     visible: true
     title: "WhispherNet ~ Gui"
 
+
     Rectangle {
         id: base_rectangle
         anchors.fill: parent
 
+
+        //color: Style.primaryColor
         gradient: Gradient {
-            GradientStop { position: 0.0; color: "#53A2E6" }
-            GradientStop { position: 1.0; color: "#133451" }
+            GradientStop { position: 0.0; color: Style.gradientTop } //color: "#53A2E6" }
+            GradientStop { position: 1.0; color: Style.gradientBottom } //color: "#133451" }
         }
     }
 
