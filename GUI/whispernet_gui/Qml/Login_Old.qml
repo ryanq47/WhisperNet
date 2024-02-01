@@ -1,18 +1,16 @@
-// DraggableItem.qml
 import QtQuick
 import QtQuick.Controls
 
-//A playaround draggable item. Maybe use this as a plugin template
-Item {
-    id: draggableItem
-    width: 500
-    height: 500
-    visible: true
+Window {
+    visible: false  // Initially hidden, shown programmatically
+    width: 300
+    height: 200
+    title: "Floating Window"
 
-    // You can add other properties and visual elements here
     Rectangle {
-        width: parent.width
-        height: parent.height
+        id: rectangle
+        color: "#ffffff"
+        anchors.fill: parent
 
         Column {
             id: column
@@ -21,7 +19,6 @@ Item {
             TextField {
                 id: usernameField
                 width: 200
-                color: "black"
                 height: 30
                 placeholderText: qsTr("Username")
             }
@@ -40,13 +37,5 @@ Item {
                 text: qsTr("Log In")
             }
         }
-    }
-
-    Button {
-        id: closePopupButton
-        //what to anchor //where to anchor to/in ref from
-        anchors.top: draggableItem.top
-        anchors.right: draggableItem.right
-        text: "Close"
     }
 }

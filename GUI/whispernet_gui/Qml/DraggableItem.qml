@@ -1,10 +1,13 @@
 // DraggableItem.qml
-import QtQuick 2.0
+import QtQuick
+import QtQuick.Controls
+//A playaround draggable item. Maybe use this as a plugin template
 
 Item {
     id: draggableItem
     width: 100
     height: 100
+    visible: true
     // You can add other properties and visual elements here
 
     property point lastMousePos
@@ -57,7 +60,7 @@ Item {
             ctx.lineTo(width, height);  // Bottom right
             ctx.lineTo(width, 0);  // Top right
             ctx.closePath();
-            ctx.fillStyle = "darkgray";
+            ctx.fillStyle = "black";
             ctx.fill();
         }
 
@@ -79,4 +82,18 @@ Item {
         }
     }
 
+
+    Button {
+        id: closePopupButton
+        //what to anchor //where to anchor to/in ref from
+        anchors.top: draggableItem.top
+        anchors.right: draggableItem.right
+        text: "Close"
+        //onClicked: { //destroys object
+        //    draggableItem.destroy()
+        //}
+        onClicked: { //hides object
+            draggableItem.visible = false
+        }
+    }
 }

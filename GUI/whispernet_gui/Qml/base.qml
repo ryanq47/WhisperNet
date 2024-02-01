@@ -2,6 +2,8 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 
+//https://het.as.utexas.edu/HET/Software/html/qdeclarativeelements.html
+
 //import ./Utils.qml
 //import "../js/utils.js" as Utils
 //import "./Utils.qml" as Utils
@@ -73,7 +75,16 @@ ApplicationWindow {
                     id: filePopupButton2
                     text: qsTr("Login To Server")
                     width: parent.width
-                    onClicked: utils.createWindow("Login.qml")
+
+                    onClicked: {
+                        var component = Qt.createComponent("Login.qml");
+                        if (component.status === Component.Ready) {
+                            var loginWindow = component.createObject(parent);
+                            loginWindow.show();
+                        } else if (component.status === Component.Error) {
+                            console.error("Error loading component:", component.errorString());
+                        }
+                    }
                 }
 
                 // The Text can either be part of the Column or outside it
@@ -185,11 +196,12 @@ ApplicationWindow {
         }
     }
 
+    /*
     DraggableItem{
         id: test
         x: 50
         y: 50
-    }
+    }*/
 
 }
 

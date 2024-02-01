@@ -4,6 +4,7 @@
         ".dev/login.ui.qml",
         "Qml/DraggableItem.qml",
         "Qml/Login.qml",
+        "Qml/Login_Old.qml",
         "Qml/Popup.qml",
         "Qml/Test.qml",
         "Qml/base.qml",
