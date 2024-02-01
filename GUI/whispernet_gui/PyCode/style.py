@@ -1,4 +1,5 @@
 from PySide6.QtCore import QObject, Property
+import random
 ## Styles
 
 class Style(QObject):
@@ -8,8 +9,12 @@ class Style(QObject):
         self._accentColor = "#DB4437"
         self._defaultFontSize = 14
 
-        self._gradientTop = "#53A2E6"
-        self._gradientBottom = "#133451"
+        self._gradientTopBlue = "#6A8CAF"
+        self._gradientTopGreen = "#8CA96A"
+        self._gradientTopRed = "#A9686A"
+        self._gradientTopGreySilver = "#A0A0A0"  # Muted Silver-Grey
+
+        self._gradientBottom = "#000000"
 
 
     @Property(str)
@@ -26,7 +31,8 @@ class Style(QObject):
 
     @Property(str)
     def gradientTop(self):
-        return self._gradientTop
+        #return self._gradientTopBlue # Non Random
+        return random.choice([self._gradientTopBlue, self._gradientTopGreen, self._gradientTopRed, self._gradientTopGreySilver])
 
     @Property(str)
     def gradientBottom(self):
