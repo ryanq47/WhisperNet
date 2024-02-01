@@ -47,6 +47,11 @@ ApplicationWindow {
                 text: qsTr("View")
                 onClicked: viewPopup.open()
             }
+            ToolButton {
+                id: devButton
+                text: qsTr("Dev")
+                onClicked: devPopupMenu.open()
+            }
         }
     }
 
@@ -66,14 +71,6 @@ ApplicationWindow {
                 anchors.fill: parent
                 spacing: 5  // Add some spacing between the buttons
 
-                ToolButton {
-                    id: filePopupButton1
-                    text: qsTr("item 1")
-                    width: parent.width
-                    onClicked: devPopup.open()
-
-                    // Optional: Set a fixed height or let it size to content
-                }
                 ToolButton {
                     id: filePopupButton2
                     text: qsTr("Login To Server")
@@ -100,6 +97,47 @@ ApplicationWindow {
         }
     }
 
+    Popup {
+        id: devPopupMenu
+        x: devButton.x // Align the popup with the file button
+        y: toolBar.height
+        width: 100
+        height: 200
+
+        Rectangle {
+            width: parent.width
+            height: parent.height
+            color: "lightblue"
+
+            Column {
+                anchors.fill: parent
+                spacing: 5  // Add some spacing between the buttons
+
+                ToolButton {
+                    id: devPopupButton1
+                    text: qsTr("Net Manager Ex")
+                    width: parent.width
+                    onClicked: {
+                        var component = Qt.createComponent("NetManagerExample.qml");
+                        if (component.status === Component.Ready) {
+                            var loginWindow = component.createObject(parent);
+                            loginWindow.show();
+                        } else if (component.status === Component.Error) {
+                            console.error("Error loading component:", component.errorString());
+                        }
+                    }
+                    // Optional: Set a fixed height or let it size to content
+                }
+
+                // The Text can either be part of the Column or outside it
+                Text {
+                    text: "File options"
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    visible: false  // Set to true if you want it to be visible
+                }
+            }
+        }
+    }
     Popup {
         id: viewPopup
         x: viewButton.x // Align the popup with the view button

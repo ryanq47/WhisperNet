@@ -2,9 +2,11 @@
     "files": [
         ".dev/base.ui.qml",
         ".dev/login.ui.qml",
+        "PyCode/NetworkManager.py",
         "Qml/DraggableItem.qml",
         "Qml/Login.qml",
         "Qml/Login_Old.qml",
+        "Qml/NetManagerExample.qml",
         "Qml/Popup.qml",
         "Qml/Test.qml",
         "Qml/base.qml",
