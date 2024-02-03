@@ -52,6 +52,9 @@ ApplicationWindow {
                 Layout.fillWidth: true
                 text: qsTr("Log In")
                 height: 30
+                onClicked: {
+                    authentication.login.to_server("test","test","test")
+                }
             }
         }
     }

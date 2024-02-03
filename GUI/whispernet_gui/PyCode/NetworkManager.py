@@ -7,6 +7,9 @@ from PySide6.QtCore import QObject, Signal, Slot, QByteArray
 from PySide6.QtNetwork import QNetworkAccessManager, QNetworkRequest
 from PySide6.QtCore import QUrl
 
+'''
+    Fuuuuck didn't think about this, not sure if this will work when not directly called from QML.
+'''
 
 class NetworkManager(QObject):
     # Signal to emit when data is received

@@ -2,6 +2,8 @@
     "files": [
         ".dev/base.ui.qml",
         ".dev/login.ui.qml",
+        "PyCode/Authentication.py",
+        "PyCode/Login.py",
         "PyCode/NetworkManager.py",
         "Qml/DraggableItem.qml",
         "Qml/Login.qml",
