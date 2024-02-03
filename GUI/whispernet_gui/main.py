@@ -8,7 +8,7 @@ from PySide6.QtQml import QQmlApplicationEngine
 ## Named pycode to not cause conflicts
 from PyCode.Style import Style
 from PyCode.NetworkManager import NetworkManager
-from PyCode.Authentication import Authentication
+from PyCode.Authentication.Authentication import Authentication
 
 if __name__ == "__main__":
     app = QGuiApplication(sys.argv)
