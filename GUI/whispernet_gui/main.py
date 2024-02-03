@@ -25,6 +25,7 @@ if __name__ == "__main__":
     authentication = Authentication() ## somethings screwed up, prolly me missing something
     engine.rootContext().setContextProperty("authentication", authentication)
 
+
     qml_file = Path(__file__).resolve().parent / "Qml/base.qml"
     engine.load(qml_file)
     if not engine.rootObjects():

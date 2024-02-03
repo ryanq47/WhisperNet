@@ -53,6 +53,9 @@ ApplicationWindow {
                 text: qsTr("Log In")
                 height: 30
                 onClicked: {
+                    console.log(authentication) // Should not be undefined
+                    console.log(authentication.login) // Should not be undefined
+
                     authentication.login.to_server("test","test","test")
                 }
             }
