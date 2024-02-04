@@ -7,9 +7,9 @@ from PySide6.QtQml import QQmlApplicationEngine
 
 ## Named pycode to not cause conflicts
 from PyCode.Style import Style
-from PyCode.NetworkManager import NetworkManager
+from PyCode.Network.NetworkManager import NetworkManager
 from PyCode.Authentication.Authentication import Authentication
-
+from PyCode.Data.Data import Data
 if __name__ == "__main__":
     app = QGuiApplication(sys.argv)
 
@@ -22,9 +22,11 @@ if __name__ == "__main__":
     net_manager = NetworkManager()
     engine.rootContext().setContextProperty("networkManager", net_manager)
 
-    authentication = Authentication() ## somethings screwed up, prolly me missing something
+    authentication = Authentication()
     engine.rootContext().setContextProperty("authentication", authentication)
 
+    data = Data()
+    engine.rootContext().setContextProperty("data", data)
 
     qml_file = Path(__file__).resolve().parent / "Qml/base.qml"
     engine.load(qml_file)

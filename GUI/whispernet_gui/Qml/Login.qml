@@ -31,18 +31,21 @@ ApplicationWindow {
             }
 
             TextField {
+                id: serverField
                 Layout.fillWidth: true
                 placeholderText: qsTr("Server")
                 height: 30
             }
 
             TextField {
+                id: usernameField
                 Layout.fillWidth: true
                 placeholderText: qsTr("Username")
                 height: 30
             }
 
             TextField {
+                id: passwordField
                 Layout.fillWidth: true
                 placeholderText: qsTr("Password")
                 height: 30
@@ -53,11 +56,20 @@ ApplicationWindow {
                 text: qsTr("Log In")
                 height: 30
                 onClicked: {
-                    console.log(authentication) // Should not be undefined
-                    console.log(authentication.login) // Should not be undefined
+                    //console.log(authentication) // Should not be undefined
+                    //console.log(authentication.login) // Should not be undefined
 
-                    authentication.login.to_server("test","test","test")
+                    //console.log("Auth object:", auth)  // Direct access check
+                    console.log("Data object:", data)
+                    console.log("Nested Auth object:", data.auth)
+
+                    authentication.login.to_server(usernameField.text,passwordField.text,passwordField.text)
+                    passwordField.text = data.auth.jwt
+
+
+
                 }
+
             }
         }
     }
