@@ -60,16 +60,41 @@ ApplicationWindow {
                     //console.log(authentication.login) // Should not be undefined
 
                     //console.log("Auth object:", auth)  // Direct access check
-                    console.log("Data object:", data)
-                    console.log("Nested Auth object:", data.auth)
+                    console.log("Data object:", global_data)
+                    console.log("Nested Auth object:", global_data.auth)
 
                     authentication.login.to_server(usernameField.text,passwordField.text,passwordField.text)
-                    passwordField.text = data.auth.jwt
+                    // due to it being ASYNC... this doesnt happen right away. need to maybe do a signal update? i dunno, this print part is not necessary anyways
+                    //passwordField.text = global_data.auth.get_jwt()
+                    //not getting set right
+                    //console.log("JWT: ", global_data.auth.jwt)
+                }
+
+
+            }
+            Button {
+                Layout.fillWidth: true
+                text: qsTr("show JWT not async")
+                height: 30
+                onClicked: {
+                    authentication.login.to_server(usernameField.text,passwordField.text,passwordField.text)
+                    // due to it being ASYNC... this doesnt happen right away. need to maybe do a signal update? i dunno, this print part is not necessary anyways
+                    passwordField.text = global_data.auth.get_jwt()
+                    //not getting set right
+                    //console.log("JWT: ", global_data.auth.jwt)
 
 
 
                 }
 
+            }
+            Component.onCompleted: {
+                global_data.auth.jwtChanged.connect(function(newJwt) {
+                    // Update UI elements or perform actions with the new JWT
+                    console.log("New JWT:", newJwt);
+                    // For example, updating the password field (or other relevant field)
+                    passwordField.text = newJwt;
+                })
             }
         }
     }

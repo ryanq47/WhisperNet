@@ -1,10 +1,10 @@
 from PySide6.QtCore import QObject, Property, Slot
-from PyCode.Utils.BaseLogging import BaseLogging
 import inspect
 import json
 
 from PyCode.Network.NetworkManager import NetworkManager
-
+from PyCode.Utils.BaseLogging import BaseLogging
+from PyCode.Data.Data import Data
 class Login(QObject, BaseLogging):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -48,3 +48,10 @@ class Login(QObject, BaseLogging):
         '''
         login_response_dict = json.loads(json_data)
         access_token = login_response_dict["access_token"]
+
+        global_data = Data()
+        #set data to singleton
+        global_data.auth.set_jwt(access_token)
+
+        #this works, so not getting JWT is a qml problem
+        #print(global_data.auth.get_jwt())

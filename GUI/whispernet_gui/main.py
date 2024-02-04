@@ -26,7 +26,7 @@ if __name__ == "__main__":
     engine.rootContext().setContextProperty("authentication", authentication)
 
     data = Data()
-    engine.rootContext().setContextProperty("data", data)
+    engine.rootContext().setContextProperty("global_data", data)
 
     qml_file = Path(__file__).resolve().parent / "Qml/base.qml"
     engine.load(qml_file)
