@@ -12,6 +12,8 @@ Rectangle {
     property var dragStart: null  // To store the initial click position
     property string widgetName: "widgetName"  // To store the initial click position
 
+    property int minimumWidth: 100
+    property int minimumHeight: 100
 
     Text {
         anchors.centerIn: parent
@@ -25,6 +27,7 @@ Rectangle {
         width: parent.width
         height: 20
         color: "grey"//Style.primaryColor //"grey"
+
 
         MouseArea {
             id: dragArea
@@ -46,6 +49,32 @@ Rectangle {
             color: "white"
         }
     }
+    //for resizing, wrosk fine but a tad bit jank
+    MouseArea {
+        id: resizeArea
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        width: 20
+        height: 20
+        cursorShape: Qt.SizeFDiagCursor
+
+        property point lastPos // Correctly define lastPos as a property of the MouseArea
+
+        onPressed: {
+            lastPos = mouse.position // Use mouse.position for Qt Quick 2.x
+        }
+
+        onPositionChanged: {
+            if (pressed) {
+                var dx = mouse.x - lastPos.x
+                var dy = mouse.y - lastPos.y
+                customComponent.width = Math.max(customComponent.width + dx, customComponent.minimumWidth)
+                customComponent.height = Math.max(customComponent.height + dy, customComponent.minimumHeight)
+                lastPos = mouse.position // Update lastPos with the new position
+            }
+        }
+    }
+
 
     //close button, KEEP AT BOTTOM
     Button {
@@ -71,5 +100,3 @@ Rectangle {
 
 }
 
-
-//next, impleemnt style form stylepy

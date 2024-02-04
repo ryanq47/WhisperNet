@@ -5,17 +5,28 @@ import random
 class Style(QObject):
     def __init__(self, parent=None):
         super().__init__(parent)
+
+        # main colors stuff
+        self._gradientBottom = "#000000"
+        self._gradientGunMetalGrey = "#595857"
         self._primaryColor = "#4285F4"
         self._accentColor = "#DB4437"
-        self._defaultFontSize = 14
 
+        ## Font stuff
+        self._defaultFontSize = 14
+        self._defaultFontFamily = "monospace"
+
+        ## Rando Colors
         self._gradientTopBlue = "#6A8CAF"
         self._gradientTopGreen = "#8CA96A"
         self._gradientTopRed = "#A9686A"
         self._gradientTopGreySilver = "#A0A0A0"  # Muted Silver-Grey
 
-        self._gradientBottom = "#000000"
-        self._gradientGunMetalGrey = "#595857"
+        ## Toolbar
+        self._toolbarColor = "#444"
+
+        ## Widget Stuff
+        self._closeButtonColor = "#CB4C4E"
 
     @Property(str)
     def primaryColor(self):
@@ -38,15 +49,25 @@ class Style(QObject):
     @Property(str)
     def gradientBottom(self):
         #return self._gradientGunMetalGrey
-        return "#000000"
+        return self._gradientBottom
 
 
     @Property(str)
     def closeButton(self):
-        return "#CB4C4E"
+        return self._closeButtonColor
 
 
     @Property(str)
     def buttonColor(self):
         #return self._gradientGunMetalGrey
         return self._gradientGunMetalGrey
+
+    @Property(str)
+    def buttonColor(self):
+        #return self._gradientGunMetalGrey
+        return self._toolbarColor
+
+    @Property(str)
+    def fontFamily(self):
+        #return self._gradientGunMetalGrey
+        return self._defaultFontFamily

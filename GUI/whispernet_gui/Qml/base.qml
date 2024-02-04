@@ -42,9 +42,13 @@ ApplicationWindow {
             id: toolBar
             anchors.top: parent.top
             width: parent.width
+            //makes it fill width of column, due to column layout not having explicit width/height, whcih width was trying to pull from
+            Layout.fillWidth: true
             background: Rectangle {
-                color: Style.primaryColor // Replace "desiredColor" with your preferred color
+                color: "#444"//Style.primaryColor // Replace "desiredColor" with your preferred color
             }
+
+            font.family: Style.fontFamily
 
             Row {
                 anchors.fill: parent
@@ -53,6 +57,7 @@ ApplicationWindow {
                     id: fileButton
                     text: qsTr("File")
                     onClicked: filePopup.open()
+                    font.family: Style.fontFamily
 
                     background: Rectangle {
                         id: fileBackground
@@ -78,10 +83,11 @@ ApplicationWindow {
                 ToolButton {
                     id: viewButton
                     text: qsTr("View")
+                    font.family: Style.fontFamily
                     onClicked: viewPopup.open()
                     background: Rectangle {
                         id: viewBackground
-                        color: fileButton.hovered ? "#555" : "#444" // Change color on hover
+                        color: viewButton.hovered ? "#555" : "#444" // Change color on hover
                         radius: 2 // Optional: rounded corners
 
                         // Respond to button press
@@ -89,24 +95,25 @@ ApplicationWindow {
                             id: viewMouseArea
                             anchors.fill: parent
                             onPressed: background.color = "#666"
-                            onReleased: background.color = fileButton.hovered ? "#555" : "#444"
+                            onReleased: background.color = viewButton.hovered ? "#555" : "#444"
                         }
                     }
 
                     contentItem: Text {
-                        text: fileButton.text
-                        color: fileButton.enabled ? "white" : "#aaa" // Change text color based on enabled state
+                        text: viewButton.text
+                        color: viewButton.enabled ? "white" : "#aaa" // Change text color based on enabled state
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                     }
                 }
                 ToolButton {
                     id: devButton
+                    font.family: Style.fontFamily
                     text: qsTr("Dev")
                     onClicked: devPopupMenu.open()
                     background: Rectangle {
                         id: devBackground
-                        color: fileButton.hovered ? "#555" : "#444" // Change color on hover
+                        color: devButton.hovered ? "#555" : "#444" // Change color on hover
                         radius: 2 // Optional: rounded corners
 
                         // Respond to button press
@@ -114,13 +121,13 @@ ApplicationWindow {
                             id: devMouseArea
                             anchors.fill: parent
                             onPressed: background.color = "#666"
-                            onReleased: background.color = fileButton.hovered ? "#555" : "#444"
+                            onReleased: background.color = devButton.hovered ? "#555" : "#444"
                         }
                     }
 
                     contentItem: Text {
-                        text: fileButton.text
-                        color: fileButton.enabled ? "white" : "#aaa" // Change text color based on enabled state
+                        text: devButton.text
+                        color: devButton.enabled ? "white" : "#aaa" // Change text color based on enabled state
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                     }
