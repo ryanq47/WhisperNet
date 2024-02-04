@@ -1,3 +1,10 @@
+'''
+some notes
+
+
+Every attribute starts as None. On errors when trying to set thigns, set them back to none. See Login.py at the json decoding for this
+'''
+
 ## Singleton class, holds all data stuff needed
 ## Make OOP as fuck
 from PySide6.QtCore import QObject, Property, Slot, Signal

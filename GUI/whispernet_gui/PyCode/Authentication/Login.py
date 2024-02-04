@@ -38,6 +38,8 @@ class Login(QObject, BaseLogging):
 
             net_manager.dataReceived.connect(self.parse_data)
 
+            ## emit signal that you are logged in, allows loading of other stuff
+
         except Exception as e:
             self.logger.error(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: {e}")
 
@@ -46,12 +48,24 @@ class Login(QObject, BaseLogging):
         '''
             Parses & Sets data
         '''
-        login_response_dict = json.loads(json_data)
-        access_token = login_response_dict["access_token"]
+        try:
+            login_response_dict = json.loads(json_data)
+            access_token = login_response_dict["access_token"]
 
-        global_data = Data()
-        #set data to singleton
-        global_data.auth.set_jwt(access_token)
+            self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: access_token: {access_token}")
+
+
+            global_data = Data()
+            #set data to singleton
+            global_data.auth.set_jwt(access_token)
+            self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: global_data.auth.jwt: {global_data.auth.jwt}")
+
+
+        except Exception as e:
+            global_data = Data()
+            global_data.auth.set_jwt(None)
+            self.logger.error(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: {e}")
+
 
         #this works, so not getting JWT is a qml problem
         #print(global_data.auth.get_jwt())

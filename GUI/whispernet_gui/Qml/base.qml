@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
+import QtQuick.Layouts 1.0
 
 //https://het.as.utexas.edu/HET/Software/html/qdeclarativeelements.html
 
@@ -16,45 +17,123 @@ ApplicationWindow {
     title: "WhispherNet ~ Gui"
 
 
-    Rectangle {
-        id: base_rectangle
+    ColumnLayout {
+        id: columnLayout
         anchors.fill: parent
 
-
-        //color: Style.primaryColor
-        gradient: Gradient {
-            GradientStop { position: 0.0; color: Style.gradientTop } //color: "#53A2E6" }
-            GradientStop { position: 1.0; color: Style.gradientBottom } //color: "#133451" }
-        }
-    }
-
-    ToolBar {
-        id: toolBar
-        anchors.top: parent.top
-        width: parent.width
-
-        Row {
+        Rectangle {
+            id: base_rectangle
             anchors.fill: parent
 
-            ToolButton {
-                id: fileButton
-                text: qsTr("File")
-                onClicked: filePopup.open()
+            Text {
+                anchors.centerIn: parent
+                text: "Hi, open something!"
+                color: "white"
             }
 
-            ToolButton {
-                id: viewButton
-                text: qsTr("View")
-                onClicked: viewPopup.open()
-            }
-            ToolButton {
-                id: devButton
-                text: qsTr("Dev")
-                onClicked: devPopupMenu.open()
+            //color: Style.primaryColor
+            gradient: Gradient {
+                GradientStop { position: 0.0; color: Style.gradientTop } //color: "#53A2E6" }
+                GradientStop { position: 1.0; color: Style.gradientBottom } //color: "#133451" }
             }
         }
+
+        ToolBar {
+            id: toolBar
+            anchors.top: parent.top
+            width: parent.width
+            background: Rectangle {
+                color: Style.primaryColor // Replace "desiredColor" with your preferred color
+            }
+
+            Row {
+                anchors.fill: parent
+                //fix em up
+                ToolButton {
+                    id: fileButton
+                    text: qsTr("File")
+                    onClicked: filePopup.open()
+
+                    background: Rectangle {
+                        id: fileBackground
+                        color: fileButton.hovered ? "#555" : "#444" // Change color on hover
+                        radius: 2 // Optional: rounded corners
+
+                        // Respond to button press
+                        MouseArea {
+                            id: fileMouseArea
+                            anchors.fill: parent
+                            onPressed: background.color = "#666"
+                            onReleased: background.color = fileButton.hovered ? "#555" : "#444"
+                        }
+                    }
+
+                    contentItem: Text {
+                        text: fileButton.text
+                        color: fileButton.enabled ? "white" : "#aaa" // Change text color based on enabled state
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                }
+                ToolButton {
+                    id: viewButton
+                    text: qsTr("View")
+                    onClicked: viewPopup.open()
+                    background: Rectangle {
+                        id: viewBackground
+                        color: fileButton.hovered ? "#555" : "#444" // Change color on hover
+                        radius: 2 // Optional: rounded corners
+
+                        // Respond to button press
+                        MouseArea {
+                            id: viewMouseArea
+                            anchors.fill: parent
+                            onPressed: background.color = "#666"
+                            onReleased: background.color = fileButton.hovered ? "#555" : "#444"
+                        }
+                    }
+
+                    contentItem: Text {
+                        text: fileButton.text
+                        color: fileButton.enabled ? "white" : "#aaa" // Change text color based on enabled state
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                }
+                ToolButton {
+                    id: devButton
+                    text: qsTr("Dev")
+                    onClicked: devPopupMenu.open()
+                    background: Rectangle {
+                        id: devBackground
+                        color: fileButton.hovered ? "#555" : "#444" // Change color on hover
+                        radius: 2 // Optional: rounded corners
+
+                        // Respond to button press
+                        MouseArea {
+                            id: devMouseArea
+                            anchors.fill: parent
+                            onPressed: background.color = "#666"
+                            onReleased: background.color = fileButton.hovered ? "#555" : "#444"
+                        }
+                    }
+
+                    contentItem: Text {
+                        text: fileButton.text
+                        color: fileButton.enabled ? "white" : "#aaa" // Change text color based on enabled state
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                }
+            }
+
+        }
+
     }
 
+
+
+    //file tab in bar
     Popup {
         id: filePopup
         x: fileButton.x // Align the popup with the file button
@@ -97,6 +176,7 @@ ApplicationWindow {
         }
     }
 
+    //dev tab in bar
     Popup {
         id: devPopupMenu
         x: devButton.x // Align the popup with the file button
@@ -138,6 +218,8 @@ ApplicationWindow {
             }
         }
     }
+
+    //View tab in bar
     Popup {
         id: viewPopup
         x: viewButton.x // Align the popup with the view button
@@ -157,15 +239,21 @@ ApplicationWindow {
                     id: viewPopupButton1
                     text: qsTr("Item1")
                     width: parent.width
-                    onClicked:devPopup.open()
+                    onClicked: {
+                        //popupSource = "DevWidget.qml"
+                        //devPopup.open()
+                        loadCustomComponent("DevWidget.qml")
+                    }
 
                 }
                 ToolButton {
                     id: viewPopupButton2
                     text: qsTr("Item2")
                     width: parent.width
-                    onClicked:devPopup.open()
-
+                    onClicked: {
+                        //would love one that pops up on top of/out of the grid, worry about later
+                        loadCustomComponent("DevWidget.qml")
+                    }
                 }
 
             }
@@ -174,37 +262,16 @@ ApplicationWindow {
 
     Popup {
         id: devPopup
-        x:500
-        y:500
+        width: 220 // Slightly larger to account for padding or borders
+        height: 220
+        x: (parent.width - width) / 2 // Center the popup horizontally
+        y: (parent.height - height) / 2 // Center the popup vertically
 
-        height: 30
-        width: 160
-
-        Text {
-            color: "Black"
-
+        Loader {
+            id: loader
+            source: popupSource
             anchors.fill: parent
-            id: devPopupText
-            text: qsTr("Congrats your popup works")
         }
-
-    }
-
-
-    // Loader to dynamically load the popup content
-    Loader {
-        id: popupLoader
-        source: ""  // Initially empty
-    }
-
-    //basically a func to setup the popup
-    Popup {
-        id: myPopup
-        width: 300
-        height: 200
-        contentItem: popupLoader.item  // Set the loaded item as the content
-
-        // Positioning and other properties as needed
     }
 
 
@@ -227,15 +294,39 @@ ApplicationWindow {
     }
 
 
+
+    //custom loader
+    Component.onCompleted: {
+        loadCustomComponent("DevWidget.qml");
+        loadCustomComponent("DevWidget.qml");
+    }
+
+    function loadCustomComponent(source) {
+        var component = Qt.createComponent(source);
+        if (component.status === Component.Ready) {
+            var object = component.createObject(columnLayout);
+            if (object !== null) {
+                // If the component uses QtQuick.Layouts, set Layout properties
+                object.Layout.fillWidth = true;
+            } else {
+                console.error("Failed to create component");
+            }
+        } else if (component.status === Component.Error) {
+            console.error("Error loading component:", component.errorString());
+        }
+    }
+
+
     //cool little custom item in qml.
+    /*
     Test {
         id: button
         x: 100; y: 100
         text: "Start"
         onClicked: {
-            devPopup.open()
+            DevWidget.open()
         }
-    }
+    }*/
 
     /*
     DraggableItem{

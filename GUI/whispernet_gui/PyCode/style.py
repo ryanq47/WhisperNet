@@ -15,11 +15,12 @@ class Style(QObject):
         self._gradientTopGreySilver = "#A0A0A0"  # Muted Silver-Grey
 
         self._gradientBottom = "#000000"
-
+        self._gradientGunMetalGrey = "#595857"
 
     @Property(str)
     def primaryColor(self):
-        return self._primaryColor
+        #return self._primaryColor
+        return self._gradientGunMetalGrey
 
     @Property(str)
     def accentColor(self):
@@ -31,9 +32,21 @@ class Style(QObject):
 
     @Property(str)
     def gradientTop(self):
-        #return self._gradientTopBlue # Non Random
-        return random.choice([self._gradientTopBlue, self._gradientTopGreen, self._gradientTopRed, self._gradientTopGreySilver])
+        return self._gradientGunMetalGrey # Non Random
+        #return random.choice([self._gradientTopBlue, self._gradientTopGreen, self._gradientTopRed, self._gradientTopGreySilver])
 
     @Property(str)
     def gradientBottom(self):
-        return self._gradientBottom
+        #return self._gradientGunMetalGrey
+        return "#000000"
+
+
+    @Property(str)
+    def closeButton(self):
+        return "#CB4C4E"
+
+
+    @Property(str)
+    def buttonColor(self):
+        #return self._gradientGunMetalGrey
+        return self._gradientGunMetalGrey

@@ -12,8 +12,8 @@ ApplicationWindow {
         anchors.fill: parent
 
         gradient: Gradient {
-            GradientStop { position: 0.0; color: Style.gradientTop } //color: "#53A2E6" }
-            GradientStop { position: 1.0; color: Style.gradientBottom } //color: "#133451" }
+            GradientStop { position: 0.0; color: Style.primaryColor } //color: "#53A2E6" }
+            GradientStop { position: 1.0; color: Style.primaryColor } //color: "#133451" }
         }
 
         // Use a Layout to allow dynamic resizing
@@ -72,6 +72,7 @@ ApplicationWindow {
 
 
             }
+            /*
             Button {
                 Layout.fillWidth: true
                 text: qsTr("show JWT not async")
@@ -87,15 +88,16 @@ ApplicationWindow {
 
                 }
 
-            }
-            Component.onCompleted: {
-                global_data.auth.jwtChanged.connect(function(newJwt) {
+            }*/
+
+            /*Component.onCompleted: {
+                //global_data.auth.jwtChanged.connect(function(newJwt) {
                     // Update UI elements or perform actions with the new JWT
-                    console.log("New JWT:", newJwt);
+                    //console.log("New JWT:", newJwt);
                     // For example, updating the password field (or other relevant field)
-                    passwordField.text = newJwt;
-                })
-            }
+                    //passwordField.text = newJwt;
+                //})
+            }*/
         }
     }
 
