@@ -1,0 +1,28 @@
+{
+    "files": [
+        ".dev/base.ui.qml",
+        ".dev/devConsole.ui.qml",
+        ".dev/dev_reference.md",
+        ".dev/login.ui.qml",
+        "PyCode/Authentication/Authentication.py",
+        "PyCode/Authentication/Login.py",
+        "PyCode/Data/Data.py",
+        "PyCode/Data/TestTreeModel.py",
+        "PyCode/Network/NetworkManager.py",
+        "PyCode/Style.py",
+        "PyCode/Utils/BaseLogging.py",
+        "Qml/C2TreeView.qml",
+        "Qml/DevWidget.qml",
+        "Qml/DraggableItem.qml",
+        "Qml/Login.qml",
+        "Qml/Login_Old.qml",
+        "Qml/NetManagerExample.qml",
+        "Qml/Test.qml",
+        "Qml/WidgetTest.qml",
+        "Qml/base.qml",
+        "js/Utils.qml",
+        "js/i_hate_javascript.txt",
+        "js/utils.js",
+        "main.py"
+    ]
+}
