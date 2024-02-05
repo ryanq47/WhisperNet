@@ -12,7 +12,7 @@ from QtComponents.Console.console import Console
 from QtComponents.Notes.notes import Notes
 from QtComponents.ClientGraphics.clientgraphics import ClientGraphics
 from QtComponents.Login.login import Login
-
+from Utils.Data import Data
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -47,6 +47,11 @@ class MainWindow(QMainWindow):
         
         #self.setCentralWidget(Simplec2())
 
+        ## Create init singleton
+        data = Data()
+        ## this works. 
+        data.auth.jwt = "STNADINJWT"
+        print(data.auth.jwt)
 
         # Set Stylesheet
         self.global_set_stylesheet()
