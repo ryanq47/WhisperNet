@@ -7,6 +7,7 @@ from PySide6.QtNetwork import QNetworkReply
 import json
 import yaml
 import inspect
+from Utils.EventLoop import Event
 
 from Utils.Data import Data
 from Utils.BaseLogging import BaseLogging
@@ -147,7 +148,13 @@ class Login(QWidget, BaseLogging):
                 self.update_login_attempt_text(success_text)
                 self.data.auth.jwt = response_dict["access_token"]
                 self.logger.info(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Successful login to server!")
+                # hide window on successful logon
+                # WELP taht doesnt work
+                #self.close()#hide()
 
+                ## MOVE THIS TO POST SIGNAL EMIT, temp debug spot:
+                self.event_loop = Event()
+                self.event_loop.start_event_loop()
 
             else:
                 self.update_login_attempt_text(fail_text)

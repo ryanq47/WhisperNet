@@ -13,7 +13,7 @@ from QtComponents.Notes.notes import Notes
 from QtComponents.ClientGraphics.clientgraphics import ClientGraphics
 from QtComponents.Login.login import Login
 from Utils.Data import Data
-
+from Utils.EventLoop import Event
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -59,6 +59,7 @@ class MainWindow(QMainWindow):
         '''
         ## Create init singleton
         self.data = Data()
+        self.event_loop = Event()
 
     def add_menu_bar(self):
         '''
@@ -70,7 +71,7 @@ class MainWindow(QMainWindow):
         # Add menus to the menu bar
         file_menu = menu_bar.addMenu("File")
 
-
+        ## mini problem, only one object of this exists and when it gets deletedit cant be reopened. Need to rethink the loading methods/close independent window methods
         file_menu_login = QAction("Login to Server", self)
         file_menu_login.triggered.connect(partial(self.pop_new_window, Login()))
         file_menu.addAction(file_menu_login)
@@ -244,13 +245,15 @@ class MainWindow(QMainWindow):
         # Optionally, you can set features like closable, movable, floatable, etc.
         new_dock_widget.setFeatures(QDockWidget.DockWidgetMovable | QDockWidget.DockWidgetClosable)
 
-    def pop_new_window(self, object_instance):
+    def pop_new_window(self, object_instance, delete_on_close=False):
         """ Slot to pop up a new window with the given widget """
         new_window = QMainWindow(self)  # Create a new QMainWindow instance
         new_object = object_instance  # Example widget, replace with your desired widget
 
         new_window.setCentralWidget(new_object)  # Set the central widget of the new window
-        new_window.setAttribute(Qt.WA_DeleteOnClose)  # Ensure the window is deleted when closed
+        
+        if delete_on_close:
+            new_window.setAttribute(Qt.WA_DeleteOnClose)  # Ensure the window is deleted when closed, do not want this for some things
 
         # Optionally, set window title, size, or other properties here
         new_window.setWindowTitle(object_instance.name)

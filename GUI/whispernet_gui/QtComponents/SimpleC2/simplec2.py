@@ -5,6 +5,7 @@ from PySide6.QtNetwork import QNetworkReply
 from PySide6.QtCore import Qt, Signal, QTimer
 from functools import partial
 from Utils.QtWebRequestManager import WebRequestManager
+from Utils.EventLoop import Event
 import json
 
 class Simplec2(QWidget):
@@ -13,6 +14,7 @@ class Simplec2(QWidget):
         super().__init__()
         
         loader = QUiLoader()
+        self.event_loop = Event()
         ## This NEEDS self as a second arg for some reason.
         self.ui_file = loader.load('QtComponents/SimpleC2/c2_layout_widgets.ui', self)
 
@@ -65,9 +67,13 @@ class Simplec2(QWidget):
         '''
         A qtimer for updating events. 
         '''
-        self.one_sec_timer = QTimer(self)
+        '''self.one_sec_timer = QTimer(self)
         self.one_sec_timer.timeout.connect(self.get_client_data)
-        self.one_sec_timer.start(1000)
+        self.one_sec_timer.start(1000)'''
+
+        #pleas don't break
+        self.event_loop.add_to_event_loop(self.get_client_data)
+
 
     def contextMenuEvent(self, event):
         # Find the item at the cursor position
