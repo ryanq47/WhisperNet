@@ -7,6 +7,10 @@ class WebRequestManager(QNetworkAccessManager):
     def send_post_request(self, url, data):
         #logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
         try:
+            ## Just incase data is not in byte form
+            if not isinstance(data, bytes):
+                data = self.encode_str_to_bytes(data)
+
             request = QNetworkRequest(url)
             request.setHeader(QNetworkRequest.ContentTypeHeader, "application/json")
             #application/octet-stream
