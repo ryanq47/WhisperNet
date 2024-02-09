@@ -15,6 +15,7 @@ from Utils.BaseLogging import BaseLogging
 
 class Login(QWidget, BaseLogging):
     signal_server_response= Signal(str)
+    signal_logged_in = Signal(bool)
 
     def __init__(self, id=None):
         super().__init__()
@@ -153,8 +154,9 @@ class Login(QWidget, BaseLogging):
                 #self.close()#hide()
 
                 ## MOVE THIS TO POST SIGNAL EMIT, temp debug spot:
-                self.event_loop = Event()
-                self.event_loop.start_event_loop()
+                #self.event_loop = Event()
+                #self.event_loop.start_event_loop()
+                self.signal_logged_in.emit(True)
 
             else:
                 self.update_login_attempt_text(fail_text)

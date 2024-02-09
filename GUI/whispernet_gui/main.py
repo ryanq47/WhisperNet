@@ -5,6 +5,7 @@ import sys
 from PySide6.QtUiTools import QUiLoader
 from functools import partial
 import subprocess
+import inspect
 from QtComponents.SimpleC2.simplec2 import Simplec2
 from QtComponents.FileHost.filehost import Filehost
 from QtComponents.Secrets.secrets import Secrets
@@ -14,7 +15,9 @@ from QtComponents.ClientGraphics.clientgraphics import ClientGraphics
 from QtComponents.Login.login import Login
 from Utils.Data import Data
 from Utils.EventLoop import Event
-class MainWindow(QMainWindow):
+from Utils.BaseLogging import BaseLogging
+
+class MainWindow(QMainWindow, BaseLogging):
     def __init__(self):
         super().__init__()
 
@@ -72,9 +75,12 @@ class MainWindow(QMainWindow):
         file_menu = menu_bar.addMenu("File")
 
         ## mini problem, only one object of this exists and when it gets deletedit cant be reopened. Need to rethink the loading methods/close independent window methods
+        login_class = Login() # doing this so I can connect the login signal from it
+        login_class.signal_logged_in.connect(self.post_login_actions)
         file_menu_login = QAction("Login to Server", self)
-        file_menu_login.triggered.connect(partial(self.pop_new_window, Login()))
+        file_menu_login.triggered.connect(partial(self.pop_new_window, login_class))
         file_menu.addAction(file_menu_login)
+
 
         #edit_menu = menu_bar.addMenu("Edit")
         layout_menu = menu_bar.addMenu("Layout")
@@ -168,6 +174,16 @@ class MainWindow(QMainWindow):
         #self.add_dock_widget("Assets", "left", Secrets())
         #self.add_dock_widget("Assets", "right", Secrets())
 
+    def post_login_actions(self, login_status):
+        '''
+        Post login actions
+        
+        '''
+        self.logger.info(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Starting post login actions")
+
+        if login_status: ## Set by a signal in the login class
+            self.event_loop.start_event_loop()
+
     #def load_ui_elements(self):
         #self.lower_tab_widget = self.ui_file.findChild(QTextEdit, "test_text")
 
@@ -183,6 +199,8 @@ class MainWindow(QMainWindow):
         """
         Load the base UI from the specified UI file
         """
+        self.logger.info(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Loading base UI from '{ui_file_path}'")
+
         loader = QUiLoader()
         base_widget = loader.load(ui_file_path, self)
 
@@ -204,6 +222,10 @@ class MainWindow(QMainWindow):
         Sets the global stylesheet for the qt program
         '''
         file_path = "Assets/StyleSheet1-aggro.txt.css"
+        
+        self.logger.info(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Setting style sheet: '{file_path}'")
+
+        
         try:
             with open(file_path, 'r') as file:
                 stylesheet = file.read()
@@ -236,29 +258,45 @@ class MainWindow(QMainWindow):
 
     def pop_new_widget(self, object_instance):
         """ Slot to pop up a new widget """
-        new_dock_widget = QDockWidget(object_instance.name, self)
-        new_object = object_instance  # Example widget, you can replace with your desired widget
-        new_dock_widget.setWidget(new_object)
-        new_dock_widget.setAllowedAreas(Qt.AllDockWidgetAreas)
-        self.addDockWidget(Qt.RightDockWidgetArea, new_dock_widget)
+        try:
+            ## Debug, incase the widget doesn't ahve a name attribute & fails
+            self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Popping open a new widget: '{object_instance}'")
+            self.logger.info(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Popping open a new widget: '{object_instance.name}'")
 
-        # Optionally, you can set features like closable, movable, floatable, etc.
-        new_dock_widget.setFeatures(QDockWidget.DockWidgetMovable | QDockWidget.DockWidgetClosable)
+            new_dock_widget = QDockWidget(object_instance.name, self)
+            new_object = object_instance  # Example widget, you can replace with your desired widget
+            new_dock_widget.setWidget(new_object)
+            new_dock_widget.setAllowedAreas(Qt.AllDockWidgetAreas)
+            self.addDockWidget(Qt.RightDockWidgetArea, new_dock_widget)
+
+            # Optionally, you can set features like closable, movable, floatable, etc.
+            new_dock_widget.setFeatures(QDockWidget.DockWidgetMovable | QDockWidget.DockWidgetClosable)
+        except Exception as e:
+            self.logger.error(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: {e}")
+
 
     def pop_new_window(self, object_instance, delete_on_close=False):
         """ Slot to pop up a new window with the given widget """
-        new_window = QMainWindow(self)  # Create a new QMainWindow instance
-        new_object = object_instance  # Example widget, replace with your desired widget
+        try:
+            ## Debug, incase the widget doesn't ahve a name attribute & fails
+            self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Popping open a new window: '{object_instance}'")
+            self.logger.info(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Popping open a new window: '{object_instance.name}'")
 
-        new_window.setCentralWidget(new_object)  # Set the central widget of the new window
-        
-        if delete_on_close:
-            new_window.setAttribute(Qt.WA_DeleteOnClose)  # Ensure the window is deleted when closed, do not want this for some things
+            new_window = QMainWindow(self)  # Create a new QMainWindow instance
+            new_object = object_instance  # Example widget, replace with your desired widget
 
-        # Optionally, set window title, size, or other properties here
-        new_window.setWindowTitle(object_instance.name)
+            new_window.setCentralWidget(new_object)  # Set the central widget of the new window
+            
+            if delete_on_close:
+                new_window.setAttribute(Qt.WA_DeleteOnClose)  # Ensure the window is deleted when closed, do not want this for some things
 
-        new_window.show() 
+            # Optionally, set window title, size, or other properties here
+            new_window.setWindowTitle(object_instance.name)
+
+            new_window.show() 
+        except Exception as e:
+            self.logger.error(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: {e}")
+
 
     def close_tab_upper(self, index):
         # Close the tab at the given index
@@ -271,6 +309,8 @@ class MainWindow(QMainWindow):
         '''
         Temp/hacky restart of program
         '''
+        self.logger.info(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Program restart called")
+
         subprocess.Popen([sys.executable, __file__])
         QApplication.quit()
 
