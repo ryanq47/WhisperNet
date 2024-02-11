@@ -18,7 +18,8 @@ class Simplec2(QWidget, BaseLogging):
 
     def __init__(self):
         super().__init__()
-        
+        self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Initializing class {self}")
+
         loader = QUiLoader()
         self.event_loop = Event()
         self.data = Data()
@@ -31,8 +32,7 @@ class Simplec2(QWidget, BaseLogging):
         self.name = "SimpleC2"
         self.client_items = {}
         self.network_items ={}
-        self.get_all_data()
-        print("initrun")
+        #self.get_all_data()
 
 
     def __ui_load(self):
@@ -83,7 +83,7 @@ class Simplec2(QWidget, BaseLogging):
 
         #pleas don't break
         #self.event_loop.add_to_event_loop(self.get_client_data)
-        #self.event_loop.add_to_event_loop(self.get_network_data)
+        self.event_loop.add_to_event_loop(self.get_all_data)
 
 
     def contextMenuEvent(self, event):
