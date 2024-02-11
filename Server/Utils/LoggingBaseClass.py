@@ -25,7 +25,7 @@ from colorama import init, Fore, Style
 # Initialize colorama
 init(autoreset=True)
 
-GLOBAL_LEVEL = logging.INFO
+GLOBAL_LEVEL = logging.DEBUG
 
 ## lower than debug
 PLUGIN_LEVEL = 30

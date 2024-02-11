@@ -168,6 +168,7 @@ class MainWindow(QMainWindow, BaseLogging):
         ## Here so wehn the user clicks init, it wipes the layout. might spit a warning on startup
         self.clear_dock_widgets()
 
+        self.logger.info("Setting up initial widget instances")
         self.add_dock_widget(Console().name, "bottom", Console())
         self.add_dock_widget(Console().name, "top", Simplec2())
 

@@ -172,14 +172,21 @@ class SimpleC2(BasePlugin, BaseLogging):
         self.app.route(f'/api/{Info.endpoint}/clientdata', methods = ["POST"])(self.simplec2_api_post_client_data)
         self.app.route(f'/api/{Info.endpoint}/clients', methods = ["GET","POST"])(self.simplec2_api_client)
         #self.app.route(f'/api/{Info.endpoint}/console', methods = ["GET"])(self.simplec2_api_console)
+        
+        ## Network
         self.app.route(f'/api/{Info.endpoint}/network/add', methods = ["POST"])(self.neo4j_add_network)
         self.app.route(f'/api/{Info.endpoint}/network/remove', methods = ["POST"])(self.neo4j_remove_network)
         self.app.route(f'/api/{Info.endpoint}/network/properties', methods = ["POST"])(self.neo4j_get_network_properties)
         self.app.route(f'/api/{Info.endpoint}/network/addproperties', methods = ["POST"])(self.neo4j_add_network_properties)
 
         self.app.route(f'/api/{Info.endpoint}/network/clients', methods = ["POST"])(self.neo4j_retrieve_clients_in_network)
+        self.app.route(f'/api/{Info.endpoint}/network/networks', methods = ["GET"])(self.neo4j_retrieve_all_networks)
+        
+        ## General
+        self.app.route(f'/api/{Info.endpoint}/general/everything', methods = ["GET"])(self.neo4j_retrieve_everything)
 
 
+        ## Client
         self.app.route(f'/api/{Info.endpoint}/client/add', methods = ["POST"])(self.neo4j_add_client)
         self.app.route(f'/api/{Info.endpoint}/client/remove', methods = ["POST"])(self.neo4j_remove_client)
         self.app.route(f'/api/{Info.endpoint}/client/properties', methods = ["POST"])(self.neo4j_get_client_properties)
@@ -738,7 +745,39 @@ class SimpleC2(BasePlugin, BaseLogging):
         except Exception as e:
             return api_response(status_code=500)
 
+    def neo4j_retrieve_all_networks(self):
+        '''
+        Gets all networks in the neo4j db
+        '''
+        try:
+            #host_hostname = request.json.get('cidr')
 
+            all_networks = self.neo4j.get_network_nodes(
+                #no args
+            )
+
+            return api_response(status_code=200, data=all_networks)
+
+        except BadRequest:
+            return api_response(status_code=400)
+        except Exception as e:
+            return api_response(status_code=500)
+
+    def neo4j_retrieve_everything(self):
+        '''
+        Gets everything in the Neo4j db. 
+        '''
+        try:
+            #host_hostname = request.json.get('cidr')
+
+            everything = self.neo4j.get_everything()
+
+            return api_response(status_code=200, data=everything)
+
+        except BadRequest:
+            return api_response(status_code=400)
+        except Exception as e:
+            return api_response(status_code=500)
 
 ################################################
 # API - Checkin Stuff

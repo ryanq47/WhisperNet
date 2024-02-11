@@ -6,22 +6,17 @@ from PySide6.QtCore import Qt, Signal, QTimer
 from functools import partial
 from Utils.QtWebRequestManager import WebRequestManager
 from Utils.EventLoop import Event
-from Utils.Data import Data
-from Utils.BaseLogging import BaseLogging
-import inspect
 import json
 
-class Simplec2(QWidget, BaseLogging):
-    #signal_get_client_data= Signal(str)
-    #signal_get_network_data = Signal(str)
-    signal_get_all_data = Signal(str)
+class Simplec2(QWidget):
+    signal_get_client_data= Signal(str)
+    signal_get_network_data = Signal(str)
 
     def __init__(self):
         super().__init__()
         
         loader = QUiLoader()
         self.event_loop = Event()
-        self.data = Data()
         ## This NEEDS self as a second arg for some reason.
         self.ui_file = loader.load('QtComponents/SimpleC2/c2_layout_widgets.ui', self)
 
@@ -31,8 +26,6 @@ class Simplec2(QWidget, BaseLogging):
         self.name = "SimpleC2"
         self.client_items = {}
         self.network_items ={}
-        self.get_all_data()
-        print("initrun")
 
 
     def __ui_load(self):
@@ -83,7 +76,7 @@ class Simplec2(QWidget, BaseLogging):
 
         #pleas don't break
         #self.event_loop.add_to_event_loop(self.get_client_data)
-        #self.event_loop.add_to_event_loop(self.get_network_data)
+        self.event_loop.add_to_event_loop(self.get_network_data)
 
 
     def contextMenuEvent(self, event):
@@ -131,33 +124,168 @@ class Simplec2(QWidget, BaseLogging):
         self.options_button.setMenu(menu)
         self.options_button.setPopupMode(QToolButton.InstantPopup)
 
-    ## Getting Data Stuff
+    def show_test_message(self):
+        '''
+        A test popup box for debugging/etc
+        '''
+        msg = QMessageBox()
+        msg.setWindowTitle("Test Message")
+        msg.setText("This is a test popup message.")
+        msg.setIcon(QMessageBox.Information)
+        msg.exec_()
+
+    def add_client_to_widget(self, json_data=None):
+        '''
+        Adds a host to the GUI widget/window
+
+        '''
+        try:
+            data_dict = json.loads(json_data) if json_data else []
+        except Exception as e:
+            print(f"Error with JSON data: {e}")
+            return
+
+        # Dictionary to keep track of existing clients
+          # Reset or initialize this appropriately
+
+        for data in data_dict:
+            client_name = data["client"]
+            if client_name in self.client_items:
+                #print("UPDATE")
+                # Update existing client
+                self.update_client_row(client_name, data)
+            else:
+                # Add new client
+                #print("NEWROW")
+                self.add_client_row(data)
+
+
+
+    def add_client_row(self, data):
+        client_entry = QTreeWidgetItem([data["client"], data["ip"], data["port"], data["listener"], data["sleep"]])
+        client_entry.setIcon(0, QIcon("Assets/client.png"))
+        self.client_tree.addTopLevelItem(client_entry)
         
-    def get_all_data(self):
+        # Sub items
+        username_subitem = QTreeWidgetItem(client_entry, ["User:", data["username"]])
+        clienttype_subitem = QTreeWidgetItem(client_entry, ["Client Type:", data["client_type"]])
+
+        # Add to the reference dictionary
+        self.client_items[data["client"]] = client_entry
+
+    def update_client_row(self, client_name, data):
+        # Retrieve the existing item
+        client_entry = self.client_items[client_name]
+
+        # Update the relevant data
+        client_entry.setText(0, data["client"])
+        client_entry.setText(1, data["ip"])
+        client_entry.setText(2, data["port"])
+        client_entry.setText(3, data["listener"])
+        client_entry.setText(4, data["sleep"])
+
+        # Assuming you have the subitems as children of the client_entry,
+        # update them as well
+        client_entry.child(0).setText(1, data["username"])  # Update username subitem
+        client_entry.child(1).setText(1, data["client_type"])
+
+    def clear_client_widget(self):
         '''
-        Gets all the simplec2 data from the server
+        Clears ALL items fromthe client widget. A bit extreme and only temp
         '''
-        self.logger.info(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Getting data from server")
+        self.client_tree.clear()
+
+    def get_client_data(self):
+        '''
+        Communicates with server to get client data. 
+
+        Eventually will be run in a qtimer loop thingymabober
+        '''
+        ## have to use this for async communication/to fit QT
         self.request_manager = WebRequestManager()
 
         #post request for now. Subject to chagne
         self.request_manager.send_get_request(
-            url = "http://127.0.0.1:5000/api/simplec2/general/everything")
+            url = "http://127.0.0.1:5000/api/simplec2/clients",
+            #data = ""
+        )
 
         self.request_manager.request_finished.connect(
             ##  send request                                      ## Signal that holds data
-            lambda response: self.handle_response(response, self.signal_get_all_data)
+            lambda response: self.handle_response(response, self.signal_get_client_data)
         )## I don't fully remeber why we have to pass response to the function as well. 
 
-        ## Somehwere in here the data is not showing up, "data:" prints nothing.
-        ## Somehow fixed. wtf
-        self.signal_get_all_data.connect(self.update_data)
-
-        #self.signal_get_all_data.connect(self.update_data)
+        # when signal is triggerd, called add_client_to_widget
+        self.signal_get_client_data.connect(self.add_client_to_widget)
         # Once we have data, loop call add_client_to_widget, or make it auto loop? not sure.
         # May not have to worry about indexing items as QT will (should) have options for that. 
 
+    def get_network_data(self):
+        '''
+        Communicates with server to get client data. 
 
+        Eventually will be run in a qtimer loop thingymabober
+        '''
+        ## have to use this for async communication/to fit QT
+        self.request_manager = WebRequestManager()
+
+        #post request for now. Subject to chagne
+        self.request_manager.send_get_request(
+            url = "http://127.0.0.1:5000/api/simplec2/network/networks"#,
+            #data = ""
+        )
+
+        self.request_manager.request_finished.connect(
+            ##  send request                                      ## Signal that holds data
+            lambda response: self.handle_response(response, self.signal_get_network_data)
+        )## I don't fully remeber why we have to pass response to the function as well. 
+
+        # when signal is triggerd, called add_client_to_widget
+        self.signal_get_network_data.connect(self.add_network_to_widget)
+        # Once we have data, loop call add_client_to_widget, or make it auto loop? not sure.
+        # May not have to worry about indexing items as QT will (should) have options for that. 
+
+    def add_network_to_widget(self, json_data=None):
+        '''
+        Adds a network to the GUI widget/window
+
+        '''
+        print(json_data)
+        try:
+            data_dict = json.loads(json_data) if json_data else []
+        except Exception as e:
+            print(f"Error with JSON data: {e}")
+            return
+
+        # Dictionary to keep track of existing clients
+          # Reset or initialize this appropriately
+
+        for data in data_dict:
+            network_nickname = data["data"]["nickname"]
+            network_cidr = data["data"]["nickname"]
+
+            if network_nickname in self.network_items:
+                #print("UPDATE")
+                # Update existing client
+                self.update_client_row(network_nickname, data)
+            else:
+                # Add new client
+                #print("NEWROW")
+                self.add_client_row(data)
+
+    def add_network_row(self, data):
+        #client_entry = QTreeWidgetItem([data["client"], data["ip"], data["port"], data["listener"], data["sleep"]])
+        network_entry = QTreeWidgetItem(data["data"]["nickname"], data["data"]["cidr"])
+
+        network_entry.setIcon(0, QIcon("Assets/client.png"))
+        self.client_tree.addTopLevelItem(network_entry)
+        
+        # Sub items
+        #username_subitem = QTreeWidgetItem(client_entry, ["User:", data["username"]])
+        #clienttype_subitem = QTreeWidgetItem(client_entry, ["Client Type:", data["client_type"]])
+
+        # Add to the reference dictionary
+        #self.network_items[data["client"]] = client_entry
 
     def update_client_tree_options(self):
         '''
@@ -177,27 +305,6 @@ class Simplec2(QWidget, BaseLogging):
         msg.setIcon(QMessageBox.Information)
         msg.exec_()
 
-    def print_data(self, data):
-        '''
-        Temp for printing data, meant to bea debug method
-        '''
-        self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Printing Data:")
-        print(data)
-
-    def update_data(self, data):
-        '''
-        Temp for printing data
-        '''
-        #print("PRINTING DATA1====")
-        #print(data)
-
-        self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Updating data in self.data.simplec2.db_data, len: {len(data)}")
-
-        ## Updates the db_data in the data singleton
-        self.data.simplec2.db_data = data
-        #print(self.data.simplec2.db_data)
-        #print(f"Data Length: {self.data.simplec2.db_data}")
-        #print(f"Data: {data} --")
 
     def handle_response(self, reply, signal):        
         '''
@@ -216,16 +323,13 @@ class Simplec2(QWidget, BaseLogging):
         '''
         #logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
         try:
-            #print(reply.readAll().data().decode())
             if reply.error() == QNetworkReply.NoError:
                 response_data = reply.readAll().data().decode()
-                #print("data form handle response received")
-                #print(response_data)
                 signal.emit(response_data)  # Emit the custom signal
             else:
                 string = f"Error with request: {reply.error()}"
                 #print(reply)
                 signal.emit(string)  # Emit the custom signal
         except Exception as e:
-            self.logger.error(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: {e}")
+            print(e)
             #logging.debug(f"{function_debug_symbol} Error with handle_response: {e}")

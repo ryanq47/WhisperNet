@@ -92,6 +92,136 @@ class Neo4jConnection(BaseLogging):
                 session.close()
         return response
     
+    ## General Queries
+    '''
+    def get_everything(self):
+        #Gets everything from the Neo4j DB, including node identities, labels, and properties.
+
+        query = "MATCH (n) RETURN id(n) as identity, labels(n) as labels, properties(n) as properties"
+        try:
+            with self.__driver.session() as session:
+                results = session.run(query)
+                formatted_results = []
+                for record in results:
+                    node_data = {
+                        "identity": record["identity"],
+                        "labels": record["labels"],
+                        "properties": record["properties"],
+                        "elementId": str(record["identity"])  # Convert identity to string if necessary
+                    }
+                    formatted_results.append(node_data)
+                return formatted_results
+        
+        except Exception as e:
+            self.logger.error("Query failed:", e)
+            return []
+    '''
+
+    def get_everything(self): #opt name, get_full_network_map
+        '''
+        Retrieves a comprehensive map of the network, including all nodes, their relationships,
+        and properties, structured for clarity and utility in a C2 suite context.
+        '''
+
+        # Query to match all nodes and relationships
+        query = """
+        MATCH (node)-[rel]->(connectedNode)
+        RETURN id(node) AS nodeId, labels(node) AS nodeLabels, properties(node) AS nodeProperties,
+            id(rel) AS relId, type(rel) AS relType, properties(rel) AS relProperties,
+            id(connectedNode) AS connectedNodeId, labels(connectedNode) AS connectedNodeLabels, properties(connectedNode) AS connectedNodeProperties
+        UNION ALL
+        MATCH (node)
+        WHERE NOT (node)-[]-()
+        RETURN id(node) AS nodeId, labels(node) AS nodeLabels, properties(node) AS nodeProperties,
+            NULL AS relId, NULL AS relType, NULL AS relProperties,
+            NULL AS connectedNodeId, NULL AS connectedNodeLabels, NULL AS connectedNodeProperties
+        """
+
+        try:
+            with self.__driver.session() as session:
+                results = session.run(query)
+                network_map = {
+                    "nodes": {},
+                    "relationships": []
+                }
+                for record in results:
+                    # Nodes
+                    node_key = f"node_{record['nodeId']}"
+                    if node_key not in network_map["nodes"]:
+                        network_map["nodes"][node_key] = {
+                            "identity": record["nodeId"],
+                            "labels": record["nodeLabels"],
+                            "properties": record["nodeProperties"]
+                        }
+
+                    # Connected Nodes
+                    if record["connectedNodeId"] is not None:
+                        connected_node_key = f"node_{record['connectedNodeId']}"
+                        if connected_node_key not in network_map["nodes"]:
+                            network_map["nodes"][connected_node_key] = {
+                                "identity": record["connectedNodeId"],
+                                "labels": record["connectedNodeLabels"],
+                                "properties": record["connectedNodeProperties"]
+                            }
+
+                    # Relationships
+                    if record["relId"] is not None:
+                        network_map["relationships"].append({
+                            "identity": record["relId"],
+                            "type": record["relType"],
+                            "properties": record["relProperties"],
+                            "from": record["nodeId"],
+                            "to": record["connectedNodeId"]
+                        })
+                        
+                return network_map
+        except Exception as e:
+            self.logger.error("Query failed:", e)
+            return {}
+
+
+    def get_nodes_and_relationships(self): ## Not used currently, could be helpful in the future
+        '''
+        Gets nodes and their relationships from the Neo4j DB, including identities, labels, relationship types, and properties.
+        '''
+
+        # Query to match nodes, their relationships, and the connected nodes
+        query = """
+        MATCH (node)-[rel]->(connectedNode)
+        RETURN id(node) AS nodeId, labels(node) AS nodeLabels, properties(node) AS nodeProperties,
+            type(rel) AS relType, properties(rel) AS relProperties, id(rel) AS relId,
+            id(connectedNode) AS connectedNodeId, labels(connectedNode) AS connectedNodeLabels, properties(connectedNode) AS connectedNodeProperties
+        """
+
+        try:
+            with self.__driver.session() as session:
+                results = session.run(query)
+                formatted_results = []
+                for record in results:
+                    # Structure for the node
+                    node_data = {
+                        "node": {
+                            "identity": record["nodeId"],
+                            "labels": record["nodeLabels"],
+                            "properties": record["nodeProperties"],
+                        },
+                        "relationship": {
+                            "identity": record["relId"],
+                            "type": record["relType"],
+                            "properties": record["relProperties"],
+                        },
+                        "connectedNode": {
+                            "identity": record["connectedNodeId"],
+                            "labels": record["connectedNodeLabels"],
+                            "properties": record["connectedNodeProperties"],
+                        }
+                    }
+                    formatted_results.append(node_data)
+                return formatted_results
+        except Exception as e:
+            self.logger.error("Query failed:", e)
+            return []
+
     ## Netowrk Queries
     #-[x]
     def get_network_nodes(self)-> list:

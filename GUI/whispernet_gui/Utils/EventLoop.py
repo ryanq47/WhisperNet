@@ -71,6 +71,7 @@ class Event(QObject, BaseLogging):
             # Process a copy of the list, tldr this prevents and weird actions from happening with the iterations, especially if somethign gets added/removed from the event list
             # Creates a shallow copy of the event, which is just a ref to the original func instead of fully copying it. saves on resources
             try:
+                self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: proccessing event: {event}")
                 event(*args, **kwargs)
             except Exception as e:
                 self.logger.warning(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Error with proccessing events: {e}")
