@@ -4,15 +4,15 @@ import inspect
 
 from Utils.BaseLogging import BaseLogging
 
-class WebRequestManager(QNetworkAccessManager, BaseLogging):
+class WebRequestManager(QNetworkAccessManager):
     request_finished = Signal(QNetworkReply)
 
     def __init__(self):
         super().__init__()
+        self.logger = BaseLogging.get_logger()
 
 
     def send_post_request(self, url, data):
-        #logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
         try:
             self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Making Post request to '{url}'")
 
@@ -34,7 +34,6 @@ class WebRequestManager(QNetworkAccessManager, BaseLogging):
             self.logger.error(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: {e}")
 
     def send_get_request(self, url):
-        #logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
         try:
             self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Making Get request to '{url}'")
 
@@ -50,7 +49,6 @@ class WebRequestManager(QNetworkAccessManager, BaseLogging):
 
 
     def handle_response(self):
-        #logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
 
         reply = self.sender()
         self.request_finished.emit(reply)

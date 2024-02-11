@@ -13,13 +13,14 @@ from Utils.Data import Data
 from Utils.BaseLogging import BaseLogging
 #from Utils.YamlLoader import YamlLoader
 
-class Login(QWidget, BaseLogging):
+class Login(QWidget):
     signal_server_response= Signal(str)
     signal_logged_in = Signal(bool)
 
     def __init__(self, id=None):
         super().__init__()
-        
+        self.logger = BaseLogging.get_logger()
+
         loader = QUiLoader()
         ## This NEEDS self as a second arg for some reason.
         self.ui_file = loader.load('QtComponents/Login/Login.ui', self)
@@ -197,9 +198,13 @@ class Login(QWidget, BaseLogging):
             if reply.error() == QNetworkReply.NoError:
                 response_data = reply.readAll().data().decode()
                 signal.emit(response_data)  # Emit the custom signal
+                signal.disconnect()
+
             else:
                 string = f"Error with request: {reply.error()}"
                 signal.emit(string)  # Emit the custom signal
+                signal.disconnect()
+
         except Exception as e:
             self.logger.info(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: {e}")
             #logging.debug(f"{function_debug_symbol} Error with handle_response: {e}")

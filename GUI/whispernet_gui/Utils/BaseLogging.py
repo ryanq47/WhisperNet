@@ -2,32 +2,21 @@
 
 A base class for handling errors
 
-
-Shitty docs time:
-
-This is meant to be inhereted:
-
-class AuthenticationPlugin(BasePlugin, BaseLogging):
-    def __init__(self, app, DataStruct):
-
-        ## Initialize BasePlugin and BaseLogging parent classes. Can't use one super call as stuff gets fucked up
-        BasePlugin.__init__(self, app, DataStruct)
-        BaseLogging.__init__(self)
-
-
-From here, call self.logger.whatever to log. DO NOT call logging.whatever as that will create a NEW LOGGER that is NOT correctly formatted. Shitty docs over
+self.logger = LoggingSingleton.get_logger()
+logger.debug("This is a debug message.")
 
 '''
 
 import logging
 from colorama import init, Fore, Style
+import threading
 
 # Initialize colorama
 init(autoreset=True)
 
 GLOBAL_LEVEL = logging.DEBUG
 
-## lower than debug
+# Define a new logging level
 PLUGIN_LEVEL = 30
 logging.addLevelName(PLUGIN_LEVEL, "FUNCTION")
 
@@ -35,7 +24,7 @@ def plugin(self, message, *args, **kws):
     if self.isEnabledFor(PLUGIN_LEVEL):
         self._log(PLUGIN_LEVEL, message, args, **kws)
 
-# Add the function method to logging.Logger class
+# Extend the Logger class with a custom method
 logging.Logger.plugin = plugin
 
 class ColoredSymbolFormatter(logging.Formatter):
@@ -68,32 +57,39 @@ class SymbolFormatter(logging.Formatter):
         return super().format(record)
 
 class BaseLogging:
-    def __init__(self, name="logger"):
-        logger_name = name if name else self.__class__.__name__
-        self.logger = logging.getLogger(logger_name)
-        self.logger.setLevel(GLOBAL_LEVEL)
+    _logger_instance = None
+    ## making thread safe if ever needed
+    _lock = threading.Lock()
 
-        setattr(self.logger, 'function', lambda message, *args: self.logger._log(PLUGIN_LEVEL, message, args))
+    @classmethod
+    def get_logger(cls, name="ApplicationLogger"):
+        if cls._logger_instance is None:
+            with cls._lock:
+                if cls._logger_instance is None:  # Double check locking
+                    cls._initialize_logger(name)
+        return cls._logger_instance
 
-        #unused, here until I clean up old log statements
-        self.function_debug_symbol = ""
-        #for each debugging level...
-        self.logging_warning_symbol = ""
-        self.logging_critical_symbol = ""
-        self.logging_error_symbol = ""
-        self.logging_info_symbol = ""
-        self.logging_debug_symbol = ""
+    @classmethod
+    def _initialize_logger(cls, name):
+        logger = logging.getLogger(name)
+        logger.setLevel(GLOBAL_LEVEL)
+        logger.propagate = False
 
-        if not self.logger.hasHandlers():
-            # Stream Handler with color
+        # Add custom logging levels as methods to the logger
+        setattr(logger, 'function', lambda message, *args: logger._log(PLUGIN_LEVEL, message, args))
+
+        # Stream Handler with color
+        if not logger.hasHandlers():
             stream_handler = logging.StreamHandler()
             stream_handler.setFormatter(ColoredSymbolFormatter('%(asctime)s - %(message)s', '%Y-%m-%d %H:%M:%S'))
-            self.logger.addHandler(stream_handler)
+            logger.addHandler(stream_handler)
 
             # File Handler without color
             file_handler = logging.FileHandler('server.log', 'a')
             file_handler.setFormatter(SymbolFormatter('%(asctime)s - %(message)s', '%Y-%m-%d %H:%M:%S'))
-            self.logger.addHandler(file_handler)
+            logger.addHandler(file_handler)
+
+        cls._logger_instance = logger
 
 
 

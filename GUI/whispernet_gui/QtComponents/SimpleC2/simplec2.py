@@ -11,13 +11,17 @@ from Utils.BaseLogging import BaseLogging
 import inspect
 import json
 
-class Simplec2(QWidget, BaseLogging):
+class Simplec2(QWidget):
     #signal_get_client_data= Signal(str)
     #signal_get_network_data = Signal(str)
     signal_get_all_data = Signal(str)
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.logger = BaseLogging.get_logger()
+
+        #QWidget.__init__(self, parent)
+        #BaseLogging.__init__(self)
         self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Initializing class {self}")
 
         loader = QUiLoader()
@@ -144,16 +148,20 @@ class Simplec2(QWidget, BaseLogging):
         self.request_manager.send_get_request(
             url = "http://127.0.0.1:5000/api/simplec2/general/everything")
 
+        ## stupid way of doing this but whatever. 
+
         self.request_manager.request_finished.connect(
             ##  send request                                      ## Signal that holds data
             lambda response: self.handle_response(response, self.signal_get_all_data)
         )## I don't fully remeber why we have to pass response to the function as well. 
 
         ## Somehwere in here the data is not showing up, "data:" prints nothing.
-        ## Somehow fixed. wtf
-        self.signal_get_all_data.connect(self.update_data)
-
+        ## Somehow fixed. wtf.
+        ## now getting called multiple times. 
+        print("get_all_data")
         #self.signal_get_all_data.connect(self.update_data)
+
+        self.signal_get_all_data.connect(self.update_data)
         # Once we have data, loop call add_client_to_widget, or make it auto loop? not sure.
         # May not have to worry about indexing items as QT will (should) have options for that. 
 
@@ -222,10 +230,14 @@ class Simplec2(QWidget, BaseLogging):
                 #print("data form handle response received")
                 #print(response_data)
                 signal.emit(response_data)  # Emit the custom signal
+                ## Disconnecting signal post emit, otherwise it starts to multiply
+                signal.disconnect()
+
             else:
                 string = f"Error with request: {reply.error()}"
                 #print(reply)
                 signal.emit(string)  # Emit the custom signal
+                signal.disconnect()
         except Exception as e:
             self.logger.error(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: {e}")
             #logging.debug(f"{function_debug_symbol} Error with handle_response: {e}")

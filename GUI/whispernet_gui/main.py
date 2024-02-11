@@ -17,9 +17,10 @@ from Utils.Data import Data
 from Utils.EventLoop import Event
 from Utils.BaseLogging import BaseLogging
 
-class MainWindow(QMainWindow, BaseLogging):
+class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.logger = BaseLogging.get_logger()
 
         # Load the base UI from a file
         self.load_base_ui("QtComponents/Base/base_window.ui")

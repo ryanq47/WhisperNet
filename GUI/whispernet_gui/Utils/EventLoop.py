@@ -9,7 +9,7 @@ from Utils.BaseLogging import BaseLogging
 import inspect
 from PySide6.QtCore import QTimer, QObject
 
-class Event(QObject, BaseLogging):
+class Event(QObject):
     _instance = None  # Class-level attribute to store the singleton instance
     _is_initialized = False  # Flag to check if the instance has been initialized
 
@@ -22,6 +22,7 @@ class Event(QObject, BaseLogging):
         #if not hasattr(self, 'initialized'): ## prevents reinit
         if not self._is_initialized:
             super().__init__()
+            self.logger = BaseLogging.get_logger()
             self.event_loop_list = []
             self._setup_timer()
             
