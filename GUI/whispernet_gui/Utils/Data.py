@@ -106,19 +106,35 @@ class SimpleC2Data(QObject):
 
         
 
-    def parse_data_for_gui(self) -> tuple[dict]:
+    def parse_data_for_gui(self) -> list:#-> tuple[dict]:
         '''
-        Parses the data from JSON/PyDict (in self._db_data) into a tuple of dicts. 
+        Parses the data from JSON/PyDict (in self._db_data) into a list of dicts. 
 
         # Dev notes, maybe add an option to pass in data through an arg, then check if that arg is empty or not, to determine where to pull data from        
         '''
         self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: parsing self._db_data into tuple of dicts")
 
-        #if self._db_data is None:
-        #    print("NONE AHHH MELTDOWN")
+        if self._db_data is None:
+            self.logger.warning(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: self._db_data was empty, cannot parse data.")
+            return {}
+        
 
-        print(type(self._db_data))
+        output_list = []
+        #print(type(self._db_data))
 
         for node_key in self._db_data["data"]["nodes"]:
             node = self._db_data["data"]["nodes"][node_key]
             print(node["properties"]["name"])
+
+            # a bit inneficent as we aer just recreating the data in node, but this offers more control at the moment
+            output_dict = {
+                "identity": node["identity"],
+                "labels": node["labels"],
+                "properties": node["labels"]
+            }
+
+            #print(output_dict)
+            #return output_dict
+            output_list.append(output_dict)
+
+        return output_list
