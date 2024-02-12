@@ -206,6 +206,7 @@ class Simplec2(QWidget):
         #print(self.data.simplec2.db_data)
         #print(f"Data Length: {self.data.simplec2.db_data}")
         #print(f"Data: {data} --")
+        self.data.simplec2.parse_data_for_gui()
 
     def handle_response(self, reply, signal):        
         '''
