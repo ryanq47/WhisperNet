@@ -75,6 +75,7 @@ class Auth(QObject):
 
 
 class SimpleC2Data(QObject):
+    client_data_updated = Signal(list)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -130,11 +131,12 @@ class SimpleC2Data(QObject):
             output_dict = {
                 "identity": node["identity"],
                 "labels": node["labels"],
-                "properties": node["labels"]
+                "properties": node["properties"]
             }
 
-            #print(output_dict)
+            print(output_dict["properties"]["name"])
             #return output_dict
             output_list.append(output_dict)
 
-        return output_list
+        self.client_data_updated.emit(output_list)
+        #return output_list
