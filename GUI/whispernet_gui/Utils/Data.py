@@ -125,7 +125,7 @@ class SimpleC2Data(QObject):
 
         for node_key in self._db_data["data"]["nodes"]:
             node = self._db_data["data"]["nodes"][node_key]
-            print(node["properties"]["name"])
+            print(node["properties"]["nickname"])
 
             # a bit inneficent as we aer just recreating the data in node, but this offers more control at the moment
             output_dict = {
@@ -134,7 +134,7 @@ class SimpleC2Data(QObject):
                 "properties": node["properties"]
             }
 
-            print(output_dict["properties"]["name"])
+            #print(output_dict["properties"]["name"])
             #return output_dict
             output_list.append(output_dict)
 

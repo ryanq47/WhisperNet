@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QWidget, QTextEdit, QMessageBox, QTreeWidgetItem, QTreeView, QPushButton, QMenu, QToolButton
-from PySide6.QtGui import QIcon, QAction, QStandardItemModel, QStandardItem
+from PySide6.QtGui import QIcon, QAction, QStandardItemModel, QStandardItem, QBrush, QColor
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtNetwork import QNetworkReply
 from PySide6.QtCore import Qt, Signal, QTimer
@@ -55,10 +55,13 @@ class Simplec2(QWidget):
 
             #self.c2_systemshell = self.ui_file.findChild(QTextEdit, "test_text")  # Replace "QtWidgets" with the appropriate module
             #self.c2_systemshell.setText("test")
+
+            ## Setting up View + Model.
             self.client_tree = self.ui_file.findChild(QTreeView, "client_tree_widget")
             self.client_tree_model = QStandardItemModel()
+            self.client_tree_model.setHorizontalHeaderLabels(['Network Name', 'CIDR', 'Other'])
             self.client_tree.setModel(self.client_tree_model)
-            
+            #self.client_tree.setHorizontalHeaderLabels(['IP', 'OS', 'Check-in'])
             #self.add_client = self.ui_file.findChild(QPushButton, "add_client")
             #self.refresh_manually = self.ui_file.findChild(QPushButton, "refresh_manually")
             
@@ -131,6 +134,10 @@ class Simplec2(QWidget):
         add_network = QAction("Add Network", self)
 
         #hide_debug_console = QAction("Hide Debug Console", self)
+
+        # in RGB(a)
+        self.host_label_row_color = QColor(99,102,106)
+
 
         #action2 = QAction("Option 2", self)
         menu.addAction(add_host)
@@ -274,9 +281,9 @@ class Simplec2(QWidget):
             if "Network" in item["labels"]:
                 print(item)
                 # Create the item
-                category_item = QStandardItem(item["properties"]["name"])#client["properties"]["name"])
+                category_item = QStandardItem(item["properties"]["nickname"])#client["properties"]["nickname"])
 
-                name = QStandardItem(item["properties"]["name"]) #QStandardItem("test")#"test"#QStandardItem(client["properties"]["name"])
+                name = QStandardItem(item["properties"]["nickname"]) #QStandardItem("test")#"test"#QStandardItem(client["properties"]["nickname"])
                 cidr = QStandardItem(item["properties"]["cidr"]) #QStandardItem("test")#"ip"#QStandardItem(client["properties"]["ip"])
 
                 category_item.appendRow([name, cidr])
@@ -291,77 +298,158 @@ class Simplec2(QWidget):
                 # How to NOT duplicate the data, and have it update without overwriting the current user mouse (ex if selected, don't unselect)
     '''
 
+    ########################################
+    # C2 Client Tree Model
+    ########################################
+
+    ## NOTE! Due to the "label" row, everythign might need to be +1 when indexing/accessing data and context menus. 
+
+    ## LOG THESE THINGS
+
     ## works as excpeted, maybe move to a class or sepearte file for the helper functions
     def update_client_widget(self, data_dict):
         '''
-        Parses & Updates the client data.
-
-        data: The dict data to update
-
-        Triggers off of a signal. 
+        Parses & Updates the client data based on the updated structure.
         '''
         self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Updating Client Widget")
 
-        existing_networks = self.get_existing_networks()  # You need to implement this method
-
+        # First, update or add networks and clients
         for item in data_dict:
+            ## Check to make sure the item is a network item otherwise the cidr key doesn't exist. 
             if "Network" in item["labels"]:
-                network_name = item["properties"]["name"]
-                if network_name in existing_networks:
-                    # Update existing item
-                    self.update_network_item(existing_networks[network_name], item)
-                else:
-                    # Add new item
-                    self.add_network_item(item)
-
-        # Optionally, remove networks that no longer exist in data_dict
+                self.add_or_update_network(item)
+                
+        # Then, remove networks that are no longer present
         self.remove_stale_networks(data_dict)
 
-    def get_existing_networks(self):
+    def add_or_update_network(self, network_data):
         '''
-        Traverse the model to find existing networks and return them in a dict
-        with network names as keys and the corresponding QStandardItem as values.
+        Adds a new network item or updates an existing one.
+        ##Also manages client items as children of the network, including a label row for clients. NAAAAh that's changing slightly
         '''
-        existing_networks = {}
+        self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Attempting to add/update network")
+
+        network_name = network_data["properties"]["nickname"]
+        network_cidr = network_data["properties"]["cidr"]
+        # using network name alone is fine as nickname is constrained to be unique in the db
+        network_id = f"{network_name}"
+
+        self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Network Name: '{network_name}' Network CIDR: '{network_cidr}' Network Id: '{network_id}'")
+
+        # Unique identifier for the network, assuming name + CIDR is unique
+        #network_id = f"{network_name}_[{cidr}]"
+
+        ## Something broke with first row
+
+            #network_item.appendRow(label_items) (line 377)
+            #AttributeError: 'list' object has no attribute 'appendRow'
+
+        # Find if this network already exists, just searches for it
+        network_item = None
         for row in range(self.client_tree_model.rowCount()):
             item = self.client_tree_model.item(row)
-            if item is not None:
-                existing_networks[item.text()] = item
-        return existing_networks
+            if item and item.text() == network_id:
+                network_item = item
+                break
 
-    def update_network_item(self, modelItem, dataItem):
-        '''
-        Update the model item with data from dataItem.
-        '''
-        # Assuming modelItem is a QStandardItem representing the network,
-        # and its first and second child items are name and cidr, respectively.
-        modelItem.child(0).setText(dataItem["properties"]["name"])  # Update name
-        modelItem.child(1).setText(dataItem["properties"]["cidr"])  # Update cidr
+        if network_item is None:
+            self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Network '{network_name}' does not exist, creating")
 
-    def add_network_item(self, dataItem):
+            # Network does not exist, so create it
+            ## okay, gotta make each data point into a QStandardItem, THEN turn them both into a list & append to the model
+
+            network_item = QStandardItem(network_id)  # This is the main item for the network
+            cidr_item = QStandardItem(network_cidr)  # Additional detail for the network
+
+            # Append the network and CIDR as part of the same row
+            self.client_tree_model.appendRow([network_item, cidr_item])
+
+            # Add a label row directly under the new network
+            self.add_label_row(network_item)
+
+        # Example client data to add, replace with actual client handling logic
+            
+        ## needs to change/get all cliens with the current net name, and loop/add them as children
+            '''
+            for child in child_data.whatevermehtod():
+                name = baby
+                row.appendChild(name) #or something
+            
+            '''
+
+        self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Adding client data to network")
+        client_data = {"name": "testclient"}
+        self.add_client_to_network(network_item, client_data)
+
+    def add_label_row(self, network_item):
         '''
-        Add a new network item to the model based on dataItem.
+        Adds a label row under the specified network item, used ONLY for the first row under a network
         '''
-        category_item = QStandardItem(dataItem["properties"]["name"])
-        name = QStandardItem(dataItem["properties"]["name"])
-        cidr = QStandardItem(dataItem["properties"]["cidr"])
-        category_item.appendRow([name, cidr])
-        self.client_tree_model.appendRow(category_item)
+        self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Adding label row to first row in parent '{network_item.text()}'")
+
+        # Define the labels for the columns under this network
+        labels = ["IP", "Name", "Last Check-in"]
+        label_items = [QStandardItem(label) for label in labels]
+
+        # Set background color for each label item
+        color = QBrush(self.host_label_row_color)  # Light gray color; adjust as needed
+        for item in label_items:
+            item.setBackground(color)
+
+        # Append an empty item at the start if your network label row needs to be indented
+        network_item.appendRow(label_items)
+
+    def add_client_to_network(self, network_item, client_data):
+        '''
+        Adds a client as a child to the specified network item.
+        '''
+        # Assuming client_data is a dictionary with at least a 'name' key
+        # You might want to expand this with real client data handling
+        client_items = [QStandardItem(client_data.get("IP", "")), 
+                        QStandardItem(client_data.get("name", "")), 
+                        QStandardItem(client_data.get("Last Check-in", ""))]
+        network_item.appendRow(client_items)
+
+    def directly_add_client_to_network(self, network_name, client_data):
+        '''
+            For if you want to directly add a client to a network. Untested
+        '''
+        # Assuming network_name is the unique identifier for the network
+        network_id = f"{network_name} [{client_data['cidr']}]"
+            
+        found_network_item = None
+        for row in range(self.client_tree_model.rowCount()):
+            item = self.client_tree_model.item(row)
+            if item.text() == network_id:
+                found_network_item = item
+                break
+            
+        if found_network_item:
+            self.add_client_to_network(found_network_item, client_data)
+        else:
+            print("Network not found, cannot add client.")
 
     def remove_stale_networks(self, data_dict):
         '''
-        Remove networks that are no longer present in the incoming data_dict.
+        Removes networks that are no longer present in the incoming data_dict.
         '''
-        # Extract all current network names from data_dict for comparison
-        current_network_names = {item["properties"]["name"] for item in data_dict if "Network" in item["labels"]}
-        
-        # Collect items to remove
+        self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Checking for any stale networks")
+
+        current_network_names = {f"{item['properties']['nickname']}" for item in data_dict if "Network" in item["labels"]}
         items_to_remove = []
+
         for row in range(self.client_tree_model.rowCount()):
             item = self.client_tree_model.item(row)
             if item.text() not in current_network_names:
-                items_to_remove.append(item)
-        
-        # Remove collected items
-        for item in items_to_remove:
-            self.client_tree_model.removeRow(item.row())
+                #print("item.text")
+                #print(item.text()) # Network2 
+                #print("current_network_names")
+                #print(current_network_names) # {'Network2', 'Network1'}
+                items_to_remove.append(row)
+                self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Queuing '{item.text()}' in row '{row}' to be removed")
+
+
+        # Reverse removal to avoid index shifting issues
+        for row in reversed(items_to_remove):
+            self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Removing stale network rows")
+            self.client_tree_model.removeRow(row)
