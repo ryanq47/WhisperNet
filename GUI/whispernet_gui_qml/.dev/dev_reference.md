@@ -70,3 +70,25 @@ DevWidget {
     }
 }
 ```
+
+## Accessing data:
+PLEASE, access/pull data from the Data singleton for "public/non internal" functions, it keeps things cleaner, and you don't have to worry about passing args accross items.
+
+Goal: make public funcs callable without args, so they can be called from wherever is needed without extra data bs
+
+It's okay if you want to init the data in the __init__ as like self.data, but it's easier to just do this:
+
+```
+    def get_clients_from_network_data(self):
+        '''
+        Filters out clients from the network_data, returns a list of dicts.
+        
+        [
+            {}
+        ]
+
+        '''
+        network_data = self.data.simplec2.db_data ## << Pulling data from singleton for most up to date data
+        ## Scope it down a bit
+        network_data = network_data["data"]["nodes"]
+```

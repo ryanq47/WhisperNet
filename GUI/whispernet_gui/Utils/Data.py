@@ -76,6 +76,7 @@ class Auth(QObject):
 
 class SimpleC2Data(QObject):
     client_data_updated = Signal(list)
+    db_data_updated = Signal()
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -97,6 +98,7 @@ class SimpleC2Data(QObject):
 
 
         self._db_data = data
+        self.db_data_updated.emit()
         
         #print("settign data in data")
         #print(data)
@@ -106,7 +108,7 @@ class SimpleC2Data(QObject):
     db_data = Property(str, get_db_data, set_db_data)
 
         
-
+    ## don't need anymore
     def parse_data_for_gui(self) -> list:#-> tuple[dict]:
         '''
         Parses the data from JSON/PyDict (in self._db_data) into a list of dicts. 
