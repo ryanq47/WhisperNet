@@ -77,12 +77,14 @@ class Auth(QObject):
 class SimpleC2Data(QObject):
     client_data_updated = Signal(list)
     db_data_updated = Signal()
+    db_network_data_updated = Signal()
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.logger = BaseLogging.get_logger()
 
         self._db_data = None # Current Database Data, in dict
+        self._db_network_data = None
         # might need one just for json later. 
 
     @Slot()
@@ -106,6 +108,22 @@ class SimpleC2Data(QObject):
 
             #self.jwtChanged.emit(self._jwt)  # Emit signal with new value
     db_data = Property(str, get_db_data, set_db_data)
+
+    ## db_network_data
+    @Slot()
+    def get_db_network_data(self):
+        return self._db_data
+
+    ## works now, DOC THIS TOMORROW OR WHENEVER. +1 for signals being cool, lets keep this format of signals after (any?) item is changed in data class, or wherver necessary
+    @Slot(str)
+    def set_db_network_data(self, data):
+        if type(data) == str:
+            self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: 'data' was in JSON format, converting to dict before setting self.db_network_data")
+            data = json.loads(data)
+        self._db_network_data = data
+        self.db_network_data_updated.emit()
+        
+    db_network_data = Property(str, get_db_network_data, set_db_network_data)
 
         
     ## don't need anymore

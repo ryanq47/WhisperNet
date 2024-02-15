@@ -15,6 +15,7 @@ class Simplec2(QWidget):
     #signal_get_client_data= Signal(str)
     #signal_get_network_data = Signal(str)
     signal_get_all_data = Signal(str)
+    signal_get_network_data = Signal(str)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -94,6 +95,8 @@ class Simplec2(QWidget):
         #pleas don't break
         #self.event_loop.add_to_event_loop(self.get_client_data)
         self.event_loop.add_to_event_loop(self.get_all_data)
+        self.event_loop.add_to_event_loop(self.get_all_data)
+
 
     def __signal_setup(self):
         '''
@@ -330,6 +333,36 @@ class Simplec2(QWidget):
         # Then, remove networks that are no longer present
         self._remove_stale_networks(data_dict)
 
+    ## ==========
+    def update_client_widget_networks(self):
+        '''
+        Makes API call, then calls helper func to add to gui
+
+        helper func: 
+            _add_or_update_network
+            _add_label_row
+            _remove_stale_networks
+            _store_network_data: Stores the retrieved network data. Needed due to QT's async
+        '''
+        ...
+        ## network_data = API call for all networks
+
+        ## This endpoint may need some work, to get ID's n stuff if needed
+        self.request_manager.send_get_request(url="http://127.0.0.1:5000/api/simplec2/network/networks") 
+
+        ##long story, decods data
+        self.request_manager.request_finished.connect(
+            ##  send request                                      ## Signal that holds data
+            lambda response: self.handle_response(response, self.signal_get_network_data)
+            # This func will emit the passed signal. 
+        )
+        ## storing data
+        self.signal_get_network_data.connect(self._store_network_data)
+        
+        # need to make sure retrieved data lines up with patterns in _add_or_update_network & the others. 
+        for network in self.data.simplec2.db_network_data: #self.network_data:
+            self._add_or_update_network(network)
+
     def _add_or_update_network(self, network_data):
         '''
         Adds a new network item or updates an existing one. "private" as its a helper to update_client_widget to work. Will createa  public add network eventually.
@@ -388,9 +421,20 @@ class Simplec2(QWidget):
         ## Need to break up clients into per network whatever, casue they are all goign into one net. 
         ## FUCKKK this means relationship lookups. gonna get a bit complicated.
         # move to singleton first & clean up, then do this
-        list_of_clients = self.get_clients_from_network_data()
-        for client in list_of_clients:
-            self._add_client_to_network(network_item,client)
+        #list_of_clients = self.get_clients_from_network_data()
+        #for client in list_of_clients:
+            #'''
+            ## get the ID of each item
+            #net_identity = network["node of net"]["identity"]
+            #client_id = client["node of client"]["identity"]
+
+            ## loop through each relationship
+            #for rel in relationship:
+                # if the from client ID matches from, and the net id matches the net, and the type is connected to, allow it to be added
+            #    if rel["from"] == client_id and rel["to"] == net_identity and type == "CONNECTED_TO":
+            #        self._add_client_to_network(network_item,client)
+
+            #self._add_client_to_network(network_item,client)
 
     def _add_label_row(self, network_item):
         '''
@@ -409,53 +453,6 @@ class Simplec2(QWidget):
 
         # Append an empty item at the start if your network label row needs to be indented
         network_item.appendRow(label_items)
-
-    def _add_client_to_network(self, network_item, client_data):
-        '''
-        private, helper method to _add_or_update_network
-        Adds a client as a child to the specified network item.
-        network_item: The network item/object to be added to.
-        client_data: json data of the client. Retrieve with get_clients_from_network_data()
-        '''
-        # Assuming client_data is a dictionary with at least a 'name' key
-        # You might want to expand this with real client data handling
-        #client_items = [QStandardItem(client_data.get("IP", "")), 
-        #                QStandardItem(client_data.get("name", "")), 
-        #                QStandardItem(client_data.get("Last Check-in", ""))]
-
-        client_items = [QStandardItem(client_data["properties"]["nickname"]), 
-                        QStandardItem(client_data["properties"]["ip"]), 
-                        QStandardItem("ahh")]
-
-
-        network_item.appendRow(client_items)
-
-    def get_clients_from_network_data(self) -> list:
-        '''
-        Gets a list of clients. 
-        Filters out clients from the network_data, returns a list of dicts.
-        
-        [
-            {stuff}
-        ]
-
-        '''
-        self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Retrieving clients from network data")
-
-        client_list = []
-        network_data = self.data.simplec2.db_data
-        ## Scope it down a bit
-        network_data = network_data["data"]["nodes"]
-
-        # Need to iterate over ITEMS cause a dict is not a list duuuh
-        for key, item in network_data.items():
-            if "Client" in item["labels"]:
-                #print(f"Client: {item['properties']['nickname']} - IP: {item['properties']['ip']}")
-                #self.add_client_to_network()
-                ## Append item to client list
-                client_list.append(item)
-        
-        return client_list
 
     def _remove_stale_networks(self, data_dict):
         '''
@@ -483,6 +480,70 @@ class Simplec2(QWidget):
         for row in reversed(items_to_remove):
             self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Removing stale network rows")
             self.client_tree_model.removeRow(row)
+
+    def _store_network_data(self, data):
+        """Store the received data in a class attribute."""
+        #self.network_data = data
+        self.data.simplec2.db_network_data = data
+
+    ## ==========
+    def update_client_widget_clients(self):
+        '''
+        Makes API call to server, gets *just* clients (might need to get what net it's apart of too)
+
+        Helper Func: _add_client_to_network
+        '''
+
+    def _add_client_to_network(self, network_item, client_data):
+        '''
+        private, helper method to _add_or_update_network
+        Adds a client as a child to the specified network item.
+        network_item: The network item/object to be added to.
+        client_data: json data of the client. Retrieve with get_clients_from_network_data()
+        '''
+        # Assuming client_data is a dictionary with at least a 'name' key
+        # You might want to expand this with real client data handling
+        #client_items = [QStandardItem(client_data.get("IP", "")), 
+        #                QStandardItem(client_data.get("name", "")), 
+        #                QStandardItem(client_data.get("Last Check-in", ""))]
+
+        client_items = [QStandardItem(client_data["properties"]["nickname"]), 
+                        QStandardItem(client_data["properties"]["ip"]), 
+                        QStandardItem("ahh")]
+
+
+        network_item.appendRow(client_items)
+
+
+    ## probably not needed
+    def get_clients_from_network_data(self) -> list:
+        '''
+        Gets a list of clients. 
+        Filters out clients from the network_data, returns a list of dicts.
+        
+        [
+            {stuff}
+        ]
+
+        '''
+        self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Retrieving clients from network data")
+
+        client_list = []
+        network_data = self.data.simplec2.db_data
+        ## Scope it down a bit
+        network_data = network_data["data"]["nodes"]
+
+        # Need to iterate over ITEMS cause a dict is not a list duuuh
+        for key, item in network_data.items():
+            if "Client" in item["labels"]:
+                #print(f"Client: {item['properties']['nickname']} - IP: {item['properties']['ip']}")
+                #self.add_client_to_network()
+                ## Append item to client list
+                client_list.append(item)
+        
+        return client_list
+
+
 
     ########################################
     # General/Other public methods

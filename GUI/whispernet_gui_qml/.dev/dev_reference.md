@@ -92,3 +92,9 @@ It's okay if you want to init the data in the __init__ as like self.data, but it
         ## Scope it down a bit
         network_data = network_data["data"]["nodes"]
 ```
+
+#### General rules:
+ - If getting NEW data, or if possible, use an API call.
+        Ex, if you just need a list of clients, api call.
+ - store all relevant data that COULD be accessed by other items in the singleton (Data singleton)
+ 

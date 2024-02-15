@@ -232,11 +232,27 @@ class Neo4jConnection(BaseLogging):
         [{'os': 'Windows 10', 'ip': '10.0.0.1/24'}, {'os': 'Windows 10', 'ip': '10.0.0.3/24'}]
         '''
 
-        query = "MATCH (n: Network) RETURN n"
+        query = """
+            MATCH (n: Network)
+            RETURN id(n) AS nodeId, labels(n) AS nodeLabels, properties(n) AS nodeProperties
+        """
         try:
             with self.__driver.session() as session:
                 results = session.run(query)
-                return [dict(record['n']) for record in results]
+                                
+                formatted_results = []
+                for record in results:
+                    # Structure for the node
+                    node_data = {
+                        "node": {
+                            "identity": record["nodeId"],
+                            "labels": record["nodeLabels"],
+                            "properties": record["nodeProperties"],
+                        },
+                    }
+                    formatted_results.append(node_data)
+                return formatted_results
+                #return [dict(record['n']) for record in results]
         except Exception as e:
             self.logger.error("Query failed:", e)
             return []
