@@ -311,6 +311,13 @@ class Simplec2(QWidget):
 
     # ALSO, move to self.data.simplec2.db_data instead of passing data in.
 
+    ## Clarification:
+        #network_row_item: the actual row item in Qt
+        #network_data: The dict data containing network data. 
+    
+        #client_data: dict containing client data
+        #client_row_item: the actual row item in Qt
+
     # PUBLIC - call me
     def update_client_widget(self):
         '''
@@ -339,12 +346,19 @@ class Simplec2(QWidget):
         Makes API call, then calls helper func to add to gui
 
         helper func: 
-            _add_or_update_network
-            _add_label_row
-            _remove_stale_networks
+            _add_or_update_network: adds/updates the network
+            _add_label_row: For C2, needs to be moved
+            _remove_stale_networks: removes stale networks
             _store_network_data: Stores the retrieved network data. Needed due to QT's async
+
+        ## Slightly Convoluted call chain:
+            update_client_widget_networks
+                _add_or_update_network (loop over each network)
+                    _add_label_row
+                    _get_clients_in_network
+                        _add_client_to_network
+
         '''
-        ...
         ## network_data = API call for all networks
 
         ## This endpoint may need some work, to get ID's n stuff if needed
@@ -361,7 +375,10 @@ class Simplec2(QWidget):
         
         # need to make sure retrieved data lines up with patterns in _add_or_update_network & the others. 
         for network in self.data.simplec2.db_network_data: #self.network_data:
+            # Get the network
             self._add_or_update_network(network)
+            # Get the clients in that network
+            #self._get_clients_in_network(network)
 
     def _add_or_update_network(self, network_data):
         '''
@@ -379,27 +396,27 @@ class Simplec2(QWidget):
         self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Network Name: '{network_name}' Network CIDR: '{network_cidr}' Network Id: '{network_id}'")
 
         # Find if this network already exists, just searches for it
-        network_item = None
+        network_row_item = None
         for row in range(self.client_tree_model.rowCount()):
             item = self.client_tree_model.item(row)
             if item and item.text() == network_id:
-                network_item = item
+                network_row_item = item
                 break
 
-        if network_item is None:
+        if network_row_item is None:
             self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Network '{network_name}' does not exist, creating")
 
             # Network does not exist, so create it
             ## okay, gotta make each data point into a QStandardItem, THEN turn them both into a list & append to the model
 
-            network_item = QStandardItem(network_id)  # This is the main item for the network
+            network_row_item = QStandardItem(network_id)  # This is the main item for the network
             cidr_item = QStandardItem(network_cidr)  # Additional detail for the network
 
             # Append the network and CIDR as part of the same row
-            self.client_tree_model.appendRow([network_item, cidr_item])
+            self.client_tree_model.appendRow([network_row_item, cidr_item])
 
             # Add a label row directly under the new network
-            self._add_label_row(network_item)
+            self._add_label_row(network_row_item)
 
         # Example client data to add, replace with actual client handling logic
             
@@ -412,35 +429,15 @@ class Simplec2(QWidget):
             '''
 
         self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Adding client data to network")
+        self._get_clients_in_network(network_data, network_row_item)
         #client_data = {"name": "testclient"}
 
 
-        #for client in network_children:
-            #self.add_client_to_network(network_item, client_data)
-        
-        ## Need to break up clients into per network whatever, casue they are all goign into one net. 
-        ## FUCKKK this means relationship lookups. gonna get a bit complicated.
-        # move to singleton first & clean up, then do this
-        #list_of_clients = self.get_clients_from_network_data()
-        #for client in list_of_clients:
-            #'''
-            ## get the ID of each item
-            #net_identity = network["node of net"]["identity"]
-            #client_id = client["node of client"]["identity"]
-
-            ## loop through each relationship
-            #for rel in relationship:
-                # if the from client ID matches from, and the net id matches the net, and the type is connected to, allow it to be added
-            #    if rel["from"] == client_id and rel["to"] == net_identity and type == "CONNECTED_TO":
-            #        self._add_client_to_network(network_item,client)
-
-            #self._add_client_to_network(network_item,client)
-
-    def _add_label_row(self, network_item):
+    def _add_label_row(self, network_row_item):
         '''
         Adds a label row under the specified network item, used ONLY for the first row under a network. private, helper to _add_or_update_network
         '''
-        self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Adding label row to first row in parent '{network_item.text()}'")
+        self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Adding label row to first row in parent '{network_row_item.text()}'")
 
         # Define the labels for the columns under this network
         labels = ["IP", "Name", "Last Check-in"]
@@ -452,7 +449,7 @@ class Simplec2(QWidget):
             item.setBackground(color)
 
         # Append an empty item at the start if your network label row needs to be indented
-        network_item.appendRow(label_items)
+        network_row_item.appendRow(label_items)
 
     def _remove_stale_networks(self, data_dict):
         '''
@@ -487,18 +484,42 @@ class Simplec2(QWidget):
         self.data.simplec2.db_network_data = data
 
     ## ==========
-    def update_client_widget_clients(self):
+    def _get_clients_in_network(self, network_data, network_row_item):
         '''
-        Makes API call to server, gets *just* clients (might need to get what net it's apart of too)
+        Makes API call to server, gets clients in needed network. Make helper of update client widgets?
 
         Helper Func: _add_client_to_network
         '''
 
-    def _add_client_to_network(self, network_item, client_data):
+        clients_in_network = None
+
+        ## This endpoint may need some work, to get ID's n stuff if needed
+        self.request_manager.send_get_request(url="http://127.0.0.1:5000/api/simplec2/network/clients") 
+
+        ##long story, decods data
+        self.request_manager.request_finished.connect(
+            ##  send request                                      ## Signal that holds data
+            lambda response: self.handle_response(response, self.signal_get_network_data)
+            # This func will emit the passed signal. 
+        )
+        ## storing data
+        self.signal_get_network_data.connect(self._store_network_data)
+        
+        for client_data in clients_in_network:
+            #self._add_or_update_client_to_network(client)
+
+            ## change this to add or update once this call works.
+            self._add_client_to_network(network_row_item, client_data)
+
+        # need to make sure retrieved data lines up with patterns in _add_or_update_network & the others. 
+        #for network in self.data.simplec2.db_network_data: #self.network_data:
+            #self._add_or_update_network(network)
+
+    def _add_client_to_network(self, network_row_item, client_data):
         '''
         private, helper method to _add_or_update_network
         Adds a client as a child to the specified network item.
-        network_item: The network item/object to be added to.
+        network_row_item: The network item/object to be added to.
         client_data: json data of the client. Retrieve with get_clients_from_network_data()
         '''
         # Assuming client_data is a dictionary with at least a 'name' key
@@ -512,7 +533,7 @@ class Simplec2(QWidget):
                         QStandardItem("ahh")]
 
 
-        network_item.appendRow(client_items)
+        network_row_item.appendRow(client_items)
 
 
     ## probably not needed

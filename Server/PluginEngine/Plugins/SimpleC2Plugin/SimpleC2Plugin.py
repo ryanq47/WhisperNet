@@ -732,11 +732,12 @@ class SimpleC2(BasePlugin, BaseLogging):
 
 
         try:
-            host_hostname = request.json.get('cidr')
+            #host_hostname = request.json.get('cidr')
+            network_nickname = request.json.get('nickname')
 
-            '''self.neo4j.retrieve_clients_in_network(
-                cidr = cidr
-            )'''
+            self.neo4j.retrieve_clients_in_network(
+                nickname = network_nickname
+            )
 
             return api_response(status_code=200)
 

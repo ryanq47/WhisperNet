@@ -332,7 +332,6 @@ class Neo4jConnection(BaseLogging):
         except Exception as e:
             self.logger.error("Query failed:", e)
             return []
-        
     def add_or_update_network_node_property(self, nickname, property_name, value):
         '''
         Update a property of a client node. 
@@ -362,6 +361,40 @@ class Neo4jConnection(BaseLogging):
         except Exception as e:
             self.logger.error(f"Query failed: {e}")
             return []
+    def retrieve_clients_in_network(self, nickname):
+        '''
+            Gets all the clients in a network. 
+
+            nickname: Nickname of the network
+        
+        '''
+        query = '''
+            MATCH (n: Network{nickname:$nickname})
+            RETURN id(n) AS nodeId, labels(n) AS nodeLabels, properties(n) AS nodeProperties
+        '''
+        #query = "MATCH (h: Host) RETURN h" # all hosts
+        try:
+            with self.__driver.session() as session:
+                results = session.run(query, nickname=nickname)
+                self.logger.info(f"Retrieved clients for network: '{nickname}'")
+                
+                formatted_results = []
+                for record in results:
+                    # Structure for the node
+                    node_data = {
+                        "node": {
+                            "identity": record["nodeId"],
+                            "labels": record["nodeLabels"],
+                            "properties": record["nodeProperties"],
+                        },
+                    }
+                    formatted_results.append(node_data)
+                return formatted_results            
+
+        except Exception as e:
+            self.logger.error("Query failed:", e)
+            return []
+
 
     ## Client Queries
     def get_client_nodes(self) -> list:
