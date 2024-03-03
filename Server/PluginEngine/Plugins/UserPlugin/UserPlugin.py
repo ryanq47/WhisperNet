@@ -7,8 +7,9 @@ from werkzeug.exceptions import BadRequest
 #import SecurityEngine.AuthenticationHandler
 from SecurityEngine.AuthenticationHandler import Authentication, UserManagement
 from SecurityEngine.AuthenticationHandler import AccessManagement
-from Utils.UtilsHandler import api_response
+from Utils.ApiHelper import api_response
 from Utils.Logger import LoggingSingleton
+from Utils.DataSingleton import Data
 
 class Info:
     name    = "UserHandler"
@@ -31,6 +32,8 @@ This plugin has X roles:
 class UserHandler():
     def __init__(self, app):
         self.logger = LoggingSingleton.get_logger()
+        self.Data = Data()
+        self.app = app
 
     def main(self):
         '''
@@ -61,8 +64,8 @@ class UserHandler():
         return startup_message
     
     def setup_handlers(self):
-        self.authentication = Authentication(db_path=db_path) #pull from singleton
-        self.user_management = UserManagement(db_path=db_path)
+        self.authentication = Authentication(db_path=self.Data.Paths.users_db_path) #pull from singleton
+        self.user_management = UserManagement(db_path=self.Data.Paths.users_db_path)
 
     #[X]
     ## Create users
@@ -75,11 +78,12 @@ class UserHandler():
             roles = request.json.get('roles')
             print(roles)
 
+            user_management = UserManagement(db_path=self.Data.Paths.users_db_path)
+
             # Early exit if user creation is not successful
-            if not SecurityEngine.AuthenticationHandler.UserManagement.create_user(
+            if not user_management.create_user( #SecurityEngine.AuthenticationHandler.UserManagement.create_user(
                 username=username,
                 password=password,
-                path_struct=self.DataStruct.path_struct,
                 roles=roles
             ):
                 return api_response(status_code=403)
@@ -101,10 +105,11 @@ class UserHandler():
         try:
             username = request.json.get('username')
 
+            user_management = UserManagement(db_path=self.Data.Paths.users_db_path)
+
             # Early exit if user deletion is not successful
-            if not SecurityEngine.AuthenticationHandler.UserManagement.delete_user(
+            if not user_management.delete_user(
                 username=username,
-                path_struct=self.DataStruct.path_struct
             ):
                 return api_response(status_code=403)
 
@@ -125,8 +130,10 @@ class UserHandler():
             username = request.json.get('username')
             password = request.json.get('password')
 
+            user_management = UserManagement(db_path=self.Data.Paths.users_db_path)
+
             # Early exit if user deletion is not successful
-            if not SecurityEngine.AuthenticationHandler.UserManagement.change_user_password(
+            if not user_management.change_user_password(
                 username=username,
                 password=password
             ):
@@ -154,8 +161,10 @@ class UserHandler():
             roles = request.json.get('roles')
             ## Roles is a list: ['role1','role2']
 
+            user_management = UserManagement(db_path=self.Data.Paths.users_db_path)
+
             # Early exit if user deletion is not successful
-            if not SecurityEngine.AuthenticationHandler.UserManagement.add_user_role(
+            if not user_management.add_user_role(
                 username=username,
                 roles=roles
             ):
@@ -181,8 +190,10 @@ class UserHandler():
             username = request.json.get('username')
             roles = request.json.get('roles')
 
+            user_management = UserManagement(db_path=self.Data.Paths.users_db_path)
+
             # Early exit if user deletion is not successful
-            if not SecurityEngine.AuthenticationHandler.UserManagement.delete_user_role(
+            if not user_management.delete_user_role(
                 username=username,
                 roles=roles
             ):

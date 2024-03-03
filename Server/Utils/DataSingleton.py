@@ -20,19 +20,19 @@ class Data:
 class Paths:
     def __init__(self):
         self.logger = LoggingSingleton.get_logger()
-        self._db_path = None
+        self._users_db_path = None
         self._sys_path = None
 
-    # Getter and setter for db_path
+    # Getter and setter for users_db_path
     @property
-    def db_path(self):
-        self.logger.debug("Accessing db_path: %s", self._db_path)
-        return self._db_path
+    def users_db_path(self):
+        self.logger.debug("Accessing users_db_path: %s", self._users_db_path)
+        return self._users_db_path
 
-    @db_path.setter
-    def db_path(self, value):
-        self._db_path = value
-        self.logger.debug(f"db_path set to: {value}")
+    @users_db_path.setter
+    def users_db_path(self, value):
+        self._users_db_path = value
+        self.logger.debug(f"users_db_path set to: {value}")
 
     # Getter and setter for sys_path
     @property
@@ -45,4 +45,23 @@ class Paths:
         self._sys_path = value
         self.logger.debug(f"sys_path set to: {value}")
 
+    def load_data(self):
+        try:
+            self.Data = Data()
 
+            ## Set data items
+            self.Data.Paths.users_db_path = "DataBases/users.db"
+        except Exception as e:
+            self.logger.critical(f"Error loading Data: {e}")
+
+
+
+# not currently used.
+class Config:
+    def __init__(self):
+        self.logger = LoggingSingleton.get_logger()
+
+
+class Properties:
+    def __init__(self):
+        self.logger = LoggingSingleton.get_logger()

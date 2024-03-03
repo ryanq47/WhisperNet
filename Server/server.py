@@ -23,6 +23,7 @@ try:
     # My Modules
     from Utils.Logger import LoggingSingleton
     from Utils.Startup import StartupBanner
+    from Utils.DataSingleton import Data
     #import SecurityEngine.AuthenticationHandler
     #import Utils.UtilsHandler
     #import ApiEngine.ConfigHandler
@@ -64,13 +65,23 @@ class ControlServer():
         super().__init__()
         self.app = app
         self.logger = LoggingSingleton.get_logger(log_level=logging.DEBUG)
+        self.load_data()
         self.load_plugins(self.app)
         self.init_routes()
-        #self.startup_tasks()
+        self.startup_tasks()
 
     def init_routes(self):
         pass
         #self.app.route("/", methods=["GET"])(self.<FUNC>)
+
+    def load_data(self):
+        try:
+            self.Data = Data()
+
+            ## Set data items
+            self.Data.Paths.users_db_path = "DataBases/users.db"
+        except Exception as e:
+            self.logger.critical(f"Error loading Data: {e}")
 
     ## ugly af
     def load_plugins(self, app):
@@ -88,7 +99,7 @@ class ControlServer():
             # Inside each plugin folder, look for Python files with the same name as the folder
             for plugin_file in os.listdir(plugin_folder_path):
                 if plugin_file.endswith('.py'):
-                    self.logger.plugin(f"Loading: {plugin_file}")
+                    self.logger.info(f"Loading: {plugin_file}")
 
                     plugin_name = plugin_file[:-3]  # Remove the '.py' extension
                     module_path = f"PluginEngine.Plugins.{plugin_folder}.{plugin_name}"
@@ -105,7 +116,7 @@ class ControlServer():
                                 continue
 
                             # Instantiate the class with 'app' as an argument
-                            plugin_instance = class_obj(app, Data)
+                            plugin_instance = class_obj(app)
 
                             # Calling main on the class
                             plugin_instance.main()
@@ -124,10 +135,10 @@ class ControlServer():
                             #Data.server_data_db_handler.write_to_plugins_table(p_name, endpoint, author, type, loaded)
                             
                     except ImportError as e:
-                        self.logger.warning(f"{self.logging_warning_symbol} Error importing module {module_path}: {e}")
+                        self.logger.warning(f"Error importing module {module_path}: {e}. Plugin has NOT loaded successfully")
                     except AttributeError as e:
-                        self.logger.warning(f"{self.logging_warning_symbol} AttributeError: {e}")
-        self.logger.plugin("Done Loading Plugins")
+                        self.logger.warning(f"AttributeError: {e}")
+        self.logger.info("Done Loading Plugins")
 
     def startup_tasks(self):
         '''
@@ -136,11 +147,14 @@ class ControlServer():
         # setup JWT
         self.jwt = JWTManager(self.app)
         ## Try to connect to db (add logic later)
-        neo4j = DataEngine.Neo4jHandler.Neo4jConnection()
-        neo4j.test()
+        
+        self.logger.warning("Neo4j disbaled during rebuild - make sure to re-enablle")
+        # Temp disabled during rebuild
+        #neo4j = DataEngine.Neo4jHandler.Neo4jConnection()
+        #neo4j.test()
 
         # GOES LAST
-        SecurityEngine.AuthenticationHandler.UserManagement.default_role_check_and_setup()
+        #SecurityEngine.AuthenticationHandler.UserManagement.default_role_check_and_setup()
         StartupBanner.successful_startup_banner(ip=ip, port=port)
 
 
@@ -150,7 +164,7 @@ if __name__ == "__main__":
     
     ## Debug mode on windows is broken.
     #ControlServer.app.run(host="0.0.0.0", port=5000, debug=False)
-    try:
+    #try:
         from waitress import serve
         ## These vars are defined at the top, and in relation to argparse
         print(StartupBanner.startup_banner(ip = ip, port = port, version="??"))
@@ -169,7 +183,7 @@ if __name__ == "__main__":
 
         app.run(host=ip, port=port, debug=False)
 
-    except OSError as oe:
-        print(f"OS Error: {oe}")
-    except Exception as e:
-        print(f"Unknown error: {e}")
+    #except OSError as oe:
+    #    print(f"OS Error: {oe}")
+    #except Exception as e:
+    #    print(f"Server Unknown error: {e}")

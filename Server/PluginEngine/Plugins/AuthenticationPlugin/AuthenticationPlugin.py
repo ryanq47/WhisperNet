@@ -1,15 +1,16 @@
 #from PluginEngine.Plugins.BasePlugin import BasePlugin
-from Utils.LoggingBaseClass import BaseLogging
-from Utils.UtilsHandler import api_response
+from Utils.ApiHelper import api_response
 
 import logging
 import inspect
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
 from flask import Flask, jsonify, request, send_from_directory, render_template, Response
 
-import SecurityEngine.AuthenticationHandler
+#import SecurityEngine.AuthenticationHandler
+from SecurityEngine.AuthenticationHandler import Authentication
 from datetime import timedelta
 from Utils.Logger import LoggingSingleton
+from Utils.DataSingleton import Data
 
 class Info:
     name    = "AuthenticationPlugin"
@@ -22,7 +23,8 @@ class Info:
 class AuthenticationPlugin():
     def __init__(self, app):
         self.logger = LoggingSingleton.get_logger()
-
+        self.app = app
+        self.Data = Data()
 
     def main(self):
         '''
@@ -59,15 +61,17 @@ class AuthenticationPlugin():
                     data=None,
                 )
 
+        authentication = Authentication(db_path=self.Data.Paths.users_db_path)
+
         ## Check user against DB
-        if SecurityEngine.AuthenticationHandler.Authentication.api_authentication_eval(
+        if authentication.api_authentication_eval(
             username = username,
             password = password
         ):
             ## Get role
 
             ## Dict
-            user_role = SecurityEngine.AuthenticationHandler.Authentication.api_get_user_role(
+            user_role = authentication.api_get_user_role(
                 username = username
             )
 
