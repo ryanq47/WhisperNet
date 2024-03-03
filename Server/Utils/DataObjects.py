@@ -2,6 +2,7 @@
 A collection of singeltons/"structs" for different items taht may need to be globally access
 
 '''
+## keep legacy
 
 
 class PathStruct:
