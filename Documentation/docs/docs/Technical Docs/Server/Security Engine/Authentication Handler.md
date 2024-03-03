@@ -2,9 +2,20 @@
 
 ## Overview
 
-This documentation provides a comprehensive overview of the `Authentication` and `UserManagement` classes, which are central to handling authentication, user creation, role management, and password operations within a Flask application framework.
+This documentation provides a comprehensive overview of the `Authentication` and `UserManagement` classes, which are central to handling authentication, user creation, role management, and password operations within a Flask application framework. These are containd in the `AuthenticationHandler` module
 
 These are Handlers, meant to be called from within plugins. 
+
+## Notes:
+
+The AuthenticaionHandler module functions as an abstraction layer above the [AuthenticationSQLDBHandler module](../DataEngine/Users%20DB%20Handler.md), providing a structured interface for database operations. This design enhances modularity and maintains code cleanliness by segregating direct database interactions away from the main application logic.
+
+When included in the Authentication Plugin, the chain is as such:
+
+(plugin)  AuthenticationPlugin -> (Handler that plugin uses) AuthenticationHandler -> (DB Interface Class for the Handler) AuthenticationSQLDBHandler
+
+
+I've included this to help clear up any confusion of why all 3 of these exist.
 
 ## `Authentication` Class
 

@@ -1,4 +1,4 @@
-## A collection of helper functions for the API
+## A collection of helper functions for the API - Doc when this is more cmplete
 from flask import jsonify
 
 

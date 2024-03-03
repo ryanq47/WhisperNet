@@ -1,4 +1,4 @@
-# Data and Paths Documentation
+# Data Singleton Docs
 
 ## Data Class
 

@@ -1,47 +1,30 @@
-'''
-Handles all encrpytion realted items needed
-'''
-
 import bcrypt
-import Utils.ErrorDefinitions
+from Utils.Logger import LoggingSingleton
 
-class Hashing:
-    def bcrypt_hash(data=None) -> bytes:
-        '''
-        Hashes the input item with bcrypt
+logger = LoggingSingleton.get_logger()
 
-        returns a byte representation of the hashed pw
-        '''
+class PasswordManager:
+    @staticmethod
+    def hash_password(password: str) -> bytes:
         try:
-            ## Convert to bytes
-            byte_data = data.encode('utf-8')
-            hashed_password = bcrypt.hashpw(byte_data, bcrypt.gensalt())
-
+            logger.debug("Starting password hashing process.")
+            hashed_password = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+            logger.debug("Password hashing completed successfully.")
             return hashed_password
-        except:
-            raise Utils.ErrorDefinitions.GENERAL_ERROR
-        
-    # depracated, being weird
-    def bcrypt_hash_and_compare(entered_data=None, stored_data=None) -> bool:
-        '''
-        compares entered_data to stored_data. 
-        Used primarily for password hash checking
+        except Exception as e:
+            logger.error(f"Error hashing password: {e}")
+            raise
 
-        entered_data: A raw string with data
-        stored_data: The Bcrypt encrypted blob
-
-        returns a bool, true == Success/they match
-        '''
+    @staticmethod
+    def verify_password(password: str, hashed_password: bytes) -> bool:
         try:
-            ## Convert to bytes
-            entered_data = entered_data.encode()
-            stored_data = stored_data.encode()
-
-            if bcrypt.checkpw(entered_data, stored_data):
-                return True
-            
+            logger.debug("Starting password verification process.")
+            verification_result = bcrypt.checkpw(password.encode(), hashed_password)
+            if verification_result:
+                logger.info("Password verification succeeded.")
             else:
-                return False
-
-        except:
-            raise Utils.ErrorDefinitions.GENERAL_ERROR
+                logger.warning("Password verification failed.")
+            return verification_result
+        except Exception as e:
+            logger.error(f"Error verifying password: {e}")
+            raise

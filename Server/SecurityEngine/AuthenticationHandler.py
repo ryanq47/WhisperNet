@@ -1,6 +1,7 @@
 import logging
 import bcrypt
-from DataEngine.AuthenticationDBHandler import AuthenticationSQLDBHandler
+from DataEngine.AuthenticationSQLDBHandler import AuthenticationSQLDBHandler
+from SecurityEngine.EncryptionHandler import PasswordManager
 from flask_jwt_extended import get_jwt_identity
 from functools import wraps
 from flask import jsonify
@@ -47,7 +48,7 @@ class Authentication():
                 logger.debug(f"Could not get password hash for user '{username}' from users.db")
                 return False
 
-            if bcrypt.checkpw(password.encode(), pass_blob):
+            if PasswordManager.verify_password(password, pass_blob):
                 logger.info(f"Successful Login for user '{username}'")
                 return True
             else:
@@ -85,7 +86,7 @@ class UserManagement(Authentication):
             return False
 
         try:
-            password_blob = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+            password_blob = PasswordManager.hash_password(password)
             if not self.db_instance.create_api_user(username=username, password_blob=password_blob):
                 logger.warning("Failed to create user in the database")
                 return False
@@ -126,7 +127,7 @@ class UserManagement(Authentication):
             return False
 
         try:
-            password_blob = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+            password_blob = PasswordManager.hash_password(password)
             if self.db_instance.change_api_user_password(username=username, password_hash=password_blob):
                 logger.info(f"Successfully changed password for '{username}'")
                 return True
