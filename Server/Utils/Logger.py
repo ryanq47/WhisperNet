@@ -61,7 +61,7 @@ class LoggingSingleton():
             logger.addHandler(stream_handler)
 
             # File Handler without color
-            file_handler = logging.FileHandler('CRS.log', 'a')
+            file_handler = logging.FileHandler('WhisperNetServer.log', 'a')
             file_handler.setFormatter(
                 SymbolFormatter(
                     '%(asctime)s - %(message)s',
