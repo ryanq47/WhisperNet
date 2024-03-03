@@ -1,12 +1,13 @@
 import logging
 import inspect
 from flask import request
+from flask_jwt_extended import jwt_required
 from werkzeug.exceptions import BadRequest
 
-import SecurityEngine.AuthenticationHandler
-from Utils.LoggingBaseClass import BaseLogging
-from Utils.UtilsHandler import api_response
+#import SecurityEngine.AuthenticationHandler
+from SecurityEngine.AuthenticationHandler import Authentication, UserManagement
 from SecurityEngine.AuthenticationHandler import AccessManagement
+from Utils.UtilsHandler import api_response
 from Utils.Logger import LoggingSingleton
 
 class Info:
@@ -26,7 +27,6 @@ This plugin has X roles:
     iam_user: Not sure if this will be needed, will there ever be a case of a "iam_user" needed?
 
 '''
-from flask_jwt_extended import jwt_required
 
 class UserHandler():
     def __init__(self, app):
@@ -60,6 +60,10 @@ class UserHandler():
 
         return startup_message
     
+    def setup_handlers(self):
+        self.authentication = Authentication(db_path=db_path) #pull from singleton
+        self.user_management = UserManagement(db_path=db_path)
+
     #[X]
     ## Create users
     @jwt_required()

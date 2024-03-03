@@ -1,3 +1,5 @@
+from Utils.Logger import LoggingSingleton
+
 class Data:
     _instance = None
 
@@ -10,56 +12,37 @@ class Data:
     def __init__(self):
         if hasattr(self, '_initialized'):
             return
-        self.Models = Models()
-        self.Endpoints = Endpoints()
+        self.Paths = Paths()
         self._initialized = True
 
 
 # Info about the models/where they are at, etc
-class Models:
+class Paths:
     def __init__(self):
-        # self._models = []  # Now private
-        # temp placeholder for models until it gets working
-        self._models = []
-    # Models methods
+        self.logger = LoggingSingleton.get_logger()
+        self._db_path = None
+        self._sys_path = None
 
+    # Getter and setter for db_path
     @property
-    def models(self):
-        return self._models
+    def db_path(self):
+        self.logger.debug("Accessing db_path: %s", self._db_path)
+        return self._db_path
 
-    @models.setter
-    def models(self, models_list):
-        self._models = models_list
+    @db_path.setter
+    def db_path(self, value):
+        self._db_path = value
+        self.logger.debug(f"db_path set to: {value}")
 
-    def add_model(self, name=None, path=None, desc=None):
-        """
-            Add a model to self.models, which is a list of dicts. (easy to turn into JSON that way)
+    # Getter and setter for sys_path
+    @property
+    def sys_path(self):
+        self.logger.debug("Accessing sys_path: %s", self._sys_path)
+        return self._sys_path
 
-            name: Name of Model
-            path: API Path of Model.
-                Ex: /api/model/MySuperCoolModel
-
-        """
-        model_dict = {
-            "name": name,
-            "api_path": path,
-            "desc": desc
-        }
-
-        self._models.append(model_dict)
-
-    def get_model(self, name):
-        for model in self._models:
-            if model['name'] == name:
-                return model
-        return None
+    @sys_path.setter
+    def sys_path(self, value):
+        self._sys_path = value
+        self.logger.debug(f"sys_path set to: {value}")
 
 
-class Endpoints:
-    def __init__(self):
-        self.python_endpoint = None
-        self.javascript_endpoint = None
-        self.c_endpoint = None
-        self.cpp_endpoint = None
-        self.rust_endpoint = None
-        self.ruby_endpoint = None
