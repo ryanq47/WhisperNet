@@ -8,8 +8,8 @@ Go ahead and define any other imports you may need here.
 '''
 import logging
 import inspect
-from flask import jsonify, send_from_directory, render_template, redirect, make_response
-from flask_login import LoginManager, login_required
+from flask import jsonify, send_from_directory, redirect, make_response
+#from flask_login import LoginManager, login_required
 import requests
 import json
 
@@ -61,7 +61,7 @@ def role_required(required_role):
 class SimpleC2():
     def __init__(self, app):
         self.logger = LoggingSingleton.get_logger()
-
+        self.app = app
         self.neo4j = None
         self.connect_to_neo4j()
         ## Data Structures
@@ -77,15 +77,15 @@ class SimpleC2():
         '''
         Main function/entry point for the plugin.
         '''
-        self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
-        self.logger.debug(f"{self.logging_debug_symbol} Loading {Info.name}")
+        self.logger.debug(f"{inspect.stack()[0][3]}")
+        self.logger.debug(f"Loading {Info.name}")
         self.register_routes()
 
     ## Put all the routes here.
     def register_routes(self):
-        self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
-        self.app.route(f'/{Info.endpoint}', methods = ["GET"])(self.simplec2_dashboard)
-        self.app.route(f'/api/{Info.endpoint}/', methods=["GET"])(self.simplec2_api_placeholder)
+        self.logger.debug(f"{inspect.stack()[0][3]}")
+        #self.app.route(f'/{Info.endpoint}', methods = ["GET"])(self.simplec2_dashboard)
+        #self.app.route(f'/api/{Info.endpoint}/', methods=["GET"])(self.simplec2_api_placeholder)
         self.app.route(f'/api/{Info.endpoint}/postcommand', methods = ["POST"])(self.simplec2_api_post_client_command)
         self.app.route(f'/api/{Info.endpoint}/nodecheckin', methods = ["POST"])(self.simplec2_api_node_checkin)
         self.app.route(f'/api/{Info.endpoint}/nodelogs', methods = ["GET"])(self.simplec2_api_get_checkin_logs)
@@ -132,7 +132,7 @@ class SimpleC2():
 
     def simplec2_dashboard(self):
         '''
-        Dashaboards
+        Dashaboards. Cool eventually but not now
         
         '''
 
@@ -291,8 +291,9 @@ class SimpleC2():
 
                 #return jsonify(fake_data)
 
+    """
 ################################################
-# API - Client Data & ops
+# API - Client Data & ops - Needs to be redone/updated with new JSON scheme
 ################################################
 
     def simplec2_api_post_client_data(self):
@@ -395,7 +396,7 @@ class SimpleC2():
         except Exception as e:
                 return_data["message"] = f"Error with server: {e}"
                 return jsonify(return_data)
-
+    """
 
 ################################################
 # API - DB stuff
@@ -700,8 +701,9 @@ class SimpleC2():
         except Exception as e:
             return api_response(status_code=500)
 
+    """
 ################################################
-# API - Checkin Stuff
+# API - Checkin Stuff - OLD, replaced with new JSON scheme
 ################################################
 
     def simplec2_api_node_checkin(self):
@@ -768,3 +770,4 @@ class SimpleC2():
             temp_dict.update(file_data)
         ## rename this
         return jsonify(temp_dict)
+    """

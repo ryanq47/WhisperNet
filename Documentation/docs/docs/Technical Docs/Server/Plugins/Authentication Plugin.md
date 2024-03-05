@@ -4,6 +4,10 @@
 
 This document provides a detailed overview of the `AuthenticationPlugin`, designed for a Flask application. The plugin is built to handle API authentication, allowing users to log in through a dedicated endpoint.
 
+## Viz
+
+![User Plugin Vis](../../../Images/Server/Plugins/authentication_plugin.png)
+
 ## `Info` Class
 
 ### Purpose

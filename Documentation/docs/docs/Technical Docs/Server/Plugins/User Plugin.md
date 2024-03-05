@@ -4,6 +4,10 @@
 
 This documentation outlines the `UserPlugin`, designed to handle user-related operations within a Flask application framework. This plugin facilitates user management tasks such as creating, deleting users, changing passwords, and managing user roles.
 
+## Viz
+
+![User Plugin Vis](../../../Images/Server/Plugins/user_plugin.png)
+
 ## `Info` Class
 
 ### Attributes
@@ -19,6 +23,8 @@ This documentation outlines the `UserPlugin`, designed to handle user-related op
 ### Initialization
 
 - Sets up logging, data paths, and application context for managing user operations.
+
+
 
 ### Key Methods
 

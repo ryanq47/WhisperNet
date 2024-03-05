@@ -5,10 +5,9 @@ import logging
 import inspect
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, exceptions
 from flask import Flask, jsonify, request, send_from_directory, render_template, Response
-
+from datetime import timedelta
 #import SecurityEngine.AuthenticationHandler
 from SecurityEngine.AuthenticationHandler import Authentication
-from datetime import timedelta
 from Utils.Logger import LoggingSingleton
 from Utils.DataSingleton import Data
 
