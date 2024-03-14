@@ -1,6 +1,8 @@
 # HTTP listener. Meant to be standalone, most things must be done throgh API calls to it. (ex: no direct neo4j interaction, call the main server api for that.)
 from Utils.Logger import LoggingSingleton
 from PluginEngine.Plugins.ListenerHTTP.Modules.Client import Client
+from PluginEngine.Plugins.ListenerHTTP.Modules.HTTPJsonRequest import HTTPJsonRequest
+
 from flask import jsonify, make_response
 import inspect
 
@@ -33,10 +35,17 @@ class ListenerHTTP():
 
     def listener_http_get_endpoint(self):
         '''
-            Init post endpoint. will be sued for something
+            Init post endpoint. will be used for something
         '''
 
-        return make_response("GET ENDPOINT - JSON HERE", 200)
+        # for now, just returning the mock JSON format
+        dummy_request = HTTPJsonRequest()
+
+        dummy_request.callback.server.hostname = "callbackserver" # pull this from the singleton somehwere
+
+        dummy_request_json = dummy_request.generate_json()
+
+        return make_response(dummy_request_json, 200)
 
 
     def listener_http_post_endpoint(self):
@@ -45,11 +54,19 @@ class ListenerHTTP():
         
         '''
 
+        # for now, just returning the mock JSON format
+        dummy_request = HTTPJsonRequest()
+
+        dummy_request.callback.server.hostname = "callbackserver" # pull this from the singleton somehwere
+
+        dummy_request_json = dummy_request.generate_json()
+
+        return make_response(dummy_request_json, 200)
 
 
-        self.client_checkin_validation("data")
+        #self.client_checkin_validation("data")
 
-        return make_response("POST ENDPOINT - JSON HERE", 200)
+        #return make_response("POST ENDPOINT - JSON HERE", 200)
 
 
     def client_checkin_validation(self):

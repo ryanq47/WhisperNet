@@ -473,7 +473,7 @@ class Server:
 ########################################
 # Parent/Construction of everything
 ########################################
-class HTTPJsonRequestBuilder():
+class HTTPJsonRequest():
     def __init__(self):
         #BaseLogging.__init__(self)
         self.request_id = "unique_request_identifier"
@@ -592,9 +592,11 @@ class HTTPJsonRequestBuilder():
         # Now, convert this object to JSON
         #return json.dumps(self.to_dict())#, indent=4) for indent stuff/not flat
         return json.dumps(self.to_dict(), indent=4)
-myobj = HTTPJsonRequestBuilder()
+
+## Test code
+#myobj = HTTPJsonRequest()
 #print(myobj.generate_template_json())
-print(myobj.generate_json())
+#print(myobj.generate_json())
 
 
 """
