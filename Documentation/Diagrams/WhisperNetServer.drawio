@@ -1,50 +1,29 @@
-<mxfile host="app.diagrams.net" modified="2024-03-03T00:35:48.802Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="oNM8LpsaUkAMXWs3UVlB" version="24.0.1" type="device">
+<mxfile host="app.diagrams.net" modified="2024-03-05T19:45:28.734Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="sZa4ijcvW1NoLSZN7Twj" version="24.0.1" type="device">
   <diagram name="Page-1" id="NhbjsUm66YzSF9Lg0he9">
-    <mxGraphModel dx="1003" dy="926" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="830" dy="766" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="tQxRgZupLQG-ln8viyQU-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#008a00;strokeColor=#005700;" parent="1" source="tQxRgZupLQG-ln8viyQU-1" target="tQxRgZupLQG-ln8viyQU-2" edge="1">
+        <mxCell id="A4LMM_Pry6SWI9XmF5gb-14" style="edgeStyle=entityRelationEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#008a00;strokeColor=#005700;" edge="1" parent="1" source="A4LMM_Pry6SWI9XmF5gb-7" target="A4LMM_Pry6SWI9XmF5gb-10">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="tQxRgZupLQG-ln8viyQU-17" value="Looks in" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="tQxRgZupLQG-ln8viyQU-6" vertex="1" connectable="0">
-          <mxGeometry x="0.391" y="3" relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
+        <mxCell id="A4LMM_Pry6SWI9XmF5gb-7" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn2.iconfinder.com/data/icons/crystalproject/Open-Office-Icons/stock_insert-plugin.png" vertex="1" parent="1">
+          <mxGeometry x="360" y="240" width="24" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="A4LMM_Pry6SWI9XmF5gb-5" value="2nd" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="tQxRgZupLQG-ln8viyQU-6">
-          <mxGeometry x="-0.4731" y="-3" relative="1" as="geometry">
-            <mxPoint x="3" as="offset" />
-          </mxGeometry>
+        <mxCell id="A4LMM_Pry6SWI9XmF5gb-8" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;Simple C2&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="318" y="140" width="108" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="tQxRgZupLQG-ln8viyQU-1" value="main.py" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn0.iconfinder.com/data/icons/long-shadow-web-icons/512/python-128.png" parent="1" vertex="1">
-          <mxGeometry x="211" y="328.29" width="38" height="38" as="geometry" />
+        <mxCell id="A4LMM_Pry6SWI9XmF5gb-9" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Command DB&lt;/div&gt;" style="shape=datastore;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="232" width="30" height="32" as="geometry" />
         </mxCell>
-        <mxCell id="tQxRgZupLQG-ln8viyQU-2" value="Plugins" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.folder;" parent="1" vertex="1">
-          <mxGeometry x="211" y="515" width="38" height="34.59" as="geometry" />
-        </mxCell>
-        <mxCell id="tQxRgZupLQG-ln8viyQU-45" value="API (Flask Instance)" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/web_server.svg;" parent="1" vertex="1">
-          <mxGeometry x="990" y="215.41" width="40" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="tQxRgZupLQG-ln8viyQU-67" value="These are both singletons, so only one &lt;br&gt;instance of them ever exists" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="850" y="655.3000000000001" width="230" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="tQxRgZupLQG-ln8viyQU-73" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;fillColor=#b1ddf0;strokeColor=#10739e;" parent="1" source="tQxRgZupLQG-ln8viyQU-72" target="tQxRgZupLQG-ln8viyQU-45" edge="1">
+        <mxCell id="A4LMM_Pry6SWI9XmF5gb-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;curved=1;" edge="1" parent="1" source="A4LMM_Pry6SWI9XmF5gb-10" target="A4LMM_Pry6SWI9XmF5gb-9">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="tQxRgZupLQG-ln8viyQU-74" value="interacts with" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="tQxRgZupLQG-ln8viyQU-73" vertex="1" connectable="0">
-          <mxGeometry x="0.0018" y="2" relative="1" as="geometry">
-            <mxPoint x="-2" y="2" as="offset" />
-          </mxGeometry>
+        <mxCell id="A4LMM_Pry6SWI9XmF5gb-10" value="/api/simplec2/whatever" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.endpoint;" vertex="1" parent="1">
+          <mxGeometry x="240" y="440" width="30" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="tQxRgZupLQG-ln8viyQU-72" value="User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
-          <mxGeometry x="1260" y="210" width="30" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="tQxRgZupLQG-ln8viyQU-76" value="The webserver is all the user sees" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="1030" y="180" width="210" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="A4LMM_Pry6SWI9XmF5gb-3" value="Plugins" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.folder;" vertex="1" parent="1">
-          <mxGeometry x="70" y="650" width="38" height="34.59" as="geometry" />
+        <mxCell id="A4LMM_Pry6SWI9XmF5gb-16" value="&lt;font color=&quot;#008500&quot;&gt;Green: Registered Routes&lt;/font&gt;&lt;div&gt;Color: Other&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="500" y="73" width="160" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

@@ -1,17 +1,22 @@
 import sqlite3
 import inspect
-from Utils.LoggingBaseClass import BaseLogging
 import time
+from Utils.Logger import LoggingSingleton
 '''
 This DB Handler handles the core quieries for the ServerData.db database.
+
+This DB holds data from the Nodes, from clients. Ex would be the results of a command. ex "whoami"
+This will be held in JSON form. Meant to be a log/history of commands + results. 
+
+The Neo4j data base is explicity for current clients & managing the network
 
 '''
 
 function_debug_symbol = "[*]"
 
-class SimpleC2DbHandler(BaseLogging):
+class SimpleC2DbHandler():
     def __init__(self):
-        BaseLogging.__init__(self)  
+        self.logger = LoggingSingleton.get_logger()
         self.dbconn = None
         self.cursor = None
         # hardecoded as this module is not meant to be used for anything else
@@ -28,7 +33,8 @@ class SimpleC2DbHandler(BaseLogging):
             self.logger.info(f"{self.logging_info_symbol} Successful connection to: {db_name}")
 
         except Exception as e:
-            self.logger.warning(f"{self.logging_warning_symbol} Error: {e}")
+            self.logger.warning(f"Error connecting to {db_name}: {e}")
+            raise
 
     def create_db_if_not_exist():
         '''
@@ -61,9 +67,9 @@ class SimpleC2DbHandler(BaseLogging):
             self.dbconn.commit()
 
         except Exception as e:
-            self.logger.warning(f"{self.logging_warning_symbol} {inspect.stack()[0][3]}: {e}")
+            self.logger.warning(f"{inspect.stack()[0][3]}: {e}")
             self.dbconn.rollback()
-            return False
+            raise
 
     ######
     # Guard clauses
@@ -75,7 +81,7 @@ class SimpleC2DbHandler(BaseLogging):
         self.logger.debug(f"{self.function_debug_symbol} {inspect.stack()[0][3]}")
 
         if self.dbconn is None:
-            self.logger.warning(f"{self.logging_info_symbol} Connection to DB is None.")
+            self.logger.warning(f"Connection to DB is None.")
             return False
 
         return True

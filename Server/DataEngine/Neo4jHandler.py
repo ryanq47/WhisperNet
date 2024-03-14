@@ -1,16 +1,14 @@
 from neo4j import GraphDatabase
 from dotenv import load_dotenv
 import os
-from Utils.LoggingBaseClass import BaseLogging
 import inspect
 from neo4j.exceptions import Neo4jError
-
+from Utils.Logger import LoggingSingleton
 ## trying to follow pep8 a bit closer on this one 
 
-class Neo4jConnection(BaseLogging):
+class Neo4jConnection():
     def __init__(self):
-        BaseLogging.__init__(self)  
-
+        self.logger = LoggingSingleton.get_logger()
         self.__driver = None
         self.__uri = None
         self.__user = None
@@ -29,13 +27,17 @@ class Neo4jConnection(BaseLogging):
         try:
             self.logger.debug(f"Attempting to load .env")
 
-            load_dotenv()  # Load environment variables from .env file
+            if not load_dotenv():  # Load environment variables from .env file
+                self.logger.critical(f"Error loading from .env file - make sure it exists!")
+                exit()
+
             self.__uri = os.getenv("NEO4J_URI")
             self.__user = os.getenv("NEO4J_USER")
             self.__password = os.getenv("NEO4J_PASSWORD")
         except Exception as e:
             self.logger.error(f"Error loading from .env file: {e}")
-            return False
+            #return False
+            raise
         
     def test(self) -> bool:
         '''
@@ -50,8 +52,9 @@ class Neo4jConnection(BaseLogging):
             return True
 
         except Exception as e:
-            self.logger.error(f"Error connecting to Neo4j DB {e}")
-            return False
+            self.logger.error(f"Error connecting to Neo4j DB: {e}")
+            #return False
+            raise
 
     def connect(self):
         self.logger.debug(f"{inspect.stack()[0][3]}")
@@ -64,6 +67,7 @@ class Neo4jConnection(BaseLogging):
                 self.logger.info("Neo4j connection established.")
             except Exception as e:
                 self.logger.error(f"Failed to create the driver: {e}")
+                raise
 
     def close(self):
         self.logger.debug(f"{inspect.stack()[0][3]}")
@@ -87,6 +91,7 @@ class Neo4jConnection(BaseLogging):
             response = list(session.run(query, parameters))
         except Exception as e:
             self.logger.error("Query failed:", e)
+            raise
         finally:
             if session:
                 session.close()
@@ -177,7 +182,8 @@ class Neo4jConnection(BaseLogging):
                 return network_map
         except Exception as e:
             self.logger.error("Query failed:", e)
-            return {}
+            raise
+            #return {}
 
 
     def get_nodes_and_relationships(self): ## Not used currently, could be helpful in the future
@@ -220,7 +226,8 @@ class Neo4jConnection(BaseLogging):
                 return formatted_results
         except Exception as e:
             self.logger.error("Query failed:", e)
-            return []
+            raise
+            #return []
 
     ## Netowrk Queries
     #-[x]
@@ -255,7 +262,8 @@ class Neo4jConnection(BaseLogging):
                 #return [dict(record['n']) for record in results]
         except Exception as e:
             self.logger.error("Query failed:", e)
-            return []
+            raise
+            #return []
 
     #-[x]
     def add_network_node(self, cidr, nickname)->list:
@@ -289,7 +297,9 @@ class Neo4jConnection(BaseLogging):
 
         except Exception as e:
             self.logger.error(f"Query failed: {e}")
-            return []
+            #return []
+            raise
+        
     def remove_network_node(self, nickname)->list:
         '''
         Adds a network node to the DB. 
@@ -310,7 +320,9 @@ class Neo4jConnection(BaseLogging):
                 return [dict(record['n']) for record in results]
         except Exception as e:
             self.logger.error("Query failed:", e)
-            return []
+            #return []
+            raise
+
     def get_network_node_properties(self, nickname):
         '''
         Gets ALL properties of the network node
@@ -331,7 +343,9 @@ class Neo4jConnection(BaseLogging):
                 return [dict(record['n']) for record in results]
         except Exception as e:
             self.logger.error("Query failed:", e)
-            return []
+            #return []
+            raise
+
     def add_or_update_network_node_property(self, nickname, property_name, value):
         '''
         Update a property of a client node. 
@@ -360,7 +374,9 @@ class Neo4jConnection(BaseLogging):
                 return [dict(record['h']) for record in results]
         except Exception as e:
             self.logger.error(f"Query failed: {e}")
-            return []
+            #return []
+            raise
+        
     def retrieve_clients_in_network(self, nickname):
         '''
             Gets all the clients in a network. 
@@ -393,7 +409,8 @@ class Neo4jConnection(BaseLogging):
 
         except Exception as e:
             self.logger.error("Query failed:", e)
-            return []
+            #return []
+            raise
 
 
     ## Client Queries
@@ -411,7 +428,8 @@ class Neo4jConnection(BaseLogging):
                 return [dict(record['h']) for record in results]
         except Exception as e:
             self.logger.error("Query failed:", e)
-            return []
+            #return []
+            raise
 
     def get_client_node_by_ip(self, ip) -> list:
         '''
@@ -428,7 +446,8 @@ class Neo4jConnection(BaseLogging):
                 return [dict(record['h']) for record in results]
         except Exception as e:
             self.logger.error("Query failed:", e)
-            return []
+            #return []
+            raise
 
     #-[x]
     def add_client_node(self, nickname):
@@ -460,7 +479,8 @@ class Neo4jConnection(BaseLogging):
 
         except Exception as e:
             self.logger.error(f"Query failed: {e}")
-            return []
+            #return []
+            raise
 
     def remove_client_node(self, nickname):
         '''
@@ -480,7 +500,8 @@ class Neo4jConnection(BaseLogging):
                 return [dict(record['h']) for record in results]
         except Exception as e:
             self.logger.error("Query failed:", e)
-            return []
+            #return []
+            raise
 
     #- [x]
     def get_client_node_properties(self, nickname):
@@ -503,7 +524,8 @@ class Neo4jConnection(BaseLogging):
                 return [dict(record['n']) for record in results]
         except Exception as e:
             self.logger.error("Query failed:", e)
-            return []
+            #return []
+            raise
 
     #-[x]
     def add_or_update_client_node_property(self, nickname, property_name, value):
@@ -534,7 +556,8 @@ class Neo4jConnection(BaseLogging):
                 return [dict(record['h']) for record in results]
         except Exception as e:
             self.logger.error(f"Query failed: {e}")
-            return []
+            #return []
+            raise
 
     ## Relationship Queries
     #-[x]
@@ -571,7 +594,8 @@ class Neo4jConnection(BaseLogging):
                 return [dict(record['h']) for record in results]
         except Exception as e:
             self.logger.error(f"Query failed: {e}")
-            return []
+            #return []
+            raise
 
 
     def print_response(self, response = None):
@@ -613,53 +637,5 @@ class Neo4jConnection(BaseLogging):
 
         except Exception as e:
             self.logger.error(f"Query failed: {e}")
-            return False
-
-
-
-
-class Neo4jParse(BaseLogging):
-    def __init__(self):
-        BaseLogging.__init__(self)  
-
-    '''
-    Custom parser for neo4j data. Each functino takes a "node", which is just what the DB returns
-
-    Might not be needed
-    '''
-
-    @staticmethod
-    def get_properties(node):
-        '''
-        Gets properties of a node
-        '''
-        print(node)
-        properties = dict(node)
-
-        print(properties)
-
-        return properties
-    
-    @staticmethod
-    def get_labels(node):
-        '''
-        Gets labels of a node
-        '''
-        return list(node.labels)
-    
-    @staticmethod
-    def get_cidr_from_network_node(node):
-        '''
-        Gets CIDR from network node
-        '''
-        properties = Neo4jParse.get_properties(node)
-        return properties.get('cidr')
-    
-    @staticmethod
-    def get_ip_from_host_node(node):
-        '''
-        Gets CIDR from network node
-        '''
-        properties = Neo4jParse.get_properties(node)
-        print(properties)
-        return properties.get('ip')
+            #return []
+            raise

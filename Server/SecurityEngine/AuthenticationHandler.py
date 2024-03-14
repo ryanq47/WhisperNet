@@ -1,461 +1,221 @@
-import random
-import Utils.UtilsHandler
 import logging
-import inspect
-import SecurityEngine.EncryptionHandler
-import DataEngine.AuthenticationDBHandler
-import os
-import Utils.ErrorDefinitions
 import bcrypt
-import Utils.GuardClauses
-from Utils.LoggingBaseClass import BaseLogging
-## For role_required
-from flask_jwt_extended import get_jwt_identity, jwt_required
+from DataEngine.AuthenticationSQLDBHandler import AuthenticationSQLDBHandler
+from SecurityEngine.EncryptionHandler import PasswordManager
+from flask_jwt_extended import get_jwt_identity
 from functools import wraps
 from flask import jsonify
-from Utils.UtilsHandler import api_response
+from Utils.ApiHelper import api_response
 import getpass
+from Utils.Logger import LoggingSingleton
 
-## This is super hacky. My Dumbass made this a static method, so to properly use the BaseLogging class, I need to to 
-## init the instance, and then call the logging function
-base_logging = BaseLogging()
-function_debug_symbol = base_logging.function_debug_symbol
+logger = LoggingSingleton.get_logger()
 
+class Authentication():
+    def __init__(self, db_path="DataBases/users.db"):
+        self.db_instance = AuthenticationSQLDBHandler(db_path=db_path)
 
-class Authentication(BaseLogging):
-    '''
-    The authentication interface for the whole platform. Pulls from the user.db database, and can be used to authentcation
-    with whatever wild methods I come up with in the future. Flexible on purpose
-    
-    '''
-
-    # [? test me]
-    @staticmethod
-    def api_authentication_eval(username=None, password=None, path_struct=None) -> bool:
-        '''
-        Checks if API user is authorized for access.
-
-        Checks:
-            - Username
-            - Password
-        '''
-
-        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-
-        # Validate input parameters
+    def api_authentication_eval(self, username, password) -> bool:
+        logger.debug(f"Starting API authentication evaluation for user {username}")
+        
         if not username or not password:
-            base_logging.logger.warning("Username or password not provided for authentication")
+            logger.warning("Username or password not provided for authentication")
             return False
 
-        # Path setup
-        db_relative_path = "DataBases/users.db"
-        db_absolute_path = db_relative_path  # or os.path.join(server_absolute_path, db_relative_path)
-
         try:
-            db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
-                db_path=db_absolute_path
-            )
-
-            # Check if the username exists
-            if not db_instance.get_api_username(username=username):
-                base_logging.logger.debug(f"Username {username} not found")
+            if not self.db_instance.get_api_username(username=username):
+                logger.debug(f"Username {username} not found during authentication evaluation")
                 return False
 
-            # Validate the password
-            if Authentication._validate_api_password(db_instance=db_instance, username=username, password=password):
+            if self._validate_api_password(username=username, password=password):
+                logger.info(f"User {username} authenticated successfully")
                 return True
             else:
-                base_logging.logger.debug(f"Incorrect password for user {username}")
+                logger.debug(f"Incorrect password for user {username}")
                 return False
-
         except Exception as e:
-            base_logging.logger.error(f"Authentication Error: {e}")
-            return False
+            logger.error(f"Authentication error for user {username}: {e}")
+            raise
 
-    # [X]
-    @staticmethod
-    def _validate_api_password(db_instance=None, password=None, username=None) -> bool:
-        '''
-        Validates an api pass. Exact same as _validate_password, save for the function it calls. Made more sense to implement
-        a dedicated method, rather than add an argument to _validate_password, potentially breaking existing code
-
-        ## This is what changed
-        pass_blob_tuple = db_instance.get_api_password_blob(username=username)
-
-        from
-
-        pass_blob_tuple = db_instance.get_password_blob(username=username)
-
-        '''
-        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+    def _validate_api_password(self, username, password) -> bool:
+        logger.debug(f"Validating API password for user {username}")
 
         try:
-            if Utils.GuardClauses.guard_t_f_check(username is None, "[*] Username argument is 'None'! Authentication will fail!"):
-                return False
-
-            ## 
-            pass_blob_tuple = db_instance.get_api_password_blob(username=username)
-            ## blob is first item in tuple
+            pass_blob_tuple = self.db_instance.get_api_password_blob(username=username)
             pass_blob = pass_blob_tuple[0]
 
-            print(f"PassBlob: {pass_blob}")
-            #print(f"PassWord: {password}")
-
-
-            if pass_blob == False:
-                base_logging.logger.debug(f"[*] Could not get password hash for user '{username}' from users.db")
+            if not pass_blob:
+                logger.debug(f"Could not get password hash for user '{username}' from users.db")
                 return False
 
-            ## get username's password blob
-            ## [func dep, beign weird
-            '''
-            if SecurityEngine.EncryptionHandler.Hashing.bcrypt_hash_and_compare(
-                #entered_data=password,
-                #stored_data=pass_blob
-                entered_data=username,
-                stored_data=pass_blob
-            ):
-                print(f"Successful Login: '{username}':'{password}'")'''
-
-            #if bcrypt.checkpw("1234".encode(), "$2b$12$6l17I4n6BUqF3C43ldlg4u8kzCdDCLU/AJBTa44Yi.PGNon5hv3Mu".encode()):
-
-            ## pass_blob is seemingly coming back from the db as a bytes object. Might get funky somewhere later
-            if bcrypt.checkpw(password.encode(), pass_blob):
-                base_logging.logger.info(f"Successful Login: '{username}'")
+            if PasswordManager.verify_password(password, pass_blob):
+                logger.info(f"Successful Login for user '{username}'")
                 return True
-            
             else:
-                base_logging.logger.warning(f"Bad Login: '{username}'")
-
+                logger.warning(f"Bad Login attempt for user '{username}'")
+                return False
         except Exception as e:
-            base_logging.logger.debug(f"[*] Error: {e}")
+            logger.error(f"Error validating API password for user {username}: {e}")
+            raise
 
-        return False
-
-    
-    # [X]
-    @staticmethod
-    def api_get_user_role(username=None) -> list:
-        '''
-        Gets API user role, returns a list of roles
-
-        username: Username to query for its roles
-
-        ex: ['iam_admin', 'iam_user']
-        '''
-        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-
-        # Path setup
-        db_relative_path = "DataBases/users.db"
-        db_absolute_path = db_relative_path  # or os.path.join(server_absolute_path, db_relative_path)
+    def api_get_user_role(self, username) -> list:
+        logger.debug(f"Getting API user role for {username}")
 
         if not username:
-            base_logging.logger.warning(f"{base_logging.logging_warning_symbol} No username provided")
+            logger.warning("No username provided for role fetching")
             return []
 
         try:
-            # Initialize DB instance and fetch roles
-            db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(db_path=db_absolute_path)
-            roles = db_instance.get_all_api_user_roles(username=username)
+            roles = self.db_instance.get_all_api_user_roles(username=username)
 
             if not roles:
-                base_logging.logger.warning(f"{base_logging.logging_warning_symbol} User {username} does not have any roles")
+                logger.warning(f"User {username} does not have any roles")
                 return []
 
-            # Extract and return roles -- data look slike [(user,role)]
             return [role[1] for role in roles]
-
         except Exception as e:
-            base_logging.logger.error(f"{base_logging.logging_warning_symbol} Error fetching roles for user {username}: {e}")
-            # Depending on requirements, you might raise an error or return an empty list
-            return []
+            logger.error(f"Error fetching roles for user {username}: {e}")
+            raise
 
-class UserManagement:
-    '''
-    The class for handling user shit. I.e. creating, deleting, modifying
+class UserManagement(Authentication):
+    def create_user(self, username, password, roles):
+        logger.debug(f"Creating user {username} with roles {roles}")
 
-    Note... there is nothing stopping a user from nuking the DB/deleting all the users and locking everyone out. 
-    '''
-    #[x] - probably good.
-    @staticmethod
-    def create_user(path_struct=None, username=None, password=None, roles=None):
-        '''
-        Creates users. Is an abstraction over the AuthenticationSQLDBHandler.create_user
-
-        path_struct: The class instance containing path data
-        username: username of user to create
-        password: password of user to create
-        roles: List of roles. Ex: ["filehost_admin", "iam_admin"]
-        '''
-        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-
-        # Validate input parameters
         if not all([username, password, roles]):
-            base_logging.logger.warning("Invalid input parameters for creating user")
+            logger.warning("Invalid input parameters for creating user")
             return False
 
         try:
-            # Construct database path
-            #db_absolute_path = os.path.join(path_struct.sys_path, "DataBases/users.db")
-
-            # Initialize database handler
-            db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
-                db_path="DataBases/users.db"#db_absolute_path
-            )
-
-            # Hash the password
-            password_blob = SecurityEngine.EncryptionHandler.Hashing.bcrypt_hash(data=password)
-            if password_blob is None:
-                base_logging.logger.warning("[*] password_blob is none, error occurred during hashing")
+            password_blob = PasswordManager.hash_password(password)
+            if not self.db_instance.create_api_user(username=username, password_blob=password_blob):
+                logger.warning("Failed to create user in the database")
                 return False
 
-            # Create user in the database
-            if not db_instance.create_api_user(username=username, password_blob=password_blob):
-                base_logging.logger.warning("Failed to create user in the database")
+            if not self.db_instance.add_api_role(username=username, roles=roles):
+                logger.warning("Failed to add roles to the user")
                 return False
 
-            # Add roles to the user
-            if not db_instance.add_api_role(username=username, roles=roles):
-                base_logging.logger.warning("Failed to add roles to the user")
-                return False
-
+            logger.info(f"User {username} created successfully")
             return True
-
         except Exception as e:
-            base_logging.logger.warning(f"Could not create user: {e}")
-            return False
+            logger.error(f"Could not create user {username}: {e}")
+            raise
 
-    
-    @staticmethod
-    def delete_user(path_struct=None, username=None):
-        '''
-        For deleting users. Is an abstraction over the AuthenticationSQLDBHandler.delete_user
+    def delete_user(self, username):
+        logger.debug(f"Deleting user {username}")
 
-        path_struct: The class instance containing path data
-        username: The username to delete
-        '''
-        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-
-        # Validate input parameters
-        if not all([path_struct, username]):
-            base_logging.logger.debug("Invalid input parameters for deleting user")
+        if not username:
+            logger.warning("Invalid input parameters for deleting user")
             return False
 
         try:
-            # Construct database path
-            db_absolute_path = os.path.join(path_struct.sys_path, "DataBases/users.db")
-
-            # Initialize database handler
-            db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
-                db_path=db_absolute_path
-            )
-
-            # Delete user from the database
-            if db_instance.delete_api_user(username=username):
-                base_logging.logger.debug(f"Successfully deleted user '{username}'")
+            if self.db_instance.delete_api_user(username=username):
+                logger.info(f"Successfully deleted user '{username}'")
                 return True
             else:
-                base_logging.logger.debug(f"Failed to delete user '{username}'")
+                logger.warning(f"Failed to delete user '{username}'")
                 return False
-
         except Exception as e:
-            base_logging.logger.debug(f"Could not delete user: {e}")
-            return False
+            logger.error(f"Could not delete user {username}: {e}")
+            raise
 
-    @staticmethod
-    def change_user_password(username=None, password=None):
-        '''
-        For changing a users password
+    def change_user_password(self, username, password):
+        logger.debug(f"Changing password for user {username}")
 
-        username: username of user
-        password: password of user
-        
-        '''
-        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-
-        # Validate input parameters
         if not all([username, password]):
-            base_logging.logger.debug("Invalid input parameters for changing password")
+            logger.warning("Invalid input parameters for changing password")
             return False
-        
+
         try:
-            # Construct database path
-
-            # Initialize database handler
-            db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
-                db_path="DataBases/users.db"
-            )
-
-            ## Check if user exists
-            if not db_instance.get_api_username(username=username):
-                base_logging.logger.warning("[*] User does not exist, cannot change password")
-                return False
-
-
-            ## Hash new password
-            password_blob = SecurityEngine.EncryptionHandler.Hashing.bcrypt_hash(data=password)
-            if password_blob is None:
-                base_logging.logger.warning("[*] password_blob is none, error occurred during hashing")
-                return False
-
-
-            # Change user password
-            if db_instance.change_api_user_password(username=username, password_hash=password_blob):
-                base_logging.logger.debug(f"Successfully changed password for '{username}'")
+            password_blob = PasswordManager.hash_password(password)
+            if self.db_instance.change_api_user_password(username=username, password_hash=password_blob):
+                logger.info(f"Successfully changed password for '{username}'")
                 return True
             else:
-                base_logging.logger.debug(f"Failed to change password for '{username}'")
+                logger.warning(f"Failed to change password for '{username}'")
                 return False
-
         except Exception as e:
-            base_logging.logger.debug(f"Could not change user password: {e}")
-            return False
+            logger.error(f"Could not change password for user {username}: {e}")
+            raise
 
-    @staticmethod
-    def add_user_role(username = None, roles = None):
-        '''
-        Add a role to a user
-        '''
-        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+    def add_user_role(self, username, roles):
+        logger.debug(f"Adding roles {roles} to user {username}")
 
-        # Validate input parameters
         if not all([username, roles]):
-            base_logging.logger.debug("Invalid input parameters for changing user role")
+            logger.warning("Invalid input parameters for adding user role")
             return False
         
         try:
-            db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
-                db_path="DataBases/users.db"
-            )
-
-            ## Takes list of roles
-            if not db_instance.add_api_role(username=username, roles = roles):
-                base_logging.logger.debug(f"Could not add roles to '{username}'")
+            if not self.db_instance.add_api_role(username=username, roles=roles):
+                logger.warning(f"Could not add roles to '{username}'")
                 return False
 
+            logger.info(f"Roles {roles} added to user '{username}' successfully")
             return True
-
         except Exception as e:
-            base_logging.logger.debug(f"Could not add user role: {e}")
-            return False
+            logger.error(f"Could not add role to user {username}: {e}")
+            raise
 
-    @staticmethod
-    def delete_user_role(username = None, roles = None):
-        '''
-        Add a role to a user
-        '''
-        base_logging.logger.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
+    def delete_user_role(self, username, roles):
+        logger.debug(f"Deleting roles {roles} from user {username}")
 
-        # Validate input parameters
         if not all([username, roles]):
-            base_logging.logger.debug("Invalid input parameters for deleting user role")
+            logger.warning("Invalid input parameters for deleting user role")
             return False
-        
-        try:
-            db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
-                db_path="DataBases/users.db"
-            )
 
-            ## Takes list of roles
-            if not db_instance.delete_api_role(username=username, roles = roles):
-                base_logging.logger.debug(f"Could not add roles to '{username}'")
+        try:
+            if not self.db_instance.delete_api_role(username=username, roles=roles):
+                logger.warning(f"Could not delete roles from '{username}'")
                 return False
 
+            logger.info(f"Roles {roles} deleted from user '{username}' successfully")
             return True
-
         except Exception as e:
-            base_logging.logger.debug(f"Could not add user role: {e}")
-            return False
+            logger.error(f"Could not delete role from user {username}: {e}")
+            raise
 
-    @staticmethod
-    def default_role_check_and_setup():
-        '''
-        A method to prompt, and create default roles if they *do not* exist. 
-
-        Connects to DB, checks for the 'administrator' user with get_api_username, and 
-        if it does not exists, calls UserManagement.create_user to create it.
-
-        This is meant purely for the server first time startup.
+    def default_role_check_and_setup(self):
+        logger.debug("Checking and setting up default roles")
         
-        '''
         try:
-            db_instance = DataEngine.AuthenticationDBHandler.AuthenticationSQLDBHandler(
-                db_path="DataBases/users.db"#db_absolute_path
-            )
-        
-            ## if Administrator user does not exist, create it.
-            if not db_instance.get_api_username(username="administrator"):
+            if not self.db_instance.get_api_username(username="administrator"):
+                logger.info("No administrator user found, creating default administrator user")
 
-                user_list = ["administrator"]
-
-                for user in user_list:
-                    print("=Init User Setup===============================")
-                    print("No users detected by the server, creating users: ")
-                    print("Note, the password will not be visible on screen")
-
-                    password_1 = getpass.getpass(f"[>] Input password for {user}:")
-                    password_2 = getpass.getpass(f"[>] Input password again for {user}:")
+                for user in ["administrator"]:
+                    password_1 = getpass.getpass(f"Input password for {user}:")
+                    password_2 = getpass.getpass(f"Input password again for {user}:")
 
                     if password_1 != password_2: 
-                        base_logging.logger.warning(f"{base_logging.logging_info_symbol} Passwords do not match!")
+                        logger.warning("Passwords do not match")
                         exit("Exiting, restart server & try again")
-                        #return 
-                    if UserManagement.create_user(username=user, password = password_1, roles=["iam_admin"]):
-                        base_logging.logger.info(f"{base_logging.logging_info_symbol} User '{user}' created successfully")
+                    
+                    if UserManagement.create_user(username=user, password=password_1, roles=["iam_admin"]):
+                        logger.info(f"User '{user}' created successfully")
                     else:
-                        base_logging.logger.warning(f"{base_logging.logging_info_symbol} User '{user}' was not created")
+                        logger.warning(f"User '{user}' was not created")
         except Exception as e:
-            base_logging.logger.critical(f"{base_logging.logging_critical_symbol} Could not create user")
-
+            logger.critical(f"Critical error during default role setup: {e}")
+            raise
 
 class AccessManagement:
-    '''
-    A class to handle access stuff. 
-    '''
-    ## RoleCheck Decorator - move to BasePlugin after testing
     @staticmethod
     def role_required(*required_roles):
-        '''
-        
-        A (static) wrapper to allow/deny based on roles
-
-        required_roles: Roles required. I think it's a tuple. See 
-            below code exaple on how to properly call this func
-        
-        Ex Usage: 
-
-        With this, either 'admin' or 'editor' can access this function
-            
-            @role_required('admin', 'editor')
-            def sensitive_function():
-                # Your sensitive function code here
-                return "Sensitive data accessed"
-
-        '''
+        logger.debug(f"Role required decorator invoked with roles: {required_roles}")
 
         def decorator(func):
             @wraps(func)
             def wrapper(*args, **kwargs):
                 try:
                     current_user = get_jwt_identity()
-
-                    # This is a list
                     user_roles = current_user.get('role')
 
-                    # Check if any of the user's roles match the required roles
                     if not any(role in required_roles for role in user_roles):
-                        return api_response(
-                            status_code=403,
-                        )
+                        logger.warning("Access denied due to insufficient roles")
+                        return api_response(status_code=403)
                 
                 except Exception as e:
-                    ## This is here so I can handle the errors instead of letting
-                    # flask spit out whatever it wants.
-                    return api_response(
-                        status_code=500
-                        #message=str(e) ## Dumb & stupid remove once done debugging
-                    )
-                #jsonify({"message": "Access denied"}), 403
+                    logger.error(f"Error in role_required decorator: {e}")
+                    raise
 
                 return func(*args, **kwargs)
             return wrapper
