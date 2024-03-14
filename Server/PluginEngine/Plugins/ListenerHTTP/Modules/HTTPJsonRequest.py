@@ -1,4 +1,5 @@
 import json
+import time
 #from Utils.LoggingBaseClass import BaseLogging
 
 ########################################
@@ -472,71 +473,61 @@ class Server:
 ########################################
 # Parent/Construction of everything
 ########################################
-class JsonObject():
+class HTTPJsonRequestBuilder():
     def __init__(self):
-        #BaseLogging.__init__(self)  
+        #BaseLogging.__init__(self)
+        self.request_id = "unique_request_identifier"
+        self.timestamp = "2024-03-14T12:34:56Z"
+
         self.server = Server()
         self.callback = Callback()
         self.action = Action()
         self.client_auth = ClientAuth()
 
     def to_dict(self):
-        '''Turns all supplied values into the final dict.
-        Call this method to get a DICT from the object. 
-
-        Returns: Dict
-        
-        
-        '''
-        py_dict = {}
-
-        try:
-            py_dict = {
-                "action":self.action.to_dict(),
-                "callback":self.callback.to_dict(),
-                "client_auth":self.client_auth.to_dict()
-            }
-        except Exception as e:
-            print(f"Could not create a dict: {e}")
-
-        return py_dict
+        """Turns all supplied values into the final dict.
+        Call this method to get a DICT from the object. """
+        return {
+            "request_id": self.request_id,
+            "timestamp": self.timestamp,
+            "action": {
+                "command": self.action.action,
+                "parameters": self.action.arguments  # Assuming arguments is a dict
+            },
+            "authentication": self.client_auth.to_dict(),
+            "callback": self.callback.to_dict()
+        }
     
 
 
-    def to_json(self, inlcude_empty_keys=False):
+    def to_json(self, include_empty_keys=False):
         """
-        Turns all supplied values into a final dict and removes keys with None values.
-        Call this method to get a JSON string from the object. 
-
-        Returns: 
-            str: A JSON string representation of the object with 'None' values omitted.
+        Converts all supplied values into a final dict and removes keys with None values unless include_empty_keys is True.
+        Returns a JSON string representation of the object.
         """
         try:
             py_dict = self.to_dict()
 
-            ## Just in case this is needed in the future. 
-            if inlcude_empty_keys:
-                dict_with_empty = json.dumps(py_dict)
-                return json.dumps(dict_with_empty)
-
+            if include_empty_keys:
+                json_data = json.dumps(py_dict)
             else:
                 # Recursively remove keys where the value is None
                 cleaned_dict = self.remove_none_values(py_dict)
+                json_data = json.dumps(cleaned_dict, indent=4)
 
-                # Convert the cleaned dictionary to JSON
-                json_data = json.dumps(cleaned_dict)
-
-                return json_data
+            return json_data
 
         except Exception as e:
             print(f"Could not create a JSON object: {e}")
             return None
 
+
     def remove_none_values(self, d):
-        """ Recursively remove keys with None values from a dictionary. """
+        """Recursively removes keys with None values from a dictionary."""
         if not isinstance(d, dict):
             return d
         return {k: self.remove_none_values(v) for k, v in d.items() if v is not None}
+
 
     def from_json(self, json_data):
         """
@@ -555,59 +546,55 @@ class JsonObject():
         try:
             data = json.loads(json_data)
 
-            # Creating Action instance from JSON
+            self.request_id = data.get("request_id")
+            self.timestamp = data.get("timestamp")
+
+            # Assuming action and arguments are correctly structured dictionaries
             action_data = data.get("action", {})
             self.action = Action(
-                action=action_data.get("action", None),
-                arguments=action_data.get("arguments", None),
-                timeout=action_data.get("timeout", None),
-                std_output=action_data.get("std_output", None),
-                std_error=action_data.get("std_error", None),
-                execution_context=action_data.get("execution_context", None)
-
+                action=action_data.get("command"),
+                arguments=action_data.get("parameters")
             )
 
-            # Creating ClientAuth instance from JSON
-            auth_data = data.get("client_auth", {})
-            user_data = auth_data.get("user", {})
-            password_data = auth_data.get("password", {})
-            hash_data = auth_data.get("hash", {})
-            kerb_data = auth_data.get("kerb", {})
-            other_data = auth_data.get("other", {})
-
+            auth_data = data.get("authentication", {})
             self.client_auth = ClientAuth(
-                user=User(username=user_data.get("username", None), SID=user_data.get("SID", None)),
-                password=Password(p_type=password_data.get("type", None), value=password_data.get("value", None)),
-                auth_hash=Hash(h_type=hash_data.get("type", None), value=hash_data.get("value", None)),
-                kerb=Kerb(k_type=kerb_data.get("type", None), value=kerb_data.get("value", None)),
-                other=Other(o_type=other_data.get("type", None), value=other_data.get("value", None))
+                user=User(username=auth_data["user"]["username"], SID=auth_data["user"]["SID"]),
+                password=Password(p_type=auth_data["password"]["type"], value=auth_data["password"]["value"]),
+                auth_hash=Hash(h_type=auth_data["hash"]["type"], value=auth_data["hash"]["value"]),
+                kerb=Kerb(k_type=auth_data["kerb"]["type"], value=auth_data["kerb"]["value"]),
+                other=Other(o_type=auth_data["other"]["type"], value=auth_data["other"]["value"])
             )
 
-            # Creating Callback instance from JSON
             callback_data = data.get("callback", {})
-            server_data = callback_data.get("server", {})
-            retry_policy_data = callback_data.get("retry_policy", {})
-
             self.callback = Callback(
                 server=Server(
-                    hostname=server_data.get("hostname", None),
-                    address=server_data.get("address", None),
-                    port=server_data.get("port", None),
-                    path=server_data.get("path", None)
-                ),
-                retry_policy=RetryPolicy(
-                    max_retries=retry_policy_data.get("max_retries", None),
-                    retry_interval=retry_policy_data.get("retry_interval", None)
-                ),
-                data_format=callback_data.get("data_format", None)
+                    hostname=callback_data["server"]["hostname"],
+                    address=callback_data["server"]["address"],
+                    port=callback_data["server"]["port"],
+                    path=callback_data["server"]["path"]
+                )
             )
 
             return self
 
         except Exception as e:
-            #self.logger.error(f"Error parsing JSON data: {e}")
             print(f"Error parsing JSON data: {e}")
             return None
+
+    def generate_json(self, request_id = None):
+        """Generates a template JSON with default/null values."""
+        self.request_id = request_id
+        self.timestamp = int(time.time())
+
+        #self.action.action = "operation_name"
+        #self.action.arguments = {"param1": "value1", "param2": "value2"}
+        # Assuming you'll populate authentication and callback with defaults or nulls
+        # Now, convert this object to JSON
+        #return json.dumps(self.to_dict())#, indent=4) for indent stuff/not flat
+        return json.dumps(self.to_dict(), indent=4)
+myobj = HTTPJsonRequestBuilder()
+#print(myobj.generate_template_json())
+print(myobj.generate_json())
 
 
 """
@@ -703,7 +690,7 @@ class JsonObject():
       "port": null,
       "path": null
     }
-  },
+  }
 }       
 
 
