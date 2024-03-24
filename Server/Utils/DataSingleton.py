@@ -13,6 +13,7 @@ class Data:
         if hasattr(self, '_initialized'):
             return
         self.Paths = Paths()
+        self.Listeners = Listeners()
         self._initialized = True
 
 
@@ -65,3 +66,46 @@ class Config:
 class Properties:
     def __init__(self):
         self.logger = LoggingSingleton.get_logger()
+
+
+## Quick Docs, using nested dics for fast lookups instead a list of dicts
+        
+## add to dict with #dict["user3"] = {"name": "Alice Doe", "email": "alicedoe@example.com"}
+    
+class Listeners:
+    def __init__(self):
+        self.logger = LoggingSingleton.get_logger()
+        self.http_listeners = {}
+
+    def add_http_listener(self, class_object = None, nickname = None):
+        """Add an HTTP listener to the http_listeners dict in the Data singleton. 
+
+        Args:
+            class_object: The class object of the listener. 
+            nickname: The nickanme of the listener
+        """
+
+        # QUick docs:
+            #class_object: object of the http listener class. Can be used to pull other data like bind addr
+            #nickname: A nickname for faster/quicker lookups. Not sure how much faster, but def faster than going 
+                #through each class intance & pulling the nickname attribute.
+        self.logger.debug("Adding http listener to data singleton")
+        listener_dict = {
+            "class_object":"classobjectofspawnedlistener",
+            "nickname":nickname
+        }
+
+        self.http_listeners[nickname] = listener_dict
+
+        print(self.http_listeners)
+
+'''
+        listener_dict = {
+            "class_object":"classobjectofspawnedlistener",
+            "nickname":nickname
+        }
+'''
+
+    
+
+

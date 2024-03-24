@@ -21,7 +21,7 @@ from Utils.ApiHelper import api_response
 from werkzeug.exceptions import BadRequest
 from DataEngine.Neo4jHandler import Neo4jConnection
 from Utils.Logger import LoggingSingleton
-from PluginEngine.ControlPlugins.SimpleC2Plugin.Utils.ListenerHandler import HttpListenerHandler
+
 ################################################
 # Info class
 ################################################
@@ -86,11 +86,11 @@ class SimpleC2():
         self.logger.debug(f"{inspect.stack()[0][3]}")
         #self.app.route(f'/{Info.endpoint}', methods = ["GET"])(self.simplec2_dashboard)
         #self.app.route(f'/api/{Info.endpoint}/', methods=["GET"])(self.simplec2_api_placeholder)
-        #self.app.route(f'/api/{Info.endpoint}/postcommand', methods = ["POST"])(self.simplec2_api_post_client_command)
-        #self.app.route(f'/api/{Info.endpoint}/nodecheckin', methods = ["POST"])(self.simplec2_api_node_checkin)
-        #self.app.route(f'/api/{Info.endpoint}/nodelogs', methods = ["GET"])(self.simplec2_api_get_checkin_logs)
-        #self.app.route(f'/api/{Info.endpoint}/clientdata', methods = ["POST"])(self.simplec2_api_post_client_data)
-        #self.app.route(f'/api/{Info.endpoint}/clients', methods = ["GET","POST"])(self.simplec2_api_client)
+        self.app.route(f'/api/{Info.endpoint}/postcommand', methods = ["POST"])(self.simplec2_api_post_client_command)
+        self.app.route(f'/api/{Info.endpoint}/nodecheckin', methods = ["POST"])(self.simplec2_api_node_checkin)
+        self.app.route(f'/api/{Info.endpoint}/nodelogs', methods = ["GET"])(self.simplec2_api_get_checkin_logs)
+        self.app.route(f'/api/{Info.endpoint}/clientdata', methods = ["POST"])(self.simplec2_api_post_client_data)
+        self.app.route(f'/api/{Info.endpoint}/clients', methods = ["GET","POST"])(self.simplec2_api_client)
         #self.app.route(f'/api/{Info.endpoint}/console', methods = ["GET"])(self.simplec2_api_console)
         
         ## Network
@@ -104,9 +104,6 @@ class SimpleC2():
         
         ## General
         self.app.route(f'/api/{Info.endpoint}/general/everything', methods = ["GET"])(self.neo4j_retrieve_everything)
-
-        ## listeners
-        self.app.route(f'/api/{Info.endpoint}/listener/http/start', methods = ["POST"])(self.http_listener_start)
 
 
         ## Client
@@ -146,35 +143,9 @@ class SimpleC2():
         api
         '''
         return "api"
-
+    
 ################################################
-# Listener Management- Gonna have to redo these
-################################################
-
-## HTTP Listener
-    def http_listener_start(self):
-        '''
-            Start an HTTP listener
-        '''
-
-        try:
-            #listener_port = request.json.get('cidr')
-            #listener_ip = request.json.get('nickname')
-
-            # class call
-            HttpListenerHandler.start(bind_port = 9999, bind_address = "0.0.0.0")
-
-            return api_response(status_code=200)
-
-        except BadRequest:
-            return api_response(status_code=400)
-        except Exception as e:
-            self.logger.warning(e)
-            return api_response(status_code=500)
-
-
-################################################
-# API - Gonna have to redo these
+# API
 ################################################
 
     ## Endpoint for CLinet sending command
@@ -319,6 +290,113 @@ class SimpleC2():
                 return response
 
                 #return jsonify(fake_data)
+
+    """
+################################################
+# API - Client Data & ops - Needs to be redone/updated with new JSON scheme
+################################################
+
+    def simplec2_api_post_client_data(self):
+        ''' Naming is a littel confusing
+        POST
+
+        Gets POST data from nodes on client responses. 
+        Client -[data]-> Node -[data]-> Server
+
+        This function is desinged to be POSTED to. It takes the json data listed below.
+        Each POST will write said data to the respective client table in the SimpleC2Data.
+        
+        {
+            id: 
+            txid: transaction id, to track transaction?
+            timestamp:
+            data: "domain/username"
+
+        }
+        
+        Concerns:
+            Concurrency could be a big problem here, especially if the post commands 
+            are not handled correctly.
+
+            Fixes:
+                - Check if DB is locked b4 action.
+                - Batch send JSON data (i.e. send 100 json entries, loop over & enter into DB)
+                - Use a diff DB solution (not ideal)
+
+        '''
+        try:
+            ## Content length check/protection here?
+
+            ## get JSON data from post request
+            ## Note, keep an eye on the def of get_data, as large requests could slow the server.
+            raw_json_string = request.get_data(as_text=True)
+            print(raw_json_string)
+
+            db_instance = SimpleC2DbHandler()
+
+            client_name = request.json.get('id')
+            client_data = request.json.get('data')
+
+            ## call sqlite lib
+
+            db_instance.write_client_data_to_table(
+                client_name = client_name,
+                data = client_data
+            )
+
+            ## reutrn code?
+            return ""
+        
+        except Exception as e:
+            self.logger.warning(f"{self.logging_warning_symbol} Error with simplec2_api_post_client_data: {e}")
+
+
+    def queue_command_on_listener(self, listener_url, client_id):
+        '''
+        Queues a command on the respective listener.
+        
+        '''
+        ## Return format used incase theres an error here
+        return_data = {
+            "client_id":"",
+            "message_id":"",
+            "callback_time":"",
+            "message": f"Error communicating with listenerNode: {response.status_code} : {response.text}"
+        }
+
+        try:
+            request_data = {
+                "action": "powershell",
+                "arguments":"whoami",
+                "client_id":client_id
+            }
+
+            request_json = json.dumps(request_data)
+
+
+            headers = {"Content-Type": "application/json"}
+
+            response = requests.post(
+                url = listener_url,
+                data = request_json,
+                headers = headers
+            )
+
+            if response.status_code == 200:
+                # Assuming the server returns a JSON response
+                return response.json()
+            else:
+                # Handle errors (e.g., print or log the error)
+                print(response.text)
+                #return f"Error: {response.status_code}"
+                ## hacky get message back
+                return_data["message"] = f"Error communicating with listenerNode: {response.status_code} : {response.text}"
+                return jsonify(return_data)
+            
+        except Exception as e:
+                return_data["message"] = f"Error with server: {e}"
+                return jsonify(return_data)
+    """
 
 ################################################
 # API - DB stuff
@@ -622,3 +700,74 @@ class SimpleC2():
             return api_response(status_code=400)
         except Exception as e:
             return api_response(status_code=500)
+
+    """
+################################################
+# API - Checkin Stuff - OLD, replaced with new JSON scheme
+################################################
+
+    def simplec2_api_node_checkin(self):
+        '''
+        Checkin endpoint for nodes. Post
+        
+        {
+            "name":"",
+            "ip":"",
+            "message":"syncing | sync successful | sync failed | error"
+            "timestamp":""
+        
+        }
+        '''
+        try:
+            plugin_instance_name = request.json.get('name')
+            plugin_external_ip = request.json.get('ip')
+            plugin_message = request.json.get('message')
+            plugin_timestamp = request.json.get('timestamp')
+
+            log_string = f"{self.logging_info_symbol} Checkin: Plugin Name: '{plugin_instance_name}' " \
+            f"Plugin IP: '{plugin_external_ip}' " \
+            f"Message: '{plugin_message}' " \
+            f"Timestamp: '{plugin_timestamp}' "
+
+            self.logger.info(log_string)
+
+            data_dict = {
+                "name":plugin_instance_name,
+                "ip":plugin_external_ip,
+                "message":plugin_message,
+                "timestamp":plugin_timestamp,
+            }
+
+            self.node_checkin_logs.append(data_dict)
+            #print(self.node_checkin_logs)
+
+            return "success"
+        
+        except Exception as e:
+            self.logger.warning(f"{self.logging_warning_symbol} Error with checkin: {e}")
+    
+    def simplec2_api_get_checkin_logs(self):
+        '''
+        Logs for file checkins displayed to the api
+        
+        '''
+        temp_dict = {}
+
+        ## accidently made it so only one log of each thing shows up here. win win I suppose?
+
+        ## simlar to filehost_api_get_file_access_logs, but limits the keys to the name of the node checking in
+        ## This allows for updates of the nodes without duplicat nodes to process
+        for data in self.node_checkin_logs:
+            file_data = {
+                data['name']:{
+                    "name": data['name'],
+                    ## Note, this is depednent on what you set the file endpoint to. 
+                    "ip": data['ip'],
+                    "message": data['message'],
+                    "timestamp": data['timestamp'],
+                }
+            }
+            temp_dict.update(file_data)
+        ## rename this
+        return jsonify(temp_dict)
+    """
