@@ -6,7 +6,7 @@ The HTTP Listener is designed as a standalone listener for HTTP Command and Cont
 
 A graphical representation of the HTTP Listener's role within the server and plugin architecture is provided:
 
-![HTTP Listener](../../../../Images/Server/Plugins/http_listener.png)
+![HTTP Listener](../../../../../Images/Server/Plugins/http_listener.png)
 
 ## Overview
 
