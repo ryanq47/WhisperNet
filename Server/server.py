@@ -85,7 +85,7 @@ class ControlServer():
 
     ## ugly af
     def load_plugins(self, app):
-        plugins_root_dir = os.path.join(sys_path, "PluginEngine/Plugins")
+        plugins_root_dir = os.path.join(sys_path, "PluginEngine/ControlPlugins")
 
         # Iterate over subdirectories (one for each plugin)
         for plugin_folder in os.listdir(plugins_root_dir):
@@ -102,7 +102,7 @@ class ControlServer():
                     self.logger.info(f"Loading: {plugin_file}")
 
                     plugin_name = plugin_file[:-3]  # Remove the '.py' extension
-                    module_path = f"PluginEngine.Plugins.{plugin_folder}.{plugin_name}"
+                    module_path = f"PluginEngine.ControlPlugins.{plugin_folder}.{plugin_name}"
 
                     try:
                         module = importlib.import_module(module_path)

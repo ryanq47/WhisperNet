@@ -1,7 +1,17 @@
 # HTTP listener. Meant to be standalone, most things must be done throgh API calls to it. (ex: no direct neo4j interaction, call the main server api for that.)
-from Utils.Logger import LoggingSingleton
-from PluginEngine.Plugins.ListenerHTTP.Modules.Client import Client
-from PluginEngine.Plugins.ListenerHTTP.Modules.HTTPJsonRequest import HTTPJsonRequest
+
+# for standalone running
+if __name__ == "__main__":
+    #print("Plugin running in standalone mode!")
+    #from Utils.Logger import LoggingSingleton # hmm gonna need to inlcude a logger in utils?
+    from Modules.Client import Client
+    from Modules.HTTPJsonRequest import HTTPJsonRequest
+
+# for NODE/Server running
+else:
+    from Utils.Logger import LoggingSingleton
+    from PluginEngine.Plugins.ListenerHTTP.Modules.Client import Client
+    from PluginEngine.Plugins.ListenerHTTP.Modules.HTTPJsonRequest import HTTPJsonRequest
 
 from flask import jsonify, make_response
 import inspect
@@ -79,3 +89,21 @@ class ListenerHTTP():
         #new_client = Client(data)
 
         # add to dict of current clients. key is name
+    
+
+## Standalone mode options
+if __name__ == "__main__":
+    print(f"Starting {Info.name} in standalone mode.")
+
+
+    ## fake args for now
+    host = "0.0.0.0"
+    port = "1000"
+    controlserver = "127.0.0.1"
+
+    print(f"Hosting on: http://{host}:{port}/, ControlServer: {controlserver}")
+    ## Create flask info
+    app_instance = "flask_instance_or_whatever"
+
+    plugin_instance = ListenerHTTP(app_instance)
+    plugin_instance.main()
