@@ -3,6 +3,7 @@
 from PluginEngine.PublicPlugins.ListenerHTTP.ListenerHTTP import ListenerHTTP
 from Utils.DataSingleton import Data
 from Utils.Logger import LoggingSingleton
+from multiprocessing import Process
 
 logger = LoggingSingleton.get_logger()
 
@@ -33,13 +34,25 @@ class HttpListenerHandler:
             # with this call, the listener has been started.
 
             # Miiiight need to new thread this? It hangs and doesnt return a response to the HTTP call. Othewise seems to work fine.
-            listener_instance.main()
+            #listener_instance.main()
+            p = Process(target=listener_instance.main)
+            p.start()
 
             data_singleton = Data()
 
             # add to data singleton for management. 
-            data_singleton.Listeners.add_http_listener(class_object = listener_instance, nickname = nickname)
+            #data_singleton.Listeners.Http.add_listener(class_object = listener_instance, nickname = nickname)
         
+            # info class for holding infoation. Doing this instead of individual func args for expandadibility
+            info = {
+                "bind_port":bind_port,
+                "bind_address":bind_address,
+                "nickname": nickname
+            }
+
+            data_singleton.Listeners.Http.add_listener(process = p, info = info)
+
+
             # add a check to make sure listener is actually up?
             logger.info(f"Started HTTP listener on {bind_address}:{bind_port}!")
 
@@ -62,6 +75,15 @@ class HttpListenerHandler:
         ## return true or something
     
 
+        """
+        p = Process(target=run_app, args=(port,))
+        p.start()
+        processes.append(p)
+
+    # Join processes to the main process to wait for them to end
+    for process in processes:
+        process.join()
+        """
 
 
     

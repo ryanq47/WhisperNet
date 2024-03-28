@@ -1,65 +1,102 @@
-# Data Singleton Docs
+"""
+# Data Singleton Documentation
+
+## Overview
+
+The Data Singleton pattern ensures a single instance of the Data class across the application, facilitating centralized management of shared resources like paths and configurations.
+
+In less wordy terms, it's a temporary data structure/data base to hold things that the server needs. 
 
 ## Data Class
 
-### Overview
+### Description
 
-The `Data` class serves as a Singleton for managing data paths within an application.
+Acts as a Singleton to manage data paths and listener configurations, providing a global access point.
 
 ### Methods
 
-#### `__new__(cls)`
-
-- Ensures only one instance of the class is created.
-- **Returns**: The instance of the class.
-
-#### `__init__(self)`
-
-- Initializes the `Data` class with a single instance of the `Paths` class.
+- `__new__(cls)`: Ensures a single instance.
+- `__init__(self)`: Initializes Paths and Listeners classes.
 
 ## Paths Class
 
-### Overview
+### Methods/Attributes
 
-The `Paths` class provides functionality for managing file paths, including database and system paths, with logging capabilities.
+- `__init__(self)`: Sets up logging and path defaults.
+- `users_db_path`: Getter/setter for the users database path.
+- `sys_path`: Getter/setter for the system path.
+- `load_data(self)`: Loads essential data paths.
+
+
+## Listeners Class
+
+### Description
+
+Manages HTTP listeners, holding references and providing management functions.
 
 ### Methods
 
-#### `__init__(self)`
+- `__init__(self)`: Initializes Http class instance for HTTP listeners management.
 
-- Initializes the `Paths` class with a logger instance obtained from `LoggingSingleton`.
-- Initializes private attributes `_db_path` and `_sys_path` to `None`.
+    - Attributes:
+        - `Http` An instance of the HTTP Class, `Http()`. 
 
-#### `db_path`
+## Http Class
 
-- Property: Getter method for retrieving the database path.
-  - Logs the access to the database path.
-  - **Returns**: The database path.
+### Description
 
-- Setter method for setting the database path.
-  - Logs the new database path being set.
+Manages HTTP listeners, maintaining a collection and adding listeners.
 
-#### `sys_path`
+### Methods
 
-- Property: Getter method for retrieving the system path.
-  - Logs the access to the system path.
-  - **Returns**: The system path.
+- `__init__(self)`: Sets up logging and initializes listeners collection.
 
-- Setter method for setting the system path.
-  - Logs the new system path being set.
+    - Attributes:
+        - `http_listeners`: The dictionary of HTTP listeners. 
 
-## Logging
+- `add_listener(self, process=None, info=None)`: Adds an HTTP listener.
 
-- The `LoggingSingleton` is imported from `Utils.Logger`, which handles logging functionality within the `Paths` class.
+    - Parameters:
+        - `process`: Associated process object.
+        - `info`: Dictionary with listener information including `nickname` for quick lookup.
 
-## Accessing Data:
+    - Example `info` structure:
 
+
+```python
+        info = {
+            "bind_port": bind_port,
+            "bind_address": bind_address,
+            "nickname": nickname
+        }
 ```
-#Example:
-from Utils.DataSingleton import Data
 
-self.Data = Data()
+  - Usage example:
 
-path = self.Data.Paths.sys_path
 
+```python
+        p = Process(target=listener_instance.main)
+        p.start()
+        
+        info = {
+            "bind_port": bind_port,
+            "bind_address": bind_address,
+            "nickname": nickname
+        }
+
+        data_instance.Listeners.Http.add_listener(process=p, info=info)
 ```
+
+## Usage Examples
+
+- Accessing system path and adding an HTTP listener:
+    
+```python
+    from Utils.DataSingleton import Data
+
+    data_instance = Data()
+    system_path = data_instance.Paths.sys_path
+
+    data_instance.Listeners.Http.add_listener(process=myProcess, info={"nickname": "listener1"})
+```
+

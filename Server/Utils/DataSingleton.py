@@ -75,9 +75,15 @@ class Properties:
 class Listeners:
     def __init__(self):
         self.logger = LoggingSingleton.get_logger()
+        self.Http = Http()
+
+
+class Http:
+    def __init__(self):
+        self.logger = LoggingSingleton.get_logger()
         self.http_listeners = {}
 
-    def add_http_listener(self, class_object = None, nickname = None):
+    def add_listener(self, process = None, info = None):
         """Add an HTTP listener to the http_listeners dict in the Data singleton. 
 
         Args:
@@ -91,13 +97,18 @@ class Listeners:
                 #through each class intance & pulling the nickname attribute.
         self.logger.debug("Adding http listener to data singleton")
         listener_dict = {
-            "class_object":"classobjectofspawnedlistener",
-            "nickname":nickname
+            # process object
+            "process":process,
+            # Data about the listener.
+            # ex listener_dict["info"]["nickname"]
+            "info":info
         }
 
+        ## Adding to http_listeners dict
+        nickname = info["nickname"]
         self.http_listeners[nickname] = listener_dict
 
-        print(self.http_listeners)
+        self.logger.debug(self.http_listeners)
 
 '''
         listener_dict = {
