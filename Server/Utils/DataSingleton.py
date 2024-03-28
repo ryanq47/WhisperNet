@@ -71,16 +71,19 @@ class Properties:
 ## Quick Docs, using nested dics for fast lookups instead a list of dicts
         
 ## add to dict with #dict["user3"] = {"name": "Alice Doe", "email": "alicedoe@example.com"}
-    
+
+# NOTE, all protocol object names, suhc as HTTP, or SMB, etc are capatalized in the data singletonton casue I think it looks nicer
+
 class Listeners:
     def __init__(self):
         self.logger = LoggingSingleton.get_logger()
-        self.Http = Http()
+        self.HTTP = Http()
 
 
 class Http:
     def __init__(self):
         self.logger = LoggingSingleton.get_logger()
+        #add a getter
         self.http_listeners = {}
 
     def add_listener(self, process = None, info = None):
@@ -109,6 +112,14 @@ class Http:
         self.http_listeners[nickname] = listener_dict
 
         self.logger.debug(self.http_listeners)
+
+    def get_listener_by_nickname(self, nickname = None):
+        listener_info = self.http_listeners.get(nickname, None)
+        if listener_info is not None:
+            return listener_info
+        else:
+            self.logger.warning(f"Listener with nickname {nickname} not found.")
+            return None
 
 '''
         listener_dict = {

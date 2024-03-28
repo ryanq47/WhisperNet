@@ -107,6 +107,7 @@ class SimpleC2():
 
         ## listeners
         self.app.route(f'/api/{Info.endpoint}/listener/http/start', methods = ["POST"])(self.http_listener_start)
+        self.app.route(f'/api/{Info.endpoint}/listener/http/stop', methods = ["POST"])(self.http_listener_stop)
 
 
         ## Client
@@ -158,11 +159,31 @@ class SimpleC2():
         '''
 
         try:
-            #listener_port = request.json.get('cidr')
-            #listener_ip = request.json.get('nickname')
+            listener_port = request.json.get('port')
+            listener_address = request.json.get('address')
+            listener_nickname = request.json.get('nickname')
 
             # class call
-            HttpListenerHandler.start(bind_port = 9999, bind_address = "0.0.0.0")
+            HttpListenerHandler.start(bind_port = listener_port, bind_address = listener_address, nickname=listener_nickname)
+
+            return api_response(status_code=200)
+
+        except BadRequest:
+            return api_response(status_code=400)
+        except Exception as e:
+            self.logger.warning(e)
+            return api_response(status_code=500)
+
+    def http_listener_stop(self):
+        '''
+            Stop an HTTP listener. POST request, recieves nickname for listener to stop
+        '''
+
+        try:
+            nickname = request.json.get('nickname')
+
+            # class call
+            HttpListenerHandler.stop(nickname=nickname)
 
             return api_response(status_code=200)
 

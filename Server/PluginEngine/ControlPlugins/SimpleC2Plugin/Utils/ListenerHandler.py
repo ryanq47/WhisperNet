@@ -1,91 +1,61 @@
-## A set of classes that handles the logic of listener management. Detached from the plugin so the plugin can focus *just* on the flask requets, etc. 
-# These should probably have a fair amount of static methods.
 from PluginEngine.PublicPlugins.ListenerHTTP.ListenerHTTP import ListenerHTTP
 from Utils.DataSingleton import Data
 from Utils.Logger import LoggingSingleton
 from multiprocessing import Process
+import time
 
 logger = LoggingSingleton.get_logger()
 
 class HttpListenerHandler:
-    #def __init__(self):
-    #    pass
-
     @staticmethod
-    def start(bind_address = None, bind_port = None, nickname = None):
+    def start(bind_address=None, bind_port=None, nickname=None):
         '''
-        bind_address: What address to bind/listen on
-        bind_port: what port to bind/listen on
-
-        nickname: Name of the listener. 
-
-        Starts the listener & adds it to the datasingleton for management. Calls the same methods as if called standalone, this is just a wrapper.
-        
+        Starts the listener & adds it to the DataSingleton for management.
         '''
         try:
-            ## check if exist in data singleton
-
-            ## Init Instance
             listener_instance = ListenerHTTP(
-                bind_port = bind_port,
-                bind_address = bind_address,
-                nickname = nickname
+                bind_port=bind_port,
+                bind_address=bind_address,
+                nickname=nickname
             )
-            # with this call, the listener has been started.
+            # Prepare a stop event for this listener
+            #stop_event = Event() # would be handy for graceful shutodwn N stuff, aka no .terminate()
 
-            # Miiiight need to new thread this? It hangs and doesnt return a response to the HTTP call. Othewise seems to work fine.
-            #listener_instance.main()
-
-            ## Need to figure out the Join stuff as well? - DO NOT JOIN. joins to main thread and causes probelsm
             p = Process(target=listener_instance.main)
             p.start()
 
             data_singleton = Data()
-
-            # add to data singleton for management. 
-            #data_singleton.Listeners.Http.add_listener(class_object = listener_instance, nickname = nickname)
-        
-            # info class for holding infoation. Doing this instead of individual func args for expandadibility
+            # Storing the process and its stop event for later management
             info = {
-                "bind_port":bind_port,
-                "bind_address":bind_address,
+                "bind_port": bind_port,
+                "bind_address": bind_address,
                 "nickname": nickname
             }
+            data_singleton.Listeners.HTTP.add_listener(process=p, info=info)
 
-            data_singleton.Listeners.Http.add_listener(process = p, info = info)
-            #p.join()
-
-            # add a check to make sure listener is actually up?
             logger.info(f"Started HTTP listener on {bind_address}:{bind_port}!")
-
-            ## return true or something
-        
         except Exception as e:
             logger.warning(e)
-    
+
     @staticmethod
-    def stop(bind_address = None, bind_port = None):
-        pass
+    def stop(nickname=None):
+        '''
+        Stops a listener based on its nickname.
+        '''
+        try:
+            data_singleton = Data()
+            # change this to a getter method eventually
+            listener_info = data_singleton.Listeners.HTTP.get_listener_by_nickname(nickname=nickname)
 
-        ## check if exist in data singleton
-
-        ## Init Instance
-
-
-        ## Add to data singleton. 
-    
-        ## return true or something
-    
-
-        """
-        p = Process(target=run_app, args=(port,))
-        p.start()
-        processes.append(p)
-
-    # Join processes to the main process to wait for them to end
-    for process in processes:
-        process.join()
-        """
+            if listener_info:
+                logger.debug("Warning, still using .terminate() to shut down listeners. May cause problems")
+                # Directly terminate the process - Not a problem at the moment, but could be more graceful if needed in the future
+                listener_info['process'].terminate()
+                listener_info['process'].join()  # Wait for the process to be terminated
+                logger.info(f"Stopped HTTP listener {nickname} successfully.")
+            else:
+                logger.info(f"Listener {nickname} does not exist, cannot stop it.")
+        except Exception as e:
+            logger.error(e)
 
 
-    
