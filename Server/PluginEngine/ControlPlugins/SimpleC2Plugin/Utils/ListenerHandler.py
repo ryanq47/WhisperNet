@@ -35,6 +35,8 @@ class HttpListenerHandler:
 
             # Miiiight need to new thread this? It hangs and doesnt return a response to the HTTP call. Othewise seems to work fine.
             #listener_instance.main()
+
+            ## Need to figure out the Join stuff as well? - DO NOT JOIN. joins to main thread and causes probelsm
             p = Process(target=listener_instance.main)
             p.start()
 
@@ -51,7 +53,7 @@ class HttpListenerHandler:
             }
 
             data_singleton.Listeners.Http.add_listener(process = p, info = info)
-
+            #p.join()
 
             # add a check to make sure listener is actually up?
             logger.info(f"Started HTTP listener on {bind_address}:{bind_port}!")
