@@ -22,6 +22,7 @@ from werkzeug.exceptions import BadRequest
 from DataEngine.Neo4jHandler import Neo4jConnection
 from Utils.Logger import LoggingSingleton
 from PluginEngine.ControlPlugins.SimpleC2Plugin.Utils.ListenerHandler import HttpListenerHandler
+from Utils.DataSingleton import Data
 ################################################
 # Info class
 ################################################
@@ -61,6 +62,7 @@ def role_required(required_role):
 class SimpleC2():
     def __init__(self, app):
         self.logger = LoggingSingleton.get_logger()
+        self.data = Data()
         self.app = app
         self.neo4j = None
         self.connect_to_neo4j()
@@ -106,6 +108,7 @@ class SimpleC2():
         self.app.route(f'/api/{Info.endpoint}/general/everything', methods = ["GET"])(self.neo4j_retrieve_everything)
 
         ## listeners
+        self.app.route(f'/api/{Info.endpoint}/listener', methods = ["GET"])(self.listener_list)
         self.app.route(f'/api/{Info.endpoint}/listener/http/start', methods = ["POST"])(self.http_listener_start)
         self.app.route(f'/api/{Info.endpoint}/listener/http/stop', methods = ["POST"])(self.http_listener_stop)
 
@@ -151,6 +154,65 @@ class SimpleC2():
 ################################################
 # Listener Management- Gonna have to redo these
 ################################################
+
+
+## General
+    def listener_list(self):
+        '''
+            Lists all listeners in JSON form
+
+            JSON:
+
+            nickname {
+                type: HTTP,
+                nickname: nickname
+                address: 0.0.0.0 #-> ext addr? - or list of addresses it's running on
+                pub_address: pub_ip
+                port: 9999
+                #strt_time: unix_timestamp #(LATER)
+
+            }
+
+
+        '''
+
+        try:
+            listeners_dict = {}
+
+            #2024-03-29 17:24:19 - [!] SimpleC2.listener_list - 'str' object has no attribute 'get' 
+            # something wrong here. not sure what.
+
+            # Get HTTP Listeners, add to dict
+            http_listeners = self.data.Listeners.HTTP.get_listeners()
+
+            for nickname in http_listeners:
+                # once you have nickanes, get the data for each one
+                http_listener = self.data.Listeners.HTTP.get_listener_by_nickname(nickname=nickname)
+                # Use .get() for safer access
+                info = http_listener.get("info", {})
+                
+                # Now safely attempt to get the 'nickname', 'bind_address', and 'bind_port' using .get()
+                nickname = info.get("nickname")
+                bind_address = info.get("bind_address", "Unknown address")  # Provide default value
+                bind_port = info.get("bind_port", "Unknown port")  # Provide default value
+                listener_type = info.get("type", "Unknown Type")  # Provide default value
+
+                if nickname:  # Ensure nickname exists before adding to the dictionary
+                    listeners_dict[nickname] = {
+                        "bind_address": bind_address,
+                        "bind_port": bind_port,
+                        "type":listener_type
+                    }
+
+            # Assuming jsonify and api_response are correctly defined elsewhere
+            #listeners_json = jsonify(listeners_dict)
+            return api_response(status_code=200, data=listeners_dict)
+
+        except BadRequest:
+            return api_response(status_code=400)
+        except Exception as e:
+            self.logger.warning(e)
+            return api_response(status_code=500)
 
 ## HTTP Listener
     def http_listener_start(self):

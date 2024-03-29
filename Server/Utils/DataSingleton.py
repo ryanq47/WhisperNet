@@ -121,6 +121,15 @@ class Http:
             self.logger.warning(f"Listener with nickname {nickname} not found.")
             return None
 
+    def get_listeners(self):
+        """
+        Quick and dirty getter. 
+
+        Returns:
+            dict: The dictionary of HTTP listeners
+        """
+        return self.http_listeners
+
 '''
         listener_dict = {
             "class_object":"classobjectofspawnedlistener",

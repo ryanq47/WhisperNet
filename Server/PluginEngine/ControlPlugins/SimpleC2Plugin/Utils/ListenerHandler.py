@@ -29,7 +29,8 @@ class HttpListenerHandler:
             info = {
                 "bind_port": bind_port,
                 "bind_address": bind_address,
-                "nickname": nickname
+                "nickname": nickname,
+                "type":"HTTP"
             }
             data_singleton.Listeners.HTTP.add_listener(process=p, info=info)
 

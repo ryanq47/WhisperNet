@@ -1,5 +1,5 @@
 
-# NOT COMPLETE/IN DEV
+ NOT COMPLETE/IN DEV
 
 # HttpListenerHandler Documentation
 
@@ -35,18 +35,26 @@ Starts an HTTP listener with the specified bind address, port, and nickname, and
 - **Usage**:
   This method is a wrapper around the listener's native startup procedures, facilitating the process with additional checks and the integration with the Data Singleton for better management and oversight.
 
-### `stop(bind_address=None, bind_port=None)`
+### `stop(nickname=None)`
 
-Stops an HTTP listener identified by its bind address and port. This method is a placeholder in the current documentation, indicating future functionality for stopping listeners.
+Stops an HTTP listener based on its nickname.
 
 - **Parameters**:
-    - `bind_address`: The IP address on which the listener is bound. Default is `None`.
-    - `bind_port`: The port number on which the listener is bound. Default is `None`.
+    - `nickname` (str): The unique identifier of the listener to stop. Defaults to `None`.
 
 - **Functionality**:
-    1. Checks if a listener with the specified address and port exists within the Data Singleton.
-    2. If found, initiates the shutdown process for the listener and removes it from the Data Singleton.
-    3. Logs the event of stopping the listener.
+    1. Retrieves the listener's information from the Data Singleton using the provided nickname.
+    2. Terminates the listener's process using `.terminate()` method, effectively stopping the listener.
+    3. Waits for the process to terminate using `.join()`, ensuring it has been stopped cleanly.
+    4. Logs the successful shutdown of the listener to the application logs.
+
+- **Remarks**:
+    - The method uses `.terminate()` for stopping listeners, which is effective but may not allow for graceful shutdown in all cases. Future improvements could include a more graceful shutdown mechanism.
+
+- **Example Usage**:
+    ```python
+    HttpListenerHandler.stop(nickname='MainListener')
+    ```
 
 
 ## Example Usage
@@ -58,6 +66,6 @@ HttpListenerHandler.start(bind_address='127.0.0.1', bind_port=8080, nickname='Ma
 ```
 
 
-On a successful start, the following should show up in the console:
+On a successful start/stop, the following should show up in the console:
 
 ![](../../../../../../Images/Server/Plugins/SimpleC2/http_listener_successful_start.png)
