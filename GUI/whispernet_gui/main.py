@@ -13,6 +13,7 @@ from QtComponents.Console.console import Console
 from QtComponents.Notes.notes import Notes
 from QtComponents.ClientGraphics.clientgraphics import ClientGraphics
 from QtComponents.Login.login import Login
+from QtComponents.Listeners.listener import Listeners
 from Utils.Data import Data
 from Utils.EventLoop import Event
 from Utils.BaseLogging import BaseLogging
@@ -134,6 +135,10 @@ class MainWindow(QMainWindow):
         view_secrets = QAction("Secrets", self)
         view_secrets.triggered.connect(partial(self.pop_new_widget, Secrets()))
         view_menu.addAction(view_secrets)   
+
+        view_listeners = QAction("Listeners", self)
+        view_listeners.triggered.connect(partial(self.pop_new_widget, Listeners()))
+        view_menu.addAction(view_listeners)   
 
         view_console = QAction("Console", self)
         view_console.triggered.connect(partial(self.pop_new_widget, Console()))

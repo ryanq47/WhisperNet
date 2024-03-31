@@ -1,3 +1,8 @@
+TODO 
+
+ - Response Blocks/Responses of each endpoint
+ - Update overview
+
 # SimpleC2 Plugin API Endpoints and Parameters    - 
 
 ## Overview
