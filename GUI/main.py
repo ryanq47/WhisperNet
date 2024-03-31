@@ -322,7 +322,7 @@ class MainWindow(QMainWindow):
         # Top area with different widgets
         top_splitter = QSplitter(Qt.Horizontal)
         top_splitter.addWidget(Simplec2())
-        top_splitter.addWidget(ClientGraphics())
+        #top_splitter.addWidget(ClientGraphics())
 
         top_dock = QDockWidget("Top Dock", self)
         top_dock.setWidget(top_splitter)
@@ -333,7 +333,6 @@ class MainWindow(QMainWindow):
         # Set the sizes of the splitter widgets to distribute space equally
         bottom_splitter.setSizes([100]*4)  # Equally distribute space among 4 widgets
         top_splitter.setSizes([total_width//2, total_width//2])
-
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

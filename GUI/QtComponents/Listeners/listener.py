@@ -1,3 +1,5 @@
+import inspect
+import json
 from PySide6.QtWidgets import QWidget, QMessageBox, QMenu, QMainWindow, QToolBar, QVBoxLayout, QPushButton
 from PySide6.QtGui import QIcon, QAction, QStandardItemModel, QStandardItem, QBrush, QColor
 from PySide6.QtUiTools import QUiLoader
@@ -8,8 +10,8 @@ from Utils.QtWebRequestManager import WebRequestManager
 from Utils.EventLoop import Event
 from Utils.Data import Data
 from Utils.BaseLogging import BaseLogging
-import inspect
-import json
+from Utils.Utils import GuiUtils
+from QtComponents.Listeners.listener_popup import ListenerPopup
 
 class Listeners(QWidget):
     #signal_get_client_data= Signal(str)
@@ -37,27 +39,6 @@ class Listeners(QWidget):
         self.init_options()
         self.name = "Listener"
 
-    def __ui_load(self):
-        '''
-        Load UI elements
-        '''
-        if self.ui_file == None:
-            errmsg = "UI File could not be loaded"
-            QMessageBox.critical(self, "Error", f"{errmsg}: {e}")
-            print(errmsg)
-
-        try:
-            ## Sets layout
-            #self.setLayout(self.ui_file.layout())
-
-            #self.c2_systemshell = self.ui_file.findChild(QTextEdit, "test_text")  # Replace "QtWidgets" with the appropriate module
-            #self.c2_systemshell.setText("test")
-
-            ## MUST GO LAST!!!
-            self.setLayout(self.ui_file.layout())
-        except Exception as e:
-            QMessageBox.critical(self, "Error", f"An error occurred: {e}")
-            print(f"[!] {e}")
 
     def __ui_load(self):
         """
@@ -135,7 +116,7 @@ class Listeners(QWidget):
         """
         toolbar = QToolBar("Tools", self)
         new_listener = toolbar.addAction("New Listener")
-        new_listener.triggered.connect(self.show_test_message)
+        new_listener.triggered.connect(lambda: GuiUtils.open_dialog(ListenerPopup, self))
 
         # Assuming __ui_load has been called and the main layout set
         self.layout().insertWidget(0, toolbar)

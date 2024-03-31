@@ -6,30 +6,78 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>378</width>
+    <height>226</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2">
+  <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QLineEdit" name="listener_address_line_edit"/>
+    <layout class="QFormLayout" name="formLayout_2">
+     <item row="2" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Listener Address</string>
+       </property>
+      </widget>
      </item>
-     <item>
-      <widget class="QLineEdit" name="listener_port_line_edit"/>
+     <item row="3" column="0" colspan="2">
+      <widget class="QLineEdit" name="listener_popup_address">
+       <property name="maxLength">
+        <number>100</number>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Listener Port</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0" colspan="2">
+      <widget class="QLineEdit" name="listener_popup_port">
+       <property name="maxLength">
+        <number>10</number>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="0" colspan="2">
+      <widget class="QPushButton" name="listener_popup_spawn_button">
+       <property name="text">
+        <string>Spawn Listener</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Listener Name</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" colspan="2">
+      <widget class="QLineEdit" name="listener_popup_name"/>
+     </item>
+     <item row="6" column="0">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Listener Type</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0" colspan="2">
+      <widget class="QComboBox" name="listener_popup_type_combo">
+       <item>
+        <property name="text">
+         <string>HTTP</string>
+        </property>
+       </item>
+      </widget>
      </item>
     </layout>
-   </item>
-   <item row="1" column="0">
-    <widget class="QPushButton" name="pushButton">
-     <property name="text">
-      <string>Spawn Listener</string>
-     </property>
-    </widget>
    </item>
   </layout>
  </widget>
