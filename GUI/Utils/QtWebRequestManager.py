@@ -2,14 +2,14 @@ from PySide6.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkRe
 from PySide6.QtCore import Signal
 import inspect
 
-from Utils.BaseLogging import BaseLogging
+from Utils.Logger import LoggingSingleton
 
 class WebRequestManager(QNetworkAccessManager):
     request_finished = Signal(QNetworkReply)
 
     def __init__(self):
         super().__init__()
-        self.logger = BaseLogging.get_logger()
+        self.logger = LoggingSingleton.get_logger()
 
 
     def send_post_request(self, url, data):

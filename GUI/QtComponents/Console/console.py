@@ -6,7 +6,7 @@ from Utils.QtWebRequestManager import WebRequestManager
 from PySide6.QtNetwork import QNetworkReply
 import json
 import yaml
-
+from Utils.Logger import LoggingSingleton
 #from Utils.YamlLoader import YamlLoader
 
 class Console(QWidget):
@@ -14,7 +14,7 @@ class Console(QWidget):
 
     def __init__(self, id=None):
         super().__init__()
-        
+        self.logger = LoggingSingleton.get_logger()
         loader = QUiLoader()
         ## This NEEDS self as a second arg for some reason.
         self.ui_file = loader.load('QtComponents/Console/console.ui', self)

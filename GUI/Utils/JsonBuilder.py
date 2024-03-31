@@ -1,11 +1,13 @@
 import json
 #from Utils.LoggingBaseClass import BaseLogging
+from Utils.Logger import LoggingSingleton
 
 ########################################
 # Client Auth
 ########################################
 class ClientAuth:
     def __init__(self, user=None, password=None, auth_hash=None, kerb=None, other=None):
+        self.logger = LoggingSingleton.get_logger()
         self._user = user if user else User()
         self._password = password if password else Password()
         self._hash = auth_hash if auth_hash else Hash() # hash is a func in python, whoops. Switching to auth_hash
@@ -75,6 +77,7 @@ class ClientAuth:
 
 class User:
     def __init__(self, username = None, SID = None):
+        self.logger = LoggingSingleton.get_logger()
         self._username = username
         self._SID = SID
 
@@ -106,6 +109,7 @@ class User:
 
 class Password:
     def __init__(self, p_type=None, value=None):
+        self.logger = LoggingSingleton.get_logger()
         self._type = p_type
         self._value = value
 
@@ -135,6 +139,7 @@ class Password:
 
 class Hash:
     def __init__(self, h_type=None, value=None):
+        self.logger = LoggingSingleton.get_logger()
         self._type = h_type
         self._value = value
 
@@ -164,6 +169,7 @@ class Hash:
 
 class Kerb:
     def __init__(self, k_type=None, value=None):
+        self.logger = LoggingSingleton.get_logger()
         self._type = k_type
         self._value = value
 
@@ -193,6 +199,7 @@ class Kerb:
 
 class Other:
     def __init__(self, o_type=None, value=None):
+        self.logger = LoggingSingleton.get_logger()
         self._type = o_type
         self._value = value
 
@@ -225,6 +232,7 @@ class Other:
 ########################################
 class Action:
     def __init__(self, action=None, arguments=None, timeout=None, std_output=None, std_error=None, execution_context=None):
+        self.logger = LoggingSingleton.get_logger()
         self._action = action
         self._arguments = arguments
         self._timeout = timeout
@@ -335,6 +343,7 @@ class Callback:
         )
     """
     def __init__(self, server=None, retry_policy=None, data_format=None):
+        self.logger = LoggingSingleton.get_logger()
         self._server = server if server else Server()
         self._retry_policy = retry_policy if retry_policy else RetryPolicy()
         self._data_format = data_format
@@ -378,6 +387,7 @@ class Callback:
 
 class RetryPolicy:
     def __init__(self, max_retries=None, retry_interval=None):
+        self.logger = LoggingSingleton.get_logger()
         self._max_retries = max_retries
         self._retry_interval = retry_interval
 
@@ -410,6 +420,7 @@ class RetryPolicy:
 
 class Server:
     def __init__(self, hostname=None, address=None, port=None, path=None):
+        self.logger = LoggingSingleton.get_logger()
         self._hostname = hostname
         self._address = address
         self._port = port
@@ -474,6 +485,7 @@ class Server:
 ########################################
 class JsonObject():
     def __init__(self):
+        self.logger = LoggingSingleton.get_logger()
         #BaseLogging.__init__(self)  
         self.server = Server()
         self.callback = Callback()

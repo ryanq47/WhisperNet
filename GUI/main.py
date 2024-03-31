@@ -8,16 +8,17 @@ import subprocess
 import inspect
 import logging
 from QtComponents.SimpleC2.simplec2 import Simplec2
-from QtComponents.FileHost.filehost import Filehost
-from QtComponents.Secrets.secrets import Secrets
+#from QtComponents.FileHost.filehost import Filehost
+#from QtComponents.Secrets.secrets import Secrets
 from QtComponents.Console.console import Console
-from QtComponents.Notes.notes import Notes
-from QtComponents.ClientGraphics.clientgraphics import ClientGraphics
+#from QtComponents.Notes.notes import Notes
+#from QtComponents.ClientGraphics.clientgraphics import ClientGraphics
 from QtComponents.Login.login import Login
 from QtComponents.Listeners.listener import Listeners
 from Utils.Data import Data
 from Utils.EventLoop import Event
 from Utils.Logger import LoggingSingleton
+from Utils.Utils import GuiUtils
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -69,81 +70,33 @@ class MainWindow(QMainWindow):
 
     def add_menu_bar(self):
         '''
-        Adds a menu bar
+        Adds a menu bar and configures menu actions to dynamically open widgets as dock widgets.
         '''
-        # Create a menu bar
         menu_bar = self.menuBar()
 
-        # Add menus to the menu bar
+        # File Menu
         file_menu = menu_bar.addMenu("File")
-
-        ## mini problem, only one object of this exists and when it gets deletedit cant be reopened. Need to rethink the loading methods/close independent window methods
-        login_class = Login() # doing this so I can connect the login signal from it
-        login_class.signal_logged_in.connect(self.post_login_actions)
-        file_menu_login = QAction("Login to Server", self)
-        file_menu_login.triggered.connect(partial(self.pop_new_window, login_class))
-        file_menu.addAction(file_menu_login)
-
-
-        #edit_menu = menu_bar.addMenu("Edit")
-        layout_menu = menu_bar.addMenu("Layout")
-
-        ## Layout Menu
-        layout_menu_init = QAction("init", self)
-        layout_menu_init.triggered.connect(self.init_window_setup)
-        layout_menu.addAction(layout_menu_init)
-
-        layout_menu_1 = QAction("Layout2", self)
-        layout_menu_1.triggered.connect(self.layout_one)
-        layout_menu.addAction(layout_menu_1)
-
-        layout_menu_21_9 = QAction("21:9", self)
-        layout_menu_21_9.triggered.connect(self.layout_21_9)
-        layout_menu.addAction(layout_menu_21_9)
-
-        # Add actions to the menus (example)
-        #file_menu.addAction("Open")
-        #file_menu.addAction("Save")
+        file_menu.addAction(QAction("Login to Server", self, triggered=lambda: GuiUtils.open_dock_widget(Login, self, "Login")))
         file_menu.addSeparator()
+        file_menu.addAction(QAction("Restart", self, triggered=self.restart))
+        file_menu.addAction(QAction("Exit", self, triggered=partial(exit, "Exiting...")))
 
-        file_menu_restart = QAction("Restart", self)
-        file_menu_restart.triggered.connect(self.restart)
-        file_menu.addAction(file_menu_restart)
+        # Layout Menu
+        layout_menu = menu_bar.addMenu("Layout")
+        layout_menu.addAction(QAction("init", self, triggered=self.init_window_setup))
+        layout_menu.addAction(QAction("Layout2", self, triggered=self.layout_one))
+        layout_menu.addAction(QAction("21:9", self, triggered=self.layout_21_9))
 
-        file_menu_exit = QAction("Exit", self)
-        file_menu_exit.triggered.connect(partial(exit,"Exiting..."))
-        file_menu.addAction(file_menu_exit)
-
-        ## Can definently optizime this later/shorten it up.
-        #### Upper/Lower menu
-        #upper_menu = QMenu('Upper', self)
-        #view_menu.addMenu(upper_menu)
-
-        # Create 'Lower' submenu under 'View'
-        #lower_menu = QMenu('Lower', self)
-        #view_menu.addMenu(lower_menu)
-
+        # View Menu
         view_menu = menu_bar.addMenu("View")
-        ## Add Upper View options
-        view_simplec2 = QAction("SimpleC2", self)
-        view_simplec2.triggered.connect(partial(self.pop_new_widget, Simplec2()))
-        view_menu.addAction(view_simplec2)        
+        view_menu.addAction(QAction("SimpleC2", self, triggered=lambda: GuiUtils.open_dock_widget(Simplec2, self, "SimpleC2")))
+        # Uncomment and adjust as needed for other widgets
+        # view_menu.addAction(QAction("FileHost", self, triggered=lambda: GUIUtils.GuiUtils.open_dock_widget(Filehost, self, "FileHost")))
+        # view_menu.addAction(QAction("Secrets", self, triggered=lambda: GUIUtils.GuiUtils.open_dock_widget(Secrets, self, "Secrets")))
+        view_menu.addAction(QAction("Listeners", self, triggered=lambda: GuiUtils.open_dock_widget(Listeners, self, "Listeners")))
+        view_menu.addAction(QAction("Console", self, triggered=lambda: GuiUtils.open_dock_widget(Console, self, "Console")))
 
-        view_filehost = QAction("FileHost", self)
-        view_filehost.triggered.connect(partial(self.pop_new_widget, Filehost()))
-        view_menu.addAction(view_filehost)
 
-        view_secrets = QAction("Secrets", self)
-        view_secrets.triggered.connect(partial(self.pop_new_widget, Secrets()))
-        view_menu.addAction(view_secrets)   
-
-        view_listeners = QAction("Listeners", self)
-        view_listeners.triggered.connect(partial(self.pop_new_widget, Listeners()))
-        view_menu.addAction(view_listeners)   
-
-        view_console = QAction("Console", self)
-        view_console.triggered.connect(partial(self.pop_new_widget, Console()))
-        view_menu.addAction(view_console) 
 
     def add_dock_widget(self, title, position, object):
         dock = QDockWidget(title)

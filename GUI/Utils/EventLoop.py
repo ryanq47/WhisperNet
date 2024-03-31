@@ -5,7 +5,7 @@ Logs in here are primarily warning & critical, as this is a critical component o
 
 '''
 
-from Utils.BaseLogging import BaseLogging
+from Utils.Logger import LoggingSingleton
 import inspect
 from PySide6.QtCore import QTimer, QObject
 
@@ -22,7 +22,7 @@ class Event(QObject):
         #if not hasattr(self, 'initialized'): ## prevents reinit
         if not self._is_initialized:
             super().__init__()
-            self.logger = BaseLogging.get_logger()
+            self.logger = LoggingSingleton.get_logger()
             self.event_loop_list = []
             self._setup_timer()
             

@@ -6,9 +6,11 @@ YAML loader. handy, and I needed a template for one so here we go.
 
 
 import yaml
+from Utils.Logger import LoggingSingleton
 
 class YamlLoader:
     def __init__(self, config_file_path):
+        self.logger = LoggingSingleton.get_logger()
         self._config_file_path = config_file_path
         self._config = None
 

@@ -9,9 +9,10 @@ Every attribute starts as None. On errors when trying to set thigns, set them ba
 ## Make OOP as fuck
 from typing import Optional
 from PySide6.QtCore import QObject, Property, Slot, Signal
-from Utils.BaseLogging import BaseLogging
+from Utils.Logger import LoggingSingleton
 import json
 import inspect
+
 
 class Data(QObject):
     _instance = None
@@ -27,7 +28,7 @@ class Data(QObject):
     def __init__(self, parent=None):
         if not self._is_initialized:  # Check if already initialized, sanity check
             super().__init__(parent)
-            self.logger = BaseLogging.get_logger()
+            self.logger = LoggingSingleton.get_logger()
             self._auth = Auth(self)
             self._simplec2 = SimpleC2Data(self)
 
@@ -81,8 +82,7 @@ class SimpleC2Data(QObject):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.logger = BaseLogging.get_logger()
-
+        self.logger = LoggingSingleton.get_logger()
         self._db_data = None # Current Database Data, in dict
         self._db_network_data = None
         # might need one just for json later. 

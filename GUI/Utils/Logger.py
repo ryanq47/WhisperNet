@@ -24,9 +24,13 @@ import logging
 from colorama import init, Fore, Style
 import threading
 import inspect
+import os
 
 # Initialize colorama
 init(autoreset=True)
+
+# Tell Pyside to shush
+os.environ["QT_LOGGING_RULES"]='*.debug=false;qt.pysideplugin=false'
 
 
 class LoggingSingleton():

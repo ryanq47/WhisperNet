@@ -10,7 +10,7 @@ import inspect
 from Utils.EventLoop import Event
 
 from Utils.Data import Data
-from Utils.BaseLogging import BaseLogging
+from Utils.Logger import LoggingSingleton
 #from Utils.YamlLoader import YamlLoader
 
 class Login(QWidget):
@@ -19,8 +19,7 @@ class Login(QWidget):
 
     def __init__(self, id=None):
         super().__init__()
-        self.logger = BaseLogging.get_logger()
-
+        self.logger = LoggingSingleton.get_logger()
         loader = QUiLoader()
         ## This NEEDS self as a second arg for some reason.
         self.ui_file = loader.load('QtComponents/Login/Login.ui', self)
