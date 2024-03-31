@@ -1,0 +1,172 @@
+QWidget {
+    background-color: #1e1e1e; /* Dark grey background */
+    color: #dcdcdc; /* Light grey text, bold for aggression */
+    font-weight: bold;
+}
+QPushButton {
+    background-color: #5364A5; /* Blue background for buttons */
+    color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 0px; /* Sharper corners */
+    border-color: #5364A5;
+    padding: 6px;
+    min-width: 80px;
+    font-weight: bold; /* Bolder text */
+}
+QPushButton:hover {
+    background-color: #43528B; /* Darker blue for hover */
+    color: #ffffff;
+    border-color: #43528B;
+}
+QPushButton:pressed {
+    background-color: #333E66; /* Even darker blue when pressed */
+    border-style: inset;
+}
+QLineEdit, QTextEdit, QPlainTextEdit, QSpinBox, QDoubleSpinBox, QComboBox {
+    background-color: #2b2b2b;
+    color: #dcdcdc;
+    border-radius: 0px; /* Sharper edges */
+    padding: 2px;
+    border: 1px solid #555;
+    font-weight: bold; /* Bolder text */
+}
+QLabel, QCheckBox, QRadioButton {
+    color: #dcdcdc;
+    font-weight: bold; /* Bolder text */
+}
+QMenuBar, QMenu {
+    background-color: #2b2b2b;
+    color: #dcdcdc;
+    border: 1px solid #555;
+    font-weight: bold; /* Bolder text for menu */
+}
+QMenuBar::item:selected, QMenu::item:selected {
+    background-color: #5364A5; /* Blue for selected menu items */
+    color: white;
+}
+QScrollBar:vertical {
+    border: 1px solid #2b2b2b;
+    background: #2b2b2b;
+    width: 10px;
+    margin: 22px 0 22px 0;
+}
+QScrollBar::handle:vertical {
+    background: #5364A5; /* Blue scrollbar handle */
+    min-height: 20px;
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    border: 1px solid #2b2b2b;
+    background: #5364A5; /* Blue for scrollbar buttons */
+    height: 20px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+/* TABS */
+QTabWidget::pane {
+    border-top: 2px solid #5364A5; /* Blue top border for tabs */
+}
+
+/*QTabWidget::tab-bar {*/
+    /*left: 5px;  move to the right by 5px */
+/*}*/ 
+
+QTabBar::tab {
+    background: #2b2b2b;
+    color: #dcdcdc;
+    border: 1px solid #555;
+    border-bottom-color: #5364A5; /* Blue for non-selected tab border */
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    padding: 5px;
+    min-width: 50px;
+    align-items: center;
+    justify-content: center;
+    max-height: 12px;
+}
+
+QTabBar::tab:selected, QTabBar::tab:hover {
+    background: #5364A5; /* Blue for selected/hover tab */
+    color: white;
+}
+
+QTabBar::tab:selected {
+    border-color: #5364A5; /* Blue border for selected tab */
+    border-bottom-color: #1e1e1e; /* Same as window background color */
+}
+
+QTabBar::tab:!selected {
+    margin-top: 2px; /* Make non-selected tabs look smaller */
+}
+
+/* Q Tree Widget */
+QTreeWidget {
+    border: 1px solid #555;
+    /*background-color: #2b2b2b;*/
+    color: #dcdcdc;
+}
+
+QTreeWidget::item {
+    border-bottom: 1px solid #555; /* Subtle separator for items */
+}
+
+QTreeWidget::item:selected {
+    background-color: #5364A5; /* Blue for selected item */
+    color: white;
+}
+
+QTreeWidget::item:hover {
+    background-color: #43528B; /* Darker blue for hover item */
+}
+
+QTreeWidget::branch {
+    background: #2b2b2b;
+}
+
+QTreeWidget::branch:has-siblings:!adjoins-item {
+    border-image: url(path/to/your/line-image.png) 0; /* Custom image for branch lines */
+}
+
+QTreeWidget::branch:has-siblings:adjoins-item {
+    border-image: url(path/to/your/branch-more-image.png) 0;
+}
+
+QTreeWidget::branch:!has-children:!has-siblings:adjoins-item {
+    border-image: url(path/to/your/branch-end-image.png) 0;
+}
+
+/* Customize scroll bars */
+QTreeWidget QScrollBar:vertical {
+    border: 1px solid #2b2b2b;
+    background: #2b2b2b;
+    width: 10px;
+    margin: 22px 0 22px 0;
+}
+
+QTreeWidget QScrollBar::handle:vertical {
+    background: #5364A5; /* Blue for tree widget scrollbar handle */
+    min-height: 20px;
+}
+
+QTreeWidget QScrollBar::add-line:vertical, QTreeWidget QScrollBar::sub-line:vertical {
+    border: 1px solid #2b2b2b;
+    background: #5364A5; /* Blue for tree widget scrollbar button */
+    height: 20px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+/* Styles for the header (column titles) */
+QHeaderView::section {
+    background-color: #5364A5; /* Blue for header background */
+    color: white;
+    padding-left: 4px;
+    border: 1px solid #5364A5; /* Blue for header border */
+}
+
+QSplitter::handle {
+	background-color: #9E9E9E;
+}
+QSplitter::handle:vertical {
+	height: 5px;
+}

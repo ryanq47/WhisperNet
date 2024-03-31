@@ -1,0 +1,40 @@
+from PySide6.QtWidgets import QApplication, QTreeView
+from PySide6.QtGui import QStandardItemModel, QStandardItem
+
+app = QApplication([])
+
+# Create the model and set column headers
+model = QStandardItemModel()
+model.setHorizontalHeaderLabels(['IP', 'Name', 'Last Check-in'])
+
+# Function to add a network with a "label row" for its children
+def add_network_with_label_row(network_name, child_label_info, children):
+    network_item = QStandardItem(network_name)
+    model.appendRow([network_item] + [QStandardItem() for _ in range(model.columnCount() - 1)])
+
+    # Add a "label row" under the network
+    label_row_items = [QStandardItem(label) for label in child_label_info]
+    network_item.appendRow(label_row_items)
+
+    # Add child items under the "label row"
+    for child in children:
+        child_items = [QStandardItem(child_info) for child_info in child]
+        network_item.appendRow(child_items)
+
+# Example usage
+network_name = "Network 1"
+child_label_info = ["IP", "Name", "Last Check-in"]
+children = [
+    ["192.168.1.101", "Device 1", "2024-02-14"],
+    ["192.168.1.102", "Device 2", "2024-02-15"],
+]
+
+add_network_with_label_row(network_name, child_label_info, children)
+
+# Setup the QTreeView
+tree_view = QTreeView()
+tree_view.setModel(model)
+tree_view.expandAll()  # Expand all items for visibility
+tree_view.show()
+
+app.exec_()
