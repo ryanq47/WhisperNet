@@ -1,5 +1,5 @@
-from PySide6.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply, QUrl
-from PySide6.QtCore import Signal, QByteArray
+from PySide6.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply
+from PySide6.QtCore import Signal, QByteArray, QUrl
 import json
 from Utils.Logger import LoggingSingleton
 
@@ -16,23 +16,30 @@ class WebRequestManager(QNetworkAccessManager):
         """
         Sends a HTTP request to the specified URL with optional data and JWT authentication.
         Supports both GET and POST methods.
+
+        Note, you DO NOT have to encode dict's/lists, this method will do it for you. Of course, you can still pass encoded versions in, but it's not required.
         """
-        self.logger.info(f"Sending {method} request to {url}")
         request = QNetworkRequest(QUrl(url))
         request.setHeader(QNetworkRequest.ContentTypeHeader, "application/json")
 
-        jwt_token = AuthManager.get_jwt_token()
+        # Include JWT token if available
+        jwt_token = "FAKETOKEN"
         if jwt_token:
             request.setRawHeader(b"Authorization", f"Bearer {jwt_token}".encode('utf-8'))
-            self.logger.debug("JWT token added to request header")
 
         if method.upper() == "POST" and data is not None:
-            if isinstance(data, (dict, list)):
+            # Ensure data is a QByteArray
+            if isinstance(data, str):
+                # Data is a string, likely JSON, convert it to QByteArray
+                self.logger.debug("Passed info was not a QByteArray, converting/Encoding...")
+                data = QByteArray(data.encode('utf-8'))
+            elif isinstance(data, (dict, list)):
+                self.logger.debug("Passed info was not a dict/list, dumping & encoding")
+                # Data is a dictionary or list, convert to JSON string then to QByteArray
                 data = QByteArray(json.dumps(data).encode('utf-8'))
-                self.logger.debug("Sending POST request with data")
+
             self.post(request, data)
         elif method.upper() == "GET":
-            self.logger.debug("Sending GET request")
             self.get(request)
 
     def _handle_finished(self, reply: QNetworkReply):
@@ -54,7 +61,7 @@ class WebRequestManager(QNetworkAccessManager):
 
         self.request_finished.emit(data)
         reply.deleteLater()  # Ensure the reply is properly cleaned up
-        
+
         """
         # Usage
         def get_all_data(self):

@@ -83,6 +83,7 @@ class SimpleC2Data(QObject):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.logger = LoggingSingleton.get_logger()
+        self._listeners = Listener(self)
         self._db_data = None # Current Database Data, in dict
         self._db_network_data = None
         # might need one just for json later. 
@@ -90,6 +91,10 @@ class SimpleC2Data(QObject):
     @Slot()
     def get_db_data(self):
         return self._db_data
+
+    @Property(QObject)
+    def listener(self):
+        return self._listeners
 
     ## works now, DOC THIS TOMORROW OR WHENEVER. +1 for signals being cool, lets keep this format of signals after (any?) item is changed in data class, or wherver necessary
     @Slot(str)
@@ -160,3 +165,74 @@ class SimpleC2Data(QObject):
 
         self.client_data_updated.emit(output_list)
         #return output_list
+
+
+class Listener(QObject):
+    """Class to hold listener items in the data singleton
+    """
+    listenerDataChanged = Signal(dict)  # Signal emitting the new JWT value
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self._listener_data_dict = None
+
+        #self.logger.debug(f"Initialized Backend Component: {self.__class__.__name__}")
+
+    @Slot()
+    def get_listener_data(self):
+        return self._listener_data_dict
+
+    ## works now, DOC THIS TOMORROW OR WHENEVER. +1 for signals being cool, lets keep this format of signals after (any?) item is changed in data class, or wherver necessary
+    @Slot(str)
+    def set_listener_data(self, value):
+        # Check if items are the same, if not, update & emit signal
+        if self._listener_data_dict != value:
+            self._listener_data_dict = value
+            # Emit signal if needed, e.g., self.jwtChanged.emit(value)
+            self.listenerDataChanged.emit(self._listener_data_dict)  # Emit signal with new value
+
+    # getter/setters a little dif. Define the property, access with just class.class.jwt,
+    listener_data = Property(dict, get_listener_data, set_listener_data)
+
+class Server(QObject):
+    """Class to hold server related data in the Data singleton
+    """
+    serverAddressUpdated = Signal(str)  # Signal emitting the new JWT value
+    serverPortUpdated = Signal(str) # could be int too
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self._server_address = None
+        self._server_port = None
+
+        #self.logger.debug(f"Initialized Backend Component: {self.__class__.__name__}")
+
+    @Slot()
+    def get_server_address(self):
+        return self._server_address
+
+    @Slot(str)
+    def set_server_address(self, value):
+        # Check if items are the same, if not, update & emit signal
+        if self._server_address != value:
+            self._server_address = value
+            # Emit signal if needed, e.g., self.jwtChanged.emit(value)
+            self.serverAddressUpdated.emit(self._server_address)  # Emit signal with new value
+
+    # getter/setters a little dif. Define the property, access with just class.class.whatever,
+    server_address = Property(dict, get_server_address, set_server_address)
+
+    @Slot()
+    def get_server_port(self):
+        return self._server_address
+
+    @Slot(str)
+    def set_server_port(self, value):
+        # Check if items are the same, if not, update & emit signal
+        if self._server_port != value:
+            self._server_port = value
+            # Emit signal if needed, e.g., self.jwtChanged.emit(value)
+            self.serverPortUpdated.emit(self._server_port)  # Emit signal with new value
+
+    # getter/setters a little dif. Define the property, access with just class.class.whatever,
+    server_port = Property(dict, get_server_port, set_server_port)

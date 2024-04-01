@@ -42,6 +42,12 @@ Initializes a new instance of WebRequestManager, setting up logging and connecti
 ## Public Methods
 ### send_request
 
+This is for sending either GET or POST requests to an endpoint.
+
+A few items to note:
+ - This retireves the current JWT from the data singleton at `Data.Auth.jwt` (assuming you access the DataSingleton with `Data`, ex `Data = DataSingleton()`)
+ - The data parameter can take lists, dicts, strings OR anything that's encoded. If the passed data is not encoded, and is a list, dict, or string, it'll be encoded before sending. It's a nice to have IMO, and you don't have to deal with encoding in the methods. 
+
 ```
 def send_request(self, url: str, data=None, method="GET"):
     """
