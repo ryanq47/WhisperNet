@@ -7,6 +7,8 @@ Whispernet currenlty only has one type of listener, HTTP.
 
 A listener can be spawned with the "Spawn Listener" button. This will pop up a menu to enter in Listener details:
 
+Note: Dets about fields here
+
 ![image](../../../Images/GUI/QtComponents/Listener/listener_spawn_form.png)
 
 
