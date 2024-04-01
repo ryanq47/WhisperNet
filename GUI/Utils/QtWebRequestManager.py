@@ -1,66 +1,65 @@
-from PySide6.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply
-from PySide6.QtCore import Signal
-import inspect
-
+from PySide6.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply, QUrl
+from PySide6.QtCore import Signal, QByteArray
+import json
 from Utils.Logger import LoggingSingleton
 
 class WebRequestManager(QNetworkAccessManager):
-    request_finished = Signal(QNetworkReply)
+    request_finished = Signal(dict)  # Emitting a Python dictionary directly
 
     def __init__(self):
         super().__init__()
         self.logger = LoggingSingleton.get_logger()
+        self.finished.connect(self._handle_finished)  # Connect to the built-in finished signal
+        self.logger.debug("WebRequestManager initialized")
 
+    def send_request(self, url: str, data=None, method="GET"):
+        """
+        Sends a HTTP request to the specified URL with optional data and JWT authentication.
+        Supports both GET and POST methods.
+        """
+        self.logger.info(f"Sending {method} request to {url}")
+        request = QNetworkRequest(QUrl(url))
+        request.setHeader(QNetworkRequest.ContentTypeHeader, "application/json")
 
-    def send_post_request(self, url, data):
-        try:
-            self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Making Post request to '{url}'")
+        jwt_token = AuthManager.get_jwt_token()
+        if jwt_token:
+            request.setRawHeader(b"Authorization", f"Bearer {jwt_token}".encode('utf-8'))
+            self.logger.debug("JWT token added to request header")
 
-            ## Just incase data is not in byte form
-            if not isinstance(data, bytes):
-                self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: 'data' variable is not in byte form, converting from: '{type(data)}' to bytes")
-                data = self.encode_str_to_bytes(data)
+        if method.upper() == "POST" and data is not None:
+            if isinstance(data, (dict, list)):
+                data = QByteArray(json.dumps(data).encode('utf-8'))
+                self.logger.debug("Sending POST request with data")
+            self.post(request, data)
+        elif method.upper() == "GET":
+            self.logger.debug("Sending GET request")
+            self.get(request)
 
-            request = QNetworkRequest(url)
-            request.setHeader(QNetworkRequest.ContentTypeHeader, "application/json")
-            #application/octet-stream
-            #request.setHeader(QNetworkRequest.ContentTypeHeader, "application/octet-stream")
+    def _handle_finished(self, reply: QNetworkReply):
+        """
+        Internal slot to handle the finished signal from a request.
+        """
+        error = reply.error()
+        if error == QNetworkReply.NoError:
+            response_data = reply.readAll().data().decode()
+            self.logger.info("Request finished successfully")
+            try:
+                data = json.loads(response_data)
+            except json.JSONDecodeError:
+                data = {"error": "Failed to decode JSON"}
+                self.logger.error("Failed to decode JSON from response")
+        else:
+            data = {"error": error, "message": reply.errorString()}
+            self.logger.error(f"Request finished with error: {reply.errorString()}")
 
-            reply = self.post(request, data)
-            reply.finished.connect(self.handle_response)
-            self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Successful Post request to '{url}'")
+        self.request_finished.emit(data)
+        reply.deleteLater()  # Ensure the reply is properly cleaned up
+        
+        """
+        # Usage
+        def get_all_data(self):
+            self.request_manager = WebRequestManager()
+            self.request_manager.request_finished.connect(self.handle_response) # or whatever func you want to send data to
+            self.request_manager.send_request("http://127.0.0.1:5000/api/simplec2/general/everything")
 
-        except Exception as e:
-            self.logger.error(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: {e}")
-
-    def send_get_request(self, url):
-        try:
-            self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Making Get request to '{url}'")
-
-            request = QNetworkRequest(url)
-            request.setHeader(QNetworkRequest.ContentTypeHeader, "application/json")
-            
-            reply = self.get(request)
-            reply.finished.connect(self.handle_response)
-            self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Successful Get request to '{url}'")
-
-        except Exception as e:
-            self.logger.error(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: {e}")
-
-
-    def handle_response(self):
-
-        reply = self.sender()
-        self.request_finished.emit(reply)
-
-    def encode_str_to_bytes(self, data):
-        '''
-        Turn a str into bytes
-        '''
-        return data.encode()
-
-    def decode_bytes_to_str(self, data):
-        '''
-        Turn a str into bytes
-        '''
-        return data.decode()
+        """ 
