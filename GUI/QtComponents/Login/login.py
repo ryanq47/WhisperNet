@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QTextEdit, QMessageBox, QPushButton, QLineEdit, QToolButton, QMenu, QPlainTextEdit
+from PySide6.QtWidgets import QWidget, QTextEdit, QMessageBox, QPushButton, QLineEdit, QToolButton, QMenu, QPlainTextEdit, QDialog
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtGui import QAction
 from PySide6.QtCore import Signal, QTimer
@@ -11,10 +11,10 @@ from Utils.EventLoop import Event
 
 from Utils.Data import Data
 from Utils.Logger import LoggingSingleton
+from Utils.SignalSingleton import SignalSingleton
 #from Utils.YamlLoader import YamlLoader
 
-class Login(QWidget):
-    signal_server_response= Signal(str)
+class Login(QDialog):
     signal_logged_in = Signal(bool)
 
     def __init__(self, id=None):
@@ -28,6 +28,7 @@ class Login(QWidget):
 
         ## singleton, this is fine
         self.data = Data()
+        self.signals = SignalSingleton()
 
         self.__yaml_load()
         self.__ui_load()
@@ -101,25 +102,9 @@ class Login(QWidget):
                 "password": password
             }
 
-            login_json = json.dumps(login_dict)
-
-
             self.request_manager = WebRequestManager()
-
-            #post request for now. Subject to chagne
-            self.request_manager.send_post_request(
-                url = f"http://{server}/api/login",
-                data = login_json ## << FIX ME BETTER
-            )
-
-            self.request_manager.request_finished.connect(
-                ##  send request                                      ## Signal that holds data
-                lambda response: self.handle_response(response, self.signal_server_response)
-            )## I don't fully remeber why we have to pass response to the function as well. 
-
-            # when signal is triggerd, called validate_login_status
-            self.signal_server_response.connect(self.validate_login_status)
-
+            self.request_manager.request_finished.connect(self.validate_login_status) # or whatever func you want to send data to
+            self.request_manager.send_request(f"http://{server}/api/login", data=login_dict, method="POST")
         
         except Exception as e:
             self.logger.error(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: {e}")
@@ -135,20 +120,22 @@ class Login(QWidget):
 
         '''
 
-    def validate_login_status(self, response_json):
+    def validate_login_status(self, response_dict):
         '''
             Validates login status
         '''
         success_text = "Login has succeded!"
         fail_text = "Login failed"
         
+        #print(response_json)
+
         try:
-            response_dict = json.loads(response_json)
+            #response_dict = json.loads(response_json)
 
             if response_dict["access_token"] != "":
                 self.update_login_attempt_text(success_text)
                 self.data.auth.jwt = response_dict["access_token"]
-                self.logger.info(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Successful login to server!")
+                self.logger.info("Successful login to server!")
                 # hide window on successful logon
                 # WELP taht doesnt work
                 #self.close()#hide()
@@ -156,13 +143,15 @@ class Login(QWidget):
                 ## MOVE THIS TO POST SIGNAL EMIT, temp debug spot:
                 #self.event_loop = Event()
                 #self.event_loop.start_event_loop()
-                self.signal_logged_in.emit(True)
+                self.signals.auth.userSuccessfulLogin.emit(True)
+                # close dialog on successful logon
+                self.close()
 
             else:
                 self.update_login_attempt_text(fail_text)
         except Exception as e:
             self.update_login_attempt_text(fail_text)
-            self.logger.error(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: {e}")
+            self.logger.error(e)
 
     def update_login_attempt_text(self, message_to_append):
         '''
@@ -175,35 +164,5 @@ class Login(QWidget):
 
             self.login_attempt_textbox.setText(new_text)
         except Exception as e:
-            self.logger.error(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: {e}")
+            self.logger.error(e)
 
-    def handle_response(self, reply, signal):        
-        '''
-        Handles a web request response. 
-
-        Emits a SIGNAL, named 'response_received'. This signal 
-        contains the web request response. 
-        
-        This will trigger signals in the respective functions that called it.
-        
-
-        reply: web reply
-        signal: The signal to return/emit to. this is so signals dont have the same data passed between them 
-        causing issues
-
-        '''
-        #logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-        try:
-            if reply.error() == QNetworkReply.NoError:
-                response_data = reply.readAll().data().decode()
-                signal.emit(response_data)  # Emit the custom signal
-                signal.disconnect()
-
-            else:
-                string = f"Error with request: {reply.error()}"
-                signal.emit(string)  # Emit the custom signal
-                signal.disconnect()
-
-        except Exception as e:
-            self.logger.info(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: {e}")
-            #logging.debug(f"{function_debug_symbol} Error with handle_response: {e}")

@@ -19,6 +19,7 @@ from Utils.Data import Data
 from Utils.EventLoop import Event
 from Utils.Logger import LoggingSingleton
 from Utils.Utils import GuiUtils
+from Utils.SignalSingleton import SignalSingleton
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -67,6 +68,10 @@ class MainWindow(QMainWindow):
         ## Create init singleton
         self.data = Data()
         self.event_loop = Event()
+        self.signals = SignalSingleton()
+
+        ## Set up signals
+        self.signals.auth.userSuccessfulLogin.connect(self.post_login_actions)
 
     def add_menu_bar(self):
         '''
@@ -76,7 +81,7 @@ class MainWindow(QMainWindow):
 
         # File Menu
         file_menu = menu_bar.addMenu("File")
-        file_menu.addAction(QAction("Login to Server", self, triggered=lambda: GuiUtils.open_dock_widget(Login, self, "Login")))
+        file_menu.addAction(QAction("Login to Server", self, triggered=lambda: GuiUtils.open_dialog(Login, self)))#, "Login")))
         file_menu.addSeparator()
         file_menu.addAction(QAction("Restart", self, triggered=self.restart))
         file_menu.addAction(QAction("Exit", self, triggered=partial(exit, "Exiting...")))
@@ -140,7 +145,7 @@ class MainWindow(QMainWindow):
         Post login actions
         
         '''
-        self.logger.info(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Starting post login actions")
+        self.logger.info(f"Starting post login actions")
 
         if login_status: ## Set by a signal in the login class
             self.event_loop.start_event_loop()

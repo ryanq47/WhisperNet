@@ -1,10 +1,10 @@
 import inspect
 import json
-from PySide6.QtWidgets import QWidget, QMessageBox, QMenu, QMainWindow, QToolBar, QVBoxLayout, QPushButton
+from PySide6.QtWidgets import QWidget, QMessageBox, QMenu, QMainWindow, QToolBar, QVBoxLayout, QPushButton, QListView
 from PySide6.QtGui import QIcon, QAction, QStandardItemModel, QStandardItem, QBrush, QColor
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtNetwork import QNetworkReply
-from PySide6.QtCore import Qt, Signal, QTimer
+from PySide6.QtCore import Qt, Signal, QStringListModel, QTimer
 from functools import partial
 from Utils.QtWebRequestManager import WebRequestManager
 from Utils.EventLoop import Event
@@ -51,13 +51,20 @@ class Listeners(QWidget):
             return
 
         try:
-            # Wrap the loaded UI in a container widget
-            container = QWidget()
-            container.setLayout(self.ui_file.layout())
+
             
             # load items
             #self.c2_systemshell = self.ui_file.findChild(QTextEdit, "test_text")  # Replace "QtWidgets" with the appropriate module
             #self.c2_systemshell.setText("test")
+
+            # showing up as none. 
+            self.listener_list_view = self.ui_file.findChild(QListView, "listener_list_view")
+
+
+            ## GOES LAST
+            # Wrap the loaded UI in a container widget
+            container = QWidget()
+            container.setLayout(self.ui_file.layout())
 
             # Create a new layout for self to include both the container and the toolbar
             layout = QVBoxLayout(self)
@@ -76,7 +83,7 @@ class Listeners(QWidget):
         '''
 
         # add to even loop
-        #self.event_loop.add_to_event_loop(self.get_listener_data)
+        self.event_loop.add_to_event_loop(self.get_listener_data)
 
     def __signal_setup(self):
         '''
@@ -127,34 +134,46 @@ class Listeners(QWidget):
         Gets all the simplec2 data from the server
         '''
         self.logger.info(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Getting data from server")
+
         self.request_manager = WebRequestManager()
+        self.request_manager.request_finished.connect(self.update_listener_list_view_widget) # or whatever func you want to send data to
+        self.request_manager.send_request("http://127.0.0.1:5000/api/simplec2/listener")
 
-        #post request for now. Subject to chagne
-        self.request_manager.send_get_request(
-            url = "http://127.0.0.1:5000/api/simplec2/listener")
-
-        ## stupid way of doing this but whatever. 
-
-        self.request_manager.request_finished.connect(
-            ##  send request                                      ## Signal that holds data
-            lambda response: self.handle_response(response, self.signal_get_all_data)
-        )## I don't fully remeber why we have to pass response to the function as well. 
-
-
-        self.signal_get_all_data.connect(self.update_data)
-        # Once we have data, loop call add_client_to_widget, or make it auto loop? not sure.
-        # May not have to worry about indexing items as QT will (should) have options for that. 
-
-
-
-    def update_client_tree_options(self):
+    def update_listener_list_view_widget(self, data):
         '''
-        Does any updates to the listener widget
+        Updates the listener list view with the given data.
+        This includes adding new items, and removing items that are no longer present.
+        The "name" key is used as a unique identifier.
         '''
-        pass
 
-        #for column in range(self.client_tree.columnCount()):
-            #self.client_tree.resizeColumnToContents(column)
+        # Initialize the model if it does not exist
+        if not hasattr(self, 'listener_list_view_model') or self.listener_list_view_model is None:
+            self.listener_list_view_model = QStringListModel()
+            self.listener_list_view.setModel(self.listener_list_view_model)
+
+        current_entries = self.listener_list_view_model.stringList()
+        current_identifiers = set(entry.split(' - ')[0] for entry in current_entries)
+        new_data_identifiers = set(data["data"].keys())
+
+        # Identify which identifiers have been removed and which are new
+        identifiers_to_remove = current_identifiers - new_data_identifiers
+        identifiers_to_add = new_data_identifiers - current_identifiers
+
+        # Remove entries that are no longer present
+        updated_entries = [
+            entry for entry in current_entries
+            if entry.split(' - ')[0] not in identifiers_to_remove
+        ]
+
+        # Add new entries
+        for name, details in data["data"].items():
+            if name in identifiers_to_add:
+                entry = f"{name} - {details['bind_address']}:{details['bind_port']} - {details['type']}"
+                updated_entries.append(entry)
+
+        # Update the model with the new list
+        self.listener_list_view_model.setStringList(updated_entries)
+ 
 
     def show_test_message(self):
         '''

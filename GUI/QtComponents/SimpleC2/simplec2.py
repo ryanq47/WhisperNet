@@ -94,8 +94,9 @@ class Simplec2(QWidget):
 
         #pleas don't break
         #self.event_loop.add_to_event_loop(self.get_client_data)
-        self.event_loop.add_to_event_loop(self.get_all_data)
-        self.event_loop.add_to_event_loop(self.get_all_data)
+        #self.event_loop.add_to_event_loop(self.get_all_data)
+        #self.event_loop.add_to_event_loop(self.get_all_data)
+        pass
 
 
     def __signal_setup(self):
@@ -159,29 +160,12 @@ class Simplec2(QWidget):
         '''
         Gets all the simplec2 data from the server
         '''
+
+
         self.logger.info(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Getting data from server")
         self.request_manager = WebRequestManager()
 
-        #post request for now. Subject to chagne
-        self.request_manager.send_get_request(
-            url = "http://127.0.0.1:5000/api/simplec2/general/everything")
-
-        ## stupid way of doing this but whatever. 
-
-        self.request_manager.request_finished.connect(
-            ##  send request                                      ## Signal that holds data
-            lambda response: self.handle_response(response, self.signal_get_all_data)
-        )## I don't fully remeber why we have to pass response to the function as well. 
-
-        ## Somehwere in here the data is not showing up, "data:" prints nothing.
-        ## Somehow fixed. wtf.
-        ## now getting called multiple times. 
-        print("get_all_data")
-        #self.signal_get_all_data.connect(self.update_data)
-
-        self.signal_get_all_data.connect(self.update_data)
-        # Once we have data, loop call add_client_to_widget, or make it auto loop? not sure.
-        # May not have to worry about indexing items as QT will (should) have options for that. 
+        ## Logic for getting data from server. 
 
 
 

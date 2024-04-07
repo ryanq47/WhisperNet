@@ -31,7 +31,7 @@ class Data(QObject):
             self.logger = LoggingSingleton.get_logger()
             self._auth = Auth(self)
             self._simplec2 = SimpleC2Data(self)
-
+            self._server = Server(self)
             # object is getting created correctly
             #self._auth.jwt = "balls"
             #print(self._auth.jwt)
@@ -48,6 +48,9 @@ class Data(QObject):
     def simplec2(self):
         return self._simplec2
 
+    @Property(QObject)
+    def server(self):
+        return self._server
 
 ## apparently not being init/defined for qml. somethings up, same issue I had befoer
 class Auth(QObject):

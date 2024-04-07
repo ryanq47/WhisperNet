@@ -17,6 +17,7 @@ from QtComponents.Listeners.listener import Listeners
 from Utils.Data import Data
 from Utils.EventLoop import Event
 from Utils.BaseLogging import BaseLogging
+from Utils.SignalSingleton import SignalSingleton
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -53,8 +54,10 @@ class MainWindow(QMainWindow):
         
         #self.setCentralWidget(Simplec2())
 
+        self.logger.info("Initializing init_items")
         self.init_items()
-
+        
+        self.logger.info("Setting global stylesheet")
         # Set Stylesheet
         self.global_set_stylesheet()
 
@@ -64,7 +67,12 @@ class MainWindow(QMainWindow):
         '''
         ## Create init singleton
         self.data = Data()
+        self.signals = SignalSingleton()
         self.event_loop = Event()
+
+        # temprary here as the signal is borked?
+        self.post_login_actions()
+
 
     def add_menu_bar(self):
         '''
@@ -76,9 +84,9 @@ class MainWindow(QMainWindow):
         # Add menus to the menu bar
         file_menu = menu_bar.addMenu("File")
 
-        ## mini problem, only one object of this exists and when it gets deletedit cant be reopened. Need to rethink the loading methods/close independent window methods
-        login_class = Login() # doing this so I can connect the login signal from it
-        login_class.signal_logged_in.connect(self.post_login_actions)
+        ## mini problem, only one object of this exists and when it gets deletedit cant be reopened. Can fix with new winodw pop methods *later*
+        login_class = Login()
+        self.signals.auth.userSuccessfulLogin.connect(self.post_login_actions)
         file_menu_login = QAction("Login to Server", self)
         file_menu_login.triggered.connect(partial(self.pop_new_window, login_class))
         file_menu.addAction(file_menu_login)
@@ -181,15 +189,20 @@ class MainWindow(QMainWindow):
         #self.add_dock_widget("Assets", "left", Secrets())
         #self.add_dock_widget("Assets", "right", Secrets())
 
-    def post_login_actions(self, login_status):
+    #def post_login_actions(self, login_status):
+    def post_login_actions(self):
+
         '''
-        Post login actions
+        Post login actions.
+        Triggered on signal: userSuccessfulLogin
         
         '''
-        self.logger.info(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Starting post login actions")
+        print("HELLO?")
+        self.logger.info(f" Starting post login actions")
 
-        if login_status: ## Set by a signal in the login class
-            self.event_loop.start_event_loop()
+        #if login_status: ## Set by a signal in the login class
+            #self.event_loop.start_event_loop()
+        self.event_loop.start_event_loop()
 
     #def load_ui_elements(self):
         #self.lower_tab_widget = self.ui_file.findChild(QTextEdit, "test_text")
