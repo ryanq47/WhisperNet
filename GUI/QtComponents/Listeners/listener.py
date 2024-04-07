@@ -1,6 +1,6 @@
 import inspect
 import json
-from PySide6.QtWidgets import QWidget, QMessageBox, QMenu, QMainWindow, QToolBar, QVBoxLayout, QPushButton, QListView
+from PySide6.QtWidgets import QWidget, QMessageBox, QMenu, QMainWindow, QToolButton, QVBoxLayout, QPushButton, QTreeView
 from PySide6.QtGui import QIcon, QAction, QStandardItemModel, QStandardItem, QBrush, QColor, QCursor
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtNetwork import QNetworkReply
@@ -37,7 +37,7 @@ class Listeners(QWidget):
         self.__q_timer()
         self.__signal_setup()
         self.init_options()
-        self.name = "Listener"
+        self.name = "Listeners"
 
 
     def __ui_load(self):
@@ -58,11 +58,16 @@ class Listeners(QWidget):
             #self.c2_systemshell.setText("test")
 
             # showing up as none. 
-            self.listener_list_view = self.ui_file.findChild(QListView, "listener_list_view")
-            #self.listener_list_view.setContextMenuPolicy(Qt.CustomContextMenu)
-            #self.listener_list_view.customContextMenuRequested.connect(self.show_context_menu)
+            self.listener_tree_view = self.ui_file.findChild(QTreeView, "listener_tree_view")
+            self.listener_tree_view_model = QStandardItemModel()
+            self.listener_tree_view.setModel(self.listener_tree_view_model)
+            # Set header labels if necessary
+            self.listener_tree_view_model.setHorizontalHeaderLabels(['Name', 'Address', 'Port', 'Type'])
 
 
+            self.listener_option_button = self.ui_file.findChild(QToolButton, "listener_options_button")
+            self.listener_option_button.setText("Options")
+            
             ## GOES LAST
             # Wrap the loaded UI in a container widget
             container = QWidget()
@@ -117,18 +122,43 @@ class Listeners(QWidget):
         '''
         Sets options for the options button (bottom left button with '...')
         '''
-        self.add_toolbar()
+        #self.add_toolbar()
 
-    def add_toolbar(self):
+        # Add buttons to options button
+        
+        menu = QMenu(self)
+
+        # Add actions to the menu
+        add_host = QAction("Add Listener", self)
+
+        menu.addAction(add_host)
+
+        # Connect actions to functions
+        #add_host.triggered.connect(lambda _add_host: self.info_bar.setText("add_host"))
+        add_host.triggered.connect(lambda: GuiUtils.open_dialog(ListenerPopup, self))
+
+        self.listener_option_button.setMenu(menu)
+        self.listener_option_button.setPopupMode(QToolButton.InstantPopup)
+
+
+    '''    def add_toolbar(self):
         """
-        Adds a toolbar to the widget, considering the UI is loaded from a file.
+        Adds a toolbar to the widget at the bottom, considering the UI is loaded from a file.
         """
         toolbar = QToolBar("Tools", self)
         new_listener = toolbar.addAction("New Listener")
+        # Assuming GuiUtils.open_dialog is correctly implemented
         new_listener.triggered.connect(lambda: GuiUtils.open_dialog(ListenerPopup, self))
 
-        # Assuming __ui_load has been called and the main layout set
-        self.layout().insertWidget(0, toolbar)
+        # Ensure the layout is a QVBoxLayout; otherwise, adjust your layout accordingly.
+        if not isinstance(self.layout(), QVBoxLayout):
+            print("The current layout is not a QVBoxLayout. Adjusting...")
+            new_layout = QVBoxLayout(self)
+            new_layout.addLayout(self.layout())  # Move the current layout into the new QVBoxLayout
+
+        # Insert the toolbar at the bottom of the QVBoxLayout
+        self.layout().addWidget(toolbar)
+    '''
 
 
     def get_listener_data(self):
@@ -138,43 +168,44 @@ class Listeners(QWidget):
         self.logger.info(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Getting data from server")
 
         self.request_manager = WebRequestManager()
-        self.request_manager.request_finished.connect(self.update_listener_list_view_widget) # or whatever func you want to send data to
+        self.request_manager.request_finished.connect(self.update_listener_tree_view_widget) # or whatever func you want to send data to
         self.request_manager.send_request("http://127.0.0.1:5000/api/simplec2/listener")
 
-    def update_listener_list_view_widget(self, data):
+    def update_listener_tree_view_widget(self, data):
         '''
-        Updates the listener list view with the given data.
+        Updates the listener tree view with the given data.
         This includes adding new items, and removing items that are no longer present.
         The "name" key is used as a unique identifier.
         '''
 
-        # Initialize the model if it does not exist
-        if not hasattr(self, 'listener_list_view_model') or self.listener_list_view_model is None:
-            self.listener_list_view_model = QStringListModel()
-            self.listener_list_view.setModel(self.listener_list_view_model)
+        # Remember existing items to avoid duplicates
+        existing_items = {}
+        for row in range(self.listener_tree_view_model.rowCount()):
+            item = self.listener_tree_view_model.item(row, 0)  # Column 0 for names
+            if item:
+                existing_items[item.text()] = row
 
-        current_entries = self.listener_list_view_model.stringList()
-        current_identifiers = set(entry.split(' - ')[0] for entry in current_entries)
         new_data_identifiers = set(data["data"].keys())
 
-        # Identify which identifiers have been removed and which are new
-        identifiers_to_remove = current_identifiers - new_data_identifiers
-        identifiers_to_add = new_data_identifiers - current_identifiers
+        # Identify which identifiers have been removed
+        identifiers_to_remove = set(existing_items.keys()) - new_data_identifiers
 
         # Remove entries that are no longer present
-        updated_entries = [
-            entry for entry in current_entries
-            if entry.split(' - ')[0] not in identifiers_to_remove
-        ]
+        for identifier in identifiers_to_remove:
+            row = existing_items[identifier]
+            self.listener_tree_view_model.removeRow(row)
 
-        # Add new entries
+        # Add or update new entries
         for name, details in data["data"].items():
-            if name in identifiers_to_add:
-                entry = f"{name} - {details['bind_address']}:{details['bind_port']} - {details['type']}"
-                updated_entries.append(entry)
-
-        # Update the model with the new list
-        self.listener_list_view_model.setStringList(updated_entries)
+            if name in identifiers_to_remove or name not in existing_items:
+                # Creating new entries as rows
+                entries = [
+                    QStandardItem(name),
+                    QStandardItem(details['bind_address']),
+                    QStandardItem(details['bind_port']),
+                    QStandardItem(details['type'])
+                ]
+                self.listener_tree_view_model.appendRow(entries)
  
 
     def print_data(self, data):
@@ -201,5 +232,5 @@ class Listeners(QWidget):
         #delete_action.triggered.connect(self.delete_item)
         
         # Display the context menu at the requested position
-        context_menu.exec(self.listener_list_view.viewport().mapToGlobal(position))
+        context_menu.exec(self.listener_tree_view.viewport().mapToGlobal(position))
         #context_menu.exec(QCursor.pos())

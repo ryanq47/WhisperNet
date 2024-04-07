@@ -24,6 +24,7 @@ Refactor Notes:
  - Listener
      - [X] Get listener details from server, display in tree item << Data coming in, need to do display logic
      - [ ] Add context menu for listeners (right click) that stops them
+     - [ ] fix the weird stretching/not full screening in the widget.
 
  - Login
      - [X] Make it a Dialogue
