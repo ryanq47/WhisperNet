@@ -24,7 +24,7 @@ Refactor Notes:
  - Listener
      - [X] Get listener details from server, display in tree item << Data coming in, need to do display logic
      - [ ] Add context menu for listeners (right click) that stops them
-     - [ ] fix the weird stretching/not full screening in the widget.
+     - [X] fix the weird stretching/not full screening in the widget.
 
  - Login
      - [X] Make it a Dialogue
@@ -38,8 +38,25 @@ Refactor Notes:
       
       `Error with proccessing events: Internal C++ object (Listeners) already deleted.`
 
+  - [ ] Docs:
+    - [ ] Signal Singleton
+    - [ ] Names of listener actions:
+          - Spawn: Create a new listener
+          - Kill: Remove the lsitener
+          (and for later expandability):
+          - Start: Start a stopped/paused listener (if even possible?)
+          - Stop: Stop a listener
+          - NOTE: these need to change server side as well
+
+  - [ ] Server:
+     - Rename start/stop endpoints to spawn/kill
+     - Remove listeners from current listener list/endpoint when killed. This will reflect
+        properly on the GUI.
+
 Goals:
  - [X] establish proper/consistent way of doing things (such as popping windows, and network requests).
     Use helper functions.
 
 - [ ] Fix web requests as you discover them 
+
+

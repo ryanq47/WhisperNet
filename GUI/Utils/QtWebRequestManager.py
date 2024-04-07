@@ -49,7 +49,7 @@ class WebRequestManager(QNetworkAccessManager):
         error = reply.error()
         if error == QNetworkReply.NoError:
             response_data = reply.readAll().data().decode()
-            self.logger.info("Request finished successfully")
+            self.logger.debug("Request finished successfully")
             try:
                 data = json.loads(response_data)
             except json.JSONDecodeError:

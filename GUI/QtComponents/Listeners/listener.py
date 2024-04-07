@@ -11,7 +11,7 @@ from Utils.EventLoop import Event
 from Utils.Data import Data
 from Utils.BaseLogging import BaseLogging
 from Utils.Utils import GuiUtils
-from QtComponents.Listeners.listener_popup import ListenerPopup
+from QtComponents.Listeners.listener_popup import KillListenerPopup, StartListenerPopup
 
 class Listeners(QWidget):
     #signal_get_client_data= Signal(str)
@@ -68,16 +68,15 @@ class Listeners(QWidget):
             self.listener_option_button = self.ui_file.findChild(QToolButton, "listener_options_button")
             self.listener_option_button.setText("Options")
             
+            # set up context menus
+            self.listener_tree_view.setContextMenuPolicy(Qt.CustomContextMenu)  # Enable custom context menus
+            self.listener_tree_view.customContextMenuRequested.connect(self.on_context_menu)  # Connect to your handler
+
             ## GOES LAST
             # Wrap the loaded UI in a container widget
             #container = QWidget()
             self.setLayout(self.ui_file.layout())
 
-            # Create a new layout for self to include both the container and the toolbar
-            #layout = QVBoxLayout(self)
-            #layout.addWidget(container)  # Add the UI container as the main content
-            #self.setLayout(layout)
-            #self.main_container = container  # Keep a reference if needed
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {e}")
@@ -98,25 +97,6 @@ class Listeners(QWidget):
         '''
         #self.data.simplec2.db_data_updated.connect(self.update_client_widget)
 
-    def contextMenuEvent(self, event):
-        # Find the item at the cursor position
-        item = self.client_tree.itemAt(event.pos())
-        if item:
-            # Create context menu
-            menu = QMenu(self)
-
-            # Add actions
-            action1 = menu.addAction("Something")
-            action2 = menu.addAction("Something2")
-
-            # Connect actions to methods or use lambda functions
-            #action1.triggered.connect(lambda: self.action1_triggered(item))
-            #action2.triggered.connect(lambda: self.action2_triggered(item))
-            action1.triggered.connect(self.show_test_message)
-            action2.triggered.connect(self.show_test_message)
-
-            # Display the menu
-            menu.exec(event.globalPos())
 
     def init_options(self):
         '''
@@ -135,7 +115,7 @@ class Listeners(QWidget):
 
         # Connect actions to functions
         #add_host.triggered.connect(lambda _add_host: self.info_bar.setText("add_host"))
-        add_host.triggered.connect(lambda: GuiUtils.open_dialog(ListenerPopup, self))
+        add_host.triggered.connect(self.add_listener)
 
         self.listener_option_button.setMenu(menu)
         self.listener_option_button.setPopupMode(QToolButton.InstantPopup)
@@ -165,7 +145,7 @@ class Listeners(QWidget):
         '''
         Gets all the simplec2 data from the server
         '''
-        self.logger.info(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Getting data from server")
+        self.logger.debug(f"Getting data from server")
 
         self.request_manager = WebRequestManager()
         self.request_manager.request_finished.connect(self.update_listener_tree_view_widget) # or whatever func you want to send data to
@@ -217,20 +197,26 @@ class Listeners(QWidget):
 
 ## Context Menus
         
-    def show_context_menu(self, position):
+    def on_context_menu(self, position):
         # Create the context menu
-        context_menu = QMenu(self)
-        edit_action = QAction("Edit", self)
-        delete_action = QAction("Delete", self)
-        
+        contextMenu = QMenu(self)
+
         # Add actions to the context menu
-        #context_menu.addAction(edit_action)
-        #context_menu.addAction(delete_action)
-        
-        # Connect actions to slots
-        #edit_action.triggered.connect(self.edit_item)
-        #delete_action.triggered.connect(self.delete_item)
-        
-        # Display the context menu at the requested position
-        context_menu.exec(self.listener_tree_view.viewport().mapToGlobal(position))
-        #context_menu.exec(QCursor.pos())
+        addAction = QAction("Add Listener", self)
+        removeAction = QAction("Remove Listener", self)  # Example additional action
+        contextMenu.addAction(addAction)
+        contextMenu.addAction(removeAction)
+
+        # Connect actions to their respective slots (methods or functions)
+        addAction.triggered.connect(self.add_listener)
+        removeAction.triggered.connect(self.remove_listener)  # Implement this method as needed
+
+        # Show the context menu at the tree view's viewport position
+        contextMenu.exec_(self.listener_tree_view.viewport().mapToGlobal(position))
+
+## Actions
+    def add_listener(self):
+        GuiUtils.open_dialog(StartListenerPopup, self)
+    
+    def remove_listener(self):
+        GuiUtils.open_dialog(KillListenerPopup, self)
