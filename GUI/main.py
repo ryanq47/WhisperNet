@@ -135,7 +135,9 @@ class MainWindow(QMainWindow):
 
         self.logger.info("Setting up initial widget instances")
         self.add_dock_widget(Console().name, "bottom", Console())
-        self.add_dock_widget(Console().name, "top", Simplec2())
+        self.add_dock_widget(Simplec2().name, "top", Simplec2())
+        self.add_dock_widget(Listeners().name, "top", Listeners())
+
 
         #self.add_dock_widget("Assets", "left", Secrets())
         #self.add_dock_widget("Assets", "right", Secrets())

@@ -1,7 +1,7 @@
 import inspect
 import json
 from PySide6.QtWidgets import QWidget, QMessageBox, QMenu, QMainWindow, QToolBar, QVBoxLayout, QPushButton, QListView
-from PySide6.QtGui import QIcon, QAction, QStandardItemModel, QStandardItem, QBrush, QColor
+from PySide6.QtGui import QIcon, QAction, QStandardItemModel, QStandardItem, QBrush, QColor, QCursor
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtNetwork import QNetworkReply
 from PySide6.QtCore import Qt, Signal, QStringListModel, QTimer
@@ -59,6 +59,8 @@ class Listeners(QWidget):
 
             # showing up as none. 
             self.listener_list_view = self.ui_file.findChild(QListView, "listener_list_view")
+            #self.listener_list_view.setContextMenuPolicy(Qt.CustomContextMenu)
+            #self.listener_list_view.customContextMenuRequested.connect(self.show_context_menu)
 
 
             ## GOES LAST
@@ -175,62 +177,29 @@ class Listeners(QWidget):
         self.listener_list_view_model.setStringList(updated_entries)
  
 
-    def show_test_message(self):
-        '''
-        A test popup box for debugging/etc
-        '''
-        msg = QMessageBox()
-        msg.setWindowTitle("Test Message")
-        msg.setText("This is a test popup message.")
-        msg.setIcon(QMessageBox.Information)
-        msg.exec_()
-
     def print_data(self, data):
         '''
         Temp for printing data, meant to bea debug method
         '''
-        self.logger.debug(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: Printing Data:")
+        self.logger.debug(f"Printing Data:")
         print(data)
 
-    def update_data(self, data):
-        '''
-        Updates current data in the singleton
-        '''
-        pass
-
-
-    def handle_response(self, reply, signal):        
-        '''
-        Handles a web request response. 
-
-        Emits a SIGNAL, named 'response_received'. This signal 
-        contains the web request response. 
+## Context Menus
         
-        This will trigger signals in the respective functions that called it.
+    def show_context_menu(self, position):
+        # Create the context menu
+        context_menu = QMenu(self)
+        edit_action = QAction("Edit", self)
+        delete_action = QAction("Delete", self)
         
-
-        reply: web reply
-        signal: The signal to return/emit to. this is so signals dont have the same data passed between them 
-        causing issues
-
-        '''
-        #logging.debug(f"{function_debug_symbol} {inspect.stack()[0][3]}")
-        try:
-            #print(reply.readAll().data().decode())
-            if reply.error() == QNetworkReply.NoError:
-                response_data = reply.readAll().data().decode()
-                #print("data form handle response received")
-                #print(response_data)
-                signal.emit(response_data)  # Emit the custom signal
-                ## Disconnecting signal post emit, otherwise it starts to multiply
-                signal.disconnect()
-
-            else:
-                string = f"Error with request: {reply.error()}"
-                #print(reply)
-                signal.emit(string)  # Emit the custom signal
-                signal.disconnect()
-        except Exception as e:
-            self.logger.error(f"{self.__class__.__name__}.{inspect.currentframe().f_code.co_name}: {e}")
-            #logging.debug(f"{function_debug_symbol} Error with handle_response: {e}")
-
+        # Add actions to the context menu
+        #context_menu.addAction(edit_action)
+        #context_menu.addAction(delete_action)
+        
+        # Connect actions to slots
+        #edit_action.triggered.connect(self.edit_item)
+        #delete_action.triggered.connect(self.delete_item)
+        
+        # Display the context menu at the requested position
+        context_menu.exec(self.listener_list_view.viewport().mapToGlobal(position))
+        #context_menu.exec(QCursor.pos())

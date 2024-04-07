@@ -99,6 +99,15 @@ QTabBar::tab:!selected {
     margin-top: 2px; /* Make non-selected tabs look smaller */
 }
 
+/*Q List View */
+QListView {
+    border: 1px solid #555;
+    /* background-color: #2b2b2b; */
+    color: #dcdcdc;
+}
+
+
+
 /* Q Tree Widget */
 QTreeWidget {
     border: 1px solid #555;
