@@ -70,14 +70,14 @@ class Listeners(QWidget):
             
             ## GOES LAST
             # Wrap the loaded UI in a container widget
-            container = QWidget()
-            container.setLayout(self.ui_file.layout())
+            #container = QWidget()
+            self.setLayout(self.ui_file.layout())
 
             # Create a new layout for self to include both the container and the toolbar
-            layout = QVBoxLayout(self)
-            layout.addWidget(container)  # Add the UI container as the main content
-            self.setLayout(layout)
-            self.main_container = container  # Keep a reference if needed
+            #layout = QVBoxLayout(self)
+            #layout.addWidget(container)  # Add the UI container as the main content
+            #self.setLayout(layout)
+            #self.main_container = container  # Keep a reference if needed
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {e}")
