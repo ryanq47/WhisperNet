@@ -14,7 +14,10 @@ else:
     from PluginEngine.PublicPlugins.ListenerHTTP.Modules.Client import Client
     from PluginEngine.PublicPlugins.ListenerHTTP.Modules.HTTPJsonRequest import HTTPJsonRequest
 
-from flask import jsonify, make_response, Flask
+
+# req'd either way
+from types import SimpleNamespace
+from flask import jsonify, make_response, Flask, request
 import inspect
 
 class Info:
@@ -100,21 +103,51 @@ class ListenerHTTP:
     def listener_http_post_endpoint(self):
         '''
             Initial checkin endpoint. Registers client if new, and gives URL for client to use going forward
+
+            this function needs to be broken up, into generating a dynamic URL for hte clietns to go to (maybe redirect them - need to think that out) - or just emit this entirely to start
+            and get the next command queued for them. 
+
+            For now using a dummy_request
         
         '''
 
         # for now, just returning the mock JSON format
+        ##dummy_request = HTTPJsonRequest()
+
+        ##dummy_request.callback.server.hostname = "callbackserver" # pull this from the singleton somehwere
+
+        ##dummy_request_json = dummy_request.generate_json()
+
+        ##return make_response(dummy_request_json, 200)
+
+        # Get JSON data
+        data = request.json
+
+        if data is None:
+            return jsonify({"error": "Invalid or no JSON received"}), 400
+
+        # Convert JSON data to a dictionary
+        data_dict = dict(data)
+        
+        # Optionally, convert to SimpleNamespace for attribute-style access
+        data_ns = SimpleNamespace(**data_dict)
+
+        print(data_ns)
+
+        # Example usage of the namespace
+        print(data_ns.response_id)  # Access attributes directly
+        #print(data_ns.result.data)  # Nested data access
+
+        # Temp here, create response back to client
         dummy_request = HTTPJsonRequest()
-
         dummy_request.callback.server.hostname = "callbackserver" # pull this from the singleton somehwere
-
         dummy_request_json = dummy_request.generate_json()
 
+        # send response back
         return make_response(dummy_request_json, 200)
-
+        ## Handling Data - Temp here, move to diff function once the dynamic URL is set/thought about.
 
         #self.client_checkin_validation("data")
-
         #return make_response("POST ENDPOINT - JSON HERE", 200)
 
 

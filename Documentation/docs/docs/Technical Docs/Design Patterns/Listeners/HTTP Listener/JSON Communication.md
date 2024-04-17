@@ -6,8 +6,8 @@ To see construction of how to generate these:
 
  - [HTTPJsonRequest](../../../Server/Plugins/ListenerHTTP/HTTPJsonRequest.md)
 
-#### To Clients
-
+#### Data
+the data sent TO the clients. 
 ```
 {
     "request_id": null,      
@@ -55,7 +55,9 @@ To see construction of how to generate these:
 
 ```
 
+
 #### From Clients
+The data sent BACK from clients, to the server
 ```
 {
   "response_id": "matching_request_identifier",
@@ -63,7 +65,7 @@ To see construction of how to generate these:
   "timestamp": 1710442988,
   "status": "success",
   "result": {
-    "data": "Example result data"
+    "data": "Example result data "
   },
   "error": {
     "code": null,

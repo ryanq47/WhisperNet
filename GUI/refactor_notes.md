@@ -48,15 +48,28 @@ Refactor Notes:
           - Stop: Stop a listener
           - NOTE: these need to change server side as well
 
+
+    - [ ] HTTP listener and how data is recieved. Dynamic keys N stuff + simplenamepace
+
   - [ ] Server:
      - Rename start/stop endpoints to spawn/kill
      - Remove listeners from current listener list/endpoint when killed. This will reflect
         properly on the GUI.
+
+  - [ ] Listener
+      - [X]Start with data capture logic
+          - Works, need to build out listenres
 
 Goals:
  - [X] establish proper/consistent way of doing things (such as popping windows, and network requests).
     Use helper functions.
 
 - [ ] Fix web requests as you discover them 
+ - [ ] FINISH DOCUMENTATION LIST! 
+ - [ ] Build out listener process (queueing, storing data, receivign request, etc.)
 
 
+- [ ] Other ideas:
+  - SocketListeners. Use binary strings & raw sockets to communicate. 
+  - Actually, just have like multiple communication formats available (then you could choose what msg format, and what listener type)?
+    Ex, comms via binary string, each bit means something (would have to be VERY basic, and for long term/quiet af options - sleepers), via json, etc. then adapt to other listeners? Might cause problems parsing based on the clients. 
