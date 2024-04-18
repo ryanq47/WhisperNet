@@ -63,7 +63,13 @@ Refactor Notes:
       - [X]Start with data capture logic
           - Works, need to build out listenres
 
+        >> Here <<
       - [ ] Figure out how to handle data sent to listener. (needs to get to server somehow)
+        - Currently, items are in the "client" class. These classes need to be managed in a singleton within the listener itself. Additioanlly, there needs to be logic to retreive data from these client classes, and forward to the server. 
+
+        This may or may not live in the client classes themselves, have not thoguth it out yet.
+            - Idea: Getter/setters for data (already in place), and the actual connect to server/server sync logic is in
+                A seperate module/classs
       
 
 Goals:
@@ -71,7 +77,7 @@ Goals:
     Use helper functions.
 
 - [ ] Fix web requests as you discover them 
- - [ ] FINISH DOCUMENTATION LIST! 
+ - [X] FINISH DOCUMENTATION LIST! 
  - [ ] Build out listener process (queueing, storing data, receivign request, etc.)
 
 
