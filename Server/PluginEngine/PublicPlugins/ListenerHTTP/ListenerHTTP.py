@@ -111,14 +111,40 @@ class ListenerHTTP:
         
         '''
 
-        # for now, just returning the mock JSON format
-        ##dummy_request = HTTPJsonRequest()
+        #####
+            ## New Chain
+            # Recieve request
+            # Parse request. 
+            # store request - somewhere
+            # Get new item in listener queue (from client class)
+            # return response to client.
 
-        ##dummy_request.callback.server.hostname = "callbackserver" # pull this from the singleton somehwere
 
-        ##dummy_request_json = dummy_request.generate_json()
+        #####
 
-        ##return make_response(dummy_request_json, 200)
+        data = request.json
+
+        if data is None:
+            return jsonify({"error": "Invalid or no JSON received"}), 400
+
+        data_dict = dict(data)
+
+        ## Check if client exist, 
+
+        ## if not:
+            # add to singleton or somewhere with client name
+        client_instance = Client(app=self.app)
+
+        client_instance.set_response(response=data_dict)
+
+        # get next command
+        client_command = client_instance.dequeue_command()
+
+        # return command to client
+        return make_response(jsonify(client_command), 200)
+    
+
+        '''
 
         # Get JSON data
         data = request.json
@@ -149,7 +175,7 @@ class ListenerHTTP:
 
         #self.client_checkin_validation("data")
         #return make_response("POST ENDPOINT - JSON HERE", 200)
-
+        '''
 
     def client_checkin_validation(self):
         pass
