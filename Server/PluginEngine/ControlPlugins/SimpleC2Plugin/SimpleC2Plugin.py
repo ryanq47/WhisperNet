@@ -109,8 +109,8 @@ class SimpleC2():
 
         ## listeners
         self.app.route(f'/api/{Info.endpoint}/listener', methods = ["GET"])(self.listener_list)
-        self.app.route(f'/api/{Info.endpoint}/listener/http/start', methods = ["POST"])(self.http_listener_start)
-        self.app.route(f'/api/{Info.endpoint}/listener/http/stop', methods = ["POST"])(self.http_listener_stop)
+        self.app.route(f'/api/{Info.endpoint}/listener/http/spawn', methods = ["POST"])(self.http_listener_spawn)
+        self.app.route(f'/api/{Info.endpoint}/listener/http/kill', methods = ["POST"])(self.http_listener_kill)
 
 
         ## Client
@@ -215,9 +215,9 @@ class SimpleC2():
             return api_response(status_code=500)
 
 ## HTTP Listener
-    def http_listener_start(self):
+    def http_listener_spawn(self):
         '''
-            Start an HTTP listener
+            Spawn an HTTP listener
         '''
 
         try:
@@ -226,7 +226,7 @@ class SimpleC2():
             listener_nickname = request.json.get('nickname')
 
             # class call
-            HttpListenerHandler.start(bind_port = listener_port, bind_address = listener_address, nickname=listener_nickname)
+            HttpListenerHandler.spawn(bind_port = listener_port, bind_address = listener_address, nickname=listener_nickname)
 
             return api_response(status_code=200)
 
@@ -236,16 +236,16 @@ class SimpleC2():
             self.logger.warning(e)
             return api_response(status_code=500)
 
-    def http_listener_stop(self):
+    def http_listener_kill(self):
         '''
-            Stop an HTTP listener. POST request, recieves nickname for listener to stop
+            Kill an HTTP listener (hard kill). POST request, recieves nickname for listener to kill
         '''
 
         try:
             nickname = request.json.get('nickname')
 
             # class call
-            HttpListenerHandler.stop(nickname=nickname)
+            HttpListenerHandler.kill(nickname=nickname)
 
             return api_response(status_code=200)
 

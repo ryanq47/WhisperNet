@@ -11,7 +11,7 @@ from Utils.BaseLogging import BaseLogging
 import inspect
 import json
 
-class StartListenerPopup(QDialog):
+class SpawnListenerPopup(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.logger = BaseLogging.get_logger()
@@ -118,7 +118,7 @@ class StartListenerPopup(QDialog):
         self.request_manager = WebRequestManager()
         #self.request_manager.request_finished.connect(self.some_method_to_take_the_data)
         self.request_manager.send_request(
-            url = "http://127.0.0.1:5000/api/simplec2/listener/http/start",
+            url = "http://127.0.0.1:5000/api/simplec2/listener/http/spawn",
             data = listener_params, 
             method="POST"
             )
@@ -227,7 +227,7 @@ class KillListenerPopup(QDialog):
         self.request_manager = WebRequestManager()
         #self.request_manager.request_finished.connect(self.some_method_to_take_the_data)
         self.request_manager.send_request(
-            url = "http://127.0.0.1:5000/api/simplec2/listener/http/stop",
+            url = "http://127.0.0.1:5000/api/simplec2/listener/http/kill",
             data = listener_params, 
             method="POST"
             )

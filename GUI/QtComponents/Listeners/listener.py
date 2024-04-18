@@ -11,7 +11,7 @@ from Utils.EventLoop import Event
 from Utils.Data import Data
 from Utils.BaseLogging import BaseLogging
 from Utils.Utils import GuiUtils
-from QtComponents.Listeners.listener_popup import KillListenerPopup, StartListenerPopup
+from QtComponents.Listeners.listener_popup import KillListenerPopup, SpawnListenerPopup
 
 class Listeners(QWidget):
     #signal_get_client_data= Signal(str)
@@ -186,7 +186,7 @@ class Listeners(QWidget):
                     QStandardItem(details['type'])
                 ]
                 self.listener_tree_view_model.appendRow(entries)
- 
+
 
     def print_data(self, data):
         '''
@@ -216,7 +216,7 @@ class Listeners(QWidget):
 
 ## Actions
     def add_listener(self):
-        GuiUtils.open_dialog(StartListenerPopup, self)
+        GuiUtils.open_dialog(SpawnListenerPopup, self)
     
     def remove_listener(self):
         GuiUtils.open_dialog(KillListenerPopup, self)

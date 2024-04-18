@@ -39,8 +39,10 @@ Refactor Notes:
       `Error with proccessing events: Internal C++ object (Listeners) already deleted.`
 
   - [ ] Docs:
-    - [ ] Signal Singleton
-    - [ ] Names of listener actions:
+    - [X] Signal Singleton
+
+      (user & GUI docs)
+    - [X] Names of listener actions:
           - Spawn: Create a new listener
           - Kill: Remove the lsitener
           (and for later expandability):
@@ -49,16 +51,20 @@ Refactor Notes:
           - NOTE: these need to change server side as well
 
 
+      (server)
     - [ ] HTTP listener and how data is recieved. Dynamic keys N stuff + simplenamepace
 
   - [ ] Server:
      - Rename start/stop endpoints to spawn/kill
      - Remove listeners from current listener list/endpoint when killed. This will reflect
-        properly on the GUI.
+        properly on the GUI. --? Not sure what this means, thanks past ryan.
 
   - [ ] Listener
       - [X]Start with data capture logic
           - Works, need to build out listenres
+
+      - [ ] Figure out how to handle data sent to listener. (needs to get to server somehow)
+      
 
 Goals:
  - [X] establish proper/consistent way of doing things (such as popping windows, and network requests).

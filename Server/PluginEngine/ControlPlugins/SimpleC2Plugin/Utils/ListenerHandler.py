@@ -8,9 +8,9 @@ logger = LoggingSingleton.get_logger()
 
 class HttpListenerHandler:
     @staticmethod
-    def start(bind_address=None, bind_port=None, nickname=None):
+    def spawn(bind_address=None, bind_port=None, nickname=None):
         '''
-        Starts the listener & adds it to the DataSingleton for management.
+        Spawn (Create a new)  listener & adds it to the DataSingleton for management.
         '''
         try:
             listener_instance = ListenerHTTP(
@@ -34,14 +34,14 @@ class HttpListenerHandler:
             }
             data_singleton.Listeners.HTTP.add_listener(process=p, info=info)
 
-            logger.info(f"Started HTTP listener on {bind_address}:{bind_port}!")
+            logger.info(f"Spawned HTTP listener on {bind_address}:{bind_port}!")
         except Exception as e:
             logger.warning(e)
 
     @staticmethod
-    def stop(nickname=None):
+    def kill(nickname=None):
         '''
-        Stops a listener based on its nickname.
+        Kill a listener based on its nickname.
         '''
         try:
             data_singleton = Data()
@@ -53,9 +53,9 @@ class HttpListenerHandler:
                 # Directly terminate the process - Not a problem at the moment, but could be more graceful if needed in the future
                 listener_info['process'].terminate()
                 listener_info['process'].join()  # Wait for the process to be terminated
-                logger.info(f"Stopped HTTP listener {nickname} successfully.")
+                logger.info(f"Killed HTTP listener {nickname} successfully.")
             else:
-                logger.info(f"Listener {nickname} does not exist, cannot stop it.")
+                logger.info(f"Listener {nickname} does not exist, cannot kill it.")
         except Exception as e:
             logger.error(e)
 
