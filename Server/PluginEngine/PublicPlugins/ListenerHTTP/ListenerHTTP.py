@@ -7,12 +7,13 @@ if __name__ == "__main__":
     from Modules.Logger import LoggingSingleton # hmm gonna need to inlcude a logger in utils?
     from Modules.Client import Client
     from Modules.HTTPJsonRequest import HTTPJsonRequest
-
+    from Modules.ActionLogger import ActionLogger
 # for NODE/Server running
 else:
     from Utils.Logger import LoggingSingleton
     from PluginEngine.PublicPlugins.ListenerHTTP.Modules.Client import Client
     from PluginEngine.PublicPlugins.ListenerHTTP.Modules.HTTPJsonRequest import HTTPJsonRequest
+    from Utils.ActionLogger import ActionLogger
 
 
 # req'd either way
@@ -133,7 +134,7 @@ class ListenerHTTP:
 
         ## if not:
             # add to singleton or somewhere with client name
-        client_instance = Client(app=self.app)
+        client_instance = Client(app=self.app, action_logger=ActionLogger())
 
         client_instance.set_response(response=data_dict)
 

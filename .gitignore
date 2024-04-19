@@ -33,3 +33,4 @@ Agent/c\#/.vs/Client/FileContentIndex/0a7794bc-4ec2-4a22-ac6b-753a1eaf2044.vsidx
 *.1
 ExternalPlugins/FileHost_External/.env
 *.env*
+Server/system_log.json

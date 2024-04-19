@@ -1,0 +1,2 @@
+{"log_timestamp": "2024-04-17T22:53:58.458561", "request_id": "req001", "response_id": "resp001", "action": "Initialize System", "status": "success", "details": "System initialized without errors.", "request": {"command": "init"}, "response": {"result": "ok"}}
+{"log_timestamp": "2024-04-17T22:53:58.458561", "request_id": "req002", "response_id": "resp002", "action": "Send Command", "status": "fail", "details": "Failed to send command due to timeout.", "request": {"command": "reboot"}, "response": {"error": "timeout"}}
