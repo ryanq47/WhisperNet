@@ -64,6 +64,9 @@ Refactor Notes:
           - Works, need to build out listenres
 
         >> Here <<
+      - [X] Action logger done/works fine for now. 
+          - [ ] Log items where needed/as you come accross them, both with this and regualr logging
+
       - [ ] Figure out how to handle data sent to listener. (needs to get to server somehow)
         - Currently, items are in the "client" class. These classes need to be managed in a singleton within the listener itself. Additioanlly, there needs to be logic to retreive data from these client classes, and forward to the server. 
 
