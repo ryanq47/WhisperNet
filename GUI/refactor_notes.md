@@ -67,8 +67,20 @@ Refactor Notes:
       - [X] Action logger done/works fine for now. 
           - [ ] Log items where needed/as you come accross them, both with this and regualr logging
 
+
+      - Doc: 
+          Modules: Specific items for plugins
+          Utils: Other, see bottom
+          Once httplistener done,set bsae tempalte for public plugins/rules around them
+
+         - [X] Doc new import method things
+              Got rid of dumb double import method
+        - [ ] Test import method on sub imports & see if it still works. Maybe use data singleton to get the sys path
+
       - [ ] Figure out how to handle data sent to listener. (needs to get to server somehow)
         - Currently, items are in the "client" class. These classes need to be managed in a singleton within the listener itself. Additioanlly, there needs to be logic to retreive data from these client classes, and forward to the server. 
+
+      
 
         This may or may not live in the client classes themselves, have not thoguth it out yet.
             - Idea: Getter/setters for data (already in place), and the actual connect to server/server sync logic is in
@@ -82,6 +94,10 @@ Goals:
 - [ ] Fix web requests as you discover them 
  - [X] FINISH DOCUMENTATION LIST! 
  - [ ] Build out listener process (queueing, storing data, receivign request, etc.)
+
+- [ ] Later, specify modules vs utils:
+
+    Modules are collections of code that encapsulate specific functionalities within an application, while utils (utilities) are specialized modules designed to provide generic, reusable helper functions for common tasks.
 
 
 - [ ] Other ideas:

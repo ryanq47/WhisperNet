@@ -1,25 +1,37 @@
 # HTTP listener. Meant to be standalone, most things must be done throgh API calls to it. (ex: no direct neo4j interaction, call the main server api for that.)
 
-# for standalone running
-if __name__ == "__main__":
-    #print("Plugin running in standalone mode!")
-    import logging
-    from Modules.Logger import LoggingSingleton # hmm gonna need to inlcude a logger in utils?
-    from Modules.Client import Client
-    from Modules.HTTPJsonRequest import HTTPJsonRequest
-    from Modules.ActionLogger import ActionLogger
-# for NODE/Server running
-else:
-    from Utils.Logger import LoggingSingleton
-    from PluginEngine.PublicPlugins.ListenerHTTP.Modules.Client import Client
-    from PluginEngine.PublicPlugins.ListenerHTTP.Modules.HTTPJsonRequest import HTTPJsonRequest
-    from Utils.ActionLogger import ActionLogger
-
-
-# req'd either way
+import sys
+import os
+import logging
 from types import SimpleNamespace
 from flask import jsonify, make_response, Flask, request
 import inspect
+
+## This section exists to import only specific modules etiher the standalone OR the integrated
+## may need. Goal is to minimize imports, and only have it set the import dir.
+
+## Standalone
+if __name__ == "__main__":
+    print("Standalone Mode")
+## Integrated
+else:
+    ## Hacky little method to keep one import section, but just tell the 
+    ## interpreter where to look for these plugins
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+    print("Integrated mode")
+    #("Current directory:", current_directory)
+
+    # Insert this path at the start of the sys.path
+    # This ensures that it is the first location Python looks for modules to import
+    sys.path.insert(0, current_directory)
+
+
+from Utils.ActionLogger import ActionLogger
+from Utils.Logger import LoggingSingleton
+from Modules.Client import Client
+from Modules.HTTPJsonRequest import HTTPJsonRequest
+from Utils.Utils import Standalone
+from Utils.DataSingleton import Data
 
 class Info:
     name    = "ListenerHTTP"
@@ -27,7 +39,6 @@ class Info:
     endpoint = "/http"
     classname = "ListenerHTTP"
     plugin_type = "Portable"
-
 
 class ListenerHTTP:
     def __init__(self, app = None, bind_address = None, bind_port = None, nickname = None):
@@ -196,6 +207,7 @@ def create_flask_instance():
     '''
     app = Flask("http_listener")
     return app
+
 
 
 ## Standalone mode options
