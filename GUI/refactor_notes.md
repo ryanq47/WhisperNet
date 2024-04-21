@@ -63,7 +63,6 @@ Refactor Notes:
       - [X]Start with data capture logic
           - Works, need to build out listenres
 
-        >> Here <<
       - [X] Action logger done/works fine for now. 
           - [ ] Log items where needed/as you come accross them, both with this and regualr logging
 
@@ -73,13 +72,19 @@ Refactor Notes:
           Utils: Other, see bottom
           Once httplistener done,set bsae tempalte for public plugins/rules around them
 
+
          - [X] Doc new import method things
               Got rid of dumb double import method
-        - [ ] Test import method on sub imports & see if it still works. Maybe use data singleton to get the sys path
 
       - [ ] Figure out how to handle data sent to listener. (needs to get to server somehow)
         - Currently, items are in the "client" class. These classes need to be managed in a singleton within the listener itself. Additioanlly, there needs to be logic to retreive data from these client classes, and forward to the server. 
 
+        >> Here <<
+        =- Working on client registration when talking to setver. ListenerHTTP line 124. 
+
+      - [ ] Standalone Mode:
+          Too much to put in one plugin, so just copy/paste the standalone one, name it name_standalone & adjust the imports. Should be fine.
+          Remeeber, everything in public plugins must comm over http to the server.
       
 
         This may or may not live in the client classes themselves, have not thoguth it out yet.

@@ -65,6 +65,7 @@ The data sent BACK from clients, to the server
   "timestamp": 1710442988,
   "status": "success",
   "result": {
+    "client_name":"client_name"
     "data": "Example result data "
   },
   "error": {

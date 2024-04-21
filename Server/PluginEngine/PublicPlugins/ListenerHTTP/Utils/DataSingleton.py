@@ -1,9 +1,5 @@
 ## DataSIngleton for Listener ops
 
-## This is universal between standalone mode and integrated mode
-#from Utils.DataSingleton import Data
-
-## Universal path between standalone mode and integrated mode
 from Utils.Logger import LoggingSingleton
 
 class Data:
@@ -43,8 +39,55 @@ class Clients:
     def __init__(self):
         self.logger = LoggingSingleton.get_logger()
         #add a getter
-        self.http_listeners = {}
+        self._clients = {}
 
+
+    def add_new_client(self, client_name, client_info):
+        """Add new client to self._clients dict.
+
+        Args:
+            client_name (str): The name of the client to add.
+            client_info (dict): The details about the client.
+        """
+        if client_name not in self._clients:
+            self._clients[client_name] = client_info
+            self.logger.info(f"Added new client: {client_name}")
+        else:
+            # should not happen - but just in case it does.
+            self.logger.warning(f"Client '{client_name}' already exists.")
+
+    def remove_client(self, client_name):
+        """Remove client from _clients dict.
+
+        Args:
+            client_name (str): The name of the client to remove.
+
+        Returns:
+            bool: True if the client was removed, False if the client was not found.
+        """
+        if client_name in self._clients:
+            del self._clients[client_name]
+            self.logger.info(f"Removed client: {client_name}")
+            return True
+        else:
+            self.logger.warning(f"Client '{client_name}' not found.")
+            return False
+
+    def check_if_client_exists(self, client_name):
+        """Check if a client exists in the _clients dictionary.
+
+        Args:
+            client_name (str): The name of the client to check.
+
+        Returns:
+            bool: True if the client exists, False otherwise.
+        """
+        if client_name in self._clients:
+            self.logger.info(f"Client '{client_name}' exists.")
+            return True
+        else:
+            self.logger.info(f"Client '{client_name}' does not exist.")
+            return False
 
 class Paths:
     def __init__(self):

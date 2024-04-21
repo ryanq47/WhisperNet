@@ -6,32 +6,15 @@ import logging
 from types import SimpleNamespace
 from flask import jsonify, make_response, Flask, request
 import inspect
-
-## This section exists to import only specific modules etiher the standalone OR the integrated
-## may need. Goal is to minimize imports, and only have it set the import dir.
-
-## Standalone
-if __name__ == "__main__":
-    print("Standalone Mode")
-## Integrated
-else:
-    ## Hacky little method to keep one import section, but just tell the 
-    ## interpreter where to look for these plugins
-    current_directory = os.path.dirname(os.path.abspath(__file__))
-    print("Integrated mode")
-    #("Current directory:", current_directory)
-
-    # Insert this path at the start of the sys.path
-    # This ensures that it is the first location Python looks for modules to import
-    sys.path.insert(0, current_directory)
-
-
-from Utils.ActionLogger import ActionLogger
+# Scraping one file standalone for now. Public Plugins will still comm over http. 
+# Can just adjust imports for standalone mode in a diff file.
 from Utils.Logger import LoggingSingleton
-from Modules.Client import Client
-from Modules.HTTPJsonRequest import HTTPJsonRequest
-from Utils.Utils import Standalone
-from Utils.DataSingleton import Data
+from PluginEngine.PublicPlugins.ListenerHTTP.Utils.DataSingleton import Data
+from PluginEngine.PublicPlugins.ListenerHTTP.Utils.ActionLogger import ActionLogger
+from PluginEngine.PublicPlugins.ListenerHTTP.Modules.Client import Client
+from PluginEngine.PublicPlugins.ListenerHTTP.Modules.HTTPJsonRequest import HTTPJsonRequest
+from PluginEngine.PublicPlugins.ListenerHTTP.Utils.Utils import Standalone
+
 
 class Info:
     name    = "ListenerHTTP"
@@ -51,11 +34,10 @@ class ListenerHTTP:
             self.logger = LoggingSingleton.get_logger()
 
         self.app = app
-
         self.bind_address = bind_address
         self.bind_port = bind_port
         self.nickname = nickname
-
+        self.data_singleton = Data()
         self.client_class_dict = {}
 
     def main(self):
@@ -63,9 +45,7 @@ class ListenerHTTP:
         Main function/entry point for the plugin.
         '''
         try:
-
             ## OKAY rework this chain/put in functions?
-
             self.logger.debug(f"{inspect.stack()[0][3]}")
             self.logger.debug(f"Loading & starting {Info.name}")
 
@@ -141,15 +121,17 @@ class ListenerHTTP:
 
         data_dict = dict(data)
 
-        ## Check if client exist, 
-
-        ## if not:
-            # add to singleton or somewhere with client name
-        client_instance = Client(app=self.app, action_logger=ActionLogger())
+        ## If client does *not* exist, add to client list
+        #NOTE!!!! This key does not exist yet. Need to think it out more, either keep it under ersult, or let it be atop
+        # level key
+        if not self.data_singleton.Data.Clients.check_if_client_exists(data_dict["result"]["client_name"]):
+            ## if not:
+                # add to singleton or somewhere with client name
+            client_instance = Client(app=self.app, action_logger=ActionLogger())
 
         client_instance.set_response(response=data_dict)
 
-        # get next command
+            # get next command
         client_command = client_instance.dequeue_command()
 
         # return command to client
@@ -199,6 +181,12 @@ class ListenerHTTP:
         #new_client = Client(data)
 
         # add to dict of current clients. key is name
+        
+        '''
+        
+        self.data_singleton.Clients.add_new_client(new_client_stuff)
+
+        '''
     
 def create_flask_instance():
     '''
