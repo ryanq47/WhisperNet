@@ -48,15 +48,14 @@ class SyncHandler:
             response (str): JSON string representing the server response.
         """
         try:
-            data = json.loads(response)
-            if data['status'] == 'success':
+            if response['status'] == 'success':
                 # Can make this better w setter/getter prolly
-                self.data = data
+                self.data = response
                 self._parse_details()
                 self._parse_result()
                 # parse whatever else part
             else:
-                self.handle_error(data['error'])
+                self.handle_error(response['error'])
 
         except json.JSONDecodeError:
             self.logger.error("Failed to decode JSON response")

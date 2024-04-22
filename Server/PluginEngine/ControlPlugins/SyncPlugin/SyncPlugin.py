@@ -23,7 +23,7 @@ from DataEngine.Neo4jHandler import Neo4jConnection
 from Utils.Logger import LoggingSingleton
 from PluginEngine.ControlPlugins.SimpleC2Plugin.Utils.ListenerHandler import HttpListenerHandler
 from Utils.DataSingleton import Data
-from PluginEngine.ControlPlugins.SyncPlugin.SyncPlugin import SyncHandler
+from PluginEngine.ControlPlugins.SyncPlugin.Modules.SyncHandler import SyncHandler
 ################################################
 # Info clas
 ################################################
@@ -65,21 +65,24 @@ class Sync():
 
 
     def handle_sync_request(self):
-        """_summary_
-
-
+        """
+        Handle a synchronous JSON request by parsing it and processing through SyncHandler.
         """
 
-        ## Get request
-        response = request.json
+        ## Check if the request is JSON
+        if not request.is_json:
+            return "Request data is not JSON", 400
 
-        ## Parse JSON
+        ## Get JSON data from the request
+        try:
+            response = request.get_json()
+        except Exception as e:
+            return f"Error parsing JSON: {e}", 400
 
+        ## Parse JSON using SyncHandler
         synchandler = SyncHandler()
-        synchandler.parse_response(response = response)
+        synchandler.parse_response(response=response)
 
-        ## Get specific keys in data key, do actions based on that. 
-            # Link to parsing module or something
-            #module.sort_data() or something
+        # replace with typical make response
+        return "Request processed successfully", 200
 
-        ...
