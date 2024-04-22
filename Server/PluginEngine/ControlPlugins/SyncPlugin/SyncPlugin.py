@@ -8,7 +8,7 @@ Go ahead and define any other imports you may need here.
 '''
 import logging
 import inspect
-from flask import jsonify, send_from_directory, redirect, make_response
+from flask import request
 #from flask_login import LoginManager, login_required
 import requests
 import json
@@ -23,8 +23,9 @@ from DataEngine.Neo4jHandler import Neo4jConnection
 from Utils.Logger import LoggingSingleton
 from PluginEngine.ControlPlugins.SimpleC2Plugin.Utils.ListenerHandler import HttpListenerHandler
 from Utils.DataSingleton import Data
+from PluginEngine.ControlPlugins.SyncPlugin.SyncPlugin import SyncHandler
 ################################################
-# Info class
+# Info clas
 ################################################
 '''Info class
 Fill in your info for the plugin here. This is defined near the top, so it's accessible
@@ -70,8 +71,12 @@ class Sync():
         """
 
         ## Get request
+        response = request.json
 
         ## Parse JSON
+
+        synchandler = SyncHandler()
+        synchandler.parse_response(response = response)
 
         ## Get specific keys in data key, do actions based on that. 
             # Link to parsing module or something
