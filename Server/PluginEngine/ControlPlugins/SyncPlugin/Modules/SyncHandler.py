@@ -17,10 +17,25 @@
 }
 '''
 
+'''
+Quick how it works notes
+
+
+Req -> /api/sync (SyncPlugin)
+    > Sync Handler - Figures out where to send next
+        > Individial JSON key data handler 
+        - Dumps/alters/handles data into resepective data singleton class/object (*could* db this but like ew)
+        - *then*, full circle, plugins pull form data singleton to send out those objects. 
+        - So this is just a fancy storage system basically, all in JSON/Dicts
+    
+
+
+'''
+
 import json
 
 from Utils.Logger import LoggingSingleton
-
+from PluginEngine.ControlPlugins.SyncPlugin.Modules.ListenerHttpSync import ListenerHttpSync
 # - Questions: Where does this data go? Sinlgeton somewhere?
 
 # Called once per response
@@ -30,8 +45,7 @@ class SyncHandler:
         self.logger = LoggingSingleton.get_logger()
         self.data = None
         self.handlers = {
-            'client_name': lambda x: print("client_name"),#self.handle_client_name,
-            'data': lambda x: print("data")#self.handle_data
+            'listenerHTTP': ListenerHttpSync #self.handle_client_name,
         }
 
         ## Move these to a dict? need to weigh pros & cons
@@ -94,14 +108,20 @@ class SyncHandler:
 
         """
         result_data = self.data["result"]
+        #self.logger.debug(f"Result Data: {result_data}")
 
         # iterate over key,
         for key in result_data:
             if key in self.handlers:
-                # call respective handler
+                # call respective handler (ListenerHttpSync for listenerHTTP data, based on handler dict)
                 handler_function = self.handlers[key]
-                handler_function(result_data[key])
-                self.logger.debug(handler_function)
+                # init class
+                handler_function = handler_function()
+                
+                #self.logger.debug(handler_function)
+                #self.logger.debug(f"Sending {result_data[key]} to sync func")
+                #handler_function(result_data[key])
+                handler_function.store_response(result_data[key])
 
             else:
                 self.logger.warning(f"Key '{key}' not found while parsing response {self.response_id}")

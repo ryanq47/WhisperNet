@@ -85,6 +85,8 @@ class Http:
         self.logger = LoggingSingleton.get_logger()
         #add a getter
         self.http_listeners = {}
+        ## Synced data. uhhh can prolly call this somethign diff.
+        self.synced_data_store = [] # Dictionary to hold other dictionaries
 
     def add_listener(self, process = None, info = None):
         """Add an HTTP listener to the http_listeners dict in the Data singleton. 
@@ -129,6 +131,33 @@ class Http:
             dict: The dictionary of HTTP listeners
         """
         return self.http_listeners
+
+    def add_synced_data(self, data):
+        """
+        Adds a dictionary to the synced data store under a specified unique key.
+
+        Args:
+            key (str): The unique key under which the data should be stored.
+            data (dict): A dictionary containing key-value pairs to be stored.
+
+
+        #notes... if you need lookups/searches in the future (like specific id's)
+        use a dict.
+        """
+        # Check that the input data is a dictionary
+
+        # Log the action of adding data
+        #self.logger.info(f"Adding data to sync store.")
+
+        # Add or update the dictionary under the unique key in the store
+        #self.synced_data_store[key] = data
+        self.synced_data_store.append(data)
+
+        # Log the addition
+        #self.logger.debug(f"Data entry added")
+        #self.logger.debug(f"Size of synced_data_store: {len(self.synced_data_store)} elements")
+        
+
 
 '''
         listener_dict = {

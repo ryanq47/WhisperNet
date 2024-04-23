@@ -38,7 +38,6 @@ class Plugin:
 class Clients:
     def __init__(self):
         self.logger = LoggingSingleton.get_logger()
-        #add a getter
         self._clients = {}
 
 

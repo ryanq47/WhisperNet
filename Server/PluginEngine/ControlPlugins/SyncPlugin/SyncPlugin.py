@@ -15,7 +15,7 @@ import json
 
 ## API stuff
 from functools import wraps
-from flask import request, jsonify
+from flask import request, jsonify, make_response
 from flask_jwt_extended import get_jwt_identity, jwt_required
 from Utils.ApiHelper import api_response
 from werkzeug.exceptions import BadRequest
@@ -83,6 +83,9 @@ class Sync():
         synchandler = SyncHandler()
         synchandler.parse_response(response=response)
 
+        return make_response("", 200)
         # replace with typical make response
-        return "Request processed successfully", 200
+        #return api_response(status_code=400)
+
+        #return "Request processed successfully", 200
 
