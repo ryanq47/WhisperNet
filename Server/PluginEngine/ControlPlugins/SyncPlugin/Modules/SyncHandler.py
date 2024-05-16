@@ -25,11 +25,9 @@ Req -> /api/sync (SyncPlugin)
     > Sync Handler - Figures out where to send next
         > Individial JSON key data handler 
         - Dumps/alters/handles data into resepective data singleton class/object (*could* db this but like ew)
-        - *then*, full circle, plugins pull form data singleton to send out those objects. 
+        - *then*, full circle, plugins pull from data singleton to send out those objects. 
         - So this is just a fancy storage system basically, all in JSON/Dicts
     
-
-
 '''
 
 import json
@@ -124,8 +122,8 @@ class SyncHandler:
                 handler_function.store_response(result_data[key])
 
             else:
-                self.logger.warning(f"Key '{key}' not found while parsing response {self.response_id}")
-
+                self.logger.warning(f"Key '{key}' not found while parsing response {self.response_id}. Cannot properly handle.")
+                self.logger.debug("This means that there is no class defined to handle this type of data.")
 
         # for each recognized key, call the proper function/subsystem to handle that data
             ## Note: Suggest better options if you can think of some
