@@ -105,7 +105,7 @@ class SyncHandler:
                 }
 
         """
-        result_data = self.data["result"]
+        result_data = self.data["data"]
         #self.logger.debug(f"Result Data: {result_data}")
 
         # iterate over key,

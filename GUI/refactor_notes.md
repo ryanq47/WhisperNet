@@ -109,3 +109,41 @@ Goals:
   - SocketListeners. Use binary strings & raw sockets to communicate. 
   - Actually, just have like multiple communication formats available (then you could choose what msg format, and what listener type)?
     Ex, comms via binary string, each bit means something (would have to be VERY basic, and for long term/quiet af options - sleepers), via json, etc. then adapt to other listeners? Might cause problems parsing based on the clients. 
+
+
+
+way later notes:
+- Alright Gameplan:
+   - [X] Go double chkec docs of sync plugin, make sure they all line up. 
+   - [ ] Move API responses to new API response method (`from Utils.ApiHelper import api_response`)
+       - Doc This - 
+   - [ ] Update/recreate JSON respnose creator (HTTPJsonRequest.md) to fit universal vessel
+   - Work on HTTPListener plugin syncing *to* server, and make sure that process works 
+      - Data gets properly stored in singleton
+      - Request/response ID's are thought about. 
+
+   - Start deving httplistenerserver 
+
+Thought: Use that json request for both client and server comms, just nest what you need in the "data" key
+
+{
+  "response_id": "matching_request_identifier",
+  "request_id": "unique_request_identifier",
+  "timestamp": 1710442988,
+  "status": "success",
+  "data": {
+    "Actions":[
+        //order performed from first to last?
+        {"Action":"powershell", "executable":"ps.exe", "command":"net user /domain add bob", }, //add individual ID? TLDR: Need a way to know which response goes from which action upon sending back.
+        {"Action":"powershell", "executable":"ps.exe", "command":"net group /add Domain Admins Bob", },
+    ]
+    //anythign else here as well - not sure waht might be needed.
+  },
+  "error": {
+    "code": null,
+    "message": null
+  }
+}
+
+//Ideas of above:
+ - One of these "vessels" get sent out each beacon. Any commands queued in that time will get packaged, and sent in this vessel. Those are then run, and sent back with responses. Then beacon reaches out again, and so on, until it is killed.

@@ -4,9 +4,36 @@ This outlines how communication is hanlded between the nodes and the clients for
 
 To see construction of how to generate these:
 
- - [HTTPJsonRequest](../../../Server/Plugins/ListenerHTTP/HTTPJsonRequest.md)
+ 
+ - [HTTPJsonRequest](../../../Server/Plugins/ListenerHTTP/HTTPJsonRequest.md) - NEEDS TO BE UPDATED
 
-#### Data
+
+#### Universal Comms
+
+This JSON structure serves as the universal communication method/vessel between all components. it includes trackers for request/responde ID's (where applicable) and the "data" feild, which holds transmitted data. 
+On the server side, the "data" feild is parsed for each subkey, and that type of data is handled appropriately.
+
+```
+{
+  "response_id": "matching_request_identifier", 
+  "request_id": "unique_request_identifier",
+  "timestamp": 1710442988,
+  "status": "success",
+  //Data from diff plugins/things
+  "data": {
+    "listenerHTTP":[
+        {"listener_id": "listenerHTTP01", "otherdata":""},
+        {"listener_id": "listenerHTTP02", "otherdata":""}
+    ]
+  },
+  "error": {
+    "code": null,
+    "message": null
+  }
+}
+```
+
+#### Data - OLD
 the data sent TO the clients. 
 ```
 {
@@ -55,29 +82,3 @@ the data sent TO the clients.
 
 ```
 
-
-#### From Clients/Universal Comms
-The data sent BACK from clients, to the server
-
-This JSON structure serves as the universal communication method between all components. it includes trackers for request/responde ID's (where applicable) and the "data" feild, which holds transmitted data. 
-On the server side, the "data" feild is parsed for each subkey, and that type of data is handled appropriately.
-
-```
-{
-  "response_id": "matching_request_identifier", 
-  "request_id": "unique_request_identifier",
-  "timestamp": 1710442988,
-  "status": "success",
-  //Data from diff plugins/things
-  "data": {
-    "listenerHTTP":[
-        {"listener_id": "listenerHTTP01", "otherdata":""},
-        {"listener_id": "listenerHTTP02", "otherdata":""}
-    ]
-  },
-  "error": {
-    "code": null,
-    "message": null
-  }
-}
-```

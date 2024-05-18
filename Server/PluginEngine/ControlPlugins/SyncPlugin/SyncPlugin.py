@@ -24,6 +24,7 @@ from Utils.Logger import LoggingSingleton
 from PluginEngine.ControlPlugins.SimpleC2Plugin.Utils.ListenerHandler import HttpListenerHandler
 from Utils.DataSingleton import Data
 from PluginEngine.ControlPlugins.SyncPlugin.Modules.SyncHandler import SyncHandler
+from Utils.ApiHelper import api_response
 ################################################
 # Info clas
 ################################################
@@ -83,9 +84,9 @@ class Sync():
         synchandler = SyncHandler()
         synchandler.parse_response(response=response)
 
-        return make_response("", 200)
+        #return make_response("success", 200)
         # replace with typical make response
         #return api_response(status_code=400)
-
+        return api_response(status_code=200, status="success")
         #return "Request processed successfully", 200
 
