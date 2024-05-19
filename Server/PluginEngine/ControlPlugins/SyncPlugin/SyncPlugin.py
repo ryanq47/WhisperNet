@@ -1,3 +1,5 @@
+## Should I rename this ingest? that's kinda all it does. Sync sounds cooler though
+
 from DataEngine.SimpleC2DbHandler import SimpleC2DbHandler
 
 import os
@@ -69,24 +71,25 @@ class Sync():
         """
         Handle a synchronous JSON request by parsing it and processing through SyncHandler.
         """
+        client_address = request.remote_addr
+        self.logger.info(f"Received SYNC request from {client_address}")
 
         ## Check if the request is JSON
         if not request.is_json:
+            self.logger.error(f"Request data from {client_address} is not JSON")
             return "Request data is not JSON", 400
+
 
         ## Get JSON data from the request
         try:
             response = request.get_json()
         except Exception as e:
-            return f"Error parsing JSON: {e}", 400
+            self.logger.error(f"Error parsing JSON from {client_address}: {e}")
+            return f"Error parsing JSON from {client_address}: {e}", 400
 
         ## Parse JSON using SyncHandler
         synchandler = SyncHandler()
         synchandler.parse_response(response=response)
 
-        #return make_response("success", 200)
-        # replace with typical make response
-        #return api_response(status_code=400)
         return api_response(status_code=200, status="success")
-        #return "Request processed successfully", 200
 

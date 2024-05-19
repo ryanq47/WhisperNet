@@ -1,4 +1,4 @@
-# Sync Handler for data
+# Sync Handler for data - HTTP Listener edition
 
 '''
 {
@@ -31,19 +31,20 @@ Req -> /api/sync (SyncPlugin)
 '''
 
 import json
-
+import logging
 from Utils.Logger import LoggingSingleton
-from PluginEngine.ControlPlugins.SyncPlugin.Modules.ListenerHttpSync import ListenerHttpSync
-# - Questions: Where does this data go? Sinlgeton somewhere?
-
+from PluginEngine.PublicPlugins.ListenerHTTP.Modules.ListenerHttpCommandSync import ListenerHttpCommandSync
 # Called once per response
 class SyncHandler:
 
     def __init__(self):
-        self.logger = LoggingSingleton.get_logger()
+        #wants log level for some reason.
+        self.logger = LoggingSingleton.get_logger(log_level=logging.DEBUG)
         self.data = None
         self.handlers = {
-            'listenerHTTP': ListenerHttpSync #self.handle_client_name,
+            #'listenerHTTP': ListenerHttpSync #self.handle_client_name,
+            #clientcommand: parser for client commands
+            'ListenerHttpCommandSync': ListenerHttpCommandSync
         }
 
         ## Move these to a dict? need to weigh pros & cons
@@ -118,11 +119,9 @@ class SyncHandler:
                 # init class
                 handler_function = handler_function()
 
-                #self.logger.debug(handler_function)
-                #self.logger.debug(f"Sending {result_data[key]} to sync func")
-                #handler_function(result_data[key])
-                self.logger.debug(f"Storing recieved data {result_data[key]}")
-                handler_function.store_response(result_data[key])
+                # handle data with respective handler
+                self.logger.debug(f"handling recieved data {result_data[key]}")
+                handler_function.handle_data(result_data[key])
 
             else:
                 self.logger.warning(f"Key '{key}' not found while parsing response {self.response_id}. Cannot properly handle.")

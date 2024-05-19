@@ -13,6 +13,7 @@ class ListenerHttpSync:
         Args:
             response (dict): The dictionary containing the data to be stored. Each key-value pair in this dictionary will be added to the synced data store.
         """
+        self.logger.debug(f"Storing data")
         #print(response)
         if not isinstance(response, list):
             self.logger.error("Invalid response type: Expected a list.")
@@ -22,7 +23,7 @@ class ListenerHttpSync:
         for json_entry in response:
             self.data.Listeners.HTTP.add_synced_data(data=json_entry)
 
-        #self.logger.info("All data from the response have been stored successfully.")
+        self.logger.debug(f"Data from the response has been stored successfully.")
 
        # print("Data in list")
         #print(self.data.Listeners.HTTP.synced_data_store)

@@ -14,6 +14,8 @@ from PluginEngine.PublicPlugins.ListenerHTTP.Utils.ActionLogger import ActionLog
 from PluginEngine.PublicPlugins.ListenerHTTP.Modules.Client import Client
 from PluginEngine.PublicPlugins.ListenerHTTP.Modules.HTTPJsonRequest import HTTPJsonRequest
 from PluginEngine.PublicPlugins.ListenerHTTP.Utils.Utils import Standalone
+from PluginEngine.PublicPlugins.ListenerHTTP.Modules.SyncHandler import SyncHandler
+from PluginEngine.PublicPlugins.ListenerHTTP.Utils.ApiHelper import api_response
 
 
 class Info:
@@ -31,7 +33,7 @@ class ListenerHTTP:
         else:
             # needed as the singleton is initialized on the standalone, but is not when run as a plugin. Init takes an extra arg, 
                 #as seen above.
-            self.logger = LoggingSingleton.get_logger()
+            self.logger = LoggingSingleton.get_logger(log_level=logging.DEBUG)
 
         self.app = app
         self.bind_address = bind_address
@@ -72,6 +74,7 @@ class ListenerHTTP:
         self.app.route(f'/', methods = ["GET"])(self.listener_http_base_endpoint)
         self.app.route(f'{Info.endpoint}/get', methods = ["GET"])(self.listener_http_get_endpoint)
         self.app.route(f'{Info.endpoint}/post', methods = ["POST"])(self.listener_http_post_endpoint)
+        self.app.route(f'{Info.endpoint}/sync', methods = ["POST"])(self.listener_http_sync_endpoint)
 
 
     def listener_http_base_endpoint(self):
@@ -107,7 +110,7 @@ class ListenerHTTP:
             ## New Chain
             # Recieve request
             # Parse request. 
-            # store request - somewhere
+            # store request - somewhere = send to server w sync
             # Get new item in listener queue (from client class)
             # return response to client.
 
@@ -171,6 +174,36 @@ class ListenerHTTP:
         #return make_response("POST ENDPOINT - JSON HERE", 200)
         '''
 
+    def listener_http_sync_endpoint(self):
+        """
+            End point where server can queue commands for listener/clients. Sync/Ingest endpoint. 
+
+            Uses a modified SyncHandler
+
+        """
+        client_address = request.remote_addr
+        self.logger.info(f"Received SYNC request from {client_address}")
+
+        ## Check if the request is JSON
+        if not request.is_json:
+            self.logger.error(f"Request data from {client_address} is not JSON")
+            return "Request data is not JSON", 400
+
+        ## Get JSON data from the request
+        try:
+            response = request.get_json()
+        except Exception as e:
+            self.logger.error(f"Error parsing JSON from {client_address}: {e}")
+            return f"Error parsing JSON from {client_address}: {e}", 400
+
+        ## Parse JSON using SyncHandler
+        synchandler = SyncHandler()
+        synchandler.parse_response(response=response)
+
+        # return ok 
+        return api_response(status_code=200, status="success")
+
+
     def client_checkin_validation(self):
         pass
         # check if client exists, via query to main server DB
@@ -188,6 +221,8 @@ class ListenerHTTP:
 
         '''
     
+
+
 def create_flask_instance():
     '''
     Creates a flask instance. Used when the plugin is NOT in standalone mode
