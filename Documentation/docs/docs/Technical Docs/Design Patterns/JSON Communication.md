@@ -35,12 +35,80 @@ On the server side, the "data" feild is parsed for each subkey, and that type of
 
 ## Usage
 
-The `data` key can include multiple data types, each processed by specific handlers within the system. Below are the current data types that exist:
-
-- **Actions**: Used to define a sequence of executable commands, typically in PowerShell. Each action includes the executable file and the command to run.
-- **ListenerHttpCommandSync**: Used for synchronizing HTTP commands. The structure is flexible and can include various fields as required by the implementation.
- (Make a link to these in more detail)
-
-## Flexibility/why
+The `data` key can include multiple data types, each processed by specific handlers within the system. See Vessel Types for current vessels.
 
 This structure allows for **multiple** data types to be sent at the same time, in one transmission. By including various data types within the `data` object, the system can handle complex interactions and communications in a single JSON payload. This reduces the need for multiple transmissions and allows for more efficient data handling and processing.
+
+
+# Vessel Types:
+
+## **Actions** (Listener > Client): 
+Used to define a sequence of executable commands, in a JSON list. Each action includes the executable file and the command to run.
+
+```
+{
+  "client_nicnkname": "clientname",
+  "action": "powershell1",
+  "executable": "ps.exe",
+  "command": "net user /domain add bob"
+}
+```
+
+Example in Vessel:
+```
+"Actions":[
+    {"client_nicnkname":"clientname","action": "powershell1","executable": "ps.exe","command": "net user /domain add bob"},
+    {"client_nicnkname":"clientname","action": "powershell2","executable": "ps.exe","command": "net user /domain add bob"}
+],
+
+```
+
+## **ListenerHttpCommandSync** (Server > Listener) : 
+
+Used for synchronizing HTTP commands. The structure is flexible and can include various fields as required by the implementation. Generally used Server -> Listener. Usually contains Actions that are being queued for the clients on a listener
+
+```
+{
+  "client_nicnkname": "clientname",
+  "action": "powershell1",
+  "executable": "ps.exe",
+  "command": "net user /domain add bob"
+}
+```
+
+Example in Vessel
+```
+"ListenerHttpCommandSync":[
+    {"client_nicnkname":"clientname","action": "powershell1","executable": "ps.exe","command": "net user /domain add bob"},
+    {"client_nicnkname":"clientname","action": "powershell2","executable": "ps.exe","command": "net user /domain add bob"}
+],
+```
+
+## **ClientExfilSync** (Client > Listener):
+ Used for clients to exfil data & command results from their hosts.
+
+```
+{
+  "somedata": "sensitivedata123",
+  "chunk": 0,
+  "size": 4096,
+  "encoding": "base64"
+}
+```
+
+Example in Vessel:
+```
+"ClientExfilSync":[
+    {"somedata":"sensitivedata123", "chunk":0, "size":4096, "encoding":"base64"}
+]
+```
+
+## **ClientInfo** (Client > Listener):
+
+Used by clients for checking in to the listeners.
+
+```
+{
+  "nickname":"name"
+}
+```

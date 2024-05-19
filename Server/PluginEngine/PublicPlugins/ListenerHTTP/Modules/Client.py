@@ -10,14 +10,14 @@ import collections
 import time
 
 class Client:
-    def __init__(self):
+    def __init__(self, nickname):
         self.responses = {}
         self.command_queue = collections.deque()
         ## STUPID reason for this, init gets passed the action logger at init because
         #I don't ahve a way to tell if the calling plugin is running in standalone mode or not
         # So, the parent gets to import it, as it knows what mode it's in, and then passes it here. WHATEVER
         #self.action_logger = action_logger
-        self.nickname = "Nickname"
+        self.nickname = nickname
 
     # Response Handling
 

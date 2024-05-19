@@ -89,10 +89,10 @@ class Clients:
             bool: True if the client exists, False otherwise.
         """
         if client_name in self._clients:
-            self.logger.info(f"Client '{client_name}' exists.")
+            self.logger.debug(f"Client '{client_name}' exists.")
             return True
         else:
-            self.logger.info(f"Client '{client_name}' does not exist.")
+            self.logger.debug(f"Client '{client_name}' does not exist.")
             return False
 
     def get_client_info(self, client_name):

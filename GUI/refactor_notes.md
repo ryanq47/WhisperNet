@@ -156,6 +156,8 @@ Thought: Use that json request for both client and server comms, just nest what 
  
  {"Action":"powershell", "executable":"ps.exe", "command":"net user /domain add bob", }, //add individual ID? TLDR: Need a way to know which response goes from which action upon sending back.
 
+- [ ] DOC THESE
+
 Those above. One for each relevant item:
  - ListenerHttpCommandSync (commands to HTTP listeners, createone for each listener tyoe)
  - Actions: Actions to run on host

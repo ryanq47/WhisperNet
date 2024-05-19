@@ -59,7 +59,7 @@ class ListenerHttpCommandSync:
         for client_command in data:
             #print(client_command)
             # extract this out from JSON dict.
-            client_name = client_command['client']
+            client_nicnkname = client_command['client_nicnkname']
 
             ## Next steps here:
                 # [X] singleton logic to add client to current data singleton (can worry about client auth/checking later) - double check this doenst exist already
@@ -68,22 +68,24 @@ class ListenerHttpCommandSync:
                 # Get JSON format correct
             
             # if client DOES exist
-            if self.Data.Clients.check_if_client_exists(client_name = client_name):
-                client_object = self.Data.Clients.get_client_object(client_name = client_name)
+            if self.Data.Clients.check_if_client_exists(client_name = client_nicnkname):
+                self.logger.debug(f"Client object found for {client_nicnkname}.")
+                client_object = self.Data.Clients.get_client_object(client_name = client_nicnkname)
 
             # this shouldn't happen, as all new clients should have an object created if they check into the post endpoint.
             # it COULD happen though *if* the server sends data with a client that isn't in this listener. 
             else:
-                self.logger.warning(f"Object not found for client {client_name}. Creating object. This is not normal.")
-                client_object = Client()
+                self.logger.warning(f"Object not found for client {client_nicnkname}. Creating object. This is not normal.")
+                client_object = Client(nickname=client_nicnkname)
                 self.Data.Clients.add_new_client(
-                    client_name = client_name,
+                    client_name = client_nicnkname,
                     client_object = client_object
                 )
 
             
             ## Straight up queue the given command. Can strip certain keys if needed
+            self.logger.debug(f"Queueing command for {client_nicnkname}")
             client_object.enqueue_command(command = client_command)
-            self.logger.debug(f"Next queued command for {client_name} is: {client_object.peek_next_command()} ")
+            self.logger.debug(f"Next queued command for {client_nicnkname} is: {client_object.peek_next_command()} ")
 
 # kewl it works. Go add docs & debug statements wheere needed.
