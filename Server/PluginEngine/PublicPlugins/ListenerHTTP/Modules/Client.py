@@ -10,14 +10,13 @@ import collections
 import time
 
 class Client:
-    def __init__(self, app, action_logger):
-        self.app = app
+    def __init__(self):
         self.responses = {}
         self.command_queue = collections.deque()
         ## STUPID reason for this, init gets passed the action logger at init because
         #I don't ahve a way to tell if the calling plugin is running in standalone mode or not
         # So, the parent gets to import it, as it knows what mode it's in, and then passes it here. WHATEVER
-        self.action_logger = action_logger
+        #self.action_logger = action_logger
         self.nickname = "Nickname"
 
     # Response Handling
@@ -44,12 +43,12 @@ class Client:
         if response_id:
             self.responses[response_id] = response
 
-        self.action_logger.log(
-            response = response,
-            action = "Recieved response",
-            client = self.nickname,
-            response_id = response_id
-        )
+        #self.action_logger.log(
+        #    response = response,
+        #    action = "Recieved response",
+        #    client = self.nickname,
+        #    response_id = response_id
+        #)
 
     def get_response(self, response_id):
         """
@@ -92,11 +91,11 @@ class Client:
         Example:
             client.enqueue_command(JSON_Command)
         """
-        self.action_logger.log(
-            request = command,
-            action = "Queue command",
-            client = self.nickname
-        )
+        #self.action_logger.log(
+        #    request = command,
+        #    action = "Queue command",
+        #    client = self.nickname
+        #)
 
         self.command_queue.append(command)
 

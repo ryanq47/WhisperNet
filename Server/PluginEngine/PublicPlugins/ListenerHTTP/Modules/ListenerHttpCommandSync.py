@@ -1,11 +1,25 @@
 ## Handler for ListenerHttpCommandSync commands receieved fromthe sync system
 
-from Utils.DataSingleton import Data
+from PluginEngine.PublicPlugins.ListenerHTTP.Utils.DataSingleton import Data
 from Utils.Logger import LoggingSingleton
+from PluginEngine.PublicPlugins.ListenerHTTP.Modules.Client import Client
+
+"""
+JSON being handled by this module
+ListenerHttpCommandSync
+{
+    "client":"clientname",
+    "action": "powershell",
+    "executable": "ps.exe",
+    "command": "net user /domain add bob"
+}
+
+
+"""
 
 class ListenerHttpCommandSync:
     def __init__(self):
-        self.data = Data()
+        self.Data = Data()
         self.logger = LoggingSingleton.get_logger()
 
     def store_response(self, response):
@@ -37,11 +51,39 @@ class ListenerHttpCommandSync:
     def handle_data(self, data):
         """
             Handles data coming in from ___
+
+
+            
         """
         self.logger.debug(f"handling data for ListenerHttpCommandSync")
-        for json_entry in data:
-            print(json_entry)
+        for client_command in data:
+            #print(client_command)
+            # extract this out from JSON dict.
+            client_name = client_command['client']
 
-            ## add to singleton queue or something - I think that logic is built out
-            ## Could just ask data singleton for stored client object, then directly queue to that client. That seems 
-                ## to be the best option/fastest.
+            ## Next steps here:
+                # [X] singleton logic to add client to current data singleton (can worry about client auth/checking later) - double check this doenst exist already
+                # [X] Lookup Client object from stored client
+                # [X] Call clientobject.queue_command (or whatever its called) directly from here.
+                # Get JSON format correct
+            
+            # if client DOES exist
+            if self.Data.Clients.check_if_client_exists(client_name = client_name):
+                client_object = self.Data.Clients.get_client_object(client_name = client_name)
+
+            # this shouldn't happen, as all new clients should have an object created if they check into the post endpoint.
+            # it COULD happen though *if* the server sends data with a client that isn't in this listener. 
+            else:
+                self.logger.warning(f"Object not found for client {client_name}. Creating object. This is not normal.")
+                client_object = Client()
+                self.Data.Clients.add_new_client(
+                    client_name = client_name,
+                    client_object = client_object
+                )
+
+            
+            ## Straight up queue the given command. Can strip certain keys if needed
+            client_object.enqueue_command(command = client_command)
+            self.logger.debug(f"Next queued command for {client_name} is: {client_object.peek_next_command()} ")
+
+# kewl it works. Go add docs & debug statements wheere needed.

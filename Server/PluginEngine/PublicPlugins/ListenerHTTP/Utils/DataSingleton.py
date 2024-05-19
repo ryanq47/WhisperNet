@@ -16,6 +16,7 @@ class Data:
             return
         self.Paths = Paths()
         self.Plugin = Plugin()
+        self.Clients = Clients()
         self._initialized = True
 
 class Plugin:
@@ -40,20 +41,26 @@ class Clients:
         self.logger = LoggingSingleton.get_logger()
         self._clients = {}
 
-
-    def add_new_client(self, client_name, client_info):
+    def add_new_client(self, client_name, client_object, **client_info):
         """Add new client to self._clients dict.
+
+            Add new client info arguments as needed, such as IP, etc. 
 
         Args:
             client_name (str): The name of the client to add.
-            client_info (dict): The details about the client.
+            **client_info: Additional details about the client.
         """
-        if client_name not in self._clients:
-            self._clients[client_name] = client_info
-            self.logger.info(f"Added new client: {client_name}")
-        else:
+        self._clients[client_name] = {
+                "info": client_info,
+                "object": client_object
+        }
+        self.logger.info(f"Added new client: {client_name}")
+        #if client_name not in self._clients:
+            #client_obj = Client(client_name, **client_info)
+
+        #else:
             # should not happen - but just in case it does.
-            self.logger.warning(f"Client '{client_name}' already exists.")
+            #self.logger.warning(f"Client '{client_name}' already exists.")
 
     def remove_client(self, client_name):
         """Remove client from _clients dict.
@@ -88,6 +95,36 @@ class Clients:
             self.logger.info(f"Client '{client_name}' does not exist.")
             return False
 
+    def get_client_info(self, client_name):
+        """Retrieve the client info.
+
+        Args:
+            client_name (str): The name of the client.
+
+        Returns:
+            dict: The client's info if found, None otherwise.
+        """
+        if client_name in self._clients:
+            return self._clients[client_name]["info"]
+        else:
+            self.logger.warning(f"Client '{client_name}' not found.")
+            return None
+
+    def get_client_object(self, client_name):
+        """Retrieve the client class object.
+
+        Args:
+            client_name (str): The name of the client.
+
+        Returns:
+            Client: The client class object if found, None otherwise.
+        """
+        if client_name in self._clients:
+            return self._clients[client_name]["object"]
+        else:
+            self.logger.warning(f"Client '{client_name}' not found.")
+            return None
+        
 class Paths:
     def __init__(self):
         self.logger = LoggingSingleton.get_logger()
