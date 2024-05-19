@@ -75,7 +75,7 @@ class ListenerHttpCommandSync:
             # this shouldn't happen, as all new clients should have an object created if they check into the post endpoint.
             # it COULD happen though *if* the server sends data with a client that isn't in this listener. 
             else:
-                self.logger.warning(f"Object not found for client {client_nicnkname}. Creating object. This is not normal.")
+                self.logger.warning(f"Queueing command for client obejct that does not exist: {client_nicnkname}. Creating object.")
                 client_object = Client(nickname=client_nicnkname)
                 self.Data.Clients.add_new_client(
                     client_name = client_nicnkname,

@@ -107,8 +107,17 @@ Example in Vessel:
 
 Used by clients for checking in to the listeners.
 
+
 ```
 {
   "nickname":"name"
+}
+```
+
+Example in Vessel:
+
+```
+"ClientInfo": {
+    "nickname":"name"
 }
 ```

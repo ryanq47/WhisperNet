@@ -96,8 +96,7 @@ class ListenerHTTP:
 
         return make_response(dummy_request_json, 200)
 
-        # steps;
-            # pop next command for client from client name
+
 
     def listener_http_post_endpoint(self):
         '''
@@ -114,8 +113,6 @@ class ListenerHTTP:
             # return response to client.
 
             ##Still need some form of client verification.
-
-
         #####
 
         data = request.json
@@ -130,9 +127,14 @@ class ListenerHTTP:
         client_nickname = data_dict["data"]["ClientInfo"]["nickname"]
         self.logger.info(f"Client connected: {client_nickname}")
 
+        # if client does not exist. 
         if not self.data_singleton.Clients.check_if_client_exists(client_name=client_nickname):
             self.logger.debug(f"New client: {client_nickname}")
             client_instance = Client(client_nickname)
+
+        else:
+            self.logger.debug(f"Retrieveing client instance for: {client_nickname}")
+            client_instance = self.data_singleton.Clients.get_client_object(client_name=client_nickname)
 
         client_instance.set_response(response=data_dict)
         # get next command
@@ -180,7 +182,6 @@ def create_flask_instance():
     '''
     app = Flask("http_listener")
     return app
-
 
 
 ## Standalone mode options
