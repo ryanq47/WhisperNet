@@ -2,8 +2,7 @@
 
 This outlines how communication is hanlded between the entire project.
 
-To see construction of how to generate these:
- - [HTTPJsonRequest](../../../Server/Plugins/ListenerHTTP/HTTPJsonRequest.md) - NEEDS TO BE UPDATED
+To see construction of how to generate these, see [VesselBuilder](../Server/Utils/VesselBuilder.md).
 
 
 #### Universal Comms

@@ -1,4 +1,7 @@
 
+import uuid
+
+
 class Standalone:
     
     @staticmethod

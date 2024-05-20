@@ -18,6 +18,7 @@ from PluginEngine.PublicPlugins.ListenerHTTP.Modules.HTTPJsonRequest import HTTP
 from PluginEngine.PublicPlugins.ListenerHTTP.Utils.Utils import Standalone
 from PluginEngine.PublicPlugins.ListenerHTTP.Modules.SyncHandler import SyncHandler
 from PluginEngine.PublicPlugins.ListenerHTTP.Utils.ApiHelper import api_response
+from PluginEngine.PublicPlugins.ListenerHTTP.Utils.VesselBuilder import VesselBuilder
 
 
 class Info:
@@ -141,7 +142,15 @@ class ListenerHTTP:
         client_command = client_instance.dequeue_command()
         # return command to client
         self.logger.debug(f"Responding to client {client_nickname}")
-        return make_response(jsonify(client_command), 200)
+        
+        # wrap in Vessel key/actions
+        data = VesselBuilder.build_vessel(
+            actions=[client_command]
+        )
+        # add taht data to response
+        return api_response(data=data)
+    
+        #return make_response(jsonify(client_command), 200)
 
     ## sync DOES NOT return any response besides okay/bad.
     def listener_http_sync_endpoint(self):
