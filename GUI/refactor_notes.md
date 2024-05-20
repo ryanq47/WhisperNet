@@ -164,8 +164,9 @@ This allows for one transport vessel, with mutliple types of data per transmissi
 - [ ] Loop works well! Double check everything (especially around client naming & getting data back to server). 
 - [X] Figure out request/reqponse ID's (ideas: request are even, response are odd? Centralized "next number" option? ask chatgpt/maybe switch to just using one, ex just request ID isntead of both.)
     - [X] UUIDs
-    - [ ] Move /http/post to standard vessel tempalate, does not have wrapper around it at the moment
-    - [ ] Figure out ID logic for adding in CID's (correlated ID's, aka the parent id/similar ID that called/init'd the response)
+    - [X] Move /http/post to standard vessel tempalate, does not have wrapper around it at the moment
+    - LATER [ ] Figure out ID logic for adding in CID's (correlated ID's, aka the parent id/similar ID that called/init'd the response)
 
+- [ ] Flesh out docs for Vessels, and the '5 Minute How the FUCK does this software work'
 - [ ] Solidfiy/tempalte out Actions template. (and dev guiu > server command queue?)
 - [ ] Dev basic client loop in C++
