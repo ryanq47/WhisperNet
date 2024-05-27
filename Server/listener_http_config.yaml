@@ -34,8 +34,3 @@ responses:
     status_code: 500
     status: "error"
     message: "Internal server error"
-
-  key_error:
-    status_code: 400
-    status: "error"
-    message: "Resource not found"

@@ -8,9 +8,12 @@
 
 import collections
 import time
+from PluginEngine.PublicPlugins.ListenerHTTP.Utils.Logger import LoggingSingleton
+
 
 class Client:
     def __init__(self, nickname):
+        self.logger = LoggingSingleton.get_logger()
         self.responses = {}
         self.command_queue = collections.deque()
         ## STUPID reason for this, init gets passed the action logger at init because
@@ -97,6 +100,9 @@ class Client:
         #    client = self.nickname
         #)
 
+        # check if command has aid
+        self.check_aid(command)
+
         self.command_queue.append(command)
 
     def dequeue_command(self):
@@ -140,4 +146,12 @@ class Client:
             timestamp = client.current_timestamp()
         """
         return int(time.time())
+
+    def check_aid(self, command):
+        """
+        Checks if client command has an aid (UUID). If not, that's a problem.
+        """
+        aid = command.get("aid")
+        if aid == '' or aid == None:
+            self.logger.error(f"Queued client command does not have an Action ID! (AID): {command}")
 

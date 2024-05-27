@@ -35,7 +35,7 @@ class LoggingSingleton():
     _lock = threading.Lock()
 
     @classmethod
-    def get_logger(cls, name="ApplicationLogger", log_level=None):
+    def get_logger(cls, name="ApplicationLogger", log_level=logging.DEBUG):
         if cls._logger_instance is None:
             with cls._lock:
                 if cls._logger_instance is None:  # Double check locking
