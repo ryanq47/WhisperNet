@@ -1,0 +1,41 @@
+# debug profile
+# quick notes - these are meant to be config files for how the listener responds/is configed.
+
+logging:
+  level: "DEBUG"
+  file: "server.log"
+  
+responses:
+  # return error message if so applicable.
+  return_error_message: True
+
+  success:
+    status_code: 200
+    status: "success"
+    message: "Operation completed successfully"
+
+  error:
+    status_code: 400
+    status: "error"
+    message: "An error occurred"
+
+
+  not_found:
+    status_code: 404
+    status: "error"
+    message: "Resource not found"
+
+  unauthorized:
+    status_code: 401
+    status: "error"
+    message: "Unauthorized access"
+
+  internal_server_error:
+    status_code: 500
+    status: "error"
+    message: "Internal server error"
+
+  key_error:
+    status_code: 400
+    status: "error"
+    message: "Resource not found"

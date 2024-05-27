@@ -14,12 +14,10 @@ from PluginEngine.PublicPlugins.ListenerHTTP.Utils.Logger import LoggingSingleto
 from PluginEngine.PublicPlugins.ListenerHTTP.Utils.DataSingleton import Data
 from PluginEngine.PublicPlugins.ListenerHTTP.Utils.ActionLogger import ActionLogger
 from PluginEngine.PublicPlugins.ListenerHTTP.Modules.Client import Client
-from PluginEngine.PublicPlugins.ListenerHTTP.Modules.HTTPJsonRequest import HTTPJsonRequest
-from PluginEngine.PublicPlugins.ListenerHTTP.Utils.Utils import Standalone
+#from PluginEngine.PublicPlugins.ListenerHTTP.Utils.Utils import Standalone
 from PluginEngine.PublicPlugins.ListenerHTTP.Modules.SyncHandler import SyncHandler
 from PluginEngine.PublicPlugins.ListenerHTTP.Utils.ApiHelper import api_response
 from PluginEngine.PublicPlugins.ListenerHTTP.Utils.VesselBuilder import VesselBuilder
-
 
 class Info:
     name    = "ListenerHTTP"
@@ -38,12 +36,15 @@ class ListenerHTTP:
                 #as seen above.
             self.logger = LoggingSingleton.get_logger(log_level=logging.DEBUG)
 
-        self.app = app
-        self.bind_address = bind_address
-        self.bind_port = bind_port
-        self.nickname = nickname
-        self.data_singleton = Data()
-        self.client_class_dict = {}
+        self.app = app                      # Flask instance for interfacing with flask
+        self.bind_address = bind_address    # Listener bind address
+        self.bind_port = bind_port          # Listener Bind Port
+        self.data_singleton = Data()        # Data Singleton
+        self.nickname = nickname            # nickaname of listener
+        self.uuid = None                    # UUID of listener - not implemented yet
+
+
+        #self.client_class_dict = {}
 
     def main(self):
         '''
@@ -54,6 +55,8 @@ class ListenerHTTP:
             self.logger.debug(f"{inspect.stack()[0][3]}")
             self.logger.debug(f"Loading & starting {Info.name}")
 
+            # Load config
+            self.data_singleton.Config.load_config("listener_http_config.yaml")
 
             # if no flask instance, create one - prolly don't need a sep func for this.
             if self.app == None:
@@ -75,29 +78,12 @@ class ListenerHTTP:
 
     def register_routes(self):
         self.app.route(f'/', methods = ["GET"])(self.listener_http_base_endpoint)
-        self.app.route(f'{Info.endpoint}/get', methods = ["GET"])(self.listener_http_get_endpoint)
         self.app.route(f'{Info.endpoint}/post', methods = ["POST"])(self.listener_http_post_endpoint)
         self.app.route(f'{Info.endpoint}/sync', methods = ["POST"])(self.listener_http_sync_endpoint)
 
 
     def listener_http_base_endpoint(self):
-        return "base_endpoint"
-
-    def listener_http_get_endpoint(self):
-        '''
-            Init post endpoint. will be used for something
-        '''
-
-        # for now, just returning the mock JSON format
-        dummy_request = HTTPJsonRequest()
-
-        dummy_request.callback.server.hostname = "callbackserver" # pull this from the singleton somehwere
-
-        dummy_request_json = dummy_request.generate_json()
-
-        return make_response(dummy_request_json, 200)
-
-
+        return api_response()
 
     def listener_http_post_endpoint(self):
         '''
@@ -107,51 +93,69 @@ class ListenerHTTP:
         
         '''
         #####
-            ## New Chain
+            # New Chain
             # Recieve request
             # Parse request. 
             # Get new item in listener queue (from client class)
             # return response to client.
 
-            ##Still need some form of client verification.
+            # Still need some form of client verification.
         #####
 
-        data = request.json
+        try:
+            data = request.json
 
-        if data is None:
-            return jsonify({"error": "Invalid or no JSON received"}), 400
+            if data is None:
+                return jsonify({"error": "Invalid or no JSON received"}), 400
 
-        data_dict = dict(data)
-        print(data_dict)
+            data_dict = dict(data)
 
-        # fast handling for the ClientInfo type in the vessel
-        client_nickname = data_dict["data"]["ClientInfo"]["nickname"]
-        self.logger.info(f"Client connected: {client_nickname}")
+            # Fast handling for the ClientInfo type in the vessel
+            client_nickname = data_dict["data"]["ClientInfo"]["nickname"]
+            self.logger.info(f"Client connected: {client_nickname}")
 
-        # if client does not exist. 
-        if not self.data_singleton.Clients.check_if_client_exists(client_name=client_nickname):
-            self.logger.debug(f"New client: {client_nickname}")
-            client_instance = Client(client_nickname)
+            # If client does not exist
+            if not self.data_singleton.Clients.check_if_client_exists(client_name=client_nickname):
+                self.logger.debug(f"New client: {client_nickname}")
+                client_instance = Client(client_nickname)
+            else:
+                self.logger.debug(f"Retrieving client instance for: {client_nickname}")
+                client_instance = self.data_singleton.Clients.get_client_object(client_name=client_nickname)
 
-        else:
-            self.logger.debug(f"Retrieveing client instance for: {client_nickname}")
-            client_instance = self.data_singleton.Clients.get_client_object(client_name=client_nickname)
+            client_instance.set_response(response=data_dict)
+            # Get next command
+            client_command = client_instance.dequeue_command()
+            # Return command to client
+            self.logger.debug(f"Responding to client {client_nickname}")
 
-        client_instance.set_response(response=data_dict)
-        # get next command
-        client_command = client_instance.dequeue_command()
-        # return command to client
-        self.logger.debug(f"Responding to client {client_nickname}")
+            # Wrap in Vessel key/actions
+            data = VesselBuilder.build_vessel(
+                actions=[client_command]
+            )
+            # Add that data to response
+            return api_response(data=data)
         
-        # wrap in Vessel key/actions
-        data = VesselBuilder.build_vessel(
-            actions=[client_command]
-        )
-        # add taht data to response
-        return api_response(data=data)
-    
-        #return make_response(jsonify(client_command), 200)
+        # Error handling - move to config file.
 
+        except KeyError as e:
+            
+            self.logger.error(f"KeyError: Missing key in data - {str(e)}")
+            return api_response(
+                status_code=self.data_singleton.Config.get_value("responses.error.status_code"),
+                status=self.data_singleton.Config.get_value("responses.error.status"),
+                error_message=f"KeyError: Missing key in data - {str(e)}"
+            )
+
+            #return jsonify({"error": f"Missing key in data: {str(e)}"}), 400
+        
+        except Exception as e:
+            self.logger.error(f"An error occurred: {str(e)}")
+            return api_response(
+                status_code=self.data_singleton.Config.get_value("responses.internal_server_error.status_code"),
+                status=self.data_singleton.Config.get_value("responses.internal_server_error.status"),
+                error_message=f"An error occurred: {str(e)}"
+            )
+    
     ## sync DOES NOT return any response besides okay/bad.
     def listener_http_sync_endpoint(self):
         """
@@ -166,23 +170,36 @@ class ListenerHTTP:
         ## Check if the request is JSON
         if not request.is_json:
             self.logger.error(f"Request data from {client_address} is not JSON")
-            return "Request data is not JSON", 400
+            return api_response(
+                status_code=self.data_singleton.Config.get_value("responses.error.status_code"),
+                status=self.data_singleton.Config.get_value("responses.error.status"),
+                error_message=f"Request data from {client_address} is not JSON"
+            )
 
         ## Get JSON data from the request
         try:
             response = request.get_json()
+
+        # 400 error as it's the users problem (probably)
         except Exception as e:
             self.logger.error(f"Error parsing JSON from {client_address}: {e}")
-            return f"Error parsing JSON from {client_address}: {e}", 400
+            
+            return api_response(
+                status_code=self.data_singleton.Config.get_value("responses.error.status_code"),
+                status=self.data_singleton.Config.get_value("responses.error.status"),
+                error_message=f"Error parsing JSON from {client_address}: {e}"
+            )
 
         ## Parse JSON using SyncHandler
         synchandler = SyncHandler()
         synchandler.parse_response(response=response)
 
         # return ok 
-        return api_response(status_code=200, status="success")
+        return api_response(
+            status_code=self.data_singleton.Config.get_value("responses.success.status_code"),
+            status=self.data_singleton.Config.get_value("responses.success.status")
+        )
     
-
 
 def create_flask_instance():
     '''
@@ -192,7 +209,7 @@ def create_flask_instance():
     app = Flask("http_listener")
     return app
 
-
+""" For standalone mode. 
 ## Standalone mode options
 if __name__ == "__main__":
     print(f"Starting {Info.name} in standalone mode.")
@@ -211,3 +228,4 @@ if __name__ == "__main__":
     plugin_instance.main()
     #plugin_instance.main()
     #app.run(host="0.0.0.0", port="1000", debug=False)
+"""

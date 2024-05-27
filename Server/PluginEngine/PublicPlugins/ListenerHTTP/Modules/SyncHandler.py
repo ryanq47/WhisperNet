@@ -2,7 +2,6 @@
 
 '''
 {
-  "response_id": "matching_request_identifier",
   "request_id": "unique_request_identifier",
   "timestamp": 1710442988,
   "status": "success",
@@ -49,7 +48,6 @@ class SyncHandler:
 
         ## Move these to a dict? need to weigh pros & cons
         self.request_id = None
-        self.response_id = None
         self.timestamp = None
         self.status = None
 
@@ -86,8 +84,7 @@ class SyncHandler:
         """
         if self.data != None:
 
-            self.response_id = self.data["response_id"]
-            self.request_id = self.data["request_id"]
+            self.request_id = self.data["rid"]
             self.timestamp = self.data["timestamp"]
             self.status = self.data["status"]
 
@@ -124,7 +121,7 @@ class SyncHandler:
                 handler_function.handle_data(result_data[key])
 
             else:
-                self.logger.warning(f"Key '{key}' not found while parsing response {self.response_id}. Cannot properly handle.")
+                self.logger.warning(f"Key '{key}' not found while parsing response {self.request_id}. Cannot properly handle.")
                 self.logger.debug("This means that there is no class defined to handle this type of data.")
 
         # for each recognized key, call the proper function/subsystem to handle that data

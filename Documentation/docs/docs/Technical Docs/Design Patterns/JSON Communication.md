@@ -13,22 +13,21 @@ On the server side, the "data" feild is parsed for each subkey, and that type of
 
 ```json
 {
-  "response_id": "matching_request_identifier",
-  "request_id": "unique_request_identifier",
+  "rid": "unique_request_identifier",
   "timestamp": 1710442988,
   "status": "success",
   "data": {
     //example data types
     "Actions": [
-      {"Action": "powershell","executable": "ps.exe","command": "net user /domain add bob"},
-      {"Action": "powershell","executable": "ps.exe","command": "net group /add Domain Admins Bob"}
+      {"Action": "powershell","executable": "ps.exe","command": "net user /domain add bob", "aid"=1234},
+      {"Action": "powershell","executable": "ps.exe","command": "net group /add Domain Admins Bob", "aid"=1235}
     ],
     "ListenerHttpCommandSync": [
       {"somedata": "somedata"},
       {"somedata": "somedata"}
     ]
   },
-  "error": {"code": null,"message": null}
+  "error": {"message": null,"aid": [null, null], "rid":null}
 }
 ```
 
@@ -54,6 +53,7 @@ Used to define a sequence of executable commands, in a JSON list. Each action in
 ```
 
 Example in Vessel:
+
 ```
 "Actions":[
     {"client_nicnkname":"clientname","action": "powershell1","executable": "ps.exe","command": "net user /domain add bob"},
@@ -61,6 +61,7 @@ Example in Vessel:
 ],
 
 ```
+
 
 ## **ListenerHttpCommandSync** (Server > Listener) : 
 
@@ -86,12 +87,17 @@ Example in Vessel
 ## **ClientExfilSync** (Client > Listener):
  Used for clients to exfil data & command results from their hosts.
 
+ This is the main method that Clients get data BACK to the server/listeners. 
+
+ it uses the cid to track what request it came from/it correlates to
+
 ```
 {
-  "somedata": "sensitivedata123",
+  "data": "sensitivedata123",
   "chunk": 0,
   "size": 4096,
-  "encoding": "base64"
+  "encoding": "base64",
+  "cid":"uuid-uuid-uuid-uuid"
 }
 ```
 

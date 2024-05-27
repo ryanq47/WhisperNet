@@ -1,6 +1,7 @@
 ## DataSIngleton for Listener ops
 
 from Utils.Logger import LoggingSingleton
+import yaml
 
 class Data:
     _instance = None
@@ -17,6 +18,8 @@ class Data:
         self.Paths = Paths()
         self.Plugin = Plugin()
         self.Clients = Clients()
+        self.Config = Config()
+
         self._initialized = True
 
 class Plugin:
@@ -140,3 +143,90 @@ class Paths:
     def sys_path(self, value):
         self._sys_path = value
         self.logger.debug(f"sys_path set to: {value}")
+
+
+class Config:
+    def __init__(self):
+        self.logger = LoggingSingleton.get_logger()
+        self._config_file_path = None  # config_file_path
+        self._config = None
+
+    # Getter for config_file_path
+    @property
+    def config_file_path(self):
+        return self._config_file_path
+
+    # Setter for config_file_path
+    @config_file_path.setter
+    def config_file_path(self, value):
+        self._config_file_path = value
+
+    # Getter for config
+    @property
+    def config(self):
+        return self._config
+
+    # Setter for config
+    @config.setter
+    def config(self, value):
+        self._config = value
+
+    # load the config
+    def load_config(self, config_file_path = None):
+        self.logger.info(f"Loading listener config: {self.config_file_path}")
+
+        #if a path is passed in, use it.
+        if config_file_path:
+            self.config_file_path = config_file_path
+
+        try:
+            with open(self._config_file_path, 'r') as config_file:
+                self._config = yaml.safe_load(config_file)
+                #print(self._config)
+                if self._config is None:
+                    self.logger.info(f"Config file could not be loaded!")
+
+                else:
+                    self.logger.info(f"Config loaded successfully!: {self.config_file_path}")
+
+        except Exception as e:
+            # this is bad
+            self.logger.critical(f"Error loading configuration from {self._config_file_path}: {e}")
+            exit()
+            
+    def get_value(self, key, default=None):
+        """
+        Retrieve a value from the loaded configuration.
+        
+        :param key: The key to look up in the configuration.
+        :param default: The default value to return if the key is not found.
+        :return: The value from the configuration or the default value.
+        """
+        if not self._config:
+            self.logger.error("Configuration not loaded. Call load_config() first.")
+            return default
+
+        keys = key.split('.')
+        value = self._config
+        try:
+            for k in keys:
+                value = value[k]
+            return value
+        except KeyError:
+            self.logger.error(f"Key '{key}' not found in configuration.")
+            return default
+
+
+# Example usage:
+'''
+if __name__ == "__main__":
+    config_file_path = "sample_plugin_config.yaml"  # Replace with your config file path
+    plugin_config = PluginConfig(config_file_path)
+
+    if plugin_config.load_config():
+        option1_value = plugin_config.get_value("configuration.option1")
+        option2_value = plugin_config.get_value("configuration.option2")
+        
+        print(f"Option 1 value: {option1_value}")
+        print(f"Option 2 value: {option
+'''
