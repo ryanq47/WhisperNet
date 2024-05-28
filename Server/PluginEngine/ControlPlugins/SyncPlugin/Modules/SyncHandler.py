@@ -34,6 +34,7 @@ import json
 
 from Utils.Logger import LoggingSingleton
 from PluginEngine.ControlPlugins.SyncPlugin.Modules.ListenerHttpSync import ListenerHttpSync
+from PluginEngine.ControlPlugins.SyncPlugin.Modules.ListenerHttpClientSync import ListenerHttpClientSync
 from PluginEngine.ControlPlugins.SyncPlugin.Modules.ListenerInfo import ListenerInfo
 
 # - Questions: Where does this data go? Sinlgeton somewhere?
@@ -47,6 +48,7 @@ class SyncHandler:
         self.handlers = {
             #'listenerHTTP': ListenerHttpSync #self.handle_client_name,
             'ListenerHttpCommandSync': ListenerHttpSync,
+            'ListenerHttpClientSync': ListenerHttpClientSync,
             'ListenerInfo': ListenerInfo
         }
 

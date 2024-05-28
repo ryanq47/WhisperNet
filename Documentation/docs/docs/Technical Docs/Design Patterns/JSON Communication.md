@@ -52,7 +52,7 @@ Used to define a sequence of executable commands, in a JSON list. Each action in
 }
 ```
 
-Example in Vessel:
+Example in  Sync Key:
 
 ```
 "Actions":[
@@ -76,7 +76,7 @@ Used for synchronizing HTTP commands. The structure is flexible and can include 
 }
 ```
 
-Example in Vessel
+Example in  Sync Key
 ```
 "ListenerHttpCommandSync":[
     {"client_nicnkname":"clientname","action": "powershell1","executable": "ps.exe","command": "net user /domain add bob"},
@@ -101,7 +101,7 @@ Example in Vessel
 }
 ```
 
-Example in Vessel:
+Example in  Sync Key:
 ```
 "ClientExfilSync":[
     {"somedata":"sensitivedata123", "chunk":0, "size":4096, "encoding":"base64"}
@@ -119,7 +119,7 @@ Used by clients for checking in to the listeners.
 }
 ```
 
-Example in Vessel:
+Example in  Sync Key:
 
 ```
 "ClientInfo": {
@@ -141,7 +141,7 @@ Used by listeners for checking in to the server.
 }
 ```
 
-Example in Vessel:
+Example in  Sync Key:
 
 ```
 "ListenerInfo": {
@@ -149,5 +149,26 @@ Example in Vessel:
     "pub_key":"",
     "sync_endpoint":"",
     "address":"http://mylisteneraddress:8080/"
+}
+```
+
+## **ListenerHttpClientSync** (Listener > Server):
+
+Used by listeners for syncing current clients (and maybe data if ever needed)
+
+
+```
+{
+  "lid":"1234-1234-1234-1234", //listener id of current listener that the client is apart of. 
+  "cid": "1234-1234-1234-1234" # Client ID of the client
+}
+```
+
+Example in Sync Key:
+
+```
+"ListenerInfo": {
+  "lid":"1234-1234-1234-1234", //listener id of current listener that the client is apart of. 
+  "cid": "1234-1234-1234-1234" # Client ID of the client
 }
 ```
