@@ -1,4 +1,5 @@
 from Utils.Logger import LoggingSingleton
+import yaml
 
 class Data:
     _instance = None
@@ -14,6 +15,7 @@ class Data:
             return
         self.Paths = Paths()
         self.Listeners = Listeners()
+        self.Config = Config()
         self._initialized = True
 
 
@@ -61,6 +63,73 @@ class Paths:
 class Config:
     def __init__(self):
         self.logger = LoggingSingleton.get_logger()
+        self._config_file_path = None  # config_file_path
+        self._config = None
+
+    # Getter for config_file_path
+    @property
+    def config_file_path(self):
+        return self._config_file_path
+
+    # Setter for config_file_path
+    @config_file_path.setter
+    def config_file_path(self, value):
+        self._config_file_path = value
+
+    # Getter for config
+    @property
+    def config(self):
+        return self._config
+
+    # Setter for config
+    @config.setter
+    def config(self, value):
+        self._config = value
+
+    # load the config
+    def load_config(self, config_file_path = None):
+        self.logger.info(f"Loading listener config: {self.config_file_path}")
+
+        #if a path is passed in, use it.
+        if config_file_path:
+            self.config_file_path = config_file_path
+
+        try:
+            with open(self._config_file_path, 'r') as config_file:
+                self._config = yaml.safe_load(config_file)
+                #print(self._config)
+                if self._config is None:
+                    self.logger.info(f"Config file could not be loaded!")
+
+                else:
+                    self.logger.info(f"Config loaded successfully!: {self.config_file_path}")
+
+        except Exception as e:
+            # this is bad
+            self.logger.critical(f"Error loading configuration from {self._config_file_path}: {e}")
+            exit()
+
+    def get_value(self, key, default=None):
+        """
+        Retrieve a value from the loaded configuration.
+        
+        :param key: The key to look up in the configuration.
+        :param default: The default value to return if the key is not found.
+        :return: The value from the configuration or the default value.
+        """
+        if not self._config:
+            self.logger.error("Configuration not loaded. Call load_config() first.")
+            return default
+
+        keys = key.split('.')
+        value = self._config
+        try:
+            for k in keys:
+                value = value[k]
+            return value
+        except KeyError:
+            self.logger.error(f"Key '{key}' not found in configuration.")
+            return default
 
 
 class Properties:
@@ -88,12 +157,13 @@ class Http:
         ## Synced data. uhhh can prolly call this somethign diff.
         self.synced_data_store = [] # Dictionary to hold other dictionaries
 
-    def add_listener(self, process = None, info = None):
+    def add_listener(self, class_object = None, lid=None):
         """Add an HTTP listener to the http_listeners dict in the Data singleton. 
 
         Args:
             class_object: The class object of the listener. 
             nickname: The nickanme of the listener
+
         """
 
         # QUick docs:
@@ -102,25 +172,46 @@ class Http:
                 #through each class intance & pulling the nickname attribute.
         self.logger.debug("Adding http listener to data singleton")
         listener_dict = {
-            # process object
-            "process":process,
-            # Data about the listener.
-            # ex listener_dict["info"]["nickname"]
-            "info":info
+            #  object
+            "class_object":class_object,
+            # address of listener
+            "lid":lid
         }
+        # any other data is stored in the lsitener class
 
         ## Adding to http_listeners dict
-        nickname = info["nickname"]
-        self.http_listeners[nickname] = listener_dict
+        self.http_listeners[lid] = listener_dict
 
         self.logger.debug(self.http_listeners)
 
-    def get_listener_by_nickname(self, nickname = None):
-        listener_info = self.http_listeners.get(nickname, None)
+    # DEP
+    #def get_listener_by_nickname(self, nickname = None):
+    #    listener_info = self.http_listeners.get(nickname, None)
+    #    if listener_info is not None:
+    #        return listener_info
+    #    else:
+    #        self.logger.warning(f"Listener with nickname {nickname} not found.")
+    #        return None
+
+    def get_listener_by_lid(self, lid=None):
+        """
+        Retrieve a listener by its listener ID (lid).
+
+        Args:
+            lid: The listener ID.
+
+        Returns:
+            dict or None: The dictionary containing listener information if found, otherwise None.
+        """
+        listener_info = self.http_listeners.get(lid, None)
         if listener_info is not None:
-            return listener_info
+            if listener_info["class_object"] is not None:
+                return listener_info["class_object"]
+            else:
+                self.logger.warning(f"Listener {lid} class object is empty!")
+            #return listener_info[]
         else:
-            self.logger.warning(f"Listener with nickname {nickname} not found.")
+            self.logger.warning(f"Lookup for Listener with ID {lid} not found.")
             return None
 
     def get_listeners(self):
@@ -157,6 +248,7 @@ class Http:
         #self.logger.debug(f"Data entry added")
         #self.logger.debug(f"Size of synced_data_store: {len(self.synced_data_store)} elements")
         
+
 
 
 '''

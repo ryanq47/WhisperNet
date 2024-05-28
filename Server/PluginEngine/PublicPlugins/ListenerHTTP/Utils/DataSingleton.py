@@ -193,7 +193,7 @@ class Config:
             # this is bad
             self.logger.critical(f"Error loading configuration from {self._config_file_path}: {e}")
             exit()
-            
+
     def get_value(self, key, default=None):
         """
         Retrieve a value from the loaded configuration.

@@ -20,8 +20,37 @@ class ListenerHttpSync:
             return
 
         # Iterate over each key-value pair in the response dictionary
+        # json entry: `{"action": "powershell","executable": "ps.exe","command": "whoami", "aid":"1234"}`
+        #for json_entry in response:
+            #self.data.Listeners.HTTP.add_synced_data(data=json_entry)
+
+        ## New (ineffecient) way:
+        # for each entry:
+            #store w/ Listeners.HTTP.add_synced_data(data=json_entry) # ideally this will record requests/do any other non networking procesing
+            # Get all of that data, find listener for respective request (need a lookup), and send.
+            # format into request
+            # forward *to* client. 
+
+        # problems; ineffecient. Lots of requests. No "universal" packet being sent to client. 
+        # lets try it.
+
+        # rename json_entry to something better
         for json_entry in response:
             self.data.Listeners.HTTP.add_synced_data(data=json_entry)
+            
+            # maybe just have listener objects tbh?
+            
+            # extract which listener based on current clietns from listener
+            #self.data.Listeners.HTTP.get_listener_from_client_uuid(client_uuid)    # returns listener UUID
+
+            #self.data.Listeners.HTTP.get_listener_by_nickname(listener_uuid)       # change to UUID
+
+            # send request to said listener. 
+            #listener_object.forward_request(json_entry)
+
+
+
+
 
         self.logger.debug(f"Data from the response has been stored successfully.")
 

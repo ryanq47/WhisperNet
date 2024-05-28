@@ -112,5 +112,5 @@ vessel = VesselBuilder.build_vessel(
 )
 
 # Print the vessel JSON
-print("Vessel JSON:")
-print(json.dumps(vessel, indent=2))
+#print("Vessel JSON:")
+#print(json.dumps(vessel, indent=2))

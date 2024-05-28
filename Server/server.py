@@ -76,7 +76,10 @@ class ControlServer():
 
     def load_data(self):
         try:
+            # load config
+
             self.Data = Data()
+            self.Data.Config.load_config("server_config.yaml")
 
             ## Set data items
             self.Data.Paths.users_db_path = "DataBases/users.db"
@@ -144,6 +147,7 @@ class ControlServer():
         '''
         Any other startup tasks
         '''
+
         # setup JWT
         self.jwt = JWTManager(self.app)
         ## Try to connect to db (add logic later)

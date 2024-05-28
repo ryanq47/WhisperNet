@@ -2,7 +2,7 @@
 
 '''
 {
-  "response_id": "matching_request_identifier",
+  "rid": "matching_request_identifier",
   "request_id": "unique_request_identifier",
   "timestamp": 1710442988,
   "status": "success",
@@ -34,6 +34,8 @@ import json
 
 from Utils.Logger import LoggingSingleton
 from PluginEngine.ControlPlugins.SyncPlugin.Modules.ListenerHttpSync import ListenerHttpSync
+from PluginEngine.ControlPlugins.SyncPlugin.Modules.ListenerInfo import ListenerInfo
+
 # - Questions: Where does this data go? Sinlgeton somewhere?
 
 # Called once per response
@@ -43,12 +45,13 @@ class SyncHandler:
         self.logger = LoggingSingleton.get_logger()
         self.data = None
         self.handlers = {
-            'listenerHTTP': ListenerHttpSync #self.handle_client_name,
+            #'listenerHTTP': ListenerHttpSync #self.handle_client_name,
+            'ListenerHttpCommandSync': ListenerHttpSync,
+            'ListenerInfo': ListenerInfo
         }
 
         ## Move these to a dict? need to weigh pros & cons
-        self.request_id = None
-        self.response_id = None
+        self.rid = None
         self.timestamp = None
         self.status = None
 
@@ -85,8 +88,7 @@ class SyncHandler:
         """
         if self.data != None:
 
-            self.response_id = self.data["response_id"]
-            self.request_id = self.data["request_id"]
+            self.rid = self.data["rid"]
             self.timestamp = self.data["timestamp"]
             self.status = self.data["status"]
 
@@ -108,6 +110,39 @@ class SyncHandler:
         result_data = self.data["data"]
         #self.logger.debug(f"Result Data: {result_data}")
 
+        ######################################
+        """
+            Big Issue/Vuln: (mitigated)
+
+                Listener request will have ALL the keys processed even when not verified, because there is no check to make
+                sure the listener is verified first. FUCK. ideas:
+
+                options:
+                 - [X] If ListenerInfo present, check that listener is good to go before. 
+                 - Put a "lock" on the listener object to prevent it from doing anything. 
+
+                Both might be a good option
+
+        """
+        ######################################
+        # key check
+
+        # Check if ListenerInfo exists and process it first
+        # Can be used for other items that need this processing first, such as GUI > server.
+        if "ListenerInfo" in result_data:
+            self.logger.debug("ListenerInfo present in reqeust. Making sure listener is okay before doing other actions.")
+            listener_info = result_data["ListenerInfo"]
+            
+            handler_function = self.handlers['ListenerInfo']
+            # init function
+            handler_function = handler_function()
+            if handler_function.store_response(listener_info):
+                self.logger.debug(f"Listener {listener_info['lid']} found and verified. Continuing actions")
+
+            else:
+                self.logger.warning(f"Listener {listener_info['lid']} NOT verified. Not processing any data recieved by Listener.")
+
+
         # iterate over key,
         for key in result_data:
             if key in self.handlers:
@@ -125,7 +160,7 @@ class SyncHandler:
                 handler_function.store_response(result_data[key])
 
             else:
-                self.logger.warning(f"Key '{key}' not found while parsing response {self.response_id}. Cannot properly handle.")
+                self.logger.warning(f"Key '{key}' not found while parsing response {self.rid}. Cannot properly handle.")
                 self.logger.debug("This means that there is no class defined to handle this type of data.")
 
         # for each recognized key, call the proper function/subsystem to handle that data

@@ -9,7 +9,6 @@ import inspect
 # Scraping one file standalone for now. Public Plugins will still comm over http. 
 # Can just adjust imports for standalone mode in a diff file.
 #from Utils.Logger import LoggingSingleton
-# WHY U NO WORK
 from PluginEngine.PublicPlugins.ListenerHTTP.Utils.Logger import LoggingSingleton
 from PluginEngine.PublicPlugins.ListenerHTTP.Utils.DataSingleton import Data
 from PluginEngine.PublicPlugins.ListenerHTTP.Utils.ActionLogger import ActionLogger
@@ -51,11 +50,13 @@ class ListenerHTTP:
         Main function/entry point for the plugin.
         '''
         try:
+            print("INIT FREAKING LIST")
             ## OKAY rework this chain/put in functions?
             self.logger.debug(f"{inspect.stack()[0][3]}")
             self.logger.debug(f"Loading & starting {Info.name}")
 
             # Load config
+            #print("loadign listenre config")
             self.data_singleton.Config.load_config("listener_http_config.yaml")
 
             # if no flask instance, create one - prolly don't need a sep func for this.

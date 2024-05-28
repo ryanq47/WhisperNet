@@ -77,19 +77,30 @@ class Sync():
         ## Check if the request is JSON
         if not request.is_json:
             self.logger.error(f"Request data from {client_address} is not JSON")
-            return "Request data is not JSON", 400
-
+            #return "Request data is not JSON", 400
+            return api_response(
+                status_code=self.data.Config.get_value("responses.error.status_code"),
+                status=self.data.Config.get_value("responses.error.status"),
+                error_message=f"Request data from {client_address} is not JSON"
+            )
 
         ## Get JSON data from the request
         try:
             response = request.get_json()
         except Exception as e:
             self.logger.error(f"Error parsing JSON from {client_address}: {e}")
-            return f"Error parsing JSON from {client_address}: {e}", 400
+            return api_response(
+                status_code=self.data.Config.get_value("responses.error.status_code"),
+                status=self.data.Config.get_value("responses.error.status"),
+                error_message=f"Error parsing JSON from {client_address}: {e}"
+            )
 
         ## Parse JSON using SyncHandler
         synchandler = SyncHandler()
         synchandler.parse_response(response=response)
 
-        return api_response(status_code=200, status="success")
+        return api_response(
+            status_code=self.data.Config.get_value("responses.success.status_code"),
+            status=self.data.Config.get_value("responses.success.status")
+        )
 

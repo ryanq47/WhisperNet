@@ -137,22 +137,14 @@ class SimpleC2():
 # HTML Dashboard
 ################################################
 
-    def simplec2_dashboard(self):
-        '''
-        Dashaboards. Cool eventually but not now
-        
-        '''
-
-        return "dashboard"
-    
     def simplec2_api_placeholder(self):
         '''
         api
         '''
-        return "api"
+        return api_response()
 
 ################################################
-# Listener Management- Gonna have to redo these
+# Listener Management - [ ] Review
 ################################################
 
 
@@ -206,6 +198,8 @@ class SimpleC2():
 
             # Assuming jsonify and api_response are correctly defined elsewhere
             #listeners_json = jsonify(listeners_dict)
+            
+            # Need to vessel
             return api_response(status_code=200, data=listeners_dict)
 
         except BadRequest:
@@ -257,151 +251,9 @@ class SimpleC2():
 
 
 ################################################
-# API - Gonna have to redo these
+# API - Client Control & Listener Interaction
 ################################################
-
-    ## Endpoint for CLinet sending command
-    ## Post, JSON   
-    def simplec2_api_post_client_command(self):
-        '''
-        Endpoint for Client sending command. Gets magically parsed, and forwarded to the respective listener
-        '''
-        ...
-
-        ## Parse json.
-
-        ## Get listener.
-
-        ## post to listener.
-        return make_response("up", 200)
-    
-    def simplec2_post_command_to_listener(self, command = None, listener = None, target = None):
-        '''
-        Forwards the command onto the listener
-        
-
-        JSON:
-
-        {
-            command: command (powershell whoami)
-            target: "target_ip/name of target, etc
-
-        }
-
-
-        '''
-
-        ## Requests.send to listneer at post addr.
-        ## 127.0.0.1:80/postaddr/post_commands
-
-        ## on the listnere side, take post, parse it, queue it
-
-        ...
-
-    def simplec2_api_client(self):
-        '''
-        for the GUI to GET client data from the server
-        
-        or POST to the server for queuing commands N stuff
-
-        WIll figure out the intraceuies later
-        '''
-        if request.method == 'GET':
-            client_data = [
-                {
-                    "client": "WIN-0N3BY",
-                    "ip": "192.168.93.214",
-                    "port": "8233",
-                    "listener": "Listener-HTTP-4",
-                    "sleep": "31s",
-                    "username": "Admin",
-                    "client_type": "C++"
-                },
-                {
-                    "client": "WIN-HFT63",
-                    "ip": "192.168.214.109",
-                    "port": "8182",
-                    "listener": "Listener-HTTP-8",
-                    "sleep": "58s",
-                    "username": "User",
-                    "client_type": "Python"
-                },
-                {
-                    "client": "WIN-GUN75",
-                    "ip": "192.168.96.93",
-                    "port": "8870",
-                    "listener": "Listener-HTTP-9",
-                    "sleep": "36s",
-                    "username": "Guest",
-                    "client_type": "C++"
-                },
-                {
-                    "client": "WIN-V5DYU",
-                    "ip": "192.168.250.41",
-                    "port": "8982",
-                    "listener": "Listener-HTTP-3",
-                    "sleep": "56s",
-                    "username": "Admin",
-                    "client_type": "Python"
-                },
-                {
-                    "client": "WIN-5MXHF",
-                    "ip": "192.168.100.114",
-                    "port": "8133",
-                    "listener": "Listener-HTTP-1",
-                    "sleep": "14s",
-                    "username": "Admin",
-                    "client_type": "Python"
-                },
-                {
-                    "client": "WIN-UV2PK",
-                    "ip": "192.168.26.52",
-                    "port": "8438",
-                    "listener": "Listener-HTTP-5",
-                    "sleep": "57s",
-                    "username": "Admin",
-                    "client_type": "Java"
-                }
-            ]
-
-            return jsonify(client_data)
-
-        elif request.method == "POST":
-            '''
-            This is meant to be used for queing command N stuff
-            '''
-            ## turn into a func eventually
-
-            # Get data from request
-            client_id = request.json.get('id')
-
-
-            if client_id == "server":
-                return "simplec2 console API is up"
-                #something?
-                ...
-
-            else:
-                ## Do actions, 
-
-                ## Get Client Object (dunno how, gonna take somethinking)
-
-                ## POST to respective Listnener, Queue command
-                    ##/synccommand on listener
-                response = self.queue_command_on_listener(
-                    listener_url="http://127.0.0.1:5001/synccommand",
-                    client_id=client_id
-                )
-                
-                ## Get callbacktime/info from request. 
-
-                ## put injson
-
-                # return json with details for console/gui
-                ## Directly returning json from node at the moment. 
-                return response
-
-                #return jsonify(fake_data)
+ # just use sync plugin duh
 
 ################################################
 # API - DB stuff

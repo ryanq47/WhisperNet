@@ -126,3 +126,28 @@ Example in Vessel:
     "nickname":"name"
 }
 ```
+
+## **ListenerInfo** (Listener > Server):
+
+Used by listeners for checking in to the server.
+
+
+```
+{
+  "lid":"1234-1234-1234-1234", //listener id - keeping in line with other named uuid's, such as rid (request id) and aid (action id)
+  "pub_key":"",
+  "sync_endpoint":"",
+  "address":"http://mylisteneraddress:8080/"
+}
+```
+
+Example in Vessel:
+
+```
+"ListenerInfo": {
+    "lid":"1234-1234-1234-1234", 
+    "pub_key":"",
+    "sync_endpoint":"",
+    "address":"http://mylisteneraddress:8080/"
+}
+```

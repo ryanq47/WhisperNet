@@ -1,6 +1,7 @@
 import uuid
 import time
 from flask import jsonify
+from PluginEngine.PublicPlugins.ListenerHTTP.Utils.DataSingleton import Data
 
 class MessageHelper:
     @staticmethod
@@ -13,7 +14,7 @@ class MessageHelper:
         """Generate a current timestamp."""
         return int(time.time())
 
-def api_response(status="success", data=None, error_code=None, error_message=None, data_items=None, **kwargs):
+def api_response(status="success", data=None, error_message=None, data_items=None, **kwargs):
     '''
     Helper function to create/construct a response json_str to send back to the user. 
 
@@ -33,18 +34,15 @@ def api_response(status="success", data=None, error_code=None, error_message=Non
         user_id="12345"  # Kwarg
     )
     '''
+    data_singleton = Data()
 
     # Initialize response structure
     response = {
-        "id": MessageHelper.generate_unique_id(),  # Unique identifier for this request
-        "cid": kwargs.pop('cid', None),  # Optional correlating id, if provided
+        "rid": MessageHelper.generate_unique_id(),  # Unique identifier for this request
         "timestamp": MessageHelper.generate_timestamp(),  # Current timestamp
         "status": status,
         "data": data if data else {},
-        "error": {
-            "code": error_code,
-            "message": error_message
-        }
+        "error": error_message if error_message else {}
     }
 
     # Add additional data items if provided
@@ -53,14 +51,21 @@ def api_response(status="success", data=None, error_code=None, error_message=Non
             response["data"][key] = value
 
     # Remove error key if it has no useful content
-    if not response["error"]["code"] and not response["error"]["message"]:
-        del response["error"]
+    if data_singleton.Config.get_value("responses.return_error_message"):
+        #print("Error responses are on")
+        if not response["error"]:
+            del response["error"]
+     
+    # remove data key if it has no useful content
+    # Might cause some problems from the client side
+    if not response["data"]:
+        del response["data"]
 
     # Add any additional keyword arguments, excluding None values
     response.update({k: v for k, v in kwargs.items() if v is not None})
 
     # Return JSON response with appropriate status code
-    return jsonify(response), 200 if status == "success" else 400
+    return jsonify(response), 200
 
 # Example usage
 '''
