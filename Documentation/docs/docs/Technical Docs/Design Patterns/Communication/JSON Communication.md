@@ -1,6 +1,7 @@
 ## JSON Transport Vessel/Comms
 
-This outlines how communication is hanlded between the entire project. To see how it is tied together/implemetned, check out DOCS FOR SYNC EVERYTHING ONCE THEY EXIST
+This outlines how communication is hanlded between the entire project. To see how it is tied together/implemetned, check out the [Sync Process](../Communication/Sync%20Process.md)
+
 
 To see construction of how to generate these, see [MessageBuilder](../../Server/Utils/MessageBuilder.md).
 
@@ -8,8 +9,14 @@ To see construction of how to generate these, see [MessageBuilder](../../Server/
 #### Universal Comms
 
 This JSON structure serves as the universal communication method/vessel between all components. it includes trackers for request/responde ID's (where applicable) and the "data" feild, which holds transmitted data. 
-On the server side, the "data" feild is parsed for each subkey, and that type of data is handled appropriately.
+On the server side, the "data" feild is parsed for each subkey (Sync Keys), and that type of data is handled appropriately.
 
+
+#### Definitions
+
+Vessel: The entire JSON structure
+
+Sync Keys: Individual subkeys under the `data` key. See Usage below for more information.
 
 ```json
 {
@@ -33,16 +40,18 @@ On the server side, the "data" feild is parsed for each subkey, and that type of
 
 ## Usage
 
-The `data` key can include multiple data types, each processed by specific handlers within the system. See Vessel Types for current vessels.
+The `data` key can include multiple data types, which are json subkeys. These are called `Sync Keys`. Each Sync Key contains a list of entries (see the Action Sync Key in the above exmple), and is processed by specific handlers within the system. See Sync Key Types: for current Sync Keys.
 
-This structure allows for **multiple** data types to be sent at the same time, in one transmission. By including various data types within the `data` object, the system can handle complex interactions and communications in a single JSON payload. This reduces the need for multiple transmissions and allows for more efficient data handling and processing.
+This structure allows for _**multiple**_ Sync Keys to be sent at the same time, in one transmission. By including these various Sync Keys within the `data` key, the system can handle complex interactions and communications in a single JSON payload. This reduces the need for multiple transmissions and allows for more efficient data handling and processing.
 
 
-# Vessel Types:
+# Sync Key Types:
 
 ## **Actions** (Listener > Client): 
 Used to define a sequence of executable commands, in a JSON list. Each action includes the executable file and the command to run.
 
+
+Contents of individual key entry: 
 ```
 {
   "client_nicnkname": "clientname",
@@ -52,7 +61,7 @@ Used to define a sequence of executable commands, in a JSON list. Each action in
 }
 ```
 
-Example in  Sync Key:
+Example in Sync Key:
 
 ```
 "Actions":[
@@ -67,6 +76,7 @@ Example in  Sync Key:
 
 Used for synchronizing HTTP commands. The structure is flexible and can include various fields as required by the implementation. Generally used Server -> Listener. Usually contains Actions that are being queued for the clients on a listener
 
+Contents of individual key entry: 
 ```
 {
   "client_nicnkname": "clientname",
@@ -91,6 +101,7 @@ Example in  Sync Key
 
  it uses the cid to track what request it came from/it correlates to
 
+Contents of individual key entry: 
 ```
 {
   "data": "sensitivedata123",
@@ -112,7 +123,7 @@ Example in  Sync Key:
 
 Used by clients for checking in to the listeners.
 
-
+Contents of individual key entry: 
 ```
 {
   "nickname":"name"
@@ -131,7 +142,7 @@ Example in  Sync Key:
 
 Used by listeners for checking in to the server.
 
-
+Contents of individual key entry: 
 ```
 {
   "lid":"1234-1234-1234-1234", //listener id - keeping in line with other named uuid's, such as rid (request id) and aid (action id)
@@ -156,7 +167,7 @@ Example in  Sync Key:
 
 Used by listeners for syncing current clients (and maybe data if ever needed)
 
-
+Contents of individual key entry: 
 ```
 {
   "lid":"1234-1234-1234-1234", //listener id of current listener that the client is apart of. 
