@@ -175,11 +175,11 @@ class SimpleC2():
             # something wrong here. not sure what.
 
             # Get HTTP Listeners, add to dict
-            http_listeners = self.data.Listeners.HTTP.get_listeners()
+            http_listeners = self.data.Listeners.HTTPProcess.get_listeners()
 
             for nickname in http_listeners:
                 # once you have nickanes, get the data for each one
-                http_listener = self.data.Listeners.HTTP.get_listener_by_nickname(nickname=nickname)
+                http_listener = self.data.Listeners.HTTPProcess.get_listener_process_by_nickname(nickname=nickname)
                 # Use .get() for safer access
                 info = http_listener.get("info", {})
                 

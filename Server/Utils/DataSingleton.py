@@ -147,15 +147,78 @@ class Listeners:
     def __init__(self):
         self.logger = LoggingSingleton.get_logger()
         self.HTTP = Http()
+        self.HTTPProcess = HttpProcess()
 
+class HttpProcess:
+    """For managing listeners local processess.
+    """
+    def __init__(self):
+        self.logger = LoggingSingleton.get_logger()
+        #add a getter
+        self.http_listeners = {}
+
+    def add_listener_process(self, process=None, info=None):
+        """For managing listener processes spun up locally.
+
+        Args:
+            process (_type_): Process of lsitener
+            info (_type_): Info dict of listener
+        """
+        self.logger.debug("Adding http listener to data singleton")
+        listener_dict = {
+            #  object
+            "process":process,
+            # address of listener
+            "info":info
+        }
+
+        # for the switch to lpid
+        #lpid = info["lpid"]
+        #self.http_listeners[lpid] = listener_dict
+
+        nickname = info["nickname"]
+        self.http_listeners[nickname] = listener_dict
+
+    def get_listener_process_by_lpid(self, lpid = None):
+        listener_info = self.http_listeners.get(lpid, None)
+        if listener_info is not None:
+            return listener_info
+        else:
+            self.logger.warning(f"Listener with nickname {lpid} not found.")
+            return None
+        
+    def get_listener_process_by_nickname(self, nickname = None):
+        listener_info = self.http_listeners.get(nickname, None)
+        if listener_info is not None:
+            return listener_info
+
+        else:
+            self.logger.warning(f"Listener process {nickname} has no info.")
+            return None
+
+    def get_listeners(self):
+        """
+        Quick and dirty getter. 
+
+        Returns:
+            dict: The dictionary of HTTP listeners
+        """
+        return self.http_listeners
 
 class Http:
+    """For managing listeners over HTTP
+    """
     def __init__(self):
         self.logger = LoggingSingleton.get_logger()
         #add a getter
         self.http_listeners = {}
         ## Synced data. uhhh can prolly call this somethign diff.
         self.synced_data_store = [] # Dictionary to hold other dictionaries
+
+    ## Process Based Functions - shuold probably split into 2 classes. 
+
+
+    ## Class based fucntions
 
     def add_listener(self, class_object = None, lid=None):
         """Add an HTTP listener to the http_listeners dict in the Data singleton. 
@@ -183,15 +246,6 @@ class Http:
         self.http_listeners[lid] = listener_dict
 
         self.logger.debug(self.http_listeners)
-
-    # DEP
-    #def get_listener_by_nickname(self, nickname = None):
-    #    listener_info = self.http_listeners.get(nickname, None)
-    #    if listener_info is not None:
-    #        return listener_info
-    #    else:
-    #        self.logger.warning(f"Listener with nickname {nickname} not found.")
-    #        return None
 
     def get_listener_class_object_by_lid(self, lid=None):
         """

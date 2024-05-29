@@ -3,6 +3,7 @@ from Utils.DataSingleton import Data
 from Utils.Logger import LoggingSingleton
 from multiprocessing import Process
 import time
+import uuid
 
 logger = LoggingSingleton.get_logger()
 
@@ -30,11 +31,12 @@ class HttpListenerHandler:
                 "bind_port": bind_port,
                 "bind_address": bind_address,
                 "nickname": nickname,
+                "lpid": uuid.uuid4(), # generate process id
                 "type":"HTTP"
             }
-            data_singleton.Listeners.HTTP.add_listener(process=p, info=info)
+            data_singleton.Listeners.HTTPProcess.add_listener_process(process=p, info=info)
 
-            logger.info(f"Spawned HTTP listener on {bind_address}:{bind_port}!")
+            logger.info(f"Spawned HTTP listener {nickname} on {bind_address}:{bind_port}!")
         except Exception as e:
             logger.warning(e)
 
@@ -46,7 +48,7 @@ class HttpListenerHandler:
         try:
             data_singleton = Data()
             # change this to a getter method eventually
-            listener_info = data_singleton.Listeners.HTTP.get_listener_by_nickname(nickname=nickname)
+            listener_info = data_singleton.Listeners.HTTPProcess.get_listener_process_by_nickname(nickname=nickname)
 
             if listener_info:
                 logger.debug("Warning, still using .terminate() to shut down listeners. May cause problems")
