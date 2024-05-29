@@ -4,6 +4,8 @@
 import time
 from Utils.Logger import LoggingSingleton
 import requests
+from Utils.MessageBuilder import api_response, api_request, VesselBuilder
+
 
 class Listener:
     # init with needed items
@@ -25,13 +27,22 @@ class Listener:
 
 
             Tofigure out: New request ID or No? I'm thinking no as it's being FORWARDED to the listener. 
-        """
 
+            Need to wrap in vessel as well. 
+        """
+        # build vesssel structure w sync keys
+        prepared_request = VesselBuilder.build_prepared_request(
+            listener_http_command_sync = request
+        )
+
+
+        # forward request.
         self.logger.debug(f"forwarding request to listener {self.lid} at {self.address}/{self.sync_endpoint}")
         r = requests.post(
             url=f"{self.address}/{self.sync_endpoint}",
-            data=request,
+            data=prepared_request,
         )
+        print(f"sending: {prepared_request}")
 
         if r.status_code != 200:
             self.logger.warning(f"Forward to {self.lid} at {self.address}/{self.sync_endpoint} was unsuccessful!")

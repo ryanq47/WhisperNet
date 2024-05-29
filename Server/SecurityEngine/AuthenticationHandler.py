@@ -5,7 +5,7 @@ from SecurityEngine.EncryptionHandler import PasswordManager
 from flask_jwt_extended import get_jwt_identity
 from functools import wraps
 from flask import jsonify
-from Utils.ApiHelper import api_response
+from Utils.MessageBuilder import api_response
 import getpass
 from Utils.Logger import LoggingSingleton
 

@@ -19,14 +19,16 @@ import json
 from functools import wraps
 from flask import request, jsonify, make_response
 from flask_jwt_extended import get_jwt_identity, jwt_required
-from Utils.ApiHelper import api_response
+from Utils.MessageBuilder import api_response
 from werkzeug.exceptions import BadRequest
 from DataEngine.Neo4jHandler import Neo4jConnection
 from Utils.Logger import LoggingSingleton
 from PluginEngine.ControlPlugins.SimpleC2Plugin.Utils.ListenerHandler import HttpListenerHandler
 from Utils.DataSingleton import Data
 from PluginEngine.ControlPlugins.SyncPlugin.Modules.SyncHandler import SyncHandler
-from Utils.ApiHelper import api_response
+#from Utils.ApiHelper import api_response
+from Utils.MessageBuilder import api_response, api_request
+
 ################################################
 # Info clas
 ################################################

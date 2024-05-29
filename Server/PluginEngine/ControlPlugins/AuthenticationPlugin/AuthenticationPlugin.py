@@ -1,5 +1,5 @@
 #from PluginEngine.Plugins.BasePlugin import BasePlugin
-from Utils.ApiHelper import api_response
+from Utils.MessageBuilder import api_response
 
 import logging
 import inspect

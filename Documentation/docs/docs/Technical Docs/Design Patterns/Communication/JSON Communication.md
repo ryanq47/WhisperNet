@@ -1,8 +1,8 @@
 ## JSON Transport Vessel/Comms
 
-This outlines how communication is hanlded between the entire project.
+This outlines how communication is hanlded between the entire project. To see how it is tied together/implemetned, check out DOCS FOR SYNC EVERYTHING ONCE THEY EXIST
 
-To see construction of how to generate these, see [VesselBuilder](../Server/Utils/VesselBuilder.md).
+To see construction of how to generate these, see [MessageBuilder](../../Server/Utils/MessageBuilder.md).
 
 
 #### Universal Comms
@@ -167,7 +167,7 @@ Used by listeners for syncing current clients (and maybe data if ever needed)
 Example in Sync Key:
 
 ```
-"ListenerInfo": {
+"ListenerHttpClientSync": {
   "lid":"1234-1234-1234-1234", //listener id of current listener that the client is apart of. 
   "cid": "1234-1234-1234-1234" # Client ID of the client
 }

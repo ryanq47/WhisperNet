@@ -6,7 +6,7 @@ from werkzeug.exceptions import BadRequest
 
 from SecurityEngine.AuthenticationHandler import Authentication, UserManagement
 from SecurityEngine.AuthenticationHandler import AccessManagement
-from Utils.ApiHelper import api_response
+from Utils.MessageBuilder import api_response
 from Utils.Logger import LoggingSingleton
 from Utils.DataSingleton import Data
 

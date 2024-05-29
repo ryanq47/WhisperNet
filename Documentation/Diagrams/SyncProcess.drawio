@@ -1,0 +1,130 @@
+<mxfile host="app.diagrams.net" modified="2024-05-29T18:13:12.456Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" etag="2hc8FpYX81Y6DjuqZ-r8" version="24.0.1" type="device">
+  <diagram name="Page-1" id="tVNwCAxOgwdyOZv54jfw">
+    <mxGraphModel dx="1722" dy="1327" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-1" value="Server" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn0.iconfinder.com/data/icons/long-shadow-web-icons/512/python-128.png" vertex="1" parent="1">
+          <mxGeometry x="386" y="300" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-2" value="Listener" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn0.iconfinder.com/data/icons/long-shadow-web-icons/512/python-128.png" vertex="1" parent="1">
+          <mxGeometry x="386" y="570" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-3" value="GUI" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn0.iconfinder.com/data/icons/long-shadow-web-icons/512/python-128.png" vertex="1" parent="1">
+          <mxGeometry x="386" y="50" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-6" value="" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.service_endpoint;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="336" y="329" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-7" value="" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.service_endpoint;rotation=-180;" vertex="1" parent="1">
+          <mxGeometry x="464" y="580" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;flowAnimation=1;fillColor=#1ba1e2;strokeColor=#006EAF;" edge="1" parent="1" source="QZ3RY3zv_dW7_qYMWIMx-1" target="QZ3RY3zv_dW7_qYMWIMx-7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="534" y="339" />
+              <mxPoint x="534" y="590" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-17" value="SYNC Data&lt;div&gt;(Forwarded commands, etc)&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="QZ3RY3zv_dW7_qYMWIMx-9">
+          <mxGeometry x="-0.3842" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-10" value="" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.service_endpoint;rotation=-180;" vertex="1" parent="1">
+          <mxGeometry x="464" y="628" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;flowAnimation=1;fillColor=#1ba1e2;strokeColor=#006EAF;" edge="1" parent="1" source="QZ3RY3zv_dW7_qYMWIMx-2" target="QZ3RY3zv_dW7_qYMWIMx-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="316" y="609" />
+              <mxPoint x="316" y="339" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-18" value="SYNC Data&lt;br&gt;(Client Command Results, etc)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="QZ3RY3zv_dW7_qYMWIMx-12">
+          <mxGeometry x="0.0029" y="6" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-15" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;startArrow=none;startFill=0;endArrow=none;endFill=0;fillColor=#e1d5e7;strokeColor=#9673a6;" edge="1" parent="1" source="QZ3RY3zv_dW7_qYMWIMx-14">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="540" y="588" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-14" value="&lt;h1&gt;SYNC endpoints&lt;/h1&gt;&lt;div&gt;SYNC endpoints. Effectively just ingest points for all types of data contained in requests.&amp;nbsp;&lt;/div&gt;" style="text;html=1;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="700" y="440" width="280" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-16" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.18;entryY=0.97;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=1;dashPattern=8 8;" edge="1" parent="1" source="QZ3RY3zv_dW7_qYMWIMx-14" target="QZ3RY3zv_dW7_qYMWIMx-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-21" value="&lt;h1&gt;Listener POST endpoint&lt;/h1&gt;&lt;div&gt;POST endpoint where clients can make post requests to, and get their next command&lt;/div&gt;" style="text;html=1;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="700" y="580" width="330" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-22" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=1;dashPattern=8 8;endArrow=none;endFill=0;" edge="1" parent="1" source="QZ3RY3zv_dW7_qYMWIMx-21" target="QZ3RY3zv_dW7_qYMWIMx-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-23" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="80" y="580" width="96" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-19" value="Compromised Client" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.computer;pointerEvents=1;" vertex="1" parent="QZ3RY3zv_dW7_qYMWIMx-23">
+          <mxGeometry width="96" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-20" value="" style="fontColor=#0066CC;verticalAlign=top;verticalLabelPosition=bottom;labelPosition=center;align=center;html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.virus;" vertex="1" parent="QZ3RY3zv_dW7_qYMWIMx-23">
+          <mxGeometry x="25" y="10" width="46" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.18;entryY=0.97;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#008a00;strokeColor=#005700;dashed=1;dashPattern=8 8;flowAnimation=1;shadow=1;textShadow=1;" edge="1" parent="1" source="QZ3RY3zv_dW7_qYMWIMx-19" target="QZ3RY3zv_dW7_qYMWIMx-7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="128" y="560" />
+              <mxPoint x="505" y="560" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-30" value="Exfil Results" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="QZ3RY3zv_dW7_qYMWIMx-25">
+          <mxGeometry x="-0.1906" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.18;entryY=0.03;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#008a00;strokeColor=#005700;dashed=1;dashPattern=8 8;flowAnimation=1;" edge="1" parent="1" source="QZ3RY3zv_dW7_qYMWIMx-19" target="QZ3RY3zv_dW7_qYMWIMx-10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="128" y="675" />
+              <mxPoint x="505" y="675" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-29" value="Getting command Data" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="QZ3RY3zv_dW7_qYMWIMx-28">
+          <mxGeometry x="-0.138" y="-6" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.18;entryY=0.03;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#fa6800;strokeColor=#C73500;dashed=1;dashPattern=8 8;flowAnimation=1;" edge="1" parent="1" source="QZ3RY3zv_dW7_qYMWIMx-3" target="QZ3RY3zv_dW7_qYMWIMx-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="345" y="89" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-35" value="SYNC Data&amp;nbsp;&lt;br&gt;(Commands, etc)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="QZ3RY3zv_dW7_qYMWIMx-31">
+          <mxGeometry x="0.0156" y="7" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-32" value="" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.service_endpoint;rotation=-180;" vertex="1" parent="1">
+          <mxGeometry x="464" y="300" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-33" value="&lt;h1&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Other Endpoints&lt;/span&gt;&lt;br&gt;&lt;/h1&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Out of scope for this diagram, but other endpoints where the GUI can get data from.&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" style="text;html=1;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="700" y="260" width="280" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-34" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#e1d5e7;strokeColor=#9673a6;dashed=1;dashPattern=8 8;endArrow=none;endFill=0;" edge="1" parent="1" source="QZ3RY3zv_dW7_qYMWIMx-33" target="QZ3RY3zv_dW7_qYMWIMx-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QZ3RY3zv_dW7_qYMWIMx-37" value="Text" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;shadow=0;textShadow=0;" vertex="1" parent="1">
+          <mxGeometry x="-160" y="-110" width="50" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
