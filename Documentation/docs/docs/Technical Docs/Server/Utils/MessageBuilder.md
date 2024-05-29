@@ -92,9 +92,27 @@ response_data, status_code = api_response(
 
 The `VesselBuilder` class provides static methods to build various request and sync dictionaries, facilitating the creation of structured JSON objects for communication.
 
-### Methods
+### Main Methods
 
-- `build_prepared_request(status: str, error_message: str, data_items: list, **kwargs) -> dict`: Builds a prepared request using the provided parameters and additional data.
+#### `build_prepared_request(status: str, error_message: str, data_items: list, **kwargs) -> dict`: 
+
+Builds a prepared request using the provided parameters and additional data.
+
+Example usage:
+
+```
+prepared_request = VesselBuilder.build_prepared_request(
+    listener_http_command_sync = request
+    ## Any other sync keys here.
+)
+
+
+```
+ prepared_request will contain a fully filled out & formatted vessel. See [Json Communication](../../Design%20Patterns/Communication/JSON%20Communication.md) for more info on Vessels & the communication process
+
+
+### Other methods:
+
 - `create_action(client_nickname: str, action: str, executable: str, command: str) -> dict`: Creates an action dictionary.
 - `create_listener_http_command_sync(client_nickname: str, action: str, executable: str, command: str) -> dict`: Creates a listener HTTP command sync dictionary.
 - `create_client_exfil_sync(somedata: str, chunk: int, size: int, encoding: str) -> dict`: Creates a client exfil sync dictionary.

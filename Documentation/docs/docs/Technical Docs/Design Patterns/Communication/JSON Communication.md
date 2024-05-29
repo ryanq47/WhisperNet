@@ -14,6 +14,8 @@ This JSON structure serves as the universal communication method/vessel between 
 - **Vessel**: The entire JSON structure.
 - **Sync Keys**: Individual subkeys under the `data` key. See [Usage](#usage) below for more information.
 
+
+### Vessel Example:
 ```json
 {
   "rid": "unique_request_identifier",
