@@ -82,7 +82,7 @@ class ListenerHttpCommandSync:
                     client_object = client_object
                 )
 
-            
+            #print("OHMAGODPLZWORKQUEUING COMMAND =======================================")
             ## Straight up queue the given command. Can strip certain keys if needed
             self.logger.debug(f"Queueing command for {client_nicnkname}")
             client_object.enqueue_command(command = client_command)

@@ -99,6 +99,7 @@ class Client:
         #    action = "Queue command",
         #    client = self.nickname
         #)
+        print(f"queuing command: {command}")
 
         # check if command has aid
         self.check_aid(command)

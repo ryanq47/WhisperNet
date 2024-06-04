@@ -210,6 +210,7 @@ class ListenerHTTP:
             )
 
         ## Parse JSON using SyncHandler
+        print(f"================== RESPONSE: {response}")
         synchandler = SyncHandler()
         synchandler.parse_response(response=response)
 

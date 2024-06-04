@@ -105,6 +105,8 @@ class SyncHandler:
         """
         result_data = self.data["data"]
         #self.logger.debug(f"Result Data: {result_data}")
+        print("RESULT DATA ============================================")
+        print(result_data)
 
         # iterate over key,
         for key in result_data:

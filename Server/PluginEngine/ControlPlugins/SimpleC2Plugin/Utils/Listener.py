@@ -30,6 +30,7 @@ class Listener:
 
             Need to wrap in vessel as well. 
         """
+        print(f"PreProceesed Request: {request}")
         # build vesssel structure w sync keys
         prepared_request = VesselBuilder.build_prepared_request(
             listener_http_command_sync = request

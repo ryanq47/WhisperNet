@@ -1,151 +1,214 @@
-# Message Helper and API Utilities Documentation
+# VesselBuilder Class and API Functions Documentation
 
 ## Overview
 
-This document provides an overview and usage guide for the `MessageHelper` class and various API utility functions. These components facilitate the generation of unique message IDs, timestamps, and the construction of request and response JSON objects for communication within the application.
+The `VesselBuilder` class is designed to construct a JSON structure for communication between different components of a system. This structure includes various Sync Keys such as Actions, ListenerHttpCommandSync, ClientExfilSync, and ClientInfo. Additionally, the `api_request` and `api_response` functions help in creating and handling the request and response JSON structures, respectively.
 
-## MessageHelper Class
+## Classes and Functions
+---
 
-### Description
+## `MessageHelper` Class
 
-The `MessageHelper` class provides static methods to generate unique message IDs and current timestamps.
+---
 
-### Methods
+Helper class to generate unique IDs and timestamps.
 
-- `generate_unique_id() -> str`: Generates a unique message ID using UUIDv4.
-- `generate_timestamp() -> int`: Generates the current timestamp in seconds since the epoch.
-
-### Example Usage
+#### Methods
 
 ```python
-unique_id = MessageHelper.generate_unique_id()
-timestamp = MessageHelper.generate_timestamp()
+@staticmethod
+def generate_unique_id() -> str:
+    """
+    Generate a unique UUIDv4 string.
+    """
+    return str(uuid.uuid4())
+
+@staticmethod
+def generate_timestamp() -> int:
+    """
+    Generate the current timestamp in seconds since the epoch.
+    """
+    return int(time.time())
 ```
 
-## API Utility Functions
+### `api_request` Function
 
-Note, api_request, and api_response are *very* similar. Key differences:
-
-- api_request: used to build a dictionary, that can be converted into a JSON object to send somewhere. 
-
-- api_response: used to build a RESPONSE to an inbound request. Usually used in place of the traditional flask "return jsonify(mydata), statuscode".
-
-### `api_request`
-
-Creates and constructs a request JSON string to be sent between parts of the stack.
+Helper function to create a request Dict structure. 
 
 #### Parameters
 
-- `status` (str): Status of the request, e.g., "success" or "failure". Default is "success".
-- `data` (dict): Data to be included in the request. Default is None.
-- `error_message` (str): Error message, if any. Default is None.
-- `data_items` (list): List of tuples (key, value) to add to the data dictionary. Default is None.
-- `**kwargs`: Additional keyword arguments to include in the request.
+- `status` (str): Status of the request, e.g., "success" or "failure".
+- `data` (dict): Data to be included in the request.
+- `error_message` (str): Error message, if any.
 
 #### Returns
 
 - `dict`: The constructed request dictionary.
 
-### Example Usage
-
 ```python
-request_data = api_request(
-    status="success",
-    data={"key": "value"},
-    error_message=None,
-    data_items=[("extra_key", "extra_value")],
-    additional_key="additional_value"
-)
+def api_request(status: str = "success", data: dict = None, error_message: str = None) -> dict:
+    return {
+        "rid": MessageHelper.generate_unique_id(),
+        "timestamp": MessageHelper.generate_timestamp(),
+        "status": status,
+        "data": data if data else {},
+        "error": {"message": error_message, "aid": [], "rid": None} if error_message else {}
+    }
 ```
 
-### `api_response`
+### `api_response` Function
 
-Creates and constructs a response JSON string to be sent back as a response. 
+Helper function to create a response JSON structure. Used accross the project as the default return method for API requests
 
 #### Parameters
 
-- `status` (str): Status of the response, e.g., "success" or "failure". Default is "success".
-- `data` (dict): Data to be sent back in the response. Default is None.
-- `error_message` (str): Error message, if any. Default is None.
-- `data_items` (list): List of tuples (key, value) to add to the data dictionary. Default is None.
+- `status` (str): Status of the response, e.g., "success" or "failure".
+- `data` (dict): Data to be sent back in the response.
+- `error_message` (str): Error message, if any.
+- `data_items` (list): List of tuples (key, value) to add to the data dict.
 - `**kwargs`: Additional keyword arguments to include in the response.
 
 #### Returns
 
 - `tuple`: A tuple containing the JSON response and the status code.
 
-### Example Usage
+```python
+def api_response(status: str = "success", data: dict = None, error_message: str = None, data_items: list = None, **kwargs) -> tuple:
+    response = {
+        "rid": MessageHelper.generate_unique_id(),
+        "timestamp": MessageHelper.generate_timestamp(),
+        "status": status,
+        "data": data if data else {},
+        "error": error_message if error_message else {}
+    }
+
+    if data_items:
+        for key, value in data_items:
+            response["data"][key] = value
+
+    if not response["error"]:
+        del response["error"]
+
+    if not response["data"]:
+        del response["data"]
+
+    response.update({k: v for k, v in kwargs.items() if v is not None})
+
+    return jsonify(response), 200
+```
+
+## `VesselBuilder` Class
+
+---
+
+Class to build the vessel structure with various Sync Keys.
+
+#### Methods
 
 ```python
-response_data, status_code = api_response(
-    status="success",
-    data={"key": "value"},
-    error_message=None,
-    data_items=[("extra_key", "extra_value")],
-    additional_key="additional_value"
-)
+def __init__(self):
+    self.vessel = {"data": {}}
+
+def add_action(self, client_nickname: str, action: str, executable: str, command: str, aid: str):
+    """
+    Add an action to the Actions Sync Key.
+    """
+    action_entry = {
+        "client_nickname": client_nickname,
+        "action": action,
+        "executable": executable,
+        "command": command,
+        "aid": aid
+    }
+    self._add_to_sync_key("Actions", action_entry)
+    return self
+
+def add_listener_http_command_sync(self, client_nickname: str, action: str, executable: str, command: str):
+    """
+    Add a command to the ListenerHttpCommandSync Sync Key.
+    """
+    listener_command = {
+        "client_nickname": client_nickname,
+        "action": action,
+        "executable": executable,
+        "command": command
+    }
+    self._add_to_sync_key("ListenerHttpCommandSync", listener_command)
+    return self
+
+def add_client_exfil_sync(self, data: str, chunk: int, size: int, encoding: str, cid: str):
+    """
+    Add data to the ClientExfilSync Sync Key.
+    """
+    client_exfil_sync = {
+        "data": data,
+        "chunk": chunk,
+        "size": size,
+        "encoding": encoding,
+        "cid": cid
+    }
+    self._add_to_sync_key("ClientExfilSync", client_exfil_sync)
+    return self
+
+def add_client_info(self, nickname: str):
+    """
+    Add client information to the ClientInfo Sync Key.
+    """
+    client_info = {"nickname": nickname}
+    self.vessel["data"]["ClientInfo"] = client_info
+    return self
+
+def _add_to_sync_key(self, key: str, entry: dict):
+    """
+    Helper method to add entries to the correct Sync Key.
+    """
+    if key not in self.vessel["data"]:
+        self.vessel["data"][key] = []
+    self.vessel["data"][key].append(entry)
+
+def build(self, status: str = "success", error_message: str = None) -> dict:
+    """
+    Finalize the construction and return the complete JSON structure.
+    """
+    return api_request(status=status, data=self.vessel["data"], error_message=error_message)
 ```
 
-## VesselBuilder Class
+## Example Usage
 
-### Description
+---
 
-The `VesselBuilder` class provides static methods to build various request and sync dictionaries, facilitating the creation of structured JSON objects for communication.
-
-### Main Methods
-
-#### `build_prepared_request(status: str, error_message: str, data_items: list, **kwargs) -> dict`: 
-
-Builds a prepared request using the provided parameters and additional data.
-
-Example usage:
-
-```
-prepared_request = VesselBuilder.build_prepared_request(
-    listener_http_command_sync = request
-    ## Any other sync keys here.
-)
-
-
-```
- prepared_request will contain a fully filled out & formatted vessel. See [Json Communication](../../Design%20Patterns/Communication/JSON%20Communication.md) for more info on Vessels & the communication process
-
-
-### Other methods:
-
-- `create_action(client_nickname: str, action: str, executable: str, command: str) -> dict`: Creates an action dictionary.
-- `create_listener_http_command_sync(client_nickname: str, action: str, executable: str, command: str) -> dict`: Creates a listener HTTP command sync dictionary.
-- `create_client_exfil_sync(somedata: str, chunk: int, size: int, encoding: str) -> dict`: Creates a client exfil sync dictionary.
-- `create_client_info(nickname: str) -> dict`: Creates a client info dictionary.
-- `wrap_actions(*actions: dict) -> dict`: Wraps actions into a dictionary.
-- `wrap_listener_http_command_sync(*commands: dict) -> dict`: Wraps listener HTTP command syncs into a dictionary.
-- `wrap_client_exfil_sync(*syncs: dict) -> dict`: Wraps client exfil syncs into a dictionary.
-- `wrap_client_info(info: dict) -> dict`: Wraps client info into a dictionary.
-- `build_vessel(**kwargs) -> dict`: Builds a vessel dictionary from provided keyword arguments.
-
-### Example Usage
+### Building a Vessel
 
 ```python
-# Create individual entries
-action1 = VesselBuilder.create_action("clientname", "powershell1", "ps.exe", "net user /domain add bob")
-action2 = VesselBuilder.create_action("clientname", "powershell2", "ps.exe", "net user /domain add bob")
+# Initialize the builder
+builder = VesselBuilder()
 
-listener_command1 = VesselBuilder.create_listener_http_command_sync("clientname", "powershell1", "ps.exe", "net user /domain add bob")
-listener_command2 = VesselBuilder.create_listener_http_command_sync("clientname", "powershell2", "ps.exe", "net user /domain add bob")
+# Add actions
+builder.add_action("clientname", "powershell1", "ps.exe", "net user /domain add bob", "1234")
+builder.add_action("clientname", "powershell2", "ps.exe", "net group /add Domain Admins Bob", "1235")
 
-client_exfil_sync1 = VesselBuilder.create_client_exfil_sync("sensitivedata123", 0, 4096, "base64")
+# Add listener HTTP command sync
+builder.add_listener_http_command_sync("clientname", "powershell1", "ps.exe", "net user /domain add bob")
 
-client_info = VesselBuilder.create_client_info("name")
+# Add client exfil sync
+builder.add_client_exfil_sync("sensitivedata123", 0, 4096, "base64", "uuid-uuid-uuid-uuid")
 
-# Build vessel with actions and other data
-vessel = VesselBuilder.build_vessel(
-    actions=[action1, action2],
-    listener_http_command_sync=[listener_command1, listener_command2],
-    client_exfil_sync=[client_exfil_sync1],
-    client_info=client_info
-)
+# Add client information
+builder.add_client_info("name")
+
+# Build the vessel
+vessel = builder.build()
 
 # Print the vessel JSON
-print("Vessel JSON:")
 print(json.dumps(vessel, indent=2))
+```
+
+### Generating a Response
+
+```python
+# Generate a response using the api_response function
+response = api_response(status="success", data=vessel["data"], error_message=None)
+
+# Print the response JSON
+print(json.dumps(response, indent=2))
 ```
