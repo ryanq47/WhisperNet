@@ -5,7 +5,7 @@ import time
 from Utils.Logger import LoggingSingleton
 import requests
 from Utils.MessageBuilder import api_response, api_request, VesselBuilder
-
+import json
 
 class Listener:
     # init with needed items
@@ -18,32 +18,45 @@ class Listener:
         
 
     
-    def forward_request(self, request):
+    def forward_request(self, entry, key):
         """
-            Forwards request to listener        
+            Forwards ONE request to listener        
 
         Args:
             request (_type_): _description_
 
 
             Tofigure out: New request ID or No? I'm thinking no as it's being FORWARDED to the listener. 
+                - doesn't matter, each action will have an action ID that tracks it. 
 
             Need to wrap in vessel as well. 
         """
-        print(f"PreProceesed Request: {request}")
-        # build vesssel structure w sync keys
-        prepared_request = VesselBuilder.build_prepared_request(
-            listener_http_command_sync = request
+        print(f"PreProceesed entry: {entry}")
+
+        # we are taking the individual entry (in request var): {'client_nickname': '0234-1234-1234-1235', 'action': 'powershell', 'executable': 'ps.exe', 'command': 'whoami', 'aid': 'standin_aid'}
+        #, adding it to the vessel structure, then building the vessel. This allows us to recreate the vessel/forward it, while
+        # also being able to manipulate/edit any values if required. 
+
+        # Vessel (inbound to sync) -> SyncHandler/Parser -> each individual key parsed, if needed to be forwarded -> forward_request() > recondsturct vessel > send
+
+        builder = VesselBuilder()
+        # This method allows for direct dict/sync key addition to the vessel.
+
+        builder._add_to_sync_key(
+            key=key,
+            entry=entry
         )
 
+        vessel = json.dumps(builder.build())
+        print(f"Vessel Req: {vessel}")
 
         # forward request.
         self.logger.debug(f"forwarding request to listener {self.lid} at {self.address}/{self.sync_endpoint}")
         r = requests.post(
             url=f"{self.address}/{self.sync_endpoint}",
-            data=prepared_request,
+            json=vessel,
         )
-        print(f"sending: {prepared_request}")
+        print(f"sending: {vessel}")
 
         if r.status_code != 200:
             self.logger.warning(f"Forward to {self.lid} at {self.address}/{self.sync_endpoint} was unsuccessful!")

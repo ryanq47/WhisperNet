@@ -6,6 +6,7 @@ import logging
 from types import SimpleNamespace
 from flask import jsonify, make_response, Flask, request, redirect, url_for
 import inspect
+import json
 # Scraping one file standalone for now. Public Plugins will still comm over http. 
 # Can just adjust imports for standalone mode in a diff file.
 #from Utils.Logger import LoggingSingleton
@@ -186,7 +187,7 @@ class ListenerHTTP:
         client_address = request.remote_addr
         self.logger.info(f"Received SYNC request from {client_address}")
 
-        ## Check if the request is JSON
+        ## Check if the request is JSON - might be redundant
         if not request.is_json:
             self.logger.error(f"Request data from {client_address} is not JSON")
             return api_response(
@@ -198,7 +199,8 @@ class ListenerHTTP:
         ## Get JSON data from the request
         try:
             response = request.get_json()
-
+            # load json into a dict
+            response = json.loads(response)
         # 400 error as it's the users problem (probably)
         except Exception as e:
             self.logger.error(f"Error parsing JSON from {client_address}: {e}")

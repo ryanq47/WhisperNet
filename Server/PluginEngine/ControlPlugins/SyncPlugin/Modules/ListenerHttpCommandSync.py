@@ -5,6 +5,7 @@ class ListenerHttpCommandSync:
     def __init__(self):
         self.data = Data()
         self.logger = LoggingSingleton.get_logger()
+        self.key = "ListenerHttpCommandSync"
 
     def store_response(self, response):
         """
@@ -69,7 +70,10 @@ class ListenerHttpCommandSync:
 
             # Forward the request to the listener
             try:
-                listener_object.forward_request(dict_entry)
+                listener_object.forward_request(
+                    entry=dict_entry, 
+                    key=self.key
+                    )
                 self.logger.debug(f"Request forwarded to listener {listener_object.lid} for client {client_nickname}.")
             except Exception as e:
                 self.logger.error(f"Failed to forward request to listener {listener_object.lid} for client {client_nickname}: {e}")
