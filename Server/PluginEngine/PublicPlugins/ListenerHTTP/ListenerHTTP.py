@@ -139,10 +139,13 @@ class ListenerHTTP:
             if client_command == None:
                 self.logger.debug(f"Client command is None for {client_nickname}")
                 # set command as sleep
+                #return VesselBuilder.build_prepared_sleep_request(cid=client_nickname)
+        
 
             # Return command to client
             self.logger.debug(f"Responding to client {client_nickname}")
 
+            # move to new build_prepared_request() method
             # Wrap in Vessel key/actions
             data = VesselBuilder.build_vessel(
                 actions=[client_command]
