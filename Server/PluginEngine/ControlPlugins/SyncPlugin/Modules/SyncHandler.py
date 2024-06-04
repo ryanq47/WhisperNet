@@ -33,7 +33,7 @@ Req -> /api/sync (SyncPlugin)
 import json
 
 from Utils.Logger import LoggingSingleton
-from PluginEngine.ControlPlugins.SyncPlugin.Modules.ListenerHttpSync import ListenerHttpSync
+from PluginEngine.ControlPlugins.SyncPlugin.Modules.ListenerHttpCommandSync import ListenerHttpCommandSync
 from PluginEngine.ControlPlugins.SyncPlugin.Modules.ListenerHttpClientSync import ListenerHttpClientSync
 from PluginEngine.ControlPlugins.SyncPlugin.Modules.ListenerInfo import ListenerInfo
 
@@ -47,7 +47,7 @@ class SyncHandler:
         self.data = None
         self.handlers = {
             #'listenerHTTP': ListenerHttpSync #self.handle_client_name,
-            'ListenerHttpCommandSync': ListenerHttpSync,
+            'ListenerHttpCommandSync': ListenerHttpCommandSync,
             'ListenerHttpClientSync': ListenerHttpClientSync,
             'ListenerInfo': ListenerInfo
         }

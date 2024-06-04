@@ -1,4 +1,3 @@
-
 ## JSON Transport Vessel/Comms
 
 This outlines how communication is handled between the entire project. To see how it is tied together/implemented, check out the [Sync Process](../Communication/Sync%20Process.md).

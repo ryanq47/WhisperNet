@@ -1,7 +1,7 @@
 from Utils.DataSingleton import Data
 from Utils.Logger import LoggingSingleton
 
-class ListenerHttpSync:
+class ListenerHttpCommandSync:
     def __init__(self):
         self.data = Data()
         self.logger = LoggingSingleton.get_logger()
