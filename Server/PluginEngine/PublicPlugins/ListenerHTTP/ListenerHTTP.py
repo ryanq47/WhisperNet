@@ -110,21 +110,36 @@ class ListenerHTTP:
 
             data_dict = dict(data)
 
+            # move me to UUID
+            self.logger.warning("Still Using nickname here, switch to UUID/CID")
             # Fast handling for the ClientInfo type in the vessel
             client_nickname = data_dict["data"]["ClientInfo"]["nickname"]
+            #client_uuid = data_dict
             self.logger.info(f"Client connected: {client_nickname}")
 
             # If client does not exist
             if not self.data_singleton.Clients.check_if_client_exists(client_name=client_nickname):
                 self.logger.debug(f"New client: {client_nickname}")
                 client_instance = Client(client_nickname)
+                #dipshit you're not adding it to current dict
+                self.data_singleton.Clients.add_new_client(
+                    client_object=client_instance,
+                    client_name=client_nickname
+                )
             else:
                 self.logger.debug(f"Retrieving client instance for: {client_nickname}")
                 client_instance = self.data_singleton.Clients.get_client_object(client_name=client_nickname)
 
+            # stores response based on response ID - probably should change to store response?
             client_instance.set_response(response=data_dict)
+
             # Get next command
             client_command = client_instance.dequeue_command()
+
+            if client_command == None:
+                self.logger.debug(f"Client command is None for {client_nickname}")
+                # set command as sleep
+
             # Return command to client
             self.logger.debug(f"Responding to client {client_nickname}")
 
@@ -133,6 +148,7 @@ class ListenerHTTP:
                 actions=[client_command]
             )
             # Add that data to response
+            print(f"data > client: {data}")
             return api_response(data=data)
         
         # Error handling - move to config file.

@@ -43,6 +43,10 @@ This structure allows for _**multiple**_ Sync Keys to be sent at the same time, 
 
 ## Sync Key Types
 
+## Listener <> Client
+
+---
+
 ### **Actions** (Listener > Client)
 
 Used to define a sequence of executable commands, in a JSON list. Each action includes the executable file and the command to run.
@@ -67,33 +71,11 @@ Used to define a sequence of executable commands, in a JSON list. Each action in
 ]
 ```
 
-### **ListenerHttpCommandSync** (Server > Listener)
-
-Used for synchronizing HTTP commands. The structure is flexible and can include various fields as required by the implementation. Generally used Server -> Listener. Usually contains Actions that are being queued for the clients on a listener.
-
-#### Contents of individual key entry:
-
-```json
-{
-  "client_nickname": "clientname",
-  "action": "powershell1",
-  "executable": "ps.exe",
-  "command": "net user /domain add bob"
-}
-```
-
-#### Example in Sync Key:
-
-```json
-"ListenerHttpCommandSync": [
-  {"client_nickname": "clientname", "action": "powershell1", "executable": "ps.exe", "command": "net user /domain add bob"},
-  {"client_nickname": "clientname", "action": "powershell2", "executable": "ps.exe", "command": "net user /domain add bob"}
-]
-```
-
 ### **ClientExfilSync** (Client > Listener)
 
-Used for clients to exfiltrate data & command results from their hosts. This is the main method that clients use to get data back to the server/listeners. It uses the `cid` to track what request it came from/it correlates to.
+Used for clients to exfiltrate data & command results from their hosts. This is the main method that clients use to get data back to the server/listeners. It uses the `cid` to track what client it came from. 
+
+- [ ] Note: Action ID's might be tough with this key/need addtl client side logic to make sure the AID is correct/included
 
 #### Contents of individual key entry:
 
@@ -134,6 +116,36 @@ Used by clients for checking in to the listeners.
   "nickname": "name"
 }
 ```
+
+## Server <> Listener
+
+---
+
+### **ListenerHttpCommandSync** (Server > Listener)
+
+Used for synchronizing HTTP commands. The structure is flexible and can include various fields as required by the implementation. Generally used Server -> Listener. Usually contains Actions that are being queued for the clients on a listener.
+
+#### Contents of individual key entry:
+
+```json
+{
+  "client_nickname": "clientname",
+  "action": "powershell1",
+  "executable": "ps.exe",
+  "command": "net user /domain add bob"
+}
+```
+
+#### Example in Sync Key:
+
+```json
+"ListenerHttpCommandSync": [
+  {"client_nickname": "clientname", "action": "powershell1", "executable": "ps.exe", "command": "net user /domain add bob"},
+  {"client_nickname": "clientname", "action": "powershell2", "executable": "ps.exe", "command": "net user /domain add bob"}
+]
+```
+
+
 
 ### **ListenerInfo** (Listener > Server)
 
@@ -182,3 +194,32 @@ Used by listeners for syncing current clients (and maybe data if ever needed).
   "cid": "1234-1234-1234-1234"  // Client ID of the client.
 }
 ```
+
+### **ListenerClientExfilSync** (Listener > Server) [NOT IMPLEMENTED]
+
+Same thing as ClientExfilSync, except it groups different client responses/entries together for sending back to the server. Having seperate SyncKey allows for easier/less refactoring in the future.  
+
+```json
+{
+  "data": "sensitivedata123",
+  "chunk": 0,
+  "size": 4096,
+  "encoding": "base64",
+  "cid": "uuid-uuid-uuid-uuid"
+}
+```
+
+#### Example in Sync Key:
+
+```json
+"ListenerClientExfilSync": [
+  {"data": "sensitivedata123", "chunk": 0, "size": 4096, "encoding": "base64", "cid": "uuid-uuid-uuid-uui1"},
+  {"data": "sensitivedata456", "chunk": 0, "size": 4096, "encoding": "base64", "cid": "uuid-uuid-uuid-uui2"},
+
+]
+```
+
+
+## GUI <> Server
+
+---

@@ -147,6 +147,36 @@ class VesselBuilder:
         return prepared_request
 
     @staticmethod
+    def build_prepared_sleep_request(status: str = "success", error_message: str = None, data_items: list = None) -> dict:
+        """
+        Build a prepared request that returns a prepared sleep response
+
+
+        Args:
+            status (str): Status of the request, e.g., "success" or "failure".
+            error_message (str): Error message, if any.
+            data_items (list): List of tuples (key, value) to add to the data dict.
+
+        Returns:
+            dict: The prepared request dictionary.
+        """
+
+        # using Actions sync key entry here
+        sleep_key = VesselBuilder.create_action(
+            action="sleep"
+        )
+        
+        # Prepare the request body using api_request function
+        prepared_request = api_request(
+            status=status,
+            data=sleep_key,
+            error_message=error_message,
+            data_items=data_items
+        )
+        
+        return prepared_request
+
+    @staticmethod
     def create_action(client_nickname: str, action: str, executable: str, command: str) -> dict:
         """
         Create an action dictionary.
@@ -302,6 +332,7 @@ class VesselBuilder:
             vessel.update(VesselBuilder.wrap_client_info(kwargs['client_info']))
 
         return vessel
+
 
 '''
 # Example usage
